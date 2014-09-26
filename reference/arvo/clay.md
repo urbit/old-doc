@@ -644,8 +644,8 @@ revision number, whichever is smaller.
 
 `lar` is the set of new commits, and `bar` is the set of new content.
 
-Interface
----------
+Public Interface
+----------------
 
 As with all vanes, there are exactly two ways to interact with clay.  Clay
 exports a namespace accessible through `.^`, which is described above under

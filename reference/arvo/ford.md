@@ -313,3 +313,107 @@ case), and it will do so without the wrapping of a bolt.
 
 If you understand monads, this is probably fairly obvious.  Otherwise, see the
 discussion on `++cope` (link).
+
+Public Interface
+----------------
+
+Ford does not export a scry interface, so the only way to interact with ford is
+by sending kisses and receiving gifts.  In fact, ford only sends accepts one
+kiss and gives one gift.  This is, of course, misleading because ford actually
+does many different things.  It does, however, only produce one type of thing --
+a result of a computation, which is either an error or the value produced along
+with the set of dependencies referenced by it.
+
+```
+++  kiss                                                ::  in request ->$
+          $%  [%exec p=@p q=(unit silk)]                ::  make / kill
+          ==                                            ::
+```
+
+The `%exec` gift requests ford to perform a computation on behalf of a
+particular ship.  `p` is the ship, and `q` is the computation.  If `q` is null,
+then we are requesting that ford cancel the computation that it is currently
+being run along this duct.  Thus, if you wish to cancel a computation, you must
+send the kiss along the same duct as the original request.
+
+Otherwise, we ask ford to perform a certain computation, as defined in `++silk`.
+Since all computations produce the same type of result, we will discuss that
+result before we jump into `++silk`.
+
+```
+++  gift                                                ::  out result <-$
+          $%  [%made p=(each bead (list tank))]         ::  computed result
+          ==                                            ::
+```
+
+We give either a `bead`, which is a result, or a list of tanks, which is an
+error messge, often including a stack trace.
+
+```
+++  bead  ,[p=(set beam) q=cage]                        ::  computed result
+```
+
+This is a set of dependencies required to compute this value and a cage of the
+result with its associated mark.
+
+There are twelve possible computations defined in `++silk`.
+
+```
+++  silk                                                ::  construction layer
+          $&  [p=silk q=silk]                           ::  cons
+          $%  [%bake p=mark q=beam r=path]              ::  local synthesis
+              [%boil p=mark q=beam r=path]              ::  general synthesis
+              [%call p=silk q=silk]                     ::  slam
+              [%cast p=mark q=silk]                     ::  translate
+              [%done p=(set beam) q=cage]               ::  literal
+              [%dude p=tank q=silk]                     ::  error wrap
+              [%dune p=(set beam) q=(unit cage)]        ::  unit literal
+              [%mute p=silk q=(list (pair wing silk))]  ::  mutant
+              [%plan p=beam q=spur r=hood]              ::  structured assembly
+              [%reef ~]                                 ::  kernel reef
+              [%ride p=twig q=silk]                     ::  silk thru twig
+              [%vale p=mark q=ship r=*]                 ::  validate [our his]
+          ==                                            ::
+```
+
+First, we allow silks to autocons.  A cell of silks is also a silk, and the
+product vase is a cell of the two silks.  This obviously extends to an arbitrary
+number of silks.
+
+`%bake` tries to functionally produce the file at a given beam with the given
+mark and heel.  It fails if there is no way to translate at this level.
+
+`%boil` functionally produces the file at a given beam with the given mark and
+heel.  If there is no way to translate at this level, we descend recursively
+into the path in the beam and attempt to translate there.  This should almost
+always be called instead of `%bake`.
+
+`%call` slams the result of one silk against the result of another.
+
+`%cast` translates the given silk to the given mark, if possible.  This is one
+of the critical and fundamental operations of ford.
+
+`%done` produces exactly its input.  This is rarely used on its own, but many
+silks are recursively defined in terms of other silks, so we often need a silk
+that simply produces its input.  A monadic return, if you will.
+
+`%dude` computes the given silk with the given tank as part of the stack trace
+if there is an error.
+
+`%dune` produces an error if the cage is empty.  Otherwise, it produces the
+value in the unit.
+
+`%mute` takes a silk and a list of changes to make to the silk.  At each wing in
+the list we put the value of the associated silk.
+
+`%plan` performs a structured assembly directly.  This is not generally directly
+useful because several other silks perform supersets of this functionality.  We
+don't usually have naked hoods outside ford.
+
+`%reef` produces a core containing the entirety of zuse and hoon, suitable for
+running arbitrary code against.  The mark is `%noun`.
+
+`%ride` slaps a twig against a subject silk.  The mark of the result is `%noun`.
+
+`%vale` validates untyped data from a ship against a given mark.  This is an
+extremely useful function.
