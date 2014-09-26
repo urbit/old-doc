@@ -204,9 +204,50 @@ specify which version of the resource to use and which ship to retrieve it from.
           ==                                            ::
 ```
 
+This is how we represent the static resources hook files can load.  The
+discussion of their use from a user's perspective is documented elsewhere
+(link), so we will here only give a description of the data structure itself.
 
+A `%ape` horn is simply a twig that gets evaluated and placed in the subject.
 
-###`++hoop`
+A `%arg` is a gate that gets evaluated with a sample of our location and our
+heel.
+
+A `%day` is a horn that applies to each of a list of `@dr`-named files in the
+directory.
+
+A `%dub` is a term and horn, where the result of a horn is given the face of the
+term.
+
+A `%fan` is a list of horns, all at the current directory level.
+
+A `%for` is a path and a horn, where the horn is evaluated relative to the given
+path, where the given path is relative to the current location.
+
+A `%hub` is a horn that applies to each of a list of `@ud`-named files in the
+directory.
+
+A `%man` is a map of spans to horns where the result is a set of each horn
+applied to the current directory given the associated face.
+
+A `%nap` is a homogenous map where each entry in a directory is handled with the
+same horn and is given a face according to its name.
+
+A `%now` is a horn that applies to each of a list of `@da`-named files in the
+directory.
+
+A `%saw` is a twig and a horn, where the twig operates on the result of the
+horn.
+
+A `%see` is a beam and a horn, where the horn is evaluated at a location of the
+given beam.
+
+A `%sic` is a tile and a horn, where the horn is evaluated and cast to the type
+associated with the tile.
+
+A `%toy` is simply a mark to be baked.
+
+###`++hoop`, body
 
 ```
 ++  hoop                                                ::  source in hood
@@ -218,3 +259,57 @@ specify which version of the resource to use and which ship to retrieve it from.
 This is an entry in the body of the hook file.  The hoop can either be defined
 directly in the given file or it can be a reference to another file.  The second
 is specified with a `//` rune.
+
+###`++bolt`, monadic edge
+
+```
+++  bolt                                                ::  gonadic edge
+  |*  a=$+(* *)                                         ::  product clam
+  $:  p=cafe                                            ::  cache
+    $=  q                                               ::
+      $%  [%0 p=(set beam) q=a]                         ::  depends/product
+          [%1 p=(set ,[p=beam q=(list tank)])]          ::  blocks
+          [%2 p=(list tank)]                            ::  error
+      ==                                                ::
+  ==                                                    ::
+```
+
+Throughout our computation, we let our result flow through with the set of
+dependencies of the value.  At various times, we may wish to either throw an
+error or declare that the actual result cannot be found until a particular
+resource is retrieved.  This is a perfect case for a monad, so here we define a
+data structure for it.
+
+At every step, we have a cache, so we store that in `p`.  In `q` we store the
+data.
+
+In the case of `%0`, we have the result in `q` and the set of dependencies in
+`p`.
+
+In the case of `%1`, we have a set of dependencies on which we are blocking.
+When this happens, we make a call to clay to get the dependencies, and we
+proceed with the computation when we receive them.  Technically, we restart the
+computation, but since every expensive step is cached, there is no significant
+performance penalty to doing this.  Referential transparency has its uses.
+
+In the case of `%2`, we have a hit an error.  This gets passed all the way
+through to the calling duct.  The list of tanks is some description of what went
+wrong, often including a stack trace.
+
+###`++burg`, monadic rule
+
+```
+++  burg                                                ::  gonadic rule
+  |*  [a=$+(* *) b=$+(* *)]                             ::  from and to
+  $+([c=cafe d=a] (bolt b))                             ::
+::                                                      ::
+```
+
+To operate on bolts, we use `++cope` as our bind operator, and the functions it
+works on are of type `burg`.  Our functions that operate on bolts should have a
+sample of the cache and a value.  Their output should be a bolt of the output
+value.  Then, `++cope` will only call the function when necessary (in the `%0`
+case), and it will do so without the wrapping of a bolt.
+
+If you understand monads, this is probably fairly obvious.  Otherwise, see the
+discussion on `++cope` (link).
