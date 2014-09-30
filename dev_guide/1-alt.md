@@ -83,7 +83,7 @@ Looking at the rendered page it's clear that we're assigning `a` to be `1` and `
 Let's build our own computation
 
 In
-    /pub/fab/guide/exercise/3/hymn.hook
+    /pub/fab/guide/exercise/4/hymn.hook
 
 Put
     |%
@@ -91,14 +91,14 @@ Put
       ++  end  10
       ++  length
         |=
-          [start=@ud end=@ud]
+          [s=@ud e=@ud]
         (sub end start)
     --
     ;div
       ;h1: Cores
       ;p: We'll be starting at {<start>}
       ;p: And ending at {<end>}
-      ;p: Looks like a length of {<(length (add start 1) end)>}
+      ;p: Looks like a length of {<(length start end)>}
     ==
 
 Try it
@@ -110,4 +110,31 @@ As you can see from the output, we have written a little function that takes two
 
 Each arm has a value, either static data (in the case of `++start` and `++end`) or a gate (in the case of `++length`). A gate is a kind of core. Gates only have one arm and are quite similar to a function in other languages. We use `|=` to construct our gate. Runes in hoon are generally categorized by their first character. `|` indicates a rune having to do with cores. 
 
-Our `++length` gate takes two arguments, start and end. In hoon we call this the 'sample'. Every `|=` has two parts, the sample type and the computation. `[start=@ud end=@ud]` says that the gate takes two arguments, each of which should be a `@ud` or unsigned decimal, and will be addressable as `start` and `end`. Our computation, `(sub end start)` simply computes the difference between `end` and `start`
+Our `++length` gate takes two arguments, start and end. In hoon we call this the 'sample'. Every `|=` has two parts, the sample type and the computation. `[s=@ud e=@ud]` says that the gate takes two arguments, labelled going forward as `s` and `e`, and required to both be `@ud` or unsigned decimal. Our computation, `(sub e s)` simply computes the difference between `e` and `s`. 
+
+`@ud` is an odor. Odors aren't quite types, but they're similar. You'll learn the difference by example as we progress, and you can always refer to the [odor index](link).
+
+You probably also noticed our indentation. In general hoon has both tall and wide forms. In general, we use tall form when programming and wide form in the REPL. In wide form, hoon uses two spaces for indentation and is back-stepped so nested code doesn't drift away toward the right margin. 
+
+
+5.
+
+In
+    /pub/fab/guide/exercise/5/hymn.hook
+
+Put
+    |%
+      ++  start  ,@ud
+      ++  end  ,@ud
+      ++  length
+        |=
+          [s=start e=end]
+        (sub e s)
+    --
+    ;div
+      ;h1: Cores
+      ;p: How long does it take to get from 2 to 20? {<(length 2 20)>}
+    ==
+
+Try it
+    http://talsur-todres.urbit.org/gen/main/pub/fab/guide/exercise/5/
