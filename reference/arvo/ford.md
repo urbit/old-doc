@@ -1,5 +1,5 @@
-Ford
-====
+Reference
+=========
 
 Data Models
 -----------
@@ -313,3 +313,528 @@ case), and it will do so without the wrapping of a bolt.
 
 If you understand monads, this is probably fairly obvious.  Otherwise, see the
 discussion on `++cope` (link).
+
+Public Interface
+----------------
+
+Ford does not export a scry interface, so the only way to interact with ford is
+by sending kisses and receiving gifts.  In fact, ford only sends accepts one
+kiss and gives one gift.  This is, of course, misleading because ford actually
+does many different things.  It does, however, only produce one type of thing --
+a result of a computation, which is either an error or the value produced along
+with the set of dependencies referenced by it.
+
+```
+++  kiss                                                ::  in request ->$
+          $%  [%exec p=@p q=(unit silk)]                ::  make / kill
+          ==                                            ::
+```
+
+The `%exec` gift requests ford to perform a computation on behalf of a
+particular ship.  `p` is the ship, and `q` is the computation.  If `q` is null,
+then we are requesting that ford cancel the computation that it is currently
+being run along this duct.  Thus, if you wish to cancel a computation, you must
+send the kiss along the same duct as the original request.
+
+Otherwise, we ask ford to perform a certain computation, as defined in `++silk`.
+Since all computations produce the same type of result, we will discuss that
+result before we jump into `++silk`.
+
+```
+++  gift                                                ::  out result <-$
+          $%  [%made p=(each bead (list tank))]         ::  computed result
+          ==                                            ::
+```
+
+We give either a `bead`, which is a result, or a list of tanks, which is an
+error messge, often including a stack trace.
+
+```
+++  bead  ,[p=(set beam) q=cage]                        ::  computed result
+```
+
+This is a set of dependencies required to compute this value and a cage of the
+result with its associated mark.
+
+There are twelve possible computations defined in `++silk`.
+
+```
+++  silk                                                ::  construction layer
+          $&  [p=silk q=silk]                           ::  cons
+          $%  [%bake p=mark q=beam r=path]              ::  local synthesis
+              [%boil p=mark q=beam r=path]              ::  general synthesis
+              [%call p=silk q=silk]                     ::  slam
+              [%cast p=mark q=silk]                     ::  translate
+              [%done p=(set beam) q=cage]               ::  literal
+              [%dude p=tank q=silk]                     ::  error wrap
+              [%dune p=(set beam) q=(unit cage)]        ::  unit literal
+              [%mute p=silk q=(list (pair wing silk))]  ::  mutant
+              [%plan p=beam q=spur r=hood]              ::  structured assembly
+              [%reef ~]                                 ::  kernel reef
+              [%ride p=twig q=silk]                     ::  silk thru twig
+              [%vale p=mark q=ship r=*]                 ::  validate [our his]
+          ==                                            ::
+```
+
+First, we allow silks to autocons.  A cell of silks is also a silk, and the
+product vase is a cell of the two silks.  This obviously extends to an arbitrary
+number of silks.
+
+`%bake` tries to functionally produce the file at a given beam with the given
+mark and heel.  It fails if there is no way to translate at this level.
+
+`%boil` functionally produces the file at a given beam with the given mark and
+heel.  If there is no way to translate at this level, we descend recursively
+into the path in the beam and attempt to translate there.  This should almost
+always be called instead of `%bake`.
+
+`%call` slams the result of one silk against the result of another.
+
+`%cast` translates the given silk to the given mark, if possible.  This is one
+of the critical and fundamental operations of ford.
+
+`%done` produces exactly its input.  This is rarely used on its own, but many
+silks are recursively defined in terms of other silks, so we often need a silk
+that simply produces its input.  A monadic return, if you will.
+
+`%dude` computes the given silk with the given tank as part of the stack trace
+if there is an error.
+
+`%dune` produces an error if the cage is empty.  Otherwise, it produces the
+value in the unit.
+
+`%mute` takes a silk and a list of changes to make to the silk.  At each wing in
+the list we put the value of the associated silk.
+
+`%plan` performs a structured assembly directly.  This is not generally directly
+useful because several other silks perform supersets of this functionality.  We
+don't usually have naked hoods outside ford.
+
+`%reef` produces a core containing the entirety of zuse and hoon, suitable for
+running arbitrary code against.  The mark is `%noun`.
+
+`%ride` slaps a twig against a subject silk.  The mark of the result is `%noun`.
+
+`%vale` validates untyped data from a ship against a given mark.  This is an
+extremely useful function.
+
+Commentary
+==========
+
+Parsing Hook Files
+------------------
+
+In the commentary on other vanes, we have traced through the lifecycle of
+various external requests.  This is generally a very reasonable order to examine
+vanes since it will eventually cover the entire vane, and we are never left
+wondering why we are doing something.
+
+For ford, however, it makes more sense to begin by discussing the parsing and
+assembliing of hook files.  Many of the possible requests require us to assemble
+hook files, so we may as well examine this immediately.
+
+First, we will examine the parsing.  We parse a file at a beam to a hood in
+`++fade:zo:za`.  The top-level parsing rule is `++fair`, which takes a beam and
+produces a rule to parse an entire hood file.
+
+A note on the naming scheme:  the parsing the combinators that parse into a
+particular structure are conventionally given the same name as the structure.
+Although this locally clobbers the type names, this pattern makes obvious the
+intent of the parsing combinators.
+
+We kick off with `++hood:fair`.
+
+```
+      ++  hood
+        %+  ifix  [gay gay]
+        ;~  plug
+          ;~  pose
+            (ifix [;~(plug fas wut gap) gap] dem)
+            (easy zuse)
+          ==
+        ::
+          ;~  pose
+            (ifix [;~(plug fas hep gap) gap] (most ;~(plug com gaw) hoot))
+            (easy ~)
+          ==
+        ::
+          ;~  pose
+            (ifix [;~(plug fas lus gap) gap] (most ;~(plug com gaw) hoof))
+            (easy ~)
+          ==
+        ::
+          (star ;~(sfix horn gap))
+          (most gap hoop)
+        ==
+```
+
+There are five sections to a hood:  system version, structures, libraries,
+resources, and body.
+
+First, we parse the requested version number of the system.  This is specified
+with a unary `/?` rune.  If not present, then we default to the current version.
+
+Second, we may have zero or more `/-` runes followed by a parsing of a `++hoot`,
+which represents a shared structure.
+
+Third, we may have zero or more `/+` runes followed by a parsing of a `++hoof`,
+which represents a shared library.
+
+Fourth, we may have zero or more other `/` runes (as described in `++horn`),
+which represent program-specific resources to be loaded.
+
+Fifth and finally, we must have one or more body statements (hoops), which are
+either direct twigs or `//` runes.
+
+```
+      ++  hoot
+        ;~  pose
+          (stag %| ;~(pfix tar hoof))
+          (stag %& hoof)
+        ==
+```
+
+A structure can either be a direct gate, or it can be a simple core.  Either one
+is parsed with `++hoof`, so we distinguish the two cases by requireing core
+references to be prefixed by a `*`.
+
+```
+      ++  hoof
+        %+  cook  |=(a=^hoof a)
+        ;~  plug
+          sym
+          ;~  pose
+            %+  stag  ~
+            ;~(plug ;~(pfix fas case) ;~(pfix ;~(plug fas sig) fed:ag))
+            (easy ~)
+          ==
+        ==
+```
+
+A hoof must have a name, which is a term.  Optionally, we also include a case
+and a ship.  This is marked by appending a `/` followed by a case to denote the
+requested version of the resource and a `/` followed by a ship name to denote
+the requested source of the resource.  For example, `resource/1/~zod` requests
+the first version of `resource` on `~zod`.
+
+```
+      ++  case
+        %-  sear  
+        :_  nuck:so
+        |=  a=coin
+        ?.  ?=([%$ ?(%da %ud %tas) *] a)  ~
+        [~ u=(^case a)]
+```
+
+Here, we parse a literal with `++nuck:so`, and we accept the input if it is
+either an absolute date, an unsigned decimal, or a label.
+
+This leaves only horns and hoops to parse.  Hoops are much simple to parse, so
+we'll discuss those first.
+
+```
+      ++  hoop
+        ;~  pose
+          (stag %| ;~(pfix ;~(plug fas fas gap) have))
+          (stag %& tall:vez)
+        ==
+```
+
+There are two types of hoops.  Direct twigs are parsed with `++tall:vast`, which
+is the just the hoon parser for a tall-form twig.
+
+References to external twigs are marked with a `//` rune followed by a beam,
+which is parsed with `++have`.
+
+```
+      ++  hath  (sear plex:voz (stag %clsg poor:voz))   ::  hood path
+      ++  have  (sear tome ;~(pfix fas hath))           ::  hood beam
+```
+
+`++have` parses a path with `++hath`, and then it converts the path into a beam
+with `++tome`.
+
+`++hath` parses a `/`-separated list with `++poor:vast`, then converts it to an
+actual path with `++plex:vast`.
+
+This leaves only horns to parse.
+
+```
+      ++  horn
+        =<  apex
+        =|  tol=?
+        |%
+        ++  apex
+          %+  knee  *^horn  |.  ~+
+          ;~  pfix  fas
+            ;~  pose
+              (stag %toy ;~(sfix sym fas))
+              (stag %ape ;~(pfix sig ape:read))
+              (stag %arg ;~(pfix buc ape:read))
+              (stag %day ;~(pfix bar day:read))
+              (stag %dub ;~(pfix tis dub:read))
+              (stag %fan ;~(pfix dot fan:read))
+              (stag %for ;~(pfix com for:read))
+              (stag %hub ;~(pfix pat day:read))
+              (stag %man ;~(pfix tar man:read))
+              (stag %nap ;~(pfix cen day:read))
+              (stag %now ;~(pfix pam day:read))
+              (stag %saw ;~(pfix sem saw:read))
+              (stag %see ;~(pfix col see:read))
+              (stag %sic ;~(pfix ket sic:read))
+            ==
+          ==
+```
+
+Horn parsing is slightly complex, so we create an internal core to organize our
+code.  Our core has a global variable of `tol`, which is true if tall form is
+permissible and false if we're already in wide form.  We kick off the parsing
+with `++apex`.
+
+`++apex` specifies how each rune is parsed.  This allows us to offload the
+different ways of parsing the arguments to these runes into separate arms.  The
+exception here is that the `%toy` horn is simply of the form `/mark/`.
+
+We'll examine each of the horn parsing arms right after we discuss `++rail`,
+which is used in each one.
+
+```
+        ++  rail
+          |*  [wid=_rule tal=_rule]
+          ?.  tol  wid
+          ;~(pose wid tal)
+```
+
+This takes a wide-form and a tall-form parsing rule.  If tall form is
+permissible, then it allows either rule to match; else, it allows only the wide
+form rule.
+
+```
+        ++  read
+          |%  ++  ape
+                %+  rail
+                  (ifix [sel ser] (stag %cltr (most ace wide:vez)))
+                ;~(pfix gap tall:vez)
+```
+
+`++ape:read` parses for both the `/~` and the `/$` runes.  It produces a twig.
+The wide form is a tuple of one or more ace-separated wide-form twigs parsed
+with `++wide:vast` and surrounded by `[` and `]`.  The tall form is a single
+tall form twig parsed by `++tall:vast`
+
+```
+              ++  day  
+                %+  rail
+                  apex(tol |) 
+                ;~(pfix gap apex)
+```
+
+This parses for the `/|`, `/@`, `/%`, and `/&` runes.  It produces a horn.  The
+wide form is, recursively, the entire horn parser with tall form disabled.  The
+tall form is a gap followed by, recursively, the entire horn parser.
+
+```
+              ++  dub
+                %+  rail  
+                  ;~(plug sym ;~(pfix tis apex(tol |)))
+                ;~(pfix gap ;~(plug sym ;~(pfix gap apex)))
+```
+
+This parses for the `/=` rune.  It produces a term followed by a horn.  The wide
+form is a symbol name followed by a `=` and, recursively, the entire horn parser
+with tall form disabled.  The tall form is a gap followed by a symbol name,
+another gap, and, recursively, the entire horn parser.
+
+```
+              ++  fan
+                %+  rail  fail 
+                ;~(sfix (star ;~(pfix gap apex)) ;~(plug gap duz))
+```
+
+This parses for the `/.` rune.  It produces a list of horns.  There is no wide
+form.  The tall form is a stet-terminated series of gap-separated recursive
+calls to the entire horn parser.
+
+```
+              ++  for
+                %+  rail
+                  ;~(plug (ifix [sel ser] hath) apex(tol |))
+                ;~(pfix gap ;~(plug hath ;~(pfix gap apex)))
+```
+
+This parses for the `/,` rune.  It produces a path and a horn.  The wide form is
+a `[`-`]`-surrounded path followed by, recursively, the entire horn parser with
+tall form disabled.  The tall form is a gap followed by a path, another gap,
+and, recursively, the entire horn parser.
+
+```
+              ++  man
+                %+  rail  fail
+                %-  sear
+                :_  ;~(sfix (star ;~(pfix gap apex)) ;~(plug gap duz))
+                |=  fan=(list ^horn)
+                =|  naf=(list (pair term ^horn))
+                |-  ^-  (unit (map term ^horn))
+                ?~  fan  (some (~(gas by *(map term ^horn)) naf))
+                ?.  ?=(%dub -.i.fan)  ~
+                $(fan t.fan, naf [[p.i.fan q.i.fan] naf])
+```
+
+This parses for the `/*` rune.  It produces a map of spans to horns.  There is
+no wide form.  The tall form is a stet-terminated series of gap-separated
+recursive calls to the entire horn parser.  All produced horns are expected to
+be from `/=` runes.  The term and horn in each `/=` horn is inserted into the
+produced map as a key-value pair.
+
+```
+              ++  saw
+                %+  rail
+                  ;~(plug ;~(sfix wide:vez sem) apex(tol |))
+                ;~(pfix gap ;~(plug tall:vez ;~(pfix gap apex)))
+```
+
+This parses for the `/;` rune.  It produces a twig and a horn.  The wide form is
+a wide-form twig followed by a `;` and, recursively, the entire horn parser with
+tall form disabled.  The tall form is a gap followed by a tall-form twig,
+another gap, and, recursively, the entire horn parser.
+
+```
+              ++  see
+                %+  rail  
+                  ;~(plug ;~(sfix have col) apex(tol |))
+                ;~(pfix gap ;~(plug have ;~(pfix gap apex)))
+```
+
+This parses for the `/:` rune.  It produces a beam and a horn.  The wide form is
+a beam followed by a `;` and, recursively, the entire horn parser with tall form
+disabled.  The tall form is a gap followed by a beam, another gap, and,
+recursively, the entire horn parser.
+
+```
+              ++  sic
+                %+  rail  
+                  ;~(plug ;~(sfix toil:vez ket) apex(tol |))
+                ;~(pfix gap ;~(plug howl:vez ;~(pfix gap apex)))
+          --
+```
+
+This parses for the `/^` rune.  It produces a tile and a horn.  The wide form is
+a wide-form tile, parsed with `++toil:vast`, followed by a `^` and, recursively,
+the entire horn parser with tall form disabled.  The tall form is a gap followed
+by a tall-form tile, parsed with `++howl:vast`, another gap, and, recursively,
+the entire horn parser.
+
+Assembling Hook Files
+---------------------
+
+At this point, we've parsed a hook file into a hood.  We will now describe
+exactly how this hood is assembled into a vase.  The problem of assembling is
+handled entirely within the `++meow:zo:za` core.
+
+```
+    ++  meow                                            ::  assemble
+      |=  [how=beam arg=heel] 
+      =|  $:  rop=(map term (pair hoof twig))           ::  structure/complex
+              bil=(map term (pair hoof twig))           ::  libraries known
+              lot=(list term)                           ::  library stack
+              zeg=(set term)                            ::  library guard
+              boy=(list twig)                           ::  body stack
+          ==
+      |%
+```
+
+We take two arguments and keep five pieces of state.  `how` is the location of
+the hook file we're assembling, and `arg` is the heel, or virtual path
+extension, of the file.
+
+In `rop`, we maintain a map of terms to pairs of hooves and twigs to represent
+the structures we've encountered that we will put together in a core at the top
+of the file.
+
+In `bil`, we maintain a map of terms to pairs of hooves and twigs to represent
+the libraries we've encountered that we will put together in a series of cores
+after the structure core.
+
+In `lot`, we maintain a stack of library names in the order they are encounterd
+during a depth-first search.  Thus, every library depends only on things later
+in the list.  The libraries must be loaded in the reverse of this order.  Note
+that this only maintains the list of libraries in the ancestry of the current
+library load.  XX check
+
+In `zeg`, we maintain a set of libraries already loaded.  If we try to load a
+library already loaded in our ancestry, then we fail because we do not allow
+circular dependencies.  This combined with `lot` enforce that our library
+dependency graph is a DAG while not restricting us to a tree.  XX check
+
+In `boy`, we maintain a stack of body twigs, which we'll put together in a
+series of cores at the end of the file.
+
+We in every case enter `++meow` through `++abut`.  You'll notice that there are
+four (count 'em, four!) calls to `++cope` in `++abut`.  If you've glanced at the
+ford code in general, you've probably seen cope over and over.  It is called in
+79 different places.  We need to discuss the use of this critical function in
+detail, so we may as well do it here.
+
+```
+    ++  cope                                            ::  bolt along
+      |*  [hoc=(bolt) fun=(burg)]
+      ?-  -.q.hoc
+        %2  hoc
+        %1  hoc
+        %0  =+  nuf=(fun p.hoc q.q.hoc)
+            :-  p=p.nuf
+            ^=  q
+            ?-  -.q.nuf
+              %2  q.nuf
+              %1  q.nuf
+              %0  [%0 p=(grom `_p.q.nuf`p.q.hoc p.q.nuf) q=q.q.nuf]
+      ==   ==
+```
+
+In monad-speak, this is the bind operator for the bolt monad.  If monads aren't
+your thing, don't worry, we're going to explain the use of cope without further
+reference to them.
+
+Recall that there are three different types of bolt.  A `%2` error bolt contains
+a list of tanks describing the error, a `%1` block bolt contains a set of
+resources we're blocked on, and a `%0` value bolt contains an actual value and
+the set of its dependencies.
+
+We most commonly want to perform an operation on the value in a bolt if it is a
+`%0` bolt.  If it's not a `%0` bolt, we want to leave it alone.  This requires
+us to write a certain amount of boilerplate between each of our operations to
+see if any of them produced a `%1` or a `%2` bolt.  This gets tiresome, so we
+pull it out into a separate arm and call it `++cope`.
+
+Intuitively, we're call the function `fun` with the value in `hoc`, where `fun`
+takes an argument of type whatever is the value in a `%0` case of `hoc`, and it
+produces a bolt of some (possibly different) type.  For brevity, we will refer
+to the type of the of the value in the `%0` case of a bolt as the "type of the
+bolt".
+
+If the `hoc` bolt we're given as input to `fun` is already a `%1` or a `%2`
+bolt, then we simply produce that.  We don't even try to run `fun` on it.
+
+Otherwise, we run `fun` with the arguments from the bolt and, if it produces a
+`%1` or a `%2` bolt, we simply produce that.  If it produces a `%0` bolt, then
+we produce that with the old set of dependencies merged in with the new set.
+
+We'll see more about how the bolt monad works as we run into more interesting
+uses of it.  For now, this is sufficient to move on with `++abut`.
+
+```
+      ++  abut                                          ::  generate
+        |=  [cof=cafe hyd=hood]
+        ^-  (bolt vase)
+        %+  cope  (apex cof hyd)
+        |=  [cof=cafe sel=_..abut]
+        =.  ..abut  sel
+        %+  cope  (maim cof pit able)
+        |=  [cof=cafe bax=vase]
+        %+  cope  (chap cof bax [%fan fan.hyd])
+        |=  [cof=cafe gox=vase]
+        %+  cope  (maim cof (slop gox bax) [%tssg (flop boy)])
+        |=  [cof=cafe fin=vase]
+        (fine cof fin) 
+```
+
