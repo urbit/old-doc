@@ -838,3 +838,203 @@ uses of it.  For now, this is sufficient to move on with `++abut`.
         (fine cof fin) 
 ```
 
+Our job is simple:  we must assemble a hood file into a vase.  Hopefully, the
+usage of `++cope` is fairly understandable.  The correct way to read this is
+that it does essentially five things.
+
+First, we call `++apex` to process the structures, libraries, and body.  This
+changes our state, so we set our context to the produced context.  Second, we
+call `++able` to assemble the strucutres and libraries into a twig, which we
+slap against zuse with `++maim`.  Third, we call `++chap` to process the
+resources in the context of the already-loaded structures and libraries.
+Fourth, we slap the body against the structures, libraries, and resources.
+Fifth and finally, we produce the resultant vase.
+
+```
+      ++  apex                                          ::  build to body
+        |=  [cof=cafe hyd=hood]
+        ^-  (bolt ,_..apex)
+        %+  cope  (body cof src.hyd)
+        |=  [cof=cafe sel=_..apex]
+        =.  ..apex  sel
+        %+  cope  (neck cof lib.hyd)
+        |=  [cof=cafe sel=_..apex]
+        =.  ..apex  sel(boy boy)
+        %+  cope  (head cof sur.hyd)
+        |=  [cof=cafe sel=_..apex]
+        (fine cof sel)
+```
+
+We should be starting to get used to the cope syntax, so we can see that we
+really only do three things here.  We process the body with `++body`, the
+libraries with `++neck`, and the structures with `++head`.
+
+```
+      ++  body                                          ::  produce functions
+        |=  [cof=cafe src=(list hoop)]
+        ^-  (bolt _..body)
+        ?~  src  (fine cof ..body)
+        %+  cope  (wilt cof i.src)
+        |=  [cof=cafe sel=_..body]
+        ^$(cof cof, src t.src, ..body sel)
+```
+
+We must process a list of hoops that represent our body.  If there are no more
+hoops, we just produce our context in a `%0` bolt with `++fine`.
+
+```
+++  fine  |*  [a=cafe b=*]                              ::  bolt from data
+          [p=`cafe`a q=[%0 p=*(set beam) q=b]]          ::
+```
+
+In monad-speak, this is the return operator.  For us, this just means that we're
+producing a `%0` bolt, which contains a path and a set of dependencies.  We
+assume there are no dependencies for the given data, or that they will be added
+later.
+
+If there are more hoops in `++body`, we call `++wilt` to process an individual
+hoop and recurse.
+
+```
+      ++  wilt                                          ::  process body entry
+        |=  [cof=cafe hop=hoop]
+        ^-  (bolt _..wilt)
+        ?-    -.hop
+            %&  (fine cof ..wilt(boy [p.hop boy]))
+            %| 
+          %+  cool  |.(leaf/"ford: wilt {<[(tope p.hop)]>}")
+          %+  cope  (lend cof p.hop)
+          |=  [cof=cafe arc=arch]
+          ?:  (~(has by r.arc) %hoon)
+            %+  cope  (fade cof %hoon p.hop)
+            |=  [cof=cafe hyd=hood]
+            %+  cope  (apex(boy ~) cof hyd)
+            |=  [cof=cafe sel=_..wilt]
+            (fine cof sel(boy [[%tssg boy.sel] boy]))
+          =+  [all=(lark (slat %tas) arc) sel=..wilt]
+          %+  cope
+            |-  ^-  (bolt (pair (map term foot) _..wilt))
+            ?~  all  (fine cof ~ ..wilt)
+            %+  cope  $(all l.all)
+            |=  [cof=cafe lef=(map term foot) sel=_..wilt]
+            %+  cope  ^$(all r.all, cof cof, sel sel)
+            |=  [cof=cafe rig=(map term foot) sel=_..wilt]
+            %+  cope  
+              %=    ^^^^$
+                  cof      cof
+                  ..wilt   sel(boy ~)
+                  s.p.hop  [p.n.all s.p.hop]
+              ==
+            |=  [cof=cafe sel=_..wilt]
+            %+  fine  cof
+            [`(map term foot)`[[p.n.all [%ash [%tssg boy.sel]]] lef rig] sel]
+          |=  [cof=cafe mav=(map term foot) sel=_..wilt]
+          ?~  mav
+            (flaw cof [%leaf "source missing: {<(tope p.hop)>}"]~)
+          (fine cof sel(boy [[%brcn mav] boy]))
+        ==
+```
+
+In the case of a direct twig hoop, we just push it onto `boy` and we're done.
+In the case of an indirect hoop, we must compile the referenced file.
+
+First, we push onto the stack trace a message indicating which file exactly
+we're compiling at the moment with `++cool`.
+
+```
+    ++  cool                                            ::  error caption
+      |*  [cyt=trap hoc=(bolt)]
+      ?.  ?=(%2 -.q.hoc)  hoc
+      [p.hoc [%2 *cyt p.q.hoc]]
+```
+
+If an error occurred in computing `hoc`, we put the bunt of `cyt` onto the stack
+trace.  Thus, `cyt` is not evaluated at all unless an error occurred.
+
+Next in `++wilt`, we load the information about the filesystem node referenced
+by the hoop with `++lend`.
+
+```
+    ++  lend                                            ::  load arch
+      |=  [cof=cafe bem=beam]
+      ^-  (bolt arch)
+      =+  von=(ska %cy (tope bem))
+      ?~  von  [p=cof q=[%1 [bem ~] ~ ~]]
+      (fine cof ((hard arch) (need u.von)))
+```
+
+This is a simple call to the namespace.  If the resource does not yet exist, we
+block on it by producing a `%1` bolt.  Otherwise, we cast it to an arch and
+produce this.
+
+Continuing in `++wilt`, we examine the produced arch.  If the referenced
+filesystem node has a `hoon` child node, then we've found the required source,
+so we parse it with `++fade`.  Recall that we referred earlier to `++fade`.  The
+salient point there is that it takes a beam, reads in the hook file there, and
+parses it into a hood file with `++fair`.
+
+Now, we simply recurse on `++apex` to compile the new hood.  Note that, while we
+do clear the `boy` list, we do not clear the other lists.  Thus, we are
+accumulating all the structures and libraries referenced in all the referenced
+hook files in one group, which we will put at the top of the product.
+
+After this, we put the new list of body twigs into a `=~`, push this onto our
+old list of body twigs, and produce the result.
+
+If there is no hoon file here, then we descend into each of our children until
+we find a hoon file.  First, we produce a list of all our children whose names
+are terms with `++lark`.
+
+```
+++  lark                                                ::  filter arch names
+  |=  [wox=$+(span (unit ,@)) arc=arch]
+  ^-  (map ,@ span)
+  %-  ~(gas by *(map ,@ span))
+  =|  rac=(list (pair ,@ span))
+  |-  ^+  rac
+  ?~  r.arc  rac
+  =.  rac  $(r.arc l.r.arc, rac $(r.arc r.r.arc))
+  =+  gib=(wox p.n.r.arc)
+  ?~(gib rac [[u.gib p.n.r.arc] rac])
+```
+
+We traverse the children map of `arc` to filter out those children whose names
+aren't accepted by `wox` and produce a map from the product of `wox` to the
+original name.  `++lark` is used in many cases to parse names into other types,
+like numbers or dates, ignoring those which do not fit the format.  In `++wilt`,
+though, we simply want to filter out those children whose names are not terms.
+
+Next, we will produce a map from terms to feet.  Each of these feet will be
+placed in a core named by the child name, and it will contain arms according to
+its children.  Thus, if the indirect hoop references `/path`, then to access the
+twig defined in `/path/to/twig/hoon`, our body must refer to `twig:to`.
+
+If there are no more children, then we are done, so we produce our current
+context.
+
+Else, we recurse into the left and right sides of our map.  Finally, we process
+our current entry in the map.  We first recurse by calling `++wilt` one level
+down.  Thus, in the previous example, the first time we get to this point we are
+processing `/path`, so we recurse on `++wilt` with path `/path/to`.  We also
+remove our current body from the recursion, so that we may add it back in later
+the way we want to.
+
+After recursing, we push the new body onto our map, keyed by its name.  We also
+produce the new context so that all external structures, libraries, and
+resources are collected into the same place.
+
+Finally, we have a map of names to feet.  If this map is empty, then there were
+no twigs at the requested path, so we give an error with `++flaw`.
+
+```
+++  flaw  |=([a=cafe b=(list tank)] [p=a q=[%2 p=b]])   ::  bolt from error
+```
+
+This produces a `%2` error bolt from a list of tanks.  Fairly trivial.
+
+In `++wilt`, if the map is nonempty, then we finally produce our context with
+with one thing pushed onto the front:  a core made out of the map we just
+produced.
+
+This concludes our discussion of `++wilt` and `++body`.  Thus, it remains in
+`++apex` to discuss `++neck` and `++head`.
