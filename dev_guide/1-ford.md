@@ -108,3 +108,8 @@ How is this getting put together?
 In this example we're loading a library and calling a function from that library. The library is simple, containing only one function, that computes the Fibonacci number of a number. 
 
 To do this we have introduced a new rune, `//`, which can be used to load local resources. We are using the relative path `/%%/lib` to load our `lib.hook` file. The context of this file is `/hymn/hook`, so we use `%%` to go up one level in the same way you would use `..`. For more about paths, see [arvo basics](link).
+
+`//` is only one of a family of runes used for resource loading. In our next example we'll explore some others.
+
+
+
