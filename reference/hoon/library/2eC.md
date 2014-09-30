@@ -2,7 +2,20 @@ section 2eC, parsing (custom rules)
 
 ---
 
-##++  cold  
+###++cold  
+
+```
+++  cold                                                ::  replace w/ constant
+  ~/  %cold
+  |*  [cus=* sef=_rule]
+  ~/  %fun
+  |=  tub=nail
+  =+  vex=(sef tub)
+  ?~  q.vex
+    vex
+  [p=p.vex q=[~ u=[p=cus q=q.u.q.vex]]]
+::
+```
 
 Build gate to parse a nail with a rule, then replaced the parsed texted with a constant.
 
@@ -26,7 +39,20 @@ Build gate to parse a nail with a rule, then replaced the parsed texted with a c
 
 ---
 
-##++  cook
+###++cook
+
+```
+++  cook                                                ::  apply gate
+  ~/  %cook
+  |*  [poq=_,* sef=_rule]
+  ~/  %fun
+  |=  tub=nail
+  =+  vex=(sef tub)
+  ?~  q.vex
+    vex
+  [p=p.vex q=[~ u=[p=(poq p.u.q.vex) q=q.u.q.vex]]]
+::
+```
 
 Build gate to parse a nail with a rule, then slam a gate with the parsed text.
 
@@ -55,7 +81,18 @@ Build gate to parse a nail with a rule, then slam a gate with the parsed text.
 
 ---
 
-##++  easy
+###++easy
+
+```
+++  easy                                                ::  always parse
+  ~/  %easy
+  |*  huf=*
+  ~/  %fun
+  |=  tub=nail
+  ^-  (like ,_huf)
+  [p=p.tub q=[~ u=[p=huf q=tub]]]
+::
+```
 
 Succeed but consume no characters - Produce an edge at the same text position 
 with the text to parse unchanged, but with a
@@ -80,7 +117,11 @@ with the text to parse unchanged, but with a
 
 ---
 
-##++  fail  
+###++fail  
+
+```
+++  fail  |=(tub=nail [p=p.tub q=~])                    ::  never parse
+```
 
 Fail to parse - Produce a nail at the same text position but with null text.
 
@@ -98,7 +139,16 @@ Fail to parse - Produce a nail at the same text position but with null text.
 
 ---
 
-##++  full  
+###++full  
+
+```
+++  full                                                ::  has to fully parse
+  |*  sef=_rule
+  |=  tub=nail
+  =+  vex=(sef tub)
+  ?~(q.vex vex ?:(=(~ q.q.u.q.vex) vex [p=p.vex q=~]))
+::
+```
 
 Demand politely that the parsing rule parse the entire sample nail, produce a null edge otherwise.
 
@@ -124,7 +174,15 @@ Demand politely that the parsing rule parse the entire sample nail, produce a nu
 
 ---
 
-##++  funk
+###++funk
+
+```
+++  funk                                                ::  add to tape first
+  |*  [pre=tape sef=_rule]
+  |=  tub=nail
+  (sef p.tub (weld pre q.tub))
+::
+```
 
 Prepend a tape to the text to be parsed, then parse the new tape.
 
@@ -144,7 +202,20 @@ Prepend a tape to the text to be parsed, then parse the new tape.
 
 ---
 
-##++  here  
+###++here  
+
+```
+++  here                                                ::  place-based apply
+  ~/  %here
+  |*  [hez=_|=([a=pint b=*] [a b]) sef=_rule]
+  ~/  %fun
+  |=  tub=nail
+  =+  vex=(sef tub)
+  ?~  q.vex
+    vex
+  [p=p.vex q=[~ u=[p=(hez [p.tub p.q.u.q.vex] p.u.q.vex) q=q.u.q.vex]]]
+::
+```
 
 Apply rule if parsing within a specific line and column range.
 
@@ -170,7 +241,29 @@ Apply rule if parsing within a specific line and column range.
 
 ---
         
-##++  inde
+###++inde
+
+```
+++  inde  |*  sef=_rule                                 :: indentation block
+  |=  nail  ^+  (sef)
+  =+  [har tap]=[p q]:+<
+  =+  lev=(fil 3 (dec q.har) ' ')
+  =+  eol=(just `@t`10)
+  =+  =-  roq=((star ;~(pose prn ;~(sfix eol (jest lev)) -)) har tap)
+      ;~(simu ;~(plug eol eol) eol)
+  ?~  q.roq  roq
+  =+  vex=(sef har(q 1) p.u.q.roq)
+  =+  fur=p.vex(q (add (dec q.har) q.p.vex))
+  ?~  q.vex  vex(p fur)
+  =-  vex(p fur, u.q -)
+  :+  &3.vex
+    &4.vex(q.p (add (dec q.har) q.p.&4.vex))
+  =+  res=|4.vex
+  |-  ?~  res  |4.roq
+  ?.  =(10 -.res)  [-.res $(res +.res)]
+  (welp [`@t`10 (trip lev)] $(res +.res))
+::
+```
 
 Apply rule to indented block starting at current column number,
 omitting the leading whitespace.
@@ -203,7 +296,21 @@ omitting the leading whitespace.
 
 ---
 
-##++  jest  
+###++jest  
+
+```
+++  jest                                                ::  match a cord
+  |=  daf=@t
+  |=  tub=nail
+  =+  fad=daf
+  |-  ^-  (like ,@t)
+  ?:  =(0 daf)
+    [p=p.tub q=[~ u=[p=fad q=tub]]]
+  ?:  |(?=(~ q.tub) !=((end 3 1 daf) i.q.tub))
+    (fail tub)
+  $(p.tub (lust i.q.tub p.tub), q.tub t.q.tub, daf (rsh 3 1 daf))
+::
+```
 
 Match and consume a cord.
 
@@ -241,7 +348,22 @@ Match and consume a cord.
 
 ---
 
-##++  just
+###++just
+
+```
+++  just                                                ::  XX redundant, jest
+  ~/  %just                                             ::  match a char
+  |=  daf=char
+  ~/  %fun
+  |=  tub=nail
+  ^-  (like char)
+  ?~  q.tub
+    (fail tub)
+  ?.  =(daf i.q.tub)
+    (fail tub)
+  (next tub)
+::
+```
 
 Match and consume a single character.
 
@@ -273,7 +395,16 @@ Match and consume a single character.
 
 ---
 
-##++  knee
+###++knee
+
+```
+++  knee                                                ::  callbacks
+  |*  [gar=* sef=_|.(rule)]
+  |=  tub=nail
+  ^-  (like ,_gar)
+  ((sef) tub)
+::
+```
 
 Callback 
 
@@ -288,7 +419,22 @@ Callback
 
 ---
 
-##++  mask  
+###++mask  
+
+```
+++  mask                                                ::  match char in set
+  ~/  %mask
+  |=  bud=(list char)
+  ~/  %fun
+  |=  tub=nail
+  ^-  (like char)
+  ?~  q.tub
+    (fail tub)
+  ?.  (lien bud |=(a=char =(i.q.tub a)))
+    (fail tub)
+  (next tub)
+::
+```
 
 Match the next char to a list of chars, a tape.
 
@@ -316,7 +462,18 @@ Match the next char to a list of chars, a tape.
 
 ---
 
-##++  next  
+###++next  
+
+```
+++  next                                                ::  consume a char
+  |=  tub=nail
+  ^-  (like char)
+  ?~  q.tub
+    (fail tub)
+  =+  zac=(lust i.q.tub p.tub)
+  [zac [~ i.q.tub [zac t.q.tub]]]
+::
+```
 
 Always succeeds and consumes a character.
 
@@ -341,7 +498,21 @@ Always succeeds and consumes a character.
 
 ---
 
-##++  sear  
+###++sear  
+
+```
+++  sear                                                ::  conditional cook
+  |*  [pyq=_|=(* *(unit)) sef=_rule]
+  |=  tub=nail
+  =+  vex=(sef tub)
+  ?~  q.vex
+    vex
+  =+  gey=(pyq p.u.q.vex)
+  ?~  gey
+    [p=p.vex q=~]
+  [p=p.vex q=[~ u=[p=u.gey q=q.u.q.vex]]]
+::
+```
 
 Conditional cook - Produce the slam of the parsed texted to `b` only if the result is not null.
 Else, produce null.
@@ -374,7 +545,22 @@ Else, produce null.
 
 ---
 
-##++  shim  
+###++shim  
+
+```
+++  shim                                                ::  match char in range
+  ~/  %shim
+  |=  [les=@ mos=@]
+  ~/  %fun
+  |=  tub=nail
+  ^-  (like char)
+  ?~  q.tub
+    (fail tub)
+  ?.  ?&((gte i.q.tub les) (lte i.q.tub mos))
+    (fail tub)
+  (next tub)
+::
+```
 
 Match characters within a range.
 
@@ -402,7 +588,20 @@ Match characters within a range.
 
 ---
 
-##++  stag  
+###++stag  
+
+```
+++  stag                                                ::  add a label
+  ~/  %stag
+  |*  [gob=* sef=_rule]
+  ~/  %fun
+  |=  tub=nail
+  =+  vex=(sef tub)
+  ?~  q.vex
+    vex
+  [p=p.vex q=[~ u=[p=[gob p.u.q.vex] q=q.u.q.vex]]]
+::
+```
 
 Add a label to an edge parsed by a rule.
 
@@ -428,7 +627,17 @@ Add a label to an edge parsed by a rule.
 
 ---
 
-##++  stet
+###++stet
+
+```
+++  stet
+  |*  leh=(list ,[?(@ [@ @]) _rule])
+  |-
+  ?~  leh
+    ~
+  [i=[p=-.i.leh q=+.i.leh] t=$(leh t.leh)]
+::
+```
 
 Listify a list of text position and bunt of rule pairs.
 
@@ -460,7 +669,54 @@ Listify a list of text position and bunt of rule pairs.
 
 ---
 
-##++  stew
+###++stew
+
+```
+++  stew                                                ::  switch by first char
+  ~/  %stew
+  |*  leh=(list ,[p=?(@ [@ @]) q=_rule])                ::  char/range keys
+  =+  ^=  wor                                           ::  range complete lth
+      |=  [ort=?(@ [@ @]) wan=?(@ [@ @])]
+      ?@  ort
+        ?@(wan (lth ort wan) (lth ort -.wan))
+      ?@(wan (lth +.ort wan) (lth +.ort -.wan))
+  =+  ^=  hel                                           ::  build parser map
+      =+  hel=`(tree $_(?>(?=(^ leh) i.leh)))`~
+      |-  ^+  hel
+      ?~  leh
+        ~
+      =+  yal=$(leh t.leh)
+      |-  ^+  hel
+      ?~  yal
+        [i.leh ~ ~]
+      ?:  (wor p.i.leh p.n.yal)
+        =+  nuc=$(yal l.yal)
+        ?>  ?=(^ nuc)
+        ?:  (vor p.n.yal p.n.nuc)
+          [n.yal nuc r.yal]
+        [n.nuc l.nuc [n.yal r.nuc r.yal]]
+      =+  nuc=$(yal r.yal)
+      ?>  ?=(^ nuc)
+      ?:  (vor p.n.yal p.n.nuc)
+        [n.yal l.yal nuc]
+      [n.nuc [n.yal l.yal l.nuc] r.nuc]
+  ~%  %fun  ..^$  ~
+  |=  tub=nail
+  ?~  q.tub
+    (fail tub)
+  |-
+  ?~  hel
+    (fail tub)
+  ?:  ?@  p.n.hel
+        =(p.n.hel i.q.tub)
+      ?&((gte i.q.tub -.p.n.hel) (lte i.q.tub +.p.n.hel))
+    ::  (q.n.hel [(lust i.q.tub p.tub) t.q.tub])
+    (q.n.hel tub)
+  ?:  (wor i.q.tub p.n.hel)
+    $(hel l.hel)
+  $(hel r.hel)
+::
+```
         
 ####Summary
 
@@ -473,7 +729,23 @@ Listify a list of text position and bunt of rule pairs.
 
 ---
 
-##++  stir
+###++stir
+
+```
+++  stir
+  ~/  %stir
+  |*  [rud=* raq=_|*([a=* b=*] [a b]) fel=_rule]
+  ~/  %fun
+  |=  tub=nail
+  ^-  (like ,_rud)
+  =+  vex=(fel tub)
+  ?~  q.vex
+    [p.vex [~ rud tub]]
+  =+  wag=$(tub q.u.q.vex)
+  ?>  ?=(^ q.wag)
+  [(last p.vex p.wag) [~ (raq p.u.q.vex p.u.q.wag) q.u.q.wag]]
+::
+```
         
 ####Summary
 
@@ -496,7 +768,29 @@ Listify a list of text position and bunt of rule pairs.
 
 ---
         
-##++  stun  
+###++stun  
+
+```
+++  stun                                                ::  parse several times
+  |*  [[les=@ mos=@] fel=_rule]
+  |=  tub=nail
+  ^-  (like (list ,_(wonk (fel))))
+  ?:  =(0 mos)
+    [p.tub [~ ~ tub]]
+  =+  vex=(fel tub)
+  ?~  q.vex
+    ?:  =(0 les)
+      [p.vex [~ ~ tub]]
+    vex
+  =+  ^=  wag  %=  $
+                 les  ?:(=(0 les) 0 (dec les))
+                 mos  ?:(=(0 mos) 0 (dec mos))
+                 tub  q.u.q.vex
+               ==
+  ?~  q.wag
+    wag
+  [p.wag [~ [p.u.q.vex p.u.q.wag] q.u.q.wag]]
+```
 
 Parse several times
 

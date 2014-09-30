@@ -6,7 +6,11 @@ section 2eG, parsing (whitespace)
 
 ---
 
-##++  doh 
+###++doh 
+
+```
+++  doh  ;~(plug ;~(plug hep hep) gay)                  ::
+```
 
 Parse 
 
@@ -18,7 +22,11 @@ Parse
 
 ---
 
-##++  dun
+###++dun
+
+```
+++  dun  (cold ~ ;~(plug hep hep))                      ::  -- (phep) to ~
+```
 
 Parse phep (--) to null (~).
 
@@ -37,7 +45,11 @@ Parse phep (--) to null (~).
 
 ---
 
-##++  duz 
+###++duz 
+
+```
+++  duz  (cold ~ ;~(plug tis tis))                      ::  == (stet) to ~
+```
 
 Parse stet (==) to null (~).
 
@@ -56,7 +68,11 @@ Parse stet (==) to null (~).
 
 ---
 
-##++  gah 
+###++gah 
+
+```
+++  gah  (mask [`@`10 ' ' ~])                           ::  newline or ace
+```
 
 ####Summary
 
@@ -69,7 +85,11 @@ Parse stet (==) to null (~).
 
 ---
 
-##++  gap 
+###++gap 
+
+```
+++  gap  (cold ~ ;~(plug gaq (star ;~(pose vul gah))))  ::
+```
         
 ---
 
@@ -85,7 +105,15 @@ Parse stet (==) to null (~).
 
 ---
 
-##++  gaq
+###++gaq
+
+```
+++  gaq  ;~  pose                                       ::  end of line
+             (just `@`10)
+             ;~(plug gah ;~(pose gah vul))
+             vul
+         ==
+```
 
 ####Summary
 
@@ -98,7 +126,11 @@ Parse stet (==) to null (~).
 
 ---
         
-##++  gay 
+###++gay 
+
+```
+++  gay  ;~(pose gap (easy ~))                          ::
+```
         
 ####Summary
 
@@ -110,7 +142,15 @@ Parse stet (==) to null (~).
 
 ---
         
-##++  vul 
+###++vul 
+
+```
+++  vul  %-  cold  :-  ~                                ::  comments
+         ;~  plug  col  col
+           (star prn)
+           (just `@`10)
+         ==
+```
 
 Parse comments and replace them with null.
 Note that a comment must be ended with a newline character.

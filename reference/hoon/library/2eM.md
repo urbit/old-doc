@@ -1,94 +1,280 @@
 section 2eM, regular-expressions      
 
-##++pars
+###++pars
 
-##++nor
+```
+++  pars
+  |=  [a=tape]                                          ::  parse tape to rege
+  ^-  (unit rege)
+  =+  foo=((full anns) [[1 1] a])
+  ?~  q.foo
+    ~
+  [~ p.u.q.foo]
+::
+```
 
-##++les  
-##++lep  
+###++nor
 
-##++alm  
+###++les  
 
-##++alb  
+```
+++  les  ;~(pose (shim 32 91) (shim 93 126))
+```
+###++lep  
 
-##++mis  
+###++alm  
 
-##++anns 
+```
+++  alm  (shim 32 126)
+```
 
-##++mall
+###++alb  
 
-##++bets
+###++mis  
 
-##++ranc
+```
+++  mis  ;~(pose (shim 32 47) (shim 58 64) (shim 91 96) (shim 123 126))
+::
+```
 
-##++flap 
+###++anns 
 
-##++rang
+###++mall
 
-##++chun
+```
+++  mall
+  %+  knee  *rege  |.  ~+
+  ;~((bend |=(a=[rege rege] (some [%pair a]))) bets mall)
+::
+```
 
-##++seac
+###++bets
 
-##++sead
+###++ranc
 
-##++sade
+```
+++  ranc
+  |=  [a=@ b=@]
+  ^-  @
+  ?:((gth a b) 0 (con (bex a) $(a +(a))))
+::
+```
 
-##++seap
+###++flap 
 
-##++cape
+###++rang
 
-##++lower
+```
+++  rang
+  %+  sear  |=([a=@ b=@] ?:((lte a b) (some [a b]) ~))
+    (ifix [kel ker] ;~(plug dim:ag ;~(pfix com dim:ag)))
+::
+```
 
-##++upper
+###++chun
 
-##++digit
+###++seac
 
-##++print
+```
+++  seac
+  |=  tub=nail
+  ?~  q.tub
+    (fail tub)
+  ?:  =(i.q.tub '^')
+    (;~(pfix ket (cook flap sead)) tub)
+  (sead tub)
+::
+```
 
-##++graph
+###++sead
 
-##++blank
+###++sade
 
-##++space
+```
+++  sade
+  %+  knee  *@  |.  ~+
+  ;~  pose
+    (cold (bex '-') (jest '-]'))
+    (cold 0 ser)
+    (cook |=([p=@ q=@] `@`(con p q)) ;~(plug seap sade))
+  ==
+::
+```
 
-##++cntrl
+###++seap
 
-##++alpha
+###++cape
 
-##++alnum
+```
+++  cape
+  %+  knee  *tape  |.  ~+
+  ;~  pose
+    (cold ~ (jest '\\E'))
+    ;~(plug next cape)
+    (cook |=(a=char (tape [a ~])) next)
+    (full (easy ~))
+  ==
+::
+```
 
-##++punct
+###++lower
 
-##++wordc
+###++upper
 
-##++white
+```
+++  upper  (ranc 'A' 'Z')
+```
 
-##++xdigi
+###++digit
 
-##++chad
+###++print
 
-##++escd
+```
+++  print  (ranc 32 126)
+```
 
-##++escp
+###++graph
 
-##++unid
+###++blank
 
-##++proc 
+```
+++  blank  (con (bex 32) (bex 9))
+```
 
-##++cont
+###++space
 
-##++abor
+###++cntrl
 
-##++matc
+```
+++  cntrl  :(con (ranc 0 31) (bex 127))
+```
 
-##++chet
+###++alpha
 
-##++blak 
+###++alnum
 
-##++deep
+```
+++  alnum  :(con lower upper digit)
+```
 
-##++rexp
+###++punct
+
+###++wordc
+
+```
+++  wordc  :(con digit lower upper (bex 95))
+```
+
+###++white
+
+###++xdigi
+
+``````
+
+###++chad
+
+###++escd
+
+```
+++  escd
+  %+  knee  *@  |.  ~+
+  ;~  pose
+    (cold (bex 7) (just 'a'))
+    (cold (bex 9) (just 't'))
+    (cold (bex 10) (just 'n'))
+    (cold (bex 11) (just 'v'))
+    (cold (bex 12) (just 'f'))
+    (cold (bex 13) (just 'r'))
+    (cold (bex 0) (just '0'))
+    (sear |=(a=@ ?:((lth a 256) (some (bex a)) ~)) (bass 8 (stun [2 3] cit)))
+    (cook bex ;~(pfix (just 'x') (bass 16 (stun [2 2] hit))))
+    (cook bex (ifix [(jest 'x{') ker] (bass 16 (stun [2 2] hit))))
+    (cook bex mis)
+  ==
+::
+```
+
+###++escp
+
+###++unid
+
+```
+++  unid
+  %+  knee  *@  |.  ~+
+  ;~  pose
+    (cold digit (jest '\\d'))
+    (cold (flap digit) (jest '\\D'))
+    (cold white (jest '\\s'))
+    (cold (flap white) (jest '\\S'))
+    (cold wordc (jest '\\w'))
+    (cold (flap wordc) (jest '\\W'))
+  ==
+::
+```
+
+###++proc 
+
+###++cont
+
+```
+++  cont
+  |=  [a=(map ,@u tape) b=(map ,@u tape)]
+  (~(gas by _(map ,@u tape)) (weld (~(tap by a)) (~(tap by b))))
+::
+```
+
+###++abor
+
+###++matc
+
+```
+++  matc
+  |=  [a=rege b=tape c=tape]
+  ^-  (unit (map ,@u tape))
+  =+  foo=`(unit ,[tape (map ,@u tape)])`(deep a b %empt c)
+  (bind foo |*(a=^ (~(put by +.a) 0 -.a)))
+::
+```
+
+###++chet
+
+###++blak 
+
+```
+++  blak  (some ["" _(map ,@u tape)])
+```
+
+###++deep
+
+###++rexp
+
+```
+++  rexp                                                :: Regex match
+  ~/  %rexp
+  |=  [a=tape b=tape]
+  ^-  (unit (unit (map ,@u tape)))
+  =+  ^=  bar
+      |=  [a=@ b=(map ,@u tape)]
+      ?:  =(a 0)
+        b
+      =+  c=(~(get by b) a)
+      ?~  c
+        $(a (dec a), b (~(put by b) a ""))
+      $(a (dec a))
+  =+  par=(pars a)
+  ?~  par  ~
+  =+  poc=(proc u.par 1)
+  =+  c=b
+  |-
+  =+  foo=(matc +.poc c b)
+  ?~  foo
+    ?~  c
+      [~ ~]
+    $(c t.c)
+  [~ [~ (bar (dec -.poc) u.foo)]]
+::
+```
  
-##++repg 
+###++repg 
 
 

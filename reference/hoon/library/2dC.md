@@ -1,6 +1,11 @@
 section 2dC, queues                   
 
-##++  to
+###++to
+
+```
+++  to                                                  ::  queue engine
+  |/  a=(qeu)
+```
 
 Container arm for queue operation arms.  The contained arms inherit it's sample queue, 'a'. 
 

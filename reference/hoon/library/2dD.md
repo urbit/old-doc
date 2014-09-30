@@ -2,7 +2,17 @@ section 2dD, casual containers
 
 ---
 
-##++  mo
+###++mo
+
+```
+++  mo                                                  ::  make a map
+  |*  a=(list)
+  =>  .(a `_(homo a)`a)
+  =>  .(a `(list ,[p=_-<.a q=_->.a])`a)
+  =+  b=*(map ,_?>(?=(^ a) p.i.a) ,_?>(?=(^ a) q.i.a))
+  (~(gas by b) a)
+::
+```
 
 Mapifiy.  Accepts a list of cells and produces a map of key-value pairs from the left-right cell pairs of the list.
 
@@ -21,7 +31,16 @@ Mapifiy.  Accepts a list of cells and produces a map of key-value pairs from the
 
 ----
         
-##++  sa        
+###++sa        
+
+```
+++  sa                                                  ::  make a set
+  |*  a=(list)
+  =>  .(a `_(homo a)`a)
+  =+  b=*(set ,_?>(?=(^ a) i.a))
+  (~(gas in b) a)
+::
+```
 
 Setify.  Accepts a list and produces a set of the list's elements.
 
@@ -42,7 +61,15 @@ Setify.  Accepts a list and produces a set of the list's elements.
 
 ----
 
-##++  qu
+###++qu
+
+```
+++  qu                                                  ::  make a set
+  |*  a=(list)
+  =>  .(a `_(homo a)`a)
+  =+  b=*(set ,_?>(?=(^ a) i.a))
+  (~(gas in b) a)
+```
 
 XXX THIS APPEARS TO BE A COPY OF ++sa. QUEUIFY IS NOT IMPLEMENTED YET. XXX
 

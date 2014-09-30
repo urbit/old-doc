@@ -2,7 +2,19 @@ section 2eE, parsing (composers)
 
 ---
 
-##++  bass
+###++bass
+
+```
+++  bass
+  |*  [wuc=@ tyd=_rule]
+  %+  cook
+    |=  waq=(list ,@)
+    %+  roll
+      waq
+    =|([p=@ q=@] |.((add p (mul wuc q))))
+  tyd
+::
+```
 
 ####Summary
 
@@ -14,7 +26,19 @@ section 2eE, parsing (composers)
 
 ---
 
-##++  boss
+###++boss
+
+```
+++  boss
+  |*  [wuc=@ tyd=_rule]
+  %+  cook
+    |=  waq=(list ,@)
+    %+  reel
+      waq
+    =|([p=@ q=@] |.((add p (mul wuc q))))
+  tyd
+::
+```
 
 ####Summary
 
@@ -24,7 +48,14 @@ section 2eE, parsing (composers)
 
 ---
 
-##++  ifix
+###++ifix
+
+```
+++  ifix
+  |*  [fel=[p=_rule q=_rule] hof=_rule]
+  ;~(pfix p.fel ;~(sfix hof q.fel))
+::
+```
         
 ####Summary
 
@@ -37,7 +68,14 @@ section 2eE, parsing (composers)
 
 ---
         
-##++  more
+###++more
+
+```
+++  more
+  |*  [bus=_rule fel=_rule]
+  ;~(pose (most bus fel) (easy ~))
+::
+```
 
 ####Summary
 
@@ -48,7 +86,14 @@ section 2eE, parsing (composers)
 
 ---
 
-##++  most
+###++most
+
+```
+++  most
+  |*  [bus=_rule fel=_rule]
+  ;~(plug fel (star ;~(pfix bus fel)))
+::
+```
 
 Parse to a list elements of the second rule seperated by the second.
 
@@ -63,7 +108,11 @@ Parse to a list elements of the second rule seperated by the second.
 
 ---
         
-##++  plus  
+###++plus  
+
+```
+++  plus  |*(fel=_rule ;~(plug fel (star fel)))
+```
 
 Like 'star', but "one or more" instead of "0 or more"
 
@@ -77,7 +126,15 @@ Like 'star', but "one or more" instead of "0 or more"
 
 ---
         
-##++  slug
+###++slug
+
+```
+++  slug
+  |*  [rud=* raq=_|*([a=* b=*] [a b])]
+  |*  [bus=_rule fel=_rule]
+  ;~((comp raq) fel (stir rud raq ;~(pfix bus fel)))
+::
+```
 
 ####Summary
 
@@ -92,7 +149,13 @@ Like 'star', but "one or more" instead of "0 or more"
 
 ---
         
-##++  star
+###++star
+
+```
+++  star                                                ::  0 or more times
+  |*  fel=_rule
+  (stir `(list ,_(wonk *fel))`~ |*([a=* b=*] [a b]) fel)
+```
 
 Apply the parsing rule repeatedly until it fails.
 

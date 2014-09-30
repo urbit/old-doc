@@ -2,7 +2,11 @@ section 2eF, parsing (ascii)
 
 ---
 
-##++  ace
+###++ace
+
+```
+++  ace  (just ' ')                                     ::  spACE
+```
 
 Parse ASCII character 32, ace.
 
@@ -23,7 +27,11 @@ Parse ASCII character 32, ace.
 
 ---
 
-##++  bar 
+###++bar 
+
+```
+++  bar  (just '|')                                     ::  vertical BAR
+```
 
 Parse ASCII character 124, bar.
 
@@ -44,7 +52,11 @@ Parse ASCII character 124, bar.
 
 ---
 
-##++  bas 
+###++bas 
+
+```
+++  bas  (just '\\')                                    ::  Back Slash (escaped)
+```
 
 Parse ASCII character 92, bas.
 Note the extra '\' in the slam of bas with just is to escape the escape character, bas.
@@ -68,7 +80,11 @@ Note the extra '\' in the slam of bas with just is to escape the escape characte
 
 ---
 
-##++  buc 
+###++buc 
+
+```
+++  buc  (just '$')                                     ::  dollars BUCks
+```
 
 Parse ASCII character 36, buc.
 
@@ -89,7 +105,11 @@ Parse ASCII character 36, buc.
 
 ---
 
-##++  cab 
+###++cab 
+
+```
+++  cab  (just '_')                                     ::  CABoose
+```
 
 Parse ASCII character 95, cab.
 
@@ -110,7 +130,11 @@ Parse ASCII character 95, cab.
 
 ---
 
-##++  cen 
+###++cen 
+
+```
+++  cen  (just '%')                                     ::  perCENt
+```
 
 Parse ASCII character 37, cen.
 
@@ -131,7 +155,11 @@ Parse ASCII character 37, cen.
 
 ---
 
-##++  col 
+###++col 
+
+```
+++  col  (just ':')                                     ::  COLon
+```
 
 Parse ASCII character 58, col.
 
@@ -152,7 +180,11 @@ Parse ASCII character 58, col.
 
 ---
 
-##++  com 
+###++com 
+
+```
+++  com  (just ',')                                     ::  COMma
+```
 
 Parse ASCII character 44, com.
 
@@ -173,7 +205,11 @@ Parse ASCII character 44, com.
 
 ---
 
-##++  doq 
+###++doq 
+
+```
+++  doq  (just '"')                                     ::  Double Quote
+```
 
 Parse ASCII character 34, doq.
 
@@ -197,7 +233,11 @@ Parse ASCII character 34, doq.
 
 ---
 
-##++  dot 
+###++dot 
+
+```
+++  dot  (just '.')                                     ::  dot dot dot ...
+```
 
 Parse ASCII character 46, dot.
 
@@ -218,7 +258,11 @@ Parse ASCII character 46, dot.
 
 ---
 
-##++  fas 
+###++fas 
+
+```
+++  fas  (just '/')                                     ::  Forward Slash
+```
 
 Parse ASCII character 47, fas.
 
@@ -239,7 +283,11 @@ Parse ASCII character 47, fas.
 
 ---
 
-##++  gal 
+###++gal 
+
+```
+++  gal  (just '<')                                     ::  Greater Left
+```
 
 Parse ASCII character 60, gal.
 
@@ -262,7 +310,11 @@ Parse ASCII character 60, gal.
 
 ---
 
-##++  gar 
+###++gar 
+
+```
+++  gar  (just '>')                                     ::  Greater Right
+```
 
 Parse ASCII character 62, gar.
 
@@ -283,7 +335,11 @@ Parse ASCII character 62, gar.
 
 ---
 
-##++  hax 
+###++hax 
+
+```
+++  hax  (just '#')                                     ::  Hash
+```
 
 Parse ASCII character 35, hax.
 
@@ -304,7 +360,11 @@ Parse ASCII character 35, hax.
 
 ---
 
-##++  kel 
+###++kel 
+
+```
+++  kel  (just '{')                                     ::  Curly Left
+```
 
 Parse ASCII character 123, kel.
 Note that this, with ker, opens and closes a Hoon expression for Hoon string interpolation.  Escape kel to parse it.
@@ -326,7 +386,11 @@ Note that this, with ker, opens and closes a Hoon expression for Hoon string int
 
 ---
 
-##++  ker 
+###++ker 
+
+```
+++  ker  (just '}')                                     ::  Curly Right
+```
 
 Parse ASCII character 125, ker.
 
@@ -347,7 +411,11 @@ Parse ASCII character 125, ker.
 
 ---
 
-##++  ket 
+###++ket 
+
+```
+++  ket  (just '^')                                     ::  CareT
+```
 
 Parse ASCII character 94, ket.
 
@@ -368,7 +436,11 @@ Parse ASCII character 94, ket.
 
 ---
 
-##++  lus 
+###++lus 
+
+```
+++  lus  (just '+')                                     ::  pLUS
+```
 
 Parse ASCII character 43, lus.
 
@@ -389,7 +461,11 @@ Parse ASCII character 43, lus.
 
 ---
 
-##++  hep 
+###++hep 
+
+```
+++  hep  (just '-')                                     ::  HyPhen
+```
 
 Parse ASCII character 45, hep.
 
@@ -410,7 +486,11 @@ Parse ASCII character 45, hep.
 
 ---
 
-##++  pel 
+###++pel 
+
+```
+++  pel  (just '(')                                     ::  Paren Left
+```
 
 Parse ASCII character 40, pel.
 
@@ -431,7 +511,11 @@ Parse ASCII character 40, pel.
 
 ---
 
-##++  pam 
+###++pam 
+
+```
+++  pam  (just '&')                                     ::  AMPersand pampersand
+```
 
 Parse ASCII character 38, pam.
 
@@ -452,7 +536,11 @@ Parse ASCII character 38, pam.
 
 ---
 
-##++  per 
+###++per 
+
+```
+++  per  (just ')')                                     ::  Paren Right
+```
 
 Parse ASCII character 41, per.
 
@@ -473,7 +561,11 @@ Parse ASCII character 41, per.
 
 ---
 
-##++  pat 
+###++pat 
+
+```
+++  pat  (just '@')                                     ::  AT pat
+```
 
 Parse ASCII character 64, pat.
 
@@ -494,7 +586,11 @@ Parse ASCII character 64, pat.
 
 ---
 
-##++  sel
+###++sel
+
+```
+++  sel  (just '[')                                     ::  Square Left
+```
 
 Parse ASCII character 91, sel.
 
@@ -515,7 +611,11 @@ Parse ASCII character 91, sel.
 
 ---
 
-##++  sem 
+###++sem 
+
+```
+++  sem  (just ';')                                     ::  SEMicolon
+```
 
 Parse ASCII character 59, sem.
 
@@ -536,7 +636,11 @@ Parse ASCII character 59, sem.
 
 ---
 
-##++  ser 
+###++ser 
+
+```
+++  ser  (just ']')                                     ::  Square Right
+```
 
 Parse ASCII character 93, ser.
 
@@ -557,7 +661,11 @@ Parse ASCII character 93, ser.
 
 ---
 
-##++  sig 
+###++sig 
+
+```
+++  sig  (just '~')                                     ::  SIGnature squiggle
+```
 
 Parse ASCII character 126, sig.
 
@@ -578,7 +686,11 @@ Parse ASCII character 126, sig.
 
 ---
 
-##++  soq 
+###++soq 
+
+```
+++  soq  (just '\'')                                    ::  Single Quote
+```
 
 Parse ASCII character 39, soq.
 Note the extra '\' in the slam of soq with just is to escape the first soq because soq denotes a crip.
@@ -600,7 +712,11 @@ Note the extra '\' in the slam of soq with just is to escape the first soq becau
 
 ---
 
-##++  tar 
+###++tar 
+
+```
+++  tar  (just '*')                                     ::  sTAR
+```
 
 Parse ASCII character 42, tar.
 
@@ -621,7 +737,11 @@ Parse ASCII character 42, tar.
 
 ---
 
-##++  tec 
+###++tec 
+
+```
+++  tec  (just '`')                                     ::  backTiCk
+```
 
 Parse ASCII character 96, tec.
 
@@ -642,7 +762,11 @@ Parse ASCII character 96, tec.
 
 ---
 
-##++  tis 
+###++tis 
+
+```
+++  tis  (just '=')                                     ::  'tis tis, it is
+```
 
 Parse ASCII character 61, tis.
 
@@ -662,7 +786,11 @@ Parse ASCII character 61, tis.
         [p=[p=1 q=1] q=~]
 ---
 
-##++  wut 
+###++wut 
+
+```
+++  wut  (just '?')                                     ::  wut, what?
+```
 
 Parse ASCII character 63, wut.
 
@@ -683,7 +811,11 @@ Parse ASCII character 63, wut.
 
 ---
 
-##++  zap 
+###++zap 
+
+```
+++  zap  (just '!')                                     ::  zap! bang! crash!!
+```
 
 Parse ASCII character 33, zap.
 

@@ -1,6 +1,10 @@
 section 2eI, parsing (external)       
 
-##++rash
+###++rash
+
+```
+++  rash  |*([naf=@ sab=_rule] (scan (trip naf) sab))   ::
+```
         
 Parse a cord with a given rule and crash if the cord isn't entirely parsed.
 
@@ -26,7 +30,11 @@ Parse a cord with a given rule and crash if the cord isn't entirely parsed.
         ! 'syntax-error'
         ! exit
 
-##++rush
+###++rush
+
+```
+++  rush  |*([naf=@ sab=_rule] (rust (trip naf) sab))
+```
 
 Parse a given with a given rule and produce null if the cord isn't entirely parsed.
 
@@ -50,7 +58,13 @@ Parse a given with a given rule and produce null if the cord isn't entirely pars
         ~tadbyl-hilbel/try=> (rush 'abc' (jest 'ab'))
         ~
 
-##++rust
+###++rust
+
+```
+++  rust  |*  [los=tape sab=_rule]
+          =+  vex=((full sab) [[1 1] los])
+          ?~(q.vex ~ [~ u=p.u.q.vex])
+```
 
 Parse a tape with a given rule and produce null if the tape isn't entirely parsed.
 

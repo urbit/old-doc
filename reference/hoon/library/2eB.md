@@ -2,7 +2,16 @@ section 2eB, parsing (tracing)
 
 ---
 
-##++  last
+###++last
+
+```
+++  last  |=  [zyc=hair naz=hair]                       ::  farther trace
+          ^-  hair
+          ?:  =(p.zyc p.naz)
+            ?:((gth q.zyc q.naz) zyc naz)
+          ?:((gth p.zyc p.naz) zyc naz)
+::
+```
 
 Compare two [line column] pairs and produce the one which is farther along in text.
 
@@ -31,7 +40,13 @@ Compare two [line column] pairs and produce the one which is farther along in te
 
 ---
 
-##++  lust
+###++lust
+
+```
+++  lust  |=  [weq=char naz=hair]                       ::  detect newline
+          ^-  hair
+          ?:(=(10 weq) [+(p.naz) 1] [p.naz +(q.naz)])
+```
 
 Produce the beginning of the next line after a newline character or increment the 
 column number - The index of the next character to be parsed.

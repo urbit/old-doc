@@ -1,7 +1,18 @@
 section 2dA, sets     
 ---
                 
-##++  apt
+###++apt
+
+```
+++  apt                                                 ::  set invariant
+  |=  a=(tree)
+  ?~  a
+    &
+  ?&  ?~(l.a & ?&((vor n.a n.l.a) (hor n.l.a n.a)))
+      ?~(r.a & ?&((vor n.a n.r.a) (hor n.a n.r.a)))
+  ==
+::
+```
 
 Accept any tree and produce a loobean indicating whether the tree is a set.
 
@@ -31,9 +42,14 @@ Accept any tree and produce a loobean indicating whether the tree is a set.
 
 ---
 
-##++  in
+###++in
 
-        Container arm for set operation arms.  The contained arms inherit it's sample set, 'a'. 
+```
+++  in                                                  ::  set engine
+  ~/  %in
+  |/  a=(set)
+```
+
 
 ####Summary
 

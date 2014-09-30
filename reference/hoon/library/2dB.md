@@ -1,7 +1,18 @@
 section 2dB, maps
 ---
 
-##++  ept       
+###++ept       
+
+```
+++  ept                                                 ::  map invariant
+  |=  a=(tree ,[p=* q=*])
+  ?~  a
+    &
+  ?&  ?~(l.a & ?&((vor p.n.a p.n.l.a) (hor p.n.l.a p.n.a)))
+      ?~(r.a & ?&((vor p.n.a p.n.r.a) (hor p.n.a p.n.r.a)))
+  ==
+::
+```
 
 Is the given tree of cell pairs a map?
 
@@ -37,7 +48,12 @@ Is the given tree of cell pairs a map?
 
 ---
 
-##++  ja
+###++ja
+
+```
+++  ja                                                  ::  jar engine
+  |/  a=(jar)
+```
 
 The jar engine: A container arm for jar operation arms.  Jars are maps of lists.
 The contained arms inherit the sample jar. 'a'.
@@ -103,7 +119,12 @@ Add a key-list value to the jar.
 
 ---
 
-##++  ju
+###++ju
+
+```
+++  ju                                                  ::  jug engine
+  |/  a=(jug)
+```
 
 The jug engine: container arm for jug operation arms.  Jugs are maps of sets.
 The contained arms inherit it's sample jug, 'a'.
@@ -218,7 +239,13 @@ Add a value to a specific set in the jug.
 
 ---
 
-##++  by
+###++by
+
+```
+++  by                                                  ::  map engine
+  ~/  %by
+  |/  a=(map)
+```
 
 Container arm for map operation arms.  The contained arms inherit it's sample map, 'a'. 
 

@@ -1,6 +1,10 @@
 section 2eH, parsing (idioms)         
 
-##++alf 
+###++alf 
+
+```
+++  alf  ;~(pose low hig)                               ::  alphabetic
+```
 
 Parse alphabetic characters, both upper and lowercase.
 
@@ -17,7 +21,11 @@ Parse alphabetic characters, both upper and lowercase.
         ~tadbyl-hilbel/try=> (scan "AaBbCc" (star alf))
         "AaBbCc"
 
-##++aln 
+###++aln 
+
+```
+++  aln  ;~(pose low hig nud)                           ::  alphanumeric
+```
 
 Parse alphanumeric characters - both alphabetic characters and numbers.
 
@@ -34,7 +42,11 @@ Parse alphanumeric characters - both alphabetic characters and numbers.
         ~tadbyl-hilbel/try=> (scan "0123456789abcdef" (star aln))
         "0123456789abcdef"
 
-##++alp 
+###++alp 
+
+```
+++  alp  ;~(pose low hig nud hep)                       ::  alphanumeric and -
+```
 
 Parse alphanumeric strings and hep, "-".
 
@@ -51,7 +63,11 @@ Parse alphanumeric strings and hep, "-".
         ~tadbyl-hilbel/try=> (scan "123abc-" (star alp))
         "123abc-"
 
-##++bet 
+###++bet 
+
+```
+++  bet  ;~(pose (cold 2 hep) (cold 3 lus))             ::  axis syntax - +
+```
 
 Parse the hep and lus axis syntax.
 
@@ -69,7 +85,11 @@ Parse the hep and lus axis syntax.
         ~tadbyl-hilbel/try=> (scan "+" bet)
         3
 
-##++bin
+###++bin
+
+```
+++  bin  (bass 2 (most gon but))                        ::  binary to atom
+```
 
 Parse a tape of binary (0s and 1s) and produce its atomic representation.
 
@@ -88,9 +108,13 @@ Parse a tape of binary (0s and 1s) and produce its atomic representation.
         ~tadbyl-hilbel/try=> (scan "100000001111" bin)
         2.063
 
-##++but 
+###++but 
 
-        Parse a single binary digit.
+```
+++  but  (cook |=(a=@ (sub a '0')) (shim '0' '1'))      ::  binary digit
+```
+
+Parse a single binary digit.
 
 ####Summary
 
@@ -111,9 +135,13 @@ Parse a tape of binary (0s and 1s) and produce its atomic representation.
         ~tadbyl-hilbel/try=> (scan "01" (star but))
         ~[0 1]
 
-##++cit 
+###++cit 
 
-        Parse a single octal digit.
+```
+++  cit  (cook |=(a=@ (sub a '0')) (shim '0' '7'))      ::  octal digit
+```
+
+Parse a single octal digit.
 
 ####Summary
 
@@ -134,7 +162,11 @@ Parse a tape of binary (0s and 1s) and produce its atomic representation.
         ~tadbyl-hilbel/try=> (scan "60" (star cit))
         ~[6 0]
 
-##++dem 
+###++dem 
+
+```
+++  dem  (bass 10 (most gon dit))                       ::  decimal to atom
+```
 
 Parse a decimal number to an atom.
 
@@ -153,7 +185,11 @@ Parse a decimal number to an atom.
         ~tadbyl-hilbel/try=> (scan "12456" dem)
         12.456
 
-##++dit 
+###++dit 
+
+```
+++  dit  (cook |=(a=@ (sub a '0')) (shim '0' '9'))      ::  decimal digit
+```
 
  Parse a single decimal digit.
 
@@ -172,7 +208,11 @@ Parse a decimal number to an atom.
         ~tadbyl-hilbel/try=> (scan "26000" (star dit))
         ~[2 6 0 0 0]
 
-##++gul 
+###++gul 
+
+```
+++  gul  ;~(pose (cold 2 gal) (cold 3 gar))             ::  axis syntax < >
+```
 
 Parse the axis gal and gar axis syntax.
 
@@ -189,7 +229,11 @@ Parse the axis gal and gar axis syntax.
         ~tadbyl-hilbel/try=> (scan ">" gul)
         3
 
-##++gon 
+###++gon 
+
+```
+++  gon  ;~(pose ;~(plug bas gay fas) (easy ~))         ::  long numbers \ /
+```
 
 Parse long numbers - Numbers which wrap around the shell with the line break characters bas and fas.
 
@@ -207,7 +251,11 @@ Parse long numbers - Numbers which wrap around the shell with the line break cha
         ~tadbyl-hilbel/try=> (gon [[1 1] "\\/"])
         [p=[p=1 q=3] q=[~ u=[p=[~~~5c. ~ ~~~2f.] q=[p=[p=1 q=3] q=""]]]]
 
-##++hex 
+###++hex 
+
+```
+++  hex  (bass 16 (most gon hit))                       ::  hex to atom
+```
 
 Parse any hexadecimal number to an atom.
 
@@ -228,7 +276,11 @@ Parse any hexadecimal number to an atom.
         ~tadbyl-hilbel/try=> (scan "1EE7" hex)
         7.911
 
-##++hig
+###++hig
+
+```
+++  hig  (shim 'A' 'Z')                                 ::  uppercase
+```
 
 Parse a single uppercase letter.
 
@@ -247,9 +299,17 @@ Parse a single uppercase letter.
         ~tadbyl-hilbel/try=> (hig [[1 1] "G"])
         [p=[p=1 q=2] q=[~ [p=~~~47. q=[p=[p=1 q=2] q=""]]]]
 
-##++hit 
+###++hit 
 
-        Parse a hexadecimal digit. 
+```
+++  hit  ;~  pose                                       ::  hex digits
+           dit
+           (cook |=(a=char (sub a 87)) (shim 'a' 'f'))
+           (cook |=(a=char (sub a 55)) (shim 'A' 'F'))
+         ==
+```
+
+Parse a single hexadecimal digit.
 
 ####Summary
 
@@ -272,7 +332,11 @@ Parse a single uppercase letter.
         ~tadbyl-hilbel/try=> (scan "2A" (star hit))
         ~[2 10]
 
-##++low 
+###++low 
+
+```
+++  low  (shim 'a' 'z')                                 ::  lowercase
+```
 
 Parse a single lowercase letter.
 
@@ -291,7 +355,13 @@ Parse a single lowercase letter.
         ~tadbyl-hilbel/try=> (low [[1 1] "g"])
         [p=[p=1 q=2] q=[~ [p=~~g q=[p=[p=1 q=2] q=""]]]]
 
-##++mes 
+###++mes 
+
+```
+++  mes  %+  cook                                       ::  hexbyte
+           |=([a=@ b=@] (add (mul 16 a) b))
+         ;~(plug hit hit)
+```
 
 Parse a hexbyte.
 
@@ -309,11 +379,15 @@ Parse a hexbyte.
         ~tadbyl-hilbel/try=> (scan "42" mes)
         66
 
-##++nix 
+###++nix 
 
-        Slam boss with 256
+```
+++  nix  (boss 256 (star ;~(pose aln cab)))             ::
+```
+
+Letters, -, and _
         
-##++nud 
+###++nud 
 
 Parse a numeric character - A number.
 
@@ -331,21 +405,15 @@ Parse a numeric character - A number.
         [p=[p=1 q=2] q=[~ [p=~~1 q=[p=[p=1 q=2] q=""]]]]
         ~tadbyl-hilbel/try=> (scan "0123456789" (star nud))
         "0123456789"
-
-####++poy 
-
-        Parse an escape character.
-
-####Summary
-
-        Produce pfix gonadified with:
-                bas
-                pose gonadifided with:
-                         bas
-                         soq
-                         mes, to parse a hexbyte.
         
-##++qit 
+###++qit 
+
+```
+++  qit  ;~  pose                                       ::  chars in a cord
+             ;~(less bas soq prn)
+             ;~(pfix bas ;~(pose bas soq mes))          ::  escape chars
+         ==
+```
 
 Parse an individual character to its cord atom representation.
 
@@ -370,7 +438,22 @@ Parse an individual character to its cord atom representation.
         ~tadbyl-hilbel/try=> (scan "cord" (star qit))
         ~[99 111 114 100]
 
-##++qut 
+###++qut 
+
+```
+++  qut  ;~  pose                                       ::  cord
+             ;~  less  soqs
+               (ifix [soq soq] (boss 256 (more gon qit)))
+             ==
+             %-  inde  %+  ifix
+               :-  ;~  plug  soqs
+                     ;~(pose ;~(plug (plus ace) vul) (just '\0a'))
+                   ==
+               ;~(plug (just '\0a') soqs)
+             (boss 256 (star qat))
+         ==
+::
+```
 
 Parse 
 
@@ -381,13 +464,32 @@ Parse
                 boss slammed with 256 and (most gon qit)
         
 
-##++sym
+###++sym
+
+```
+++  sym
+  %+  cook
+    |=(a=tape (rap 3 ^-((list ,@) a)))
+  ;~(plug low (star ;~(pose nud low hep)))
+::
+```
         
 
-##++  ven 
+###++ven 
 
 
-##++vit 
+###++vit 
+
+```
+++  vit                                                 ::  base64 digit
+  ;~  pose
+    (cook |=(a=@ (sub a 65)) (shim 'A' 'Z'))
+    (cook |=(a=@ (sub a 71)) (shim 'a' 'z'))
+    (cook |=(a=@ (add a 4)) (shim '0' '9'))
+    (cold 62 (just '-'))
+    (cold 63 (just '+'))
+  ==
+```
 
 Parse a text and produce its base 64 encoding
 

@@ -1,22 +1,35 @@
 section 2eN, pseudo-cryptography      
 
-##++un   
+###++un   
 
-##++wre
-  
-##++wre
-  
-##++xaf
-  
-##++xar
+```
+++  un                                                  ::  =(x (wred (wren x)))
+  |%
+```
 
-##++zaf
+###++wre
+  
+###++wre
 
-##++zar
+``````
   
-##++zyf
+###++xaf
   
-##++zyr
+###++xar
+
+``````
+
+###++zaf
+
+###++zar
+
+``````
+  
+###++zyf
+  
+###++zyr
+
+``````
 
 ---
 
