@@ -252,7 +252,7 @@ A `%toy` is simply a mark to be baked.
 ```
 ++  hoop                                                ::  source in hood
           $%  [%& p=twig]                               ::  direct twig
-              [%| p=beam]                               ::  resource location   
+              [%| p=beam]                               ::  resource location
           ==                                            ::
 ```
 
@@ -519,7 +519,7 @@ the first version of `resource` on `~zod`.
 
 ```
       ++  case
-        %-  sear  
+        %-  sear
         :_  nuck:so
         |=  a=coin
         ?.  ?=([%$ ?(%da %ud %tas) *] a)  ~
@@ -623,9 +623,9 @@ with `++wide:vast` and surrounded by `[` and `]`.  The tall form is a single
 tall form twig parsed by `++tall:vast`
 
 ```
-              ++  day  
+              ++  day
                 %+  rail
-                  apex(tol |) 
+                  apex(tol |)
                 ;~(pfix gap apex)
 ```
 
@@ -635,7 +635,7 @@ tall form is a gap followed by, recursively, the entire horn parser.
 
 ```
               ++  dub
-                %+  rail  
+                %+  rail
                   ;~(plug sym ;~(pfix tis apex(tol |)))
                 ;~(pfix gap ;~(plug sym ;~(pfix gap apex)))
 ```
@@ -647,7 +647,7 @@ another gap, and, recursively, the entire horn parser.
 
 ```
               ++  fan
-                %+  rail  fail 
+                %+  rail  fail
                 ;~(sfix (star ;~(pfix gap apex)) ;~(plug gap duz))
 ```
 
@@ -700,7 +700,7 @@ another gap, and, recursively, the entire horn parser.
 
 ```
               ++  see
-                %+  rail  
+                %+  rail
                   ;~(plug ;~(sfix have col) apex(tol |))
                 ;~(pfix gap ;~(plug have ;~(pfix gap apex)))
 ```
@@ -712,7 +712,7 @@ recursively, the entire horn parser.
 
 ```
               ++  sic
-                %+  rail  
+                %+  rail
                   ;~(plug ;~(sfix toil:vez ket) apex(tol |))
                 ;~(pfix gap ;~(plug howl:vez ;~(pfix gap apex)))
           --
@@ -733,17 +733,19 @@ handled entirely within the `++meow:zo:za` core.
 
 ```
     ++  meow                                            ::  assemble
-      |=  [how=beam arg=heel] 
+      |=  [how=beam arg=heel]
       =|  $:  rop=(map term (pair hoof twig))           ::  structure/complex
+              zog=(set term)                            ::  structure guard
               bil=(map term (pair hoof twig))           ::  libraries known
               lot=(list term)                           ::  library stack
               zeg=(set term)                            ::  library guard
               boy=(list twig)                           ::  body stack
+              hol=?                                     ::  horns allowed?
           ==
       |%
 ```
 
-We take two arguments and keep five pieces of state.  `how` is the location of
+We take two arguments and keep seven pieces of state.  `how` is the location of
 the hook file we're assembling, and `arg` is the heel, or virtual path
 extension, of the file.
 
@@ -751,23 +753,31 @@ In `rop`, we maintain a map of terms to pairs of hooves and twigs to represent
 the structures we've encountered that we will put together in a core at the top
 of the file.
 
+In `zog`, we maintain the set of structures we're in the middle of loading.  If
+we try to load a structure already in our dependency ancestry, then we fail
+because we do not allow circular dependencies.  This enforces that our structure
+dependency graph is a DAG.
+
 In `bil`, we maintain a map of terms to pairs of hooves and twigs to represent
 the libraries we've encountered that we will put together in a series of cores
 after the structure core.
 
-In `lot`, we maintain a stack of library names in the order they are encounterd
-during a depth-first search.  Thus, every library depends only on things later
-in the list.  The libraries must be loaded in the reverse of this order.  Note
-that this only maintains the list of libraries in the ancestry of the current
-library load.  XX check
+In `lot`, we maintain a stack of library names in the reverse order they are
+encountered during a depth-first search.  Thus, every library depends only on
+things earlier in the list.  The libraries must be loaded in this order.
+Concisely, this is a topological sort of the library dependency partial
+ordering.
 
-In `zeg`, we maintain a set of libraries already loaded.  If we try to load a
-library already loaded in our ancestry, then we fail because we do not allow
-circular dependencies.  This combined with `lot` enforce that our library
-dependency graph is a DAG while not restricting us to a tree.  XX check
+In `zeg`, we maintain the set of libraries we're in the middle of loading.  If
+we try to load a library already in our dependency ancestry, then we fail
+because we do not allow circular dependencies.  This enforces that our library
+dependency graph is a DAG.
 
 In `boy`, we maintain a stack of body twigs, which we'll put together in a
 series of cores at the end of the file.
+
+In `hol`, we decide if we're allowed to contain horns.  Libraries and structures
+are not allowed to contain horns.
 
 We in every case enter `++meow` through `++abut`.  You'll notice that there are
 four (count 'em, four!) calls to `++cope` in `++abut`.  If you've glanced at the
@@ -835,7 +845,7 @@ uses of it.  For now, this is sufficient to move on with `++abut`.
         |=  [cof=cafe gox=vase]
         %+  cope  (maim cof (slop gox bax) [%tssg (flop boy)])
         |=  [cof=cafe fin=vase]
-        (fine cof fin) 
+        (fine cof fin)
 ```
 
 Our job is simple:  we must assemble a hood file into a vase.  Hopefully, the
@@ -854,6 +864,9 @@ Fifth and finally, we produce the resultant vase.
       ++  apex                                          ::  build to body
         |=  [cof=cafe hyd=hood]
         ^-  (bolt ,_..apex)
+        ?.  |(hol ?=(~ fan.hyd))
+          %+  flaw  cof  :_  ~  :-  %leaf
+          "horns not allowed in structures and libraries: {<[how arg]>}"
         %+  cope  (body cof src.hyd)
         |=  [cof=cafe sel=_..apex]
         =.  ..apex  sel
@@ -864,6 +877,15 @@ Fifth and finally, we produce the resultant vase.
         |=  [cof=cafe sel=_..apex]
         (fine cof sel)
 ```
+
+First, we make sure that if we're not allowed to have horns, we don't.
+Otherwise, we produce and error with `++flaw`.
+
+```
+++  flaw  |=([a=cafe b=(list tank)] [p=a q=[%2 p=b]])   ::  bolt from error
+```
+
+This produces a `%2` error bolt from a list of tanks.  Fairly trivial.
 
 We should be starting to get used to the cope syntax, so we can see that we
 really only do three things here.  We process the body with `++body`, the
@@ -901,7 +923,7 @@ hoop and recurse.
         ^-  (bolt _..wilt)
         ?-    -.hop
             %&  (fine cof ..wilt(boy [p.hop boy]))
-            %| 
+            %|
           %+  cool  |.(leaf/"ford: wilt {<[(tope p.hop)]>}")
           %+  cope  (lend cof p.hop)
           |=  [cof=cafe arc=arch]
@@ -919,7 +941,7 @@ hoop and recurse.
             |=  [cof=cafe lef=(map term foot) sel=_..wilt]
             %+  cope  ^$(all r.all, cof cof, sel sel)
             |=  [cof=cafe rig=(map term foot) sel=_..wilt]
-            %+  cope  
+            %+  cope
               %=    ^^^^$
                   cof      cof
                   ..wilt   sel(boy ~)
@@ -1026,15 +1048,161 @@ resources are collected into the same place.
 Finally, we have a map of names to feet.  If this map is empty, then there were
 no twigs at the requested path, so we give an error with `++flaw`.
 
-```
-++  flaw  |=([a=cafe b=(list tank)] [p=a q=[%2 p=b]])   ::  bolt from error
-```
-
-This produces a `%2` error bolt from a list of tanks.  Fairly trivial.
-
-In `++wilt`, if the map is nonempty, then we finally produce our context with
+If the map is nonempty, then we finally produce our context with
 with one thing pushed onto the front:  a core made out of the map we just
 produced.
 
 This concludes our discussion of `++wilt` and `++body`.  Thus, it remains in
 `++apex` to discuss `++neck` and `++head`.
+
+```
+      ++  neck                                          ::  consume libraries
+        |=  [cof=cafe bir=(list hoof)]
+        ^-  (bolt ,_..neck)
+        ?~  bir  (fine cof ..neck)
+        ?:  (~(has in zeg) p.i.bir)
+          (flaw cof [%leaf "circular library dependency: {<i.bir>}"]~)
+        =+  gez=(~(put in zeg) p.i.bir)
+        =+  byf=(~(get by bil) p.i.bir)
+        ?^  byf
+          ?.  =(`hoof`i.bir `hoof`p.u.byf)
+            (flaw cof [%leaf "library mismatch: {<~[p.u.byf i.bir]>}"]~)
+          $(bir t.bir)
+        =+  bem=(hone %core %lib i.bir)
+        %+  cope  (fade cof %hook bem)
+        |=  [cof=cafe hyd=hood]
+        %+  cope  (apex(zeg gez, hol |, boy ~) cof hyd)
+        |=  [cof=cafe sel=_..neck]
+        =.  ..neck
+            %=  sel
+              zeg  zeg
+              hol  hol
+              lot  [p.i.bir lot]
+              bil  (~(put by bil) p.i.bir [i.bir [%tssg (flop boy.sel)]])
+            ==
+        ^^$(cof cof, bir t.bir)
+```
+
+Here, we're going to consume the list of libraries and place them in `bil`.  If
+there are no more libraries, we're done, so we just produce our current context.
+
+Otherwise, we check to see if the next library in the list is in `zeg`.  If so,
+then this library is one of the libraries that we're already in the middle of
+compiling.  There is a circular dependency, so we fail.
+
+Otherwise, we let `gez` be `zeg` plus the current library so that while
+compiling the dependencies of this library we don't later create a circular
+dependency.  We check next to see if this library is alredy in `bil`.  If so,
+then we have already included this library earlier, so we check to see if this
+is the same version of the library as we included earlier.  If so, we skip it.
+Else, we fail since we can't include two different versions of a library.  We
+really should allow for newer versions of a library since in kelvin versioning
+we assume backwards compatibility, but for now we require an exact match.
+
+If we haven't already included this library, then we're going to do that.
+First, we get the location of the library with `++hone`.
+
+```
+      ++  hone                                          ::  plant hoof
+        |=  [for=@tas way=@tas huf=hoof]
+        ^-  beam
+        ?~  q.huf
+          how(s ~[for p.huf way])
+        [[q.u.q.huf %main p.u.q.huf] ~[for p.huf way]]
+```
+
+If we haven't specified the version of the library, we use the current ship,
+desk, and case.  Otherwise, we use the given ship and case on desk `%main`.  In
+either case, the path is `/way/p.huf/for`.  In the case of `++neck`, this means
+`/lib/core/[library name]`.
+
+In `++neck`, we next compile the hook file at that location with `++fade`.
+Again, we will delay the discussion of `++fade`, noting only that it takes a
+beam and parses the hook file there into a hood.
+
+We recurse on this to compile the library.  During the compilation, we let `zeg`
+be `gez` to avoid circular dependencies, we let `hol` be false since we don't
+allow horns in libraries, and we let `boy` be null so that we can isolate the
+new body twigs.
+
+Next, we reintegrate the new data into our context.  We use the context created
+by the recursion with four changes.  First, we reset `zeg` to our old `zeg`.
+Second, we reset `hol` to our old `hol`.  Third, we put the name of our library
+onto the stack of libraries.  This means all of a libraries dependencies will be
+earlier in `lot` than the library itself, making `lot` a topological ordering on
+the dependency graph.  Fourth, we put in `bil` the library hoof and body (with
+all body twigs collected in a `=~`), keyed by the library name.
+
+Finally, we recurse, processing the next library in our list.
+
+To complete our disucssion of `++apex`, we must process our structures.
+
+```
+      ++  head                                          ::  consume structures
+        |=  [cof=cafe bir=(list hoot)]
+        |-  ^-  (bolt ,_..head)
+        ?~  bir
+          (fine cof ..head)
+        ?:  (~(has in zog) p.q.i.bir)
+          (flaw cof [%leaf "circular structure dependency: {<i.bir>}"]~)
+        =+  goz=(~(put in zog) p.q.i.bir)
+        =+  byf=(~(get by rop) p.q.i.bir)
+        ?^  byf
+          ?.  =(`hoof`q.i.bir `hoof`p.u.byf)
+            (flaw cof [%leaf "structure mismatch: {<~[p.u.byf q.i.bir]>}"]~)
+          $(bir t.bir)
+        =+  bem=(hone ?:(p.i.bir %gate %core) %sur q.i.bir)
+        %+  cope  (fade cof %hook bem)
+        |=  [cof=cafe hyd=hood]
+        %+  cope  (apex(zog goz, hol |, boy ~) cof hyd)
+        |=  [cof=cafe sel=_..head]
+        ?.  =(bil bil.sel)
+          (flaw cof [%leaf "structures cannot include libraries: {<i.bir>}"]~)
+        =.  ..head
+            %=  sel
+              boy  ?:  p.i.bir
+                     boy
+                   (welp boy [[[%cnzy p.q.i.bir] [%$ 1]] ~])
+              zog  zog
+              hol  hol
+              rop  %+  ~(put by (~(uni by rop) rop.sel))
+                      p.q.i.bir
+                   [q.i.bir [%tssg (flop boy.sel)]]
+            ==
+        ^^$(cof cof, bir t.bir)
+```
+
+The processing of our structures is very similar to that of our libraries.  For
+clarity, we'll use many of the same phrases in describing the parallel natures.
+First, we check to see if there are more structures to process.  If not, we're
+done, so we produce our context.
+
+Otherwise, we let `goz` be `zog` plus the current structure so that while
+compiling the dependencies of this structure we don't later create a circular
+dependency.  We check next to see if this structure is alredy in `rop`.  If so,
+then we have already included this structure earlier, so we check to see if this
+is the same version of the structure as we included earlier.  If so, we skip it.
+Else, we fail since we can't include two different versions of a structure.
+
+If we haven't loaded this structure, then we call `++hone` to get the beam where
+the file structure should be.  If the loobean in the hoot is true, then we're
+looking for a gate; otherwise, we're looking for a core.  We parse this file
+with `++fade`.
+
+Now, we recurse on this to compile the structure.  During the recursion, there
+we have threee changes.  Frist, we let `zog` be `goz` so that we don't create a
+circular dependency.  Second, we let `hol` be false since we do not allow horns
+in structures.  Third, we let `boy` be null so that we can isolate the new body
+twigs.
+
+Next, we reintegrate the new data into our context.  We use the context cretaed
+by the recursion with four changes.  First, if we're including a gate structure,
+then we reset the body to its original body.  Else we put on the top of our list
+of body twigs what is essentially a `=+  structure-name` to take off the face of
+the structure.  Second, we reset `zog` to our old `zog`.  Third, we reset `hol`
+to our old `hol`.  Finally, we put in `rop` the structure hoof and body (with
+all body twiggs collected in a `=~`), keyed by the structure name.
+
+Finally, we recurse, processing the next structure in our list.
+
+This concludes our discussion of `++apex`.
