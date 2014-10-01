@@ -142,13 +142,154 @@ What's the difference?
 
 Clearly we're producing the same result as before, but we're doing it in a different way. 
 
-The first line in our gate, `++length` always specifies the sample tile. As you can see here, our sample tile is actually `++dist`, the body of which looks very similar to our previous example in that it accepts two `@ud`. The important difference is that `++dist` is now defined in a way that can be re-used. hoon is a strongly typed language, but it encourages the creation of your own types using what we call tiles.
+The first line in our gate, `++length` always specifies the sample tile. As you can see here, our sample tile is actually a `++dist`, the body of which, `,[start=@ud end=@ud]` looks very similar to our previous example in that it accepts two `@ud`. The important difference is that `++dist` is now defined in a way that can be re-used. hoon is a strongly typed language, but it encourages the creation of your own types using what we call tiles.
 
 At a high level you can think of hoon as being composed of two things, tiles and twigs. Twigs are the actual AST structures that get consumed by the compiler. Tiles reduce to twigs and provide major affordances for the programmer. If you're interested in learning about tiles more deeply you can find an in-depth explanation in the [tile section](link).
 
-It should suffice to say that we create tiles in the same way that you would think of creating type definitions in another language. Some of those types are actually built in, and you can find more about them in the [`$` rune library](link). 
+It should suffice, for now, to say that we create tiles in the same way that you would think of creating type definitions in another language. Some of those types are actually built in, and you can find more about them in the [`$` rune library](link). 
 
 In this specific example we are using the `$,` tile rune in its irregular form, `,`. `,` generates a validator from the given expression. In effect, `++dist` uses the type system to only produce cells that appear in the form `[start=@ud end=@ud]`. When we use it in our `++length` gate we assert that our input must be validated by `++dist`. As we continue you'll see how this pattern can be quite useful.
 
+One other thing to point out which may be immediately confusing coming from other languages is the order of addressing `start` and `end`. We call these labels faces, and we address them in the opposite order. You can read more about how faces work in the commentary on `++type` [here](link).
+
 
 6.
+
+In
+    /pub/fab/guide/exercise/6/hymn.hook
+
+Put
+    ::
+    ::
+    ::::  /hook/hymn/6/exercise/guide/fab/pub/
+      ::
+    /?    314
+    /=    gas  /$  fuel
+    ::
+    ^-  manx
+    ;html
+      ;head
+        ;title: %ford Example 1
+      ==
+      ;body
+        ;div.who: {<(~(get ju aut.ced.gas) 0)>}
+        ;div.where: {(spud s.bem.gas)} rev {(scow %ud p.r.bem.gas)}
+        ;code
+          ;pre: {<gas>}
+        ==
+      ==
+    ==
+
+Try it
+    http://talsur-todres.urbit.org/gen/main/pub/fab/guide/exercise/5/
+    http://talsur-todres.urbit.org/gin/del/main/pub/fab/guide/exercise/5/
+
+We're printing out some of the parameters our page is passed: who is looking at it, where it is and what revision our desk is on. We have also thrown in all our FCGI parameters in a codeblock for reference.
+
+To do this we have introduced some new runes, `/?`, `/=` and `/$`. We tend to call runes with a leading `/` "`%ford` runes" since they are used by the `%ford` vane for resource loading and composition. By convention, we indent four spaces after them to make them more obvious. They belong at the top of the file.
+
+`/?` simply checks for compatibility. In this case the line means 'need urbit 314 or below', or in hoon: `(lte zuse 314)`. `314` is the number in the kelvin versioning system, which you can read about [here](link). 
+
+`/=` is similar to the combination of `=+  =^`, or assignment. `/$` calls a parsing function, which we specify as [`++fuel`](link) with the [`++beam`](link) and [`++path`](link) of our current file. `/=    gas  /$  fuel` is a  common way to open your page, since the product of `++fuel` is useful when writing pages to the web. The use of `++fuel` is not enforced — you can also write your own parser. 
+
+Our page is made up of two generated parts: who requested the page, the location of the page and its revision. Both are parsed out of the `gas` variable using some straightforward library functions, [`++ju`](link), [`++spud`](link) and [`++scow`](link). You can follow those links to the library reference to learn more about them. You'll also notice our addressing moving in the opposite direction as you may be used to. `aut.ced.gas` pulls `aut` from inside `ced` from inside `gas`. 
+
+Inside of the `;code` tag we also print (for our own reference) the entire `gas`, so you can take a look at the contents. This can be a helpful trick when debugging. To fully understand what gets put in `gas`, we can take a look at `++fuel` and note that it produces a [`++epic`](link), which also contains a [`++cred`](link). You can follow those links to learn more about them.
+
+When we try changing the url from `gen/main` to `gin/del/main` we're using some of the access methods from `%eyre` (the urbit webserver) to pretend to be the carrier `~del`. You can find documentation on those access methods in the `%eyre` commentary, [here](link). 
+
+Path and identity are useful, but there are some other parameters worth checking out as well.
+
+7.
+
+In
+    /pub/fab/guide/exercise/7/hymn.hook
+
+Put
+    ::
+    ::
+    ::::  /hook/hymn/five/guide/fab/pub/
+      ::
+    /?    314
+    /=    gas  /$  fuel
+    ::
+    ^-  manx
+    ;html
+      ;head
+        ;title: %ford Example 2
+      ==
+      ;body
+        ;div: Do you have a code?
+        ;div: ?code={<(fall (~(get by qix.gas) %code) '')>}
+      ==
+    ==
+
+Try it
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/7/
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/7//?code=yes-i-do
+
+This is a simple example, showing off another use of `/=    gas  /$  fuel`. In this simple example we're just pulling out the value of the `code` url parameter. You should be able to change that value to any url-safe string and see it appear on the page. 
+
+We're using a few simple library functions to actually pull the value out, [`++fall`](link) and [`get:by`](link). URL parameters are stored in `qix.gas` as a `++map`, one of the main container constructs used in hoon. We'll encounter a lot of maps along the way, and you can learn more about them in the [map section](link) of the library doc.
+
+
+8.
+
+In
+    /pub/fab/guide/exercise/8/hymn.hook
+
+Put
+    ::
+    ::
+    ::::  /hook/hymn/five/guide/fab/pub/
+      ::
+    /?    314
+    /=    gas  /$  fuel
+    |%
+    ++  fib  
+      |=  x=@
+        ?:  (lth x 2)
+          1
+        (add $(x (dec x)) $(x (sub x 2)))
+    --
+    ::
+    ^-  manx
+    ;html
+      ;head
+        ;title: %ford Example 3
+      ==
+      ;body
+        ;div: {<(fib 4)>} {<(fib 5)>} {<(fib 6)>}
+      ==
+    ==
+
+Try it
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/8/
+
+
+9.
+
+In
+    /pub/fab/guide/exercise/9/hymn.hook
+
+Put
+    ::
+    ::
+    ::::  /hook/hymn/five/guide/fab/pub/
+      ::
+    /?    314
+    /=    gas  /$  fuel
+    ::
+    //    /%%/lib
+    ^-  manx
+    ;html
+      ;head
+        ;title: %ford Example 3
+      ==
+      ;body
+        ;div: {<(fib 30)>}
+      ==
+    ==
+
+Try it
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/9/
