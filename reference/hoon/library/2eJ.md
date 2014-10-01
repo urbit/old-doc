@@ -12,18 +12,6 @@ section 2eJ, formatting (basic text)
 
 Produce the case insensitive (all lowercase) cord of a tape.
 
-####Summary
-
-        Build wet %gold gate with sample tape `vib`
-        Slam rap with:
-                3, to rap by bytes
-                Slam turn with:
-                        `vib`
-                        Build dry %gold gate with sample atom `a`,
-                                Unless: `a` is greater than or equal to 'A' or less than or equal to 'Z',
-                                        Then: Produce `a`,
-                                Else: Produce the difference between `a` and 32.
-
 ####Examples
 
        ~tadbyl-hilbel/try=> (cass "john doe")
@@ -48,19 +36,6 @@ Produce the case insensitive (all lowercase) cord of a tape.
 
 Turn all occurances of lowercase letters in any tape into uppercase letters, as a cord.
 
-####Summary
-
-        Build dry %gold gate with sample tape `vib`
-        Yield cord
-        Slam rap with:
-                3, to rap by bytes
-                Slam turn with:
-                        `vib`
-                        Build dry %gold gate with sample atom `a`,
-                                Unless: `a` is greater than or equal to 'A' or less than or equal to 'Z',
-                                        Then: Produce `a`,
-                                Else: Produce the difference between `a` and 32.
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (cuss "john doe")
@@ -80,11 +55,6 @@ Turn all occurances of lowercase letters in any tape into uppercase letters, as 
 ```
 
 Produce the cord of a tape.
-
-####Summary
-
-        Build dry %gold with sample tape `a`
-        Produce the rap of `a` by bytes, cast to a cord.
 
 ####Examples
 

@@ -16,14 +16,6 @@ section 2eE, parsing (composers)
 ::
 ```
 
-####Summary
-
-        Build wet %gold gate with sample atom `wuc`, rule `tyd`
-        Slam cook with:
-                Build dry %gold gate with sample list of atoms, `waq`
-                Slam roll with:
-###Examples
-
 ---
 
 ###++boss
@@ -40,10 +32,6 @@ section 2eE, parsing (composers)
 ::
 ```
 
-####Summary
-
-        Build wet %gold gate with sample atom `wuc`, rule `tyd`
-
 ####Examples
 
 ---
@@ -57,13 +45,6 @@ section 2eE, parsing (composers)
 ::
 ```
         
-####Summary
-
-        Build wet %gold gate with sample cell of rules `fel`, rule `hof`
-        Produce pfix gonadified with:
-            `p.fel`, the first rule in `fel`
-            Gonadify sfix with `hof` and `q.fel`, the second rule in `fel`
-
 ####Examples
 
 ---
@@ -76,11 +57,6 @@ section 2eE, parsing (composers)
   ;~(pose (most bus fel) (easy ~))
 ::
 ```
-
-####Summary
-
-        Build wet %gold gate with sample rule `bus`, rule `fel`
-        Produce the gonadified:
 
 ###Examples
 
@@ -97,15 +73,6 @@ section 2eE, parsing (composers)
 
 Parse to a list elements of the second rule seperated by the second.
 
-####Summary
-
-        Build wet %gold gate with sample rule `bus`, rule `fel`
-        Produce gonadified:
-                Plug slammed with `fel`,
-                        star slammed with gonadified:
-                                pfix slammed with `bus` and `fel`, `bus` added as the prefix of `fel`
-###Examples
-
 ---
         
 ###++plus  
@@ -115,12 +82,6 @@ Parse to a list elements of the second rule seperated by the second.
 ```
 
 Like 'star', but "one or more" instead of "0 or more"
-
-####Summary
-
-        Build wet %gold gate with sample rule `fel`
-        Produce gonadified:
-                plug slammed with `fel` and star slammed with `fel`, the repeated application of `fel`.
 
 ####Examples
 
@@ -136,17 +97,6 @@ Like 'star', but "one or more" instead of "0 or more"
 ::
 ```
 
-####Summary
-
-        Build wet %gold gate with sample noun `rud`, gate accepting  cell of two nouns and producing [a b] `raq`
-        Build wet %gold gate with sample rule `bus`, rule `fel`
-        Produce the gonadified:
-                comp slammed with `raq`, 
-                        slammed with `fel`, 
-                                slammed with,
-                                        stir slammed with `rud`, `raq`, and `fel` prefixed with `bus`
-####Examples
-
 ---
         
 ###++star
@@ -159,12 +109,6 @@ Like 'star', but "one or more" instead of "0 or more"
 
 Apply the parsing rule repeatedly until it fails.
 
-####Summary
-
-        Build wet %gold gate with sample rule `fel,
-        Produce stir slammed with:
-                The list of elements of type of the icon of `fel` slammed to `wonk`
-        
 
 ####Examples
 

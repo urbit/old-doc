@@ -14,10 +14,6 @@ section 2eG, parsing (whitespace)
 
 Parse 
 
-####Summary
-
-        Produce plug gonadified with dot and gay.
-
 ####Examples
 
 ---
@@ -29,12 +25,6 @@ Parse
 ```
 
 Parse phep (--) to null (~).
-
-####Summary
-
-        Produce cold slammed with:
-                null
-                plug gonadified with hep and hep, to parse phep.
 
 ####Examples
 
@@ -53,12 +43,6 @@ Parse phep (--) to null (~).
 
 Parse stet (==) to null (~).
 
-####Summary
-
-        Produce cold slammed with:
-                null
-                plug gonadified with tis and tis, to parse stet
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "==" duz)
@@ -74,13 +58,6 @@ Parse stet (==) to null (~).
 ++  gah  (mask [`@`10 ' ' ~])                           ::  newline or ace
 ```
 
-####Summary
-
-        Produce mask slammed with the tuple:
-                `@`10, the newline character
-                ' ', the ace character
-                null
-
 ####Examples
 
 ---
@@ -92,14 +69,6 @@ Parse stet (==) to null (~).
 ```
         
 ---
-
-####Summary
-
-        Produce cold slammed with:
-                null
-                Plug gonadified with:
-                        gaq
-                        star slammed with pose gonadified with vul and gah
 
 ###Examples
 
@@ -115,13 +84,6 @@ Parse stet (==) to null (~).
          ==
 ```
 
-####Summary
-
-        Produce pose gonadifed with:
-                just slammed with the newline character.
-                Plug gonadified with gah and pose gonadified with gah and vul.
-                vul
-
 ####Examples
 
 ---
@@ -132,12 +94,6 @@ Parse stet (==) to null (~).
 ++  gay  ;~(pose gap (easy ~))                          ::
 ```
         
-####Summary
-
-        Produce pose gonadified with:
-                gap, which
-                Slam of easy with null
-
 ####Examples
 
 ---
@@ -154,16 +110,6 @@ Parse stet (==) to null (~).
 
 Parse comments and replace them with null.
 Note that a comment must be ended with a newline character.
-
-####Summary
-
-        Produce cold slammed with: Pair null and,
-                plug gonadified with col, col, and,
-                        pose gonadified with:
-                                shim slammed with 32 and 126
-                                shim slammed with 128 and 255
-                                just slammed with the newline operator.
-        (==) Terminates the pair.
 
 ####Examples
 

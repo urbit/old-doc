@@ -19,17 +19,6 @@ section 2eC, parsing (custom rules)
 
 Build gate to parse a nail with a rule, then replaced the parsed texted with a constant.
 
-####Summary
-
-        Activate jet.
-        Build wet %gold gate with sample noun `cus`, bunt of a rule `sef`.
-        Activate extra parsing jet.
-        Build dry %gold gate with sample nail `tub`.
-        Push `vex` is the rule `sef` slammed by the nail `tub`, an edge.
-        If: q.vex is an atom,
-                Then: Produce `vex`
-        Else: Produce [p=p.vex q=[~ u=[p=cus q=q.u.q.vex]]]
-
 ####Examples
 
         ~midlys-rocpet/try=> ((cold %foo (just `a`)) [[1 1] "abc"])
@@ -55,18 +44,6 @@ Build gate to parse a nail with a rule, then replaced the parsed texted with a c
 ```
 
 Build gate to parse a nail with a rule, then slam a gate with the parsed text.
-
-####Summary
-
-        Activate jet.
-        Build wet %gold gate with sample clam gate `poq`, bunt of a rule `sef`.
-        Activate extra parsing jet.
-        Build dry %gold gate with sample nail `tub`.
-        Push `vex` is the rule `sef` slammed by the nail `tub`, an edge.
-        If: `q.vex` is an atom,
-                Then: Produce `vex`
-        Else: Produce [p=p.vex q=[~ u=[p=(poq p.u.q.vex) q=q.u.q.vex]]],
-                where (poq p.u.q.vex) is gate `poq` slammed with the parsed text.
 
 ####Examples
 
@@ -97,15 +74,6 @@ Build gate to parse a nail with a rule, then slam a gate with the parsed text.
 Succeed but consume no characters - Produce an edge at the same text position 
 with the text to parse unchanged, but with a
 
-####Summary
-
-        Activate jet.
-        Build wet %gold gate with sample noun, `huf`, a noun to produce as the parsed value.
-        Activate extra parsing jet.
-        Build dry %gold date with sample nail, `tub`
-        Yield edge of type `huf`
-        Produce [p=p.tub q=[~ u=[p=huf q=tub]]], the edge with the noun `huf` as it's parsed value and `tub` as unparsed.
-
 ####Examples
 
         ~tadbyl-hilbel/try=> ((easy %foo) [[1 1] "abc"])
@@ -124,11 +92,6 @@ with the text to parse unchanged, but with a
 ```
 
 Fail to parse - Produce a nail at the same text position but with null text.
-
-####Summary
-
-        Build wet %gold gate with sample nail, `tub`.
-        Produce nail [p=p.tub q=~].
 
 ####Examples
 
@@ -152,17 +115,6 @@ Fail to parse - Produce a nail at the same text position but with null text.
 
 Demand politely that the parsing rule parse the entire sample nail, produce a null edge otherwise.
 
-####Summary
-
-        Build wet %gold gate with sample rule, `sab`
-        Build dry %gold gate with sample nail `tub`
-        Push `vex` is the rule slammed with the text to parse.
-        If: Parse of `vex` is null,
-                Then: Produce `vex`
-        Else: If: The unparsed text in the produced edge is nulll,
-                Then: Produce `vex`
-        Else: Produce [p=p.vex q=~], the edge with a null unit nail.
-
 ####Examples
 
         ~tadbyl-hilbel/try=> ((full (just 'a')) [[1 1] "ab"])
@@ -185,13 +137,6 @@ Demand politely that the parsing rule parse the entire sample nail, produce a nu
 ```
 
 Prepend a tape to the text to be parsed, then parse the new tape.
-
-####Summary
-
-        Build wet %gold gate with sample tape `pre`, rule `sef`
-        Build dry %gold gate with sample nail, `tub`
-        Produce the rule slammed with the hair index of `tub` and the concatenation of 
-        the prefix tape and the `tub` tape.
 
 ####Examples
 
@@ -218,24 +163,6 @@ Prepend a tape to the text to be parsed, then parse the new tape.
 ```
 
 Apply rule if parsing within a specific line and column range.
-
-####Summary
-
-        Activate jet.
-        Build wet %gold gate with sample bunted gate accepting pint `a`, 
-        noun `b` and producing cell [a b], and bunt of rule `sef`
-        Activate extra parsing jet.
-        Build dry %gold gate with sample nail `tub`
-        Push `vex` is the rule `sef` slammed by the nail `tub`, an edge.
-        If: `q.vex` is an atom,
-                Then: Produce `vex`,
-        Else: Produce the hair,
-                p is `q.tub`
-                q is the unit:
-                        Null
-                        u is: 
-                                p is `hez` slammed with the pint cell of tub's position and vex's position.
-                                q is `q.u.q.vex`, the text not parsed.
 
 ####Examples
 
@@ -268,30 +195,6 @@ Apply rule if parsing within a specific line and column range.
 Apply rule to indented block starting at current column number,
 omitting the leading whitespace.
 
-####Summary
-
-        Build wet %gold gate with sample rule, 'sef'
-        Build dry %gold gate with sample nail and the same product type as sef.
-        Let 'har' and 'tap' be p and q within that nail
-        Let 'lev' be ' ' repeated once less than the column number in har.
-        Let roq be the result of parsing the nail as any number of either
-          Printable characters, or
-          Newlines followed by ignored lev.
-        If roq is a failure produce it.
-        Let 'vex' be the result of parsing with sef, with column restarted to
-        1, the result in roq which must be a tape.
-        If vex is a failure produce it with its p set to that of roq.
-        Produce an edge with parse reach from roq, succesful result from vex,
-        hair from vex with column number advanced by q.har - 1 (which was 
-        subtracted prior passing it to sef), and a continuation tape of:
-          Let res be the continuation in vex(section of block unconsumed).
-          Build an kick a trap (Do):
-            If res is empty produce the continuation in roq.
-            Unless res starts with newline produce the head of res followed
-            by the result of tossing res for its tail.
-            Welp together a newline, lev, and the result of tossing res for
-            its tail.
-
 ####Examples
 
 ---
@@ -313,23 +216,6 @@ omitting the leading whitespace.
 ```
 
 Match and consume a cord.
-
-####Summary
-
-        Build dry %gold gate with sample cord `daf`
-        Build dry %gold gate with sample nail `tub`
-        Push `fad` is `daf`
-        Kick dry %gold trap.  Yield edge of cord text.
-        If: `daf` is 0,
-                Then: Produce the edge with:
-                        p is `p.tub`
-                        q is the unit:
-                                Null
-                                u is the cell [p=fad q=tub]
-        Else: If: fish for null in q.tub OR compile to Nock the last byte in `daf` and the 
-                Then: Produce the failed parse of `tub`,
-        Else: Toss `p.tub` for the index of the next character to be parsed, 
-        `q.tub` for the tail of `q.tub`, `daf` for the single byte right-shift of `daf`
 
 ####Examples
 
@@ -367,19 +253,6 @@ Match and consume a cord.
 
 Match and consume a single character.
 
-####Summary
-
-        Activate jet.
-        Build dry %gold gate with sample char `daf`
-        Activate extra parsing jet.
-        Build dry %gold gate wtih sample nail `tub`
-        Yield char edge.
-        If: `q.tub` is null,
-                Then: Produce the failed parse of `tub`,
-        Else:  Unless: `daf` is `i.q.tub`,
-                Then: Produce the failed parse of `tub`,
-        Else: Produce the parse of the next character of `tub`
-
 ###Examples
 
         ~tadbyl-hilbel/try=> ((just 'a') [[1 1] "abc"])
@@ -408,13 +281,6 @@ Match and consume a single character.
 
 Callback 
 
-####Summary
-
-        Build wet %gold gate with sample noun `gar`, rule trap `sef`
-        Build dry %gold gate with sample nail `tub`
-        Yield char edge.
-        Produce `tub` slammed to `sef`
-
 ####Examples
 
 ---
@@ -438,17 +304,6 @@ Callback
 
 Match the next char to a list of chars, a tape.
 
-####Summary
-
-        Activate jet.
-        Build wet %gold gate with sample (list char) `bud`
-        Activate extra parsing jet.
-        Build dry %gold gate with sample nail `tub`
-        Yield char edge.        
-        If: `q.tub` is an atom,
-                Then: Produce the failed parse of `tub`
-        Else: Unless: 
-                
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "a" (mask "cba"))
@@ -476,18 +331,6 @@ Match the next char to a list of chars, a tape.
 ```
 
 Always succeeds and consumes a character.
-
-####Summary
-
-        Build dry %gold gate with sample nail `tub`
-        Yield char edge.
-        If: The text to parse `q.tub` is an atom,
-                Then: Produce the failed parse of `tub`
-        Else: Push `zac` is lust slammed with:
-                The first chaarcter to parse (The head of `q.tub`) and its location in the text.
-        Produce the edge with the hair `zac` and unit nail with:
-                The character successfully consumed, the head of the text to parse.
-                A nail of hair index `zac`, text to be parsed `t.q.tub` (The tail of the text to parse.)
 
 ####Examples
 
@@ -517,25 +360,6 @@ Always succeeds and consumes a character.
 Conditional cook - Produce the slam of the parsed texted to `b` only if the result is not null.
 Else, produce null.
 
-####Summary
-
-        Activate jet.
-        Build wet %gold gate with sample tile of gate accepting a noun and producing a unit `pyq`, rule `sef`
-        Activate extra parsing jet.
-        Build dry %gold with sample nail `tub`
-        Push `vex` is the rule `sef` slammed by the nail `tub`, an edge.
-        If: The text to be parsed is an atom,
-                Then: Produce `vex`,
-        Else: Push `gey` is `pyq` slammed with the 
-        If: `gey` is an atom,
-                Then: Produce the cell with:
-                        p is the hair index of the parse failure.
-        Else: Produce the cell with:
-                p is the hair index of the parse.
-                q is the unit with value u is:
-                        p is the value of the parsed text slammed to `pyq`
-                        q is the value of the unparsed text.
-
 ####Examples
 
         ~midlys-rocpet/try=> ((sear |=(a=* ?@(a (some a) ~)) (just `a`)) [[1 1] "abc"])
@@ -563,19 +387,6 @@ Else, produce null.
 ```
 
 Match characters within a range.
-
-####Summary
-
-        Activate jet.
-        Build wet %gold gate with sample atom `les`, atom `mos`
-        Activate extra parsing jet.
-        Build dry %gold gate with sample nail, `tub`
-        Yield char edge.
-        If: `q.tub` is an atom,
-                Then: Produce the failed parse of `tub`,
-        Else: Unless: `i.q.tub` is greater than or equal to `les` AND `i.q.tub` is less than or equal to `mos`,
-                Then: Produce the failed parse of `tub`,
-        Else: Produce the single character parse of `tub`
 
 ####Examples
 
@@ -605,17 +416,6 @@ Match characters within a range.
 
 Add a label to an edge parsed by a rule.
 
-####Summary
-
-        Activate jet.
-        Build wet %gold gate with sample noun `gob`, bunt of a rule `sef`
-        Activate extra parsing jet.
-        Build dry %gold gate with sample nail `tub`
-        Push `vex` is the rule `sef` slammed by the nail `tub`, an edge.
-        If: `q.vex` is an atom,
-                Then: Produce `vex`
-        Else: Produce the edge with hair `p.vex` and unit with value hair u=[p=[gob p.u.q.vex] q=q.u.q.vex]
-
 ###Examples
 
         ~tadbyl-hilbel/try=> ((stag %foo (just 'a')) [[1 1] "abc"])
@@ -640,16 +440,6 @@ Add a label to an edge parsed by a rule.
 ```
 
 Listify a list of text position and bunt of rule pairs.
-
-####Summary
-
-        Build wet %gold gate with sample list of position and bunt of rule pairs `leh`
-        Kick dry %gold trap.
-        If: `leh` is null,
-                Then: Produce null.
-        Else: Produce the cell,
-                with head: The cell of the head of the head of `leh`, p=-.i.leh, the tail of the head of `leh, q=+.i.leh.
-                with tail: Toss `leh` for `t.leh`
 
 ####Examples
 
@@ -718,13 +508,6 @@ Listify a list of text position and bunt of rule pairs.
 ::
 ```
         
-####Summary
-
-        Activate jet.
-        Build wet %gold gate with sample list of position and bunt of rule pairs `leh`
-        Push label `wor` on:
-                Build dry %gold gate with sample fork between `ort` , fork `wan`
-
 ####Examples
 
 ---
@@ -747,19 +530,6 @@ Listify a list of text position and bunt of rule pairs.
 ::
 ```
         
-####Summary
-
-        Activate jet.
-        Build wet %gold gate with sample noun `rud`, gate accepting two nouns and producing , rule `fel`
-        Activate extra parsing jet.
-        Build dry %gold with sample nail `tub`
-        Yield edge of type of `rud`
-        Push `vex` is the rule `fel` slammed with the nail `tub`A
-        If: The parsed text is null,
-                Then: Produce the edge of unit nail `rud` and `tub` at the hair index of `vex`
-        Else: Push `wag` is the toss of `tub` for the unparsed text in the unit nail of `vex`
-        Assert that the value 
-
         Produce the edge with:
                 The farthest along hair index of `vex` and `wag`
                 The unit nail of 
@@ -794,14 +564,6 @@ Listify a list of text position and bunt of rule pairs.
 
 Parse several times
 
-####Summary
-
-        Activate jet.
-        Build wet %gold gate with sample atom `les`, atom `mos`, rule `fel`
-        Activate extra parsing jet.
-        Build wet %gold gate with sample nail `tub`
-        Yield edge of 
-        
         If: `mos` is 0,
                 Then: Produce the edge with 
 

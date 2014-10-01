@@ -10,10 +10,6 @@ section 2eF, parsing (ascii)
 
 Parse ASCII character 32, ace.
 
-####Summary
-
-        Produce the rule just slammed with ' '
-
 ###Examples
 
         ~tadbyl-hilbel/try=> (scan " " ace)
@@ -34,10 +30,6 @@ Parse ASCII character 32, ace.
 ```
 
 Parse ASCII character 124, bar.
-
-####Summary
-
-        Produce the rule just slammed with '|'
 
 ####Examples
 
@@ -60,10 +52,6 @@ Parse ASCII character 124, bar.
 
 Parse ASCII character 92, bas.
 Note the extra '\' in the slam of bas with just is to escape the escape character, bas.
-
-####Summary
-
-        Produce the rule just slammed with '\\'
 
 ###Examples
 
@@ -88,10 +76,6 @@ Note the extra '\' in the slam of bas with just is to escape the escape characte
 
 Parse ASCII character 36, buc.
 
-####Summary
-
-        Produce the rule just slammed with '$'
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "$" buc)
@@ -112,10 +96,6 @@ Parse ASCII character 36, buc.
 ```
 
 Parse ASCII character 95, cab.
-
-####Summary
-
-        Produce the rule just slammed with '_'
 
 ###Examples
 
@@ -138,10 +118,6 @@ Parse ASCII character 95, cab.
 
 Parse ASCII character 37, cen.
 
-####Summary
-
-        Produce the rule just slammed with '%'
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "%" cen)
@@ -162,10 +138,6 @@ Parse ASCII character 37, cen.
 ```
 
 Parse ASCII character 58, col.
-
-####Summary
-
-        Produce the rule just slammed with ':'
 
 ###Examples
 
@@ -188,10 +160,6 @@ Parse ASCII character 58, col.
 
 Parse ASCII character 44, com.
 
-####Summary
-
-        Produce the rule just slammed with ','
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "," com)
@@ -212,11 +180,6 @@ Parse ASCII character 44, com.
 ```
 
 Parse ASCII character 34, doq.
-
-####Summary
-
-        Produce the rule just slammed with '"'
-####Examplse
 
        ~tadbyl-hilbel/try=> (scan "\"" doq)
         ~~~22.
@@ -241,10 +204,6 @@ Parse ASCII character 34, doq.
 
 Parse ASCII character 46, dot.
 
-####Summary
-
-        Produce the rule just slammed with '.'
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "." dot)
@@ -266,10 +225,6 @@ Parse ASCII character 46, dot.
 
 Parse ASCII character 47, fas.
 
-####Summary
-
-        Produce the rule just slammed with '/'
-
 ###Examples
 
         ~tadbyl-hilbel/try=> (scan "/" fas)
@@ -290,10 +245,6 @@ Parse ASCII character 47, fas.
 ```
 
 Parse ASCII character 60, gal.
-
-####Summary
-
-        Produce the rule just slammed with '<'
 
 ####Examples
 
@@ -318,10 +269,6 @@ Parse ASCII character 60, gal.
 
 Parse ASCII character 62, gar.
 
-####Summary
-
-        Produce the rule just slammed with '>'
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan ">" gar)
@@ -342,10 +289,6 @@ Parse ASCII character 62, gar.
 ```
 
 Parse ASCII character 35, hax.
-
-####Summary
-
-        Produce the rule just slammed with '#'
 
 ####Examples
 
@@ -369,10 +312,6 @@ Parse ASCII character 35, hax.
 Parse ASCII character 123, kel.
 Note that this, with ker, opens and closes a Hoon expression for Hoon string interpolation.  Escape kel to parse it.
 
-####Summary
-
-        Produce the rule just slammed with '{'
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "\{" kel)
@@ -393,10 +332,6 @@ Note that this, with ker, opens and closes a Hoon expression for Hoon string int
 ```
 
 Parse ASCII character 125, ker.
-
-####Summary
-
-        Produce the rule just slammed with '}'
 
 ###Examples
 
@@ -419,10 +354,6 @@ Parse ASCII character 125, ker.
 
 Parse ASCII character 94, ket.
 
-####Summary
-
-        Produce the rule just slammed with '^'
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "^" ket)
@@ -443,10 +374,6 @@ Parse ASCII character 94, ket.
 ```
 
 Parse ASCII character 43, lus.
-
-####Summary
-
-        Produce the rule just slammed with '+'
 
 ###Examples
 
@@ -469,10 +396,6 @@ Parse ASCII character 43, lus.
 
 Parse ASCII character 45, hep.
 
-####Summary
-
-        Produce the rule just slammed with '-'
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "-" hep)
@@ -493,10 +416,6 @@ Parse ASCII character 45, hep.
 ```
 
 Parse ASCII character 40, pel.
-
-####Summary
-
-        Produce the rule just slammed with '('
 
 ####Examples
 
@@ -519,10 +438,6 @@ Parse ASCII character 40, pel.
 
 Parse ASCII character 38, pam.
 
-####Summary
-
-        Produce the rule just slammed with '&'
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "&" pam)
@@ -543,10 +458,6 @@ Parse ASCII character 38, pam.
 ```
 
 Parse ASCII character 41, per.
-
-####Summary
-
-        Produce the rule just slammed with ')'
 
 ###Examples
 
@@ -569,10 +480,6 @@ Parse ASCII character 41, per.
 
 Parse ASCII character 64, pat.
 
-####Summary
-
-        Produce the rule just slammed with '@'
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "@" pat)
@@ -593,10 +500,6 @@ Parse ASCII character 64, pat.
 ```
 
 Parse ASCII character 91, sel.
-
-####Summary
-
-        Produce the rule just slammed with '['
 
 ####Examples
 
@@ -619,10 +522,6 @@ Parse ASCII character 91, sel.
 
 Parse ASCII character 59, sem.
 
-####Summary
-
-        Produce the rule just slammed with ';'
-
 ###Exampels
 
         ~tadbyl-hilbel/try=> (scan ";" sem)
@@ -644,10 +543,6 @@ Parse ASCII character 59, sem.
 
 Parse ASCII character 93, ser.
 
-####Summary
-
-        Produce the rule just slammed with ']'
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "]" ser)
@@ -668,10 +563,6 @@ Parse ASCII character 93, ser.
 ```
 
 Parse ASCII character 126, sig.
-
-####Summary
-
-        Produce the rule just slammed with '~'
 
 ####Examples
 
@@ -695,10 +586,6 @@ Parse ASCII character 126, sig.
 Parse ASCII character 39, soq.
 Note the extra '\' in the slam of soq with just is to escape the first soq because soq denotes a crip.
 
-####Summary
-
-        Produce the rule just slammed with '\''
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "'" soq)
@@ -719,10 +606,6 @@ Note the extra '\' in the slam of soq with just is to escape the first soq becau
 ```
 
 Parse ASCII character 42, tar.
-
-####Summary
-
-        Produce the rule just slammed with '*'
 
 ####Examples
 
@@ -745,10 +628,6 @@ Parse ASCII character 42, tar.
 
 Parse ASCII character 96, tec.
 
-####Summary
-
-        Produce the rule just slammed with '`'
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "`" tec)
@@ -770,10 +649,6 @@ Parse ASCII character 96, tec.
 
 Parse ASCII character 61, tis.
 
-####Summary
-
-        Produce the rule just slammed with '='
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "=" tis)
@@ -793,10 +668,6 @@ Parse ASCII character 61, tis.
 ```
 
 Parse ASCII character 63, wut.
-
-####Summary
-
-        Produce the rule just slammed with '?'
 
 ###Examples
 
@@ -818,10 +689,6 @@ Parse ASCII character 63, wut.
 ```
 
 Parse ASCII character 33, zap.
-
-####Summary
-
-        Produce the rule just slammed with '!'
 
 ###Examples
 

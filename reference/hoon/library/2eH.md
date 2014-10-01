@@ -8,10 +8,6 @@ section 2eH, parsing (idioms)
 
 Parse alphabetic characters, both upper and lowercase.
 
-####Summary
-
-        Produce the rule of pose gonadified with low and hig.
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "a" alf)
@@ -29,10 +25,6 @@ Parse alphabetic characters, both upper and lowercase.
 
 Parse alphanumeric characters - both alphabetic characters and numbers.
 
-####Summary
-
-        Produce the rule of pose gonadified with low,hig, and nud.
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "0" aln)
@@ -49,10 +41,6 @@ Parse alphanumeric characters - both alphabetic characters and numbers.
 ```
 
 Parse alphanumeric strings and hep, "-".
-
-####Summary
-
-        Produce the rule pose gonadified with low, hig, nud, hep.
 
 ####Examples
 
@@ -72,12 +60,6 @@ Parse alphanumeric strings and hep, "-".
 Parse the hep and lus axis syntax.
 
 
-####Summary
-
-        Produce the rule pose gonadified with:
-                        (cold 2 hep), which replaces parsed heps with 2s.
-                        (cold 3 lus), which replaced parsed luses with 3s.
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "-" bet)
@@ -92,10 +74,6 @@ Parse the hep and lus axis syntax.
 ```
 
 Parse a tape of binary (0s and 1s) and produce its atomic representation.
-
-####Summary
-
-        Produce the slam of bass with 2 and the (most gon but), which produces 
 
 ####Examples
         
@@ -115,12 +93,6 @@ Parse a tape of binary (0s and 1s) and produce its atomic representation.
 ```
 
 Parse a single binary digit.
-
-####Summary
-
-        Produce rule cook slammed with a gate:
-                With sample atom `a` that results in the difference between `a` and '0' (48).
-                        All slammed with the rule shim slammed with '0' and '1', to parse either of those characters.
 
 ####Examples
 
@@ -143,12 +115,6 @@ Parse a single binary digit.
 
 Parse a single octal digit.
 
-####Summary
-
-        Produce rule cook slammed with a gate:
-                With sample atom `a` that results in the difference between `a` and '0' (48).
-                        All slammed with the rule shim slammed with '0' and '7', to parse any number between 0 and 7.
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "1" cit)
@@ -170,10 +136,6 @@ Parse a single octal digit.
 
 Parse a decimal number to an atom.
 
-####Summary
-
-        Produce the slam of bass with 10 (The base number system) and (most gon dit), which produces 
-        
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "7" dem)
@@ -193,12 +155,6 @@ Parse a decimal number to an atom.
 
  Parse a single decimal digit.
 
-####Summary
-
-        Produce the rule cook slammed with a gate:
-                With sample atom `a` that results in the difference between `a` and '0' (48).
-                        All slammed with the rule shim slammed with '0' and '9', to parse any number.
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "7" dit)
@@ -216,12 +172,6 @@ Parse a decimal number to an atom.
 
 Parse the axis gal and gar axis syntax.
 
-####Summary
-
-        Produce the rule pose gonadified with:
-                (cold 2 gal), which replaces parsed gals with 2s.
-                (cold 3 gar), which replaced parsed gars with 3s.
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "<" gul)
@@ -237,13 +187,6 @@ Parse the axis gal and gar axis syntax.
 
 Parse long numbers - Numbers which wrap around the shell with the line break characters bas and fas.
 
-####Summary
-
-        Produce the rule pose gonadified with:
-                The rule plug gonadified with:
-                        bas, gay, and fas, to succeed to parse a bas, fas, or a gap in text.
-                The rule (easy ~), to succeed to parse but produces null as the parsed text.
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "\\/" gon)
@@ -258,10 +201,6 @@ Parse long numbers - Numbers which wrap around the shell with the line break cha
 ```
 
 Parse any hexadecimal number to an atom.
-
-####Summary
-
-        Produce bass slammed with 16 (The base number system) and (most gon hit), which produces the atom 
 
 ####Examples
 
@@ -283,10 +222,6 @@ Parse any hexadecimal number to an atom.
 ```
 
 Parse a single uppercase letter.
-
-####Summary
-
-        Produce the slam of shim with the characters 'A' (65) and 'Z' (90), to parse any character between them, inclusive.
 
 ####Examples
 
@@ -311,16 +246,6 @@ Parse a single uppercase letter.
 
 Parse a single hexadecimal digit.
 
-####Summary
-
-        Pose gonadified with:
-                dit, parse a single decimnal digit.
-                Slam cook with:
-                        Build dry %gold gate with sample char `a`.  Produce the difference between `a` and 87.
-                        The slam of shim with the characters 'a' (97) and 'z' (122), to parse any character between them, inclusive.
-                        The slam of shim with the characters 'A' () and 'Z' (), to parse any character between them, inclusive.
-        Terminate the gonadification.
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "a" hit)
@@ -339,10 +264,6 @@ Parse a single hexadecimal digit.
 ```
 
 Parse a single lowercase letter.
-
-####Summary        
-
-        Produce the slam of shim with the characters 'a' (97) and 'z' (122), to parse any character between them, inclusive.
 
 ####Examples
 
@@ -391,10 +312,6 @@ Letters, -, and _
 
 Parse a numeric character - A number.
 
-####Summary
-
-        Produce the slam of shim with the characters '0' (48) and '9' (57), to parse  any character between them, inclusive.
-
 ####Examples
 
         ~tadbyl-hilbel/try=> (scan "0" nud)
@@ -416,14 +333,6 @@ Parse a numeric character - A number.
 ```
 
 Parse an individual character to its cord atom representation.
-
-####Summary
-
-        Produce pose gonadified with:
-                The slam of shim with 32 and 38, to parse any characters between them, inclusive.
-                The slam of shim with 40 and 91, to parse any characters between them, inclusive.
-                The slam of shim with 93 and 126, to parse any characters between them, inclusive.
-                The slam of shim with 128 and 255, to parse any characters between them, inclusive.
 
 ####Examples
 
@@ -457,12 +366,6 @@ Parse an individual character to its cord atom representation.
 
 Parse 
 
-####Summary
-
-        Slam ifix with:
-                [soq soq]
-                boss slammed with 256 and (most gon qit)
-        
 
 ###++sym
 
@@ -492,10 +395,5 @@ Parse
 ```
 
 Parse a text and produce its base 64 encoding
-
-####Summary
-
-        Build list of falling rules to match on with ';~' and pose.
-        Encodes capital letters by 
 
 
