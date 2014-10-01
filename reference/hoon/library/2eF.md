@@ -10,19 +10,15 @@ section 2eF, parsing (ascii)
 
 Parse ASCII character 32, ace.
 
-####Summary
-
-        Produce the rule just slammed with ' '
-
 ###Examples
 
-        ~tadbyl-hilbel/try=> (scan " " ace)
+        ~zod/try=> (scan " " ace)
         ~~. 
-        ~tadbyl-hilbel/try=> `cord`(scan " " ace)
+        ~zod/try=> `cord`(scan " " ace)
         ' '
-        ~tadbyl-hilbel/try=> (ace [[1 1] " "])
+        ~zod/try=> (ace [[1 1] " "])
         [p=[p=1 q=2] q=[~ [p=~~. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (ace [[1 1] " abc "])
+        ~zod/try=> (ace [[1 1] " abc "])
         [p=[p=1 q=2] q=[~ [p=~~. q=[p=[p=1 q=2] q="abc "]]]]
 
 ---
@@ -35,19 +31,15 @@ Parse ASCII character 32, ace.
 
 Parse ASCII character 124, bar.
 
-####Summary
-
-        Produce the rule just slammed with '|'
-
 ####Examples
 
-       ~tadbyl-hilbel/try=> (scan "|" bar)
+       ~zod/try=> (scan "|" bar)
         ~~~7c. 
-        ~tadbyl-hilbel/try=> `cord`(scan "|" bar)
+        ~zod/try=> `cord`(scan "|" bar)
         '|'
-        ~tadbyl-hilbel/try=> (bar [[1 1] "|"])
+        ~zod/try=> (bar [[1 1] "|"])
         [p=[p=1 q=2] q=[~ [p=~~~7c. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (bar [[1 1] "|="])
+        ~zod/try=> (bar [[1 1] "|="])
         [p=[p=1 q=2] q=[~ [p=~~~7c. q=[p=[p=1 q=2] q="="]]]]
 
 ---
@@ -61,21 +53,17 @@ Parse ASCII character 124, bar.
 Parse ASCII character 92, bas.
 Note the extra '\' in the slam of bas with just is to escape the escape character, bas.
 
-####Summary
-
-        Produce the rule just slammed with '\\'
-
 ###Examples
 
-        ~tadbyl-hilbel/try=> (scan "\\" bas)
+        ~zod/try=> (scan "\\" bas)
         ~~~5c.
-        ~tadbyl-hilbel/try=> `cord`(scan "\\" bas)
+        ~zod/try=> `cord`(scan "\\" bas)
         '\'
-        ~tadbyl-hilbel/try=> (bas [[1 1] "\"])
+        ~zod/try=> (bas [[1 1] "\"])
         ~ <syntax error at [1 18]>
-        ~tadbyl-hilbel/try=> (bas [[1 1] "\\"])
+        ~zod/try=> (bas [[1 1] "\\"])
         [p=[p=1 q=2] q=[~ [p=~~~5c. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (bas [[1 1] "\""])
+        ~zod/try=> (bas [[1 1] "\""])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -88,19 +76,15 @@ Note the extra '\' in the slam of bas with just is to escape the escape characte
 
 Parse ASCII character 36, buc.
 
-####Summary
-
-        Produce the rule just slammed with '$'
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "$" buc)
+        ~zod/try=> (scan "$" buc)
         ~~~24.
-        ~tadbyl-hilbel/try=> `cord`(scan "$" buc)
+        ~zod/try=> `cord`(scan "$" buc)
         '$'
-        ~tadbyl-hilbel/try=> (buc [[1 1] "$"])
+        ~zod/try=> (buc [[1 1] "$"])
         [p=[p=1 q=2] q=[~ [p=~~~24. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (buc [[1 1] "$%"])
+        ~zod/try=> (buc [[1 1] "$%"])
         [p=[p=1 q=2] q=[~ [p=~~~24. q=[p=[p=1 q=2] q="%"]]]]
 
 ---
@@ -113,19 +97,15 @@ Parse ASCII character 36, buc.
 
 Parse ASCII character 95, cab.
 
-####Summary
-
-        Produce the rule just slammed with '_'
-
 ###Examples
 
-        ~tadbyl-hilbel/try=> (scan "_" cab)
+        ~zod/try=> (scan "_" cab)
         ~~~5f.
-        ~tadbyl-hilbel/try=> `cord`(scan "_" cab)
+        ~zod/try=> `cord`(scan "_" cab)
         '_'
-        ~tadbyl-hilbel/try=> (cab [[1 1] "_"])
+        ~zod/try=> (cab [[1 1] "_"])
         [p=[p=1 q=2] q=[~ [p=~~~5f. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (cab [[1 1] "|_"])
+        ~zod/try=> (cab [[1 1] "|_"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -138,19 +118,15 @@ Parse ASCII character 95, cab.
 
 Parse ASCII character 37, cen.
 
-####Summary
-
-        Produce the rule just slammed with '%'
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "%" cen)
+        ~zod/try=> (scan "%" cen)
         ~~~25.
-        ~tadbyl-hilbel/try=> `cord`(scan "%" cen)
+        ~zod/try=> `cord`(scan "%" cen)
         '%'
-        ~tadbyl-hilbel/try=> (cen [[1 1] "%"])
+        ~zod/try=> (cen [[1 1] "%"])
         [p=[p=1 q=2] q=[~ [p=~~~25. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (cen [[1 1] "%^"])
+        ~zod/try=> (cen [[1 1] "%^"])
         [p=[p=1 q=2] q=[~ [p=~~~25. q=[p=[p=1 q=2] q="^"]]]] 
 
 ---
@@ -163,19 +139,15 @@ Parse ASCII character 37, cen.
 
 Parse ASCII character 58, col.
 
-####Summary
-
-        Produce the rule just slammed with ':'
-
 ###Examples
 
-        ~tadbyl-hilbel/try=> (scan ":" col)
+        ~zod/try=> (scan ":" col)
         ~~~3a.
-        ~tadbyl-hilbel/try=> `cord`(scan ":" col)
+        ~zod/try=> `cord`(scan ":" col)
         ':'
-        ~tadbyl-hilbel/try=> (col [[1 1] ":"])
+        ~zod/try=> (col [[1 1] ":"])
         [p=[p=1 q=2] q=[~ [p=~~~3a. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (col [[1 1] ":-"])
+        ~zod/try=> (col [[1 1] ":-"])
         [p=[p=1 q=2] q=[~ [p=~~~3a. q=[p=[p=1 q=2] q="-"]]]]
 
 ---
@@ -188,19 +160,15 @@ Parse ASCII character 58, col.
 
 Parse ASCII character 44, com.
 
-####Summary
-
-        Produce the rule just slammed with ','
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "," com)
+        ~zod/try=> (scan "," com)
         ~~~2c.
-        ~tadbyl-hilbel/try=> `cord`(scan "," com)
+        ~zod/try=> `cord`(scan "," com)
         ','
-        ~tadbyl-hilbel/try=> (com [[1 1] ","])
+        ~zod/try=> (com [[1 1] ","])
         [p=[p=1 q=2] q=[~ [p=~~~2c. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (com [[1 1] "not com"])
+        ~zod/try=> (com [[1 1] "not com"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -212,11 +180,6 @@ Parse ASCII character 44, com.
 ```
 
 Parse ASCII character 34, doq.
-
-####Summary
-
-        Produce the rule just slammed with '"'
-####Examplse
 
        ~tadbyl-hilbel/try=> (scan "\"" doq)
         ~~~22.
@@ -241,19 +204,15 @@ Parse ASCII character 34, doq.
 
 Parse ASCII character 46, dot.
 
-####Summary
-
-        Produce the rule just slammed with '.'
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "." dot)
+        ~zod/try=> (scan "." dot)
         ~~~.
-        ~tadbyl-hilbel/try=> `cord`(scan "." dot)
+        ~zod/try=> `cord`(scan "." dot)
         '.'
-        ~tadbyl-hilbel/try=> (dot [[1 1] "."])
+        ~zod/try=> (dot [[1 1] "."])
         [p=[p=1 q=2] q=[~ [p=~~~. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (dot [[1 1] ".^"])
+        ~zod/try=> (dot [[1 1] ".^"])
         [p=[p=1 q=2] q=[~ [p=~~~. q=[p=[p=1 q=2] q="^"]]]]
 
 ---
@@ -266,19 +225,15 @@ Parse ASCII character 46, dot.
 
 Parse ASCII character 47, fas.
 
-####Summary
-
-        Produce the rule just slammed with '/'
-
 ###Examples
 
-        ~tadbyl-hilbel/try=> (scan "/" fas)
+        ~zod/try=> (scan "/" fas)
         ~~~2f.
-        ~tadbyl-hilbel/try=> `cord`(scan "/" fas)
+        ~zod/try=> `cord`(scan "/" fas)
         '/'
-        ~tadbyl-hilbel/try=> (fas [[1 1] "/"])
+        ~zod/try=> (fas [[1 1] "/"])
         [p=[p=1 q=2] q=[~ [p=~~~2f. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (fas [[1 1] "|/"])
+        ~zod/try=> (fas [[1 1] "|/"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -291,21 +246,17 @@ Parse ASCII character 47, fas.
 
 Parse ASCII character 60, gal.
 
-####Summary
-
-        Produce the rule just slammed with '<'
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "<" gal)
+        ~zod/try=> (scan "<" gal)
         ~~~3c.
-        ~tadbyl-hilbel/try=> `cord`(scan "<" gal)
+        ~zod/try=> `cord`(scan "<" gal)
         '<'
-        ~tadbyl-hilbel/try=> (gal [[1 1] "<"])
+        ~zod/try=> (gal [[1 1] "<"])
         [p=[p=1 q=2] q=[~ [p=~~~3c. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (gal [[1 1] "<+"])
+        ~zod/try=> (gal [[1 1] "<+"])
         [p=[p=1 q=2] q=[~ [p=~~~3c. q=[p=[p=1 q=2] q="+"]]]]
-        ~tadbyl-hilbel/try=> (gal [[1 1] "+<"])
+        ~zod/try=> (gal [[1 1] "+<"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -318,19 +269,15 @@ Parse ASCII character 60, gal.
 
 Parse ASCII character 62, gar.
 
-####Summary
-
-        Produce the rule just slammed with '>'
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan ">" gar)
+        ~zod/try=> (scan ">" gar)
         ~~~3e.
-        ~tadbyl-hilbel/try=> `cord`(scan ">" gar)
+        ~zod/try=> `cord`(scan ">" gar)
         '>'
-        ~tadbyl-hilbel/try=> (gar [[1 1] ">"])
+        ~zod/try=> (gar [[1 1] ">"])
         [p=[p=1 q=2] q=[~ [p=~~~3e. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (gar [[1 1] "=>"])
+        ~zod/try=> (gar [[1 1] "=>"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -343,19 +290,15 @@ Parse ASCII character 62, gar.
 
 Parse ASCII character 35, hax.
 
-####Summary
-
-        Produce the rule just slammed with '#'
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "#" hax)
+        ~zod/try=> (scan "#" hax)
         ~~~23.
-        ~tadbyl-hilbel/try=> `cord`(scan "#" hax)
+        ~zod/try=> `cord`(scan "#" hax)
         '#'
-        ~tadbyl-hilbel/try=> (hax [[1 1] "#"])
+        ~zod/try=> (hax [[1 1] "#"])
         [p=[p=1 q=2] q=[~ [p=~~~23. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (hax [[1 1] "#!"])
+        ~zod/try=> (hax [[1 1] "#!"])
         [p=[p=1 q=2] q=[~ [p=~~~23. q=[p=[p=1 q=2] q="!"]]]]
 
 ---
@@ -369,19 +312,15 @@ Parse ASCII character 35, hax.
 Parse ASCII character 123, kel.
 Note that this, with ker, opens and closes a Hoon expression for Hoon string interpolation.  Escape kel to parse it.
 
-####Summary
-
-        Produce the rule just slammed with '{'
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "\{" kel)
+        ~zod/try=> (scan "\{" kel)
         ~~~7b.
-        ~tadbyl-hilbel/try=> `cord`(scan "\{" kel)
+        ~zod/try=> `cord`(scan "\{" kel)
         '{'
-        ~tadbyl-hilbel/try=> (kel [[1 1] "\{"])
+        ~zod/try=> (kel [[1 1] "\{"])
         [p=[p=1 q=2] q=[~ [p=~~~7b. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (kel [[1 1] " \{"])
+        ~zod/try=> (kel [[1 1] " \{"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -394,19 +333,15 @@ Note that this, with ker, opens and closes a Hoon expression for Hoon string int
 
 Parse ASCII character 125, ker.
 
-####Summary
-
-        Produce the rule just slammed with '}'
-
 ###Examples
 
-        ~tadbyl-hilbel/try=> (scan "}" ker)
+        ~zod/try=> (scan "}" ker)
         ~~~7d.
-        ~tadbyl-hilbel/try=> `cord`(scan "}" ker)
+        ~zod/try=> `cord`(scan "}" ker)
         '}'
-        ~tadbyl-hilbel/try=> (ker [[1 1] "}"])
+        ~zod/try=> (ker [[1 1] "}"])
         [p=[p=1 q=2] q=[~ [p=~~~7d. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (ker [[1 1] "\{}"])
+        ~zod/try=> (ker [[1 1] "\{}"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -419,19 +354,15 @@ Parse ASCII character 125, ker.
 
 Parse ASCII character 94, ket.
 
-####Summary
-
-        Produce the rule just slammed with '^'
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "^" ket)
+        ~zod/try=> (scan "^" ket)
         ~~~5e.
-        ~tadbyl-hilbel/try=> `cord`(scan "^" ket)
+        ~zod/try=> `cord`(scan "^" ket)
         '^'
-        ~tadbyl-hilbel/try=> (ket [[1 1] "^"])
+        ~zod/try=> (ket [[1 1] "^"])
         [p=[p=1 q=2] q=[~ [p=~~~5e. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (ket [[1 1] ".^"])
+        ~zod/try=> (ket [[1 1] ".^"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -444,19 +375,15 @@ Parse ASCII character 94, ket.
 
 Parse ASCII character 43, lus.
 
-####Summary
-
-        Produce the rule just slammed with '+'
-
 ###Examples
 
-        ~tadbyl-hilbel/try=> (scan "+" lus)
+        ~zod/try=> (scan "+" lus)
         ~~~2b.
-        ~tadbyl-hilbel/try=> `cord`(scan "+" lus)
+        ~zod/try=> `cord`(scan "+" lus)
         '+'
-        ~tadbyl-hilbel/try=> (lus [[1 1] "+"])
+        ~zod/try=> (lus [[1 1] "+"])
         [p=[p=1 q=2] q=[~ [p=~~~2b. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (lus [[1 1] ".+"])
+        ~zod/try=> (lus [[1 1] ".+"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -469,19 +396,15 @@ Parse ASCII character 43, lus.
 
 Parse ASCII character 45, hep.
 
-####Summary
-
-        Produce the rule just slammed with '-'
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "-" hep)
+        ~zod/try=> (scan "-" hep)
         ~~-
-        ~tadbyl-hilbel/try=> `cord`(scan "-" hep)
+        ~zod/try=> `cord`(scan "-" hep)
         '-'
-        ~tadbyl-hilbel/try=> (hep [[1 1] "-"])
+        ~zod/try=> (hep [[1 1] "-"])
         [p=[p=1 q=2] q=[~ [p=~~- q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (hep [[1 1] ":-"])
+        ~zod/try=> (hep [[1 1] ":-"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -494,19 +417,15 @@ Parse ASCII character 45, hep.
 
 Parse ASCII character 40, pel.
 
-####Summary
-
-        Produce the rule just slammed with '('
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "(" pel)
+        ~zod/try=> (scan "(" pel)
         ~~~28.
-        ~tadbyl-hilbel/try=> `cord`(scan "(" pel)
+        ~zod/try=> `cord`(scan "(" pel)
         '('
-        ~tadbyl-hilbel/try=> (pel [[1 1] "("])
+        ~zod/try=> (pel [[1 1] "("])
         [p=[p=1 q=2] q=[~ [p=~~~28. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (pel [[1 1] ";("])
+        ~zod/try=> (pel [[1 1] ";("])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -519,19 +438,15 @@ Parse ASCII character 40, pel.
 
 Parse ASCII character 38, pam.
 
-####Summary
-
-        Produce the rule just slammed with '&'
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "&" pam)
+        ~zod/try=> (scan "&" pam)
         ~~~26.
-        ~tadbyl-hilbel/try=> `cord`(scan "&" pam)
+        ~zod/try=> `cord`(scan "&" pam)
         '&'
-        ~tadbyl-hilbel/try=> (pam [[1 1] "&"])
+        ~zod/try=> (pam [[1 1] "&"])
         [p=[p=1 q=2] q=[~ [p=~~~26. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (pam [[1 1] "?&"])
+        ~zod/try=> (pam [[1 1] "?&"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -544,19 +459,15 @@ Parse ASCII character 38, pam.
 
 Parse ASCII character 41, per.
 
-####Summary
-
-        Produce the rule just slammed with ')'
-
 ###Examples
 
-        ~tadbyl-hilbel/try=> (scan ")" per)
+        ~zod/try=> (scan ")" per)
         ~~~29.
-        ~tadbyl-hilbel/try=> `cord`(scan ")" per)
+        ~zod/try=> `cord`(scan ")" per)
         ')'
-        ~tadbyl-hilbel/try=> (per [[1 1] ")"])
+        ~zod/try=> (per [[1 1] ")"])
         [p=[p=1 q=2] q=[~ [p=~~~29. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (per [[1 1] " )"])
+        ~zod/try=> (per [[1 1] " )"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -569,19 +480,15 @@ Parse ASCII character 41, per.
 
 Parse ASCII character 64, pat.
 
-####Summary
-
-        Produce the rule just slammed with '@'
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "@" pat)
+        ~zod/try=> (scan "@" pat)
         ~~~4.
-        ~tadbyl-hilbel/try=> `cord`(scan "@" pat)
+        ~zod/try=> `cord`(scan "@" pat)
         '@'
-        ~tadbyl-hilbel/try=> (pat [[1 1] "@"])
+        ~zod/try=> (pat [[1 1] "@"])
         [p=[p=1 q=2] q=[~ [p=~~~4. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (pat [[1 1] "?@"])
+        ~zod/try=> (pat [[1 1] "?@"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -594,19 +501,15 @@ Parse ASCII character 64, pat.
 
 Parse ASCII character 91, sel.
 
-####Summary
-
-        Produce the rule just slammed with '['
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "[" sel)
+        ~zod/try=> (scan "[" sel)
         ~~~5b.
-        ~tadbyl-hilbel/try=> `cord`(scan "[" sel)
+        ~zod/try=> `cord`(scan "[" sel)
         '['
-        ~tadbyl-hilbel/try=> (sel [[1 1] "["])
+        ~zod/try=> (sel [[1 1] "["])
         [p=[p=1 q=2] q=[~ [p=~~~5b. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (sel [[1 1] "-["])
+        ~zod/try=> (sel [[1 1] "-["])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -618,10 +521,6 @@ Parse ASCII character 91, sel.
 ```
 
 Parse ASCII character 59, sem.
-
-####Summary
-
-        Produce the rule just slammed with ';'
 
 ###Exampels
 
@@ -644,19 +543,15 @@ Parse ASCII character 59, sem.
 
 Parse ASCII character 93, ser.
 
-####Summary
-
-        Produce the rule just slammed with ']'
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "]" ser)
+        ~zod/try=> (scan "]" ser)
         ~~~5d.
-        ~tadbyl-hilbel/try=> `cord`(scan "]" ser)
+        ~zod/try=> `cord`(scan "]" ser)
         ']'
-        ~tadbyl-hilbel/try=> (ser [[1 1] "]"])
+        ~zod/try=> (ser [[1 1] "]"])
         [p=[p=1 q=2] q=[~ [p=~~~5d. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (ser [[1 1] "[ ]"])
+        ~zod/try=> (ser [[1 1] "[ ]"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -669,19 +564,15 @@ Parse ASCII character 93, ser.
 
 Parse ASCII character 126, sig.
 
-####Summary
-
-        Produce the rule just slammed with '~'
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "~" sig)
+        ~zod/try=> (scan "~" sig)
         ~~~~
-        ~tadbyl-hilbel/try=> `cord`(scan "~" sig)
+        ~zod/try=> `cord`(scan "~" sig)
         '~'
-        ~tadbyl-hilbel/try=> (sig [[1 1] "~"])
+        ~zod/try=> (sig [[1 1] "~"])
         [p=[p=1 q=2] q=[~ [p=~~~~ q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (sig [[1 1] "?~"])
+        ~zod/try=> (sig [[1 1] "?~"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -695,19 +586,15 @@ Parse ASCII character 126, sig.
 Parse ASCII character 39, soq.
 Note the extra '\' in the slam of soq with just is to escape the first soq because soq denotes a crip.
 
-####Summary
-
-        Produce the rule just slammed with '\''
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "'" soq)
+        ~zod/try=> (scan "'" soq)
         ~~~27.
-        ~tadbyl-hilbel/try=> `cord`(scan "'" soq)
+        ~zod/try=> `cord`(scan "'" soq)
         '''
-        ~tadbyl-hilbel/try=> (soq [[1 1] "'"])
+        ~zod/try=> (soq [[1 1] "'"])
         [p=[p=1 q=2] q=[~ [p=~~~27. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (soq [[1 1] ">'"])
+        ~zod/try=> (soq [[1 1] ">'"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -720,19 +607,15 @@ Note the extra '\' in the slam of soq with just is to escape the first soq becau
 
 Parse ASCII character 42, tar.
 
-####Summary
-
-        Produce the rule just slammed with '*'
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "*" tar)
+        ~zod/try=> (scan "*" tar)
         ~~~2a.
-        ~tadbyl-hilbel/try=> `cord`(scan "*" tar)
+        ~zod/try=> `cord`(scan "*" tar)
         '*'
-        ~tadbyl-hilbel/try=> (tar [[1 1] "*"])
+        ~zod/try=> (tar [[1 1] "*"])
         [p=[p=1 q=2] q=[~ [p=~~~2a. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (tar [[1 1] ".*"])
+        ~zod/try=> (tar [[1 1] ".*"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -745,19 +628,15 @@ Parse ASCII character 42, tar.
 
 Parse ASCII character 96, tec.
 
-####Summary
-
-        Produce the rule just slammed with '`'
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "`" tec)
+        ~zod/try=> (scan "`" tec)
         ~~~6.
-        ~tadbyl-hilbel/try=> `cord`(scan "`" tec)
+        ~zod/try=> `cord`(scan "`" tec)
         '`'
-        ~tadbyl-hilbel/try=> (tec [[1 1] "`"])
+        ~zod/try=> (tec [[1 1] "`"])
         [p=[p=1 q=2] q=[~ [p=~~~6. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (tec [[1 1] " `"])
+        ~zod/try=> (tec [[1 1] " `"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -770,19 +649,15 @@ Parse ASCII character 96, tec.
 
 Parse ASCII character 61, tis.
 
-####Summary
-
-        Produce the rule just slammed with '='
-
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "=" tis)
+        ~zod/try=> (scan "=" tis)
         ~~~3d.
-        ~tadbyl-hilbel/try=> `cord`(scan "=" tis)
+        ~zod/try=> `cord`(scan "=" tis)
         '='
-        ~tadbyl-hilbel/try=> (tis [[1 1] "="])
+        ~zod/try=> (tis [[1 1] "="])
         [p=[p=1 q=2] q=[~ [p=~~~3d. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (tis [[1 1] "|="])
+        ~zod/try=> (tis [[1 1] "|="])
         [p=[p=1 q=1] q=~]
 ---
 
@@ -794,19 +669,15 @@ Parse ASCII character 61, tis.
 
 Parse ASCII character 63, wut.
 
-####Summary
-
-        Produce the rule just slammed with '?'
-
 ###Examples
 
-        ~tadbyl-hilbel/try=> (scan "?" wut)
+        ~zod/try=> (scan "?" wut)
         ~~~3f.
-        ~tadbyl-hilbel/try=> `cord`(scan "?" wut)
+        ~zod/try=> `cord`(scan "?" wut)
         '?'
-        ~tadbyl-hilbel/try=> (wut [[1 1] "?"])
+        ~zod/try=> (wut [[1 1] "?"])
         [p=[p=1 q=2] q=[~ [p=~~~3f. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (wut [[1 1] ".?"])
+        ~zod/try=> (wut [[1 1] ".?"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -819,19 +690,15 @@ Parse ASCII character 63, wut.
 
 Parse ASCII character 33, zap.
 
-####Summary
-
-        Produce the rule just slammed with '!'
-
 ###Examples
 
-        ~tadbyl-hilbel/try=> (scan "!" zap)
+        ~zod/try=> (scan "!" zap)
         ~~~21.
-        ~tadbyl-hilbel/try=> `cord`(scan "!" zap)
+        ~zod/try=> `cord`(scan "!" zap)
         '!'
-        ~tadbyl-hilbel/try=> (zap [[1 1] "!"])
+        ~zod/try=> (zap [[1 1] "!"])
         [p=[p=1 q=2] q=[~ [p=~~~21. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (zap [[1 1] "?!"])
+        ~zod/try=> (zap [[1 1] "?!"])
         [p=[p=1 q=1] q=~]
 
 ---
