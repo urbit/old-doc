@@ -127,8 +127,8 @@ Accepts a nock subject-formula cell and an %iron gate which
 accepts any noun and produces a unit (this is used as nock 11).
 Produces a ++toon, which is a sucesful, blocked, or crashed result.
 
-####Examples 
-
+####Examples
+ 
         ~zod/try=> (mock [5 4 0 1] ,~)
         [%0 p=6]
         ~zod/try=> (mock [~ 11 1 0] |=(* `999))
@@ -197,8 +197,8 @@ Produces a ++toon, which is a sucesful, blocked, or crashed result.
 
 Intelligently render crash annotation.
 
-####Examples 
-
+####Examples
+ 
         ~zod/try=> (mook [%0 5 4 5 1])
         [%0 p=[5 4 5 1]]
         ~zod/try=> (mook [%2 ~[[%hunk %rose ["<" "," ">"] ~[[%leaf "err"]]]]])

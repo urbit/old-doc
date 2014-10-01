@@ -17,13 +17,13 @@ Compare two [line column] pairs and produce the one which is farther along in te
 
 ####Examples
 
-        ~tadbyl-hilbel/try=> (last [1 1] [1 2])
+        ~zod/try=> (last [1 1] [1 2])
         [p=1 q=2]
-        ~tadbyl-hilbel/try=> (last [2 1] [1 2])
+        ~zod/try=> (last [2 1] [1 2])
         [p=2 q=1]
-        ~tadbyl-hilbel/try=> (last [0 0] [99 0])
+        ~zod/try=> (last [0 0] [99 0])
         [p=99 q=0]
-        ~tadbyl-hilbel/try=> (last [7 7] [7 7])
+        ~zod/try=> (last [7 7] [7 7])
         [p=7 q=7]
 
 ---
@@ -41,13 +41,13 @@ column number - The index of the next character to be parsed.
 
 ####Examples
 
-        ~tadbyl-hilbel/try=> (lust `a` [1 1])
+        ~zod/try=> (lust `a` [1 1])
         [p=1 q=2]
-        ~tadbyl-hilbel/try=> (lust `@t`10 [1 1])
+        ~zod/try=> (lust `@t`10 [1 1])
         [p=2 q=1]
-        ~tadbyl-hilbel/try=> (lust '9' [10 10])
+        ~zod/try=> (lust '9' [10 10])
         [p=10 q=11]
-        ~tadbyl-hilbel/try=> (lust `@t`10 [0 0])
+        ~zod/try=> (lust `@t`10 [0 0])
         [p=1 q=1]
 
 ---

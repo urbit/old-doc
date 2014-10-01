@@ -18,13 +18,13 @@ Is the given tree of cell pairs a map?
 
 ####Examples
 
-        ~tadbyl-hilbel/try=> m
+        ~zod/try=> m
         {[p='d' q=5] [p='a' q=1] [p='c' q=4] [p='b' q=[2 3]]}
-        ~tadbyl-hilbel/try=> (ept m)
+        ~zod/try=> (ept m)
         %.y
-        ~tadbyl-hilbel/try=> b
+        ~zod/try=> b
         {'bonita' 'madeleine' 'daniel' 'john'}
-        ~tadbyl-hilbel/try=> (ept b)
+        ~zod/try=> (ept b)
         ! type-fail
         ! exit
 
@@ -48,8 +48,8 @@ The contained arms inherit the sample jar. 'a'.
 
 Retrieve a list from the map by its key.
 
-####Examples 
-      
+####Examples
+ 
       ~zod/try=> =l (mo `(list ,[@t (list ,@)])`[['a' `(list ,@)`[1 2 3 ~]] ['b' `(list ,@)`[4 5 6 ~]] ~])
       ~zod/try=> l
       {[p='a' q=~[1 2 3]] [p='b' q=~[4 5 6]]}
@@ -188,16 +188,16 @@ Container arm for map operation arms.  The contained arms inherit it's sample ma
 Accept a gate which accepts any noun and produces a loobean.  Slams the gate with each member
 of map 'a', produce the logical AND of the transformed map.
 
-####Examples 
-
-        ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
-        ~talsur-todres/try=> (~(all by b) |=(a=* ?@(a & |)))
+####Examples
+ 
+        ~zod/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
+        ~zod/try=> (~(all by b) |=(a=* ?@(a & |)))
         %.n
         ---
-        ~tadbyl-hilbel/try=> =a (mo `(list ,[@t @u])`[['a' 1] ['b' 2] ['c' 3] ['d' 4] ['e' 5] ~])
-        ~tadbyl-hilbel/try=> (~(all by a) |=(a=@ (lte a 6)))
+        ~zod/try=> =a (mo `(list ,[@t @u])`[['a' 1] ['b' 2] ['c' 3] ['d' 4] ['e' 5] ~])
+        ~zod/try=> (~(all by a) |=(a=@ (lte a 6)))
         %.y
-        ~tadbyl-hilbel/try=> (~(all by a) |=(a=@ (lte a 4)))
+        ~zod/try=> (~(all by a) |=(a=@ (lte a 4)))
         %.n
 
 ---
@@ -209,12 +209,12 @@ of map 'a' and produce the logical OR of the transformed map.
 
 ####Examples
 
-        ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
-        ~talsur-todres/try=> (~(all by b) |=(a=* ?@(a & |)))
+        ~zod/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
+        ~zod/try=> (~(all by b) |=(a=* ?@(a & |)))
         %.y
         ---
-        ~tadbyl-hilbel/try=> =a (mo `(list ,[@t @u])`[['a' 1] ['b' 2] ['c' 3] ['d' 4] ['e' 5] ~])
-        ~tadbyl-hilbel/try=> (~(any by a) |=(a=@ (lte a 4)))
+        ~zod/try=> =a (mo `(list ,[@t @u])`[['a' 1] ['b' 2] ['c' 3] ['d' 4] ['e' 5] ~])
+        ~zod/try=> (~(any by a) |=(a=@ (lte a 4)))
         %.y
 
 ---
@@ -225,8 +225,8 @@ Accept a noun 'b', producing the map with the key-value pair of key 'b' removed.
 
 ####Examples
 
-        ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
-        ~talsur-todres/try=> (~(del by b) `a`)
+        ~zod/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
+        ~zod/try=> (~(del by b) `a`)
         {[p=`b` q=[2 3]]}
         
 ---
@@ -237,8 +237,8 @@ Accept any noun 'b' and produce the axis of 'b' in within the values of 'p.a' in
 
 ####Examples
 
-        ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
-        ~talsur-todres/try=> (~(dig by b) `b`)
+        ~zod/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
+        ~zod/try=> (~(dig by b) `b`)
         [~ 2]
 
 ---
@@ -250,9 +250,9 @@ with the members of 'b' added.
 
 ####Examples
 
-        ~talsur-todres/try=> =a (mo `(list ,[@t *])`[[`a` 1] [`b` 2] ~])
-        ~talsur-todres/try=> =b `(list ,[@t *])`[[`c` 3] [`d` 4] ~]
-        ~talsur-todres/try=> (~(gas by a) b)
+        ~zod/try=> =a (mo `(list ,[@t *])`[[`a` 1] [`b` 2] ~])
+        ~zod/try=> =b `(list ,[@t *])`[[`c` 3] [`d` 4] ~]
+        ~zod/try=> (~(gas by a) b)
         {[p=`d` q=4] [p=`a` q=1] [p=`c` q=3] [p=`b` q=2]}
 
 ---
@@ -263,8 +263,8 @@ Produce the value in the map at key 'b'.
 
 ####Examples
 
-        ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
-        ~talsur-todres/try=> (~(get by b) `b`)
+        ~zod/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
+        ~zod/try=> (~(get by b) `b`)
         [~ [2 3]]
 
 ---
@@ -291,10 +291,10 @@ Accept any noun 'b' and produces the loobean indicating whether the noun exists 
 
 ####Examples
 
-        ~talsur-todres/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
-        ~talsur-todres/try=> (~(has by b) `b`)
+        ~zod/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
+        ~zod/try=> (~(has by b) `b`)
         %.y
-        ~talsur-todres/try=> (~(has by b) `c`)
+        ~zod/try=> (~(has by b) `c`)
         %.n
 
 ---
@@ -307,7 +307,7 @@ Produce the intersection of two maps of the same type.
         replaced by the toss of `b` for `r.b` and `b` for [n.b ~ r.b].
 
 ####Examples
-  
+
         ~zod/try=> =n (mo `(list ,[@t *])`[['a' 1] ['c' 3] ~])
         ~zod/try=> n
         {[p='a' q=1] [p='c' q=3]}

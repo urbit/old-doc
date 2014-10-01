@@ -18,7 +18,7 @@ Mapifiy.  Accepts a list of cells and produces a map of key-value pairs from the
 
 ####Examples
 
-        ~talsur-todres/try=> (mo `(list ,[@t *])`[[`a` 1] [`b` 2] ~])
+        ~zod/try=> (mo `(list ,[@t *])`[[`a` 1] [`b` 2] ~])
         {[p=`a` q=1] [p=`b` q=2]}
 
 ----
@@ -38,10 +38,10 @@ Setify.  Accepts a list and produces a set of the list's elements.
 
 ####Examples
 
-        ~talsur-todres/try=> (sa `(list ,@)`[1 2 3 4 5 ~])
+        ~zod/try=> (sa `(list ,@)`[1 2 3 4 5 ~])
         {5 4 1 3 2}
         ---
-        ~talsur-todres/try=> (sa `(list ,[@t *])`[[`a` 1] [`b` 2] ~])
+        ~zod/try=> (sa `(list ,[@t *])`[[`a` 1] [`b` 2] ~])
         {[`a` 1] [`b` 2]}
 
 ----

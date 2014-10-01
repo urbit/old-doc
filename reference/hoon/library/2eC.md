@@ -21,9 +21,9 @@ Build gate to parse a nail with a rule, then replaced the parsed texted with a c
 
 ####Examples
 
-        ~midlys-rocpet/try=> ((cold %foo (just `a`)) [[1 1] "abc"])
+        ~zod/try=> ((cold %foo (just `a`)) [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ u=[p=%foo q=[p=[p=1 q=2] q="bc"]]]]
-        ~midlys-rocpet/try=> ((cold %foo (just `a`)) [[1 1] "bc"])
+        ~zod/try=> ((cold %foo (just `a`)) [[1 1] "bc"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -47,13 +47,13 @@ Build gate to parse a nail with a rule, then slam a gate with the parsed text.
 
 ####Examples
 
-        ~midlys-rocpet/try=> ((cook ,@ud (just `a`)) [[1 1] "abc"])
+        ~zod/try=> ((cook ,@ud (just `a`)) [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ u=[p=97 q=[p=[p=1 q=2] q="bc"]]]]
-        ~midlys-rocpet/try=> ((cook ,@tas (just `a`)) [[1 1] "abc"])
+        ~zod/try=> ((cook ,@tas (just `a`)) [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ u=[p=%a q=[p=[p=1 q=2] q="bc"]]]]
-        ~midlys-rocpet/try=> ((cook |=(a=@ +(a)) (just `a`)) [[1 1] "abc"])
+        ~zod/try=> ((cook |=(a=@ +(a)) (just `a`)) [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ u=[p=98 q=[p=[p=1 q=2] q="bc"]]]]
-        ~midlys-rocpet/try=> ((cook |=(a=@ `@t`+(a)) (just `a`)) [[1 1] "abc"])
+        ~zod/try=> ((cook |=(a=@ `@t`+(a)) (just `a`)) [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ u=[p=`b` q=[p=[p=1 q=2] q="bc"]]]]
 
 ---
@@ -76,11 +76,11 @@ with the text to parse unchanged, but with a
 
 ####Examples
 
-        ~tadbyl-hilbel/try=> ((easy %foo) [[1 1] "abc"])
+        ~zod/try=> ((easy %foo) [[1 1] "abc"])
         [p=[p=1 q=1] q=[~ [p=%foo q=[p=[p=1 q=1] q="abc"]]]]
-        ~tadbyl-hilbel/try=> ((easy %foo) [[1 1] "bc"])
+        ~zod/try=> ((easy %foo) [[1 1] "bc"])
         [p=[p=1 q=1] q=[~ [p=%foo q=[p=[p=1 q=1] q="bc"]]]]
-        ~tadbyl-hilbel/try=> ((easy 'a') [[1 1] "bc"])
+        ~zod/try=> ((easy 'a') [[1 1] "bc"])
         [p=[p=1 q=1] q=[~ [p='a' q=[p=[p=1 q=1] q="bc"]]]]
 
 ---
@@ -95,9 +95,9 @@ Fail to parse - Produce a nail at the same text position but with null text.
 
 ####Examples
 
-        ~tadbyl-hilbel/try=> (fail [[1 1] "abc"])
+        ~zod/try=> (fail [[1 1] "abc"])
         [p=[p=1 q=1] q=~]
-        ~tadbyl-hilbel/try=> (fail [[p=1.337 q=70] "Parse me, please?"])
+        ~zod/try=> (fail [[p=1.337 q=70] "Parse me, please?"])
         [p=[p=1.337 q=70] q=~]
 
 ---
@@ -117,11 +117,11 @@ Demand politely that the parsing rule parse the entire sample nail, produce a nu
 
 ####Examples
 
-        ~tadbyl-hilbel/try=> ((full (just 'a')) [[1 1] "ab"])
+        ~zod/try=> ((full (just 'a')) [[1 1] "ab"])
         [p=[p=1 q=2] q=~]
-        ~tadbyl-hilbel/try=> ((full (jest 'ab')) [[1 1] "ab"])
+        ~zod/try=> ((full (jest 'ab')) [[1 1] "ab"])
         [p=[p=1 q=3] q=[~ u=[p='ab' q=[p=[p=1 q=3] q=""]]]]
-        ~tadbyl-hilbel/try=> ((full ;~(plug (just 'a') (just 'b'))) [[1 1] "ab"])
+        ~zod/try=> ((full ;~(plug (just 'a') (just 'b'))) [[1 1] "ab"])
         [p=[p=1 q=3] q=[~ u=[p=[~~a ~~b] q=[p=[p=1 q=3] q=""]]]]
 
 ---
@@ -140,9 +140,9 @@ Prepend a tape to the text to be parsed, then parse the new tape.
 
 ####Examples
 
-        ~tadbyl-hilbel/try=> ((funk "abc prefix-" (jest 'abc')) [[1 1] "to be parsed"])
+        ~zod/try=> ((funk "abc prefix-" (jest 'abc')) [[1 1] "to be parsed"])
         [p=[p=1 q=4] q=[~ [p='abc' q=[p=[p=1 q=4] q=" prefix-to be parsed"]]]]
-        ~tadbyl-hilbel/try=> ((funk "parse" (just 'a')) [[1 4] " me"])
+        ~zod/try=> ((funk "parse" (just 'a')) [[1 4] " me"])
         [p=[p=1 q=4] q=~]
 
 ---
@@ -219,17 +219,17 @@ Match and consume a cord.
 
 ####Examples
 
-        ~tadbyl-hilbel/try=> ((jest 'abc') [[1 1] "abc"])
+        ~zod/try=> ((jest 'abc') [[1 1] "abc"])
         [p=[p=1 q=4] q=[~ [p='abc' q=[p=[p=1 q=4] q=""]]]]
-        ~tadbyl-hilbel/try=> (scan "abc" (jest 'abc'))
+        ~zod/try=> (scan "abc" (jest 'abc'))
         'abc'
-        ~tadbyl-hilbel/try=> (scan "abc" (jest 'acb'))
+        ~zod/try=> (scan "abc" (jest 'acb'))
         ! {1 2}
         ! 'syntax-error'
         ! exit
-        ~tadbyl-hilbel/try=> ((jest 'john doe') [[1 1] "john smith"])
+        ~zod/try=> ((jest 'john doe') [[1 1] "john smith"])
         [p=[p=1 q=6] q=~]
-        ~tadbyl-hilbel/try=> ((jest 'john doe') [[1 1] "john doe"])
+        ~zod/try=> ((jest 'john doe') [[1 1] "john doe"])
         [p=[p=1 q=9] q=[~ [p='john doe' q=[p=[p=1 q=9] q=""]]]]
 
 ---
@@ -255,15 +255,15 @@ Match and consume a single character.
 
 ###Examples
 
-        ~tadbyl-hilbel/try=> ((just 'a') [[1 1] "abc"])
+        ~zod/try=> ((just 'a') [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ [p=~~a q=[p=[p=1 q=2] q="bc"]]]]
-        ~tadbyl-hilbel/try=> (scan "abc" (just 'a'))
+        ~zod/try=> (scan "abc" (just 'a'))
         ! {1 2}
         ! 'syntax-error'
         ! exit
-        ~tadbyl-hilbel/try=> (scan "a" (just 'a'))
+        ~zod/try=> (scan "a" (just 'a'))
         ~~a
-        ~tadbyl-hilbel/try=> (scan "%" (just '%'))
+        ~zod/try=> (scan "%" (just '%'))
         ~~~25.
 
 ---
@@ -306,13 +306,13 @@ Match the next char to a list of chars, a tape.
 
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "a" (mask "cba"))
+        ~zod/try=> (scan "a" (mask "cba"))
         ~~a
-        ~midlys-rocpet/try=> ((mask "abc") [[1 1] "abc"])
+        ~zod/try=> ((mask "abc") [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ [p=~~a q=[p=[p=1 q=2] q="bc"]]]]
-        ~midlys-rocpet/try=> ((mask "abc") [[1 1] "bbc"])
+        ~zod/try=> ((mask "abc") [[1 1] "bbc"])
         [p=[p=1 q=2] q=[~ [p=~~b q=[p=[p=1 q=2] q="bc"]]]]
-        ~midlys-rocpet/try=> ((mask "abc") [[1 1] "dbc"])
+        ~zod/try=> ((mask "abc") [[1 1] "dbc"])
         [p=[p=1 q=1] q=~]
 
 ---
@@ -334,9 +334,9 @@ Always succeeds and consumes a character.
 
 ####Examples
 
-        ~tadbyl-hilbel/try=> (next [[1 1] "ebc"])
+        ~zod/try=> (next [[1 1] "ebc"])
         [p=[p=1 q=2] q=[~ [p=~~e q=[p=[p=1 q=2] q="bc"]]]] 
-        ~tadbyl-hilbel/try=> (next [[1 1] "john jumps jones"])
+        ~zod/try=> (next [[1 1] "john jumps jones"])
         [p=[p=1 q=2] q=[~ [p=~~j q=[p=[p=1 q=2] q="ohn jumps jones"]]]]
 
 ---
@@ -362,9 +362,9 @@ Else, produce null.
 
 ####Examples
 
-        ~midlys-rocpet/try=> ((sear |=(a=* ?@(a (some a) ~)) (just `a`)) [[1 1] "abc"])
+        ~zod/try=> ((sear |=(a=* ?@(a (some a) ~)) (just `a`)) [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ u=[p=97 q=[p=[p=1 q=2] q="bc"]]]]
-        ~midlys-rocpet/try=> ((sear |=(a=* ?@(a [~ u=a] ~)) (just `a`)) [[1 1] "abc"])
+        ~zod/try=> ((sear |=(a=* ?@(a [~ u=a] ~)) (just `a`)) [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ u=[p=97 q=[p=[p=1 q=2] q="bc"]]]]
 
 ---
@@ -390,11 +390,11 @@ Match characters within a range.
 
 ####Examples
 
-        ~midlys-rocpet/try=> ((shim `a` 'z') [[1 1] "abc"])
+        ~zod/try=> ((shim `a` 'z') [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ [p=~~a q=[p=[p=1 q=2] q="bc"]]]]
-        ~midlys-rocpet/try=> ((shim `a` 'Z') [[1 1] "abc"])
+        ~zod/try=> ((shim `a` 'Z') [[1 1] "abc"])
         [p=[p=1 q=1] q=~]
-        ~midlys-rocpet/try=> ((shim `a` 'Z') [[1 1] "Abc"])
+        ~zod/try=> ((shim `a` 'Z') [[1 1] "Abc"])
         [p=[p=1 q=2] q=[~ [p=~~~41. q=[p=[p=1 q=2] q="bc"]]]]
 
 ---
@@ -418,11 +418,11 @@ Add a label to an edge parsed by a rule.
 
 ###Examples
 
-        ~tadbyl-hilbel/try=> ((stag %foo (just 'a')) [[1 1] "abc"])
+        ~zod/try=> ((stag %foo (just 'a')) [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ u=[p=[%foo ~~a] q=[p=[p=1 q=2] q="bc"]]]]
-        ~tadbyl-hilbel/try=> ((stag "xyz" (jest 'abc')) [[1 1] "abc"])
+        ~zod/try=> ((stag "xyz" (jest 'abc')) [[1 1] "abc"])
         [p=[p=1 q=4] q=[~ u=[p=["xyz" 'abc'] q=[p=[p=1 q=4] q=""]]]]
-        ~tadbyl-hilbel/try=> ((stag 10.000 (shim 0 100)) [[1 1] "abc"])
+        ~zod/try=> ((stag 10.000 (shim 0 100)) [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ u=[p=[10.000 ~~a] q=[p=[p=1 q=2] q="bc"]]]]
 
 ---
@@ -443,7 +443,7 @@ Listify a list of text position and bunt of rule pairs.
 
 ####Examples
 
-        ~tadbyl-hilbel/try=> (stet (limo [[5 (just 'a')] [1 (jest 'abc')] [[1 1] (shim 0 200)] 
+        ~zod/try=> (stet (limo [[5 (just 'a')] [1 (jest 'abc')] [[1 1] (shim 0 200)] 
         [[1 10] (cold %foo (just 'a'))]~]))
         ~[
           [p=5 q=<1.lrk [tub=[p=[p=@ud q=@ud] q=""] <1.nqy [daf=@tD <394.imz 97.kdz 1.xlc %164>]>]>]
@@ -451,7 +451,7 @@ Listify a list of text position and bunt of rule pairs.
           [p=[1 1] q=<1.lrk [tub=[p=[p=@ud q=@ud] q=""] <1.nqy [daf=@tD <394.imz 97.kdz 1.xlc %164>]>]>]
           [p=[1 10] q=<1.lrk [tub=[p=[p=@ud q=@ud] q=""] <1.nqy [daf=@tD <394.imz 97.kdz 1.xlc %164>]>]>]
         ]
-        ~tadbyl-hilbel/try=> (stet (limo [[[1 1] (just 'a')] [[2 1] (shim 0 200)] ~]))
+        ~zod/try=> (stet (limo [[[1 1] (just 'a')] [[2 1] (shim 0 200)] ~]))
         ~[
           [p=[1 1] q=<1.lrk [tub=[p=[p=@ud q=@ud] q=""] <1.nqy [daf=@tD <394.imz 97.kdz 1.xlc %164>]>]>] 
           [p=[2 1] q=<1.lrk [tub=[p=[p=@ud q=@ud] q=""] <1.nqy [daf=@tD <394.imz 97.kdz 1.xlc %164>]>]>]

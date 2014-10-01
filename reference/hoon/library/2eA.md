@@ -29,15 +29,15 @@ section 2eA, packing
 
 Unpack an atom to a noun.  The inverse of jam.
 
-####Examples        
- 
-        ~midlys-rocpet/try=> (cue (jam 1))
+####Examples
+        
+        ~zod/try=> (cue (jam 1))
         1
-        ~midlys-rocpet/try=> (cue 4.657)
+        ~zod/try=> (cue 4.657)
         [1 2]
-        ~midlys-rocpet/try=> (cue (jam [1 1]))
+        ~zod/try=> (cue (jam [1 1]))
         [1 1]
-        ~tadbyl-hilbel/try=> (cue 39.689)
+        ~zod/try=> (cue 39.689)
         [0 19]
 
 ---
@@ -75,11 +75,11 @@ Compress a noun to an atom.  The inverse of cue.
 
 ####Examples
 
-        ~midlys-rocpet/try=> (jam 1)
+        ~zod/try=> (jam 1)
         12
-        ~midlys-rocpet/try=> (jam [1 1])
+        ~zod/try=> (jam [1 1])
         817
-        ~tadbyl-hilbel/try=> (jam [~ u=19])
+        ~zod/try=> (jam [~ u=19])
         39.689
 
 ---

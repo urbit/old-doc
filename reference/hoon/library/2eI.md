@@ -10,15 +10,15 @@ Parse a cord with a given rule and crash if the cord isn't entirely parsed.
 
 ####Examples
 
-        ~tadbyl-hilbel/try=> (rash 'I was the world in which I walked, and what I saw' (star (shim 0 200)))
+        ~zod/try=> (rash 'I was the world in which I walked, and what I saw' (star (shim 0 200)))
         "I was the world in which I walked, and what I saw"
-        ~tadbyl-hilbel/try=> (rash 'abc' (just 'a'))
+        ~zod/try=> (rash 'abc' (just 'a'))
         ! {1 2}
         ! 'syntax-error'
         ! exit
-        ~tadbyl-hilbel/try=> (rash 'abc' (jest 'abc'))
+        ~zod/try=> (rash 'abc' (jest 'abc'))
         'abc'
-        `~tadbyl-hilbel/try=> (rash 'abc' (jest 'ab'))
+        `~zod/try=> (rash 'abc' (jest 'ab'))
         ! {1 3}
         ! 'syntax-error'
         ! exit
@@ -33,15 +33,15 @@ Parse a given with a given rule and produce null if the cord isn't entirely pars
 
 ####Examples
 
-        ~tadbyl-hilbel/try=> (rush 'I was the world in which I walked, and what I saw' (star (shim 0 200)))
+        ~zod/try=> (rush 'I was the world in which I walked, and what I saw' (star (shim 0 200)))
         [~ "I was the world in which I walked, and what I saw"]
-        ~tadbyl-hilbel/try=> (rush 'abc' (just 'a'))
+        ~zod/try=> (rush 'abc' (just 'a'))
         ~
-        ~tadbyl-hilbel/try=> (rush 'abc' (jest 'abc'))
+        ~zod/try=> (rush 'abc' (jest 'abc'))
         [~ 'abc']
-        ~tadbyl-hilbel/try=> (rush 'abc' (jest 'ac'))
+        ~zod/try=> (rush 'abc' (jest 'ac'))
         ~
-        ~tadbyl-hilbel/try=> (rush 'abc' (jest 'ab'))
+        ~zod/try=> (rush 'abc' (jest 'ab'))
         ~
 
 ###++rust
@@ -56,11 +56,11 @@ Parse a tape with a given rule and produce null if the tape isn't entirely parse
 
 ####Examples
 
-        ~tadbyl-hilbel/try=> (rust "I was the world in which I walked, and what I saw" (star (shim 0 200)))
+        ~zod/try=> (rust "I was the world in which I walked, and what I saw" (star (shim 0 200)))
         [~ "I was the world in which I walked, and what I saw"]
-        ~tadbyl-hilbel/try=> (rust "Or heard or felt came not but from myself;" (star (shim 0 200)))
+        ~zod/try=> (rust "Or heard or felt came not but from myself;" (star (shim 0 200)))
         [~ "Or heard or felt came not but from myself;"]
-        ~tadbyl-hilbel/try=> (rust "And there I found myself more truly and more strange." (jest 'And there I'))
+        ~zod/try=> (rust "And there I found myself more truly and more strange." (jest 'And there I'))
         ~
 
 ++  scan
@@ -69,11 +69,11 @@ Parse a tape with a given rule and crash if the tape isn't entirely parsed.
 
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "I was the world in which I walked, and what I saw" (star (shim 0 200)))
+        ~zod/try=> (scan "I was the world in which I walked, and what I saw" (star (shim 0 200)))
         "I was the world in which I walked, and what I saw"
-        ~tadbyl-hilbel/try=> (scan "Or heard or felt came not but from myself;" (star (shim 0 200)))
+        ~zod/try=> (scan "Or heard or felt came not but from myself;" (star (shim 0 200)))
         "Or heard or felt came not but from myself;"
-        ~tadbyl-hilbel/try=> (scan "And there I found myself more truly and more strange." (jest 'And there I'))
+        ~zod/try=> (scan "And there I found myself more truly and more strange." (jest 'And there I'))
         ! {1 12}
         ! 'syntax-error'
         ! exit

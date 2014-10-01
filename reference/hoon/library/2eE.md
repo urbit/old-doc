@@ -112,19 +112,19 @@ Apply the parsing rule repeatedly until it fails.
 
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "aaaaa" (just 'a'))
+        ~zod/try=> (scan "aaaaa" (just 'a'))
         ! {1 2}
         ! 'syntax-error'
         ! exit
-        ~tadbyl-hilbel/try=> (scan "aaaaa" (star (just 'a')))
+        ~zod/try=> (scan "aaaaa" (star (just 'a')))
         "aaaaa"
-        ~tadbyl-hilbel/try=> (scan "abcdef" (star (just 'a')))
+        ~zod/try=> (scan "abcdef" (star (just 'a')))
         ! {1 2}
         ! 'syntax-error'
         ! exit
-        ~tadbyl-hilbel/try=> (scan "abcabc" (star (jest 'abc')))
+        ~zod/try=> (scan "abcabc" (star (jest 'abc')))
         <|abc abc|>
-        ~tadbyl-hilbel/try=> (scan "john smith" (star (shim 0 200)))
+        ~zod/try=> (scan "john smith" (star (shim 0 200)))
         "john smith"
 
 ---

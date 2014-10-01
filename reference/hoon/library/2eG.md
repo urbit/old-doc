@@ -28,9 +28,9 @@ Parse phep (--) to null (~).
 
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "--" dun)
+        ~zod/try=> (scan "--" dun)
         ~
-        ~tadbyl-hilbel/try=> (dun [[1 1] "--"])
+        ~zod/try=> (dun [[1 1] "--"])
         [p=[p=1 q=3] q=[~ u=[p=~ q=[p=[p=1 q=3] q=""]]]]
 
 ---
@@ -45,9 +45,9 @@ Parse stet (==) to null (~).
 
 ####Examples
 
-        ~tadbyl-hilbel/try=> (scan "==" duz)
+        ~zod/try=> (scan "==" duz)
         ~
-        ~tadbyl-hilbel/try=> (duz [[1 1] "== |=..."])
+        ~zod/try=> (duz [[1 1] "== |=..."])
         [p=[p=1 q=3] q=[~ u=[p=~ q=[p=[p=1 q=3] q=" |=..."]]]]
 
 ---
