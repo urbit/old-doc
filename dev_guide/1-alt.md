@@ -60,7 +60,7 @@ Put
     =+  a=2
     =+  ^=  b  (add 2 2)
     ;div
-      ;h1: Assignment
+      ;h1: Exercise 3 — Assignment
       ;p: a={<a>}
       ;p: b={<b>}
       ;p: a+b={<(add a b)>}
@@ -95,7 +95,7 @@ Put
         (sub end start)
     --
     ;div
-      ;h1: Cores
+      ;h1: Exercise 4 — Cores
       ;p: We'll be starting at {<start>}
       ;p: And ending at {<end>}
       ;p: Looks like a length of {<(length start end)>}
@@ -106,13 +106,13 @@ Try it
 
 What's happening?
 
-As you can see from the output, we have written a little function that takes two numbers, start and end and returns their difference. The first thing to notice about our code is the first rune. `|%` is a `core` rune. You can think of cores like functions or objects in other languages. `|%` runes contain an arbitrary number of arms, denoted with either `++` or `+-` and closed with `--`. 
+As you can see from the output, we have written a little function that takes two numbers, `s` and `e`   and returns their difference. The first thing to notice about our code is the first rune. `|%` is a `core` rune. You can think of cores like functions or objects in other languages. `|%` runes contain an arbitrary number of arms, denoted with either `++` or `+-` and closed with `--`. 
 
-Each arm has a value, either static data (in the case of `++start` and `++end`) or a gate (in the case of `++length`). A gate is a kind of core. Gates only have one arm and are quite similar to a function in other languages. We use `|=` to construct our gate. Runes in hoon are generally categorized by their first character. `|` indicates a rune having to do with cores. 
+Each arm has a value, either static data (in the case of `++start` and `++end`) or a gate (in the case of `++length`). A gate is a kind of core. Gates only have one arm and are quite similar to a function in other languages. We use `|=` to construct our gate. Runes in hoon are generally categorized by their first character. `|` indicates a rune having to do with cores. You can find all of the `|` runes in the [rune library](link).
 
-Our `++length` gate takes two arguments, start and end. In hoon we call this the 'sample'. Every `|=` has two parts, the sample type and the computation. `[s=@ud e=@ud]` says that the gate takes two arguments, labelled going forward as `s` and `e`, and required to both be `@ud` or unsigned decimal. Our computation, `(sub e s)` simply computes the difference between `e` and `s`. 
+Our `++length` gate takes two arguments, `s` and `e`. In hoon we call the data passed in to a gate the 'sample'. Every `|=` has two parts, the sample type and the computation also known as a `tile` and a `twig`. Casually, `[s=@ud e=@ud]` means that the gate takes two arguments, labelled going forward as `s` and `e`, and required to both be `@ud` or unsigned decimal. Our computation, `(sub e s)` simply computes the difference between `e` and `s`. 
 
-`@ud` is an odor. Odors aren't quite types, but they're similar. You'll learn the difference by example as we progress, and you can always refer to the [odor index](link).
+`@ud` is an odor. Odors aren't quite types, but they're similar. You'll learn the difference by example as we progress, and you can always refer to the [odor index](link). 
 
 You probably also noticed our indentation. In general hoon has both tall and wide forms. In general, we use tall form when programming and wide form in the REPL. In wide form, hoon uses two spaces for indentation and is back-stepped so nested code doesn't drift away toward the right margin. 
 
@@ -124,17 +124,31 @@ In
 
 Put
     |%
-      ++  start  ,@ud
-      ++  end  ,@ud
+      ++  dist  ,[start=@ud end=@ud]
       ++  length
         |=
-          [s=start e=end]
-        (sub e s)
+          [d=dist]
+        (sub end.d start.d)
     --
     ;div
       ;h1: Cores
-      ;p: How long does it take to get from 2 to 20? {<(length 2 20)>}
+      ;p: How long does it take to get from 2 to 20? {<(length [2 20])>}
     ==
 
 Try it
     http://talsur-todres.urbit.org/gen/main/pub/fab/guide/exercise/5/
+
+What's the difference?
+
+Clearly we're producing the same result as before, but we're doing it in a different way. 
+
+The first line in our gate, `++length` always specifies the sample tile. As you can see here, our sample tile is actually `++dist`, the body of which looks very similar to our previous example in that it accepts two `@ud`. The important difference is that `++dist` is now defined in a way that can be re-used. hoon is a strongly typed language, but it encourages the creation of your own types using what we call tiles.
+
+At a high level you can think of hoon as being composed of two things, tiles and twigs. Twigs are the actual AST structures that get consumed by the compiler. Tiles reduce to twigs and provide major affordances for the programmer. If you're interested in learning about tiles more deeply you can find an in-depth explanation in the [tile section](link).
+
+It should suffice to say that we create tiles in the same way that you would think of creating type definitions in another language. Some of those types are actually built in, and you can find more about them in the [`$` rune library](link). 
+
+In this specific example we are using the `$,` tile rune in its irregular form, `,`. `,` generates a validator from the given expression. In effect, `++dist` uses the type system to only produce cells that appear in the form `[start=@ud end=@ud]`. When we use it in our `++length` gate we assert that our input must be validated by `++dist`. As we continue you'll see how this pattern can be quite useful.
+
+
+6.
