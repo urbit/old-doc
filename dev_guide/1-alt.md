@@ -384,7 +384,6 @@ Put
                         %+  turn
                           a
                         |=  [* b=manx]
-                          ~&  b
                           b
                  /@
                  /psal/
@@ -426,4 +425,18 @@ Experiment with it
 
 Try adding other `.md` files with numeric file names (such as `3.md`) to the `11/lib/` directory to get a feel for what's going on.
 
-As you can see, we're loading the markdown files in `11/lib` and 
+What's happening?
+
+As you can see, we're loading the markdown files in `11/lib` and putting them in to our page. Let's dive into the code.
+
+We're using `/=` to assign the `posts` face. `/:` sets the `++beam` for the computation below it. You can think of it sort of like setting an environment variable. Everything below uses our `++beam` `/%%/lib`. 
+
+If we take the next few lines and write them as pseudo code in wide form they might look something like this, `(/; [gate] (/@ /psal/))`. That being the case, let's start at the bottom and move upwards since that's how our data flows. In depth documentation on individual `++horn` runes can be found in the [horn section of the rune library](link).
+
+`/psal/` loads our `psal` mark. Marks are like content types, and we keep them in `/main/mar/`. You can open `/main/mar/psal/door.hook` to see that we specify the ways in which a particular mark can be converted to produced well typed output. The general form of this is [`/mark/`](link) where `mark` exists in the `/main/mar/` directory.
+
+`/@` loads a list of files in numerical order from the previously specified `++beam` using our mark, `psal`. `/@` has a few close relatives. `/&`, for example, reads files by `@da` or absolute date. You can see the rest in the [horn section of the library](link). 
+
+`/;` takes the output from `/@` and `/psal/` and passes it to a twig. In this case, a gate. Our `/@` actually produces a [`++list`](link) of pairs of `[@ manx]` where the `@` is the filename, and the `manx` is the converted contents. We use [`++turn`](link), one of our `++list` operator functions, to iterate through the list and produce only a list of `++manx`. This is the output assigned to `posts`.
+
+Then, further down, we use [`;*`](link) to write the list to the page. 
