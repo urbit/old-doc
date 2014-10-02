@@ -308,4 +308,4 @@ How are they getting combined?
 
 Clearly this looks a lot like our previous example using `++fib`, only now we're using two separate files. The majority of these files should be familiar to you, so let's focus on a single line, `//    /%%/lib`.
 
-`//` is a `%ford` rune that loads a resource from a given path. In this case, we specify our path as `/%%/lib/`. `/%%/` indicates our current path, without the complete date. From inside of `/pub/fab/guide/exercise/9/hymn/hook` `/%/` p
+`//` is a `%ford` rune that loads a resource from a given path. `//` is used as a way to organize code into separate files, not for loading libraries and structures. We'll show some examples of how urbit handles those things shortly. You can think of `//` as a kind of `include` or `require`. `//` takes a `beam`, an absolute global path. We specify our `beam` as `/%%/lib/`. `/%%/` indicates our current path, without the complete date. From inside of `/pub/fab/guide/exercise/9/hymn/hook` `/%/` p
