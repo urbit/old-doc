@@ -259,7 +259,7 @@ Put
         ;title: %ford Example 3
       ==
       ;body
-        ;div: {<(fib 4)>} {<(fib 5)>} {<(fib 6)>}
+        ;div: {<(~(get by qix.gas) %number)>}
       ==
     ==
 
@@ -291,5 +291,17 @@ Put
       ==
     ==
 
+And in
+    /pub/fab/guide/exercise/9/lib.hook
+
+Put
+    ++  fib  
+      |=  x=@
+        ?:  (lth x 2)
+          1
+        (add $(x (dec x)) $(x (sub x 2)))
+    --
+
 Try it
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/9/
+
