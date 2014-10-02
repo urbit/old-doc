@@ -308,4 +308,122 @@ How are they getting combined?
 
 Clearly this looks a lot like our previous example using `++fib`, only now we're using two separate files. The majority of these files should be familiar to you, so let's focus on a single line, `//    /%%/lib`.
 
-`//` is a `%ford` rune that loads a resource from a given path. `//` is used as a way to organize code into separate files, not for loading libraries and structures. We'll show some examples of how urbit handles those things shortly. You can think of `//` as a kind of `include` or `require`. `//` takes a `beam`, an absolute global path. We specify our `beam` as `/%%/lib/`. `/%%/` indicates our current path, without the complete date. From inside of `/pub/fab/guide/exercise/9/hymn/hook` `/%/` p
+`//` is a `%ford` rune that loads a resource from a given path. `//` is used as a way to organize code into separate files, not for loading libraries and structures. We'll show some examples of how urbit handles those things shortly. You can think of `//` as a kind of `include` or `require`. `//` takes a `beam`, an absolute global path in `%clay`. 
+
+In `%clay` we use `%` to navigate relative paths. `%` is sort of like `.` when moving around the unix file system. Although we put our code in the unix path `/pub/fab/guide/exercise/9/hymn.hook` the file extension is just a hint to the system. `/%/` (the equivalent of a unix `./`) actually resolves to `/pub/fab/guide/exercise/9/hymn`. 
+
+We commonly use two kinds of extensions, `.hoon` for source files and `.hook` for files that generate something else. Since our hymn file is generating html, it's a `.hook`, and our source file is just a `.hoon`. In order to find our file one level up we need two `%%` to get to `/pub/fab/guide/exercise/9/`. Adding `lib` resolve to our neighboring file. You can read more about how `%clay` paths are parsed in the [`%clay` overview](link). It's also pretty easy to try them out using `:cd` and `:ls` in your `%arvo` repl. 
+
+
+10.
+
+In
+    /pub/fab/guide/exercise/10/hymn.hook
+
+Put
+    ::
+    ::
+    ::::  /hook/hymn/five/guide/fab/pub/
+      ::
+    /?    314
+    /=    gas  /$  fuel
+    //    /%%/lib
+    ::
+    =+  ^=  arg
+      %+  slav
+        %ud
+      %+  fall
+        %-  ~(get by qix.gas)  %number
+      '0'
+    ::
+    ^-  manx
+    ;html
+      ;head
+        ;title: %ford Example 3
+      ==
+      ;body
+        ;div: {<(fib arg)>}
+      ==
+    ==
+
+
+And in
+    /pub/fab/guide/exercise/10/lib.hook
+
+Put
+    |%
+    ++  fib  
+      |=  x=@
+        ?:  (lth x 2)
+          1
+        (add $(x (dec x)) $(x (sub x 2)))
+    --
+
+Try it
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/10/
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/10/?number=7
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/10/?number=12
+
+As you can see by changing the URL, we're now passing our query string parameter to our `++fib` script and printing the output. It's common to pull some data out of the URL and do something with it, but we don't have any type information about our query string parameters and hoon is a strongly typed languge. As you can see, we're calling `++fib` with a parameter `arg`. Let's look closely at how we generate `arg`.
+
+The first part of our assignment should look familiar from previous example, `=+  ^=  arg` puts the face `arg` on the product of our remaining computation. In short, you can read the code that produces `arg` as `(slav %ud (fall (~(get by qix.gas) %number) '0'))`. We use `%` runes to write this in tall form. `%` runes are used for calling gates or evaluating changes. `%+` 'slams' or calls a gate with two arguments, and `%-` 'slams' or calls a gate with one argument. As usual, you can find more about the `%` runes in the [`%` section](link) of the rune library.
+
+To get a value out of our map of query string parameters `qix.gas` we use a method from the [maps library](link) that produces a `++unit`. `++unit`s are a common type in hoon used for optional values. A [`++unit`](link) is either `~` or `[~ p=value]`. Since we need to specify a value for `(fib arg)` even when someone doesn't enter the query string we use [`++fall`](link), which produces either the value of the unit, or the second argument if the `++unit` is null. Since our `qix.gas` has string values in it we specify a string in our second argument, `'0'`. As an aside, `'0'` is different from `"0"` in hoon. You can read about the difference in [`++cord`](link) and [`++tape`](link).
+
+Our outermost call, to [`++scow`](link), casts our string to a `@ud` — which is the type expected by `++fib`. `++scow` takes the name of an odor and a value, and tries to cast the value to that odor. 
+
+
+11.
+
+In
+    /pub/fab/guide/exercise/11/hymn.hook
+
+Put
+    /=    posts  /:  /%%/lib
+                 /;  |=  a=(list (pair ,@ ,manx))
+                        %+  turn
+                          a
+                        |=  [* b=manx]
+                          ~&  b
+                          b
+                 /@
+                 /psal/
+    ::
+    ^-  manx
+    ;html
+      ;head
+        ;title: %ford Example
+      ==
+      ;body
+        ;h1: Ford example — Loading Resources by Number
+        ;*  posts
+      ==
+    ==
+
+In
+    /pub/fab/guide/exercise/11/lib/1.md
+
+Put
+    #1
+    
+    This is my first post.
+
+
+In
+    /pub/fab/guide/exercise/11/lib/2.md
+
+Put
+    #2
+    
+    This is my second post.
+
+Try it
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/11/
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/11/lib/1/
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/11/lib/2/
+
+Experiment with it
+
+Try adding other `.md` files with numeric file names (such as `3.md`) to the `11/lib/` directory to get a feel for what's going on.
+
+As you can see, we're loading the markdown files in `11/lib` and 
