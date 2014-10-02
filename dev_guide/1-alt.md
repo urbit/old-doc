@@ -61,9 +61,9 @@ Put
     =+  ^=  b  (add 2 2)
     ;div
       ;h1: Exercise 3 — Assignment
-      ;p: a={<a>}
-      ;p: b={<b>}
-      ;p: a+b={<(add a b)>}
+      ;p: a is {<a>}
+      ;p: b is {<b>}
+      ;p: a plus b is {<(add a b)>}
     ==
 
 Try it
@@ -71,7 +71,7 @@ Try it
 
 How does that work?
 
-The first thing you should notice in this example is the `=+` at the top of our file. `=+` is a rune. hoon is a programming with no reserved words. No `if` `this` or `function` at all. Instead, runes have their own pronunciation. `=+` is pronounced 'tislus'. You can find the table of pronunciation [here](link). In hoon you construct your programs using runes, which are two character ascii pairs. You can see the whole set of runes in the [rune index](link).
+The first thing you should notice in this example is the `=+` at the top of our file. `=+` is a rune. hoon is a programming with no reserved words. We don't use `if` `this` or `function` at all. Instead, runes have their own pronunciation. `=+` is pronounced 'tislus'. You can find the table of pronunciation [here](link). In hoon you construct your programs using runes, which are two character ascii pairs. You can see the whole set of runes in the [rune index](link).
 
 `=+` pushes an expression on to our subject. The subject in hoon is something like `this` in other languages. hoon being a functional language if we want something to be available further on in our computation we need to attach it to the subject first. 
 
@@ -153,6 +153,37 @@ In this specific example we are using the `$,` tile rune in its irregular form, 
 One other thing to point out which may be immediately confusing coming from other languages is the order of addressing `start` and `end`. We call these labels faces, and we address them in the opposite order. You can read more about how faces work in the commentary on `++type` [here](link).
 
 
+5.1
+
+In
+    /pub/fab/guide/exercise/5/hymn.hook
+
+Put
+    |%
+    ++  fib  
+      |=  x=@
+        ?:  (lth x 2)
+          1
+        (add $(x (dec x)) $(x (sub x 2)))
+    --
+    ::
+    ^-  manx
+    ;div
+      ;h1: Loops
+      ;p: {<(fib 1)>}, {<(fib 2)>}, {<(fib 3)>}, {<(fib 4)>}
+    ==
+
+Try it
+    http://talsur-todres.urbit.org/gen/main/pub/fab/guide/exercise/5.1/
+
+What is that doing?
+
+We're printing a few members of the [fibonacci sequence](link) by calling our arm `++fib`. The fibonacci sequence is a fairly straight forward algorithm: `F(n-1) + F(n-2)` where `F(1) = 1` and `F(2) = 1`. As is obvious from the formula, generating the fibonacci value at any number requires us to recurse, or loop. Let's walk through the code. 
+
+Our example here should look similar to the previous one. We build a core with `|%` and add the arm `++fib`. `++fib` is a gate which takes one argument `x`, an atom. Using `?:` we test if `x` is less than 2 with the library function [`lte`](link) to handle our seed values of `F(1) = 1` and `F(2) = 1`. `?:` is a member of the [`?` runes](link), related to true / false values, or loobeans. In hoon true and false are `0` and `1` respectively and take the odor `@f`. We tend to say 'yes' and 'no' instead of 'true' and 'false' to keep track of the switch.
+
+If `x` is not less than `2` we compute `F(n-1) + F(n-2)` by using `$`. We mentioned previously that a gate is a special kind of core with only one arm, called `$`. Here we're using `$` to mimic the behavior of a loop. You can read the expression `$(x (dec x))` as 'call the gate again with `x` replaced by `(dec x)`. With that in mind it should be clear how the last line of `++fib` produces the member of the sequence at a given value `x`. 
+
 6.
 
 In
@@ -200,6 +231,7 @@ When we try changing the url from `gen/main` to `gin/del/main` we're using some 
 
 Path and identity are useful, but there are some other parameters worth checking out as well.
 
+
 7.
 
 In
@@ -228,43 +260,9 @@ Try it
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/7/
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/7//?code=yes-i-do
 
-This is a simple example, showing off another use of `/=    gas  /$  fuel`. In this simple example we're just pulling out the value of the `code` url parameter. You should be able to change that value to any url-safe string and see it appear on the page. 
+This is a simple example, showing off another use of `/=    gas  /$  fuel`. In this simple example we're just pulling out the value of the `code` query string parameter. You should be able to change that value to any url-safe string and see it appear on the page. 
 
-We're using a few simple library functions to actually pull the value out, [`++fall`](link) and [`get:by`](link). URL parameters are stored in `qix.gas` as a `++map`, one of the main container constructs used in hoon. We'll encounter a lot of maps along the way, and you can learn more about them in the [map section](link) of the library doc.
-
-
-8.
-
-In
-    /pub/fab/guide/exercise/8/hymn.hook
-
-Put
-    ::
-    ::
-    ::::  /hook/hymn/five/guide/fab/pub/
-      ::
-    /?    314
-    /=    gas  /$  fuel
-    |%
-    ++  fib  
-      |=  x=@
-        ?:  (lth x 2)
-          1
-        (add $(x (dec x)) $(x (sub x 2)))
-    --
-    ::
-    ^-  manx
-    ;html
-      ;head
-        ;title: %ford Example 3
-      ==
-      ;body
-        ;div: {<(~(get by qix.gas) %number)>}
-      ==
-    ==
-
-Try it
-    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/8/
+We're using a few simple library functions to actually pull the value out, [`++fall`](link) and [`get:by`](link). Query string parameters are stored in `qix.gas` as a `++map`, one of the main container constructs used in hoon. We'll encounter a lot of maps along the way, and you can learn more about them in the [map section](link) of the library doc.
 
 
 9.
@@ -278,7 +276,6 @@ Put
     ::::  /hook/hymn/five/guide/fab/pub/
       ::
     /?    314
-    /=    gas  /$  fuel
     ::
     //    /%%/lib
     ^-  manx
@@ -287,7 +284,8 @@ Put
         ;title: %ford Example 3
       ==
       ;body
-        ;div: {<(fib 30)>}
+        ;h1: %ford Example 3
+        ;p: {<(fib 1)>}, {<(fib 2)>}, {<(fib 3)>}, {<(fib 4)>}
       ==
     ==
 
@@ -295,6 +293,7 @@ And in
     /pub/fab/guide/exercise/9/lib.hook
 
 Put
+    |%
     ++  fib  
       |=  x=@
         ?:  (lth x 2)
@@ -305,3 +304,8 @@ Put
 Try it
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/9/
 
+How are they getting combined?
+
+Clearly this looks a lot like our previous example using `++fib`, only now we're using two separate files. The majority of these files should be familiar to you, so let's focus on a single line, `//    /%%/lib`.
+
+`//` is a `%ford` rune that loads a resource from a given path. In this case, we specify our path as `/%%/lib/`. `/%%/` indicates our current path, without the complete date. From inside of `/pub/fab/guide/exercise/9/hymn/hook` `/%/` p
