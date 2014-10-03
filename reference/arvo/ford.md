@@ -1723,5 +1723,73 @@ final result.
 
 The hook file has been assembled.  And there was great rejoicing.
 
+Lifecycle of a Kiss
+-------------------
+
+We're now going to go through a series of lifecycle descriptions.  When a user
+of ford sends a kiss, it is once of a dozen different types of silk.  We'll go
+through each one, tracing through the flow of control of each of these.
+
+First, though, we'll describe the common handling to all kisses.
+
+
 Lifecycle of a `%bake`
 ----------------------
+
+Lifecycle of a `%done`
+----------------------
+
+```
+          %done  [cof %0 p.kas q.kas]
+```
+
+This is trivial.  We simply produce the given cage with the given set of
+dependencies.  This is used when we already have a cage that we want to insert
+into another silk that requires a silk argument.  It's analogous to the return
+operator in a monad -- which makes it sound way more complicated than it is.
+
+Lifecycle of a `%dude`
+----------------------
+
+```
+          %dude  (cool |.(p.kas) $(kas q.kas))
+```
+
+This simply puts a given tank on the stack trace if the given silk produces an
+error.  This is implemented as a simple call to `++cool`.
+
+Lifecycle of a `%dune`
+----------------------
+
+```
+          %dune
+        ?~  q.kas  [cof [%2 [%leaf "no data"]~]]
+        $(kas [%done p.kas u.q.kas])
+```
+
+This is a sort of a `++need` for silks.  If there is no data in the unit cage,
+we produce an error.  Else, we simply produce the data in the cage.
+
+Lifecycle of a `%plan`
+----------------------
+
+```
+          %plan  
+        %+  cope  (abut:(meow p.kas q.kas) cof r.kas)
+        |=  [cof=cafe vax=vase]
+        (fine cof %noun vax)
+```
+
+This is a direct request to compile a hood at a given beam with a heel of the
+given path.  We comply by calling `++abut` with the given arguments and
+producing the vase with a mark of `%noun`.
+
+Lifecycle of a `%reef`
+----------------------
+
+```
+          %reef  (fine cof %noun pit)
+```
+
+This is one of the simplest silks.  We simply produce our context, which is zuse
+compiled against hoon.  The mark is a `%noun`.
