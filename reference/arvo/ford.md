@@ -762,9 +762,10 @@ In `bil`, we maintain a map of terms to pairs of hooves and twigs to represent
 the libraries we've encountered that we will put together in a series of cores
 after the structure core.
 
-In `lot`, we maintain a stack of library names in the reverse order they are
-encountered during a depth-first search.  Thus, every library depends only on
-things earlier in the list.  The libraries must be loaded in this order.
+In `lot`, we maintain a stack of library names as they are encountered during a
+depth-first search.  More precisely, we push a library onto the stack after
+we've processed all its children.  Thus, every library depends only on things
+deeper in the list.  The libraries must be loaded in the reverse of this order.
 Concisely, this is a topological sort of the library dependency partial
 ordering.
 
@@ -1206,3 +1207,589 @@ all body twiggs collected in a `=~`), keyed by the structure name.
 Finally, we recurse, processing the next structure in our list.
 
 This concludes our discussion of `++apex`.
+
+```
+      ++  abut                                          ::  generate
+        |=  [cof=cafe hyd=hood]
+        ^-  (bolt vase)
+        %+  cope  (apex cof hyd)
+        |=  [cof=cafe sel=_..abut]
+        =.  ..abut  sel
+        %+  cope  (maim cof pit able)
+        |=  [cof=cafe bax=vase]
+        %+  cope  (chap cof bax [%fan fan.hyd])
+        |=  [cof=cafe gox=vase]
+        %+  cope  (maim cof (slop gox bax) [%tssg (flop boy)])
+        |=  [cof=cafe fin=vase]
+        (fine cof fin)
+```
+
+Returning to `++abut`, we have now processed the structures, libraries and body
+twigs.  Next, we slap our preamble (structures and libraries) against zuse.
+First, we construct our preamble in `++able`.
+
+```
+      ++  able                                          ::  assemble preamble
+        ^-  twig
+        :+  %tsgr
+          ?:(=(~ rop) [%$ 1] [%brcn (~(run by rop) |=([* a=twig] [%ash a]))])
+        [%tssg (turn (flop lot) |=(a=term q:(need (~(get by bil) a))))]
+```
+
+We first put the structures in `rop` into a single `|%` at the top and `=>` it
+onto a `=~` of our libraries, in the reverse order that they appear in `lot`.
+Thus, the structures are in a single core while the libraries are in consecutive
+cores.
+
+We slap the preamble against zuse with `++maim`.
+
+```
+    ++  maim                                            ::  slap
+      |=  [cof=cafe vax=vase gen=twig]
+      ^-  (bolt vase)
+      %+  (clef %slap)  (fine cof vax gen)
+      |=  [cof=cafe vax=vase gen=twig]
+      =+  puz=(mule |.((~(mint ut p.vax) [%noun gen])))
+      ?-  -.puz
+        |  (flaw cof p.puz)
+        &  %+  (coup cof)  (mock [q.vax q.p.puz] (mole ska))
+           |=  val=*
+           `vase`[p.p.puz val]
+      ==
+```
+
+Here we start to get into ford's caching system.  We wrap our computation in a
+call to `++clef` so that we only actually compute it if the result is not
+already in our cache.  First we'll discuss the computation, then we'll discuss
+the caching system.
+
+We call `++mule` with a call to `++mint:ut` on the type of our subject vase
+against the given twig.  In other words, we're compiling the twig with against
+the subject type in the given subject vase.
+
+If compilation fails, then we produce an error bolt with the produced stack
+trace.  Otherwise, we run the produced nock with `++mock` and our sky function.
+We convert the produced toon to a bolt with `++coup` and use the type from `puz`
+combined with the value from `mock` to produce our vase.
+
+If this process seems harder than just calling `++slap`, it's because it is.  We
+have two requirements that `++slap` doesn't satisfy.  First, we want the to use
+an explicit sky function for use with `.^`.  With `++slap`, you get whatever sky
+function is available in the calling context, which in ford is none.  Second, we
+want to explicitly handle the stack trace on failure.  `++slap` would cause
+crash on failure.
+
+We haven't yet discussed either `++clef` or `++coup`.  We'll start with `++coup`
+to finish the discussion of the computation.
+
+````
+    ++  coup                                            ::  toon to bolt
+      |=  cof=cafe
+      |*  [ton=toon fun=$+(* *)]
+      :-  p=cof
+      ^=  q
+      ?-  -.ton
+        %2  [%2 p=p.ton]
+        %0  [%0 p=*(set beam) q=(fun p.ton)]
+        %1  ~&  [%coup-need ((list path) p.ton)]
+            =-  ?-  -.faw
+                  &  [%1 p=(sa (turn p.faw |=(a=beam [a *(list tank)])))]
+                  |  [%2 p=p.faw]
+                ==
+            ^=  faw
+            |-  ^-  (each (list beam) (list tank))
+            ?~  p.ton  [%& ~]
+            =+  nex=$(p.ton t.p.ton)
+            =+  pax=(path i.p.ton)
+            ?~  pax  [%| (smyt pax) ?:(?=(& -.nex) ~ p.nex)]
+            =+  zis=(tome t.pax)
+            ?~  zis
+              [%| (smyt pax) ?:(?=(& -.nex) ~ p.nex)]
+            ?-  -.nex
+              &  [%& u.zis p.nex]
+              |  nex
+            ==
+      ==
+```
+
+Recall that a toon is either a `%0` value, a `%1` block, or a `%2` failure.
+Converting a `%2` toon failure into a `%2` bolt failure is trivial.  Converting
+a `%0` toon value into a `%0` bolt value is easy since we assume there were no
+dependencies.  Converting the blocks is rather more difficult.
+
+To compute `faw`, we recurse through the list of paths in the `%1` toon.  At
+each one, we make sure with `++tome` that it is, in fact, a beam.  If so, then
+we check to see if the later paths succeed as well.  If so, we append the
+current path to the list of other paths.  If not, we produce the error message
+we got from processing the rest of the paths.  If this path is not a beam, then
+we fail, producing a list of tanks including this path and, if later paths fail
+too, those paths as well.
+
+If some paths were not beams, then we produce a `%2` error bolt.  If all paths
+were correct, then we produce a `%1` blocking bolt.
+
+We will now discuss `++clef`.  This is where the cache magic happens.
+
+```
+    ++  clef                                            ::  cache a result
+      |*  sem=*
+      |*  [hoc=(bolt) fun=(burg)]
+      ?-    -.q.hoc
+          %2  hoc
+          %1  hoc
+          %0
+        =^  cux  p.hoc  ((calk p.hoc) sem q.q.hoc)
+        ?~  cux
+          =+  nuf=(cope hoc fun)
+          ?-    -.q.nuf
+              %2  nuf
+              %1  nuf
+              %0
+            :-  p=(came p.nuf `calx`[sem `calm`[now p.q.nuf] q.q.hoc q.q.nuf])
+            q=q.nuf
+          ==
+        [p=p.hoc q=[%0 p=p.q.hoc q=((calf sem) u.cux)]]
+      ==
+```
+
+If the value is already an error or a block, we just pass that through.
+Otherwise, we look up the request in the cache with `++calk`.
+
+```
+++  calk                                                ::  cache lookup
+  |=  a=cafe                                            ::
+  |=  [b=@tas c=*]                                      ::
+  ^-  [(unit calx) cafe]                                ::
+  =+  d=(~(get by q.a) [b c])                           ::
+  ?~  d  [~ a]                                          ::
+  [d a(p (~(put in p.a) u.d))]                          ::
+```
+
+When looking up something in the cache, we mark it if we find it.  This way, we
+have in our cache the set of all cache entries that have been referenced.  While
+we do not at present do anything with this data, it should be used to clear out
+old and unused entries in the cache.
+
+Moving on in `++clef`, we check to see if we actually found anything.  If we
+didn't find a cache entry, then we run the computation in `fun`, and examine its
+result.  If it produced a `%2` error or `%1` block bolt, we just pass that
+through.  Otherwise, we produce both the value and an updated cache with this
+new entry.  We add the entry with `++came`.
+
+```
+++  came                                                ::
+  |=  [a=cafe b=calx]                                   ::  cache install
+  ^-  cafe                                              ::
+  a(q (~(put by q.a) [-.b q.b] b))                      ::
+```
+
+We key cache entries by the type of computation (`-:calx`) and the inputs to the
+computation (`q:calc`).  This just puts the cache line in the cache at the
+correct key.
+
+Back in `++clef`, if we did find a cache entry, then we just produce the value
+at that cache line.  We convert the cache line into a value with `++calf`.
+
+```
+++  calf                                                ::  reduce calx
+  |*  sem=*                                             ::  a typesystem hack
+  |=  cax=calx
+  ?+  sem  !!
+    %hood  ?>(?=(%hood -.cax) r.cax)
+    %slap  ?>(?=(%slap -.cax) r.cax)
+    %slam  ?>(?=(%slam -.cax) r.cax)
+  ==
+```
+
+This is simply a typesystem hack.  Because the `sem` is passed in through a wet
+gate, we know at type time which of the three cases will be chosen.  Thus, the
+correct type of the value in the cache line gets passed through to the caller.
+This also depends on the fact that `++clef` is wet.  The type stuff here is
+mathematically interesting, but the action is simple:  we get the value from the
+cache line.
+
+This concludes our discussion of `++clef` and `++maim`.
+
+Back in `++abut`, recall that we processed the structures, libraries, and body
+with `++apex`.  Then, we slapped our preamble (structures and libraries) against
+zuse with `++maim`.  Next, we process our resources with `++chap`.  Note that we
+pass in the preamble so that we may refer to anything in there in our resources.
+
+`++chap` is broken up into a different case for each horn.  We'll go through
+them one by one.
+
+```
+      ++  chap                                          ::  produce resources
+        |=  [cof=cafe bax=vase hon=horn]
+        ^-  (bolt vase)
+        ?-    -.hon
+            %ape  (maim cof bax p.hon)
+```
+
+This is `/~`.  We slap the twig against our context.
+
+```
+            %arg
+          %+  cope  (maim cof bax p.hon)
+          |=  [cof=cafe gat=vase]
+          (maul cof gat !>([how arg]))
+```
+
+This is `/$`.  We slap the twig against our context, which we expect to produce
+a gate.  We slam this gate with a sample of `how` and `arg`, which is our
+location and the heel (virtual path extension).
+
+`++maul` is similar to `++maim`, but it slams instead of slaps.
+
+```
+    ++  maul                                            ::  slam
+      |=  [cof=cafe gat=vase sam=vase]
+      ^-  (bolt vase)
+      %+  (clef %slam)  (fine cof gat sam)
+      |=  [cof=cafe gat=vase sam=vase]
+      =+  top=(mule |.((slit p.gat p.sam)))
+      ?-  -.top
+        |  (flaw cof p.top)
+        &  %+  (coup cof)  (mong [q.gat q.sam] (mole ska))
+           |=  val=*
+           `vase`[p.top val]
+      ==
+```
+
+We cache slams exactly as we cache slaps.  We use `++slit` to find the type of
+the product of the slam given the types of the gate and the sample.
+
+If this type fails, we produce the given stack trace as a `%2` error bolt.
+Otherwise, we produce the top produced above combined with the value we get from
+slamming the values in the vases with  `++mong`.
+
+Back to `++chap`.
+
+```
+            %day  (chad cof bax %dr p.hon)
+```
+
+This is `/|`.  We call `++chad` to convert textual names to relative dates and
+process the next horn against each of the discovered paths.
+
+```
+      ++  chad                                          ::  atomic list
+        |=  [cof=cafe bax=vase doe=term hon=horn]
+        ^-  (bolt vase)
+        %+  cope  ((lash (slat doe)) cof how)
+        |=  [cof=cafe yep=(map ,@ span)]
+        =+  ^=  poy  ^-  (list (pair ,@ span))
+            %+  sort  (~(tap by yep) ~)
+            |=([a=[@ *] b=[@ *]] (lth -.a -.b))
+        %+  cope
+          |-  ^-  (bolt (list (pair ,@ vase)))
+          ?~  poy  (fine cof ~)
+          %+  cope  $(poy t.poy)
+          |=  [cof=cafe nex=(list (pair ,@ vase))]
+          %+  cope  (chap(s.how [q.i.poy s.how]) cof bax hon)
+          |=  [cof=cafe elt=vase]
+          (fine cof [[p.i.poy elt] nex])
+        |=  [cof=cafe yal=(list (pair ,@ vase))]
+        %+  fine  cof
+        |-  ^-  vase
+        ?~  yal  [[%cube 0 [%atom %n]] 0]
+        (slop (slop [[%atom doe] p.i.yal] q.i.yal) $(yal t.yal))
+```
+
+First, we call `++lash` to parse the children of the current beam and pick out
+those ones that are of the requested format.
+
+```
+    ++  lash                                            ::  atomic sequence
+      |=  wox=$+(span (unit ,@))
+      |=  [cof=cafe bem=beam]
+      ^-  (bolt (map ,@ span))
+      %+  cope  (lend cof bem)
+      |=  [cof=cafe arc=arch]
+      (fine cof (lark wox arc))
+```
+
+First, we get the arch with `++lend`, as described above.  We filter and parse
+the child names with `++lark` according to the given parser function.
+
+In `++chad`, this parser function is `(slat doe)`, which will parse a cord into
+an atom of the requested odor.  For `%day` the odor is for relative dates.
+
+Thus, we now have a map from atoms of the given odor to the actual child names.
+We next turn this map into a list and sort it in increasing order by the atom.
+
+We next convert this list of pairs of atoms and spans to a list of pairs of
+atoms and vases.  We process the given horn once at every child beam, producing
+the resource at that location.
+
+Finally, we convert this list of pairs of atoms and vases to a vase of a list of
+pairs of atoms to (well-typed) values.  Each entry in the list is of type atom
+with the given odor combined with the type of the produced vase.
+
+Back in `++chap`, we continue parsing resources.
+
+```
+            %dub
+          %+  cope  $(hon q.hon)
+          |=  [cof=cafe vax=vase]
+          (fine cof [[%face p.hon p.vax] q.vax])
+```
+
+This is `/=`.  We process the given horn, giving us a vase.  We put as a face on
+the vase so that it may be referred to later by name.
+
+```
+            %fan
+          %+  cope
+            |-  ^-  (bolt (list vase))
+            ?~  p.hon  (fine cof ~)
+            %+  cope  ^$(hon i.p.hon)
+            |=  [cof=cafe vax=vase]
+            %+  cope  ^$(cof cof, p.hon t.p.hon)
+            |=  [cof=cafe tev=(list vase)]
+            (fine cof [vax tev])
+          |=  [cof=cafe tev=(list vase)]
+          %+  fine  cof
+          |-  ^-  vase
+          ?~  tev  [[%cube 0 [%atom %n]] 0]
+          (slop i.tev $(tev t.tev))
+```
+
+This is `/.`.  We first process each of the child horns, producing a list of
+vases.  This is done by just recursing on `++chap`.  Then, we simply fold over
+this list to create a vase of the list of values.
+
+```
+            %for  $(hon q.hon, s.how (weld (flop p.hon) s.how))
+```
+
+This is `/,`.  We simply recurse on the horn with the given path welded onto our
+current beam.
+
+```
+            %hub  (chad cof bax %ud p.hon)
+```
+
+This is `/@`.  This is exactly like the processing of `%day` except we expect
+the children to be named as unsigned integers rather than relative dates.  We
+process the horn at each of the children's locations and produce a list of pairs
+of absolute dates and values.
+
+```
+            %man
+          |-  ^-  (bolt vase)
+          ?~  p.hon  (fine cof [[%cube 0 [%atom %n]] 0])
+          %+  cope  $(p.hon l.p.hon)
+          |=  [cof=cafe lef=vase]
+          %+  cope  ^$(cof cof, p.hon r.p.hon)
+          |=  [cof=cafe rig=vase]
+          %+  cope  ^^^$(cof cof, hon q.n.p.hon)
+          |=  [cof=cafe vax=vase]
+          %+  fine  cof
+          %+  slop
+            (slop [[%atom %tas] p.n.p.hon] vax)
+          (slop lef rig)
+```
+
+This is `/*`.  We process each of the horns in the given map by recursion
+through `++chap`.  Once we have these vases, we create a vase of a map from the
+given textual names to the produced values.
+
+```
+            %now  (chad cof bax %da p.hon)
+```
+
+This is `/&`.  This is exactly like the processing of `%now` except we expect
+the children to be names as absolute dates rather than relative dates.  We
+process the horn at each of the children's locations and produce a list of pairs
+of absolute dates and values.
+
+```
+            %nap  (chai cof bax p.hon)
+```
+
+This is `/%`.  Here, we process the horn at each of our children with `++chai`.
+
+```
+      ++  chai                                          ::  atomic map
+        |=  [cof=cafe bax=vase hon=horn]
+        ^-  (bolt vase)
+        %+  cope  (lend cof how)
+        |=  [cof=cafe arc=arch]
+        %+  cope
+          |-  ^-  (bolt (map ,@ vase))
+          ?~  r.arc  (fine cof ~)
+          %+  cope  $(r.arc l.r.arc)
+          |=  [cof=cafe lef=(map ,@ vase)]
+          %+  cope  `(bolt (map ,@ vase))`^$(cof cof, r.arc r.r.arc)
+          |=  [cof=cafe rig=(map ,@ vase)]
+          %+  cope  (chap(s.how [p.n.r.arc s.how]) cof bax hon)
+          |=  [cof=cafe nod=vase]
+          (fine cof [[p.n.r.arc nod] lef rig])
+        |=  [cof=cafe doy=(map ,@ vase)]
+        %+  fine  cof
+        |-  ^-  vase
+        ?~  doy  [[%cube 0 [%atom %n]] 0]
+        %+  slop
+          (slop [[%atom %a] p.n.doy] q.n.doy)
+        (slop $(doy l.doy) $(doy r.doy))
+```
+
+We get the arch at our current beam with `++lend`.  Then, we process the horn at
+each of our children to give us a map of atoms to vases.  Finally, we convert
+that into a vase of a map of these atoms to the values.  This is very similar to
+`++chad` and the handling of `%man`.
+
+```
+            %see  $(hon q.hon, how p.hon)
+```
+
+This is `/:`.  We process the given horn at the given beam.
+
+```
+            %saw
+          %+  cope  $(hon q.hon)
+          |=  [cof=cafe sam=vase]
+          %+  cope  (maim cof bax p.hon)
+          |=  [cof=cafe gat=vase]
+          (maul cof gat sam)
+```
+
+This is `/;`.  First, we process the given horn.  Then, we slap the given twig
+against our context to produce (hopefully) a gate.  Finally, we slam the vase
+we got from processing the horn against the gate.
+
+```
+            %sic
+          %+  cope  $(hon q.hon)
+          |=  [cof=cafe vax=vase]
+          %+  cope  (maim cof bax [%bctr p.hon])
+          |=  [cof=cafe tug=vase]
+          ?.  (~(nest ut p.tug) | p.vax)
+            (flaw cof [%leaf "type error: {<p.hon>} {<q.hon>}"]~)
+          (fine cof [p.tug q.vax])
+```
+
+This is `/^`.  First, we process the given horn.  Then, we slap the the bunt of
+the given tile against our context.  This will produce a vase with the correct
+type.  We test to see if this type nests within the type of the vase we got from
+processing the horn.  If so, we produce the value from the horn along with the
+type from the tile.  Otherwise, we produce a `%2` error bolt.
+
+```
+            %toy  (cope (make cof %bake p.hon how ~) feel)
+        ==
+```
+
+This is `/mark/`.  Here, we simply run the `%bake` silk on the given mark,
+producing a cage.  We convert this cage into a vase with `++feel`, which is
+exactly as simple as it sounds like it should be.
+
+```
+++  feel  |=([a=cafe b=cage] (fine a q.b))              ::  cage to vase
+```
+
+This is trivial.
+
+We will discuss later `++make` and how `%bake` is processed.  Suffice it to say
+that baking a resource with a given mark gets the resource and converts it, if
+necessary, to the requested mark.
+
+This concludes our discussion of `++chap`.
+
+We return once more to `++abut`.
+
+```
+      ++  abut                                          ::  generate
+        |=  [cof=cafe hyd=hood]
+        ^-  (bolt vase)
+        %+  cope  (apex cof hyd)
+        |=  [cof=cafe sel=_..abut]
+        =.  ..abut  sel
+        %+  cope  (maim cof pit able)
+        |=  [cof=cafe bax=vase]
+        %+  cope  (chap cof bax [%fan fan.hyd])
+        |=  [cof=cafe gox=vase]
+        %+  cope  (maim cof (slop gox bax) [%tssg (flop boy)])
+        |=  [cof=cafe fin=vase]
+        (fine cof fin) 
+```
+
+Recall that we processed our structures, libraries and body with `++apex`.  We
+slapped our structures and libraries against zuse with `++maim`.  We processed
+our resources with `++chap`.  Now, all our body twigs are collected in a `=~` and
+slapped against our structures, libraries, and resources.  This produces our
+final result.
+
+The hook file has been assembled.  And there was great rejoicing.
+
+Lifecycle of a Kiss
+-------------------
+
+We're now going to go through a series of lifecycle descriptions.  When a user
+of ford sends a kiss, it is once of a dozen different types of silk.  We'll go
+through each one, tracing through the flow of control of each of these.
+
+First, though, we'll describe the common handling to all kisses.
+
+
+Lifecycle of a `%bake`
+----------------------
+
+Lifecycle of a `%done`
+----------------------
+
+```
+          %done  [cof %0 p.kas q.kas]
+```
+
+This is trivial.  We simply produce the given cage with the given set of
+dependencies.  This is used when we already have a cage that we want to insert
+into another silk that requires a silk argument.  It's analogous to the return
+operator in a monad -- which makes it sound way more complicated than it is.
+
+Lifecycle of a `%dude`
+----------------------
+
+```
+          %dude  (cool |.(p.kas) $(kas q.kas))
+```
+
+This simply puts a given tank on the stack trace if the given silk produces an
+error.  This is implemented as a simple call to `++cool`.
+
+Lifecycle of a `%dune`
+----------------------
+
+```
+          %dune
+        ?~  q.kas  [cof [%2 [%leaf "no data"]~]]
+        $(kas [%done p.kas u.q.kas])
+```
+
+This is a sort of a `++need` for silks.  If there is no data in the unit cage,
+we produce an error.  Else, we simply produce the data in the cage.
+
+Lifecycle of a `%plan`
+----------------------
+
+```
+          %plan  
+        %+  cope  (abut:(meow p.kas q.kas) cof r.kas)
+        |=  [cof=cafe vax=vase]
+        (fine cof %noun vax)
+```
+
+This is a direct request to compile a hood at a given beam with a heel of the
+given path.  We comply by calling `++abut` with the given arguments and
+producing the vase with a mark of `%noun`.
+
+Lifecycle of a `%reef`
+----------------------
+
+```
+          %reef  (fine cof %noun pit)
+```
+
+This is one of the simplest silks.  We simply produce our context, which is zuse
+compiled against hoon.  The mark is a `%noun`.
