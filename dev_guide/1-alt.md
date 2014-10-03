@@ -7,9 +7,16 @@ In
 
 Put
 
-    ;div
-      ;h1: Exercise 1 — Simple HTML
-      ;p: As you may notice, urbit has no problem talking to the web.
+    ;html
+      ;head
+        ;title: Exercise 1 — Simple HTML
+      ==
+      ;body
+        ;div
+          ;h1: Exercise 1 — Simple HTML
+          ;p: As you may notice, urbit has no problem talking to the web.
+        ==
+      ==
     ==
 
 Try it
