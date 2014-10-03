@@ -1469,7 +1469,8 @@ Back to `++chap`.
             %day  (chad cof bax %dr p.hon)
 ```
 
-This is `/|`.  We call `++chad` to convert textual names to relative dates.
+This is `/|`.  We call `++chad` to convert textual names to relative dates and
+process the next horn against each of the discovered paths.
 
 ```
       ++  chad                                          ::  atomic list
@@ -1495,14 +1496,49 @@ This is `/|`.  We call `++chad` to convert textual names to relative dates.
         (slop (slop [[%atom doe] p.i.yal] q.i.yal) $(yal t.yal))
 ```
 
+First, we call `++lash` to parse the children of the current beam and pick out
+those ones that are of the requested format.
 
+```
+    ++  lash                                            ::  atomic sequence
+      |=  wox=$+(span (unit ,@))
+      |=  [cof=cafe bem=beam]
+      ^-  (bolt (map ,@ span))
+      %+  cope  (lend cof bem)
+      |=  [cof=cafe arc=arch]
+      (fine cof (lark wox arc))
+```
+
+First, we get the arch with `++lend`, as described above.  We filter and parse
+the child names with `++lark` according to the given parser function.
+
+In `++chad`, this parser function is `(slat doe)`, which will parse a cord into
+an atom of the requested odor.  For `%day` the odor is for relative dates.
+
+Thus, we now have a map from atoms of the given odor to the actual child names.
+We next turn this map into a list and sort it in increasing order by the atom.
+
+We next convert this list of pairs of atoms and spans to a list of pairs of
+atoms and vases.  We process the given horn once at every child beam, producing
+the resource at that location.
+
+Finally, we convert this list of pairs of atoms and vases to a vase of a list of
+pairs of atoms to (well-typed) values.  Each entry in the list is of type atom
+with the given odor combined with the type of the produced vase.
+
+Back in `++chap`, we continue parsing resources.
 
 ```
             %dub
           %+  cope  $(hon q.hon)
           |=  [cof=cafe vax=vase]
           (fine cof [[%face p.hon p.vax] q.vax])
-        ::
+```
+
+This is `/=`.  We process the given horn, giving us a vase.  We put as a face on
+the vase so that it may be referred to later by name.
+
+```
             %fan
           %+  cope
             |-  ^-  (bolt (list vase))
@@ -1517,9 +1553,29 @@ This is `/|`.  We call `++chad` to convert textual names to relative dates.
           |-  ^-  vase
           ?~  tev  [[%cube 0 [%atom %n]] 0]
           (slop i.tev $(tev t.tev))
-        ::
+```
+
+This is `/.`.  We first process each of the child horns, producing a list of
+vases.  This is done by just recursing on `++chap`.  Then, we simply fold over
+this list to create a vase of the list of values.
+
+```
             %for  $(hon q.hon, s.how (weld (flop p.hon) s.how))
+```
+
+This is `/,`.  We simply recurse on the horn with the given path welded onto our
+current beam.
+
+```
             %hub  (chad cof bax %ud p.hon)
+```
+
+This is `/@`.  This is exactly like the processing of `%day` except we expect
+the children to be named as unsigned integers rather than relative dates.  We
+process the horn at each of the children's locations and produce a list of pairs
+of absolute dates and values.
+
+```
             %man
           |-  ^-  (bolt vase)
           ?~  p.hon  (fine cof [[%cube 0 [%atom %n]] 0])
@@ -1533,17 +1589,77 @@ This is `/|`.  We call `++chad` to convert textual names to relative dates.
           %+  slop
             (slop [[%atom %tas] p.n.p.hon] vax)
           (slop lef rig)
-        ::
+```
+
+This is `/*`.  We process each of the horns in the given map by recursion
+through `++chap`.  Once we have these vases, we create a vase of a map from the
+given textual names to the produced values.
+
+```
             %now  (chad cof bax %da p.hon)
+```
+
+This is `/&`.  This is exactly like the processing of `%now` except we expect
+the children to be names as absolute dates rather than relative dates.  We
+process the horn at each of the children's locations and produce a list of pairs
+of absolute dates and values.
+
+```
             %nap  (chai cof bax p.hon)
+```
+
+This is `/%`.  Here, we process the horn at each of our children with `++chai`.
+
+```
+      ++  chai                                          ::  atomic map
+        |=  [cof=cafe bax=vase hon=horn]
+        ^-  (bolt vase)
+        %+  cope  (lend cof how)
+        |=  [cof=cafe arc=arch]
+        %+  cope
+          |-  ^-  (bolt (map ,@ vase))
+          ?~  r.arc  (fine cof ~)
+          %+  cope  $(r.arc l.r.arc)
+          |=  [cof=cafe lef=(map ,@ vase)]
+          %+  cope  `(bolt (map ,@ vase))`^$(cof cof, r.arc r.r.arc)
+          |=  [cof=cafe rig=(map ,@ vase)]
+          %+  cope  (chap(s.how [p.n.r.arc s.how]) cof bax hon)
+          |=  [cof=cafe nod=vase]
+          (fine cof [[p.n.r.arc nod] lef rig])
+        |=  [cof=cafe doy=(map ,@ vase)]
+        %+  fine  cof
+        |-  ^-  vase
+        ?~  doy  [[%cube 0 [%atom %n]] 0]
+        %+  slop
+          (slop [[%atom %a] p.n.doy] q.n.doy)
+        (slop $(doy l.doy) $(doy r.doy))
+```
+
+We get the arch at our current beam with `++lend`.  Then, we process the horn at
+each of our children to give us a map of atoms to vases.  Finally, we convert
+that into a vase of a map of these atoms to the values.  This is very similar to
+`++chad` and the handling of `%man`.
+
+```
             %see  $(hon q.hon, how p.hon)
+```
+
+This is `/:`.  We process the given horn at the given beam.
+
+```
             %saw
           %+  cope  $(hon q.hon)
           |=  [cof=cafe sam=vase]
           %+  cope  (maim cof bax p.hon)
           |=  [cof=cafe gat=vase]
           (maul cof gat sam)
-        ::
+```
+
+This is `/;`.  First, we process the given horn.  Then, we slap the given twig
+against our context to produce (hopefully) a gate.  Finally, we slam the vase
+we got from processing the horn against the gate.
+
+```
             %sic
           %+  cope  $(hon q.hon)
           |=  [cof=cafe vax=vase]
@@ -1552,7 +1668,60 @@ This is `/|`.  We call `++chad` to convert textual names to relative dates.
           ?.  (~(nest ut p.tug) | p.vax)
             (flaw cof [%leaf "type error: {<p.hon>} {<q.hon>}"]~)
           (fine cof [p.tug q.vax])
-        ::
+```
+
+This is `/^`.  First, we process the given horn.  Then, we slap the the bunt of
+the given tile against our context.  This will produce a vase with the correct
+type.  We test to see if this type nests within the type of the vase we got from
+processing the horn.  If so, we produce the value from the horn along with the
+type from the tile.  Otherwise, we produce a `%2` error bolt.
+
+```
             %toy  (cope (make cof %bake p.hon how ~) feel)
         ==
 ```
+
+This is `/mark/`.  Here, we simply run the `%bake` silk on the given mark,
+producing a cage.  We convert this cage into a vase with `++feel`, which is
+exactly as simple as it sounds like it should be.
+
+```
+++  feel  |=([a=cafe b=cage] (fine a q.b))              ::  cage to vase
+```
+
+This is trivial.
+
+We will discuss later `++make` and how `%bake` is processed.  Suffice it to say
+that baking a resource with a given mark gets the resource and converts it, if
+necessary, to the requested mark.
+
+This concludes our discussion of `++chap`.
+
+We return once more to `++abut`.
+
+```
+      ++  abut                                          ::  generate
+        |=  [cof=cafe hyd=hood]
+        ^-  (bolt vase)
+        %+  cope  (apex cof hyd)
+        |=  [cof=cafe sel=_..abut]
+        =.  ..abut  sel
+        %+  cope  (maim cof pit able)
+        |=  [cof=cafe bax=vase]
+        %+  cope  (chap cof bax [%fan fan.hyd])
+        |=  [cof=cafe gox=vase]
+        %+  cope  (maim cof (slop gox bax) [%tssg (flop boy)])
+        |=  [cof=cafe fin=vase]
+        (fine cof fin) 
+```
+
+Recall that we processed our structures, libraries and body with `++apex`.  We
+slapped our structures and libraries against zuse with `++maim`.  We processed
+our resources with `++chap`.  Now, all our body twigs are collected in a `=~` and
+slapped against our structures, libraries, and resources.  This produces our
+final result.
+
+The hook file has been assembled.  And there was great rejoicing.
+
+Lifecycle of a `%bake`
+----------------------
