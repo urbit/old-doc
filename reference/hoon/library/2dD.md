@@ -1,8 +1,9 @@
-section 2dD, casual containers        
+##section 2dD, casual containers        
 
 ---
 
 ###++mo
+
 
 ```
 ++  mo                                                  ::  make a map
@@ -14,16 +15,17 @@ section 2dD, casual containers
 ::
 ```
 
-Mapifiy.  Accepts a list of cells and produces a map of key-value pairs from the left-right cell pairs of the list.
 
-####Examples
+Mapifiy.  Accepts a list of cells and produces a map of key-value pairs from the 
+left-right cell pairs of the list.
 
-        ~zod/try=> (mo `(list ,[@t *])`[[`a` 1] [`b` 2] ~])
-        {[p=`a` q=1] [p=`b` q=2]}
+    ~zod/try=> (mo `(list ,[@t *])`[[`a` 1] [`b` 2] ~])
+    {[p=`a` q=1] [p=`b` q=2]}
 
 ----
         
 ###++sa        
+
 
 ```
 ++  sa                                                  ::  make a set
@@ -34,19 +36,18 @@ Mapifiy.  Accepts a list of cells and produces a map of key-value pairs from the
 ::
 ```
 
+
 Setify.  Accepts a list and produces a set of the list's elements.
 
-####Examples
-
-        ~zod/try=> (sa `(list ,@)`[1 2 3 4 5 ~])
-        {5 4 1 3 2}
-        ---
-        ~zod/try=> (sa `(list ,[@t *])`[[`a` 1] [`b` 2] ~])
-        {[`a` 1] [`b` 2]}
+    ~zod/try=> (sa `(list ,@)`[1 2 3 4 5 ~])
+    {5 4 1 3 2}
+    ~zod/try=> (sa `(list ,[@t *])`[[`a` 1] [`b` 2] ~])
+    {[`a` 1] [`b` 2]}
 
 ----
 
 ###++qu
+
 
 ```
 ++  qu                                                  ::  make a set
@@ -56,7 +57,12 @@ Setify.  Accepts a list and produces a set of the list's elements.
   (~(gas in b) a)
 ```
 
+
 XXX THIS APPEARS TO BE A COPY OF ++sa. QUEUIFY IS NOT IMPLEMENTED YET. XXX
+
+    ~zod/try=> ~(bal to (qu "asda"))
+    {~~d ~~a ~~s}
+    ~zod/try=> ::  XX mistaken
 
 ---
 
