@@ -38,20 +38,18 @@ These are very much subject to change as we work through them. In general, these
   Full-featured applications
   An application using both %ford and %gall
   Topics:
-    Parsing
-    Advanced urb.js
-    Writing to %clay
+      Parsing
+      Advanced urb.js
+      Writing to %clay
 
   Nock
-  Although there aren't any applications to be built with Nock, it's fun to get a feel for it by example.
+    Although there aren't any applications to be built with Nock, it's fun to get a feel for it by example.
 
 Nock
   Overview
     This is basically what's at the top of nock.md.
-  Tutorial
-    This is basically the middle of nock.md 
-  Reference
-    This is basically the end of nock.md. Breaking this up by number is important.
+  Commentary
+    This is basically the rest of nock.md
 
 Hoon
   Overview
@@ -75,9 +73,13 @@ Hoon
     Definition, Expansion
     Presently these include all of the dependent models and the expansion from ++open (or related). I'm on the fence about how important these are. Would defer to someone else.
 
-  Irregular form index
-  
-  Odor index
+  Quick Reference
+    Irregular form index
+    Odor index
+    urb.js
+    %eyre access methods
+    .^ methods
+    hardcoded %gall arms
 
   Library index
     This should cover all of our library functions in hoon.hoon and zuse.hoon. Similar to our Rune index, discussion topics can be covered as overviews in-line with their topics. Each arm should include the following:
@@ -89,11 +91,10 @@ Hoon
     A <= one sentence comment
     
     Summary
-    A paragraph or so covering usage and internals
+    A paragraph or so covering usage and internals 
     
     Examples
     Preferably that can be pasted in to a repl
-  
   
 Arvo
 
@@ -123,7 +124,6 @@ Arvo
     %clay
     %dill
     %eyre
-      Discussion of urb.js
     %ford
     %gall
     %ives

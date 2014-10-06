@@ -1,5 +1,5 @@
-Quick Reference Handbook
-========================
+Handbook
+========
 
 Common Helpful Patterns
 ----------------------
@@ -12,13 +12,23 @@ Troubleshooting
 
 ###Debugging Tips
 
-
-Sail QuickRef
--------------
-
 Ford QuickRef
 -------------
 
 Gall Arms Quickref
 ------------------
 
+Odors
+-----
+
+Irregular Forms
+---------------
+
+urb.js
+------
+
+%eyre Access Methods
+--------------------
+
+.^ Methods
+----------
