@@ -1,4 +1,4 @@
-section 2eA, packing          
+##section 2eA, packing          
 
 ---
 
@@ -29,16 +29,17 @@ section 2eA, packing
 
 Unpack an atom to a noun.  The inverse of jam.
 
-####Examples
+See `++jam` for a more detailed walk through.
+
         
-        ~zod/try=> (cue (jam 1))
-        1
-        ~zod/try=> (cue 4.657)
-        [1 2]
-        ~zod/try=> (cue (jam [1 1]))
-        [1 1]
-        ~zod/try=> (cue 39.689)
-        [0 19]
+    ~zod/try=> (cue (jam 1))
+    1
+    ~zod/try=> (cue 4.657)
+    [1 2]
+    ~zod/try=> (cue (jam [1 1]))
+    [1 1]
+    ~zod/try=> (cue 39.689)
+    [0 19]
 
 ---
 
@@ -73,14 +74,37 @@ Unpack an atom to a noun.  The inverse of jam.
 
 Compress a noun to an atom.  The inverse of cue.
 
-####Examples
 
-        ~zod/try=> (jam 1)
-        12
-        ~zod/try=> (jam [1 1])
-        817
-        ~zod/try=> (jam [~ u=19])
-        39.689
+    ~zod/try=> (jam 1)
+    12
+    ~zod/try=> (jam [1 1])
+    817
+    ~zod/try=> (jam [~ u=19])
+    39.689
+    
+    Let's deconstruct that.
+    19.689 is the LSB bitstring 
+    ~zod/try=> `tape`(flop (scow %ub 39.689))
+    "1001.0000.1101.1001b0"
+    
+    The first two bits are "10", indicating a cell
+    
+    The head of the cell begins with "0", which is an atom. The immediate "1"
+    afterwards indicates that this is an atom of 0 size, i.e. 0 (~).
+    
+    The tail of the cell begins with "0", indicating another atom; and proceeds
+    with 3 more 0s, directing 110 be consumed; the first 1 is ignored, and an
+    implied 1 appended, to obtain 101, LSB 0b101 (which happens to be symmetric,
+    but we are in fact in LSB): 5 more bits follow.
+    
+    Those bits are 1.1001, the head of 0b1001.1…
+    ~zod/try=> `@`0b1.0011
+    19
+
+    This concludes the discussion of ++jam
+    
+    XX There is one combination left, 11, which designates a backreference, to
+    a location n from the start of the bitstring, n being similarlt length-encoded.
 
 ---
 
@@ -100,9 +124,25 @@ Compress a noun to an atom.  The inverse of cue.
 ::
 ```
 
-Encodes length.  Only used internally as helper function to jam and cue.
+Encodes length.  Only used internally as helper function to jam.
 
-####Examples
+    ~zod/try=> (mat 0xaaa)
+    [p=20 q=699.024]
+    ~zod/try=> (met 0 q:(mat 0xaaa))
+    20
+    ~zod/try=> `@ub`q:(mat 0xaaa)
+    0b1010.1010.1010.1001.0000
+    ~zod/try=> =a =-(~&(- -) `@ub`0xaaa)
+    0b1010.1010.1010
+    ~zod/try=> =b =-(~&(- -) `@ub`(xeb a))
+    0b1100
+    ~zod/try=> =b =-(~&(- -) `@ub`(met 0 a))
+    0b1100
+    ~zod/try=> =c =-(~&(- -) (xeb b))
+    4
+    ~zod/try=>  [`@ub`a `@ub`(end 0 (dec c) b) `@ub`(bex c)]
+    [0b1010.1010.1010 0b100 0b1.0000]
+
 
 ---
 
@@ -126,9 +166,14 @@ Encodes length.  Only used internally as helper function to jam and cue.
   [(add (add c c) e) (cut 0 [(add d (dec c)) e] b)]
 ```
 
-Decodes length.  Only used internally as a helper function to jam and cue.
+Decodes length.  Only used internally as a helper function to cue.
 
-####Examples
+    ~zod/try=> `@ub`(jam 0xaaa)
+    0b1.0101.0101.0101.0010.0000
+    ~zod/try=> (rub 1 0b1.0101.0101.0101.0010.0000)
+    [p=20 q=2.730]
+    ~zod/try=> `@ux`q:(rub 1 0b1.0101.0101.0101.0010.0000)
+    0xaaa
 
 ---
 
