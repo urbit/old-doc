@@ -384,9 +384,9 @@ number of silks.
 mark and heel.  It fails if there is no way to translate at this level.
 
 `%boil` functionally produces the file at a given beam with the given mark and
-heel.  If there is no way to translate at this level, we descend recursively
-into the path in the beam and attempt to translate there.  This should almost
-always be called instead of `%bake`.  XX clarify
+heel.  If there is no way to translate at this beam, we pop levels off the stack
+and attempt to bake there until we find a level we can bake.  This should almost
+always be called instead of `%bake`.
 
 `%call` slams the result of one silk against the result of another.
 
@@ -1727,12 +1727,208 @@ Lifecycle of a Kiss
 -------------------
 
 We're now going to go through a series of lifecycle descriptions.  When a user
-of ford sends a kiss, it is once of a dozen different types of silk.  We'll go
+of ford sends a kiss, it is one of a dozen different types of silk.  We'll go
 through each one, tracing through the flow of control of each of these.
 
 First, though, we'll describe the common handling to all kisses.
 
-XX more
+The silk in a `%exec` kiss to ford ends up in `++apex`, so we'll enter the
+narrative here.
+
+```
+  ++  apex                                              ::  call
+    |=  kus=(unit silk)
+    ^+  +>
+    ?~  kus
+      =+  nym=(~(get by dym.bay) hen)
+      ?~  nym                                           ::  XX should never
+        ~&  [%ford-mystery hen]
+        +>.$
+      =+  tas=(need (~(get by q.tad.bay) u.nym))
+      amok:~(camo zo [u.nym tas])
+    =+  num=p.tad.bay
+    ?<  (~(has by dym.bay) hen)
+    =:  p.tad.bay  +(p.tad.bay)
+        dym.bay    (~(put by dym.bay) hen num)
+      ==
+    ~(exec zo [num `task`[hen u.kus 0 ~]])
+```
+
+Recall that a `%exec` kiss actually sends a unit silk.  If it's null, we're
+trying to cancel the request.  We first look up the task number keyed by duct.
+If we don't find it, then we're trying to cancel a request that either was never
+started or has already completed.  We print out `%ford-mystery` and do nothing.
+If we do find the task number, then we look up the task from it, call
+`++camo:zo` to cancel pending requests, and call `++amok:zo` to remove the task
+from our task lists.
+
+```
+    ++  camo                                            ::  stop requests
+      ^+  .
+      =+  kiz=(~(tap by q.kig) *(list ,[p=@ud q=beam]))
+      |-  ^+  +>
+      ?~  kiz  +>
+      %=    $
+          kiz  t.kiz
+          mow  :_  mow
+        :-  hen
+        :^  %pass  [(scot %p our) (scot %ud num) (scot %ud p.i.kiz) ~]
+          %c
+        [%warp [our p.q.i.kiz] q.q.i.kiz ~]
+      ==
+```
+
+Our list of blocks is in `q.kig`, so we iterate over it, cancelling our pending
+requests for each block.  Our requests are all to clay, so we need only to send
+`%warp` kisses with a null instead of a rave.
+
+```
+    ++  amok  
+      %_  ..zo  
+        q.tad.bay  (~(del by q.tad.bay) num)
+        dym.bay    (~(del by dym.bay) nah)
+      ==
+```
+
+We remove the task number from the map of numbers to tasks and the duct from the
+map of ducts to task numbers.
+
+Back in `++apex`, if we were given a silk, we need to process it.  We add the
+task to our maps, increment the next task number, and call `++exec:zo` on the
+new task.
+
+```
+    ++  exec                                            ::  execute app
+      ^+  ..zo
+      ?:  !=(~ q.kig)  ..zo
+      |-  ^+  ..zo
+      =+  bot=(make [~ jav.bay] kas)
+      =.  ..exec  (dash p.bot)
+      ?-  -.q.bot
+        %0  amok:(expo [%made %& p.q.bot q.q.bot])
+        %2  amok:(expo [%made %| p.q.bot])
+        %1  =+  zuk=(~(tap by p.q.bot) ~)
+            =<  abet
+            |-  ^+  ..exec
+            ?~  zuk  ..exec
+            =+  foo=`_..exec`(camp %x `beam`p.i.zuk)
+            $(zuk t.zuk, ..exec foo)
+      ==
+```
+
+If we're still blocked on something in `q.kig`, we don't do anything.
+
+Otherwise, we try to process the silk with `++make`.  `++make` handles each
+individual request and will be the entire focus of the remainder of this doc
+after this section.  It produces a bolt of a cage.
+
+We put the new cache in our state with `++dash`.
+
+```
+    ++  dash                                            ::  process cache
+      |=  cof=cafe
+      ^+  +>
+      %_(+> jav.bay q.cof)
+```
+
+The cache is put in the baby so that it gets stored across calls to ford.
+
+In `++exec`, we process the bolt in three different ways according to the type
+of bolt produced.  If we produced a `%0` value bolt, we use `++expo` to give the
+produced value and set of dependencies as a `%made` gift, and we remove
+ourselves from the task list with `++amok`.
+
+```
+    ++  expo                                            ::  return gift
+      |=  gef=gift
+      %_(+> mow :_(mow [hen %give gef]))
+```
+
+We simply push the gift onto our list of moves.
+
+In `++exec`, if we produced a `%2` error bolt, we produce a `%made` gift with
+the stack trace.
+
+If we produced a `%1` block bolt, we iterate through each of the blocks and call
+`++camp` to produce a clay request for the resource.
+
+```
+    ++  camp                                            ::  request a file
+      |=  [ren=care bem=beam]
+      ^+  +>
+      %=    +>
+          kig  [+(p.kig) (~(put by q.kig) p.kig bem)]
+          mow  :_  mow
+        :-  hen
+        :^  %pass  [(scot %p our) (scot %ud num) (scot %ud p.kig) ~]
+          %c
+        [%warp [our p.bem] q.bem [~ %& %x r.bem s.bem]]
+      ==
+```
+
+We put the resource in our block list in `q.kig` so that we save the fact that
+we're blocked.  We then produce the `%warp` request to clay for the resource.
+Our request path has the format `/[our-ship]/[task-number]/[block-number]'.
+
+We'll now describe how each of the individual silks are processed in `++make`.
+
+Lifecycle of a Cell
+-------------------
+
+```
+          ^
+        %.  [cof p.kas q.kas]
+        ;~  cope
+          ;~  coax
+            |=([cof=cafe p=silk q=silk] ^$(cof cof, kas p.kas))
+            |=([cof=cafe p=silk q=silk] ^$(cof cof, kas q.kas))
+          ==
+        ::
+          |=  [cof=cafe bor=cage heg=cage]  ^-  (bolt cage)
+          [p=cof q=[%0 ~ [%$ (slop q.bor q.heg)]]]
+        ==
+```
+
+Silks autocons.  The product of a cell of silks is a cell of the products of the
+silks, so we evaluate the two silks in parallel with `++coax` and slop together
+the results in a cell vase.  We mark the product with `%$`, which means we know
+no more mark information than that it is a noun.
+
+```
+    ++  coax                                            ::  bolt across
+      |*  [hoc=(bolt) fun=(burg)]
+      ?-  -.q.hoc
+        %0  =+  nuf=$:fun(..+<- p.hoc)
+            :-  p=p.nuf
+            ^=  q
+            ?-  -.q.nuf
+              %0  [%0 p=(grom p.q.hoc p.q.nuf) q=[q.q.hoc q.q.nuf]]
+              %1  q.nuf
+              %2  q.nuf
+            ==
+        %1  =+  nuf=$:fun(..+<- p.hoc)
+            :-  p=p.nuf
+            ^=  q
+            ?-  -.q.nuf
+              %0  q.hoc
+              %1  [%1 p=(grom p.q.nuf p.q.hoc)]
+              %2  q.nuf
+            ==
+        %2  hoc
+      ==
+```
+
+If the first bolt is a value, we evaluate the burg to get the next bolt.  If
+that also produces a value, we merge the dependency sets and produce a cell of
+the two values.  Otherwise, we produce the block or error of the second bolt.
+
+If the first bolt is a block, we evaluate the burg to get the next bolt.  If
+that produces a value, we just produce the block.  If it produces a block, we
+merge the two block sets.  If it produces an error, we produce that error.
+
+If the first bolt is already an error, we just pass that through.
+
+Note that `++coax` (and, indeed, `++cope`) is reasonable to use with `;~`.
 
 Lifecycle of a `%bake`
 ----------------------
@@ -1820,88 +2016,6 @@ Otherwise, there is no way to translate this, so we produce null.
 
 This is just `++some` for bolts.
 
-```
-    ++  liar                                            ::  load vase
-      |=  [cof=cafe bem=beam]
-      ^-  (bolt vase)
-      =+  von=(ska %cx (tope bem))
-      ?~  von
-        [p=*cafe q=[%1 [[bem ~] ~ ~]]]
-      ?~  u.von
-        (flaw cof (smyt (tope bem)) ~)
-      (fine cof ?^(u.u.von [%cell %noun %noun] [%atom %$]) u.u.von)
-```
-
-This takes a beam and loads the file at that location.  If our sky function
-produces null, that means the resource is currently unavailable, so we block on
-it.  If it produces `[~ ~]`, that means our resource is permanently unavailable,
-so we produce an error.  Otherwise, we produce the value there with a type of
-either a cell of two nouns or an atom, depending on whether the value is a cell
-or not.
-
-```
-    ++  lake                                            ::  check/coerce
-      |=  [for=mark bek=beak]
-      |=  [cof=cafe sam=vase]
-      ^-  (bolt vase)
-      %+  cool  |.(leaf/"ford: check {<[for bek `@p`(mug q.sam)]>}")
-      ?:  ?=(?(%gate %core %door %hoon %hook) for)
-        ::  ~&  [%lake-easy for bek]
-        (fine cof sam)
-      %+  cope  (fang cof for bek)
-      |=  [cof=cafe tux=vase]
-      =+  bob=(slot 6 tux)
-      ?:  (~(nest ut p.bob) | p.sam)
-        (fine cof sam)
-      ?.  (slab %grab p.tux)
-        (flaw cof [%leaf "ford: no grab: {<[for bek]>}"]~)
-      =+  gab=(slap tux [%cnzy %grab])
-      ?.  (slab %noun p.gab)
-        (flaw cof [%leaf "ford: no noun: {<[for bek]>}"]~)
-      %+  cope  (maul cof (slap gab [%cnzy %noun]) [%noun q.sam])
-      |=  [cof=cafe pro=vase]
-      ?:  =(+<.q.pro q.sam) 
-        (fine cof (slot 6 pro))
-      (flaw cof [%leaf "ford: invalid content: {<[for bek]>}"]~)
-```
-
-This is going to coerce the sample into the correct type for the mark.  First,
-we push a line onto the stack trace saying that we're checking the type.  If
-the requested mark is a gate, core, door, hoon, or hook, then we don't do any
-more type information than just saying it's a noun, so we're done.
-
-Otherwise, we get the mark definition from our `/=main=/mar` directory with
-`++fang`, which we'll describe below.
-
-We check to see if our sample type nests within the type of the sample to the
-door.  If so, then we're already of the correct type, so we're done.
-
-Otherwise, we check to see if there's a `++grab` in the door, and a `++noun` in
-the `++grab`.  If not, there's no way we can translate to this mark, so we fail.
-
-If we have everything we need, we slam our sample (typed as a noun) against the
-`++noun` in `++grab`.  If the sample of the door is the same as our sample, then
-the check succeeded, so we produce the well-typed sample of the door.
-Otherwise, we fail.
-
-```
-    ++  fang                                            ::  protocol door
-      |=  [cof=cafe for=mark bek=beak]
-      ^-  (bolt vase)
-      =+  pax=/door/[for]/mar
-      =+  ^=  bem  ^-  beam
-          :_  pax
-          ?:  =(p.bek our)  bek
-          =+  oak=[our %main %da now]
-          ?.  =(~ (ska %cy (tope [oak pax])))  oak
-          bek
-      (cope (fade cof %hook bem) abut:(meow bem ~))
-```
-
-A mark's definition is generally in `/=main=/mar/[mark-name]/door/hook'.  If we
-don't find it there, we look in `/[given-beak]/mar/[mark-name]/door/hook'.  We
-parse the mark definition with `++fade` and assemble it with `++abut:meow`.
-
 We've delayed the discussion of `++fade` far too many times.  It's not
 complicated, we just wanted to spare a premature discussion of `++make` and the
 `%bake` silk.  We 're now able to discuss everything in `++fade` with ease.
@@ -1937,8 +2051,24 @@ The parsing step is run within `++clef` so that the result is cached.  We call
 file.  If parsing fails, we fail giving a syntax error with the line and column
 number.  Otherwise, we produce the value.
 
-We've now discussed everything in `++lace`, though in a slightly roundabout way.
-Feel free to look at the code once more to solidify how it works.
+```
+    ++  liar                                            ::  load vase
+      |=  [cof=cafe bem=beam]
+      ^-  (bolt vase)
+      =+  von=(ska %cx (tope bem))
+      ?~  von
+        [p=*cafe q=[%1 [[bem ~] ~ ~]]]
+      ?~  u.von
+        (flaw cof (smyt (tope bem)) ~)
+      (fine cof ?^(u.u.von [%cell %noun %noun] [%atom %$]) u.u.von)
+```
+
+This takes a beam and loads the file at that location.  If our sky function
+produces null, that means the resource is currently unavailable, so we block on
+it.  If it produces `[~ ~]`, that means our resource is permanently unavailable,
+so we produce an error.  Otherwise, we produce the value there with a type of
+either a cell of two nouns or an atom, depending on whether the value is a cell
+or not.
 
 Back in `++lima`, recall that we call `++lion` to find a translation path.
 
@@ -2029,8 +2159,9 @@ We call `++lily` to get the list of marks we can translate this one into.
       (sloe p.gow)
 ```
 
-We call `++fang` to get the mark definition door.  If getting the mark fails, we
-produce null because we can't translate a non-existent mark into anything.
+We call `++fang` to get the mark definition door.  This is documented under
+`%vale`.  If getting the mark fails, we produce null because we can't translate
+a non-existent mark into anything.
 
 Otherwise, we examine the door.  The door may have a `++garb`, which is simply a
 list of marks which know how to translate from the current one.  There must be a
@@ -2061,7 +2192,111 @@ along the path we just computed.
 ```
 
 We iterate through our list, calling `++link` on every adjacent pair of marks,
-translating from one mark to the next until we finish the list of marks.
+translating from one mark to the next until we finish the list of marks.  A call
+to `++link` is equivalent to a `%cast` silk, so we document it there.  After
+we've called performed every step in the translation pipeline, we're done.
+
+Lifecycle of a `%boil`
+----------------------
+
+```
+          %boil
+        %+  cool  |.(leaf/"ford: boil {<p.kas>} {<(tope q.kas)>} {<r.kas>}")
+        %+  cope  (lamp cof q.kas)
+        |=  [cof=cafe bem=beam]
+        %+  cope  (lime cof p.kas bem r.kas)
+        |=  [cof=cafe vax=vase]
+        (fine cof `cage`[p.kas vax])
+```
+
+At a high level, we try to bake at the given beam, and if it fails, we go up a
+level and try again.  This is the usual semantics of ford, and this should
+nearly always be preferred over directly baking.
+
+First, we normalize the version case to a number with `++lamp`.  This allows
+caching to be based on revision number rather than something more ephemeral like
+a particular time.
+
+```
+    ++  lamp                                            ::  normalize version
+      |=  [cof=cafe bem=beam]
+      ^-  (bolt beam)
+      =+  von=(ska %cw (tope bem(s ~)))
+      ?~  von  [p=cof q=[%1 [bem ~] ~ ~]]
+      (fine cof bem(r [%ud ((hard ,@) (need u.von))]))
+```
+
+We call the sky function with `%cw`, asking clay for the revision number at this
+case.  If the case refers to a revision that isn't there yet, we produce a `%1`
+blocking bolt.  Otherwise, we require that the value exist and that it's a
+number, both of which are guaranteed by clay.  We produce this number.
+
+Next for `%boil` we call `++lime` to try to load the beam.
+
+```
+    ++  lime                                            ::  load beam
+      |=  [cof=cafe for=mark bem=beam arg=heel]
+      =+  [mob=bem mer=(flop arg)]
+      |-  ^-  (bolt vase)
+      %+  cope  (lima cof for mob (flop mer))
+      |=  [cof=cafe vux=(unit vase)]
+      ?^  vux  (fine cof u.vux)
+      ?~  s.mob
+        (flaw cof (smyt (tope bem)) ~)
+      ^$(s.mob t.s.mob, mer [i.s.mob mer])
+```
+
+We start at the given beam and try to bake it.  If it succeeds, we're good.
+Otherwise, we pop off the top level of the path and put it in our heel (virtual
+path extension).  We do this recursively until either we find something we can
+bake or we've gone all the way up to the root path of the desk, in which case we
+fail.
+
+Lifecycle of a `%call`
+----------------------
+
+```
+          %call
+        %+  cool  |.(leaf/"ford: call {<`@p`(mug kas)>}")
+        %.  [cof p.kas q.kas]
+        ;~  cope
+          ;~  coax
+            |=([cof=cafe p=silk q=silk] ^$(cof cof, kas p))
+            |=([cof=cafe p=silk q=silk] ^$(cof cof, kas q))
+          ==
+        ::
+          |=  [cof=cafe gat=cage sam=cage]
+          (maul cof q.gat q.sam)
+        ::
+          |=  [cof=cafe vax=vase]
+          (fine cof %noun vax)
+        ==
+```
+
+This is slam for silks.  We process both of the given silks in parallel with
+`++coax`.  We then slam the two produced vases together with `++maul` and mark
+the produced vase with `%noun` since we don't know any more specific mark.
+
+`++coax` is documented under Lifecycle of a Cell.
+
+Lifecycle of a `%cast`
+----------------------
+
+```
+          %cast
+        %+  cool  |.(leaf/"ford: cast {<p.kas>}")
+        %+  cope  $(kas q.kas)
+        |=  [cof=cafe cay=cage]
+        %+  cope  (link cof p.kas p.cay [our %main %da now] q.cay)
+        |=  [cof=cafe vax=vase]
+        (fine cof [p.kas vax])
+```
+
+This is a request to convert data of one mark to another mark directly.  We
+evaluate the given silk and pass the result into `++link`, which performs the
+actual translation.  Note that this will not search for indirect conversion
+paths, so the conversion must be defined either in the `++grow` of the given
+mark or the `++grab` of the target mark.
 
 ```
     ++  link                                            ::  translate
@@ -2090,13 +2325,13 @@ translating from one mark to the next until we finish the list of marks.
 
 This performs one step in the translation pipeline.  If the given and target
 marks are the same, we're done.  If we're translating from a noun or the empty
-mark, we coerce with `++lake`.  Otherwise, we're translating from a user-defined
-mark.
+mark, we coerce with `++lake` (documented in `%vale`).  Otherwise, we're
+translating from a user-defined mark.
 
 We load the definition of the given mark with `++fang`, and we check to see if
 it has an arm in `++grow` named the target mark.  If so, we place our data in
-the sample of the door with `++keel` and slap the arm.  We'll describe `++keel`
-momentarily.
+the sample of the door with `++keel` and slap the arm.  `++keel` is equivalent
+to a `%mute` silk, so we document it there.
 
 If there is no arm in `++grow` of the given mark named the target mark, we
 suppose there must be an arm in `++grab` of the target mark named the given
@@ -2143,6 +2378,70 @@ Lifecycle of a `%dune`
 This is a sort of a `++need` for silks.  If there is no data in the unit cage,
 we produce an error.  Else, we simply produce the data in the cage.
 
+Lifcycle of a `%mute`
+---------------------
+
+```
+          %mute  (kale cof p.kas q.kas)
+```
+
+This mutates a silk by putting the values of other silks at particular axes.
+This is useful in, for example, replacing the sample of the door in a mark
+definition.
+
+```
+    ++  kale                                            ::  mutate
+      |=  [cof=cafe kas=silk muy=(list (pair wing silk))]
+      ^-  (bolt cage)
+      %+  cope
+        |-  ^-  (bolt (list (pair wing vase)))
+        ?~  muy  (fine cof ~)
+        %+  cope  (make cof q.i.muy)
+        |=  [cof=cafe cay=cage]
+        %+  cope  ^$(muy t.muy)
+        |=  [cof=cafe rex=(list (pair wing vase))]
+        (fine cof [[p.i.muy q.cay] rex])
+      |=  [cof=cafe yom=(list (pair wing vase))]
+      %+  cope  (make cof kas)
+      |=  [cof=cafe cay=cage]
+      %+  cope  (keel cof q.cay yom)
+      |=  [cof=cafe vax=vase]
+      (fine cof p.cay vax)
+```
+
+First, we process each of the silks by calling `++make` on them.  We pass the
+resultant vase and list of pairs of wings and silks to `++keel` to do the actual
+mutation.  We assume the mutation doesn't change the mark of the main silk, so
+we mark the produced vase with the original mark.
+
+```
+    ++  keel                                            ::  apply mutations
+      |=  [cof=cafe suh=vase yom=(list (pair wing vase))]
+      ^-  (bolt vase)
+      %^  maim  cof 
+        %+  slop  suh
+        |-  ^-  vase
+        ?~  yom  [[%atom %n] ~]
+        (slop q.i.yom $(yom t.yom))
+      ^-  twig
+      :+  %cncb  [%& 2]~
+      =+  axe=3
+      |-  ^-  (list (pair wing twig))
+      ?~  yom  ~
+      :-  [p.i.yom [%$ (peg axe 2)]]
+      $(yom t.yom, axe (peg axe 3))
+```
+
+We first put the vases together in one big tuple starting with the subject and
+going through the mutations.  We slap against this tuple a `%_` twig we directly
+construct.  Since a `%_` twig takes a list of pairs of wings and twigs, we
+simply have to generate twigs referring to the correct axes in the subject.
+This is very easy since we just recur on axis 3 of whatever axis we were already
+at.
+
+Note the use of `%_` instead of `%=` enforces that our mutations don't change
+the type of the subject, which justifies our use of the original mark.
+
 Lifecycle of a `%plan`
 ----------------------
 
@@ -2166,6 +2465,23 @@ Lifecycle of a `%reef`
 
 This is one of the simplest silks.  We simply produce our context, which is zuse
 compiled against hoon.  The mark is a `%noun`.
+
+Lifcycle of a `%ride`
+---------------------
+
+```
+          %ride
+        %+  cool  |.(leaf/"ford: ride {<`@p`(mug kas)>}")
+        %+  cope  $(kas q.kas)
+        |=  [cof=cafe cay=cage]
+        %+  cope  (maim cof q.cay p.kas)
+        |=  [cof=cafe vax=vase]
+        (fine cof %noun vax)
+```
+
+This slaps evaluates the given silk, then it slaps the result against the given
+twig.  Since we don't know what of what mark (if any) is the result, we give it
+a mark of `%noun`.
 
 Lifecycle of a `%vale`
 ----------------------
@@ -2195,5 +2511,68 @@ This is a thinly-veiled wrapper over `++lake`.  Note that, contrary to
 documented opinion, we do not in fact check the other ship's definition of a
 mark.  This is likely a bug.
 
-At any rate, recall that `++lake` coerces a noun into the correct type for a
-mark, which is exactly what we need to do.
+At any rate, `++lake` coerces a noun into the correct type for a mark.
+
+```
+    ++  lake                                            ::  check/coerce
+      |=  [for=mark bek=beak]
+      |=  [cof=cafe sam=vase]
+      ^-  (bolt vase)
+      %+  cool  |.(leaf/"ford: check {<[for bek `@p`(mug q.sam)]>}")
+      ?:  ?=(?(%gate %core %door %hoon %hook) for)
+        ::  ~&  [%lake-easy for bek]
+        (fine cof sam)
+      %+  cope  (fang cof for bek)
+      |=  [cof=cafe tux=vase]
+      =+  bob=(slot 6 tux)
+      ?:  (~(nest ut p.bob) | p.sam)
+        (fine cof sam)
+      ?.  (slab %grab p.tux)
+        (flaw cof [%leaf "ford: no grab: {<[for bek]>}"]~)
+      =+  gab=(slap tux [%cnzy %grab])
+      ?.  (slab %noun p.gab)
+        (flaw cof [%leaf "ford: no noun: {<[for bek]>}"]~)
+      %+  cope  (maul cof (slap gab [%cnzy %noun]) [%noun q.sam])
+      |=  [cof=cafe pro=vase]
+      ?:  =(+<.q.pro q.sam) 
+        (fine cof (slot 6 pro))
+      (flaw cof [%leaf "ford: invalid content: {<[for bek]>}"]~)
+```
+
+This is going to coerce the sample into the correct type for the mark.  First,
+we push a line onto the stack trace saying that we're checking the type.  If
+the requested mark is a gate, core, door, hoon, or hook, then we don't do any
+more type information than just saying it's a noun, so we're done.
+
+Otherwise, we get the mark definition from our `/=main=/mar` directory with
+`++fang`, which we'll describe below.
+
+We check to see if our sample type nests within the type of the sample to the
+door.  If so, then we're already of the correct type, so we're done.
+
+Otherwise, we check to see if there's a `++grab` in the door, and a `++noun` in
+the `++grab`.  If not, there's no way we can translate to this mark, so we fail.
+
+If we have everything we need, we slam our sample (typed as a noun) against the
+`++noun` in `++grab`.  If the sample of the door is the same as our sample, then
+the check succeeded, so we produce the well-typed sample of the door.
+Otherwise, we fail.
+
+```
+    ++  fang                                            ::  protocol door
+      |=  [cof=cafe for=mark bek=beak]
+      ^-  (bolt vase)
+      =+  pax=/door/[for]/mar
+      =+  ^=  bem  ^-  beam
+          :_  pax
+          ?:  =(p.bek our)  bek
+          =+  oak=[our %main %da now]
+          ?.  =(~ (ska %cy (tope [oak pax])))  oak
+          bek
+      (cope (fade cof %hook bem) abut:(meow bem ~))
+```
+
+A mark's definition is generally in `/=main=/mar/[mark-name]/door/hook'.  If we
+don't find it there, we look in `/[given-beak]/mar/[mark-name]/door/hook'.  We
+parse the mark definition with `++fade` and assemble it with `++abut:meow`.
+`++fade` is defined under the `%bake` silk.
