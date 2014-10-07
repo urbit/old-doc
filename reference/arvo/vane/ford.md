@@ -817,11 +817,11 @@ us to write a certain amount of boilerplate between each of our operations to
 see if any of them produced a `%1` or a `%2` bolt.  This gets tiresome, so we
 pull it out into a separate arm and call it `++cope`.
 
-Intuitively, we're call the function `fun` with the value in `hoc`, where `fun`
-takes an argument of type whatever is the value in a `%0` case of `hoc`, and it
-produces a bolt of some (possibly different) type.  For brevity, we will refer
-to the type of the of the value in the `%0` case of a bolt as the "type of the
-bolt".
+Intuitively, we're calling the function `fun` with the value in `hoc`, where
+`fun` takes an argument of type whatever is the value in a `%0` case of `hoc`,
+and it produces a bolt of some (possibly different) type.  For brevity, we will
+refer to the type of the of the value in the `%0` case of a bolt as the "type of
+the bolt".
 
 If the `hoc` bolt we're given as input to `fun` is already a `%1` or a `%2`
 bolt, then we simply produce that.  We don't even try to run `fun` on it.
