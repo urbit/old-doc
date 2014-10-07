@@ -1,4 +1,4 @@
-section 2eG, parsing (whitespace)     
+##section 2eG, parsing (whitespace)     
 
 ---
 
@@ -14,8 +14,6 @@ section 2eG, parsing (whitespace)
 
 Parse 
 
-####Examples
-
 ---
 
 ###++dun
@@ -25,8 +23,6 @@ Parse
 ```
 
 Parse phep (--) to null (~).
-
-####Examples
 
         ~zod/try=> (scan "--" dun)
         ~
@@ -43,8 +39,6 @@ Parse phep (--) to null (~).
 
 Parse stet (==) to null (~).
 
-####Examples
-
         ~zod/try=> (scan "==" duz)
         ~
         ~zod/try=> (duz [[1 1] "== |=..."])
@@ -58,8 +52,6 @@ Parse stet (==) to null (~).
 ++  gah  (mask [`@`10 ' ' ~])                           ::  newline or ace
 ```
 
-####Examples
-
 ---
 
 ###++gap 
@@ -69,8 +61,6 @@ Parse stet (==) to null (~).
 ```
         
 ---
-
-###Examples
 
 ---
 
@@ -84,8 +74,6 @@ Parse stet (==) to null (~).
          ==
 ```
 
-####Examples
-
 ---
         
 ###++gay 
@@ -94,8 +82,6 @@ Parse stet (==) to null (~).
 ++  gay  ;~(pose gap (easy ~))                          ::
 ```
         
-####Examples
-
 ---
         
 ###++vul 
@@ -110,8 +96,6 @@ Parse stet (==) to null (~).
 
 Parse comments and replace them with null.
 Note that a comment must be ended with a newline character.
-
-####Examples
 
 ---
 

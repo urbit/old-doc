@@ -1,4 +1,4 @@
-section 2eO, virtualization
+##section 2eO, virtualization
 ---
 
 ###++mack
@@ -14,8 +14,6 @@ section 2eO, virtualization
 
 Accpet a nock subject-formula cell.
 Produce a unit result, treating 11 as a crash (i.e. pure nock).
-
-####Examples
 
         ~zod/try=> (mack [[1 2 3] [0 1]])
         [~ [1 2 3]]
@@ -110,8 +108,6 @@ Produce a unit result, treating 11 as a crash (i.e. pure nock).
 
 Bottom-level mock (virtual nock) interpreter.
 
-####Examples
-
         XX
 
 ###++mock
@@ -127,8 +123,6 @@ Accepts a nock subject-formula cell and an %iron gate which
 accepts any noun and produces a unit (this is used as nock 11).
 Produces a ++toon, which is a sucesful, blocked, or crashed result.
 
-####Examples
- 
         ~zod/try=> (mock [5 4 0 1] ,~)
         [%0 p=6]
         ~zod/try=> (mock [~ 11 1 0] |=(* `999))
@@ -197,8 +191,6 @@ Produces a ++toon, which is a sucesful, blocked, or crashed result.
 
 Intelligently render crash annotation.
 
-####Examples
- 
         ~zod/try=> (mook [%0 5 4 5 1])
         [%0 p=[5 4 5 1]]
         ~zod/try=> (mook [%2 ~[[%hunk %rose ["<" "," ">"] ~[[%leaf "err"]]]]])

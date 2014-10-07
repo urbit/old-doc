@@ -1,4 +1,4 @@
-section 2eF, parsing (ascii)          
+##section 2eF, parsing (ascii)          
 
 ---
 
@@ -9,8 +9,6 @@ section 2eF, parsing (ascii)
 ```
 
 Parse ASCII character 32, ace.
-
-###Examples
 
         ~zod/try=> (scan " " ace)
         ~~. 
@@ -31,8 +29,6 @@ Parse ASCII character 32, ace.
 
 Parse ASCII character 124, bar.
 
-####Examples
-
        ~zod/try=> (scan "|" bar)
         ~~~7c. 
         ~zod/try=> `cord`(scan "|" bar)
@@ -52,8 +48,6 @@ Parse ASCII character 124, bar.
 
 Parse ASCII character 92, bas.
 Note the extra '\' in the slam of bas with just is to escape the escape character, bas.
-
-###Examples
 
         ~zod/try=> (scan "\\" bas)
         ~~~5c.
@@ -76,8 +70,6 @@ Note the extra '\' in the slam of bas with just is to escape the escape characte
 
 Parse ASCII character 36, buc.
 
-####Examples
-
         ~zod/try=> (scan "$" buc)
         ~~~24.
         ~zod/try=> `cord`(scan "$" buc)
@@ -96,8 +88,6 @@ Parse ASCII character 36, buc.
 ```
 
 Parse ASCII character 95, cab.
-
-###Examples
 
         ~zod/try=> (scan "_" cab)
         ~~~5f.
@@ -118,8 +108,6 @@ Parse ASCII character 95, cab.
 
 Parse ASCII character 37, cen.
 
-####Examples
-
         ~zod/try=> (scan "%" cen)
         ~~~25.
         ~zod/try=> `cord`(scan "%" cen)
@@ -139,8 +127,6 @@ Parse ASCII character 37, cen.
 
 Parse ASCII character 58, col.
 
-###Examples
-
         ~zod/try=> (scan ":" col)
         ~~~3a.
         ~zod/try=> `cord`(scan ":" col)
@@ -159,8 +145,6 @@ Parse ASCII character 58, col.
 ```
 
 Parse ASCII character 44, com.
-
-####Examples
 
         ~zod/try=> (scan "," com)
         ~~~2c.
@@ -204,8 +188,6 @@ Parse ASCII character 34, doq.
 
 Parse ASCII character 46, dot.
 
-####Examples
-
         ~zod/try=> (scan "." dot)
         ~~~.
         ~zod/try=> `cord`(scan "." dot)
@@ -225,8 +207,6 @@ Parse ASCII character 46, dot.
 
 Parse ASCII character 47, fas.
 
-###Examples
-
         ~zod/try=> (scan "/" fas)
         ~~~2f.
         ~zod/try=> `cord`(scan "/" fas)
@@ -245,8 +225,6 @@ Parse ASCII character 47, fas.
 ```
 
 Parse ASCII character 60, gal.
-
-####Examples
 
         ~zod/try=> (scan "<" gal)
         ~~~3c.
@@ -269,8 +247,6 @@ Parse ASCII character 60, gal.
 
 Parse ASCII character 62, gar.
 
-####Examples
-
         ~zod/try=> (scan ">" gar)
         ~~~3e.
         ~zod/try=> `cord`(scan ">" gar)
@@ -289,8 +265,6 @@ Parse ASCII character 62, gar.
 ```
 
 Parse ASCII character 35, hax.
-
-####Examples
 
         ~zod/try=> (scan "#" hax)
         ~~~23.
@@ -312,8 +286,6 @@ Parse ASCII character 35, hax.
 Parse ASCII character 123, kel.
 Note that this, with ker, opens and closes a Hoon expression for Hoon string interpolation.  Escape kel to parse it.
 
-####Examples
-
         ~zod/try=> (scan "\{" kel)
         ~~~7b.
         ~zod/try=> `cord`(scan "\{" kel)
@@ -332,8 +304,6 @@ Note that this, with ker, opens and closes a Hoon expression for Hoon string int
 ```
 
 Parse ASCII character 125, ker.
-
-###Examples
 
         ~zod/try=> (scan "}" ker)
         ~~~7d.
@@ -354,8 +324,6 @@ Parse ASCII character 125, ker.
 
 Parse ASCII character 94, ket.
 
-####Examples
-
         ~zod/try=> (scan "^" ket)
         ~~~5e.
         ~zod/try=> `cord`(scan "^" ket)
@@ -374,8 +342,6 @@ Parse ASCII character 94, ket.
 ```
 
 Parse ASCII character 43, lus.
-
-###Examples
 
         ~zod/try=> (scan "+" lus)
         ~~~2b.
@@ -396,8 +362,6 @@ Parse ASCII character 43, lus.
 
 Parse ASCII character 45, hep.
 
-####Examples
-
         ~zod/try=> (scan "-" hep)
         ~~-
         ~zod/try=> `cord`(scan "-" hep)
@@ -416,8 +380,6 @@ Parse ASCII character 45, hep.
 ```
 
 Parse ASCII character 40, pel.
-
-####Examples
 
         ~zod/try=> (scan "(" pel)
         ~~~28.
@@ -438,8 +400,6 @@ Parse ASCII character 40, pel.
 
 Parse ASCII character 38, pam.
 
-####Examples
-
         ~zod/try=> (scan "&" pam)
         ~~~26.
         ~zod/try=> `cord`(scan "&" pam)
@@ -458,8 +418,6 @@ Parse ASCII character 38, pam.
 ```
 
 Parse ASCII character 41, per.
-
-###Examples
 
         ~zod/try=> (scan ")" per)
         ~~~29.
@@ -480,8 +438,6 @@ Parse ASCII character 41, per.
 
 Parse ASCII character 64, pat.
 
-####Examples
-
         ~zod/try=> (scan "@" pat)
         ~~~4.
         ~zod/try=> `cord`(scan "@" pat)
@@ -500,8 +456,6 @@ Parse ASCII character 64, pat.
 ```
 
 Parse ASCII character 91, sel.
-
-####Examples
 
         ~zod/try=> (scan "[" sel)
         ~~~5b.
@@ -543,8 +497,6 @@ Parse ASCII character 59, sem.
 
 Parse ASCII character 93, ser.
 
-####Examples
-
         ~zod/try=> (scan "]" ser)
         ~~~5d.
         ~zod/try=> `cord`(scan "]" ser)
@@ -563,8 +515,6 @@ Parse ASCII character 93, ser.
 ```
 
 Parse ASCII character 126, sig.
-
-####Examples
 
         ~zod/try=> (scan "~" sig)
         ~~~~
@@ -586,8 +536,6 @@ Parse ASCII character 126, sig.
 Parse ASCII character 39, soq.
 Note the extra '\' in the slam of soq with just is to escape the first soq because soq denotes a crip.
 
-####Examples
-
         ~zod/try=> (scan "'" soq)
         ~~~27.
         ~zod/try=> `cord`(scan "'" soq)
@@ -606,8 +554,6 @@ Note the extra '\' in the slam of soq with just is to escape the first soq becau
 ```
 
 Parse ASCII character 42, tar.
-
-####Examples
 
         ~zod/try=> (scan "*" tar)
         ~~~2a.
@@ -628,8 +574,6 @@ Parse ASCII character 42, tar.
 
 Parse ASCII character 96, tec.
 
-####Examples
-
         ~zod/try=> (scan "`" tec)
         ~~~6.
         ~zod/try=> `cord`(scan "`" tec)
@@ -649,8 +593,6 @@ Parse ASCII character 96, tec.
 
 Parse ASCII character 61, tis.
 
-####Examples
-
         ~zod/try=> (scan "=" tis)
         ~~~3d.
         ~zod/try=> `cord`(scan "=" tis)
@@ -668,8 +610,6 @@ Parse ASCII character 61, tis.
 ```
 
 Parse ASCII character 63, wut.
-
-###Examples
 
         ~zod/try=> (scan "?" wut)
         ~~~3f.
@@ -689,8 +629,6 @@ Parse ASCII character 63, wut.
 ```
 
 Parse ASCII character 33, zap.
-
-###Examples
 
         ~zod/try=> (scan "!" zap)
         ~~~21.

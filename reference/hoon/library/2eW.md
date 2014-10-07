@@ -1,4 +1,4 @@
-section 2eW, lite number theory           
+##section 2eW, lite number theory           
 ---
 
 ###++egcd   

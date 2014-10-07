@@ -1,4 +1,4 @@
-section 2eB, parsing (tracing)
+##section 2eB, parsing (tracing)
 
 ---
 
@@ -14,8 +14,6 @@ section 2eB, parsing (tracing)
 ```
 
 Compare two [line column] pairs and produce the one which is farther along in text.
-
-####Examples
 
         ~zod/try=> (last [1 1] [1 2])
         [p=1 q=2]
@@ -36,10 +34,7 @@ Compare two [line column] pairs and produce the one which is farther along in te
           ?:(=(10 weq) [+(p.naz) 1] [p.naz +(q.naz)])
 ```
 
-Produce the beginning of the next line after a newline character or increment the 
-column number - The index of the next character to be parsed.
-
-####Examples
+Advance [line column] count by a character, resetting column on newline.
 
         ~zod/try=> (lust `a` [1 1])
         [p=1 q=2]

@@ -1,4 +1,4 @@
-section 2eJ, formatting (basic text)  
+##section 2eJ, formatting (basic text)  
 
 ###++cass
 
@@ -11,8 +11,6 @@ section 2eJ, formatting (basic text)
 ```
 
 Produce the case insensitive (all lowercase) cord of a tape.
-
-####Examples
 
        ~zod/try=> (cass "john doe")
         7.309.170.810.699.673.450
@@ -36,8 +34,6 @@ Produce the case insensitive (all lowercase) cord of a tape.
 
 Turn all occurances of lowercase letters in any tape into uppercase letters, as a cord.
 
-####Examples
-
         ~zod/try=> (cuss "john doe")
         'JOHN DOE'
         ~zod/try=> (cuss "abc ABC 123 !@#")
@@ -55,8 +51,6 @@ Turn all occurances of lowercase letters in any tape into uppercase letters, as 
 ```
 
 Produce the cord of a tape.
-
-####Examples
 
         ~zod/try=> (crip "john doe")
         'john doe'

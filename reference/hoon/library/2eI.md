@@ -1,4 +1,4 @@
-section 2eI, parsing (external)       
+##section 2eI, parsing (external)       
 
 ###++rash
 
@@ -7,8 +7,6 @@ section 2eI, parsing (external)
 ```
         
 Parse a cord with a given rule and crash if the cord isn't entirely parsed.
-
-####Examples
 
         ~zod/try=> (rash 'I was the world in which I walked, and what I saw' (star (shim 0 200)))
         "I was the world in which I walked, and what I saw"
@@ -31,8 +29,6 @@ Parse a cord with a given rule and crash if the cord isn't entirely parsed.
 
 Parse a given with a given rule and produce null if the cord isn't entirely parsed.
 
-####Examples
-
         ~zod/try=> (rush 'I was the world in which I walked, and what I saw' (star (shim 0 200)))
         [~ "I was the world in which I walked, and what I saw"]
         ~zod/try=> (rush 'abc' (just 'a'))
@@ -54,8 +50,6 @@ Parse a given with a given rule and produce null if the cord isn't entirely pars
 
 Parse a tape with a given rule and produce null if the tape isn't entirely parsed.
 
-####Examples
-
         ~zod/try=> (rust "I was the world in which I walked, and what I saw" (star (shim 0 200)))
         [~ "I was the world in which I walked, and what I saw"]
         ~zod/try=> (rust "Or heard or felt came not but from myself;" (star (shim 0 200)))
@@ -66,8 +60,6 @@ Parse a tape with a given rule and produce null if the tape isn't entirely parse
 ++  scan
 
 Parse a tape with a given rule and crash if the tape isn't entirely parsed.
-
-####Examples
 
         ~zod/try=> (scan "I was the world in which I walked, and what I saw" (star (shim 0 200)))
         "I was the world in which I walked, and what I saw"

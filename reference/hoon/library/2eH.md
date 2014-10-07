@@ -1,4 +1,4 @@
-section 2eH, parsing (idioms)         
+##section 2eH, parsing (idioms)         
 
 ###++alf 
 
@@ -7,8 +7,6 @@ section 2eH, parsing (idioms)
 ```
 
 Parse alphabetic characters, both upper and lowercase.
-
-####Examples
 
         ~zod/try=> (scan "a" alf)
         ~~a
@@ -25,8 +23,6 @@ Parse alphabetic characters, both upper and lowercase.
 
 Parse alphanumeric characters - both alphabetic characters and numbers.
 
-####Examples
-
         ~zod/try=> (scan "0" aln)
         ~~0
         ~zod/try=> (scan "alf42" (star aln))
@@ -41,8 +37,6 @@ Parse alphanumeric characters - both alphabetic characters and numbers.
 ```
 
 Parse alphanumeric strings and hep, "-".
-
-####Examples
 
         ~zod/try=> (scan "7" alp)
         ~~7
@@ -60,8 +54,6 @@ Parse alphanumeric strings and hep, "-".
 Parse the hep and lus axis syntax.
 
 
-####Examples
-
         ~zod/try=> (scan "-" bet)
         2
         ~zod/try=> (scan "+" bet)
@@ -74,8 +66,6 @@ Parse the hep and lus axis syntax.
 ```
 
 Parse a tape of binary (0s and 1s) and produce its atomic representation.
-
-####Examples
 
         ~zod/try=> (scan "0000" bin)
         0
@@ -93,8 +83,6 @@ Parse a tape of binary (0s and 1s) and produce its atomic representation.
 ```
 
 Parse a single binary digit.
-
-####Examples
 
         ~zod/try=> (scan "0" but)
         0
@@ -115,8 +103,6 @@ Parse a single binary digit.
 
 Parse a single octal digit.
 
-####Examples
-
         ~zod/try=> (scan "1" cit)
         1
         ~zod/try=> (scan "7" cit)
@@ -136,8 +122,6 @@ Parse a single octal digit.
 
 Parse a decimal number to an atom.
 
-####Examples
-
         ~zod/try=> (scan "7" dem)
         7
         ~zod/try=> (scan "42" dem)
@@ -155,8 +139,6 @@ Parse a decimal number to an atom.
 
  Parse a single decimal digit.
 
-####Examples
-
         ~zod/try=> (scan "7" dit)
         7
         ~zod/try=> (scan "42" (star dit))
@@ -172,8 +154,6 @@ Parse a decimal number to an atom.
 
 Parse the axis gal and gar axis syntax.
 
-####Examples
-
         ~zod/try=> (scan "<" gul)
         2
         ~zod/try=> (scan ">" gul)
@@ -187,8 +167,6 @@ Parse the axis gal and gar axis syntax.
 
 Parse long numbers - Numbers which wrap around the shell with the line break characters bas and fas.
 
-####Examples
-
         ~zod/try=> (scan "\\/" gon)
         [~~~5c. ~ ~~~2f.]
         ~zod/try=> (gon [[1 1] "\\/"])
@@ -201,8 +179,6 @@ Parse long numbers - Numbers which wrap around the shell with the line break cha
 ```
 
 Parse any hexadecimal number to an atom.
-
-####Examples
 
         ~zod/try=> (scan "a" hex)
         10
@@ -222,8 +198,6 @@ Parse any hexadecimal number to an atom.
 ```
 
 Parse a single uppercase letter.
-
-####Examples
 
         ~zod/try=> (scan "G" hig)
         ~~~47.
@@ -246,8 +220,6 @@ Parse a single uppercase letter.
 
 Parse a single hexadecimal digit.
 
-####Examples
-
         ~zod/try=> (scan "a" hit)
         10
         ~zod/try=> (scan "A" hit)
@@ -264,8 +236,6 @@ Parse a single hexadecimal digit.
 ```
 
 Parse a single lowercase letter.
-
-####Examples
 
         ~zod/try=> (scan "g" low)
         ~~g
@@ -291,8 +261,6 @@ Parse a hexbyte.
         Slam cook with:
                 Build dry %gold gate with sample atom `a`, atom `b`.  Produce the sum of `a` multiplied by 16 and `b`
                 Plug gonadified with hit and hit, parse two consecutive hex digits.
-####Examples
-
         ~zod/try=> (scan "2A" mes)
         42
         ~zod/try=> (mes [[1 1] "2A"])
@@ -311,8 +279,6 @@ Letters, -, and _
 ###++nud 
 
 Parse a numeric character - A number.
-
-####Examples
 
         ~zod/try=> (scan "0" nud)
         ~~0
@@ -333,8 +299,6 @@ Parse a numeric character - A number.
 ```
 
 Parse an individual character to its cord atom representation.
-
-####Examples
 
         ~zod/try=> (scan "%" qit)
         37

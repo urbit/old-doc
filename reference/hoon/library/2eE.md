@@ -1,4 +1,4 @@
-section 2eE, parsing (composers)
+##section 2eE, parsing (composers)
 
 ---
 
@@ -32,8 +32,6 @@ section 2eE, parsing (composers)
 ::
 ```
 
-####Examples
-
 ---
 
 ###++ifix
@@ -45,8 +43,6 @@ section 2eE, parsing (composers)
 ::
 ```
         
-####Examples
-
 ---
         
 ###++more
@@ -57,8 +53,6 @@ section 2eE, parsing (composers)
   ;~(pose (most bus fel) (easy ~))
 ::
 ```
-
-###Examples
 
 ---
 
@@ -82,8 +76,6 @@ Parse to a list elements of the second rule seperated by the second.
 ```
 
 Like 'star', but "one or more" instead of "0 or more"
-
-####Examples
 
 ---
         
@@ -109,8 +101,6 @@ Like 'star', but "one or more" instead of "0 or more"
 
 Apply the parsing rule repeatedly until it fails.
 
-
-####Examples
 
         ~zod/try=> (scan "aaaaa" (just 'a'))
         ! {1 2}
