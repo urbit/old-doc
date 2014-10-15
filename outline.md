@@ -80,6 +80,7 @@ Hoon
     %eyre access methods
     .^ methods
     hardcoded %gall arms
+    Glossary
 
   Library index
     This should cover all of our library functions in hoon.hoon and zuse.hoon. Similar to our Rune index, discussion topics can be covered as overviews in-line with their topics. Each arm should include the following:

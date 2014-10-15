@@ -4,6 +4,7 @@
                 
 ###++apt
 
+Check if set
 
 ```
 ++  apt                                                 ::  set invariant
@@ -16,8 +17,9 @@
 ::
 ```
 
+Produces a loobean indicating whether `a` is a set or not.
 
-Accept any tree and produce a loobean indicating whether the tree is a set.
+`a` is a [tree]().
  
     ~zod/try=> =b (sa `(list ,@t)`['john' 'bonita' 'daniel' 'madeleine' ~])
     ~zod/try=> (apt b)
@@ -32,6 +34,9 @@ Accept any tree and produce a loobean indicating whether the tree is a set.
 
 ###++in
 
+Set operations
+
+XXhow should we format these "container" arms..?
 
 ```
 ++  in                                                  ::  set engine
@@ -39,13 +44,16 @@ Accept any tree and produce a loobean indicating whether the tree is a set.
   |/  a=(set)
 ```
 
-Set manipulation arms
+Input arm.
 
     ~zod/try=> ~(. in (sa "asd"))
     <13.evb [nlr(^$1{@tD $1}) <414.fvk 101.jzo 1.ypj %164>]>
 
+`a` is a [set]()
+
 ###+-all:in
 
+Logical AND
 
 ```
   +-  all                                               ::  logical AND
@@ -58,7 +66,11 @@ Set manipulation arms
   ::
 ```
 
-Every member in the set matches a predicate.
+Computes the logical AND on every element in `a` slammed with `b`, producing a loobean.
+
+`a` is a [set]().
+
+`b` is a [gate]() that accepts a noun and produces a loobean.
 
     ~zod/try=> =b (sa `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
     ~zod/try=> (~(all in b) |=(a=* ?@(+.a & |)))
@@ -71,6 +83,7 @@ Every member in the set matches a predicate.
 
 ###+-any:in
 
+Logical OR
 
 ```
   +-  any                                               ::  logical OR
@@ -83,7 +96,11 @@ Every member in the set matches a predicate.
   ::
 ```
 
-A member in the set matches a predicate.
+Computes the logical OR on every element of `a` slammed with `b`.
+
+`a` is a [set]().
+
+`b` is a [gate]() that accepts a noun and produces a loobean.
 
     ~zod/try=> =b (sa `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
     ~zod/try=> (~(any in b) |=(a=* ?@(+.a & |)))
@@ -96,6 +113,7 @@ A member in the set matches a predicate.
 
 ###+-del:in
 
+Remove a noun
 
 ```
   +-  del                                               ::  b without any a
@@ -117,7 +135,11 @@ A member in the set matches a predicate.
   ::
 ```
 
-Accept a noun and removes it from the set.
+Removes `a` from the set.
+
+`a` is a [set]().
+
+`b` is a [noun]().
 
     ~zod/try=> =b (sa `(list ,@t)`['a' 'b' 'c' ~])
     ~zod/try=> (~(del in b) 'a')
@@ -132,6 +154,7 @@ Accept a noun and removes it from the set.
 
 ###+-dig:in
 
+Axis of a in b
 
 ```
   +-  dig                                               ::  axis of a in b
@@ -146,7 +169,11 @@ Accept a noun and removes it from the set.
   ::
 ```
 
-Produce the axis of a noun within the set.
+Produce the axis of `b` within `a`.
+
+`a` is a [set]().
+
+`b` is a [noun](). 
 
     ~zod/try=> =a (sa `(list ,@)`[1 2 3 4 5 6 7 ~])
     ~zod/try=> a
@@ -164,6 +191,7 @@ Produce the axis of a noun within the set.
 
 ###+-gas:in
 
+Concatenate
 
 ```
   +-  gas                                               ::  concatenate
@@ -176,7 +204,11 @@ Produce the axis of a noun within the set.
   ::
 ```
 
-Insert the elements of a list into the set.
+Insert the elements of a list `b` into a set `a`.
+
+`a` is a [set]().
+
+`b` is a [list]().
 
     ~zod/try=> b
     {'bonita' 'madeleine' 'rudolf' 'john'}
@@ -189,6 +221,7 @@ Insert the elements of a list into the set.
 
 ###+-has:in
 
+b in a?
 
 ```
   +-  has                                               ::  b exists in a check
@@ -205,7 +238,12 @@ Insert the elements of a list into the set.
   ::
 ```
 
-Whether the set contains an element.
+Checks to see if `b` is an element of `a`, producing a loobean.
+
+
+`a` is a [set]().
+
+`b` is a [noun]().
 
     ~zod/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`[`a` `b` `c` ~])
     ~zod/try=> (~(has in a) `a`)
@@ -217,9 +255,10 @@ Whether the set contains an element.
 
 ###+-put:in
 
+Put b in a
 
 ```
-  +-  put                                               ::  puts b in a, sorted
+  +-  put                                               ::  puts b in a
     ~/  %put
     |*  b=*
     |-  ^+  a
@@ -241,7 +280,11 @@ Whether the set contains an element.
   ::
 ```
 
-Add an element to the set.
+Add an element `b` to the set `a`.
+
+`a` is a [set]().
+
+`b` is a [noun]().
 
     ~zod/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`[`a` `b` `c` ~])
     ~zod/try=> =b (~(put in a) `d`)
@@ -254,6 +297,9 @@ Add an element to the set.
 
 ###+-rep:in
 
+XX confused
+
+Accumulate
 
 ```
   +-  rep                                               ::  replace by tile
@@ -264,9 +310,14 @@ Add an element to the set.
   ::
 ```
 
-Accumulate value from elements of set.
+Accumulate the elements of `b` using `a`.
+
+`a` is a [set]().
+
+`b` is a [gate]() that accepts a noun and produces a loobean.
 
 XX interface changing
+XX HENRY doesnt understand the commen. 
 
     ~zod/try=> =a (~(gas in *(set ,@)) [1 2 3 ~])
     ~zod/try=> a
@@ -278,6 +329,7 @@ XX interface changing
 
 ###+-tap:in
 
+Set to list
 
 ```
   +-  tap                                               ::  list tiles a set
@@ -306,6 +358,7 @@ Flatten the set into a list.
 
 ###+-wyt:in
 
+Set size
 
 ```
   +-  wyt                                               ::  size of set
@@ -314,7 +367,9 @@ Flatten the set into a list.
     ?~(a 0 +((add $(a l.a) $(a r.a))))
 ```
 
-Produce the cardinality (number of elements) of the set.
+Produce the number of elements in set `a` as an atom
+
+`a` is an [set]().
 
     ~zod/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`[`a` `b` `c` ~])
     ~zod/try=> ~(wyt in a)
