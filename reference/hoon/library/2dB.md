@@ -35,13 +35,12 @@ Computes whether `a` is a [map](), producing a loobean.
 
 ###++ja
 
-Jar inputs
+Jar operations XX how do you think of treating the various "engine arms" like this?
 
 ```
 ++  ja                                                  ::  jar engine
   |/  a=(jar)
 ```
-
 
 The jar engine: A container arm for jar (maps of lists) operation arms.
 The contained arms inherit the [sample]() jar.
@@ -53,7 +52,7 @@ The contained arms inherit the [sample]() jar.
 
 ---
 
-###+-get:ja
+###+-get : ja 
 
 Grab value by key
 
