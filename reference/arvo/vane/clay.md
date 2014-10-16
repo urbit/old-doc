@@ -665,7 +665,6 @@ kisses and receiving gifts.
               [%into p=@p q=@tas r=nori]                ::  external edit
               [%invo p=@p q=@tas r=nori]                ::  external noun edit
               [%merg p=@p q=@tas r=mizu]                ::  internal change
-              [%wake ~]                                 ::  timer activate
               [%wart p=sock q=@tas r=path s=*]          ::  network request
               [%warp p=sock q=riff]                     ::  file request
           ==                                            ::
@@ -724,13 +723,13 @@ update the filesystem of the current ship to that of its sein.  The `p` and `q`
 are as in `%info`, and the `r` is the description of the merge.  See `++mizu`
 above.
 
-```
-              [%wake ~]                                 ::  timer activate
-```
-
-This card is sent by unix at the time specified by `++doze`.  This time is
-usually the closest time specified in a subscription request.  When `%wake` is
-called, we update our subscribers if there have been any changes.
+XX  ```
+XX                [%wake ~]                                 ::  timer activate
+XX  ```
+XX  
+XX  This card is sent by unix at the time specified by `++doze`.  This time is
+XX  usually the closest time specified in a subscription request.  When `%wake` is
+XX  called, we update our subscribers if there have been any changes.
 
 ```
               [%wart p=sock q=@tas r=path s=*]          ::  network request
@@ -812,6 +811,7 @@ few of the lines at the beginning of `++de`.
     =|  byn=(list ,[p=duct q=riot])
     =|  vag=(list ,[p=duct q=gift])
     =|  say=(list ,[p=duct q=path r=ship s=[p=@ud q=riff]])
+    =|  tag=(list ,[p=duct q=path c=note])
     |%
     ++  abet
       ^-  [(list move) rede]
@@ -830,10 +830,13 @@ few of the lines at the beginning of `++de`.
         |=  [a=duct b=path c=ship d=[p=@ud q=riff]]
         :-  a
         [%pass b %a %want [who c] [%q %re p.q.d (scot %ud p.d) ~] q.d]
+      ::
+        %+  turn  (flop tag)
+        |=([a=duct b=path c=note] [a %pass b c])
       ==
 ```
 
-This is very simple code.  We see there are exactly four different kinds of
+This is very simple code.  We see there are exactly five different kinds of
 side effects we can generate.
 
 In `yel` we put gifts that we wish to be sent along the `hun:room` duct to
@@ -853,6 +856,9 @@ request information from clay on other piers.  We must provide not only the
 duct and the request (the riff), but also the return path, the other ship to
 talk to, and the sequence number of the request.
 
+In `tag` we put arbitrary notes we wish to pass to other vanes.  For now, the
+only notes we pass here are `%wait` and `%rest` to the timer vane.
+
 Now that we know what kinds of side effects we may have, we can jump into the
 handling of requests.
 
@@ -860,8 +866,11 @@ handling of requests.
     ++  ease                                          ::  release request
       |=  hen=duct
       ^+  +>
-      =.  qyx  (~(del by qyx) hen)
       ?~  ref  +>
+        =+  rov=(~(got by qyx) hen)
+        =.  qyx  (~(del by qyx) hen)
+        (mabe rov (cury best hen))
+      =.  qyx  (~(del by qyx) hen)
       |-  ^+  +>+.$
       =+  nux=(~(get by fod.u.ref) hen)
       ?~  nux  +>+.$
@@ -872,12 +881,60 @@ handling of requests.
       ==
 ```
 
-This is called when we're cancelling a subscription.  First, we remove the duct
-from our map of subscribers.  For domestic desks, `ref` is null, so we're done.
+This is called when we're cancelling a subscription.  For domestic desks, `ref`
+is null, so we're going to cancel any timer we might have created.  We first
+delete the duct from our map of requests, and then we call `++mabe` with
+`++best` to send a `%rest` kiss to the timer vane if we have started a timer.
+We'll describe `++best` and `++mabe` momentarily.
+
 Although we said we're not going to talk about foreign requests yet, it's easy
 to see that for foreign desks, we cancel any outstanding requests for this duct
 and send a message over ames to the other ship telling them to cancel the
 subscription.
+
+```
+    ++  best
+      |=  [hen=duct tym=@da]
+      %_(+> tag :_(tag [hen /tyme %t %rest tym]))
+```
+
+This simply pushes a `%rest` note onto `tag`, from where it will be passed back
+to arvo to be handled.  This cancels the timer at the given duct (with the given
+time).
+
+```
+    ++  mabe                                            ::  maybe fire function
+      |*  [rov=rove fun=$+(@da _+>.^$)]
+      ^+  +>.$
+      %-  fall  :_  +>.$
+      %-  bind  :_  fun
+      ^-  (unit ,@da)
+      ?-    -.rov
+          %&
+        ?.  ?=(%da -.q.p.rov)  ~
+        `p.q.p.rov
+          %|
+        =*  mot  p.rov
+        %+  hunt
+          ?.  ?=(%da -.p.mot)  ~
+          ?.((lth now p.p.mot) ~ [~ p.p.mot])
+        ?.  ?=(%da -.q.mot)  ~
+        ?.((lth now p.q.mot) [~ now] [~ p.q.mot])
+      ==
+```
+
+This decides whether the given request can only be satsified in the future.  In
+that case, we call the given function with the time in the future when we expect
+to have an update to give to this request.  This is called with `++best` to
+cancel timers and with `++bait` to start them.
+
+For single requests, we have a time if the request is for a particular time
+(which is assumed to be in the future).  For ranges of requests, we check both
+the start and end cases to see if they are time cases.  If so, we choose the
+earlier time.
+
+If any of those give us a time, then we call the given funciton with the
+smallest time.
 
 The more interesting case is, of course, when we're not cancelling a
 subscription but starting one.
@@ -910,16 +967,52 @@ the present.
 
 Then, we try to read the requested `mood` `p.rav`.  If we can't access the
 request data right now, we call `++duce` to put the request in our queue to be
-satisfied when the information becomes available.  The code for `++duce` is
-nearly the exact inverse of `++ease`, which in the case of a domestic desk is
-very simple -- we simply put the duct and rave into `qyx`.  This case occurs
-when we make a request for a case whose (1) date is after the current date, (2)
-number is after the current number, or (3) label is not yet used.
+satisfied when the information becomes available.
 
-If `++aver` returned `[~ ~]`, then we cancel the subscription.  This occurs
-when we make (1) a `%x` request for a file that does not exist, (2) a `%w`
-request with a case that is not a number, or (3) a `%w` request with a nonempty
-path.  The `++blub` is exactly what you would expect it to be.
+This case occurs when we make a request for a case whose (1) date is after the
+current date, (2) number is after the current number, or (3) label is not yet
+used.
+
+```
+    ++  duce                                            ::  produce request
+      |=  [hen=duct rov=rove]
+      ^+  +>
+      =.  qyx  (~(put by qyx) hen rov)
+      ?~  ref
+        (mabe rov (cury bait hen))
+      |-  ^+  +>+.$                                     ::  XX  why?
+      =+  rav=(reve rov)
+      =+  ^=  vaw  ^-  rave
+        ?.  ?=([%& %v *] rav)  rav
+        [%| [%ud let.dom] `case`q.p.rav r.p.rav]
+      =+  inx=nix.u.ref
+      %=  +>+.$
+        say        [[hen [(scot %ud inx) ~] for [inx syd ~ vaw]] say]
+        nix.u.ref  +(nix.u.ref)
+        bom.u.ref  (~(put by bom.u.ref) inx [hen vaw])
+        fod.u.ref  (~(put by fod.u.ref) hen inx)
+      ==
+```
+
+The code for `++duce` is nearly the exact inverse of `++ease`, which in the case
+of a domestic desk is very simple -- we simply put the duct and rave into `qyx`
+and possibly start a timer with `++mabe` and `++bait`.  Recall that `ref` is
+null for domestic desks and that `++mabe` fires the given function with the time
+we need to be woken up at, if we need to be woken up at a particular time.
+
+```
+    ++  bait
+      |=  [hen=duct tym=@da]
+      %_(+> tag :_(tag [hen /tyme %t %wait tym]))
+```
+
+This sets an alarm by sending a `%wait` card with the given time to the timer
+vane.
+
+Back in `++eave`, if `++aver` returned `[~ ~]`, then we cancel the subscription.
+This occurs when we make (1) a `%x` request for a file that does not exist, (2)
+a `%w` request with a case that is not a number, or (3) a `%w` request with a
+nonempty path.  The `++blub` is exactly what you would expect it to be.
 
 ```
     ++  blub                                          ::  ship stop
@@ -1702,8 +1795,11 @@ quickly again, highlighting the case of foreign request.
     ++  ease                                          ::  release request
       |=  hen=duct
       ^+  +>
-      =.  qyx  (~(del by qyx) hen)
       ?~  ref  +>
+        =+  rov=(~(got by qyx) hen)
+        =.  qyx  (~(del by qyx) hen)
+        (mabe rov (cury best hen))
+      =.  qyx  (~(del by qyx) hen)
       |-  ^+  +>+.$
       =+  nux=(~(get by fod.u.ref) hen)
       ?~  nux  +>+.$
