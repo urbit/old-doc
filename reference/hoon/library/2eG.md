@@ -4,6 +4,18 @@
 
 ++  dog 
 
+```
+++  dog  ;~(plug dot gay)                               ::
+```
+
+Dot followed by an optional gap, used in numbers.
+
+    /~zod/try=> 1.234.
+                703
+    1.234.703
+    ~zod/try=> (scan "a.        " ;~(pfix alf dog))
+    [~~~. ~]
+
 ---
 
 ###++doh 
@@ -12,7 +24,17 @@
 ++  doh  ;~(plug ;~(plug hep hep) gay)                  ::
 ```
 
-Parse 
+Phonetic base phrase separator
+
+    /~zod/try=> ~nopfel-botduc-nilnev-dolfyn--haspub-natlun-lodmur-holtyd
+    ~nopfel-botduc-nilnev-dolfyn--haspub-natlun-lodmur-holtyd
+    /~zod/try=> ~nopfel-botduc-nilnev-dolfyn--
+                haspub-natlun-lodmur-holtyd
+    ~nopfel-botduc-nilnev-dolfyn--haspub-natlun-lodmur-holtyd
+    ~zod/try=> (scan "--" doh)
+    [[~~- ~~-] ~]
+    ~zod/try=> (scan "--      " doh)
+    [[~~- ~~-] ~]
 
 ---
 
@@ -24,10 +46,10 @@ Parse
 
 Parse phep (--) to null (~).
 
-        ~zod/try=> (scan "--" dun)
-        ~
-        ~zod/try=> (dun [[1 1] "--"])
-        [p=[p=1 q=3] q=[~ u=[p=~ q=[p=[p=1 q=3] q=""]]]]
+    ~zod/try=> (scan "--" dun)
+    ~
+    ~zod/try=> (dun [[1 1] "--"])
+    [p=[p=1 q=3] q=[~ u=[p=~ q=[p=[p=1 q=3] q=""]]]]
 
 ---
 
@@ -39,10 +61,10 @@ Parse phep (--) to null (~).
 
 Parse stet (==) to null (~).
 
-        ~zod/try=> (scan "==" duz)
-        ~
-        ~zod/try=> (duz [[1 1] "== |=..."])
-        [p=[p=1 q=3] q=[~ u=[p=~ q=[p=[p=1 q=3] q=" |=..."]]]]
+    ~zod/try=> (scan "==" duz)
+    ~
+    ~zod/try=> (duz [[1 1] "== |=..."])
+    [p=[p=1 q=3] q=[~ u=[p=~ q=[p=[p=1 q=3] q=" |=..."]]]]
 
 ---
 
@@ -52,15 +74,40 @@ Parse stet (==) to null (~).
 ++  gah  (mask [`@`10 ' ' ~])                           ::  newline or ace
 ```
 
+Whitespace component.
+
+    /~zod/try=> ^-  *  ::  show spaces
+                """
+                   -
+                 -
+                  -
+                """
+    [32 32 32 45 10 32 45 10 32 32 45 0]
+    /~zod/try=> ^-  *
+                """
+
+
+
+                """
+    [32 32 32 10 32 10 32 32 0]
+    /~zod/try=> ^-  (list ,@)
+                %-  scan  :_  (star gah)
+                """
+
+
+
+                """
+    ~[32 32 32 10 32 10 32 32]
+
 ---
 
 ###++gap 
 
 ```
-++  gap  (cold ~ ;~(plug gaq (star ;~(pose vul gah))))  ::
+++  gap  (cold ~ ;~(plug gaq (star ;~(pose vul gah))))  ::  plural whitespace
 ```
         
----
+Separates tall runes
 
 ---
 
@@ -74,6 +121,8 @@ Parse stet (==) to null (~).
          ==
 ```
 
+Two spaces, a newline, or comment.
+
 ---
         
 ###++gay 
@@ -82,6 +131,8 @@ Parse stet (==) to null (~).
 ++  gay  ;~(pose gap (easy ~))                          ::
 ```
         
+Optional gap.
+
 ---
         
 ###++vul 
@@ -94,8 +145,14 @@ Parse stet (==) to null (~).
          ==
 ```
 
-Parse comments and replace them with null.
+Parse comments and produce a null.
 Note that a comment must be ended with a newline character.
+
+    ~zod/try=> (scan "::this is a comment \0a" vul)
+    ~
+    ~zod/try=> (scan "::this is a comment " vul)
+    ! {1 21}
+    ! exit
 
 ---
 
