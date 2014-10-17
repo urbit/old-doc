@@ -4,6 +4,7 @@
 
 ###++ept       
 
+Check if map XXBetter way to phrase this? I don't like the comment "map invariant."
 
 ```
 ++  ept                                                 ::  map invariant
@@ -16,8 +17,9 @@
 ::
 ```
 
+Computes whether `a` is a [map](), producing a loobean.
 
-Is the given tree of cell pairs a map?
+`a` is a [tree]().
 
         ~zod/try=> m
         {[p='d' q=5] [p='a' q=1] [p='c' q=4] [p='b' q=[2 3]]}
@@ -33,23 +35,26 @@ Is the given tree of cell pairs a map?
 
 ###++ja
 
+Jar operations XX how do you think of treating the various "engine arms" like this?
 
 ```
 ++  ja                                                  ::  jar engine
   |/  a=(jar)
 ```
 
+The jar engine: A container arm for jar (maps of lists) operation arms.
+The contained arms inherit the [sample]() jar.
 
-The jar engine: A container arm for jar operation arms.  Jars are maps of lists.
-The contained arms inherit the sample jar.
+`a` is a [jar]().
 
     ~zod/try=> ~(. ja (mo (limo a/"ho" b/"he" ~)))
     <2.dgz [nlr([p={%a %b} q=""]) <414.fvk 101.jzo 1.ypj %164>]>
 
 ---
 
-###+-get:ja
+###+-get : ja 
 
+Grab value by key
 
 ```
   +-  get                                               ::  grab value by key
@@ -59,7 +64,11 @@ The contained arms inherit the sample jar.
   ::
 ```
 
-Retrieve a list from the map by its key.
+Produces a list retrieved from map `a` using its key `b`.
+
+`a` is a [jar]().
+
+`b` is a [noun]().
 
     ~zod/try=> =l (mo `(list ,[@t (list ,@)])`[['a' `(list ,@)`[1 2 3 ~]] ['b' `(list ,@)`[4 5 6 ~]] ~])
     ~zod/try=> l
@@ -84,7 +93,14 @@ Retrieve a list from the map by its key.
 ::
 ```
 
-Add a key-list value to the jar.
+Produces jar `a` with value `c` prepended to the list located at key `b`.
+
+`a` is a [jar]().
+
+`b` is the key as a [noun]().
+
+`c` is a [noun]() value. 
+
 
     ~zod/try=> =l (mo `(list ,[@t (list ,@)])`[['a' `(list ,@)`[1 2 3 ~]] ['b' `(list ,@)`[4 5 6 ~]] ~])
     ~zod/try=> l
@@ -103,6 +119,7 @@ Add a key-list value to the jar.
 
 ###++ju
 
+Jug operations
 
 ```
 ++  ju                                                  ::  jug engine
@@ -110,14 +127,15 @@ Add a key-list value to the jar.
 ```
 
 
-The jug engine: container arm for jug operation arms.  Jugs are maps of sets.
-The contained arms inherit it's sample jug, 'a'.
+The jug engine: container arm for jug (maps of sets) operation arms. XX what do you think of this intro?
+The contained arms inherit its [sample]() jug, `a`.
 
     ~zod/try=> ~(. ju (mo (limo a/(sa "ho") b/(sa "he") ~)))
     <2.dgz [nlr([p={%a %b} q={nlr(^$1{@tD $1}) nlr(^$3{@tD $3})}]) <414.fvk 101.jzo 1.ypj %164>]>
 
 ###+-del:ju
 
+Remove
 
 ```
   +-  del                                               ::  delete at key b
@@ -131,7 +149,13 @@ The contained arms inherit it's sample jug, 'a'.
   ::
 ```
         
-Delete a value in a set at a key.
+Produces jug `a` with value `c` removed from the set `c` located at key `b`.
+
+`a` is a [jug]().
+
+`b` is a key [noun]().
+
+`c` is a [noun]() value to be removed.
 
     ~zod/try=> s
     {[p='a' q={1 3 2}] [p='b' q={5 4 6}]}
@@ -144,6 +168,8 @@ Delete a value in a set at a key.
 
 ##+-get:ju
 
+Retrieve set
+
 ```
   +-  get                                               ::  gets set by key
     |*  b=*
@@ -152,7 +178,11 @@ Delete a value in a set at a key.
   ::
 ```
 
-Retrieve a set from the map by its key.
+Produces a set retrieved from jar `a` using its key `b`.
+
+`a` is a [jar]().
+
+`b` is a key [noun]().
 
     ~zod/try=> s
     {[p='a' q={1 3 2}] [p='b' q={5 4 6}]}
@@ -167,6 +197,7 @@ Retrieve a set from the map by its key.
 
 ###+-has:ju
 
+Check contents
 
 ```
   +-  has                                               ::  existence check
@@ -176,7 +207,13 @@ Retrieve a set from the map by its key.
   ::
 ```
 
-Does a key have an elements in its set?
+Computes whether a value `c` exists within the set located at key `b` with jar `a`. Produces a loobean.
+
+`a` is a [set]().
+
+`b` is a key as a [noun]().
+
+`c` is a value as a [noun](). 
 
     ~zod/try=> s
     {[p='a' q={1 3 2}] [p='b' q={5 4 6}]}
@@ -197,6 +234,7 @@ Does a key have an elements in its set?
 
 ###+-put:ju
 
+Add key-set pair
 
 ```
   +-  put                                               ::  adds key-element pair
@@ -207,7 +245,13 @@ Does a key have an elements in its set?
   ::
 ```
 
-Add a value to a specific set in the jug.
+Produces jar `a` with `c` added to the set value located at key `b`.
+
+`a` is a [set]().
+
+`b` is a key as a [noun]().
+
+`c` is a [value]().
 
     ~zod/try=> s
     {[p='a' q={1 3 2}] [p='b' q={5 4 6}]}
@@ -222,6 +266,7 @@ Add a value to a specific set in the jug.
 
 ###++by
 
+Map operations
 
 ```
 ++  by                                                  ::  map engine
@@ -229,12 +274,16 @@ Add a value to a specific set in the jug.
   |/  a=(map)
 ```
 
-Container arm for map operation arms.  The contained arms inherit it's sample map, 'a'. 
+Container arm for map operation arms.  The contained arms inherit it's [sample]() [map](), `a`. 
+
+`a` is a [map]().
 
 ---
 
 ###+-all:by
 
+
+Logical AND
 
 ```
   +-  all                                               ::  logical AND
@@ -247,7 +296,11 @@ Container arm for map operation arms.  The contained arms inherit it's sample ma
   ::
 ```
 
-Every value in the map matches a predicate.
+Computes the logical AND on the results of slamming every element in map `a` with gate `b`. Produces a loobean.
+
+`a` is a [map]().
+
+`b` is a [wet gate]().
 
     ~zod/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
     ~zod/try=> (~(all by b) |=(a=* ?@(a & |)))
@@ -262,6 +315,7 @@ Every value in the map matches a predicate.
 
 ###+-any:by
 
+Logical OR
 
 ```
   +-  any                                               ::  logical OR
@@ -274,7 +328,7 @@ Every value in the map matches a predicate.
   ::
 ```
 
-A value in the map matches a predicate.
+Computes the logical OR on the results of slamming every element with gate `b`. Produces a loobean.
 
     ~zod/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
     ~zod/try=> (~(all by b) |=(a=* ?@(a & |)))
@@ -287,6 +341,7 @@ A value in the map matches a predicate.
 
 ###+-del:by
 
+Delete
 
 ```
   +-  del                                               ::  delete at key b
@@ -308,7 +363,11 @@ A value in the map matches a predicate.
   ::
 ```
 
-Accept a noun and removes it as a key from the map.
+Produces map `a` with the element located at key `b` removed.
+
+`a` is a [map]().
+
+`b` is a key as a [noun]().
 
         ~zod/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
         ~zod/try=> (~(del by b) `a`)
@@ -318,9 +377,10 @@ Accept a noun and removes it as a key from the map.
 
 ###+-dig:by
 
+Axis of key
 
 ```
-  +-  dig                                               ::  axis of b key
+  +-  dig                                               ::  axis of key
     |=  b=*
     =+  c=1
     |-  ^-  (unit ,@)
@@ -332,8 +392,11 @@ Accept a noun and removes it as a key from the map.
   ::
 ```
 
+Produce the axis of key `b` within map `a`.
 
-Produce the axis of a key within the set.
+`a` is a [map]().
+
+`b` is a key as a [noun]().
 
         ~zod/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
         ~zod/try=> (~(dig by b) `b`)
@@ -343,6 +406,7 @@ Produce the axis of a key within the set.
 
 ###+-gas:by
 
+Concatenate
 
 ```
   +-  gas                                               ::  concatenate
@@ -356,7 +420,11 @@ Produce the axis of a key within the set.
   ::
 ```
 
-Insert a list of key-value pairs into the map.
+Insert a list of key-value pairs `b` into map `a`.
+
+`a` is a [map]().
+
+`b` is a [list]() of [cells]() of key-value nouns
 
     ~zod/try=> =a (mo `(list ,[@t *])`[[`a` 1] [`b` 2] ~])
     ~zod/try=> =b `(list ,[@t *])`[[`c` 3] [`d` 4] ~]
@@ -367,6 +435,7 @@ Insert a list of key-value pairs into the map.
 
 ###+-get:by
 
+Grab value with key
 
 ```
   +-  get                                               ::  grab value by key
@@ -393,6 +462,7 @@ Unit value in the map at a key(if it exists).
 
 ###+-got:by
 
+Assert
 
 ```
   +-  got
@@ -418,6 +488,7 @@ Value in the map at a key, crashing on inexistance.
 
 ###+-has:by
 
+Check key existence XX
 
 ```
   +-  has                                               ::  key existence check
@@ -427,7 +498,11 @@ Value in the map at a key, crashing on inexistance.
   ::
 ```
 
-Whether a noun is a key in the map.
+Checks whether map `a` contains an element with key `b`, producing a loobean.
+
+`a` is a [map]().
+
+`b` is a key as a [noun]().
 
         ~zod/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
         ~zod/try=> (~(has by b) `b`)
@@ -439,6 +514,7 @@ Whether a noun is a key in the map.
 
 ###+-int:by
 
+Intersection
 
 ```
   +-  int                                               ::  intersection
@@ -463,7 +539,11 @@ Whether a noun is a key in the map.
   ::
 ```
 
-Produce the intersection between the map and another of the same type.
+Produces a map of the (key) intersection between two maps of the same type, `a` and `b`. If both maps have an identical key that point to different values, the element from map `a` is used.
+
+`a` is a [map]().
+
+`b` is a [map]().
 
         ~zod/try=> =n (mo `(list ,[@t *])`[['a' 1] ['c' 3] ~])
         ~zod/try=> n
@@ -472,6 +552,16 @@ Produce the intersection between the map and another of the same type.
         {[p='a' q=1] [p='b' q=2]}
         ~zod/try=> (~(int by m) n)
         {[p='a' q=1]}
+        ~ravpel-holber/try=> =p (mo `(list ,[@t *])`[['a' 2] ['b' 2] ~])
+        ~zod/try=> p
+        {[p='a' q=2] [p='b' q=2]}
+        ~zod/try=> (~(int by p) n)
+        {[p='a' q=2]}
+        ~zod/try=> =q (mo `(list ,[@t *])`[['a' 2] ['c' 2] ~])
+        ~zod/try=> q
+        {[p='a' q=2] [p='b' q=2]}
+        ~zod/try=> (~(int by p) q)
+        {[p='a' q=2] [p='b' q=2]}
         ~zod/try=> =o (mo `(list ,[@t *])`[['c' 3] ['d' 4] ~])
         ~zod/try=> (~(int by m) o)
         {}
@@ -480,6 +570,7 @@ Produce the intersection between the map and another of the same type.
 
 ###+-mar:by
 
+Assert and Add
 
 ```
   +-  mar                                               ::  add with validation
@@ -489,6 +580,8 @@ Produce the intersection between the map and another of the same type.
     (put b u.c)
   ::
 ```
+
+Produces map `a` with the addition of a key-value pair, where the value is a nonempty unit.
 
 Accept a noun and a unit of a noun of the type of the map's keys and values, respectively. 
 Validate that the value is not null and put the pair in the map. If the value is null, 
@@ -515,6 +608,7 @@ XX This arm is broken, asana task 15186618346453
 
 ###+-put:by
 
+Add kay-value pair
 
 ```
   +-  put                                               ::  adds key-value pair
@@ -541,7 +635,13 @@ XX This arm is broken, asana task 15186618346453
   ::
 ```
 
-Add a key-value pair to the map.
+Produces `a` with the addition of the key-value pair of `b` and `c`.
+
+`a` is a [map]().
+
+`b` is a key of the same type as the keys in `a`.
+
+`c` is a value of the same type of the values in `a`.
 
     ~zod/try=> m
     {[p='a' q=1] [p='b' q=2]}
@@ -600,6 +700,7 @@ XX interface changing, possibly disappearing
         
 ###+-run:by
 
+Transform values
 
 ```
   +-  run                                               ::  turns to tuples
@@ -610,7 +711,13 @@ XX interface changing, possibly disappearing
   ::
 ```
 
-Apply gate to values in map.
+Turns[]() (maps) over every element in set `a` using gate `b`. Produces a map.
+
+`a` is a [map]().
+
+`b` is a [wet gate]().
+
+
 
     ~zod/try=> m
     {[p='a' q=1] [p='b' q=2]}
@@ -623,6 +730,7 @@ Apply gate to values in map.
 
 ###+-tap:by
 
+Listify pairs
 
 ```
   +-  tap                                               ::  listify pairs
@@ -635,6 +743,12 @@ Apply gate to values in map.
   ::
 ```
 
+`a` is a [map]().
+
+`b` is a [list]().
+
+Produces the list of all elements in map `a` that is prepended to list `b`, which is empty by default. 
+
     {[p='a' q=1] [p='b' q=2]}
     ~zod/try=> `*`m
     [[98 2] [[97 1] 0 0] 0]
@@ -643,11 +757,11 @@ Apply gate to values in map.
     ~zod/try=> `*`(~(tap by m))
     [[98 2] [97 1] 0]
 
-
 ---
 
 ###+-uni:by
 
+Union
 
 ```
   +-  uni                                               ::  union, merge
@@ -672,7 +786,11 @@ Apply gate to values in map.
   ::
 ```
 
-Produce the union between two maps.
+Produce the union between the keys of two maps, `a` and `b`.
+
+`a` is a [map]().
+
+`b` is a [map]().
 
     ~zod/try=> m
     {[p='a' q=1] [p='b' q=2]}
@@ -683,14 +801,20 @@ Produce the union between two maps.
     ~zod/try=> (~(uni by m) ~)
     {[p='a' q=1] [p='b' q=2]}
     ~zod/try=> n
-    {[p='a' q=1] [p='c' q=3]}
+    {[p='a' q=1] [p='c' q=9]}
     ~zod/try=> (~(uni by o) n)
     {[p='d' q=4] [p='a' q=1] [p='c' q=3]}
+    ~zod/try=> =n (mo `(list ,[@t *])`[['a' 1] ['c' 9] ~])
+    ~zod/try=> n
+    {[p='a' q=1] [p='c' q=9]}
+    ~zod/try=> (~(uni by o) n)
+    {[p='d' q=4] [p='a' q=1] [p='c' q=9]}
 
 ---
 
 ###+-urn:by
 
+Turn (with key)
 
 ```
   +-  urn                                               ::  turn
@@ -701,7 +825,11 @@ Produce the union between two maps.
   ::
 ```
 
-Turn over the values of the map and produce the tranformed map.
+Turns[]() (maps) over every value in map `a` using gate `b`, which accepts both the key and the value of each element as its sample. 
+
+`a` is a [map]().
+
+`b` is a [wet gate]() that accepts two nouns (a key and a value) and produces a noun (the new value). 
 
     ~zod/try=> m
     {[p='a' q=1] [p='b' q=2]}
@@ -716,6 +844,7 @@ Turn over the values of the map and produce the tranformed map.
 
 ###+-wyt:by
 
+Depth
 
 ```
   +-  wyt                                               ::  depth of map
@@ -724,7 +853,9 @@ Turn over the values of the map and produce the tranformed map.
     ?~(a 0 +((add $(a l.a) $(a r.a))))
 ```
 
-Produce the depth of the tree map.
+Produce the depth of the tree map `a`.
+
+`a` is a [map]().
 
     ~zod/try=> m
     {[p='a' q=1] [p='b' q=2]}
