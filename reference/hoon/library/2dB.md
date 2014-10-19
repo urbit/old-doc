@@ -1,3 +1,10 @@
+1. examples should all have the constructing statements included. 
+2.examples should have spaces betwween them?
+3. put:ju examples could be off--can't check because I don't know how to make a set.
+4. how do you feel about  `b` is a [key]() as a [noun]()?
+
+
+
 ##section 2dB, maps
 
 ---
@@ -84,7 +91,7 @@ Produces a list retrieved from map `a` using its key `b`.
 
 ###+-add:ja
 
-Prepend value to list
+Prepend to list
 
 ```
   +-  add                                               ::  adds key-list pair
@@ -428,7 +435,7 @@ Insert a list of key-value pairs `b` into map `a`.
 
 `a` is a [map]().
 
-`b` is a [list]() of [cells]() of key-value nouns
+`b` is a [list]() of [cells]() of key-value nouns `p` and `q`.
 
     ~zod/try=> =a (mo `(list ,[@t *])`[[`a` 1] [`b` 2] ~])
     ~zod/try=> =b `(list ,[@t *])`[[`c` 3] [`d` 4] ~]
@@ -439,10 +446,10 @@ Insert a list of key-value pairs `b` into map `a`.
 
 ###+-get:by
 
-Grab value with key
+Grab unit value
 
 ```
-  +-  get                                               ::  grab value by key
+  +-  get                                               ::  unit value by key
     ~/  %get
     |*  b=*
     |-  ^-  ?(~ [~ u=_?>(?=(^ a) q.n.a)])
@@ -456,7 +463,11 @@ Grab value with key
   ::
 ```
 
-Unit value in the map at a key(if it exists).
+Produce the unit value of the value located at key `b` within map `a`. 
+
+`a` is a [map]()
+
+`b` is a [key]() as a [noun]()
 
         ~zod/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])  
         ~zod/try=> (~(get by b) `b`)
@@ -476,7 +487,11 @@ Assert
   ::
 ```
 
-Value in the map at a key, crashing on inexistance.
+Produce the value located at key `b` within map `a`. Crash if key `b` does not exist. 
+
+`a` is a [map]().
+
+`b` is a [key]().
 
         ~zod/try=> =m (mo `(list ,[@t *])`[['a' 1] ['b' 2] ~])
         ~zod/try=> m
@@ -612,7 +627,7 @@ XX This arm is broken, asana task 15186618346453
 
 ###+-put:by
 
-Add kay-value pair
+Add key-value pair
 
 ```
   +-  put                                               ::  adds key-value pair
@@ -721,8 +736,6 @@ Turns[]() (maps) over every element in set `a` using gate `b`. Produces a map.
 
 `b` is a [wet gate]().
 
-
-
     ~zod/try=> m
     {[p='a' q=1] [p='b' q=2]}
     ~zod/try=> ^+(m (~(run by m) dec))
@@ -790,7 +803,7 @@ Union
   ::
 ```
 
-Produce the union between the keys of two maps, `a` and `b`.
+Produces a map of the union between the keys of `a` and `b`.
 
 `a` is a [map]().
 
