@@ -84,7 +84,7 @@ Produces a list retrieved from map `a` using its key `b`.
 
 ###+-add:ja
 
-Add key-list pair
+Prepend value to list
 
 ```
   +-  add                                               ::  adds key-list pair
