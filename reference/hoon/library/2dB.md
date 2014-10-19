@@ -52,7 +52,7 @@ The contained arms inherit the [sample]() jar.
 
 ---
 
-###+-get : ja 
+###+-get:ja XXLook at this rendered on github. What do you think about spaces between get+:+ja? Anton says no, I don't know...
 
 Grab value by key
 
@@ -68,7 +68,7 @@ Produces a list retrieved from map `a` using its key `b`.
 
 `a` is a [jar]().
 
-`b` is a [noun]().
+`b` is a key of the same type as the keys in `a`. 
 
     ~zod/try=> =l (mo `(list ,[@t (list ,@)])`[['a' `(list ,@)`[1 2 3 ~]] ['b' `(list ,@)`[4 5 6 ~]] ~])
     ~zod/try=> l
@@ -84,6 +84,7 @@ Produces a list retrieved from map `a` using its key `b`.
 
 ###+-add:ja
 
+Add key-list pair
 
 ```
   +-  add                                               ::  adds key-list pair
@@ -97,9 +98,9 @@ Produces jar `a` with value `c` prepended to the list located at key `b`.
 
 `a` is a [jar]().
 
-`b` is the key as a [noun]().
+`b` is a key of the same type as the keys in `a`.
 
-`c` is a [noun]() value. 
+`c` is a value of the same type as the values in `a`.
 
 
     ~zod/try=> =l (mo `(list ,[@t (list ,@)])`[['a' `(list ,@)`[1 2 3 ~]] ['b' `(list ,@)`[4 5 6 ~]] ~])
@@ -130,6 +131,8 @@ Jug operations
 The jug engine: container arm for jug (maps of sets) operation arms. XX what do you think of this intro?
 The contained arms inherit its [sample]() jug, `a`.
 
+`a` is a [jug]().
+
     ~zod/try=> ~(. ju (mo (limo a/(sa "ho") b/(sa "he") ~)))
     <2.dgz [nlr([p={%a %b} q={nlr(^$1{@tD $1}) nlr(^$3{@tD $3})}]) <414.fvk 101.jzo 1.ypj %164>]>
 
@@ -149,13 +152,13 @@ Remove
   ::
 ```
         
-Produces jug `a` with value `c` removed from the set `c` located at key `b`.
+Produces jug `a` with value `c` removed from set located at key `b`.
 
 `a` is a [jug]().
 
-`b` is a key [noun]().
+`b` is a key of the same type as the keys in `a`.
 
-`c` is a [noun]() value to be removed.
+`c` is the value of the same type of the keys in `a` that is to be removed.
 
     ~zod/try=> s
     {[p='a' q={1 3 2}] [p='b' q={5 4 6}]}
@@ -178,11 +181,11 @@ Retrieve set
   ::
 ```
 
-Produces a set retrieved from jar `a` using its key `b`.
+Produces a set retrieved from jar `a` using key `b`.
 
 `a` is a [jar]().
 
-`b` is a key [noun]().
+`b` is a key of the same type as the keys in `a`.
 
     ~zod/try=> s
     {[p='a' q={1 3 2}] [p='b' q={5 4 6}]}
@@ -278,10 +281,11 @@ Container arm for map operation arms.  The contained arms inherit it's [sample](
 
 `a` is a [map]().
 
+    ~zod/try=> ~(. by (mo (limo [%a 1] [%b 2] ~)))
+    <19.irb [nlr([p={%a %b} q=@ud]) <414.rvm 101.jzo 1.ypj %164>]>
 ---
 
 ###+-all:by
-
 
 Logical AND
 
