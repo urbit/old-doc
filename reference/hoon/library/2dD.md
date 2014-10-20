@@ -60,9 +60,12 @@ Setify.  Accepts a list and produces a set of the list's elements.
 
 XXX THIS APPEARS TO BE A COPY OF ++sa. QUEUIFY IS NOT IMPLEMENTED YET. XXX
 
-    ~zod/try=> ~(bal to (qu "asda"))
-    {~~d ~~a ~~s}
-    ~zod/try=> ::  XX mistaken
+    ~zod/try=> (qu `(list ,@ud)`~[1 2 3 5])
+    {5 3 2 1}
+    ~zod/try=> (qu "sada")
+    {'a' 'd' 'a' 's'}
+    ~zod/try=> ~(top to (qu "sada"))
+    [~ 's']
 
 ---
 
