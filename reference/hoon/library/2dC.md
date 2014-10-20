@@ -4,17 +4,20 @@
 
 ###++to
 
+Queue engine
 
 ```
 ++  to                                                  ::  queue engine
   |/  a=(qeu)
 ```
 
+Container arm for queue operation arms.  The contained arms inherit its [sample]() queue `a`. 
 
-Container arm for queue operation arms.  The contained arms inherit it's sample queue, 'a'. 
+`a` is a [queue]().
 
-###+-bal
+###+-bal:to
 
+Balance
 
 ```
   +-  bal
@@ -28,7 +31,9 @@ Container arm for queue operation arms.  The contained arms inherit it's sample 
   ::
 ```
 
-Vertically rebalance queue
+Vertically rebalances queue `a`.
+
+`a` is a [queue]().
 
     ~zod/try=> `(qeu tape)`["a" ~ "b" ~ "c" ~ "d" ~ "e" ~ "f" ~ "g" ~ ~]
     {"a" "b" "c" "d" "e" "f" "g"}
@@ -41,8 +46,9 @@ Vertically rebalance queue
     
 ---
 
-###+-dep
-
+###+-dep:to
+     
+Maximum Depth
 
 ```
   +-  dep                                               ::  max depth of queue
@@ -52,7 +58,7 @@ Vertically rebalance queue
   ::
 ```
 
-Produce the maximum depth of leaves (r.a and l.a) in the queue 'a'.
+Produces the maximum depth of leaves (r.a and l.a) in queue `a`.
 
     ~zod/try=> =a (~(gas to `(qeu ,@)`~) `(list ,@)`[1 2 3 4 5 6 7 ~])
     ~zod/try=> ~(dep to a)
@@ -63,7 +69,6 @@ Produce the maximum depth of leaves (r.a and l.a) in the queue 'a'.
     ~zod/try=> =a (~(gas to `(qeu ,@)`~) `(list ,@)`[1 2 ~])
     ~zod/try=> ~(dep to a)
     2
-
     ~zod/try=> ~(dep to `(qeu tape)`["a" ~ "b" ~ "c" ~ "d" ~ "e" ~ "f" ~ "g" ~ ~])
     7
     ~zod/try=> ~(dep to ~(bal to `(qeu tape)`["a" ~ "b" ~ "c" ~ "d" ~ "e" ~ "f" ~ "g" ~ ~]))
@@ -74,16 +79,17 @@ Produce the maximum depth of leaves (r.a and l.a) in the queue 'a'.
 
 ###+-gas
 
+Push list
 
 ```
-  +-  gas                                               ::  insert list to que
+  +-  gas                                               ::  insert list to queue
     |=  b=(list ,_?>(?=(^ a) n.a))
     |-  ^+  a
     ?~(b a $(b t.b, a (put(+< a) i.b)))
   ::
 ```
 
-Push all elements of list into the queue.
+Push all elements of list `b` into the queue.
 
     ~zod/try=> (~(gas to `(qeu ,@)`~) `(list ,@)`[1 2 3 ~])
     {3 2 1}
@@ -94,8 +100,9 @@ Push all elements of list into the queue.
 
 ---
 
-###+-get
+###+-get:to
 
+Pop
 
 ```
   +-  get                                               ::  head-tail pair
@@ -112,12 +119,21 @@ Push all elements of list into the queue.
   ::
 ```
 
-Produces the head element and tail queue.
+Produces the head and tail queue of `a`.
+
+`a` is a [queue]().
+
+    ~zod/try=> =s (~(gas to *(qeu ,@)) `(list ,@)`~[1 2 3])
+    ~zod/try=> ~(get to s)
+    [p=1 q={3 2}]
+    ~zod/try=> ~(get to ~)
+    ! exit
 
 ---
 
-###+-nap
+###+-nap:to
 
+Remove last in
 
 ```
   +-  nap                                               ::  removes head
@@ -128,7 +144,9 @@ Produces the head element and tail queue.
   ::
 ```
 
-Remove the head of a queue and produce the resulting queue.
+Removes the head of queue `a`, producing the resulting queue.
+
+`a` is a [queue]().
 
     ~zod/try=> =a (~(gas to `(qeu ,@)`~) `(list ,@)`[1 2 3 4 5 6 ~])
     ~zod/try=> -.a
@@ -143,8 +161,9 @@ Remove the head of a queue and produce the resulting queue.
 
 ---
 
-###+-put
+###+-put:to
 
+Insert
 
 ```
   +-  put                                               ::  insert new tail
@@ -156,7 +175,9 @@ Remove the head of a queue and produce the resulting queue.
   ::
 ```
 
-Accept any noun and adds to the queue as the head, producing the resulting queue.
+Accept any noun and adds to queue `a` as the head, producing the resulting queue.
+
+`a` is a [queue]().
 
     ~zod/try=> (~(gas to `(qeu ,@)`~) `(list ,@)`[3 1 2 4 5 6 ~])
     ~zod/try=> (~(put to a) 7)
@@ -164,10 +185,12 @@ Accept any noun and adds to the queue as the head, producing the resulting queue
 
 ---
 
-###+-tap
+###+-tap:to
+
+Queue to list
 
 ```
-  +-  tap                                               ::  adds list to end
+  +-  tap                                               :: queue to list 
     |=  b=(list ,_?>(?=(^ a) n.a))
     ^+  b
     ?~  a
@@ -176,7 +199,7 @@ Accept any noun and adds to the queue as the head, producing the resulting queue
   ::
 ```
 
-Flattens queue into a list
+Produces queue `a` as a list from front to back.
 
     ~zod/try=> =a (~(gas to `(qeu ,@)`~) `(list ,@)`[3 1 2 4 5 6 ~])
     ~zod/try=> `*`a
@@ -186,7 +209,7 @@ Flattens queue into a list
 
 ---
 
-###+-top
+###+-top:to
 
 
 ```
@@ -196,7 +219,7 @@ Flattens queue into a list
     ?~(r.a [~ n.a] $(a r.a))
 ```
 
-Unit top of queue
+Produces the head of queue `a` as a unit (an empty queue has no head).
 
     ~zod/try=> =a (~(gas to `(qeu ,@)`~) `(list ,@)`[1 2 3 4 5 6 ~])
     ~zod/try=> ~(top to a)
