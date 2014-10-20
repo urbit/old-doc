@@ -4,8 +4,10 @@
 
 ###++cue
 
+Unpack atom to noun
+
 ```
-++  cue                                                 ::  unpack
+++  cue                                                 ::  unpack atom to noun
   ~/  %cue
   |=  a=@
   ^-  *
@@ -27,17 +29,18 @@
 ::
 ```
 
-Unpack an atom to a noun.  The inverse of jam.
+Produces a noun unpacked from atom `a`.  The inverse of jam.
+
+`a` is an [atom]().
 
 See `++jam` for a more detailed walk through.
 
-        
-    ~zod/try=> (cue (jam 1))
+    ~zod/try=> (cue 12)
     1
+    ~zod/try=> (cue 817)
+    [1 1]
     ~zod/try=> (cue 4.657)
     [1 2]
-    ~zod/try=> (cue (jam [1 1]))
-    [1 1]
     ~zod/try=> (cue 39.689)
     [0 19]
 
@@ -72,46 +75,27 @@ See `++jam` for a more detailed walk through.
 ::
 ```
 
-Compress a noun to an atom.  The inverse of cue.
+Produces an atom unpacked from noun `a`.  The inverse of cue.
 
+`a` is a [noun]().
 
     ~zod/try=> (jam 1)
     12
     ~zod/try=> (jam [1 1])
     817
+    ~zod/try=> (jam [1 2])
+    4.657
     ~zod/try=> (jam [~ u=19])
     39.689
     
-    Let's deconstruct that.
-    19.689 is the LSB bitstring 
-    ~zod/try=> `tape`(flop (scow %ub 39.689))
-    "1001.0000.1101.1001b0"
-    
-    The first two bits are "10", indicating a cell
-    
-    The head of the cell begins with "0", which is an atom. The immediate "1"
-    afterwards indicates that this is an atom of 0 size, i.e. 0 (~).
-    
-    The tail of the cell begins with "0", indicating another atom; and proceeds
-    with 3 more 0s, directing 110 be consumed; the first 1 is ignored, and an
-    implied 1 appended, to obtain 101, LSB 0b101 (which happens to be symmetric,
-    but we are in fact in LSB): 5 more bits follow.
-    
-    Those bits are 1.1001, the head of 0b1001.1…
-    ~zod/try=> `@`0b1.0011
-    19
-
-    This concludes the discussion of ++jam
-    
-    XX There is one combination left, 11, which designates a backreference, to
-    a location n from the start of the bitstring, n being similarlt length-encoded.
-
 ---
 
 ###++mat       
 
+Length-encode
+
 ```
-++  mat                                                 ::  length-encode
+++  mat                                                 ::  length-encode 
   ~/  %mat
   |=  a=@
   ^-  [p=@ q=@]
@@ -124,7 +108,7 @@ Compress a noun to an atom.  The inverse of cue.
 ::
 ```
 
-Encodes length.  Only used internally as helper function to jam.
+Produces a cell whose tail `q` is atom `a` with a bit representation of its length prepended to it (as the least significant bits). The head `p` is the length of `q` in bits.
 
     ~zod/try=> (mat 0xaaa)
     [p=20 q=699.024]
@@ -143,10 +127,11 @@ Encodes length.  Only used internally as helper function to jam.
     ~zod/try=>  [`@ub`a `@ub`(end 0 (dec c) b) `@ub`(bex c)]
     [0b1010.1010.1010 0b100 0b1.0000]
 
-
 ---
 
 ###++rub 
+
+Length-decode
 
 ```
 ++  rub                                                 ::  length-decode
@@ -166,7 +151,8 @@ Encodes length.  Only used internally as helper function to jam.
   [(add (add c c) e) (cut 0 [(add d (dec c)) e] b)]
 ```
 
-Decodes length.  Only used internally as a helper function to cue.
+The inverse of `++mat`. Accepts a cell of index `a` and a bitstring `b` and produces the cell whose tail `q` is the decoded atom at index `a`
+and whose head is the length of the encoded atom `q`, by which the offset `a` is advanced.  Only used internally as a helper cue.
 
     ~zod/try=> `@ub`(jam 0xaaa)
     0b1.0101.0101.0101.0010.0000
