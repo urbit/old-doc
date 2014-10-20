@@ -65,9 +65,12 @@ Produces a queue from list `a`.
 
 `a` is a [list]().
 
-    ~zod/try=> ~(bal to (qu "asda"))
-    {~~d ~~a ~~s}
-    ~zod/try=> ::  XX mistaken
+    ~zod/try=> (qu `(list ,@ud)`~[1 2 3 5])
+    {5 3 2 1}
+    ~zod/try=> (qu "sada")
+    {'a' 'd' 'a' 's'}
+    ~zod/try=> ~(top to (qu "sada"))
+    [~ 's']
 
 ---
 
