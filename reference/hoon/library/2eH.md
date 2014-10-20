@@ -190,6 +190,10 @@ Parse any hexadecimal number to an atom.
         7.911
         ~zod/try=> (scan "1EE7" hex)
         7.911
+        ~zod/try=> (scan "1EE7F7" hex)
+        2.025.463
+        ~zod/try=> `@ux`(scan "1EE7F7" hex)
+        0x1e.e7f7
 
 ###++hig
 
@@ -275,8 +279,17 @@ Parse a hexbyte.
 ```
 
 Letters, -, and _
+
+    ~zod/try=> (scan "as_me" nix)
+    q=435.626.668.897
+    ~zod/try=> `@t`(scan "as_me" nix)
+    'as_me'
         
 ###++nud 
+
+```
+++  nud  (shim '0' '9')                                 ::  numeric
+```
 
 Parse a numeric character - A number.
 
@@ -300,16 +313,22 @@ Parse a numeric character - A number.
 
 Parse an individual character to its cord atom representation.
 
-        ~zod/try=> (scan "%" qit)
-        37
-        ~zod/try=> (scan "0" qit)
-        48
-        ~zod/try=> (scan "E" qit)
-        69
-        ~zod/try=> (scan "a" qit)
-        97
-        ~zod/try=> (scan "cord" (star qit))
-        ~[99 111 114 100]
+    ~zod/try=> (scan "%" qit)
+    37
+    ~zod/try=> `@t`(scan "%" qit)
+    '%'
+    ~zod/try=> (scan "0" qit)
+    48
+    ~zod/try=> (scan "E" qit)
+    69
+    ~zod/try=> (scan "a" qit)
+    97
+    ~zod/try=> (scan "\\0a" qit)
+    10
+    ~zod/try=> `@ux`(scan "\\0a" qit)
+    0xa
+    ~zod/try=> (scan "cord" (star qit))
+    ~[99 111 114 100]
 
 ###++qut 
 
@@ -328,7 +347,19 @@ Parse an individual character to its cord atom representation.
 ::
 ```
 
-Parse 
+Parse single-soq cord with \{gap}/ anywhere in the middle, or triple-soq cord
+which must be in an indented block.
+
+    ~zod/try=> (scan "'cord'" qut)
+    q=1.685.221.219
+    ~zod/try=> 'cord'
+    'cord'
+    ~zod/try=> `@ud`'cord'
+    1.685.221.219
+    /~zod/try=> '''
+                Heredoc isn't prohibited from containing quotes
+                '''
+    'Heredoc isn't prohibited from containing quotes'
 
 
 ###++sym
@@ -340,10 +371,43 @@ Parse
   ;~(plug low (star ;~(pose nud low hep)))
 ::
 ```
-        
+
+A term: a letter(lowercase), followed by letters, numbers, or -
+
+    ~zod/try=> (scan "sam-2" sym)
+    215.510.507.891
+    ~zod/try=> `@t`(scan "sam-2" sym)
+    'sam-2'
+    ~zod/try=> (scan "sym" sym)
+    7.174.515
 
 ###++ven 
 
+```
+++  ven  ;~  (comp |=([a=@ b=@] (peg a b)))             ::  +>- axis syntax
+           bet
+           =+  hom=`?`|
+           |=  tub=nail
+           ^-  (like axis)
+           =+  vex=?:(hom (bet tub) (gul tub))
+           ?~  q.vex
+             [p.tub [~ 1 tub]]
+           =+  wag=$(p.tub p.vex, hom !hom, tub q.u.q.vex)
+           ?>  ?=(^ q.wag)
+           [p.wag [~ (peg p.u.q.vex p.u.q.wag) q.u.q.wag]]
+         ==
+```
+
+Axis syntax parser
+
+    ~zod/arvo=/hoon/hoon> (scan "->+" ven)
+    11
+    ~zod/arvo=/hoon/hoon> `@ub`(scan "->+" ven)
+    0b1011
+    ~zod/arvo=/hoon/hoon> (peg (scan "->" ven) (scan "+" ven))
+    11
+    ~zod/arvo=/hoon/hoon> ->+:[[1 2 [3 4]] 5]
+    [3 4]
 
 ###++vit 
 
@@ -358,6 +422,13 @@ Parse
   ==
 ```
 
-Parse a text and produce its base 64 encoding
+Terran base64
 
-
+    ~zod/arvo=/hoon/hoon> (scan "C" vit)
+    2
+    ~zod/arvo=/hoon/hoon> (scan "c" vit)
+    28
+    ~zod/arvo=/hoon/hoon> (scan "2" vit)
+    54
+    ~zod/arvo=/hoon/hoon> (scan "-" vit)
+    62
