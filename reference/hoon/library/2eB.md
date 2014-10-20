@@ -4,6 +4,8 @@
 
 ###++last
 
+Farther trace
+
 ```
 ++  last  |=  [zyc=hair naz=hair]                       ::  farther trace
           ^-  hair
@@ -13,7 +15,11 @@
 ::
 ```
 
-Compare two [line column] pairs and produce the one which is farther along in text.
+Compares two line-column pairs, `zyc` and `naz`, and produces whichever [hair]() is farther along.
+
+`zyc` is a [hair]().
+
+`naz` is a [hair]().
 
     ~zod/try=> (last [1 1] [1 2])
     [p=1 q=2]
@@ -28,13 +34,19 @@ Compare two [line column] pairs and produce the one which is farther along in te
 
 ###++lust
 
+Detect newline
+
 ```
 ++  lust  |=  [weq=char naz=hair]                       ::  detect newline
           ^-  hair
           ?:(=(10 weq) [+(p.naz) 1] [p.naz +(q.naz)])
 ```
 
-Advance [line column] count by a character, resetting column on newline.
+Advances the hair `naz` by a row if the char `weq` is a newline, or by a column if `weq` is any other character.
+
+`weq` is a [char]().
+
+`naz` is a [hair]().
 
     ~zod/try=> (lust `a` [1 1])
     [p=1 q=2]
@@ -42,8 +54,6 @@ Advance [line column] count by a character, resetting column on newline.
     [p=2 q=1]
     ~zod/try=> (lust '9' [10 10])
     [p=10 q=11]
-    ~zod/try=> (lust `@t`10 [0 0])
-    [p=1 q=1]
     /~zod/try=> (roll "maze" [.(+<+ [1 1])]:lust)
     [1 5]
     /~zod/try=> %-  roll  :_  [.(+<+ [1 1])]:lust
