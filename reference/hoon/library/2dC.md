@@ -89,7 +89,8 @@ Push list
   ::
 ```
 
-Push all elements of list `b` into the queue.  XX into vs. onto?
+Push all elements of list `b` into the queue.
+
     ~zod/try=> (~(gas to `(qeu ,@)`~) `(list ,@)`[1 2 3 ~])
     {3 2 1}
     ~zod/try=> =a (~(gas to `(qeu ,@)`~) `(list ,@)`[1 2 3 ~])
@@ -160,7 +161,7 @@ Removes the head of queue `a`, producing the resulting queue.
 
 ---
 
-###+-put
+###+-put:to
 
 Insert
 
@@ -184,7 +185,7 @@ Accept any noun and adds to queue `a` as the head, producing the resulting queue
 
 ---
 
-###+-tap
+###+-tap:to
 
 Queue to list
 
@@ -208,7 +209,7 @@ Produces queue `a` as a list from front to back.
 
 ---
 
-###+-top
+###+-top:to
 
 
 ```
@@ -218,7 +219,7 @@ Produces queue `a` as a list from front to back.
     ?~(r.a [~ n.a] $(a r.a))
 ```
 
-Unit top of queue
+Produces the head of queue `a` as a unit (an empty queue has no head).
 
     ~zod/try=> =a (~(gas to `(qeu ,@)`~) `(list ,@)`[1 2 3 4 5 6 ~])
     ~zod/try=> ~(top to a)
