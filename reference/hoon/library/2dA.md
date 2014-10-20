@@ -1,7 +1,5 @@
 ##section 2dA, sets
 
----
-                
 ###++apt
 
 Check if set
@@ -35,8 +33,6 @@ Produces a loobean indicating whether `a` is a set or not.
 ###++in
 
 Set operations
-
-XXhow should we format these "container" arms..?
 
 ```
 ++  in                                                  ::  set engine
@@ -135,7 +131,7 @@ Remove a noun
   ::
 ```
 
-Removes `a` from the set.
+Removes `b` from the set.
 
 `a` is a [set]().
 
@@ -297,8 +293,6 @@ Add an element `b` to the set `a`.
 
 ###+-rep:in
 
-XX confused
-
 Accumulate
 
 ```
@@ -310,14 +304,13 @@ Accumulate
   ::
 ```
 
-Accumulate the elements of `b` using `a`.
+Accumulate the elements of `a` using a gate `c` and an accumulator `b`.
 
 `a` is a [set]().
 
-`b` is a [gate]() that accepts a noun and produces a loobean.
+`b` is a noun.
 
-XX interface changing
-XX HENRY doesnt understand the commen. 
+`c` is a [gate]().
 
     ~zod/try=> =a (~(gas in *(set ,@)) [1 2 3 ~])
     ~zod/try=> a
@@ -342,7 +335,9 @@ Set to list
   ::
 ```
 
-Flatten the set into a list.
+Flatten the set `a` into a list.
+
+`a` is an [set]().
 
     ~zod/try=> =s (sa `(list ,@t)`['a' 'b' 'c' 'd' 'e' ~])
     ~zod/try=> s

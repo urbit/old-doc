@@ -1,17 +1,8 @@
-1. examples should all have the constructing statements included. 
-2.examples should have spaces betwween them?
-3. put:ju examples could be off--can't check because I don't know how to make a set.
-4. how do you feel about  `b` is a [key]() as a [noun]()?
-
-
-
 ##section 2dB, maps
-
----
 
 ###++ept       
 
-Check if map XXBetter way to phrase this? I don't like the comment "map invariant."
+Map invariant.
 
 ```
 ++  ept                                                 ::  map invariant
@@ -21,7 +12,6 @@ Check if map XXBetter way to phrase this? I don't like the comment "map invarian
   ?&  ?~(l.a & ?&((vor p.n.a p.n.l.a) (hor p.n.l.a p.n.a)))
       ?~(r.a & ?&((vor p.n.a p.n.r.a) (hor p.n.a p.n.r.a)))
   ==
-::
 ```
 
 Computes whether `a` is a [map](), producing a loobean.
@@ -42,15 +32,14 @@ Computes whether `a` is a [map](), producing a loobean.
 
 ###++ja
 
-Jar operations XX how do you think of treating the various "engine arms" like this?
+Jar engine
 
 ```
 ++  ja                                                  ::  jar engine
   |/  a=(jar)
 ```
 
-The jar engine: A container arm for jar (maps of lists) operation arms.
-The contained arms inherit the [sample]() jar.
+A container arm for `++jar` operation arms. A `++jar` is a `++map` of `++list`s. The contained arms inherit  the [sample]() jar.
 
 `a` is a [jar]().
 
@@ -59,7 +48,7 @@ The contained arms inherit the [sample]() jar.
 
 ---
 
-###+-get:ja XXLook at this rendered on github. What do you think about spaces between get+:+ja? Anton says no, I don't know...
+###+-get:ja
 
 Grab value by key
 
@@ -68,12 +57,11 @@ Grab value by key
     |*  b=*
     =+  c=(~(get by a) b)
     ?~(c ~ u.c)
-  ::
 ```
 
-Produces a list retrieved from map `a` using its key `b`.
+Produces a list retrieved from jar `a` using the key `b`.
 
-`a` is a [jar]().
+`a` is a [`++jar`]().
 
 `b` is a key of the same type as the keys in `a`. 
 
@@ -98,7 +86,6 @@ Prepend to list
     |*  [b=* c=*]
     =+  d=(get(+< a) b)
     (~(put by a) b [c d])
-::
 ```
 
 Produces jar `a` with value `c` prepended to the list located at key `b`.
@@ -108,7 +95,6 @@ Produces jar `a` with value `c` prepended to the list located at key `b`.
 `b` is a key of the same type as the keys in `a`.
 
 `c` is a value of the same type as the values in `a`.
-
 
     ~zod/try=> =l (mo `(list ,[@t (list ,@)])`[['a' `(list ,@)`[1 2 3 ~]] ['b' `(list ,@)`[4 5 6 ~]] ~])
     ~zod/try=> l
@@ -135,8 +121,7 @@ Jug operations
 ```
 
 
-The jug engine: container arm for jug (maps of sets) operation arms. XX what do you think of this intro?
-The contained arms inherit its [sample]() jug, `a`.
+Container arm for jug  operation arms. A `++jug` is a `++map` of `++sets`. The contained arms inherit its [sample]() jug, `a`.
 
 `a` is a [jug]().
 
@@ -156,9 +141,8 @@ Remove
     ?~  e
       (~(del by a) b)
     (~(put by a) b e)
-  ::
 ```
-        
+
 Produces jug `a` with value `c` removed from set located at key `b`.
 
 `a` is a [jug]().
@@ -185,7 +169,6 @@ Retrieve set
     |*  b=*
     =+  c=(~(get by a) b)
     ?~(c ~ u.c)
-  ::
 ```
 
 Produces a set retrieved from jar `a` using key `b`.
@@ -202,7 +185,7 @@ Produces a set retrieved from jar `a` using key `b`.
     {5 4 6}
     ~zod/try=> (~(get ju s) 'c')
     ~
-      
+
 ---
 
 ###+-has:ju
@@ -214,7 +197,6 @@ Check contents
     |*  [b=* c=*]
     ^-  ?
     (~(has in (get(+< a) b)) c)
-  ::
 ```
 
 Computes whether a value `c` exists within the set located at key `b` with jar `a`. Produces a loobean.
@@ -252,7 +234,6 @@ Add key-set pair
     ^+  a
     =+  d=(get(+< a) b)
     (~(put by a) b (~(put in d) c))
-  ::
 ```
 
 Produces jar `a` with `c` added to the set value located at key `b`.
@@ -284,7 +265,7 @@ Map operations
   |/  a=(map)
 ```
 
-Container arm for map operation arms.  The contained arms inherit it's [sample]() [map](), `a`. 
+Container arm for map operation arms. A map is a set of key, value pairs. The contained arms inherit it's [sample]() [map](), `a`. 
 
 `a` is a [map]().
 
@@ -304,7 +285,6 @@ Logical AND
     ?~  a
       &
     ?&((b q.n.a) $(a l.a) $(a r.a))
-  ::
 ```
 
 Computes the logical AND on the results of slamming every element in map `a` with gate `b`. Produces a loobean.
@@ -336,10 +316,13 @@ Logical OR
     ?~  a
       |
     ?|((b q.n.a) $(a l.a) $(a r.a))
-  ::
 ```
 
 Computes the logical OR on the results of slamming every element with gate `b`. Produces a loobean.
+
+`a` is a [map]().
+
+`b` is a [wet gate]().
 
     ~zod/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
     ~zod/try=> (~(all by b) |=(a=* ?@(a & |)))
@@ -371,7 +354,6 @@ Delete
     ?:  (vor p.n.l.a p.n.r.a)
       [n.l.a l.l.a $(l.a r.l.a)]
     [n.r.a $(r.a l.r.a) r.r.a]
-  ::
 ```
 
 Produces map `a` with the element located at key `b` removed.
@@ -383,7 +365,7 @@ Produces map `a` with the element located at key `b` removed.
         ~zod/try=> =b (mo `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
         ~zod/try=> (~(del by b) `a`)
         {[p=`b` q=[2 3]]}
-        
+
 ---
 
 ###+-dig:by
@@ -400,7 +382,6 @@ Axis of key
     ?:  (gor b p.n.a)
       $(a l.a, c (peg c 6))
     $(a r.a, c (peg c 7))
-  ::
 ```
 
 Produce the axis of key `b` within map `a`.
@@ -428,7 +409,6 @@ Concatenate
     ?~  b
       a
     $(b t.b, a (put(+< a) p.i.b q.i.b))
-  ::
 ```
 
 Insert a list of key-value pairs `b` into map `a`.
@@ -460,7 +440,6 @@ Grab unit value
     ?:  (gor b p.n.a)
       $(a l.a)
     $(a r.a)
-  ::
 ```
 
 Produce the unit value of the value located at key `b` within map `a`. 
@@ -484,7 +463,6 @@ Assert
     |*  b=*
     %-  need
     %-  get(+< a)  b
-  ::
 ```
 
 Produce the value located at key `b` within map `a`. Crash if key `b` does not exist. 
@@ -507,14 +485,13 @@ Produce the value located at key `b` within map `a`. Crash if key `b` does not e
 
 ###+-has:by
 
-Check key existence XX
+Key existence check
 
 ```
   +-  has                                               ::  key existence check
     ~/  %has
     |*  b=*
     !=(~ (get(+< a) b))
-  ::
 ```
 
 Checks whether map `a` contains an element with key `b`, producing a loobean.
@@ -555,7 +532,6 @@ Intersection
     ?:  (hor p.n.a p.n.b)
       %-  uni(+< $(b l.b, a [n.a l.a ~]))  $(a r.a)
     %-  uni(+< $(b r.b, a [n.a ~ r.a]))  $(a l.a)
-  ::
 ```
 
 Produces a map of the (key) intersection between two maps of the same type, `a` and `b`. If both maps have an identical key that point to different values, the element from map `a` is used.
@@ -597,7 +573,6 @@ Assert and Add
     ?~  c
       (del b)
     (put b u.c)
-  ::
 ```
 
 Produces map `a` with the addition of a key-value pair, where the value is a nonempty unit.
@@ -651,7 +626,6 @@ Add key-value pair
     ?:  (vor p.n.a p.n.d)
       [n.a l.a d]
     [n.d [n.a l.a l.d] r.d]
-  ::
 ```
 
 Produces `a` with the addition of the key-value pair of `b` and `c`.
@@ -683,7 +657,6 @@ Produces `a` with the addition of the key-value pair of `b` and `c`.
     |-
     ?~  a  b
     $(a r.a, b $(a l.a, b (c q.n.a b)))
-  ::
 ```
 
 Accumulate using gate from values in map
@@ -694,9 +667,7 @@ XX interface changing.
 
 ---
 
-        
 ###+-rib:by
-
 
 ```
   +-  rib                                               ::  transform + product
@@ -708,7 +679,6 @@ XX interface changing.
     =+  e=$(a l.a, b -.d)
     =+  f=$(a r.a, b -.e)
     [-.f [n.a +.e +.f]]
-  ::
 ```
 
 Replace values with accumulator 
@@ -716,7 +686,7 @@ Replace values with accumulator
 XX interface changing, possibly disappearing
 
 ---
-        
+
 ###+-run:by
 
 Transform values
@@ -727,10 +697,9 @@ Transform values
     |-  
     ?~  a  a
     a(n (b q.n.a), l $(a l.a), r $(a r.a))
-  ::
 ```
 
-Turns[]() (maps) over every element in set `a` using gate `b`. Produces a map.
+Iterates over every value in set `a` using gate `b`. Produces a map.
 
 `a` is a [map]().
 
@@ -757,14 +726,13 @@ Listify pairs
     ?~  a
       b
     $(a r.a, b [n.a $(a l.a)])
-  ::
 ```
+
+Produces the list of all elements in map `a` that is prepended to list `b`, which is empty by default. 
 
 `a` is a [map]().
 
 `b` is a [list]().
-
-Produces the list of all elements in map `a` that is prepended to list `b`, which is empty by default. 
 
     {[p='a' q=1] [p='b' q=2]}
     ~zod/try=> `*`m
@@ -800,10 +768,9 @@ Union
     ?:  (hor p.n.a p.n.b)
       $(b [n.b $(b l.b, a [n.a l.a ~]) r.b], a r.a)
     $(b [n.b l.b $(b r.b, a [n.a ~ r.a])], a l.a)
-  ::
 ```
 
-Produces a map of the union between the keys of `a` and `b`.
+Produces a map of the union between the keys of `a` and `b`. If `b` shares a key with `a`, the tuple from `a` is preserved.
 
 `a` is a [map]().
 
@@ -839,10 +806,9 @@ Turn (with key)
     |-
     ?~  a  ~
     [n=[p=p.n.a q=(b p.n.a q.n.a)] l=$(a l.a) r=$(a r.a)]
-  ::
 ```
 
-Turns[]() (maps) over every value in map `a` using gate `b`, which accepts both the key and the value of each element as its sample. 
+Iterates over every value in map `a` using gate `b`, which accepts both the key and the value of each element as its sample. 
 
 `a` is a [map]().
 
