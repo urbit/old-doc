@@ -74,7 +74,6 @@ Produces the maximum depth of leaves (r.a and l.a) in queue `a`.
     ~zod/try=> ~(dep to ~(bal to `(qeu tape)`["a" ~ "b" ~ "c" ~ "d" ~ "e" ~ "f" ~ "g" ~ ~]))
     4
 
-
 ---
 
 ###+-gas
@@ -211,7 +210,6 @@ Produces queue `a` as a list from front to back.
 
 ###+-top:to
 
-
 ```
   +-  top                                               ::  produces head
     |-  ^-  (unit ,_?>(?=(^ a) n.a))
@@ -226,5 +224,3 @@ Produces the head of queue `a` as a unit (an empty queue has no head).
     [~ 1]
 
 ---
-
-

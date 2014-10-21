@@ -236,7 +236,6 @@ b in a?
 
 Checks to see if `b` is an element of `a`, producing a loobean.
 
-
 `a` is a [set]().
 
 `b` is a [noun]().

@@ -64,5 +64,3 @@ Advances the hair `naz` by a row if the char `weq` is a newline, or by a column 
     [2 6]
 
 ---
-
-

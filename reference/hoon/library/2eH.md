@@ -53,7 +53,6 @@ Parse alphanumeric strings and hep, "-".
 
 Parse the hep and lus axis syntax.
 
-
         ~zod/try=> (scan "-" bet)
         2
         ~zod/try=> (scan "+" bet)
@@ -360,7 +359,6 @@ which must be in an indented block.
                 Heredoc isn't prohibited from containing quotes
                 '''
     'Heredoc isn't prohibited from containing quotes'
-
 
 ###++sym
 

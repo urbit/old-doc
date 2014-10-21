@@ -206,7 +206,6 @@ omitting the leading whitespace.
     "abc
         de"
 
-
 ---
 
 ###++jest  
@@ -307,7 +306,6 @@ Used for recursive parsers, which would otherwise be infinite when compiled.
     >
     ~zod/try=> (scan "abcd" |-(;~(plug prn ;~(pose (knee *tape |.(^$)) (easy ~)))))
     [~~a "bcd"]
-
 
 ---
 
@@ -593,6 +591,5 @@ Parse bounded number of times.
     [p=[p=1 q=10] q=[~ [p="aquickbro" q=[p=[p=1 q=10] q=""]]]]
     ~zod/try=> ((stun [5 10] prn) [1 1] "aqui")
     [p=[p=1 q=5] q=~]
-
 
 ---

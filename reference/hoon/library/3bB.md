@@ -668,4 +668,3 @@ XX document
 ```
 
 XX document
-

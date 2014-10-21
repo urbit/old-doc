@@ -162,5 +162,3 @@ and whose head is the length of the encoded atom `q`, by which the offset `a` is
     0xaaa
 
 ---
-
-

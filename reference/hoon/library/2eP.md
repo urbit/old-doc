@@ -16,7 +16,6 @@
 ::
 ```
 
-
 XX document
 
 ###++diff 
@@ -57,7 +56,6 @@ XX document
   |%
 ```
 
-
 XX document
 
 ###++abet
@@ -65,7 +63,6 @@ XX document
 ```
   ++  abet  =.(q.rag ?:(=([& 0] p.rag) q.rag [p.rag q.rag]) (flop q.rag))
 ```
-
 
 XX document
 
@@ -78,7 +75,6 @@ XX document
   ::
 ```
 
-
 XX document
 
 ###++lonk
@@ -89,7 +85,6 @@ XX document
     |(=(0 inx) (gth goy p:(need (~(get by q.gox) (dec inx)))))
   ::
 ```
-
 
 XX document
 
@@ -107,7 +102,6 @@ XX document
     ==
   ::
 ```
-
 
 XX document
 
@@ -128,7 +122,6 @@ XX document
     ?~(zes +>.^$ $(zes t.zes, +>.^$ (lune i.zes)))
   ::
 ```
-
 
 XX document
 
@@ -155,7 +148,6 @@ XX document
   --
 ```
 
-
 XX document
 
 ###++locz  
@@ -178,7 +170,6 @@ XX document
   ?:((gth p.lef p.rig) lef rig)
 ::
 ```
-
 
 XX document
 
@@ -251,7 +242,6 @@ XX document
 ::
 ```
 
-
 XX document
 
 ###++husk  
@@ -299,7 +289,6 @@ XX document
 ::
 ```
 
-
 XX document
 
 ###++lusk  
@@ -325,7 +314,6 @@ XX document
   ++  abet  =.(q.rag ?:(=([& 0] p.rag) q.rag [p.rag q.rag]) (flop q.rag))
 ```
 
-
 XX document
 
 ###++done
@@ -346,7 +334,6 @@ XX document
     ==
   ::
 ```
-
 
 XX document
 
@@ -373,7 +360,6 @@ XX document
   --
 ```
 
-
 XX document
 
 ###++nude   
@@ -385,7 +371,6 @@ XX document
   =<  [p=(tred a b) q=(tred b a)]
   |%
 ```
-
 
 XX document
 
@@ -404,7 +389,6 @@ XX document
     $(a +((mul 2 a)), b +.b)
   ::
 ```
-
 
 XX document
 
@@ -430,6 +414,4 @@ XX document
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ```
 
-
 ---
-

@@ -222,5 +222,3 @@ Produce the cord of a tape.
     %'~'  ['~' '~' d]
   ==
 ```
-
-
