@@ -164,5 +164,3 @@ The inverse of `++mat`. Accepts a cell of index `a` and a bitstring `b` and prod
     0xaaa
 
 ---
-
-

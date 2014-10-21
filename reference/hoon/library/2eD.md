@@ -58,7 +58,6 @@ Parsing composer: use a gate to consolidate the results of several rules.
     ! {1 3}
     ! exit
 
-
 ###++glue
 
 ```
@@ -165,7 +164,6 @@ Parsing composer: match either rule.
     ~zod/try=> `@t`(scan "-" ;~(pose lus tar cen))
     ! {1 1}
     ! exit
-
 
 ###++simu
 

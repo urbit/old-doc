@@ -50,7 +50,6 @@ Parser modifier: LSB ordered list as atom of a base.
     ~zod/try=> `@ux`(scan "bam" (boss 256 (star alp)))
     0x6d.6162
 
-
 ---
 
 ###++ifix
@@ -88,7 +87,6 @@ Parser modifier: using a delimiter rule, parse a list of matches.
     [q=40 ~[q=20]]
     ~zod/try=> (scan "40 20 60 1 5" (more ace dem))
     [q=40 ~[q=20 q=60 q=1 q=5]]
-
 
 ---
 
@@ -177,5 +175,3 @@ Parser modifier: parse list of matches.
         "john smith"
 
 ---
-
-

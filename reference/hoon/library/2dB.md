@@ -120,7 +120,6 @@ Jug operations
   |/  a=(jug)
 ```
 
-
 Container arm for jug  operation arms. A `++jug` is a `++map` of `++sets`. The contained arms inherit its [sample]() jug, `a`.
 
 `a` is a [jug]().
@@ -649,7 +648,6 @@ Produces `a` with the addition of the key-value pair of `b` and `c`.
 ---
 
 ###+-rep:by
-
 
 ```
   +-  rep                                               ::  replace by product

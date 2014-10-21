@@ -73,5 +73,3 @@ Produces a queue from list `a`.
     [~ 's']
 
 ---
-
-

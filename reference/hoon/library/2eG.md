@@ -2,7 +2,7 @@
 
 ---
 
-++  dog 
+##++dog
 
 ```
 ++  dog  ;~(plug dot gay)                               ::
@@ -86,15 +86,11 @@ Whitespace component.
     /~zod/try=> ^-  *
                 """
 
-
-
                 """
     [32 32 32 10 32 10 32 32 0]
     /~zod/try=> ^-  (list ,@)
                 %-  scan  :_  (star gah)
                 """
-
-
 
                 """
     ~[32 32 32 10 32 10 32 32]
@@ -155,5 +151,3 @@ Note that a comment must be ended with a newline character.
     ! exit
 
 ---
-
-
