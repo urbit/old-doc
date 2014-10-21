@@ -1,8 +1,17 @@
 ##section 3bE, tree sync
 
-###++invert
+###++invert-miso
 
-``````
+```
+++  invert-miso                                         ::  invert miso
+  |=  mis=miso
+  ?-  -.mis
+    %del  [%ins p.mis]
+    %ins  [%del p.mis]
+    %mut  [%mut (limp p.mis)]
+  ==
+::
+```
 
 XX document
 
@@ -57,144 +66,193 @@ XX document
 
 XX document
 
-###++blob
-
-``````
-
-XX document
-
-###++ze
+###++blob-to-lobe
 
 ```
+++  blob-to-lobe                                        ::  p.blob
+  |=  p=blob
+  ^-  lobe
+  ?-   -.p
+     %delta  p.p
+     %direct  p.p
+     %indirect  p.p
+  ==
+::
+```
+
 ++  ze
   |_  [lim=@da dome rang]
 ```
 
 XX document
 
-###++aeon
+###++aeon-to-tako
 
-``````
-
-XX document
-
-###++aeon
-
-``````
+```
+  ++  aeon-to-tako  ~(got by hit)
+```
 
 XX document
 
-###++make
+###++tako-to-yaki
 
-``````
-
-XX document
-
-###++tako
-
-``````
+```
+  ++  tako-to-yaki  ~(got by hut)                       ::  grab yaki
+```
 
 XX document
 
-###++lobe
+###++lobe-to-noun
 
-``````
-
-XX document
-
-###++lobe
-
-``````
-
-XX document
-
-###++make
-
-``````
+```
+  ++  lobe-to-noun                                      ::  grab blob
+    |=  p=lobe                                          ::  ^-  *
+    %-  blob-to-noun  
+    (lobe-to-blob p)
+  ::
+```
 
 XX document
 
-###++make
+###++make-delta
 
-``````
-
-XX document
-
-###++blob
-
-``````
-
-XX document
-
-###++blob
-
-``````
-
-XX document
-
-###++diff
-
-``````
+```
+  ++  make-delta                                        ::  make blob delta
+    |=  [p=lobe q=udon]
+    ^-  blob
+    =+  t=[%delta 0 p q]
+    =+  z=(blob-to-noun t)
+    =+  ^=  has
+        %^  cat  7  (sham [%blob z])
+        (sham [%lobe z])
+    [%delta has p q]
+  ::
+```
 
 XX document
 
-###++lobes
+###++blob-to-noun
 
-``````
-
-XX document
-
-###++case
-
-``````
-
-XX document
-
-###++as
-
-``````
-
-XX document
-
-###++reachable
-
-``````
+```
+  ++  blob-to-noun                                      ::  grab blob
+    |=  p=blob
+    ?-   -.p
+       %delta  (lump r.p (lobe-to-noun q.p))
+       %direct  q.p
+       %indirect  q.p
+    ==
+  ::
+  ::
+  ::
+```
 
 XX document
 
-###++new
+###++lobes-at-path
 
-``````
-
-XX document
-
-###++new
-
-``````
-
-XX document
-
-###++reachable
-
-``````
-
-XX document
-
-###++takos
-
-``````
-
-XX document
-
-###++lobes
-
-``````
+```
+  ++  lobes-at-path                                     ::    lobes-at-path:ze
+    |=  [oan=aeon pax=path]                             ::  data at path
+    ^-  (map path lobe)
+    ?:  =(0 oan)  ~
+    %-  mo
+    %+  skim
+      %.  ~
+      %~  tap  by
+      =<  q
+      %-  tako-to-yaki
+      %-  aeon-to-tako
+      oan
+    |=  [p=path q=lobe]
+    ?|  ?=(~ pax)
+        ?&  !?=(~ p)
+            =(-.pax -.p)
+            $(p +.p, pax +.pax)
+    ==  ==
+  ::
+```
 
 XX document
 
-###++make
+###++as-arch
 
-``````
+```
+  ++  as-arch                                           ::    as-arch:ze
+    ^-  arch                                            ::  arch report
+    :+  p.ank
+      ?~(q.ank ~ [~ p.u.q.ank])
+    |-  ^-  (map ,@ta ,~)
+    ?~  r.ank  ~
+    [[p.n.r.ank ~] $(r.ank l.r.ank) $(r.ank r.r.ank)]
+  ::
+```
+
+XX document
+
+###++new-lobes
+
+```
+  ++  new-lobes                                         ::  object hash set
+    |=  [b=(set lobe) a=(set tako)]                     ::  that aren't in b
+    ^-  (set lobe)
+    %+  roll  (~(tap in a) ~)
+    |=  [tak=tako bar=(set lobe)]
+    ^-  (set lobe)
+    =+  yak=(tako-to-yaki tak)
+    %+  roll  (~(tap by q.yak) ~)
+    |=  [[path lob=lobe] far=_bar]
+    ^-  (set lobe)
+    ?~  (~(has in b) lob)                               ::  don't need
+      far
+    =+  gar=(lobe-to-blob lob)
+    ?-  -.gar
+      %direct  (~(put in far) lob)
+      %delta  (~(put in $(lob q.gar)) lob)
+      %indirect  (~(put in $(lob s.gar)) lob)
+    ==
+  ::
+```
+
+XX document
+
+###++reachable-between-takos
+
+```
+  ++  reachable-between-takos
+    |=  [a=(unit tako) b=tako]                          ::  pack a through b
+    ^-  [(set tako) (set lobe)]
+    =+  ^=  sar 
+        ?~  a  ~
+        (reachable-takos r:(tako-to-yaki u.a))
+    =+  yak=`yaki`(tako-to-yaki b)
+    %+  new-lobes-takos  (new-lobes ~ sar)              ::  get lobes
+    |-  ^-  (set tako)                                  ::  walk onto sar
+    ?:  (~(has in sar) r.yak)
+      ~
+    =+  ber=`(set tako)`(~(put in `(set tako)`~) `tako`r.yak)
+    %-  ~(uni in ber)
+    ^-  (set tako)
+    %+  roll  p.yak
+    |=  [yek=tako bar=(set tako)]
+    ^-  (set tako)
+    ?:  (~(has in bar) yek)                             ::  save some time
+      bar
+    %-  ~(uni in bar)
+    ^$(yak (tako-to-yaki yek))
+  ::
+```
+
+XX document
+
+###++lobes-to-blobs
+
+```
+  ++  lobes-to-blobs                                    ::  trivial
+    |=  a=(set lobe)
+    ^-  (set blob)
+    (sa (turn (~(tap by a)) lobe-to-blob))
+  ::
+```
 
 XX document
 
@@ -220,37 +278,56 @@ XX document
 
 ```
   ++  rewind                                            ::    rewind:ze
-    |=  yon=aeon                                        ::  rewind to aeon
+    |=  oan=aeon                                        ::  rewind to aeon
     ^+  +>
-    ?:  =(let yon)  +>
-    ?:  (gth yon let)  !!                               ::  don't have version
-    +>(ank (checkout-ankh q:(aeon-to-yaki yon)), let yon)
+    ?:  =(let oan)  +>
+    ?:  (gth oan let)  !!                               ::  don't have version
+    +>(ank (checkout-ankh q:(tako-to-yaki (aeon-to-tako oan))), let oan)
+  ::
+  ::::
+```
+
+XX document
+
+###++update-lat
+
+```
+  ++  update-lat                                        ::   update-lat:ze
+    |=  [lag=(map path blob) sta=(map lobe blob)]       ::  fix lat
+    ^-  [(map lobe blob) (map path lobe)]
+    %+  roll  (~(tap by lag) ~)
+    |=  [[pat=path bar=blob] [lut=_sta gar=(map path lobe)]]
+    ?~  (~(has by lut) p.bar)
+      [lut (~(put by gar) pat p.bar)]
+    :-  (~(put by lut) p.bar bar)
+    (~(put by gar) pat p.bar)
   ::
 ```
 
 XX document
 
-###++update
-
-``````
-
-XX document
-
-###++apply
-
-``````
-
-XX document
-
-###++checkout
-
-``````
-
-XX document
-
-###++forge
+###++checkout-ankh
 
 ```
+  ++  checkout-ankh                                     ::    checkout-ankh:ze
+    |=  hat=(map path lobe)                             ::  checkout commit
+    ^-  ankh
+    %-  cosh
+    %+  roll  (~(tap by hat) ~)
+    |=  [[pat=path bar=lobe] ank=ankh]
+    ^-  ankh
+    %-  cosh
+    ?~  pat
+      =+  zar=(lobe-to-noun bar)
+      ank(q [~ (sham zar) zar])
+    =+  nak=(~(get by r.ank) i.pat)
+    %=  ank
+      r  %+  ~(put by r.ank)  i.pat 
+         $(pat t.pat, ank (fall nak _ankh))
+    ==
+  ::
+```
+
   ++  forge                                         ::  %forge
     |=  [p=yaki q=yaki s=[ship desk] t=[ship desk]]
     ^-  (map path blob)
@@ -284,63 +361,62 @@ XX document
 
 XX document
 
-###++forge
+###++forge-nori
 
 ```
-  ++  forge                                         ::  %forge
-    |=  [p=yaki q=yaki s=[ship desk] t=[ship desk]]
-    ^-  (map path blob)
-    =+  r=(~(tap in (find-merge-points p q)) ~)
-    ?~  r
-      ~|(%forge-no-ancestor !!)
-    %-  |=  [r=yaki lut=(map lobe blob) hat=(map tako yaki)]
-        =.  lat  lut
-        =.  hut  hat
-        (meld p q r & s t)                          ::  fake merge
-    %+  roll  t.r                                   ::  fake ancestor
-    |=  [par=yaki [for=_i.r lut=_lat hat=_hut]]
-    =.  lat  lut
-    =+  ^=  far
-        ^-  (map path lobe)
-        %-  ~(tur by (forge par for s t))
-        |=  [k=path v=blob]  (blob-to-lobe v)
-    =+  u=(make-yaki [r.par r.for ~] far `@da`0)    ::  fake yaki
-    :-  u
-    :_  (~(put by hat) r.u u)
-    =<  -
-    %-  update-lat
-    :_  ~
-    %-  ~(tur by q.u)
-    |=  [path k=lobe]
-    (lobe-to-blob k)
+  ++  forge-nori                                        ::    forge-nori:ze
+    |=  yak=yaki                                        ::  forge nori (ugly op)
+    ^-  nori                                            ::  basically zerg w/ nori
+    ?~  p.yak  !!                                       ::  no parent -> can't diff
+    :+  %&  *cart                                       ::  diff w/ 1st parent
+    (~(tap by (diff-yakis (tako-to-yaki i.p.yak) yak)) ~)
   ::
-  ::  actual merge
+  ::  graph algorithms (bottleneck)
   ::
 ```
 
 XX document
 
-###++reduce
+###++reduce-merge-points
 
-``````
+```
+  ++  reduce-merge-points                             ::  reduce merge points
+    |=  unk=(set yaki)                                ::  maybe need jet
+    =|  gud=(set yaki)
+    =+  ^=  zar
+        ^-  (map tako (set tako))
+        %+  roll  (~(tap in unk) ~)
+        |=  [yak=yaki qar=(map tako (set tako))]
+        (~(put by qar) r.yak (reachable-takos r.yak))
+    |-  
+    ^-  (set yaki)
+    ?~  unk  gud
+    =+  tek=`yaki`n.unk
+    =+  bun=(~(del in `(set yaki)`unk) tek)
+    ?:  %+  roll  (~(tap by (~(uni in gud) bun)) ~)   ::  only good + unknown
+        |=  [tak=yaki god=?]
+        ^-  ?
+        ?.  god  god
+        (~(has in (~(got by zar) r.tak)) tek)
+      $(gud (~(put in gud) tek), unk bun)
+    $(unk bun)
+  ::
+```
 
 XX document
 
-###++future
+###++add-parents
 
-``````
-
-XX document
-
-###++add
-
-``````
-
-XX document
-
-###++find
-
-``````
+```
+  ++  add-parents                                     ::  expand set
+    |=  qez=(set tako)
+    ^-  (set tako)
+    %+  roll  (~(tap in qez) ~)
+    |=  [tak=tako zar=(set tako)]
+    %-  ~(uni in (~(put in zar) tak))
+    (sa p:(tako-to-yaki tak))
+  ::
+```
 
 XX document
 
@@ -364,15 +440,23 @@ XX document
 
 XX document
 
-###++match
-
-``````
-
-XX document
-
-###++annotate
+###++match-conflict
 
 ```
+  ++  match-conflict                                ::  match conflict
+    |=  [us=[ship desk] th=[ship desk] p=(urge) q=(urge) r=(list)]
+    ^-  [p=[p=(list) q=(list)] q=[p=(urge) q=(urge) r=(list)]]
+    =+  cas=(hard (list ,@t))
+    =+  cat=(hard (urge ,@t))
+    =+  mar=(match-merge (cat p) (cat q) (cas r))
+    :-  :-  s.q.mar 
+        (annotate us th p.p.mar q.p.mar s.q.mar)    ::  annotation
+    :-  p.q.mar
+    :-  q.q.mar
+    r.q.mar
+  ::
+```
+
   ++  annotate                                      ::  annotate conflict
     |=  [us=[ship desk] th=[ship desk] p=(list ,@t) q=(list ,@t) r=(list ,@t)]
     ^-  (list ,@t)
@@ -403,17 +487,75 @@ XX document
 
 XX document
 
-    :-  ~['++++++++++++']
-
-###++match
-
-``````
-
-XX document
-
-###++qeal
+###++match-merge
 
 ```
+  ++  match-merge                                   ::  match merge
+    |=  [p=(urge ,@t) q=(urge ,@t) r=(list ,@t)]    ::  resolve conflict
+    =|  s=[p=(list ,@t) q=(list ,@t)]               ::  p chunk
+    =|  t=[p=(list ,@t) q=(list ,@t)]               ::  q chunk
+    |-  ^-  $:  p=[p=(list ,@t) q=(list ,@t)]
+                $=  q
+                $:  p=(urge ,@t)
+                    q=(urge ,@t)
+                    r=(list ,@t)
+                    s=(list ,@t)
+            ==  ==
+    ?~  p  [[q.s q.t] p q r p.s]                    ::  can't be conflict
+    ?~  q  [[q.s q.t] p q r p.s]                    ::  can't be conflict
+    ?-  -.i.p
+      %&  ?>  ?=(%| -.i.q)                          ::  is possibly conflict
+          ?:  (gte p.i.p (lent p.i.q))              ::  trivial resolve
+            :::-  (weld p.s p.i.q)                    ::  extend to q
+            :-  :-  (welp (flop (scag (lent p.i.q) r)) q.s)
+                (welp q.i.q q.t)
+            :-  ?:  =(p.i.p (lent p.i.q))  t.p
+                [[%& (sub p.i.p (lent p.i.q))] t.p]
+            :-  t.q
+            :-  (flop (slag (lent p.i.q) r))
+            (welp (flop (scag (lent p.i.q) r)) p.s)
+          =+  tex=(flop (scag p.i.p r))
+          ?~  t.p                                   ::  extend to end
+            %=  $
+              ::s  [(welp p.s tex) (welp q.s tex)]
+              p  ~[[%| [tex tex]]]
+              ::r  (slag p.i.p r)
+            ==
+          ?>  ?=(%| -.i.t.p)                        ::  fake skip
+          %=  $
+            ::s  [(welp p.s tex) (welp q.s tex)]
+            p  [[%| [(welp p.i.t.p tex) (welp q.i.t.p tex)]] t.t.p]
+            ::r  (slag p.i.p r)
+          ==
+      %|  ?-  -.i.q
+             %&  =+  mar=$(p q, q p, s t, t s)      ::  swap recursion
+                 [[q.p.mar p.p.mar] q.q.mar p.q.mar r.q.mar s.q.mar]
+             %|  ?:  =((lent p.i.p) (lent p.i.q))   ::  perfect conflict
+                   ?>  =(p.i.p p.i.q)               ::  sane conflict
+                   :-  :-  (welp q.i.p q.s)
+                       (welp q.i.q q.t)
+                   :-  t.p 
+                   :-  t.q 
+                   :-  (scag (lent p.i.p) r)
+                   (welp (flop (scag (lent p.i.p) r)) p.s)
+                 ?.  (lth (lent p.i.p) (lent p.i.q))
+                   =+  mar=$(p q, q p, s t, t s)    ::  swap recursion
+                   [[q.p.mar p.p.mar] q.q.mar p.q.mar r.q.mar s.q.mar]
+                 ?>  .=  p.i.p                      ::  sane conflict
+                     (slag (sub (lent p.i.q) (lent p.i.p)) p.i.q)
+                 %=  $                              ::  extend p
+                   p  t.p
+                   p.s  (welp p.i.p p.s)
+                   q.s  (welp q.i.p q.s)
+                   p.t  (welp p.i.p p.s)            ::  subset of q
+                   q.t  (welp q.i.q q.s)            ::  just consume all out
+                   q  [[%| (scag (sub (lent p.i.q) (lent p.i.p)) p.i.q) ~] t.q]
+                   r  (slag (lent p.i.p) r)
+                 ==
+             ==
+      ==
+```
+
   ++  qeal                                          ::  merge p,q
     |*  [us=[ship desk] th=[ship desk] pat=path p=miso q=miso r=(list) con=?]
     ^-  miso                                        ::  in case of conflict
@@ -687,15 +829,54 @@ XX document
 
 XX document
 
-###++construct
-
-``````
-
-XX document
-
-###++read
+###++construct-merge
 
 ```
+  ++  construct-merge                                   ::    construct-merge:ze
+    |=  [gem=germ who=ship des=desk sab=saba now=@da]   ::  construct merge
+    ^-  (unit (unit mizu))                              ::::::
+    =+  for=s.sab                                       ::  foreign dome
+    =+  mer=(merge [who des] [p.sab q.sab])
+    ?-  gem
+        %init                                           ::  force fine
+          ?.  =(let 0)                                  ::  hell no
+            !!
+          =+  hot=(~(put by _(map aeon tako)) 1 (~(got by hit.for) let.for))
+          [~ [~ [1 hot hut lat]]]                       ::  trivial
+        %fine
+          =+  der=(~(got by hit.for) let.for)
+          =+  owr=(~(got by hit) let)
+          ?:  =(der owr)
+            [~ ~]
+          ?:  (~(has in (reachable-takos owr)) der)
+            [~ ~]
+          ?.  (~(has in (reachable-takos der)) owr)
+            ~                                          ::  not a fast forward
+          ~&  [%merge-fine p.sab q.sab]
+          [~ [~ [+(let) (~(put by hit) +(let) der) hut lat]]]
+        ?(%mate %that %this %meld)
+          =+  foreign-head=(tako-to-yaki (~(got by hit.for) let.for))
+          =+  our-head=(tako-to-yaki (~(got by hit) let))
+          ?:  =(r.foreign-head r.our-head)
+            [~ ~]                                      ::  up to date
+          ?:  (~(has in (reachable-takos r.our-head)) r.foreign-head)
+            [~ ~]                                      ::  up to date
+          ?:  ?&  |(=(gem %mate) =(gem %meld))
+                  (~(has in (reachable-takos r.foreign-head)) r.our-head)
+              ==
+            $(gem %fine)                               ::  use fast forward
+          =+  gar=(mer our-head foreign-head now (strategy gem))
+          =+  yak=-.gar
+          =+  hek=+.gar
+          =.  lat  -:(update-lat hek ~)                ::  add new blobs
+          =.  hut  (~(put by _(map tako yaki)) r.yak yak)
+          =.  let  +(let)
+          =.  hit  (~(put by _(map aeon tako)) let r.yak)
+          [~ [~ [let hit hut lat]]]
+    ==
+  ::
+```
+
   ++  read                                              ::    read:ze
     |=  mun=mood                                        ::  read at point
     ^-  (unit)
@@ -705,7 +886,8 @@ XX document
       ?^(r.mun ~ [~ let])
     ?:  ?=(%w p.mun)
       =+  ^=  yak
-          %-  aeon-to-yaki
+          %-  tako-to-yaki
+          %-  aeon-to-tako
           let
       ?^(r.mun ~ [~ [t.yak (forge-nori yak)]])
       ::?>  ?=(^ hit)  ?^(r.mun ~ [~ i.hit])     ::  what do?? need [@da nori]
@@ -715,23 +897,15 @@ XX document
 
 XX document
 
-###++read
+###++read-at-aeon
 
 ```
-  ++  read                                              ::    read:ze
-    |=  mun=mood                                        ::  read at point
+  ++  read-at-aeon                                      ::    read-at-aeon:ze
+    |=  [oan=aeon mun=mood]                             ::  seek and read
     ^-  (unit)
-    ?:  ?=(%v p.mun)
-      [~ `dome`+<+<.read]
-    ?:  &(?=(%w p.mun) !?=(%ud -.q.mun))
-      ?^(r.mun ~ [~ let])
-    ?:  ?=(%w p.mun)
-      =+  ^=  yak
-          %-  aeon-to-yaki
-          let
-      ?^(r.mun ~ [~ [t.yak (forge-nori yak)]])
-      ::?>  ?=(^ hit)  ?^(r.mun ~ [~ i.hit])     ::  what do?? need [@da nori]
-    (query(ank ank:(descend-path:(zu ank) r.mun)) p.mun)
+    ?:  &(?=(%w p.mun) !?=(%ud -.q.mun))                ::  NB only for speed
+      ?^(r.mun ~ [~ oan])
+    (read:(rewind oan) mun)
   ::
 ```
 
@@ -743,13 +917,17 @@ XX document
   ++  equiv                                             ::  test paths
     |=  [p=(map path lobe) q=(map path lobe)]
     ^-  ?
-    =-  ?.  qat  %.n
-        %+  levy  (~(tap by q) ~)
-        |=  [pat=path lob=lobe]
+    %-  |=  qat=?
+        ?.  qat  %.n
+        %+  roll  (~(tap by q) ~)
+        |=  [[pat=path lob=lobe] eq=?]
+        ^-  ?
+        ?.  eq  %.n
         (~(has by p) pat)
-    ^=  qat
-    %+  levy  (~(tap by p) ~)
-    |=  [pat=path lob=lobe]
+    %+  roll  (~(tap by p) ~)
+    |=  [[pat=path lob=lobe] eq=?]
+    ^-  ?
+    ?.  eq  %.n
     =+  zat=(~(get by q) pat)
     ?~  zat  %.n
     =((lobe-to-noun u.zat) (lobe-to-noun lob))
@@ -765,14 +943,16 @@ XX document
     |=  [wen=@da lem=nori]                              ::  edit
     ^+  +>
     ?-  -.lem
-      &  =^  yak  lat                                   ::  merge objects
+      &  =+  ^=  yet 
              %+  forge-yaki  wen
              ?:  =(let 0)                               ::  initial import
                [~ q.lem]
-             [(some r:(aeon-to-yaki let)) q.lem]
+             [(some r:(tako-to-yaki (aeon-to-tako let))) q.lem]
+         =+  yak=-.yet
+         =.  lat  +.yet                                 ::  merge objects
          ?.  ?|  =(0 let)
                  !=((lent p.yak) 1)
-                 !(equiv q.yak q:(aeon-to-yaki let))
+                 !(equiv q.yak q:(tako-to-yaki (aeon-to-tako let)))
              ==
            +>.$                                         ::  silently ignore
          =:  let  +(let)
@@ -782,6 +962,7 @@ XX document
          +>.$(ank (checkout-ankh q.yak))
       |  +>.$(lab ?<((~(has by lab) p.lem) (~(put by lab) p.lem let)))
     ==
+  --
 ::
 ```
 
@@ -818,15 +999,12 @@ XX document
 
 XX document
 
-###++update
-
-``````
-
-XX document
-
-###++ascend
+###++update-hash
 
 ```
+  ++  update-hash  %_(. p.ank rehash)                   ::  rehash and save
+```
+
   ++  ascend                                            ::  ascend
     |=  [lol=@ta kan=ankh]
     ^+  +>
@@ -844,15 +1022,16 @@ XX document
 
 XX document
 
-###++push
-
-``````
-
-XX document
-
-###++descend
+###++push-change
 
 ```
+  ++  push-change                                       ::  add change
+    |=  mis=miso
+    ^+  +>
+    +>(myz [[(flop ram) mis] myz])
+  ::
+```
+
   ++  descend                                           ::  descend
     |=  lol=@ta
     ^+  +>
@@ -863,14 +1042,13 @@ XX document
 
 XX document
 
-###++descend
+###++descend-path
 
 ```
-  ++  descend                                           ::  descend
-    |=  lol=@ta
+  ++  descend-path                                      ::  descend recursively
+    |=  way=path
     ^+  +>
-    =+  you=(~(get by r.ank) lol)
-    +>.$(ram [lol ram], ank ?~(you [*cash ~ ~] u.you))
+    ?~(way +> $(way t.way, +> (descend i.way)))
   ::
 ```
 
@@ -894,15 +1072,24 @@ XX document
 
 XX document
 
-###++change
+###++change-tree
 
-``````
-
-XX document
-
-###++rm
-
-``````
+```
+  ++  change-tree                                       ::  modify tree
+    |=  [pum=umph bus=ankh]
+    ^+  +>
+    =.  +>  (overwrite pum q.bus)
+    =+  [yeg=(~(tap by r.ank) ~) gey=(~(tap by r.bus) ~)]
+    =.  +>.$
+      |-  ^+  +>.^$
+      ?~  yeg  +>.^$
+      ?:  (~(has by r.bus) p.i.yeg)  $(yeg t.yeg)
+      $(yeg t.yeg, myz myz:rm-r(ank q.i.yeg, ram [p.i.yeg ram]))
+    |-  ^+  +>.^$
+    ?~  gey  +>.^$
+    $(gey t.gey, myz myz:^$(bus q.i.gey, +> (descend p.i.gey)))
+  ::
+```
 
 XX document
 
@@ -936,8 +1123,6 @@ XX document
 
 XX document
 
-    |=  [pax=path mis=miso]                             ::  XX unused (++dune)
-
 ###++dune
 
 ```
@@ -950,8 +1135,6 @@ XX document
 ```
 
 XX document
-
-    |-  ^+  +                                           ::  XX unused (++durn)
 
 ###++durn
 
@@ -969,6 +1152,4 @@ XX document
         ~&  [%durn-out-wrong p.ank q.p.nyp]
         .
     +>
-```
-
-XX document
+  --
