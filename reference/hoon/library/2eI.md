@@ -69,5 +69,3 @@ Parse a tape with a given rule and crash if the tape isn't entirely parsed.
         ! {1 12}
         ! 'syntax-error'
         ! exit
-
-

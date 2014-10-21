@@ -393,7 +393,6 @@ Parse JSON array as a fixed-length tuple.
   ::
 ```
 
-
 Parse JSON boolean.
 
 ###++bu
@@ -1094,4 +1093,3 @@ XX document
 ```
 
 XX document
-

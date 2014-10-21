@@ -25,6 +25,8 @@ Computes which day of the week January 1st falls on for a year `yer`, producing 
 ! subtract-underflow
 ! exit
 
+---
+
 ###++daws
 
 Date weekday
@@ -47,6 +49,8 @@ Produces the day of the week of a given date `yed`. Weeks are zero-indexed begin
 2
 
 (second example always returns the current date).
+
+---
 
 ###++deal
 
@@ -78,6 +82,8 @@ Produces a [`date`]() with the 25 leap seconds added.
 [[a=%.y y=226] m=12 t=[d=5 h=15 m=30 s=33 f=~]]
 ~zod/try=> (yore (bex 126))
 [[a=%.n y=146.138.512.088] m=6 t=[d=19 h=7 m=45 s=4 f=~]]
+
+---
 
 ###++lead
 
@@ -111,6 +117,7 @@ Produces an absolute date ([`@ud`]()) with the 25 leap seconds subtracted.
 ~zod/try=> (lead (yore `@da`(bex 126)))
 ~146138512088-.6.19..07.44.39
 
+---
 
 ###++dust
 
@@ -140,6 +147,8 @@ Produces a [tape]() of the date in UTC format.
 "Tue, 21 Oct 2014 21:35:12 +0000"
 ~zod/try=> (dust [[a=%.y y=2.002] m=10 t=[d=11 h=12 m=20 s=55 f=~]])
 "Fri, 11 Oct 2002 12:20:55 +0000"
+
+---
 
 ###++stud
 
@@ -174,6 +183,8 @@ Parse UTC format
 ::
 ```
 
+Accepts a [tape]() containing a date in UTC format and produces the [unit]() of a [`date`]().
+
 ~zod/try=> (stud "Tue, 21 Oct 2014 21:21:55 +0000")
 [~ [[a=%.y y=2.014] m=10 t=[d=21 h=21 m=21 s=55 f=~]]]
 ~zod/try=> (stud "Wed, 11 Oct 2002 12:20:55 +0000")
@@ -181,7 +192,7 @@ Parse UTC format
 ~zod/try=> (stud "Wed, 11 Oct 2002")
 ~
 
-Accepts a [tape]() containing a date in UTC format and produces the [unit]() of a [`date`]().
+---
 
 ###++unt
 
@@ -205,6 +216,8 @@ Transforms Urbit Galactic Time to UTC time, producing an atom.
 
 `a` is an [atom]().
 
+---
+
 ###++yu
 
 UTC format constants
@@ -214,7 +227,7 @@ UTC format constants
   |%
 ```
 
-XX document
+---
 
 ###++mon
 
@@ -248,6 +261,8 @@ Produces a list of [tapes]() containing the 12 months of the year.
 ~zod/try=/hom> (snag 1 mon:yu)
 "February"
 
+---
+
 ###++wik
 
 Weeks
@@ -268,6 +283,8 @@ Produces a list of [tapes]() containing the 7 days of the week, beginning with S
 "Tuesday"
 ~zod/try=/hom> (snag (daws (yore -<-)) wik:yu)
 "Tuesday"
+
+---
 
 ###++les
 
@@ -316,6 +333,8 @@ Produces a list of the (absolute) dates ([`@da`]) of the 25 leap seconds
 ~zod/try=/hom> (snag 2 les:yu)
 ~2006.1.1
 
+---
+
 ###++lef
 
 Back-shifted leap second dates
@@ -338,6 +357,8 @@ Back-shifted leap second dates
     ==
 ::
 ```
+
+Produces a list of absolute dates ([`@da`]()) that represent the Urbit Galactc Time equivalents of the UTC leap second dates in [`++les`]().
 
 ~zod/try=/hom> lef:yu
 ~[
@@ -370,5 +391,4 @@ Back-shifted leap second dates
 ~zod/try=/hom> (snag 2 lef:yu)
 ~2005.12.31..23.59.57
 
-Produces a list of absolute dates ([`@da`]()) that represent the Urbit Galactc Time equivalents of the UTC leap second dates in [`++les`]().
 

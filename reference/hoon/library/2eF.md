@@ -640,5 +640,3 @@ Parse ASCII character 33, zap.
         [p=[p=1 q=1] q=~]
 
 ---
-
-
