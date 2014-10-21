@@ -29,10 +29,10 @@ Computes which day of the week January 1st falls on for a year `yer`, producing 
 
 ###++daws
 
-Date weekday
+Weekday of date
 
 ```
-++  daws                                                ::  date weekday
+++  daws                                                ::  weekday of date
   |=  yed=date
   %-  mod  :_  7
   (add (dawn y.yed) (sub (yawn [y.yed m.yed d.t.yed]) (yawn y.yed 1 1)))
@@ -109,6 +109,8 @@ Subtract leap seconds
 ```
 
 Produces an absolute date ([`@ud`]()) with the 25 leap seconds subtracted.
+
+`ley` is a [`date`]().
 
     ~zod/try=> (yore `@da`(bex 127))
     [[a=%.y y=226] m=12 t=[d=5 h=15 m=30 s=8 f=~]]
@@ -205,12 +207,12 @@ UGT to UTC time
 ::
 ```
 
-~zod/try=/hom> (unt -<-)
-1.413.927.704
-~zod/try=> (unt ~20014.1.1)
-569.413.670.400
-~zod/try=> (unt ~2014.1.1)
-1.388.534.400
+    ~zod/try=/hom> (unt -<-)
+    1.413.927.704
+    ~zod/try=> (unt ~20014.1.1)
+    569.413.670.400
+    ~zod/try=> (unt ~2014.1.1)
+    1.388.534.400
 
 Transforms Urbit Galactic Time to UTC time, producing an atom.
 
@@ -226,6 +228,9 @@ UTC format constants
 ++  yu                                                  ::  UTC format constants
   |%
 ```
+
+    ~zod/try=/hom> yu
+    <4.pgn 250.tmw 41.cmo 414.rvm 101.jzo 1.ypj %164>
 
 ---
 
