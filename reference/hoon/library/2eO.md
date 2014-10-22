@@ -216,6 +216,21 @@ Intelligently render crash annotation.
 Work just like in `++makc`, but accept a `++sky`.
 Produce a unit computation result.
 
+###++mong
+
+```
+++  mong
+  |=  [[gat=* sam=*] sky=$+(* (unit))]
+  ^-  toon
+  ?.  &(?=(^ gat) ?=(^ +.gat))
+    [%2 ~]
+  (mock [[-.gat [sam +>.gat]] -.gat] sky)
+::
+```
+
+Work just like in `++mung`, but for `++mink`
+Produce a unit computation result.
+
 ###++mung
 
 ```

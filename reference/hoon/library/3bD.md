@@ -385,6 +385,20 @@ Parse JSON array as a fixed-length tuple.
 {[%~ u=[@ @ta @]] %~}
 ```
 
+###++at-raw
+
+```
+    ++  at-raw                                            ::  array as tuple
+    |*  wil=(pole fist)
+    |=  jol=(list json)
+    ?~  wil  ~
+    :-  ?~(jol ~ (-.wil i.jol))
+    ((at-raw +.wil) ?~(jol ~ t.jol))
+  ::
+```
+
+Parse json array as a tuple of unit results
+
 ###++bo
 
 ```

@@ -1,4 +1,5 @@
 ##section 2eP, diff          **noted as "(move me)" in source**
+
 ---
 
 ###++berk 
@@ -198,8 +199,45 @@ XX document
 
 ###++role  
 
-``````
+```
+++  role                                                ::  line list to atom
+  |=  tez=(list ,@t)
+  (rap 3 (turn tez |=(a=@t (cat 3 a 10))))
+::
+```
 
+XX document
+
+###++lump
+
+```
+++  lump                                                ::  apply patch
+  |=  [don=udon src=*]
+  ^-  *
+  ?+    p.don  ~|(%unsupported !!)
+      %a
+    ?+  -.q.don  ~|(%unsupported !!)
+      %a  q.q.don
+      %c  (lurk ((hard (list)) src) p.q.don)
+      %d  (lure src p.q.don)
+    ==
+  ::
+      %c
+    =+  dst=(lore ((hard ,@) src))
+    %-  role
+    ?+  -.q.don  ~|(%unsupported !!)
+      %a  ((hard (list ,@t)) q.q.don)
+      %c  (lurk dst p.q.don)
+    ==
+  ==
+::
+```
+
+XX document
+
+###++lure
+
+```
 ++  lure                                                ::  apply tree diff
   |=  [a=* b=upas]
   ^-  *

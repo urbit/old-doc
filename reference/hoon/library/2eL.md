@@ -1,4 +1,4 @@
-##section 2eL, formatting (path)        
+##section 2eL, formatting (path)
 
 ###++ab
 
@@ -7,31 +7,65 @@
   |%
 ```
 
-###++bix  
-  
-###++hif  
+XX document
+
+###++bix
+
+```
+  ++  bix  (bass 16 (stun [2 2] six))
+```
+
+XX document
+
+###++hif
 
 ```
   ++  hif  (boss 256 ;~(plug tip tiq (easy ~)))
 ```
-  
-###++huf  
-  
-###++hyf  
+
+XX document
+
+###++huf
+
+```
+  ++  huf  %+  cook
+             |=([a=@ b=@] (wred:un ~(zug mu ~(zag mu [a b]))))
+           ;~(plug hif ;~(pfix hep hif))
+```
+
+XX document
+
+###++hyf
 
 ```
   ++  hyf  (bass 0x1.0000.0000 ;~(plug huf ;~(pfix hep huf) (easy ~)))
 ```
-  
+
+XX document
+
 ###++pev
-  
+
+```
+  ++  pev  (bass 32 ;~(plug sev (stun [0 4] siv)))
+```
+
+XX document
+
 ###++pew
 
 ```
   ++  pew  (bass 64 ;~(plug sew (stun [0 4] siw)))
 ```
 
+XX document
+
 ###++piv
+
+```
+  ++  piv  (bass 32 (stun [5 5] siv))
+```
+
+XX document
 
 ###++piw
 
@@ -39,149 +73,308 @@
   ++  piw  (bass 64 (stun [5 5] siw))
 ```
 
-###++qeb  
-  
-###++qex  
+XX document
+
+###++qeb
+
+```
+  ++  qeb  (bass 2 ;~(plug seb (stun [0 3] sib)))
+```
+
+XX document
+
+###++qex
 
 ```
   ++  qex  (bass 16 ;~(plug sex (stun [0 3] hit)))
 ```
-  
-###++qib  
-  
-###++qix  
+
+XX document
+
+###++qib
+
+```
+  ++  qib  (bass 2 (stun [4 4] sib))
+```
+
+XX document
+
+###++qix
 
 ```
   ++  qix  (bass 16 (stun [4 4] six))
 ```
-  
-###++seb  
-  
-###++sed  
+
+XX document
+
+###++seb
+
+```
+  ++  seb  (cold 1 (just '1'))
+```
+
+XX document
+
+###++sed
 
 ```
   ++  sed  (cook |=(a=@ (sub a '0')) (shim '1' '9'))
 ```
-  
-###++sev  
-  
-###++sew  
+
+XX document
+
+###++sev
+
+```
+  ++  sev  ;~(pose sed sov)
+```
+
+XX document
+
+###++sew
 
 ```
   ++  sew  ;~(pose sed sow)
 ```
-  
-###++sex  
-  
-###++sib  
+
+XX document
+
+###++sex
+
+```
+  ++  sex  ;~(pose sed sox)
+```
+
+XX document
+
+###++sib
 
 ```
   ++  sib  (cook |=(a=@ (sub a '0')) (shim '0' '1'))
 ```
-  
-###++siq  
-  
-###++sid  
+
+XX document
+
+###++siq
+
+```
+  ++  siq  ;~  pose
+             (shim 'a' 'z')
+             (shim 'A' 'Z')
+             (shim '0' '9')
+             hep
+             (cold 32 dot)
+             ;~(pfix sig ;~(pose sig dot bix))
+           ==
+```
+
+XX document
+
+###++sid
 
 ```
   ++  sid  (cook |=(a=@ (sub a '0')) (shim '0' '9'))
 ```
-  
-###++siv  
-  
-###++siw  
+
+XX document
+
+###++siv
+
+```
+  ++  siv  ;~(pose sid sov)
+```
+
+XX document
+
+###++siw
 
 ```
   ++  siw  ;~(pose sid sow)
 ```
-  
-###++six  
-  
-###++sov  
+
+XX document
+
+###++six
+
+```
+  ++  six  ;~(pose sid sox)
+```
+
+XX document
+
+###++sov
 
 ```
   ++  sov  (cook |=(a=@ (sub a 87)) (shim 'a' 'v'))
 ```
-  
-###++sow  
-  
-###++sox  
+
+XX document
+
+###++sow
+
+```
+  ++  sow  ;~  pose
+             (cook |=(a=@ (sub a 87)) (shim 'a' 'z'))
+             (cook |=(a=@ (sub a 29)) (shim 'A' 'Z'))
+             (cold 62 (just '-'))
+             (cold 63 (just '~'))
+           ==
+```
+
+XX document
+
+###++sox
 
 ```
   ++  sox  (cook |=(a=@ (sub a 87)) (shim 'a' 'f'))
 ```
-  
-###++ted  
-  
-###++tip  
+
+XX document
+
+###++ted
+
+```
+  ++  ted  (bass 10 ;~(plug sed (stun [0 2] sid)))
+```
+
+XX document
+
+###++tip
 
 ```
   ++  tip  (sear |=(a=@ (ins:po a)) til)
 ```
-  
-###++tiq  
-  
-###++tid  
+
+XX document
+
+###++tiq
+
+```
+  ++  tiq  (sear |=(a=@ (ind:po a)) til)
+```
+
+XX document
+
+###++tid
 
 ```
   ++  tid  (bass 10 (stun [3 3] sid))
 ```
-  
-###++til  
-  
-###++urs  
+
+XX document
+
+###++til
+
+```
+  ++  til  (boss 256 (stun [3 3] low))
+```
+
+XX document
+
+###++urs
 
 ```
   ++  urs  %+  cook
              |=(a=tape (rap 3 ^-((list ,@) a)))
            (star ;~(pose nud low hep dot sig cab))
 ```
-  
-###++urt  
-  
-###++voy  
+
+XX document
+
+###++urt
+
+```
+  ++  urt  %+  cook
+             |=(a=tape (rap 3 ^-((list ,@) a)))
+           (star ;~(pose nud low hep dot sig))
+```
+
+XX document
+
+###++voy
 
 ```
   ++  voy  ;~(pfix bas ;~(pose bas soq bix))
 ```
-  
-###++vym  
-  
-###++vyn  
+
+XX document
+
+###++vym
+
+```
+  ++  vym  (bass 256 ;~(plug low (star ;~(pose low nud))))
+```
+
+XX document
+
+###++vyn
 
 ```
   ++  vyn  (bass 256 ;~(plug hep vym (easy ~)))
   --
 ```
 
+XX document
+
 ###++ag
- 
-###++ape  
+
+```
+++  ag
+  |%
+```
+
+XX document
+
+###++ape
 
 ```
   ++  ape  |*(fel=_rule ;~(pose (cold 0 (just '0')) fel))
 ```
-  
-###++bay  
-  
-###++bip  
+
+XX document
+
+###++bay
+
+```
+  ++  bay  (ape (bass 16 ;~(plug qeb:ab (star ;~(pfix dog qib:ab)))))
+```
+
+XX document
+
+###++bip
 
 ```
   ++  bip  =+  tod=(ape qex:ab)
            (bass 0x1.0000 ;~(plug tod (stun [7 7] ;~(pfix dog tod))))
 ```
-  
-###++dem  
- 
-###++dim  
+
+XX document
+
+###++dem
+
+```
+  ++  dem  (ape (bass 1.000 ;~(plug ted:ab (star ;~(pfix dog tid:ab)))))
+```
+
+XX document
+
+###++dim
 
 ```
   ++  dim  (ape (bass 10 ;~(plug sed:ab (star sid:ab))))
 ```
-  
-###++dum  
-  
-###++fed  
+
+XX document
+
+###++dum
+
+```
+  ++  dum  (bass 10 (plus sid:ab))
+```
+
+XX document
+
+###++fed
 
 ```
   ++  fed  ;~  pose
@@ -191,35 +384,72 @@
              tiq:ab
            ==
 ```
-  
-###++hex  
-  
-###++lip  
+
+XX document
+
+###++hex
+
+```
+  ++  hex  (ape (bass 0x1.0000 ;~(plug qex:ab (star ;~(pfix dog qix:ab)))))
+```
+
+XX document
+
+###++lip
 
 ```
   ++  lip  =+  tod=(ape ted:ab)
            (bass 256 ;~(plug tod (stun [3 3] ;~(pfix dog tod))))
 ```
-  
-###++qut  
-  
-###++sym  
+
+XX document
+
+###++qut
+
+```
+  ++  qut  %+  ifix  [soq soq]
+           %+  boss  256
+           %-  star  ;~  pose
+                       ;~(pfix bas ;~(pose bas soq bix:ab))
+                       ;~(less bas soq prn)
+                     ==
+```
+
+XX document
+
+###++sym
 
 ```
   ++  sym  (cook |=(a=(list ,@) (rap 3 a)) ;~(plug vym:ab (star vyn:ab)))
 ```
-  
-###++tyq  
-  
-###++viz  
+
+XX document
+
+###++tyq
+
+```
+  ++  tyq  (cook |=(a=(list ,@) (rap 3 a)) (plus siq:ab))
+```
+
+XX document
+
+###++viz
 
 ```
   ++  viz  (ape (bass 0x200.0000 ;~(plug pev:ab (star ;~(pfix dog piv:ab)))))
 ```
-  
-###++vum  
-  
-###++wiz  
+
+XX document
+
+###++vum
+
+```
+  ++  vum  (bass 32 (plus siv:ab))
+```
+
+XX document
+
+###++wiz
 
 ```
   ++  wiz  (ape (bass 0x4000.0000 ;~(plug pew:ab (star ;~(pfix dog piw:ab)))))
@@ -227,16 +457,33 @@
 ::
 ```
 
+XX document
+
 ###++co
+
+```
+++  co
+  =<  |_  lot=coin
+```
+
+XX document
 
 ###++rear
 
 ```
       ++  rear  |=(rom=tape =>(.(rex rom) rend))
 ```
-      
+
+XX document
+
 ###++rent
-      
+
+```
+      ++  rent  `@ta`(rap 3 rend)
+```
+
+XX document
+
 ###++rend
 
 ```
@@ -371,66 +618,210 @@
   =+  rex=*tape
   =<  |%
 ```
-      
+
+XX document
+
 ###++a-co
-      
+
+```
+      ++  a-co  |=(dat=@ ((d-co 1) dat))
+```
+
+XX document
+
 ###++d-co
+
+```
+      ++  d-co  |=(min=@ (em-co [10 min] |=([? b=@ c=tape] [~(d ne b) c])))
+```
+
+XX document
+
+###++r-co
+
+```
+      ++  r-co
+        |=  [syn=? nub=@ der=@ ign=(unit tape) ne=?]
+        =>  .(rex ['.' (t-co ((d-co 1) der) ne)])
+        =>  .(rex ((d-co 1) nub))
+        ?:(syn rex ['-' rex])
+```
+
+XX document
+
+###++t-co
+
+```
+      ++  t-co  |=  [a=tape n=?]  ^-  tape 
+        ?:  n  a
+        ?~  a  ~|(%empty-frac !!)  t.a
+      ::
+```
+
+XX document
+
+###++s-co
+
+```
+      ++  s-co
+        |=  esc=(list ,@)  ^-  tape
+        ~|  [%so-co esc]
+        ?~  esc
+          rex
+        :-  '.'
+        =>(.(rex $(esc t.esc)) ((x-co 4) i.esc))
+        
+    ::
+```
+
+XX document
+
+###++v-co
+
+```
+      ++  v-co  |=(min=@ (em-co [32 min] |=([? b=@ c=tape] [~(v ne b) c])))
+```
+
+XX document
+
+###++w-co
+
+```
+      ++  w-co  |=(min=@ (em-co [64 min] |=([? b=@ c=tape] [~(w ne b) c])))
+```
+
+XX document
+
+###++x-co
+
+```
+      ++  x-co  |=(min=@ (em-co [16 min] |=([? b=@ c=tape] [~(x ne b) c])))
+```
+
+XX document
+
+###++y-co
+
+```
+      ++  y-co  |=(dat=@ ((d-co 2) dat))
+```
+
+XX document
+
+###++z-co
+
+```
+      ++  z-co  |=(dat=@ `tape`['0' 'x' ((x-co 1) dat)])
+      --
+  ~%  %co  +>  ~
+  |%
+```
+
+XX document
+
+###++em-co
+
+```
+  ++  em-co
+    ~/  %emco
+    |=  [[bas=@ min=@] [par=$+([? @ tape] tape)]]
+    |=  hol=@
+    ^-  tape
+    ?:  &(=(0 hol) =(0 min))
+      rex
+    =+  [rad=(mod hol bas) dar=(div hol bas)]
+    %=  $
+      min  ?:(=(0 min) 0 (dec min))
+      hol  dar
+      rex  (par =(0 dar) rad rex)
+    ==
+  ::
+```
+
+XX document
+
+###++ox-co
+
+```
+  ++  ox-co
+    ~/  %oxco
+    |=  [[bas=@ gop=@] dug=$+(@ @)]
+    %+  em-co
+      [|-(?:(=(0 gop) 1 (mul bas $(gop (dec gop))))) 0]
+    |=  [top=? seg=@ res=tape]
+    %+  weld
+      ?:(top ~ `tape`['.' ~])
+    %.  seg
+    %+  em-co(rex res)
+      [bas ?:(top 0 gop)]
+    |=([? b=@ c=tape] [(dug b) c])
+  ::
+```
+
+XX document
+
+###++ro-co
+
+```
+  ++  ro-co
+    ~/  %roco
+    |=  [[buz=@ bas=@ dop=@] dug=$+(@ @)]
+    |=  hol=@
+    ^-  tape
+    ?:  =(0 dop)
+      rex
+    =>  .(rex $(dop (dec dop)))
+    :-  '.'
+    %-  (em-co [bas 1] |=([? b=@ c=tape] [(dug b) c]))
+    [(cut buz [(dec dop) 1] hol)]
+  --
+::
+```
+
+XX document
+
+###++ne
+
+```
+++  ne
+  |_  tig=@
+```
+
+XX document
+
+###++d
 
 ```
   ++  d  (add tig '0')
 ```
-      
-###++r-co
-      
-###++s-co
 
-``````
-      
-###++v-co
-  
-###++w-co
+XX document
+
+###++x
+
+```
+  ++  x  ?:((gte tig 10) (add tig 87) d)
+```
+
+XX document
+
+###++v
+
+```
+  ++  v  ?:((gte tig 10) (add tig 87) d)
+```
+
+XX document
+
+###++w
 
 ```
   ++  w  ?:(=(tig 63) '~' ?:(=(tig 62) '-' ?:((gte tig 36) (add tig 29) x)))
   --
 ::
 ```
-  
-###++x-co
-      
-###++y-co
 
-``````
-      
-###++z-co
-  
-###++em-co
-
-``````
-  
-###++ox-co
-  
-###++ro-co
-
-``````
-
-###++ne
-  
-###++d  
-
-```
-  ++  d  (add tig '0')
-```
-  
-###++x  
-  
-###++v  
-
-```
-  ++  v  ?:((gte tig 10) (add tig 87) d)
-```
-  
-###++w  
+XX document
 
 ###++mu
 
@@ -438,16 +829,34 @@
 ++  mu
   |_  [top=@ bot=@]
 ```
-  
+
+XX document
+
 ###++zag
-  
+
+```
+  ++  zag  [p=(end 4 1 (add top bot)) q=bot]
+```
+
+XX document
+
 ###++zig
 
 ```
   ++  zig  [p=(end 4 1 (add top (sub 0x1.0000 bot))) q=bot]
 ```
-  
+
+XX document
+
 ###++zug
+
+```
+  ++  zug  (mix (lsh 4 1 top) bot)
+  --
+::
+```
+
+XX document
 
 ###++so
 
@@ -455,9 +864,29 @@
 ++  so
   |%
 ```
-  
+
+XX document
+
 ###++bisk
-  
+
+```
+  ++  bisk
+    ;~  pose
+      ;~  pfix  (just '0')
+        ;~  pose
+          (stag %ub ;~(pfix (just 'b') bay:ag))
+          (stag %ui ;~(pfix (just 'i') dim:ag))
+          (stag %ux ;~(pfix (just 'x') hex:ag))
+          (stag %uv ;~(pfix (just 'v') viz:ag))
+          (stag %uw ;~(pfix (just 'w') wiz:ag))
+        ==
+      ==
+      (stag %ud dem:ag)
+    ==
+```
+
+XX document
+
 ###++crub
 
 ```
@@ -515,18 +944,47 @@
       ;~(pfix hep (stag %c (cook turf (cook woad urs:ab))))
     ==
 ```
-  
+
+XX document
+
 ###++nuck
-  
+
+```
+  ++  nuck
+    %+  knee  *coin  |.  ~+
+    %-  stew
+    ^.  stet  ^.  limo
+    :~  :-  ['a' 'z']  (cook |=(a=@ta [~ %tas a]) sym)
+        :-  ['0' '9']  (stag ~ bisk)
+        :-  '-'        (stag ~ tash)
+        :-  '.'        ;~(pfix dot perd)
+        :-  '~'        ;~(pfix sig ;~(pose twid (easy [~ %n 0])))
+    ==
+```
+
+XX document
+
 ###++nusk
 
 ```
   ++  nusk
     (sear |=(a=@ta (rush (wick a) nuck)) urt:ab)
 ```
-  
+
+XX document
+
 ###++perd
-  
+
+```
+  ++  perd
+    ;~  pose
+      (stag ~ zust)
+      (stag %many (ifix [cab ;~(plug cab cab)] (more cab nusk)))
+    ==
+```
+
+XX document
+
 ###++royl
 
 ```
@@ -553,9 +1011,42 @@
       (stag %rs (cook ryls voy))
     ==
 ```
-  
+
+XX document
+
+###++royl-cell
+
+```
+  ++  royl-cell
+    |=  [a=? b=[c=@ d=@ e=@] f=(unit ,[h=? i=@])]  
+    ^-  [? @ @ @ (unit ,@s)]
+    ?~  f
+      [a c.b d.b e.b ~]
+    ?:  h.u.f
+      [a c.b d.b e.b [~ (mul i.u.f 2)]]
+    [a c.b d.b e.b [~ (dec (mul i.u.f 2))]]
+```
+
+XX document
+
 ###++tash
-  
+
+```
+  ++  tash
+    =+  ^=  neg
+        |=  [syn=? mol=dime]  ^-  dime
+        ?>  =('u' (end 3 1 p.mol))
+        [(cat 3 's' (rsh 3 1 p.mol)) (new:si syn q.mol)]
+    ;~  pfix  hep
+      ;~  pose
+        (cook |=(a=dime (neg | a)) bisk)
+        ;~(pfix hep (cook |=(a=dime (neg & a)) bisk))
+      ==
+    ==
+```
+
+XX document
+
 ###++twid
 
 ```
@@ -566,24 +1057,68 @@
     ==
   ::
 ```
-  
+
+XX document
+
 ###++zust
 
-###++scot 
+```
+  ++  zust
+    ;~  pose
+      (stag %is bip:ag)
+      (stag %if lip:ag)
+      (stag %f ;~(pose (cold & (just 'y')) (cold | (just 'n'))))
+      royl
+    ==
+  --
+```
+
+XX document
+
+###++scot
 
 ```
 ++  scot  |=(mol=dime ~(rent co %$ mol))
 ```
 
-###++scow 
+XX document
 
-###++slav  
+###++scow
+
+```
+++  scow  |=(mol=dime ~(rend co %$ mol))
+```
+
+XX document
+
+###++slat
+
+```
+++  slat  |=(mod=@tas |=(txt=@ta (slaw mod txt)))
+```
+
+XX document
+
+###++slav
 
 ```
 ++  slav  |=([mod=@tas txt=@ta] (need (slaw mod txt)))
 ```
 
+XX document
+
 ###++slaw
+
+```
+++  slaw
+  |=  [mod=@tas txt=@ta]
+  ^-  (unit ,@)
+  =+  con=(slay txt)
+  ?.(&(?=([~ %$ @ @] con) =(p.p.u.con mod)) ~ [~ q.p.u.con])
+::
+```
+
+XX document
 
 ###++slay
 
@@ -597,4 +1132,17 @@
 ::
 ```
 
+XX document
+
 ###++smyt
+
+```
+++  smyt
+  |=  bon=path  ^-  tank
+  :+  %rose  [['/' ~] ['/' ~] ['/' ~]]
+  |-  ^-  (list tank)
+  (turn bon |=(a=@ [%leaf (rip 3 a)]))
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+```
+
+XX document
