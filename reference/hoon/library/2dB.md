@@ -159,7 +159,7 @@ Produces jug `a` with value `c` removed from set located at key `b`.
 
 ---
 
-##+-get:ju
+###+-get:ju
 
 Retrieve set
 
@@ -533,7 +533,7 @@ Intersection
     %-  uni(+< $(b r.b, a [n.a ~ r.a]))  $(a l.a)
 ```
 
-Produces a map of the (key) intersection between two maps of the same type, `a` and `b`. If both maps have an identical key that point to different values, the element from map `a` is used.
+Produces a map of the (key) intersection between two maps of the same type, `a` and `b`. If both maps have an identical key that point to different values, the element from map `b` is used.
 
 `a` is a [map]().
 
