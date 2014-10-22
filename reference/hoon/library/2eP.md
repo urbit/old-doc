@@ -252,7 +252,7 @@ XX document
   ?+  pum  ~|(%unsupported !!)
     %a  dst
     %b  (jam dst)
-    %c  (roly ((hard (list ,@)) dst))
+    %c  (role ((hard (list ,@)) dst))
   ==
 ::
 ```
