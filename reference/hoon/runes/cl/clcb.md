@@ -31,5 +31,7 @@ undefined
 
 ##Examples
 
-undefined
-
+    ~zod/try=> :_(1 2)
+    [2 1]
+    ~zod/try=> `tape`:_(~ 'a')
+    "a"

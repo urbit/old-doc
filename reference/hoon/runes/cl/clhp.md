@@ -31,5 +31,10 @@ produces the cell `[p q]`.
 
 ##Examples
 
-undefined
-
+    ~zod/try=> :-(1 2)
+    [1 2]
+    ~zod/try=> :-  'a'
+               %b
+    ['a' %b]
+    
+Cell of two nouns

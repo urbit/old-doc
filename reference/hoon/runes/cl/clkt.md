@@ -44,5 +44,9 @@ undefined
 
 ##Examples
 
-undefined
-
+/~zod/try=> :^(1 2 3 4)
+[1 2 3 4]
+/~zod/try=> :^  5  6
+              7
+            8
+[5 6 7 8]

@@ -33,5 +33,18 @@ produces a tuple.
 
 ##Examples
 
-undefined
-
+    /~zod/try=> [5 3 4 1 4 9 0 ~ 'a']
+    [5 3 4 1 4 9 0 ~ 'a']
+    /~zod/try=> :*(5 3 4 1 4 9 0 ~ 'a')
+    [5 3 4 1 4 9 0 ~ 'a']
+    /~zod/try=> :*  5
+                    3
+                    4 
+                    1
+                    4
+                    9
+                    0
+                    ~
+                    'a'
+                ==
+    [5 3 4 1 4 9 0 ~ 'a']

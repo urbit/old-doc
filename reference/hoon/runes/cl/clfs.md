@@ -30,5 +30,9 @@ undefined
 
 ##Examples
 
-undefined
+    ~zod/try=> :/(20)
+    [[%~. [%~. 20] ~] ~]
+    ~zod/try=> :/(add 2 2)
+    [[%~. [%~. 4] ~] ~]
 
+Wraps twig in `[%$ [%$ .] ~]~`, used for interpolation.

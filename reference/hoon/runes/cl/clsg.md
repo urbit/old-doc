@@ -33,5 +33,15 @@ produces a null-terminated tuple.
 
 ##Examples
 
-undefined
+    /~zod/try=> :~(5 3 4 2 1)
+    [5 3 4 2 1 ~]
+    /~zod/try=> ~[5 3 4 2 1]
+    [5 3 4 2 1 ~]
+    /~zod/try=> :~  5
+                    3
+                    4
+                    2
+                    1
+                ==
+    [5 3 4 2 1 ~]
 

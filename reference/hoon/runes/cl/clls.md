@@ -39,5 +39,9 @@ undefined
 
 ##Examples
 
-undefined
-
+    /~zod/try=> :+  1
+                  2
+                3
+    [1 2 3]
+    /~zod/try=> :+(%a ~ 'b')
+    [%a ~ 'b']
