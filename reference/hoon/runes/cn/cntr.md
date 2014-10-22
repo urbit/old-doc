@@ -4,7 +4,7 @@
 
 #Syntax
 
-`%*`, `centar`, `[%cntr p=wing q=twig r=tram]` is a synthetic rune that pull the wing `p` from a tray `q` with changes `r`.
+`%*`, `centar`, `[%cntr p=wing q=twig r=tram]` is a synthetic rune that pull the wing `p` from a door `q` with changes `r`.
 
 ##Produces
 

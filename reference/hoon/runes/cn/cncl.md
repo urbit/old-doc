@@ -5,7 +5,7 @@
 #Syntax
 
 `%:`, `cencol`, `[%cncl p=twig q=twig]` is a synthetic rune that
-that pulls `%$` from the tray `p` with its sample set to `q`.
+that pulls `%$` from the door `p` with its sample set to `q`.
 
 ##Produces
 

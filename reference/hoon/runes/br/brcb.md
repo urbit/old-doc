@@ -5,7 +5,7 @@
 #Syntax
 
 `|_`, `barcab`, `[%brcb p=tile q=(map term foot)]` is a synthetic hoon that
-produces a `%gold` tray with sample `p`, arms `q`. `|_` takes an associative
+produces a `%gold` door with sample `p`, arms `q`. `|_` takes an associative
 array of names (++term) and expressions (++foot), each pair of which is called
 an arm. A dry, or %ash, arm is denoted with `++`. `|_` can take an arbitrary
 number of arms, but the arm array must be terminated with a `--`
@@ -36,6 +36,7 @@ None
 
 ##Examples
 
+```
 ++  fe                                                  ::  modulo bloq
       |_  a=bloq
       ++  dif  |=([b=@ c=@] (sit (sub (add out (sit b)) (sit c))))
@@ -62,8 +63,50 @@ None
       ++  sum  |=([b=@ c=@] (sit (add b c)))
       ++  sit  |=(b=@ (end a 1 b))
       --
+```
 
-In ++fe, `|_` creates a tray whose arms contain gates used to calculate modular
+In ++fe, `|_` creates a door whose arms contain gates used to calculate modular
 arithmetic on bitstrings. The sample of `|_` is the tile `a=bloq` which is a
 block size argument that gets passed to each of the arms.
 
+```
+++  ah
+  |_  tig=tiki
+  ++  blue
+    |=  gen=twig
+    ^-  twig
+    ?.  &(?=(| -.tig) ?=(~ p.tig))  gen
+    [%tsgr [~ 3] gen]
+  ::
+  ++  gray
+    |=  gen=twig
+    ^-  twig
+    ?-  -.tig
+      &  ?~(p.tig gen [%tstr u.p.tig q.tig gen])
+      |  [%tsls ?~(p.tig q.tig [%ktts u.p.tig q.tig]) gen]
+    ==
+  ::
+  ++  puce
+    ^-  wing
+    ?-  -.tig
+      &  ?~(p.tig q.tig [u.p.tig ~])
+      |  [[%& 2] ~]
+    ==
+  --
+```
+
+Small piece of compiler, reduces tikis
+
+Doors are commonly invoked with `%~`, short form ~(arm door samp), which 
+replaces the door's sample and pulls the specified arm.
+
+    /~zod/try=> =mol
+                  |_  a=@ud
+                  ++  succ  +(a)
+                  ++  prev  (dec a)
+                  --
+    /~zod/try=> ~(succ mol 1)
+    2
+    /~zod/try=> ~(succ mol ~(succ mol ~(prev mol 5)))
+    6
+    
