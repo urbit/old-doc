@@ -34,40 +34,24 @@ None
 
 None
 
+##Reduction
+
+[`=|`]()  [`|%` ]()
+See also: [%brcb:++open:al]()
+
 ##Examples
 
-```
-++  fe                                                  ::  modulo bloq
-      |_  a=bloq
-      ++  dif  |=([b=@ c=@] (sit (sub (add out (sit b)) (sit c))))
-      ++  inv  |=(b=@ (sub (dec out) (sit b)))
-      ++  net  |=  b=@  ^-  @
-               =>  .(b (sit b))
-               ?:  (lte a 3)
-                 b
-               =+  c=(dec a)
-               %+  con
-                 (lsh c 1 $(a c, b (cut c [0 1] b)))
-               $(a c, b (cut c [1 1] b))
-      ++  out  (bex (bex a))
-      ++  rol  |=  [b=bloq c=@ d=@]  ^-  @
-               =+  e=(sit d)
-               =+  f=(bex (sub a b))
-               =+  g=(mod c f)
-               (sit (con (lsh b g e) (rsh b (sub f g) e)))
-      ++  ror  |=  [b=bloq c=@ d=@]  ^-  @
-               =+  e=(sit d)
-               =+  f=(bex (sub a b))
-               =+  g=(mod c f)
-               (sit (con (rsh b g e) (lsh b (sub f g) e)))
-      ++  sum  |=([b=@ c=@] (sit (add b c)))
-      ++  sit  |=(b=@ (end a 1 b))
-      --
-```
+    /~zod/try=> =mol
+                  |_  a=@ud
+                  ++  succ  +(a)
+                  ++  prev  (dec a)
+                  --
+    /~zod/try=> ~(succ mol 1)
+    2
+    /~zod/try=> ~(succ mol ~(succ mol ~(prev mol 5)))
+    6
 
-In ++fe, `|_` creates a door whose arms contain gates used to calculate modular
-arithmetic on bitstrings. The sample of `|_` is the tile `a=bloq` which is a
-block size argument that gets passed to each of the arms.
+Here we create a door `mol` that operates on a `@ud`, `a`. We add two arms to our door, `++succ` and `++prev` and test invoking them with the irregular form of `%~`. Doors are commonly invoked with `%~`, irregular form `~(arm door sample)`, which replaces the door's sample and pulls the specified arm.
 
 ```
 ++  ne
@@ -82,20 +66,7 @@ block size argument that gets passed to each of the arms.
 
 ++ne is used to print a single digit in base 10, 16, 32, or 64
 
-Doors are commonly invoked with `%~`, short form ~(arm door samp), which 
-replaces the door's sample and pulls the specified arm.
-
     ~zod/try=> `@t`~(x ne 12)
     'c'
     ~zod/try=> `@ux`12
     0xc
-    /~zod/try=> =mol
-                  |_  a=@ud
-                  ++  succ  +(a)
-                  ++  prev  (dec a)
-                  --
-    /~zod/try=> ~(succ mol 1)
-    2
-    /~zod/try=> ~(succ mol ~(succ mol ~(prev mol 5)))
-    6
-    
