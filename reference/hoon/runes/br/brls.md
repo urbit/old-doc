@@ -32,4 +32,16 @@ None
 ##Examples
 
 
+    ~zod/try=> +<:|+(a=@ a)
+    ! -axis.6
+    ! peek-park
+    ! exit
+    ~zod/try=> +<:|=(a=@ a)
+    a=0
+    ~zod/try=> %.(20 |+(a=@ a))
+    20
+    ~zod/try=> %.(20 |+(a=@ (add a 12)))
+    32
 
+An `iron` gate is like a `gold` gate, but cannot have its sample read, only
+written.

@@ -31,6 +31,13 @@ None
 
 ##Examples
 
+    ~zod/try=> =inc |=(a=@ +(a))
+    ~zod/try=> (inc 20)
+    21
+    
+Here there be lambdas, see [gate]() doc
+
+```
 ++  add                                                 ::  add
       ~/  %add
       |=  [a=@ b=@]
@@ -38,6 +45,7 @@ None
       ?:  =(0 a)
         b
       $(a (dec a), b +(b))
+```
 
 In ++add, `|=` creates a gate whose sample takes two atoms
 labeled `a` and `b`, and whose arm evaluates an expression that

@@ -31,6 +31,16 @@ None
 
 ##Examples
 
+
+    ~zod/try=> %.('c' |*(a=@ a))
+    'c'
+    ~zod/try=> %.('c' |=(a=@ a))
+    99
+
+A wet gate is type-inferenced per call, (possibly) saving type information from
+the sample as opposed to having one predetermined product type.
+
+```
 ++  flop                                                ::  reverse
       ~/  %flop
       |*  a=(list)
@@ -41,6 +51,7 @@ None
       ?@  a
         b
       $(a t.a, b [i.a b])
+```
 
 In ++flop, `|*` creates a wet gate that takes a ++list (link).
 
