@@ -46,3 +46,5 @@ None
     ]
 
 A lead core's payload cannot be read or written.
+
+XX understand lead cores
