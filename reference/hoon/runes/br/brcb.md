@@ -70,36 +70,25 @@ arithmetic on bitstrings. The sample of `|_` is the tile `a=bloq` which is a
 block size argument that gets passed to each of the arms.
 
 ```
-++  ah
-  |_  tig=tiki
-  ++  blue
-    |=  gen=twig
-    ^-  twig
-    ?.  &(?=(| -.tig) ?=(~ p.tig))  gen
-    [%tsgr [~ 3] gen]
-  ::
-  ++  gray
-    |=  gen=twig
-    ^-  twig
-    ?-  -.tig
-      &  ?~(p.tig gen [%tstr u.p.tig q.tig gen])
-      |  [%tsls ?~(p.tig q.tig [%ktts u.p.tig q.tig]) gen]
-    ==
-  ::
-  ++  puce
-    ^-  wing
-    ?-  -.tig
-      &  ?~(p.tig q.tig [u.p.tig ~])
-      |  [[%& 2] ~]
-    ==
+++  ne
+  |_  tig=@
+  ++  d  (add tig '0')
+  ++  x  ?:((gte tig 10) (add tig 87) d)
+  ++  v  ?:((gte tig 10) (add tig 87) d)
+  ++  w  ?:(=(tig 63) '~' ?:(=(tig 62) '-' ?:((gte tig 36) (add tig 29) x)))
   --
+::
 ```
 
-Small piece of compiler, reduces tikis
+++ne is used to print a single digit in base 10, 16, 32, or 64
 
 Doors are commonly invoked with `%~`, short form ~(arm door samp), which 
 replaces the door's sample and pulls the specified arm.
 
+    ~zod/try=> `@t`~(x ne 12)
+    'c'
+    ~zod/try=> `@ux`12
+    0xc
     /~zod/try=> =mol
                   |_  a=@ud
                   ++  succ  +(a)
