@@ -1,8 +1,8 @@
 ##section 2eC, parsing (custom rules)   
 
----
-
 ###++cold  
+
+Replace with constant
 
 ```
 ++  cold                                                ::  replace w/ constant
@@ -17,7 +17,11 @@
 ::
 ```
 
-Parser modifier: replace result with a constant noun.
+Parser modifier: accepts a parser `sef` and produces a parser that produces a constant `cus` if `sef` is successful.
+
+`cus` is a constant [noun]().
+
+`sef` is a [rule]().
 
         ~zod/try=> ((cold %foo (just 'a')) [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ u=[p=%foo q=[p=[p=1 q=2] q="bc"]]]]
@@ -27,6 +31,8 @@ Parser modifier: replace result with a constant noun.
 ---
 
 ###++cook
+
+Apply gate
 
 ```
 ++  cook                                                ::  apply gate
@@ -41,7 +47,11 @@ Parser modifier: replace result with a constant noun.
 ::
 ```
 
-Parser modifier: alter result by slamming it through a gate.
+Parser modifier: produces a parser that takes a (successful) result of `sef` and slams it through `poq`.
+
+`poq` is a [gate]().
+
+`sef` is a [rule]().
 
         ~zod/try=> ((cook ,@ud (just 'a')) [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ u=[p=97 q=[p=[p=1 q=2] q="bc"]]]]
@@ -56,6 +66,8 @@ Parser modifier: alter result by slamming it through a gate.
 
 ###++easy
 
+Always parse
+
 ```
 ++  easy                                                ::  always parse
   ~/  %easy
@@ -67,7 +79,7 @@ Parser modifier: alter result by slamming it through a gate.
 ::
 ```
 
-Parser generator. Succeed with given noun without consuming any text
+Parser generator: produces a parser that succeeds with given noun `huf` without consuming any text.
 
         ~zod/try=> ((easy %foo) [[1 1] "abc"])
         [p=[p=1 q=1] q=[~ [p=%foo q=[p=[p=1 q=1] q="abc"]]]]
@@ -80,11 +92,15 @@ Parser generator. Succeed with given noun without consuming any text
 
 ###++fail  
 
+Never parse
+
 ```
 ++  fail  |=(tub=nail [p=p.tub q=~])                    ::  never parse
 ```
 
-Fail to parse - Produce a nail at the same text position but with null continuation.
+Produces an [edge]() at the same text position ([hair]()) with a failing result (`q=~`).
+
+`tub` is a [nail]().
 
         ~zod/try=> (fail [[1 1] "abc"])
         [p=[p=1 q=1] q=~]
@@ -95,8 +111,10 @@ Fail to parse - Produce a nail at the same text position but with null continuat
 
 ###++full  
 
+Parse to end
+
 ```
-++  full                                                ::  has to fully parse
+++  full                                                :: parse to end 
   |*  sef=_rule
   |=  tub=nail
   =+  vex=(sef tub)
@@ -104,8 +122,9 @@ Fail to parse - Produce a nail at the same text position but with null continuat
 ::
 ```
 
-Demand politely that the parsing rule parse the entire sample nail, produce a
-null edge otherwise.
+Accepts a [nail]() `tub` and produces a parser that succeeds only when a `tub` success consumes the remainder of the [tape](). 
+
+`sef` is a [rule]().
 
         ~zod/try=> ((full (just 'a')) [[1 1] "ab"])
         [p=[p=1 q=2] q=~]
@@ -153,7 +172,11 @@ XX unused?
 ::
 ```
 
-Parser modifier: transform result by slamming it and the range it parsed through
+Parser modifier: similar to [++cook]() produces a parser that takes a (successful) result of `sef` and slams it through `poq`,  accepts pint `a`
+
+
+produces a parser that takes a 
+transform result by slamming it and the range it parsed through
 a gate.
 
     ~zod/try=> (scan "abc" (star alf))
