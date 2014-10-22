@@ -1,7 +1,5 @@
 ##section 2eB, parsing (tracing)
 
----
-
 ###++last
 
 Farther trace

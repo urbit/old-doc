@@ -25,7 +25,7 @@ Produces a map of key-value pairs from the left-right cell pairs of list `a`.
 
 ---
         
-###++sa        
+###++sa
 
 Set from list
 

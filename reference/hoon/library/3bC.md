@@ -2,8 +2,10 @@
 
 ###++dawn
 
+Weekday of Jan 1
+
 ```
-++  dawn                                                ::  Jan 1 weekday
+++  dawn                                                ::  weekday of jan 1
   |=  yer=@ud
   =+  yet=(sub yer 1)
   %-  mod  :_  7
@@ -11,21 +13,48 @@
 ::
 ```
 
-XX document
+Computes which day of the week January 1st falls on for a year `yer`, producing an atom. Weeks are zero-indexed beginning on Sunday.
+
+`yer` is an unsigned decimal, [`@ud`]().
+
+    ~zod/try=> (dawn 2.015)
+    4
+    ~zod/try=> (dawn 1)
+    1
+    ~zod/try=> (dawn 0)
+    ! subtract-underflow
+    ! exit
+
+---
 
 ###++daws
 
+Weekday of date
+
 ```
-++  daws                                                ::  date weekday
+++  daws                                                ::  weekday of date
   |=  yed=date
   %-  mod  :_  7
   (add (dawn y.yed) (sub (yawn [y.yed m.yed d.t.yed]) (yawn y.yed 1 1)))
 ::
 ```
 
-XX document
+Produces the day of the week of a given date `yed`. Weeks are zero-indexed beginning on Sunday.
+
+`yed` is a [`date`]().
+
+    ~zod/try=> (daws [[a=%.y y=2.014] m=6 t=[d=6 h=21 m=9 s=15 f=~[0xa16]]])
+    5
+    ~zod/try=> (daws (yore -<-))
+    2
+
+(second example always returns the current date).
+
+---
 
 ###++deal
+
+Add leap seconds
 
 ```
 ++  deal                                                ::  to leap sec time
@@ -43,9 +72,22 @@ XX document
 ::
 ```
 
-XX document
+Produces a [`date`]() with the 25 leap seconds added.
+
+`yer` is an absolute date, [`@da`]().
+
+    ~zod/try=> (yore (bex 127))
+    [[a=%.y y=226] m=12 t=[d=5 h=15 m=30 s=8 f=~]]
+    ~zod/try=> (deal `@da`(bex 127))
+    [[a=%.y y=226] m=12 t=[d=5 h=15 m=30 s=33 f=~]]
+    ~zod/try=> (yore (bex 126))
+    [[a=%.n y=146.138.512.088] m=6 t=[d=19 h=7 m=45 s=4 f=~]]
+
+---
 
 ###++lead
+
+Subtract leap seconds
 
 ```
 ++  lead                                                ::  from leap sec time
@@ -66,9 +108,22 @@ XX document
 ::
 ```
 
-XX document
+Produces an absolute date ([`@ud`]()) with the 25 leap seconds subtracted.
+
+`ley` is a [`date`]().
+
+    ~zod/try=> (yore `@da`(bex 127))
+    [[a=%.y y=226] m=12 t=[d=5 h=15 m=30 s=8 f=~]]
+    ~zod/try=> (lead (yore `@da`(bex 127)))
+    ~226.12.5..15.29.43
+    ~zod/try=> (lead (yore `@da`(bex 126)))
+    ~146138512088-.6.19..07.44.39
+
+---
 
 ###++dust
+
+Print UTC format
 
 ```
 ++  dust                                                ::  print UTC format
@@ -86,9 +141,20 @@ XX document
 ::
 ```
 
-XX document
+Produces a [tape]() of the date in UTC format.
+
+`yed` is a [`date`]().
+
+    ~zod/try=> (dust (yore -<-))
+    "Tue, 21 Oct 2014 21:35:12 +0000"
+    ~zod/try=> (dust [[a=%.y y=2.002] m=10 t=[d=11 h=12 m=20 s=55 f=~]])
+    "Fri, 11 Oct 2002 12:20:55 +0000"
+
+---
 
 ###++stud
+
+Parse UTC format
 
 ```
 ++  stud                                                ::  parse UTC format
@@ -119,29 +185,58 @@ XX document
 ::
 ```
 
-XX document
+Accepts a [tape]() containing a date in UTC format and produces the [unit]() of a [`date`]().
+
+    ~zod/try=> (stud "Tue, 21 Oct 2014 21:21:55 +0000")
+    [~ [[a=%.y y=2.014] m=10 t=[d=21 h=21 m=21 s=55 f=~]]]
+    ~zod/try=> (stud "Wed, 11 Oct 2002 12:20:55 +0000")
+    [~ [[a=%.y y=2.002] m=10 t=[d=11 h=12 m=20 s=55 f=~]]]
+    ~zod/try=> (stud "Wed, 11 Oct 2002")
+    ~
+
+---
 
 ###++unt
 
+UGT to UTC time
+
 ```
 ++  unt                                                 ::  UGT to UTC time
-  |=  a=@
+  |=  a=@da
   (div (sub a ~1970.1.1) (bex 64))
 ::
 ```
 
-XX document
+    ~zod/try=/hom> (unt -<-)
+    1.413.927.704
+    ~zod/try=> (unt ~20014.1.1)
+    569.413.670.400
+    ~zod/try=> (unt ~2014.1.1)
+    1.388.534.400
+
+Transforms Urbit Galactic Time to UTC time, producing an atom.
+
+`a` is an [atom]().
+
+---
 
 ###++yu
+
+UTC format constants
 
 ```
 ++  yu                                                  ::  UTC format constants
   |%
 ```
 
-XX document
+    ~zod/try=/hom> yu
+    <4.pgn 250.tmw 41.cmo 414.rvm 101.jzo 1.ypj %164>
+
+---
 
 ###++mon
+
+Months
 
 ```
   ++  mon  ^-  (list tape)
@@ -151,9 +246,31 @@ XX document
   ::
 ```
 
-XX document
+Produces a list of [tapes]() containing the 12 months of the year.
+
+    ~zod/try=/hom> mon:yu
+    <<
+      "January"
+      "February"
+      "March"
+      "April"
+      "May"
+      "June"
+      "July"
+      "August"
+      "September"
+      "October"
+      "November"
+      "December"
+    >>
+    ~zod/try=/hom> (snag 1 mon:yu)
+    "February"
+
+---
 
 ###++wik
+
+Weeks
 
 ```
   ++  wik  ^-  (list tape)
@@ -163,9 +280,20 @@ XX document
   ::
 ```
 
-XX document
+Produces a list of [tapes]() containing the 7 days of the week, beginning with Sunday. 
+
+    ~zod/try=/hom> wik:yu
+    <<"Sunday" "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday">>
+    ~zod/try=/hom> (snag 2 wik:yu)
+    "Tuesday"
+    ~zod/try=/hom> (snag (daws (yore -<-)) wik:yu)
+    "Tuesday"
+
+---
 
 ###++les
+
+Leap second dates
 
 ```
   ++  les  ^-  (list ,@da)
@@ -177,9 +305,44 @@ XX document
     ==
 ```
 
-XX document
+Produces a list of the (absolute) dates ([`@da`]) of the 25 leap seconds
+
+    ~zod/try=/hom> les:yu
+    ~[
+      ~2012.7.1
+      ~2009.1.1
+      ~2006.1.1
+      ~1999.1.1
+      ~1997.7.1
+      ~1996.1.1
+      ~1994.7.1
+      ~1993.7.1
+      ~1992.7.1
+      ~1991.1.1
+      ~1990.1.1
+      ~1988.1.1
+      ~1985.7.1
+      ~1983.7.1
+      ~1982.7.1
+      ~1981.7.1
+      ~1980.1.1
+      ~1979.1.1
+      ~1978.1.1
+      ~1977.1.1
+      ~1976.1.1
+      ~1975.1.1
+      ~1974.1.1
+      ~1973.1.1
+      ~1972.7.1
+    ]
+    ~zod/try=/hom> (snag 2 les:yu)
+    ~2006.1.1
+
+---
 
 ###++lef
+
+Back-shifted leap second dates
 
 ```
   ++  lef  ^-  (list ,@da)
@@ -200,4 +363,37 @@ XX document
 ::
 ```
 
-XX document
+Produces a list of absolute dates ([`@da`]()) that represent the Urbit Galactc Time equivalents of the UTC leap second dates in [`++les`]().
+
+    ~zod/try=/hom> lef:yu
+    ~[
+      ~2012.6.30..23.59.59
+      ~2008.12.31..23.59.58
+      ~2005.12.31..23.59.57
+      ~1998.12.31..23.59.56
+      ~1997.6.30..23.59.55
+      ~1995.12.31..23.59.54
+      ~1994.6.30..23.59.53
+      ~1993.6.30..23.59.52
+      ~1992.6.30..23.59.51
+      ~1990.12.31..23.59.50
+      ~1989.12.31..23.59.49
+      ~1987.12.31..23.59.48
+      ~1985.6.30..23.59.47
+      ~1983.6.30..23.59.46
+      ~1982.6.30..23.59.45
+      ~1981.6.30..23.59.44
+      ~1979.12.31..23.59.43
+      ~1978.12.31..23.59.42
+      ~1977.12.31..23.59.41
+      ~1976.12.31..23.59.40
+      ~1975.12.31..23.59.39
+      ~1974.12.31..23.59.38
+      ~1973.12.31..23.59.37
+      ~1972.12.31..23.59.36
+      ~1972.6.30..23.59.35
+    ]
+    ~zod/try=/hom> (snag 2 lef:yu)
+    ~2005.12.31..23.59.57
+
+

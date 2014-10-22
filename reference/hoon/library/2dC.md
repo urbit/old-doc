@@ -1,7 +1,5 @@
 ##section 2dC, queues
 
----
-
 ###++to
 
 Queue engine
@@ -11,9 +9,9 @@ Queue engine
   |/  a=(qeu)
 ```
 
-Container arm for queue operation arms.  The contained arms inherit its [sample]() queue `a`. 
+Container arm for queue operation arms. The contained arms inherit its [sample]() `++qeu` `a`. 
 
-`a` is a [queue]().
+`a` is a queue, [++qeu]().
 
 ###+-bal:to
 
@@ -47,7 +45,6 @@ Vertically rebalances queue `a`.
 ---
 
 ###+-dep:to
-     
 Maximum Depth
 
 ```
@@ -59,6 +56,8 @@ Maximum Depth
 ```
 
 Produces the maximum depth of leaves (r.a and l.a) in queue `a`.
+
+`a` is a [queue]().
 
     ~zod/try=> =a (~(gas to `(qeu ,@)`~) `(list ,@)`[1 2 3 4 5 6 7 ~])
     ~zod/try=> ~(dep to a)
@@ -89,6 +88,10 @@ Push list
 ```
 
 Push all elements of list `b` into the queue.
+
+`a` is a [queue]().
+
+`b` is a list.
 
     ~zod/try=> (~(gas to `(qeu ,@)`~) `(list ,@)`[1 2 3 ~])
     {3 2 1}
@@ -174,9 +177,11 @@ Insert
   ::
 ```
 
-Accept any noun and adds to queue `a` as the head, producing the resulting queue.
+Accept any noun `b` and adds to queue `a` as the head, producing the resulting queue.
 
 `a` is a [queue]().
+
+`b` is any noun.
 
     ~zod/try=> (~(gas to `(qeu ,@)`~) `(list ,@)`[3 1 2 4 5 6 ~])
     ~zod/try=> (~(put to a) 7)
@@ -200,6 +205,8 @@ Queue to list
 
 Produces queue `a` as a list from front to back.
 
+`a` is a [queue]().
+
     ~zod/try=> =a (~(gas to `(qeu ,@)`~) `(list ,@)`[3 1 2 4 5 6 ~])
     ~zod/try=> `*`a
     [6 0 2 [4 [5 0 0] 0] 1 0 3 0 0]
@@ -218,6 +225,8 @@ Produces queue `a` as a list from front to back.
 ```
 
 Produces the head of queue `a` as a unit (an empty queue has no head).
+
+`a` is a [queue]().
 
     ~zod/try=> =a (~(gas to `(qeu ,@)`~) `(list ,@)`[1 2 3 4 5 6 ~])
     ~zod/try=> ~(top to a)

@@ -33,8 +33,6 @@ Produces a noun unpacked from atom `a`.  The inverse of jam.
 
 `a` is an [atom]().
 
-See `++jam` for a more detailed walk through.
-
     ~zod/try=> (cue 12)
     1
     ~zod/try=> (cue 817)
@@ -87,7 +85,7 @@ Produces an atom unpacked from noun `a`.  The inverse of cue.
     4.657
     ~zod/try=> (jam [~ u=19])
     39.689
-    
+
 ---
 
 ###++mat       
@@ -105,10 +103,11 @@ Length-encode
   =+  c=(met 0 b)
   :-  (add (add c c) b)
   (cat 0 (bex c) (mix (end 0 (dec c) b) (lsh 0 (dec c) a)))
-::
 ```
 
 Produces a cell whose tail `q` is atom `a` with a bit representation of its length prepended to it (as the least significant bits). The head `p` is the length of `q` in bits.
+
+`a` is an atom.
 
     ~zod/try=> (mat 0xaaa)
     [p=20 q=699.024]
@@ -151,8 +150,11 @@ Length-decode
   [(add (add c c) e) (cut 0 [(add d (dec c)) e] b)]
 ```
 
-The inverse of `++mat`. Accepts a cell of index `a` and a bitstring `b` and produces the cell whose tail `q` is the decoded atom at index `a`
-and whose head is the length of the encoded atom `q`, by which the offset `a` is advanced.  Only used internally as a helper cue.
+The inverse of `++mat`. Accepts a cell of index `a` and a bitstring `b` and produces the cell whose tail `q` is the decoded atom at index `a` and whose head is the length of the encoded atom `q`, by which the offset `a` is advanced.  Only used internally as a helper cue.
+
+`a` is an atom.
+
+`b` is a bitstring as an atom.
 
     ~zod/try=> `@ub`(jam 0xaaa)
     0b1.0101.0101.0101.0010.0000
