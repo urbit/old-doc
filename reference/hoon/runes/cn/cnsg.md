@@ -5,7 +5,7 @@
 #Syntax
 
 `%~`, `censig`, `[%cnsg p=wing q=twig r=twig]` is a synthetic
-hoon that pulls `p` from the tray `q` with its sample set to `r`.
+hoon that pulls `p` from the door `q` with its sample set to `r`.
 
 ##Produces
 

@@ -385,6 +385,20 @@ Parse JSON array as a fixed-length tuple.
 {[%~ u=[@ @ta @]] %~}
 ```
 
+###++at-raw
+
+```
+    ++  at-raw                                            ::  array as tuple
+    |*  wil=(pole fist)
+    |=  jol=(list json)
+    ?~  wil  ~
+    :-  ?~(jol ~ (-.wil i.jol))
+    ((at-raw +.wil) ?~(jol ~ t.jol))
+  ::
+```
+
+Parse json array as a tuple of unit results
+
 ###++bo
 
 ```
@@ -510,16 +524,16 @@ XX document
 
 XX document
 
-###++ot
+###++ot-raw
 
 ```
-  ++  ot                                                ::  object as tuple
+    ++  ot-raw                                            ::  object as tuple
     |*  wer=(pole ,[cord fist])
-    |=  jon=json
-    ?.  ?=([%o *] jon)  ~
-    =+  raw=((ot-raw wer) p.jon)
-    ?.((za raw) ~ (some (zp raw)))
-  ::
+    |=  jom=(map ,@t json)
+    ?~  wer  ~
+    =+  ten=(~(get by jom) -.-.wer)
+    [?~(ten ~ (+.-.wer u.ten)) ((ot-raw +.wer) jom)]
+    ::
 ```
 
 XX document

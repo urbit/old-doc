@@ -248,6 +248,45 @@ Checks if `b` is an element of `a`, producing a loobean.
 
 ---
 
+###+-int:in
+
+Intersection
+
+```
++-  int                                               ::  intersection
+    ~/  %int
+    |*  b=_a
+    |-  ^+  a
+    ?~  b
+      ~
+    ?~  a
+      ~
+    ?.  (vor n.a n.b)
+      $(a b, b a)
+    ?:  =(n.b n.a)
+      [n.a $(a l.a, b l.b) $(a r.a, b r.b)]
+    ?:  (hor n.b n.a)
+      %-  uni(+< $(a l.a, b [n.b l.b ~]))  $(b r.b)
+    %-  uni(+< $(a r.a, b [n.b ~ r.b]))  $(b l.b)
+```
+
+Produces a set of the intersection between two sets of the same type, `a` and `b`.
+
+`a` is a [set]().
+
+`b` is a [set]().
+
+    ~zod/try=> (~(int in (sa "ac")) (sa "ha"))
+    {~~a}
+    ~zod/try=> (~(int in (sa "acmo")) ~)
+    {}
+    ~zod/try=> (~(int in (sa "acmo")) (sa "ham"))
+    {~~a ~~m}
+    ~zod/try=> (~(int in (sa "acmo")) (sa "lep"))
+    {}
+ 
+---
+
 ###+-put:in
 
 Put b in a
@@ -351,6 +390,49 @@ Flatten the set `a` into a list.
     {'bonita' 'madeleine' 'daniel' 'john'}
     ~zod/try=> (~(tap in b) `(list ,@t)`['david' 'people' ~])
     ~['john' 'daniel' 'madeleine' 'bonita' 'david' 'people']
+
+---
+
+###+-uni:in
+
+Union
+
+```
+  +-  uni                                               ::  union
+    ~/  %uni
+    |*  b=_a
+    |-  ^+  a
+    ?~  b
+      a
+    ?~  a
+      b
+    ?:  (vor n.a n.b)
+      ?:  =(n.b n.a)
+        [n.b $(a l.a, b l.b) $(a r.a, b r.b)]
+      ?:  (hor n.b n.a)
+        $(a [n.a $(a l.a, b [n.b l.b ~]) r.a], b r.b)
+      $(a [n.a l.a $(a r.a, b [n.b ~ r.b])], b l.b)
+    ?:  =(n.a n.b)
+      [n.b $(b l.b, a l.a) $(b r.b, a r.a)]
+    ?:  (hor n.a n.b)
+      $(b [n.b $(b l.b, a [n.a l.a ~]) r.b], a r.a)
+    $(b [n.b l.b $(b r.b, a [n.a ~ r.a])], a l.a)
+```
+
+Produces a set of the union between two sets of the same type, `a` and `b`.
+
+`a` is a [set]().
+
+`b` is a [set]().
+
+    ~zod/try=> (~(uni in (sa "ac")) (sa "ha"))
+    {~~a ~~c ~~h}
+     ~zod/try=> (~(uni in (sa "acmo")) ~)
+    {~~a ~~c ~~m ~~o}
+    ~zod/try=> (~(uni in (sa "acmo")) (sa "ham"))
+    {~~a ~~c ~~m ~~o ~~h}
+    ~zod/try=> (~(uni in (sa "acmo")) (sa "lep"))
+    {~~e ~~a ~~c ~~m ~~l ~~o ~~p}
 
 ---
 

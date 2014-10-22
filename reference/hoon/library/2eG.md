@@ -2,7 +2,7 @@
 
 ---
 
-##++dog
+###++dog
 
 ```
 ++  dog  ;~(plug dot gay)                               ::
@@ -120,7 +120,17 @@ Separates tall runes
 Two spaces, a newline, or comment.
 
 ---
-        
+
+###++gaw
+   
+```   
+++  gaw  (cold ~ (star ;~(pose vul gah)))               ::  classic white
+```
+
+Terran whitespace
+
+---
+
 ###++gay 
 
 ```

@@ -39,6 +39,7 @@ None
 
 ##Examples
 
+```
 ++  yo
       |%  ++  cet  36.524                 ::  (add 24 (mul 100 365))
           ++  day  86.400                 ::  (mul 24 hor)
@@ -51,9 +52,11 @@ None
           ++  qad  126.144.001            ::  (add 1 (mul 4 yer))
           ++  yer  31.536.000             ::  (mul 365 day)
       --
+```
 
 In ++yo, `|%` creates a core whose arms contain useful constant data for calculating time.
 
+```
     ++  si                                                  ::  signed integer
       |%
       ++  abs  |=(a=@s (add (end 0 1 a) (rsh 0 1 a)))
@@ -83,6 +86,18 @@ In ++yo, `|%` creates a core whose arms contain useful constant data for calcula
       ++  sun  |=(a=@u (mul 2 a))
       ++  syn  |=(a=@s =(0 (end 0 1 a)))
       --
+```
 
 In ++si, `|%` creates a core whose arms contain gates used to calculate with signed integers (@s, link).
 
+```
+/~zod/try=> =dec  =+  a=0
+                  =+  b=0
+                  |%
+                  ++  me
+                    ?:  =(b +(a))  a
+                    me(a +(a))
+                  --
+/~zod/try=> me:dec(b 20)
+19
+```

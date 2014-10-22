@@ -24,8 +24,8 @@ Produces a map of key-value pairs from the left-right cell pairs of list `a`.
     {[p=`a` q=1] [p=`b` q=2]}
 
 ---
-
-##++sa        
+        
+###++sa
 
 Set from list
 

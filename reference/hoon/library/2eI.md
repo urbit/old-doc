@@ -57,7 +57,16 @@ Parse a tape with a given rule and produce null if the tape isn't entirely parse
         ~zod/try=> (rust "And there I found myself more truly and more strange." (jest 'And there I'))
         ~
 
-++  scan
+###++scan
+
+```
+++  scan  |*  [los=tape sab=_rule]
+          =+  vex=((full sab) [[1 1] los])
+          ?~  q.vex
+            ~_  (show [%m '{%d %d}'] p.p.vex q.p.vex ~)
+            ~|('syntax-error' !!)
+          p.u.q.vex
+```
 
 Parse a tape with a given rule and crash if the tape isn't entirely parsed.
 

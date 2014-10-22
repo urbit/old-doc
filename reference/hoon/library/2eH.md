@@ -292,15 +292,53 @@ Letters, -, and _
 
 Parse a numeric character - A number.
 
-        ~zod/try=> (scan "0" nud)
-        ~~0
-        ~zod/try=> (scan "7" nud)
-        ~~7
-        ~zod/try=> (nud [[1 1] "1"])
-        [p=[p=1 q=2] q=[~ [p=~~1 q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (scan "0123456789" (star nud))
-        "0123456789"
-        
+    ~zod/try=> (scan "0" nud)
+    ~~0
+    ~zod/try=> (scan "7" nud)
+    ~~7
+    ~zod/try=> (nud [[1 1] "1"])
+    [p=[p=1 q=2] q=[~ [p=~~1 q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (scan "0123456789" (star nud))
+    "0123456789"
+
+###++prn
+
+```
+++  prn  ;~(less (just `@`127) (shim 32 256))
+```
+
+Parse any printable character
+
+    ~zod/try=> (scan "h" prn)
+    ~~h
+    ~zod/try=> (scan "!" prn)
+    ~~~21.
+    ~zod/try=> (scan "\01" prn)
+    ! {1 1}
+    ! exit
+
+###++qat
+
+```
+++  qat  ;~  pose                                       ::  chars in blockcord
+             prn
+             ;~(less ;~(plug (just `@`10) soqs) (just `@`10))
+         ==
+```
+
+Parse character in cord block.
+
+    ~zod/try=> (scan "h" qat)
+    ~~h
+    ~zod/try=> (scan "!" qat)
+    ~~~21.
+    ~zod/try=> (scan "\0a" qat)
+    ~~~a.
+    ~zod/try=> (scan "\00" qat)
+    ! {1 1}
+    ! exit
+
+
 ###++qit 
 
 ```
@@ -359,6 +397,21 @@ which must be in an indented block.
                 Heredoc isn't prohibited from containing quotes
                 '''
     'Heredoc isn't prohibited from containing quotes'
+
+
+###++soqs
+
+```
+++  soqs  ;~(plug soq soq soq)                          ::  delimiting '''
+```
+
+Triple single quote
+
+    ~zod/try=> (scan "'''" soqs)
+    [~~~27. ~~~27. ~~~27.]
+    ~zod/try=> (rash '"""' soqs)
+    ! {1 1}
+    ! exit
 
 ###++sym
 

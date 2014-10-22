@@ -903,7 +903,7 @@ XX document
             ?.  con  !!
             %-  some
             :-  %ins
-            %-  roly
+            %-  role
             %-  annotate
             :-  us 
             :-  th

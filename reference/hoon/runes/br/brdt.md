@@ -40,3 +40,16 @@ None
 
 In ++reel, `|.` is used to specify the body of the expression to right fold over a given list.
 
+The common action performed on a trap is kicking it: pulling arm `$`. A `%-` 
+with no arguments performs a kick.
+
+    ~zod/try=> |.(42)
+    < 1.pnv
+      [[[@da @ta] [@p @ta] *''] @n <250.yum 41.int 414.hhh 100.xkc 1.ypj %164>]
+    >
+    ~zod/try=> $:|.(42)
+    42
+    ~zod/try=> =a |.(~&(%hi 7))
+    ~zod/try=> (a)
+    %hi
+    7
