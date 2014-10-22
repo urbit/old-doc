@@ -1,11 +1,10 @@
 #buccom `$,` %bccm
 
-[Short description]
+Normalizing gate (or [Clam]())
 
 #Syntax
 
-`$,`, `buccom`, `[%bccm p=tile]` is a synthetic rune that produces a
-normalizing gate (clam) for `p`.
+`buccom` is a synthetic rune that produces a normalizing gate [clam]() for `p`.
 
 ##Produces
 
@@ -13,8 +12,7 @@ normalizing gate (clam) for `p`.
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [tile]().
 
 ##Tall form
 
@@ -32,5 +30,5 @@ None
 
 ++  cord  ,@t                                           ::  text atom (UTF-8)
 
-In ++cord, `,` creates a gate that validates atoms of the odor @t.
+In ++cord, `,` creates a gate that validates atoms of the odor [`@t`]().
 
