@@ -2,7 +2,7 @@
 
 ###++apt
 
-Check if set
+Set verification
 
 ```
 ++  apt                                                 ::  set invariant
@@ -66,7 +66,7 @@ Computes the logical AND on every element in `a` slammed with `b`, producing a l
 
 `a` is a [set]().
 
-`b` is a [gate]() that accepts a noun and produces a loobean.
+`b` is a [wet gate]() that accepts a noun and produces a loobean.
 
     ~zod/try=> =b (sa `(list ,[@t *])`[['a' 1] ['b' [2 3]] ~])
     ~zod/try=> (~(all in b) |=(a=* ?@(+.a & |)))
@@ -109,7 +109,7 @@ Computes the logical OR on every element of `a` slammed with `b`.
 
 ###+-del:in
 
-Remove a noun
+Remove noun
 
 ```
   +-  del                                               ::  b without any a
@@ -131,7 +131,7 @@ Remove a noun
   ::
 ```
 
-Removes `b` from the set.
+Removes `b` from the set `a`.
 
 `a` is a [set]().
 
@@ -150,7 +150,7 @@ Removes `b` from the set.
 
 ###+-dig:in
 
-Axis of a in b
+Axis a in b
 
 ```
   +-  dig                                               ::  axis of a in b
@@ -234,7 +234,7 @@ b in a?
   ::
 ```
 
-Checks to see if `b` is an element of `a`, producing a loobean.
+Checks if `b` is an element of `a`, producing a loobean.
 
 `a` is a [set]().
 
@@ -307,7 +307,7 @@ Accumulate the elements of `a` using a gate `c` and an accumulator `b`.
 
 `a` is a [set]().
 
-`b` is a noun.
+`b` is a [noun]() that accepts a noun and produces a loobean.
 
 `c` is a [gate]().
 
@@ -338,6 +338,10 @@ Flatten the set `a` into a list.
 
 `a` is an [set]().
 
+`a` is a [set]().
+
+`b` is a [list]().
+
     ~zod/try=> =s (sa `(list ,@t)`['a' 'b' 'c' 'd' 'e' ~])
     ~zod/try=> s
     {'e' 'd' 'a' 'c' 'b'}
@@ -361,7 +365,7 @@ Set size
     ?~(a 0 +((add $(a l.a) $(a r.a))))
 ```
 
-Produce the number of elements in set `a` as an atom
+Produce the number of elements in set `a` as an atom.
 
 `a` is an [set]().
 
