@@ -1,20 +1,18 @@
 #buccab `$_` %bccb
 
-[Short description]
+Default value (or just [Bunt]())
 
-#Syntax
+`$_` is a [synthetic rune]() that produces the [bunt]() (default value) of `p`.
 
-`$_`, `buccab`, `[%bccb p=tile]` is a synthetic hoon that
-produces the bunt (default value) for `p`.
+Traditionally used..
 
 ##Produces
 
-[Twig or tile]
+[Twig]()
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [tile]().
 
 ##Tall form
 

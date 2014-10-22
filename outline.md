@@ -59,6 +59,16 @@ Hoon
       This is separate from the library doc that can be found under ++type and ++tile
     Cores / Gates
 
+  Quick Reference
+    Irregular form index
+    Odor index
+      Some of these could go into considerable detail. @da / @dr for example.
+    urb.js
+    %eyre access methods
+    .^ methods
+    hardcoded %gall arms
+    Glossary
+
   Rune index
     Each category of rune should have an overview section. % runes, ++sail runes, &c.
     
@@ -69,18 +79,6 @@ Hoon
     
     Examples
     Both tall and wide form are important. Examples should have short commentary explaining their function. They should be easily paste-able into a file or repl
-    
-    Definition, Expansion
-    Presently these include all of the dependent models and the expansion from ++open (or related). I'm on the fence about how important these are. Would defer to someone else.
-
-  Quick Reference
-    Irregular form index
-    Odor index
-    urb.js
-    %eyre access methods
-    .^ methods
-    hardcoded %gall arms
-    Glossary
 
   Library index
     This should cover all of our library functions in hoon.hoon and zuse.hoon. Similar to our Rune index, discussion topics can be covered as overviews in-line with their topics. Each arm should include the following:

@@ -1,23 +1,25 @@
 #bucbar `$|` %bcbr
 
-[Short description]
+Either atom or cell
 
-#Syntax
-
-`$|`, `bucbar`, is a tile rune that takes `++tile` `p` and `q` and produces a `%reed`,  
+`$|` is a tile rune that takes `++tile` `p` and `q` and produces a `%reed`,  
 
     [%reed p=tile q=tile]
 
-a `%reed` is a tile whose icon contains two kinds of nouns: atoms of tile `p` and cells of tile `q`.
+a tile whose [icon]() contains two kinds of nouns: [atoms]() of `tile` `p` and cells of `tile` `q`.
+
+OR
+
+`$|` is a tile rune that takes `++tile` `p` and `q` and produces a `[%reed p=tile q=tile]` a tile whose [icon]() contains two kinds of nouns: [atoms]() of `tile` `p` and cells of `tile` `q`.
 
 ##Produces
 
-[Twig or tile]
+[`Tile`]()
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [`tile`]()
+`q` is a [`tile`]() 
 
 ##Tall form
 
@@ -38,5 +40,5 @@ None
 ++  list  |*  a=_,*                                     ::  null-terminated list
               $|(~ [i=a t=(list a)])                        ::
 
-In ++list, $| specifies that every element in a noun that can be cast to a ++list is either the atom ~ or the cell [i=a t=(list a)].
+In ++list, `$|` specifies that every element in a noun that can be cast to a ++list is either the atom ~ or the cell [i=a t=(list a)].
 
