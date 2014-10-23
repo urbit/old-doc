@@ -552,6 +552,13 @@ Parser generator: from an associative list of characters or character ranges to
 rules, construct a map, and parse tapes only with rules associated with a range
 the tape's first character falls in.
 
+    /~zod/try=> (scan "sam" ;~(pose (jest 'sam') (jest 'min')))
+    'sam'
+    /~zod/try=> (scan "sam" (stew ^.(stet ^.(limo ~[['s' (jest 'sam')] ['m' (jest 'min')]]))))
+    'sam'
+    /~zod/try=> (scan "min" (stew ^.(stet ^.(limo ~[['s' (jest 'sam')] ['m' (jest 'min')]]))))
+    'min'
+
    
 ---
 
