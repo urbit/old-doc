@@ -1,26 +1,16 @@
 #bucwut `$?` %bcwt
 
-[Short description]
+Fork
 
-#Syntax
-
-`$?`, `bucwut`, is a tile hoon that produces a `%fern`:
-
-    [%fern p=[i=tile t=(list tile)]]
-
-A non-empty list of cases; its icon is naturally a `%fork`. The programmer is
-responsible for ensuring that the cases are actually orthogonal (unlike with
-the structured forks, `%bush`, `%kelp` and `%reed`). A good general practice
-is to use ferns only with leaves.
+`$?` is used to create forks. `$?` is a tile rune that produces a `%fern`, which is a non-empty list of cases whose [icon]() is a [`fork`]().
 
 ##Produces
 
-[Twig or tile]
+[Tile](): `[%fern p=[i=tile t=(list tile)]]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [list]() of [tiles]().
 
 ##Tall form
 

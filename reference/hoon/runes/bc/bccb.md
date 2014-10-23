@@ -1,16 +1,12 @@
 #buccab `$_` %bccb
 
-Default value (or just [Bunt]())
+Default value ([Bunt]())
 
-`$_` is a [synthetic rune]() that produces the [bunt]() (default value) of `p`.
-
-Traditionally used..
+`$_` is a synthetic rune used to produce the default value ([bunt]]()) of a given tile.
 
 ##Produces
 
 [Twig]()
-
-##Sample
 
 `p` is a [tile]().
 

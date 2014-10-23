@@ -1,20 +1,18 @@
 #buczap `$!` %bczp
 
-[Short description]
+Axil bunt
 
 #Syntax
 
-`$!`, `buczap`, `[%bczp p=base]` is an synthetic internal twig that
-produces the bunt (default value) for `[%axil p]`.
+`$!` is an synthetic internal twig that produces the bunt (default value) for `[%axil p]`.
 
 ##Produces
 
-[Twig or tile]
+[Twig](): `[%bczp p=base]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [base]() [axil]() type.
 
 ##Tall form
 

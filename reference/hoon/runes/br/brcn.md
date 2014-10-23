@@ -1,24 +1,18 @@
 #[barcen, `|%`, %brcn](#brcn)
 
-[Short description]
+Build Core
 
-#Syntax
-
-`|%`, `barcen`, `[%brcn p=(map term foot)]` is a natural rune that produces a
-`%gold` core (cores, link). `|%` takes an associative array of names (++term)
-and expressions (++foot), each pair of which is called an arm. A dry, or %ash,
-arm is denoted with `++`, a wet, or %elm, arm is denoted with `+-`. `|%` can
-take an arbitrary number of arms, but the arm array must be terminated with a
-`--`
+`|%` is a natural rune that produces a [core](). `|%` takes a list of names ([++term]()) and expressions [++foot](), each pair of which is called an [++arm](). The list must be closed with a `--`. The product of `|%` is similar to an object with named properties, either functions or data.
 
 ##Produces
 
-[Twig or tile]
+Twig
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`[%brcn p=(map term foot)]`
+
+`p` is a [`map`]() with [`term`] keys and [foot]() values.
 
 ##Tall form
 

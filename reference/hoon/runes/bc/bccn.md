@@ -1,19 +1,16 @@
 #buccen `$%` %bccn
 
-[Short description]
+Tagged union
 
 #Syntax
 
-`$%`, `buccen`, is a tile hoon that produces a %kelp. `$%` takes a list of lines, which are labeleed cases, closed by `==`.
+`$%`, `buccen`, is a tile rune that produces a (), the tile of the discriminated union. `$%` takes a list of lines, which are labeled cases, called fronds closed by `==`. Commonly usesd for pattern matching.
 
 ##Produces
 
-[Twig or tile]
+[Twig](): [`[%kelp p=[i=line t=(list line)]`]]
 
-##Sample
-
-[`p` is a _
-`q` is a _]
+`p` is a [list]() of [line]().
 
 ##Tall form
 

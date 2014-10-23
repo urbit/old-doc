@@ -1,22 +1,12 @@
 #bucbar `$|` %bcbr
 
-Either atom or cell
+Fork of either atom or cell
 
-`$|` is a tile rune that takes `++tile` `p` and `q` and produces a `%reed`,  
-
-    [%reed p=tile q=tile]
-
-a tile whose [icon]() contains two kinds of nouns: [atoms]() of `tile` `p` and cells of `tile` `q`.
-
-OR
-
-`$|` is a tile rune that takes `++tile` `p` and `q` and produces a `[%reed p=tile q=tile]` a tile whose [icon]() contains two kinds of nouns: [atoms]() of `tile` `p` and cells of `tile` `q`.
+`$|` is a tile rune that produces a , a tile whose [icon]() is a [fork]() between two kinds of nouns: [atoms]() of `tile` `p` and cells of `tile` `q`. `$|` is a fork tile similar to [`$?`](), but is more strict in that in only contains one atom tile and one cell tile.
 
 ##Produces
 
-[`Tile`]()
-
-##Sample
+[`Tile`](): `[%reed p=tile q=tile]`
 
 `p` is a [`tile`]()
 `q` is a [`tile`]() 

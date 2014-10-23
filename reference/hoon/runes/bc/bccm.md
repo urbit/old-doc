@@ -2,17 +2,11 @@
 
 Normalizing gate (or [Clam]())
 
-#Syntax
-
-`buccom` is a synthetic rune that produces a normalizing gate [clam]() for `p`.
+`$,` is a synthetic rune that produces a normalizing gate [clam]() for `p`. `$,` is used to ensure an input value fits a certain type:if it does match, the value is produced. If it doesn't, the default value for the desired type is produced.
 
 ##Produces
 
-[Twig or tile]
-
-##Sample
-
-`p` is a [tile]().
+[Twig]()
 
 ##Tall form
 
