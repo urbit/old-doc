@@ -12,14 +12,14 @@
 
 Produce the case insensitive (all lowercase) cord of a tape.
 
-       ~zod/try=> (cass "john doe")
-        7.309.170.810.699.673.450
-        ~zod/try=> `cord`(cass "john doe")
-        'john doe'
-        ~zod/try=> (cass "abc, 123, !@#")
-        2.792.832.775.110.938.439.066.079.945.313
-        ~zod/try=> `cord`(cass "abc, 123, !@#")
-        'abc, 123, !@#' 
+    ~zod/try=> (cass "john doe")
+    7.309.170.810.699.673.450
+    ~zod/try=> `cord`(cass "john doe")
+    'john doe'
+    ~zod/try=> (cass "abc, 123, !@#")
+    2.792.832.775.110.938.439.066.079.945.313
+    ~zod/try=> `cord`(cass "abc, 123, !@#")
+    'abc, 123, !@#' 
 
 ###++cuss
 
@@ -34,14 +34,14 @@ Produce the case insensitive (all lowercase) cord of a tape.
 
 Turn all occurances of lowercase letters in any tape into uppercase letters, as a cord.
 
-        ~zod/try=> (cuss "john doe")
-        'JOHN DOE'
-        ~zod/try=> (cuss "abc ABC 123 !@#")
-        'ABC ABC 123 !@#'
-        ~zod/try=> `@ud`(cuss "abc")
-        4.407.873
-        ~zod/try=> (cuss "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsQqRrVvWwXxYyZz")
-        'AABBCCDDEEFFGGHHIIJJKKLLMMNNOOPPQQRRSSQQRRVVWWXXYYZZ'
+    ~zod/try=> (cuss "john doe")
+    'JOHN DOE'
+    ~zod/try=> (cuss "abc ABC 123 !@#")
+    'ABC ABC 123 !@#'
+    ~zod/try=> `@ud`(cuss "abc")
+    4.407.873
+    ~zod/try=> (cuss "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsQqRrVvWwXxYyZz")
+    'AABBCCDDEEFFGGHHIIJJKKLLMMNNOOPPQQRRSSQQRRVVWWXXYYZZ'
 
 ###++crip
 
@@ -50,14 +50,14 @@ Turn all occurances of lowercase letters in any tape into uppercase letters, as 
 ::
 ```
 
-Produce the cord of a tape.
+Produce cord from a tape.
 
-        ~zod/try=> (crip "john doe")
-        'john doe'
-        ~zod/try=> (crip "abc 123 !@#")
-        'abc 123 !@#'
-        ~zod/try=> `@ud`(crip "abc")
-        6.513.249
+    ~zod/try=> (crip "john doe")
+    'john doe'
+    ~zod/try=> (crip "abc 123 !@#")
+    'abc 123 !@#'
+    ~zod/try=> `@ud`(crip "abc")
+    6.513.249
 
 ###++mesc
 
@@ -70,12 +70,39 @@ Produce the cord of a tape.
   ?:  =('\\' i.vib)
     ['\\' '\\' $(vib t.vib)]
   ?:  ?|((gth i.vib 126) (lth i.vib 32) =(39 i.vib))
-    ['\\' (weld ~(rux at i.vib) (runt [1 47] $(vib t.vib)))]
+    ['\\' (welp ~(rux at i.vib) '/' $(vib t.vib))]
   [i.vib $(vib t.vib)]
 ::
 ```
 
+Escape special characters, used in ++show
+
+    /~zod/try=> (mesc "ham lus")
+    "ham lus"
+    /~zod/try=> (mesc "bas\\hur")
+    "bas\\\\hur"
+    /~zod/try=> (mesc "as'saß")
+    "as\0x27/sa\0xc3/\0x9f/"
+
+
 ###++runt
+
+```
+++  runt                                                ::  prepend repeatedly
+  |=  [[a=@ b=@] c=tape]
+  ^-  tape
+  ?:  =(0 a)
+    c
+  [b $(a (dec a))]
+::
+```
+
+Add `a` repetitions of character `b` to the head of `c`
+
+    /~zod/try=> (runt [2 '/'] "ham")
+    "//ham"
+    /~zod/try=> (runt [10 'a'] "")
+    "aaaaaaaaaa"
 
 ###++sand
 
@@ -87,8 +114,62 @@ Produce the cord of a tape.
 ::
 ```
 
+Soft-cast validity by odor.
+
+    /~zod/try=> `(unit ,@ta)`((sand %ta) 'sym-som')
+    [~ ~.sym-som]
+    /~zod/try=> `(unit ,@ta)`((sand %ta) 'err!')
+    ~
+
 ###++sane
 
+```
+++  sane                                                ::  atom sanity
+  |=  a=@ta
+  |=  b=@  ^-  ?
+  ?.  =(%t (end 3 1 a))
+    ~|(%sane-stub !!)
+  =+  [inx=0 len=(met 3 b)]
+  ?:  =(%tas a)
+    |-  ^-  ?
+    ?:  =(inx len)  &
+    =+  cur=(cut 3 [inx 1] b)
+    ?&  ?|  &((gte cur 'a') (lte cur 'z'))
+            &(=('-' cur) !=(0 inx) !=(len inx))
+            &(&((gte cur '0') (lte cur '9')) !=(0 inx))
+        ==
+        $(inx +(inx))
+    ==
+  ?:  =(%ta a)
+    |-  ^-  ?
+    ?:  =(inx len)  &
+    =+  cur=(cut 3 [inx 1] b)
+    ?&  ?|  &((gte cur 'a') (lte cur 'z'))
+            &((gte cur '0') (lte cur '9'))
+            |(=('-' cur) =('~' cur) =('_' cur) =('.' cur))
+        ==
+        $(inx +(inx))
+    ==
+  |-  ^-  ?
+  ?:  =(0 b)  &
+  =+  cur=(end 3 1 b)
+  ?:  &((lth cur 32) !=(10 cur))  |
+  =+  len=(teff cur)
+  ?&  |(=(1 len) =+(i=1 |-(|(=(i len) &((gte (cut 3 [i 1] b) 128) $(i +(i)))))))
+      $(b (rsh 3 len b))
+  ==
+::
+```
+
+Check validity by odor.
+
+    /~zod/try=> ((sane %tas) %mol)
+    %.y
+    /~zod/try=> ((sane %tas) 'lam')
+    %.y
+    /~zod/try=> ((sane %tas) 'more ace')
+    %.n
+    
 ###++trim
 
 ```
@@ -104,7 +185,34 @@ Produce the cord of a tape.
 ::
 ```
 
+Split first `a` characters off tape.
+
+    /~zod/try=> (trim 5 "lasok termun")
+    [p="lasok" q=" termun"]
+    /~zod/try=> (trim 5 "zam")
+    [p="zam" q=""]
+
 ###++trip
+
+```
+++  trip                                                ::  cord to tape
+  ~/  %trip
+  |=  a=@  ^-  tape
+  ?:  =(0 (met 3 a))
+    ~
+  [^-(@ta (end 3 1 a)) $(a (rsh 3 1 a))]
+::
+```
+
+Produce tape from cord.
+
+    /~zod/try=> (trip 'john doe')
+    "john doe"
+    /~zod/try=> (trip 'abc 123 !@#')
+    "abc 123 !@#"
+    /~zod/try=> (trip 'abc')
+    "abc"
+
 
 ###++teff
 
@@ -119,7 +227,51 @@ Produce the cord of a tape.
 ::
 ```
 
+Number of utf8 bytes.
+
+    /~zod/try=> (teff 'a')
+    1
+    /~zod/try=> (teff 'ß')
+    2
+
+
 ###++turf
+
+```
+++  turf                                                ::  utf8 to utf32
+  |=  a=@t
+  ^-  @c
+  %+  rap  5
+  |-  ^-  (list ,@c)
+  =+  b=(teff a)
+  ?:  =(0 b)  ~
+  :-  %+  can  0
+      %+  turn
+        ^-  (list ,[p=@ q=@])
+        ?+  b  !!
+          1  [[0 7] ~]
+          2  [[8 6] [0 5] ~]
+          3  [[16 6] [8 6] [0 4] ~]
+          4  [[24 6] [16 6] [8 6] [0 3] ~]
+        ==
+      |=([p=@ q=@] [q (cut 0 [p q] a)])
+  $(a (rsh 3 b a))
+::
+```
+
+Convert utf8 [cord] to utf32 codepoints.
+
+    /~zod/try=> (turf 'my ßam')
+    ~-my.~df.am
+    /~zod/try=> 'я тут'
+    'я тут'
+    /~zod/try=> (turf 'я тут')
+    ~-~44f..~442.~443.~442.
+    /~zod/try=> `@ux`'я тут'
+    0x82.d183.d182.d120.8fd1
+    /~zod/try=> `@ux`(turf 'я тут')
+    0x442.0000.0443.0000.0442.0000.0020.0000.044f
+
 
 ###++tuba
 
@@ -131,7 +283,30 @@ Produce the cord of a tape.
 ::
 ```
 
+Convert tape to list of codepoints.
+
+    /~zod/try=> (tuba "я тут")
+    ~[~-~44f. ~-. ~-~442. ~-~443. ~-~442.]
+    /~zod/try=> (tuba "chars")
+    ~[~-c ~-h ~-a ~-r ~-s]
+
 ###++tufa
+
+```
+++  tufa                                                ::  utf32 to utf8 tape
+  |=  a=(list ,@c)
+  ^-  tape
+  ?~  a  ""
+  (weld (rip 3 (tuft i.a)) $(a t.a))
+::
+```
+
+Wrap list of utf32 codepoints to utf8 [tape]
+
+    /~zod/try=> (tufa ~[~-~44f. ~-. ~-~442. ~-~443. ~-~442.])
+    "я тут"
+    /~zod/try=> (tufa ((list ,@c) ~[%a %b 0xb1 %c]))
+    "ab±c"
 
 ###++tuft
 
@@ -167,7 +342,36 @@ Produce the cord of a tape.
 ::
 ```
 
+Convert utf32 glyph to LSB utf8 cord.
+
+    /~zod/try=> (tuft `@c`%a)
+    'a'
+    /~zod/try=> (tuft `@c`0xb6)
+    '¶'
+
 ###++wack
+
+```
+++  wack                                                ::  span format
+  |=  a=@ta
+  ^-  @ta
+  =+  b=(rip 3 a)
+  %+  rap  3
+  |-  ^-  tape
+  ?~  b
+    ~
+  ?:  =('~' i.b)  ['~' '~' $(b t.b)]
+  ?:  =('_' i.b)  ['~' '-' $(b t.b)]
+  [i.b $(b t.b)]
+::
+```
+
+Escape span
+
+    /~zod/try=> (wack '~20_sam~')
+    ~.~~20~-sam~~
+    /~zod/try=> `@t`(wack '~20_sam~')
+    '~~20~-sam~~'
 
 ###++wick
 
@@ -187,7 +391,55 @@ Produce the cord of a tape.
 ::
 ```
 
+Span unsecape
+    
+    /~zod/try=> `@t`(wick '~-ams~~lop')
+    '_ams~lop'
+    /~zod/try=> `@t`(wick (wack '~20_sam~'))
+    '~20_sam~'
+
 ###++woad
+
+```
+++  woad                                                ::  span format
+  |=  a=@ta
+  ^-  @t
+  %+  rap  3
+  |-  ^-  (list ,@)
+  ?:  =(0 a)
+    ~
+  =+  b=(end 3 1 a)
+  =+  c=(rsh 3 1 a)
+  ?:  =('.' b)
+    [' ' $(a c)]
+  ?.  =('~' b)
+    [b $(a c)]
+  =>  .(b (end 3 1 c), c (rsh 3 1 c))
+  ?+  b  =-  (weld (rip 3 (tuft p.d)) $(a q.d))
+         ^=  d
+         =+  d=0
+         |-  ^-  [p=@ q=@]
+         ?:  =('.' b)
+           [d c]
+         ?<  =(0 c)
+         %=    $
+            b  (end 3 1 c)
+            c  (rsh 3 1 c)
+            d  %+  add  (mul 16 d)
+               %+  sub  b
+               ?:  &((gte b '0') (lte b '9'))  48
+               ?>(&((gte b 'a') (lte b 'z')) 87)
+         ==
+    %'.'  ['.' $(a c)]
+    %'~'  ['~' $(a c)]
+  ==
+::
+```
+
+Unescape span codepoints.
+
+    /~zod/try=> (woad ~.~b6.20.as)
+    '¶20 as'
 
 ###++wood
 
@@ -222,3 +474,8 @@ Produce the cord of a tape.
     %'~'  ['~' '~' d]
   ==
 ```
+
+Escape span codepoints.
+
+    /~zod/try=> (wood 'my ßam')
+    ~.my.~df.am
