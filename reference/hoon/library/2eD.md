@@ -23,8 +23,7 @@ Conditional composer
 ::
 ```
 
-Parsing composer: treat each subsequent rule as an optional suffix, using `raq` to 
-compose or reject its result.
+Parsing composer: connects the edge `vex` with the subsequent rule `sab` as an optional suffix, using the gate `raq` to compose or reject its result. If there is no suffix, or if the suffix fails to be composed with the current result, the current result is produced. Used to map a group of rules to a specified output.
 
 `raq` is a [gate]().
 
@@ -32,8 +31,10 @@ compose or reject its result.
 
 `vex` is an [edge]().
 
-    ~zod/try=> (scan "a" ;~((bend |=([a=char b=char] ?.(=(a b) ~ (some +(a))))) prn prn))
-    ~~a
+    ~zod/try=> (;~((bend |=([a=char b=char] ?.(=(a b) ~ (some +(a))))) prn prn) [1 1] "qs")
+    [p=[p=1 q=3] q=[~ u=[p=~~q q=[p=[p=1 q=2] q="s"]]]]
+    ~zod/try=> (;~((bend |=([a=char b=char] ?.(=(a b) ~ (some +(a))))) prn prn) [1 1] "qqq")
+    [p=[p=1 q=3] q=[~ u=[p=~~r q=[p=[p=1 q=3] q="q"]]]]
     ~zod/try=> (scan "aa" ;~((bend |=([a=char b=char] ?.(=(a b) ~ (some +(a))))) prn prn))
     ~~b
     ~zod/try=> (scan "ba" ;~((bend |=([a=char b=char] ?.(=(a b) ~ (some +(a))))) prn prn))
@@ -60,9 +61,9 @@ Arbitrary compose
 ::
 ```
 
-Parsing composer: uses a binary gate to fold over the results of several rules.
+Parsing composer: connects the edge `vex` with a following rule `sab`, combining the contents of `vex` with the result of `sab` using a binary gate `raq`. Used to fold over the results of several rules.
 
-`raq` is a [gate]() that accepts a cell of two nouns, `a` and `b`, and produces a cell of two nouns of the same respective types of `a` and `b`.
+`raq` is a [gate]() that accepts a cell of two nouns, `a` and `b`, and produces a cell of two nouns.
 
 `sab` is a [rule]().
 
@@ -76,6 +77,8 @@ Parsing composer: uses a binary gate to fold over the results of several rules.
 
 ###++glue
 
+Skip delimiter
+
 ```
 ++  glue                                                ::  add rule
   ~/  %glue
@@ -86,14 +89,20 @@ Parsing composer: uses a binary gate to fold over the results of several rules.
 ::
 ```
 
-Parsing composer: parse delimited tuple
+Parsing composer: connects an edge `vex` with a following rule `sab` by parsing the rule `bus` (the delimiting symbol) and throwing out the result. 
 
     ~zod/try=> (scan "200|mal|bon" ;~((glue bar) dem sym sym))
     [q=200 7.102.829 7.237.474]
     ~zod/try=> `[@u @tas @tas]`(scan "200|mal|bon" ;~((glue bar) dem sym sym))
     [200 %mal %bon]
+    ~zod/try=>  (scan "200|;|bon" ;~((glue bar) dem sem sym))
+    [q=200 ~~~3b. 7.237.474]
+    ~zod/try=>  (scan "200.;.bon" ;~((glue dot) dem sem sym))
+    [q=200 ~~~3b. 7.237.474]
 
 ###++less
+
+Parse unless
 
 ```
 ++  less                                                ::  no first and second
@@ -105,7 +114,7 @@ Parsing composer: parse delimited tuple
 ::
 ```
 
-Parsing composer: negative lookahead.
+Parsing composer: if an edge `vex` reflects a success, fail. Otherwise, connect `vex` with the following rule.
 
     ~zod/try=> (scan "sas-/lo" (star ;~(less lus bar prn)))
     "sas-/lo"
@@ -118,6 +127,8 @@ Parsing composer: negative lookahead.
 
 ###++pfix
 
+Discard first rule
+
 ```
 ++  pfix                                                ::  discard first rule
   ~/  %pfix
@@ -125,7 +136,7 @@ Parsing composer: negative lookahead.
 ::
 ```
 
-Parsing composer: ignore prefix
+Parsing composer: connects an [edge]() `vex` with two subsequent rules, ignoring the result of the first and producing the result of the second.
 
     ~zod/try=> `@t`(scan "%him" ;~(pfix cen sym))
     'him'
@@ -203,7 +214,7 @@ First and second
 ::
 ```
 
-Parsing composer: applies two subsequent rules `sab` to `vex`, throwing out the result of the first and returning the result of the second.
+Parsing composer: if an edge `vex` reflects a failure, fail. Otherwise, connect `vex` with the following rule.
 
 `sab` is a [rule]().
 
@@ -229,7 +240,7 @@ Discard second rule
   (comp |*([a=* b=*] a))
 ```
 
-Parsing composer: applies a sequence of rules, returning the result of the first.
+Parsing composer: connects `vex` with two subsequent rules returning the result of the first and discarding the result of the second.
 
 `a` is the result of parsing the first [rule]().
 
