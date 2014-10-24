@@ -27,4 +27,7 @@ None
 ##Examples
 
 
-
+    /~zod/try=> (slap !>(a=[p=20 q=6]) [%cnzy %a])
+    [p=[%cell p=[%face p=%p q=[%atom p=%ud]] q=[%face p=%q q=[%atom p=%ud]]] q=[20 6]]
+    /~zod/try=> +:(slap !>(|.(42)) [%cnzy %$])
+    q=42

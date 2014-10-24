@@ -6,8 +6,38 @@
 ++  re
   |_  tac=tank
 ```
-  
+
+Pretty-printing engine
+
+    /~zod/try=> ~(. re leaf/"ham")
+    <2.ghl [[%leaf ""] <414.gly 100.xkc 1.ypj %164>]>
+
 ###++ram
+
+```
+  ++  ram
+    ^-  tape
+    ?-    -.tac
+        %leaf  p.tac
+        %palm  ram(tac [%rose [p.p.tac (weld q.p.tac r.p.tac) s.p.tac] q.tac])
+        %rose
+      %+  weld
+        q.p.tac
+      |-  ^-  tape
+      ?~  q.tac
+        r.p.tac
+      =+  voz=$(q.tac t.q.tac)
+      (weld ram(tac i.q.tac) ?~(t.q.tac voz (weld p.p.tac voz)))
+    ==
+  ::
+```
+
+Flatten tank out into a tape
+
+    /~zod/try=> ~(ram re leaf/"foo")
+    "foo"
+    /~zod/try=> ~(ram re rose/["." "(" ")"]^~[leaf/"bar" leaf/"baz" leaf/"bam"])
+    "(bar.baz.bam)"
 
 ###++win
 
@@ -53,7 +83,24 @@
     ::
 ```
 
+Render at indent level and width
+
+    /~zod/try=> (~(win re leaf/"samoltekon-lapdok") 0 20)
+    <<"samoltekon-lapdok">>
+    /~zod/try=> (~(win re leaf/"samoltekon-lapdok") 0 10)
+    <<"\/samolt\/" "  ekon-l" "  apdok" "\/      \/">>
+    /~zod/try=> (~(win re rose/["--" "[" "]"]^~[leaf/"1423" leaf/"2316"]) 0 20)
+    <<"[1423--2316]">>
+    /~zod/try=> (~(win re rose/["--" "[" "]"]^~[leaf/"1423" leaf/"2316"]) 0 10)
+    <<"[ 1423" "  2316" "]">>
+
 ###++din 
+
+```
+    ++  din  (mod (add 2 tab) (mul 2 (div edg 3)))
+```
+
+XX document
 
 ###++fit 
 
@@ -61,7 +108,32 @@
     ++  fit  (lte (lent ram) (sub edg tab))
 ```
 
+Determine whether `a` fits on one line. Internal to `++win`
+
 ###++rig
+
+```
+    ++  rig
+      |=  hom=tape
+      ^-  wall
+      ?:  (lte (lent hom) (sub edg tab))
+        [(runt [tab ' '] hom) lug]
+      =>  .(tab (add tab 2), edg (sub edg 2))
+      =+  mut=(trim (sub edg tab) hom)
+      :-  (runt [(sub tab 2) ' '] ['\\' '/' (weld p.mut `_hom`['\\' '/' ~])])
+      =>  .(hom q.mut)
+      |-
+      ?~  hom
+        :-  %+  runt
+              [(sub tab 2) ' ']
+            ['\\' '/' (runt [(sub edg tab) ' '] ['\\' '/' ~])]
+        lug
+      =>  .(mut (trim (sub edg tab) hom))
+      [(runt [tab ' '] p.mut) $(hom q.mut)]
+    ::
+```
+
+Wrap tape in `\/` if it doesn't fit at current indentation. Internal to `++win`
 
 ###++wig
 
@@ -82,3 +154,5 @@
     --
   --
 ```
+
+Render tape. Internal to `++win`

@@ -17,13 +17,11 @@ Replace with constant
 ::
 ```
 
-Parser modifier: produces a rule that produces a constant `cus` if `sef` is successful.
+Parser modifier. Accepts a rule `sef` and produces a parser that produces a constant `cus`, if `sef` is successful.
 
 `cus` is a constant [noun]().
 
-`sef` is a [rule]().
-
-`tub` is a [nail]().
+`sef` is a [`++rule`]().
 
         ~zod/try=> ((cold %foo (just 'a')) [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ u=[p=%foo q=[p=[p=1 q=2] q="bc"]]]]
@@ -49,13 +47,11 @@ Apply gate
 ::
 ```
 
-Parser modifier: produces a rule that takes the result of `sef` and slams it through `poq`.
+Parser modifier. Produces a parser that takes a (successful) result of a rule `sef` and slams it through `poq`.
 
 `poq` is a [gate]().
 
-`sef` is a [rule]().
-
-`tub` is a [nail]().
+`sef` is a [`++rule`]().
 
         ~zod/try=> ((cook ,@ud (just 'a')) [[1 1] "abc"])
         [p=[p=1 q=2] q=[~ u=[p=97 q=[p=[p=1 q=2] q="bc"]]]]
@@ -83,22 +79,18 @@ Always parse
 ::
 ```
 
-Parser generator: produces a [rule]() that succeeds with given noun `huf` without consuming any text.
+Parser generator. Produces a parser that succeeds with given noun `huf` without consuming any text.
 
-`huf` is a [noun]().
-
-`tub` is a [nail]().
-
-        ~zod/try=> ((easy %foo) [[1 1] "abc"])
-        [p=[p=1 q=1] q=[~ [p=%foo q=[p=[p=1 q=1] q="abc"]]]]
-        ~zod/try=> ((easy %foo) [[1 1] "bc"])
-        [p=[p=1 q=1] q=[~ [p=%foo q=[p=[p=1 q=1] q="bc"]]]]
-        ~zod/try=> ((easy 'a') [[1 1] "bc"])
-        [p=[p=1 q=1] q=[~ [p='a' q=[p=[p=1 q=1] q="bc"]]]]
+    ~zod/try=> ((easy %foo) [[1 1] "abc"])
+    [p=[p=1 q=1] q=[~ [p=%foo q=[p=[p=1 q=1] q="abc"]]]]
+    ~zod/try=> ((easy %foo) [[1 1] "bc"])
+    [p=[p=1 q=1] q=[~ [p=%foo q=[p=[p=1 q=1] q="bc"]]]]
+    ~zod/try=> ((easy 'a') [[1 1] "bc"])
+    [p=[p=1 q=1] q=[~ [p='a' q=[p=[p=1 q=1] q="bc"]]]]
 
 ---
 
-###++fail
+###++fail  
 
 Never parse
 
@@ -108,12 +100,12 @@ Never parse
 
 Produces an [edge]() at the same text position ([hair]()) with a failing result (`q=~`).
 
-`tub` is a [nail]().
+`tub` is a [`++nail`]().
 
-        ~zod/try=> (fail [[1 1] "abc"])
-        [p=[p=1 q=1] q=~]
-        ~zod/try=> (fail [[p=1.337 q=70] "Parse me, please?"])
-        [p=[p=1.337 q=70] q=~]
+    ~zod/try=> (fail [[1 1] "abc"])
+    [p=[p=1 q=1] q=~]
+    ~zod/try=> (fail [[p=1.337 q=70] "Parse me, please?"])
+    [p=[p=1.337 q=70] q=~]
 
 ---
 
@@ -130,24 +122,22 @@ Parse to end
 ::
 ```
 
-Produces a parser that succeeds only when a `sef` success consumes the remainder of the [tape](). 
+Accepts a [`++nail`](), `tub`, and produces a parser that succeeds only when a `tub` success consumes the remainder of the [tape](). 
 
-`sef` is a [rule]().
+`sef` is a [`++rule`]().
 
-`tub` is a [nail]()
-
-        ~zod/try=> ((full (just 'a')) [[1 1] "ab"])
-        [p=[p=1 q=2] q=~]
-        ~zod/try=> ((full (jest 'ab')) [[1 1] "ab"])
-        [p=[p=1 q=3] q=[~ u=[p='ab' q=[p=[p=1 q=3] q=""]]]]
-        ~zod/try=> ((full ;~(plug (just 'a') (just 'b'))) [[1 1] "ab"])
-        [p=[p=1 q=3] q=[~ u=[p=[~~a ~~b] q=[p=[p=1 q=3] q=""]]]]
+    ~zod/try=> ((full (just 'a')) [[1 1] "ab"])
+    [p=[p=1 q=2] q=~]
+    ~zod/try=> ((full (jest 'ab')) [[1 1] "ab"])
+    [p=[p=1 q=3] q=[~ u=[p='ab' q=[p=[p=1 q=3] q=""]]]]
+    ~zod/try=> ((full ;~(plug (just 'a') (just 'b'))) [[1 1] "ab"])
+    [p=[p=1 q=3] q=[~ u=[p=[~~a ~~b] q=[p=[p=1 q=3] q=""]]]]
 
 ---
 
 ###++funk
 
-Prepend, parse
+Add to tape
 
 ```
 ++  funk                                                ::  add to tape first
@@ -157,18 +147,16 @@ Prepend, parse
 ::
 ```
 
-Parser modifier: prepend text to tape before applying parser. Does not modify the [hair]() of `tub`.
+Parser modifier: prepend text to tape before applying parser.
 
-`pre` is a [tape]().
+`pre` is a [`++tape`]()
 
-`sef` is a [rule]().
+`sef` is a [`++rule`]()
 
-`tub` is a [nail]().
-
-        ~zod/try=> ((funk "abc prefix-" (jest 'abc')) [[1 1] "to be parsed"])
-        [p=[p=1 q=4] q=[~ [p='abc' q=[p=[p=1 q=4] q=" prefix-to be parsed"]]]]
-        ~zod/try=> ((funk "parse" (just 'a')) [[1 4] " me"])
-        [p=[p=1 q=4] q=~]
+    ~zod/try=> ((funk "abc prefix-" (jest 'abc')) [[1 1] "to be parsed"])
+    [p=[p=1 q=4] q=[~ [p='abc' q=[p=[p=1 q=4] q=" prefix-to be parsed"]]]]
+    ~zod/try=> ((funk "parse" (just 'a')) [[1 4] " me"])
+    [p=[p=1 q=4] q=~]
 
 ---
 
@@ -189,13 +177,11 @@ Place-based apply
 ::
 ```
 
-Parser modifier: produces a [rule]() that takes a (successful) result of `sef` and slams it through `poq`, which also accepts a pint `a`. Used in parser to produce stack traces for debugging. Similar to [++cook]().
+Parser modifier. Similar to [`++cook`](), produces a parser that takes a (successful) result of `sef` and slams it through `hez`. `hez` accepts a [`++pint`]() `a` and a noun `b`, which is what the parser parsed.
 
-`hez` is a [gate]() that accepts a [pint]() (pair of trace locations) and the parsed result of `sef`.
+`hez` is a [gate]().
 
-`sef` is a [rule]().
-
-`tub` is a [nail]().
+`sef` is a [`++rule`]()
 
     ~zod/try=> (scan "abc" (star alf))
     "abc"
@@ -205,10 +191,10 @@ Parser modifier: produces a [rule]() that takes a (successful) result of `sef` a
     ~[[[[p=1 q=1] p=1 q=2] ~~a] [[[p=1 q=2] p=1 q=3] ~~b] [[[p=1 q=3] p=1 q=4] ~~c]]
 
 ---
-        
+
 ###++inde
 
-Enforce indendation block
+Indentation block
 
 ```
 ++  inde  |*  sef=_rule                                 :: indentation block
@@ -232,9 +218,10 @@ Enforce indendation block
 ::
 ```
 
-Produces a [rule]() that applies `sef` to an indented block starting at the current column number, omitting the leading whitespace.
+Apply rule to indented block starting at current column number,
+omitting the leading whitespace.
 
-`sef` is a [rule]().
+`sef` is a [`++rule`]()
 
     ~zod/try=> (scan "abc" (inde (star ;~(pose prn (just `@`10)))))
     "abc"
@@ -254,7 +241,7 @@ Produces a [rule]() that applies `sef` to an indented block starting at the curr
 
 ###++jest  
 
-Match literal
+Match a cord
 
 ```
 ++  jest                                                ::  match a cord
@@ -270,11 +257,9 @@ Match literal
 ::
 ```
 
-Parser generator: produces a [rule]() that matches and consumes a literal `daf`. Fails if `tub` does not match `daf`.
+Match and consume a cord.
 
-`daf` is a [cord]().
-
-`tub` is a [nail]().
+`daf` is a `@t`
 
     ~zod/try=> ((jest 'abc') [[1 1] "abc"])
     [p=[p=1 q=4] q=[~ [p='abc' q=[p=[p=1 q=4] q=""]]]]
@@ -293,7 +278,7 @@ Parser generator: produces a [rule]() that matches and consumes a literal `daf`.
 
 ###++just
 
-Match char
+Match a char
 
 ```
 ++  just                                                ::  XX redundant, jest
@@ -310,11 +295,9 @@ Match char
 ::
 ```
 
-Produces a [rule]() that matches and consumes a single character `daf`. Fail if `tub` does not match `daf`.
+Match and consume a single character.
 
-`daf` is a [char]().
-
-`tub` is an [nail]().
+`daf` is a [`++char`]()
 
     ~zod/try=> ((just 'a') [[1 1] "abc"])
     [p=[p=1 q=2] q=[~ [p=~~a q=[p=[p=1 q=2] q="bc"]]]]
@@ -331,10 +314,10 @@ Produces a [rule]() that matches and consumes a single character `daf`. Fail if 
 
 ###++knee
 
-Lazy parser
+Recursive parsers
 
 ```
-++  knee                                                ::  Lazy parser
+++  knee                                                ::  callbacks
   |*  [gar=* sef=_|.(rule)]
   |=  tub=nail
   ^-  (like ,_gar)
@@ -342,13 +325,11 @@ Lazy parser
 ::
 ```
 
-Parser modifier: produces a parser that waits until runtime to untrap and apply `sef`, which would otherwise be infinite when compiled. Used for recursive parsers.
+Used for recursive parsers, which would otherwise be infinite when compiled.
 
-`gar` is a [noun]().
+`gar` is a noun.
 
-`sef` is a [rule]().
-
-`tub` is a [nail]().
+`sef` is a [gate]() that accepts a [`++rule`]()
 
     ~zod/try=> |-(;~(plug prn ;~(pose $ (easy ~))))
     ! rest-loop
@@ -375,7 +356,7 @@ Parser modifier: produces a parser that waits until runtime to untrap and apply 
 
 ###++mask  
 
-Match char in list
+Match char
 
 ```
 ++  mask                                                ::  match char in set
@@ -392,17 +373,17 @@ Match char in list
 ::
 ```
 
-Produces a [rule]() that matches a character if it is in `bud`.
+Parser generator. Matches the next character if it is in a list of characters.
 
-`bud` is a [list]() of chars.
+`bud` is a list of [`++char`]()
 
     ~zod/try=> (scan "a" (mask "cba"))
     ~~a
-    ~zod/try=> ((mask "abc") [[1 1] "agda"])
-    [p=[p=1 q=2] q=[~ [p=~~a q=[p=[p=1 q=2] q="gda"]]]]
-    ~zod/try=> ((mask "abc") [[1 1] "bgda"])
-    [p=[p=1 q=2] q=[~ [p=~~b q=[p=[p=1 q=2] q="gda"]]]]
-    ~zod/try=> ((mask "abc") [[1 1] "dgda"])
+    ~zod/try=> ((mask "abc") [[1 1] "abc"])
+    [p=[p=1 q=2] q=[~ [p=~~a q=[p=[p=1 q=2] q="bc"]]]]
+    ~zod/try=> ((mask "abc") [[1 1] "bbc"])
+    [p=[p=1 q=2] q=[~ [p=~~b q=[p=[p=1 q=2] q="bc"]]]]
+    ~zod/try=> ((mask "abc") [[1 1] "dbc"])
     [p=[p=1 q=1] q=~]
 
 ---
@@ -422,9 +403,9 @@ Consume char
 ::
 ```
 
-Consumes any character, producing an [edge]() with that character as the result.
+Consume any character, producing it as a result.
 
-`tub` is a [nail]().
+`tub` is a [`++nail`]()
 
     ~zod/try=> (next [[1 1] "ebc"])
     [p=[p=1 q=2] q=[~ [p=~~e q=[p=[p=1 q=2] q="bc"]]]] 
@@ -435,7 +416,7 @@ Consumes any character, producing an [edge]() with that character as the result.
 
 ###++sear  
 
-Conditional cook
+Conditional `++cook`
 
 ```
 ++  sear                                                ::  conditional cook
@@ -451,13 +432,9 @@ Conditional cook
 ::
 ```
 
-Produces a rule that slams the result of `sef` through a [gate]() that produces a [unit](); if that unit is empty, fail.
+Conditional [`++cook`](). Slams the result through a gate that produces a unit; if that unit is empty, fail.
 
-`pyq` is a [gate]() that accepts a noun and produces a [unit]().
-
-`sef` is a [rule]().
-
-`tub` is a [nail]().
+`tub` is a [`++nail`]()
 
     ~zod/try=> ((sear |=(a=* ?@(a (some a) ~)) (just `a`)) [[1 1] "abc"])
     [p=[p=1 q=2] q=[~ u=[p=97 q=[p=[p=1 q=2] q="bc"]]]]
@@ -468,7 +445,7 @@ Produces a rule that slams the result of `sef` through a [gate]() that produces 
 
 ###++shim  
 
-Match char in range
+Char in range
 
 ```
 ++  shim                                                ::  match char in range
@@ -485,13 +462,9 @@ Match char in range
 ::
 ```
 
-Parser generator: produces a [rule]() that matches chars within the range between `les` and `mos`.
+Match characters within a range.
 
-`les` is an [atom]().
-
-`mos` is an [atom]().
-
-`tub` is a [nail]().
+`les` and `mos` are atoms, `@`.
 
     ~zod/try=> ((shim 'a' 'z') [[1 1] "abc"])
     [p=[p=1 q=2] q=[~ [p=~~a q=[p=[p=1 q=2] q="bc"]]]]
@@ -502,7 +475,7 @@ Parser generator: produces a [rule]() that matches chars within the range betwee
 
 ---
 
-###++stag
+###++stag  
 
 Add label
 
@@ -519,20 +492,24 @@ Add label
 ::
 ```
 
-Parser modifier: produces a rule that adds a label `gob` to an [edge]() parsed by `sef`.
+Add a label to an edge parsed by a rule.
 
-        ~zod/try=> ((stag %foo (just 'a')) [[1 1] "abc"])
-        [p=[p=1 q=2] q=[~ u=[p=[%foo ~~a] q=[p=[p=1 q=2] q="bc"]]]]
-        ~zod/try=> ((stag "xyz" (jest 'abc')) [[1 1] "abc"])
-        [p=[p=1 q=4] q=[~ u=[p=["xyz" 'abc'] q=[p=[p=1 q=4] q=""]]]]
-        ~zod/try=> ((stag 10.000 (shim 0 100)) [[1 1] "abc"])
-        [p=[p=1 q=2] q=[~ u=[p=[10.000 ~~a] q=[p=[p=1 q=2] q="bc"]]]]
+`gob` is a noun.
+
+`sef` is a rule.
+
+    ~zod/try=> ((stag %foo (just 'a')) [[1 1] "abc"])
+    [p=[p=1 q=2] q=[~ u=[p=[%foo ~~a] q=[p=[p=1 q=2] q="bc"]]]]
+    ~zod/try=> ((stag "xyz" (jest 'abc')) [[1 1] "abc"])
+    [p=[p=1 q=4] q=[~ u=[p=["xyz" 'abc'] q=[p=[p=1 q=4] q=""]]]]
+    ~zod/try=> ((stag 10.000 (shim 0 100)) [[1 1] "abc"])
+    [p=[p=1 q=2] q=[~ u=[p=[10.000 ~~a] q=[p=[p=1 q=2] q="bc"]]]]
 
 ---
 
 ###++stet
 
-Add `[p q]` faces
+Add faces
 
 ```
 ++  stet
@@ -544,9 +521,9 @@ Add `[p q]` faces
 ::
 ```
 
-Produces list `leh` with the heads and tails of its elements assigned the faces `p` and `q` respectively. Used to prime input for [`++stew`]().
+Add `[p q]` faces to range-parser pairs in a list.
 
-`leh` is a [list]() of elements that have two elements: `p`, which is either a character or a range of characters; and `q`, which is the corresponding [rule]().
+`leh` is a list of range-parsers.
 
     ~zod/try=> (stet (limo [[5 (just 'a')] [1 (jest 'abc')] [[1 1] (shim 0 200)] 
     [[1 10] (cold %foo (just 'a'))]~]))
@@ -571,7 +548,7 @@ Produces list `leh` with the heads and tails of its elements assigned the faces 
 
 ###++stew
 
-Switch on first char
+Switch by first
 
 ```
 ++  stew                                                ::  switch by first char
@@ -620,10 +597,10 @@ Switch on first char
 ::
 ```
    
-Parser generator: produces a [rule]() that switches on the first character (by individual character or range), applying the corresponding [rule](). Used extensively in [`++norm`](), [`++toil`](), and [`++scat`]().
-
-`ort` is a [list]() of elements that have two elements: `p`, which is either a character or a range of characters that are switched on; and `q` which is the corresponding [rule]().
-
+Parser generator. From an associative list of characters or character ranges to
+rules, construct a map, and parse tapes only with rules associated with a range
+the tape's first character falls in.
+   
 ---
 
 ###++stir
@@ -645,14 +622,14 @@ Parse repeatedly
   [(last p.vex p.wag) [~ (raq p.u.q.vex p.u.q.wag) q.u.q.wag]]
 ::
 ```
-        
-Parser generator: produces a parser that parses with `fel` as many times as is possible and composes the results with a binary gate `raq`.
 
-`rud` is a [noun]().
+Parse with rule as many times as possible, and fold over results with a binary gate.
 
-`raq` is a [gate]() that accepts a [cell]() of nouns `a` and `b` and produces a cell.
+`rud` is a noun.
 
-`fel` is a [rule]().
+`raq` is a gate that takes two nouns and produces a cell.
+
+`fel` is a rule.
 
     ~zod/try=> (scan "abc" (stir *@ add prn))
     294
@@ -660,7 +637,7 @@ Parser generator: produces a parser that parses with `fel` as many times as is p
     b=294
 
 ---
-        
+
 ###++stun  
 
 Parse several times
@@ -687,13 +664,11 @@ Parse several times
   [p.wag [~ [p.u.q.vex p.u.q.wag] q.u.q.wag]]
 ```
 
-Parser generator: produces a rule that applies `fel` between `les` and `mos` times.
+Parse bounded number of times.
 
-`les` is an [atom]().
+`[les=@ mos=@]` is a cell of atoms indicating the bounds.
 
-`mos` is an [atom]().
-
-`tub` is a [nail]().
+`fel` is a rule.
 
     ~zod/try=> ((stun [5 10] prn) [1 1] "aquickbrownfoxran")
     [p=[p=1 q=11] q=[~ [p="aquickbrow" q=[p=[p=1 q=11] q="nfoxran"]]]]
