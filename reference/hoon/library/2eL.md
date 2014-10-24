@@ -7,7 +7,10 @@
   |%
 ```
 
-XX document
+Core containing numeric parser primitives
+
+    /~zod/try=> ab
+    <36.ecc 414.gly 100.xkc 1.ypj %164>
 
 ###++bix
 
@@ -15,7 +18,14 @@ XX document
   ++  bix  (bass 16 (stun [2 2] six))
 ```
 
-XX document
+Parse pair of base16 digits, used in escapes
+
+    /~zod/try=> (scan "07" bix:ab)
+    q=7
+    /~zod/try=> (scan "51" bix:ab)
+    q=81
+    /~zod/try=> (scan "a3" bix:ab)
+    q=163
 
 ###++hif
 
@@ -23,7 +33,12 @@ XX document
   ++  hif  (boss 256 ;~(plug tip tiq (easy ~)))
 ```
 
-XX document
+Parse single @p trochee
+
+    /~zod/try=> (scan "doznec" hif:ab)
+    q=256
+    /~zod/try=> (scan "pittyp" hif:ab)
+    q=48.626
 
 ###++huf
 
@@ -33,7 +48,14 @@ XX document
            ;~(plug hif ;~(pfix hep hif))
 ```
 
-XX document
+Parse scrambled pair of @p trochees
+
+    /~zod/try=> (scan "pittyp-pittyp" huf:ab)
+    328.203.557
+    /~zod/try=> (scan "tasfyn-partyv" huf:ab)
+    65.792
+    /~zod/try=> `@ux`(scan "tasfyn-partyv" huf:ab)
+    0x1.0100
 
 ###++hyf
 
@@ -41,7 +63,12 @@ XX document
   ++  hyf  (bass 0x1.0000.0000 ;~(plug huf ;~(pfix hep huf) (easy ~)))
 ```
 
-XX document
+Parse 8 syllable @p phrase
+
+    /~zod/try=> (scan "sondel-forsut-tillyn-nillyt" hyf:ab)
+    q=365.637.097.828.335.095
+    /~zod/try=> `@u`~sondel-forsut-tillyn-nillyt
+    365.637.097.828.335.095
 
 ###++pev
 
@@ -49,7 +76,14 @@ XX document
   ++  pev  (bass 32 ;~(plug sev (stun [0 4] siv)))
 ```
 
-XX document
+Parse up to four base32 digits
+
+    /~zod/try=> (scan "a" pev:ab)
+    q=10
+    /~zod/try=> (scan "290j" pev:ab)
+    q=74.771
+    /~zod/try=> `@`0v290j
+    74.771
 
 ###++pew
 
@@ -57,7 +91,14 @@ XX document
   ++  pew  (bass 64 ;~(plug sew (stun [0 4] siw)))
 ```
 
-XX document
+Parse up to four base64 digts
+
+    /~zod/try=> (scan "Q" pew:ab)
+    q=52
+    /~zod/try=> (scan "aQ~9" pew:ab)
+    q=2.838.473
+    /~zod/try=> `@`0waQ~9
+    2.838.473
 
 ###++piv
 
@@ -65,7 +106,10 @@ XX document
   ++  piv  (bass 32 (stun [5 5] siv))
 ```
 
-XX document
+Parse five base32 digits
+
+    /~zod/try=> (scan "10b3l" piv:ab)
+    q=1.059.957
 
 ###++piw
 
@@ -73,7 +117,10 @@ XX document
   ++  piw  (bass 64 (stun [5 5] siw))
 ```
 
-XX document
+Parse five base64 digits
+
+    /~zod/try=> (scan "2C-pZ" piw:ab)
+    q=43.771.517
 
 ###++qeb
 
@@ -81,7 +128,12 @@ XX document
   ++  qeb  (bass 2 ;~(plug seb (stun [0 3] sib)))
 ```
 
-XX document
+Parse a binary number of up to 4 digits
+
+    /~zod/try=> (scan "1" qeb:ab)
+    q=1
+    /~zod/try=> (scan "101" qeb:ab)
+    q=5
 
 ###++qex
 
@@ -89,7 +141,14 @@ XX document
   ++  qex  (bass 16 ;~(plug sex (stun [0 3] hit)))
 ```
 
-XX document
+Parse a hexadecimal number of up to 4 digits
+
+    /~zod/try=> (scan "c" qex:ab)
+    q=12
+    /~zod/try=> (scan "ca" qex:ab)
+    q=202
+    /~zod/try=> (scan "18ac" qex:ab)
+    q=6.316
 
 ###++qib
 
@@ -97,7 +156,13 @@ XX document
   ++  qib  (bass 2 (stun [4 4] sib))
 ```
 
-XX document
+Parse four binary digits
+
+    /~zod/try=> (scan "0001" qib:ab)
+    q=1
+    /~zod/try=> (scan "0100" qib:ab)
+    q=4
+
 
 ###++qix
 
@@ -105,7 +170,12 @@ XX document
   ++  qix  (bass 16 (stun [4 4] six))
 ```
 
-XX document
+Parse four hexadecimal digits
+
+    /~zod/try=> (scan "0100" qix:ab)
+    q=256
+    /~zod/try=> (scan "10ff" qix:ab)
+    q=4.351
 
 ###++seb
 
@@ -113,7 +183,16 @@ XX document
   ++  seb  (cold 1 (just '1'))
 ```
 
-XX document
+Parse 1.
+
+    /~zod/try=> (scan "1" seb:ab)
+    1
+    /~zod/try=> (scan "0" seb:ab)
+    ! /~zod/try/~2014.10.23..22.34.21..bfdd/:<[1 1].[1 18]>
+    ! {1 1}
+    /~zod/try=> (scan "2" seb:ab)
+    ! /~zod/try/~2014.10.23..22.34.29..d399/:<[1 1].[1 18]>
+    ! {1 1}
 
 ###++sed
 
@@ -121,7 +200,10 @@ XX document
   ++  sed  (cook |=(a=@ (sub a '0')) (shim '1' '9'))
 ```
 
-XX document
+Parse nonzero decimal digit
+
+    /~zod/try=> (scan "5" sed:ab)
+    5
 
 ###++sev
 
@@ -129,7 +211,10 @@ XX document
   ++  sev  ;~(pose sed sov)
 ```
 
-XX document
+Parse nonzero base32 digit
+
+    /~zod/try=> (scan "c" sev:ab)
+    12
 
 ###++sew
 
@@ -137,7 +222,10 @@ XX document
   ++  sew  ;~(pose sed sow)
 ```
 
-XX document
+Parse nonzero base64 digit
+
+    /~zod/try=> (scan "M" sew:ab)
+    48
 
 ###++sex
 
@@ -145,7 +233,10 @@ XX document
   ++  sex  ;~(pose sed sox)
 ```
 
-XX document
+Parse nonzero hexadecimal digit
+
+    /~zod/try=> (scan "e" sex:ab)
+    14
 
 ###++sib
 
@@ -153,7 +244,10 @@ XX document
   ++  sib  (cook |=(a=@ (sub a '0')) (shim '0' '1'))
 ```
 
-XX document
+Parse binary digit
+
+    /~zod/try=> (scan "1" sib:ab)
+    1
 
 ###++siq
 
@@ -168,7 +262,15 @@ XX document
            ==
 ```
 
-XX document
+Single formal cord character
+
+    /~zod/try=> ~~20.a
+    '20 a'
+    /~zod/try=> (tape (scan "20.a" (star siq:ab)))
+    "20 a"
+    /~zod/try=> (tape (scan "20.~43-2" (star siq:ab)))
+    "20 C-2"
+
 
 ###++sid
 
@@ -176,7 +278,10 @@ XX document
   ++  sid  (cook |=(a=@ (sub a '0')) (shim '0' '9'))
 ```
 
-XX document
+Parse decimal digit
+
+    /~zod/try=> (scan "5" sid:ab)
+    5
 
 ###++siv
 
@@ -184,7 +289,10 @@ XX document
   ++  siv  ;~(pose sid sov)
 ```
 
-XX document
+Parse base32 digit
+
+    /~zod/try=> (scan "c" siv:ab)
+    12
 
 ###++siw
 
@@ -192,7 +300,10 @@ XX document
   ++  siw  ;~(pose sid sow)
 ```
 
-XX document
+Parse base64 digit
+
+    /~zod/try=> (scan "M" siw:ab)
+    48
 
 ###++six
 
@@ -200,7 +311,10 @@ XX document
   ++  six  ;~(pose sid sox)
 ```
 
-XX document
+Parse hexadecimal digit
+
+    /~zod/try=> (scan "e" six:ab)
+    14
 
 ###++sov
 
@@ -208,7 +322,10 @@ XX document
   ++  sov  (cook |=(a=@ (sub a 87)) (shim 'a' 'v'))
 ```
 
-XX document
+Parse base32 letter
+
+    /~zod/try=> (scan "c" sov:ab)
+    12
 
 ###++sow
 
@@ -221,7 +338,10 @@ XX document
            ==
 ```
 
-XX document
+Parse base64 letter/symbol
+
+    /~zod/try=> (scan "M" sow:ab)
+    48
 
 ###++sox
 
@@ -229,7 +349,10 @@ XX document
   ++  sox  (cook |=(a=@ (sub a 87)) (shim 'a' 'f'))
 ```
 
-XX document
+Parse hexadecimal letter
+
+    /~zod/try=> (scan "e" sox:ab)
+    14
 
 ###++ted
 
@@ -237,7 +360,15 @@ XX document
   ++  ted  (bass 10 ;~(plug sed (stun [0 2] sid)))
 ```
 
-XX document
+Parse decimal number of up to 3 digits
+
+    /~zod/try=> (scan "21" ted:ab)
+    q=21
+    /~zod/try=> (scan "214" ted:ab)
+    q=214
+    /~zod/try=> (scan "2140" ted:ab)
+    {1 4}
+
 
 ###++tip
 
@@ -245,7 +376,13 @@ XX document
   ++  tip  (sear |=(a=@ (ins:po a)) til)
 ```
 
-XX document
+Leading phonetic syllable
+
+    /~zod/try=> (scan "doz" tip:ab)
+    0
+    /~zod/try=> (scan "pit" tip:ab)
+    242
+
 
 ###++tiq
 
@@ -253,7 +390,12 @@ XX document
   ++  tiq  (sear |=(a=@ (ind:po a)) til)
 ```
 
-XX document
+Trailing phonetic syllable
+
+    /~zod/try=> (scan "zod" tiq:ab)
+    0
+    /~zod/try=> (scan "nec" tiq:ab)
+    1
 
 ###++tid
 
@@ -261,7 +403,10 @@ XX document
   ++  tid  (bass 10 (stun [3 3] sid))
 ```
 
-XX document
+Three decimal digits
+    
+    /~zod/try=> (scan "013" tid:ab)
+    q=13
 
 ###++til
 
@@ -269,7 +414,12 @@ XX document
   ++  til  (boss 256 (stun [3 3] low))
 ```
 
-XX document
+Three lowercase letters
+
+    /~zod/try=> (scan "mer" til:ab)
+    q=7.497.069
+    /~zod/try=> `@t`(scan "mer" til:ab)
+    'mer'
 
 ###++urs
 
@@ -279,7 +429,10 @@ XX document
            (star ;~(pose nud low hep dot sig cab))
 ```
 
-XX document
+Span characters
+
+    /~zod/try=> `@t`(scan "asa-lom_tak" urs:ab)
+    'asa-lom_tak'
 
 ###++urt
 
@@ -289,7 +442,10 @@ XX document
            (star ;~(pose nud low hep dot sig))
 ```
 
-XX document
+Non-'_' span characters.
+
+    /~zod/try=> `@t`(scan "asa-lom.t0k" urt:ab)
+    'asa-lom.t0k'
 
 ###++voy
 
@@ -297,24 +453,12 @@ XX document
   ++  voy  ;~(pfix bas ;~(pose bas soq bix))
 ```
 
-XX document
+Escaped backslash, single quote, or hex pair byte.
 
-###++vym
-
-```
-  ++  vym  (bass 256 ;~(plug low (star ;~(pose low nud))))
-```
-
-XX document
-
-###++vyn
-
-```
-  ++  vyn  (bass 256 ;~(plug hep vym (easy ~)))
-  --
-```
-
-XX document
+    /~zod/try=> (scan "\\0a" voy:ab)
+    q=10
+    /~zod/try=> (scan "\\'" voy:ab)
+    q=39
 
 ###++ag
 
@@ -323,7 +467,10 @@ XX document
   |%
 ```
 
-XX document
+Core containing toplevel atom parsers.
+
+    /~zod/try=> ag
+    <14.vpu 414.mof 100.xkc 1.ypj %164>
 
 ###++ape
 
@@ -331,7 +478,10 @@ XX document
   ++  ape  |*(fel=_rule ;~(pose (cold 0 (just '0')) fel))
 ```
 
-XX document
+Parse 0 or rule
+
+    /~zod/try=> (scan "202" (star (ape:ag (just '2'))))
+    ~[~~2 ~~ ~~2]
 
 ###++bay
 
@@ -339,7 +489,10 @@ XX document
   ++  bay  (ape (bass 16 ;~(plug qeb:ab (star ;~(pfix dog qib:ab)))))
 ```
 
-XX document
+Parse binary number.
+
+    /~zod/try=> (scan "10.0110" bay:ag)
+    q=38
 
 ###++bip
 
@@ -348,7 +501,12 @@ XX document
            (bass 0x1.0000 ;~(plug tod (stun [7 7] ;~(pfix dog tod))))
 ```
 
-XX document
+IPv6 address
+
+    /~zod/try=> (scan "0.0.ea.3e6c.0.0.0.0" bip:ag)
+    q=283.183.420.760.121.105.516.068.864
+    /~zod/try=> `@is`(scan "0.0.ea.3e6c.0.0.0.0" bip:ag)
+    .0.0.ea.3e6c.0.0.0.0
 
 ###++dem
 
@@ -356,7 +514,12 @@ XX document
   ++  dem  (ape (bass 1.000 ;~(plug ted:ab (star ;~(pfix dog tid:ab)))))
 ```
 
-XX document
+Decimal number, with dots
+
+    /~zod/try=> (scan "52" dem:ag)
+    q=52
+    /~zod/try=> (scan "13.507" dem:ag)
+    q=13.507
 
 ###++dim
 
@@ -364,7 +527,12 @@ XX document
   ++  dim  (ape (bass 10 ;~(plug sed:ab (star sid:ab))))
 ```
 
-XX document
+Decimal number
+
+    /~zod/try=> (scan "52" dim:ag)
+    q=52
+    /~zod/try=> (scan "13507" dim:ag)
+    q=13.507
 
 ###++dum
 
@@ -372,7 +540,14 @@ XX document
   ++  dum  (bass 10 (plus sid:ab))
 ```
 
-XX document
+Decmial number with leading zeroes
+
+    /~zod/try=> (scan "52" dum:ag)
+    q=52
+    /~zod/try=> (scan "0000052" dum:ag)
+    q=52
+    /~zod/try=> (scan "13507" dim:ag)
+    q=13.507
 
 ###++fed
 
@@ -385,7 +560,23 @@ XX document
            ==
 ```
 
-XX document
+Phonetic base
+
+    /~zod/try=> (scan "zod" fed:ag)
+    0
+    /~zod/try=> (scan "nec" fed:ag)
+    1
+    /~zod/try=> (scan "sondel" fed:ag)
+    9.636
+    /~zod/try=> ~tillyn-nillyt
+    ~tillyn-nillyt
+    /~zod/try=> (scan "tillyn-nillyt" fed:ag)
+    3.569.565.175
+    /~zod/try=> (scan "tillyn-nillyt-tasfyn-partyv" fed:ag)
+    15.331.165.687.565.582.592
+    /~zod/try=> (scan "tillyn-nillyt-tasfyn-partyv--novweb-talrud-talmud-sonfyr" fed:ag)
+    282.810.089.790.159.633.869.501.053.313.363.681.181
+
 
 ###++hex
 
@@ -393,7 +584,16 @@ XX document
   ++  hex  (ape (bass 0x1.0000 ;~(plug qex:ab (star ;~(pfix dog qix:ab)))))
 ```
 
-XX document
+Hexadecimal number
+
+    /~zod/try=> (scan "4" hex:ag)
+    q=4
+    /~zod/try=> (scan "1a" hex:ag)
+    q=26
+    /~zod/try=> (scan "3.ac8d" hex:ag)
+    q=240.781
+    /~zod/try=> `@ux`(scan "3.ac8d" hex:ag)
+    0x3.ac8d
 
 ###++lip
 
@@ -402,28 +602,14 @@ XX document
            (bass 256 ;~(plug tod (stun [3 3] ;~(pfix dog tod))))
 ```
 
-XX document
+IPv4 address
 
-###++qut
-
-```
-  ++  qut  %+  ifix  [soq soq]
-           %+  boss  256
-           %-  star  ;~  pose
-                       ;~(pfix bas ;~(pose bas soq bix:ab))
-                       ;~(less bas soq prn)
-                     ==
-```
-
-XX document
-
-###++sym
-
-```
-  ++  sym  (cook |=(a=(list ,@) (rap 3 a)) ;~(plug vym:ab (star vyn:ab)))
-```
-
-XX document
+    /~zod/try=> (scan "127.0.0.1" lip:ag)
+    q=2.130.706.433
+    /~zod/try=> `@if`(scan "127.0.0.1" lip:ag)
+    .127.0.0.1
+    /~zod/try=> `@if`(scan "8.8.8.8" lip:ag)
+    .8.8.8.8
 
 ###++tyq
 
@@ -431,7 +617,16 @@ XX document
   ++  tyq  (cook |=(a=(list ,@) (rap 3 a)) (plus siq:ab))
 ```
 
-XX document
+Formal cord form
+
+    /~zod/try=> (scan "20.a" tyq:ag)
+    1.629.499.442
+    /~zod/try=> `@t`(scan "20.a" tyq:ag)
+    '20 a'
+    /~zod/try=> ~~20.a
+    '20 a'
+    /~zod/try=> `@t`(scan "20.~43-2" tyq:ag)
+    '20 C-2'
 
 ###++viz
 
@@ -439,7 +634,10 @@ XX document
   ++  viz  (ape (bass 0x200.0000 ;~(plug pev:ab (star ;~(pfix dog piv:ab)))))
 ```
 
-XX document
+Base32 number, with dots
+
+    /~zod/try=> (scan "e2.ol4pm" viz:ag)
+    q=15.125.353.270
 
 ###++vum
 
@@ -447,7 +645,10 @@ XX document
   ++  vum  (bass 32 (plus siv:ab))
 ```
 
-XX document
+Raw base32 string
+
+    /~zod/try=> (scan "e2ol4pm" vum:ag)
+    q=15.125.353.270
 
 ###++wiz
 
@@ -457,7 +658,11 @@ XX document
 ::
 ```
 
-XX document
+Base64 number 
+
+    /~zod/try=> (scan "e2O.l4Xpm" wiz:ag)
+    q=61.764.130.813.526
+
 
 ###++co
 
@@ -466,7 +671,19 @@ XX document
   =<  |_  lot=coin
 ```
 
-XX document
+Literal rendering engine
+
+    /~zod/try=> ~(. co many/~[`ta/'mo' `ud/5])
+    < 3.dhd
+      [ [ %many
+          [%~ %ta @t]
+          [%~ %ud @ud]
+          %~
+        ]
+        <10.utz 3.zid [rex="" <414.hmb 100.xkc 1.ypj %164>]>
+      ]
+    >
+
 
 ###++rear
 
@@ -474,7 +691,7 @@ XX document
       ++  rear  |=(rom=tape =>(.(rex rom) rend))
 ```
 
-XX document
+Prepend to tape
 
 ###++rent
 
@@ -482,7 +699,7 @@ XX document
       ++  rent  `@ta`(rap 3 rend)
 ```
 
-XX document
+Print to tape
 
 ###++rend
 
