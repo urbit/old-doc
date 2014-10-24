@@ -1,29 +1,27 @@
 #[cencol, `%:`, %cncl](#cncl)
 
-[Short description]
+Slam, one argument
 
-#Syntax
-
-`%:`, `cencol`, `[%cncl p=twig q=twig]` is a synthetic rune that
-that pulls `%$` from the door `p` with its sample set to `q`.
+`%:` is a synthetic rune that that [pull]()s [`$`]() from the [door]() `p` with its sample set to `q`. `%:` in the most common case simply [slam]()s `p` with `q`, similar to a function call with one argument. Unlike its close relative `%-`, `%:` is designed for [gate]()s who take a single value as their sample.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%cncl p=twig q=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [twig](), most commonly a [gate]()
+`q` is a [twig]()
 
 ##Tall form
 
-%:  p
-    p
+    %:  p
+        q
+    ==
 
 ##Wide form
 
-%:('twig' 'twig')
+    %:(p q)
 
 ##Irregular form
 
