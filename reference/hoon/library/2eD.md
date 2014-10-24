@@ -2,6 +2,8 @@
 
 ###++bend
 
+Conditional composer
+
 ```
 ++  bend                                                ::  conditional comp
   ~/  %bend
@@ -21,8 +23,14 @@
 ::
 ```
 
-Parsing composer: treat each following rule as an optional suffix, using a gate to 
-compose its result or reject it.
+Parsing composer: treat each subsequent rule as an optional suffix, using `raq` to 
+compose or reject its result.
+
+`raq` is a [gate]().
+
+`sab` is a [rule]().
+
+`vex` is an [edge]().
 
     ~zod/try=> (scan "a" ;~((bend |=([a=char b=char] ?.(=(a b) ~ (some +(a))))) prn prn))
     ~~a
@@ -33,6 +41,8 @@ compose its result or reject it.
     ! exit
 
 ###++comp
+
+Arbitrary compose
 
 ```
 ++  comp
@@ -50,7 +60,13 @@ compose its result or reject it.
 ::
 ```
 
-Parsing composer: use a gate to consolidate the results of several rules.
+Parsing composer: uses a binary gate to fold over the results of several rules.
+
+`raq` is a [gate]() that accepts a cell of two nouns, `a` and `b`, and produces a cell of two nouns of the same respective types of `a` and `b`.
+
+`sab` is a [rule]().
+
+`vex` is an [edge]().
 
     ~zod/try=> (scan "123" ;~((comp |=([a=@u b=@u] (add a b))) dit dit dit))
     6
@@ -118,6 +134,8 @@ Parsing composer: ignore prefix
 
 ###++plug
 
+Parse to tuple
+
 ```
 ++  plug                                                ::  first then second
   ~/  %plug
@@ -132,7 +150,7 @@ Parsing composer: ignore prefix
 ::
 ```
 
-Parsing composer: match using sequence of rules.
+Parsing composer: connects `vex` with a following rule `sab`, producing a cell of both the results. See also: the monad applicator [;~]() for a more detailed explanation.
 
     ~zod/try=> (scan "1..20" ;~(plug dem dot dot dem))
     [q=1 ~~~. ~~~. q=20]
@@ -142,6 +160,8 @@ Parsing composer: match using sequence of rules.
     [%moke '/' ~ %da ~2014.1.1]
 
 ###++pose
+
+Parse options
 
 ```
 ++  pose                                                ::  first or second
@@ -153,7 +173,11 @@ Parsing composer: match using sequence of rules.
   vex
 ```
 
-Parsing composer: match either rule.
+Parsing composer: if `vex` reflects a failure, connect it with the following rule `sab`. See also: the monad applicator [;~]()
+
+`sab` is a [rule]().
+
+`vex` is an [edge]().
 
     ~zod/try=> `@t`(scan "+" ;~(pose lus tar cen))
     '+'
@@ -167,6 +191,8 @@ Parsing composer: match either rule.
 
 ###++simu
 
+First and second
+
 ```
 ++  simu                                                ::  first and second
   |*  [vex=edge sab=_rule]
@@ -177,7 +203,11 @@ Parsing composer: match either rule.
 ::
 ```
 
-Parsing composer: verify that first rule matches, then parse with second.
+Parsing composer: applies two subsequent rules `sab` to `vex`, throwing out the result of the first and returning the result of the second.
+
+`sab` is a [rule]().
+
+`vex` is an [edge]().
 
     ~zod/try=> (scan "~zod" scat:vast)
     [%dtzy p=%p q=0]
@@ -191,13 +221,19 @@ Parsing composer: verify that first rule matches, then parse with second.
 
 ###++sfix
 
+Discard second rule
+
 ```
 ++  sfix                                                ::  discard second rule
   ~/  %sfix
   (comp |*([a=* b=*] a))
 ```
 
-Parsing composer: ignore suffix
+Parsing composer: applies a sequence of rules, returning the result of the first.
+
+`a` is the result of parsing the first [rule]().
+
+`b` is the result of of parsing the second [rule](). 
 
     ~zod/try=> `@t`(scan "him%" ;~(sfix sym cen))
     'him'

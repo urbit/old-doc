@@ -1,6 +1,13 @@
 #Glossary 
 
-#[door](#door)
+
+#[cons]()
+
+#[gold, copper, zinc....]()
+
+#[doorh#door)
+
+#[frond](#frond)
 
 #[gate](#gate)
 
