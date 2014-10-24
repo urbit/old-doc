@@ -401,7 +401,7 @@ Span unsecape
 ###++woad
 
 ```
-++  woad                                                ::  span format
+++  woad                                                ::  cord format
   |=  a=@ta
   ^-  @t
   %+  rap  3
@@ -436,7 +436,7 @@ Span unsecape
 ::
 ```
 
-Unescape span codepoints.
+Unescape cord codepoints.
 
     /~zod/try=> (woad ~.~b6.20.as)
     '¶20 as'
@@ -444,7 +444,7 @@ Unescape span codepoints.
 ###++wood
 
 ```
-++  wood                                                ::  span format
+++  wood                                                ::  cord format
   |=  a=@t
   ^-  @ta
   %+  rap  3
@@ -475,7 +475,7 @@ Unescape span codepoints.
   ==
 ```
 
-Escape span codepoints.
+Escape cord codepoints.
 
     /~zod/try=> (wood 'my ßam')
     ~.my.~df.am
