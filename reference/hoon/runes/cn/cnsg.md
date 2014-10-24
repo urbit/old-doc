@@ -1,34 +1,31 @@
 #[censig, `%~`, %cnsg](#cnsg)
 
-[Short description]
+Pull with sample
 
-#Syntax
-
-`%~`, `censig`, `[%cnsg p=wing q=twig r=twig]` is a synthetic
-hoon that pulls `p` from the door `q` with its sample set to `r`.
+`%~` is a synthetic rune that [pull]()s `p` from the [door]() `q` with its sample set to `r`. `%~` is used to evaluate an arm `p` inside of a door `q` with the door's sample set to `r`.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%cnsg p=wing q=twig r=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [`wing`]()
+`q` and `r` are [`twig`]()s.
 
 ##Tall form
 
-%~  p
-      q
-    r
+    %~  p
+          q
+        r
 
 ##Wide form
 
-%~(p q r)
+    %~(p q r)
 
 ##Irregular form
 
-~(p q r)
+    ~(p q r)
 
 ##Examples
 

@@ -26,7 +26,7 @@ slams the assumed gate `noah` on `[%zpgr %cntr p]`.
 
 ##Irregular form
 
->i.p i.t.p i.t.t.p<
+    i.p i.t.p i.t.t.p<
 
 ##Examples
 

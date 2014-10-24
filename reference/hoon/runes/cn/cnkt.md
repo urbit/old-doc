@@ -1,31 +1,28 @@
 #[cenket, `%^`, %cnkt](#cnkt)
 
-[Short description]
+Slam, three arguments
 
-#Syntax
-
-`%^`, `cenket`, `[%cnkt p=twig q=twig r=twig s=twig]` is a 
-synthetic hoon that slams gate `p` with `[%cntr q r s]`.
+`%^` is a synthetic rune that that [pull]()s [`$`]() from the [door]() `p` with its sample set to `[%cntr q r s]`. `%^` in the most common case simply [slam]()s `p` with `q`, `r` and `s`, similar to a function call with three arguments.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%cnkt p=twig q=twig r=twig s=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [twig](), most commonly a [gate]().
+`q`, `r` and `s` are [twig]()s.
 
 ##Tall form
 
-%^    p
-        q
-      r
-    s
+    %^    p
+            q
+          r
+        s
 
 ##Wide form
 
-%^(p q r s)
+    %^(p q r s)
 
 ##Irregular form
 
