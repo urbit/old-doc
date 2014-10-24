@@ -2,7 +2,11 @@
 
 Evaluate with changes
 
-`%=` is a natural hoon that evaluates `p` with the changes specified in `q`. `%=` is used to specify changes in the context of `p`.
+`%=` is a natural hoon thatevaluates `p` with the changes specified in `q`. `%=` is used to change a batch of [wing]()s inside a [`++wing`]() all at once, ensuring that the product is type checked.
+
+##See also
+
+`%_`
 
 ##Produces
 
@@ -30,5 +34,9 @@ Twig: `[%cnts p=wing q=tram]`
 
 ##Examples
 
-
-
+    /~zod/try=> =+  a=[p=5 q=6]
+                a(p 2)
+    [p=2 q=6]
+    /~zod/try=> =+  a=[p=5 q=6]
+                a(q 'c')
+    [p=5 q='c']

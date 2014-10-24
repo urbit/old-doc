@@ -2,7 +2,7 @@
 
 Pull wing `p`
 
-`cenzaz` is a synthetic hoon that pulls wing `p` from the subject. `cenzaz`  is only used internally by `hoon.hoon`, but is used implicitly whenever assignment occurs.
+`cenzaz` is a synthetic hoon that pulls wing `p` from the subject. `cenzaz`  is only used internally by `hoon.hoon`, but is used implicitly whenever dereferencing occurs.
 
 ##Produces
 
@@ -26,5 +26,9 @@ None
 
 ##Examples
 
-
-
+    /~zod/try=> (ream 'a')
+    [%cnzz p=~[%a]]
+    /~zod/try=> (ream 'c.+>.$')
+    [%cnzz p=~[%c [%.y p=7] %$]]
+    /~zod/try=> (slap !>(a=[p=20 q=6]) [%cnzz ~[%p %a]])
+    [p=[%atom p=%ud] q=20]

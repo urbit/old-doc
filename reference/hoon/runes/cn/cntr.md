@@ -4,6 +4,10 @@ Pull with changes
 
 `%*` is a synthetic rune that [pull]()s the wing `p` from a [door]() `q` with changes `r`. `%*` is used to specify changes in the context of a wing when it is pulled.
 
+##See also
+
+`%~`, which changes the sample specifically
+
 ##Produces
 
 Twig: `[%cntr p=wing q=twig r=tram]`
@@ -31,5 +35,5 @@ None
 
 ##Examples
 
-
-
+    /~zod/try=> %*($ add +< [2 4])
+    6

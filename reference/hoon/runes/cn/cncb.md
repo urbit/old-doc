@@ -2,7 +2,11 @@
 
 Evaluate with changes, cast
 
-`%_` is a synthetic rune that evaluates `p` with the changes specified in `q`, then casts the product back to the type of `p`. `%_` is used to change a batch of [face]()s inside a [`++wing`]() all at once, ensuring that the product is type checked.
+`%_` is a synthetic rune that evaluates `p` with the changes specified in `q`, then casts the product back to the type of `p`. `%_` is used to change a batch of [wing]()s inside a [`++wing`]() all at once, ensuring that the product is type checked.
+
+##See also
+
+`%_`
 
 ##Produces
 
