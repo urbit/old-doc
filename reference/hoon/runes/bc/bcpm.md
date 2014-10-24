@@ -2,18 +2,13 @@
 
 [Short description]
 
-#Syntax
-
-`$&`, `bucpam`, is a tile rune that produces a `%bush`, `[%bush p=tile q=tile]`, a tile in which there are two kinds of nouns: cells whose head is a cell `(tile p)` and cells whose head is an atom `(tile q)`. Its default value is the value of `q`.
+`$&`, `bucpam`, is a tile rune that produces a `%bush`, a tile whose [icon]() is a [fork]() between two different kinds of nouns: cells whose head is a cell and cells whose head is an atom `(tile q)`. Its default value is the value of `q`. One fundamental use of `$&` is to implement autocons in [`++twig`]() and [`++tile`]().
 
 ##Produces
 
-[Twig or tile]
+[Tile](): `[%bush p=tile q=tile]`
 
-##Sample
-
-[`p` is a _
-`q` is a _]
+`p` is a [tile]().
 
 ##Tall form
 

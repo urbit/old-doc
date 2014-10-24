@@ -1,29 +1,25 @@
 #[cendot, `%.`, %cndt](#cndt)
 
-[Short description]
+Slam, reverse order
 
-#Syntax
-
-`%.`, `cendot`, `[%cndt p=twig q=twig]` is a synthetic hoon that
-reverses the order of `%cnhp`.
+`%.` is a synthetic rune that reverses the order of [`%-`](). `%.` exists primarily for code readability and organization, see the [style guide]().
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%cndt p=twig q=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` and `q` are [twig]()s.
 
 ##Tall form
 
-%.  p
-    q
+    %.  p
+        q
 
 ##Wide form
 
-%.(p q)
+    %.(p q)
 
 ##Irregular form
 
@@ -31,8 +27,8 @@ None
 
 ##Examples
 
-~waclux-tomwyc/try=> %.(42 dec)
-    41
+    ~zod/try=> %.(42 dec)
+        41
 
-In the above example, `%.` slams ++dec with the sample 42.
+In the above example, `%.` slams `++dec` with the sample `42`.
 

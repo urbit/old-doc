@@ -1,32 +1,28 @@
 #[cenzey, %cnzy](#cnzy)
 
-[Short description]
+Pull limb `p`
 
-#Syntax
-
-`cenzey`, `[%cnzy p=term]` is a synthetic internal twig that pulls limb
-`p` from the subject.
+`cenzey` is a synthetic internal twig that pulls limb `p` from the subject. `cenzey` is only used internally by `hoon.hoon`.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%cnzy p=term]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [++term]().
 
 ##Tall form
 
-
+None
 
 ##Wide form
 
-
+None
 
 ##Irregular form
 
-
+None
 
 ##Examples
 

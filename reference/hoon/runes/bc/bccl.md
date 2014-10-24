@@ -2,19 +2,14 @@
 
 Tile autocons
 
-#Syntax
-
-`buccol` is a tile hoon that declares a [tile autocons](),`[p=tile q=tile]`.
-
-Need a better explanation of tile autocons--I think there's a good one that explains the difference between tile and twig autocons.
+`$:` is a tile rune that constructs the tile of a tuple from a tuple of tiles. Used to create a type of a tuple of tiles. 
 
 ##Produces
 
-[Tile]()
-
-##Sample
+[Tile](): `[p=tile q=tile]`
 
 `p` is a [tile]().
+
 `q` is a [tile]().
 
 ##Tall form

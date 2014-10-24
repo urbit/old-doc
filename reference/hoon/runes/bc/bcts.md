@@ -2,22 +2,17 @@
 
 [Short description]
 
-#Syntax
-
-`$=`, `bucts`, is a tile hoon that produces a `%bark`:
-
-    [%bark p=term q=tile] 
-
-A %bark wraps a name around a tile. `a=*` parses as `[%bark %a %noun]`.
+`$=` is a tile rune that produces a `%bark`. A `%bark` is a tile that wraps a [face]() around another tile. Used primarily to add faces to [nouns]().
 
 ##Produces
 
-[Twig or tile]
+[Tile](): `[%bark p=term q=tile]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [term]().
+
+`q` is a [tile]().
 
 ##Tall form
 
@@ -33,6 +28,7 @@ None
 None
 
 ##Examples
+ `a=*` parses as `[%bark %a %noun]`.
 
 
 

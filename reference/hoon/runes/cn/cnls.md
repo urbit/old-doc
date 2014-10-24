@@ -1,36 +1,30 @@
 #[cenlus, `%+`, %cnls](#cnls)
 
-[Short description]
+Slam, two arguments
 
-#Syntax
-
-`%+`, `cenlus`, `[%cnls p=twig q=twig r=twig]` is a synthetic hoon 
-that slams gate `p` with `[%cntr q r]`.
+`%+` is a synthetic rune that that [pull]()s [`$`] from the [door]() `p` with its sample set to `[%cntr q r]`. `%+` in the most common case simply [slam]()s `p` with `q` and `r`, similar to a function call with two arguments.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%cnls p=twig q=twig r=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [twig](), most commonly a [gate]().
+`q` and `r` are [twig]()s.
 
 ##Tall form
 
-%+  p
-      q
-    r
+    %+  p
+          q
+        r
 
 ##Wide form
 
-%+(p q r)
+    %+(p q r)
 
 ##Irregular form
 
 None
 
 ##Examples
-
-
-

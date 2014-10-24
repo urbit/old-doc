@@ -1,4 +1,5 @@
 *.o
+*.sw*
 .DS_Store
 /bin/vere
 /urb/*/

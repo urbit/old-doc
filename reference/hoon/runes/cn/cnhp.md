@@ -1,33 +1,30 @@
 #[cenhep, `%-`, %cnhp](#cnhp)
 
-[Short description]
+Slam, n-arguments
 
-#Syntax
-
-`%-`, `cenhep`, `[%cnhp p=twig q=tusk]` is a synthetic rune that
-slams the gate `p` with `[%cltr q]`
+`%-` is a synthetic rune that that [pull]()s [`$`]() from the [door]() `p` with its sample set to `[%cltr q]`. `%-` in the most common case simply [slam]()s `p` with the list of arguments in `q`. `%-` is similar to a function call, and is most familiar in its irregular form `(p q)`. 
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%cnhp p=twig q=tusk]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [twig](), most commonly a [gate]()
+`q` is a [tusk](), a list of twigs
 
 ##Tall form
 
-%-  p
-    q
+    %-  p
+        q
 
 ##Wide form
 
-%-(p q)
+    %-(p q)
 
 ##Irregular form
 
-(p q)
+    (p q)
 
 ##Examples
 

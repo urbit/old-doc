@@ -1,21 +1,12 @@
-#buctar `$*` %bctr
+buctar `$*` %bctr
 
-[Short description]
+Default value 
 
-#Syntax
-
-`$*`, `buctar`, `[%bctr p=tile]` is a synthetic rune that
-produces the bunt (default value) for `p` as a compile-time
-constant.
+`$*`, is a synthetic rune that produces the [bunt]() (default value) of a tile as a compile-time constant if possible. If it is not possible, then it is produced dynamically.
 
 ##Produces
 
-[Twig or tile]
-
-##Sample
-
-[`p` is a _
-`q` is a _]
+[Twig](): `[%bctr p=tile]`
 
 ##Tall form
 

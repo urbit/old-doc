@@ -1,35 +1,32 @@
 #[centis, `%=`, %cnts](#cnts)
 
-[Short description]
+Evaluate with changes
 
-#Syntax
-
-`%=`, `centis`, `[%cnts p=wing q=tram]` is a natural hoon that
-evaluates `p` with the changes specified in `q`.
+`%=` is a natural hoon that evaluates `p` with the changes specified in `q`. `%=` is used to specify changes in the context of `p`.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%cnts p=wing q=tram]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [++wing]().
+`q` is a [++tram]().
 
 ##Tall form
 
-%=  p
-      p.i.q    q.i.q
-      p.i.t.q  q.i.t.q
-    ==
+    %=  p
+          p.i.q    q.i.q
+          p.i.t.q  q.i.t.q
+        ==
 
 ##Wide form
 
-%=(p p.i.q q.i.q, p.i.t.q q.i.t.q)
+    %=(p p.i.q q.i.q, p.i.t.q q.i.t.q)
 
 ##Irregular form
 
-p(p.i.q q.i.q, p.i.t.q q.i.t.q)
+    p(p.i.q q.i.q, p.i.t.q q.i.t.q)
 
 ##Examples
 
