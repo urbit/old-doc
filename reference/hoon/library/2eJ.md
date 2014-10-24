@@ -352,7 +352,7 @@ Convert utf32 glyph to LSB utf8 cord.
 ###++wack
 
 ```
-++  wack                                                ::  span format
+++  wack                                                ::  coin format
   |=  a=@ta
   ^-  @ta
   =+  b=(rip 3 a)
@@ -366,17 +366,21 @@ Convert utf32 glyph to LSB utf8 cord.
 ::
 ```
 
-Escape span
+Escape span ~ as ~~ and _ as ~-
 
     /~zod/try=> (wack '~20_sam~')
     ~.~~20~-sam~~
     /~zod/try=> `@t`(wack '~20_sam~')
     '~~20~-sam~~'
+    ~zod/try=> ~(rend co %many ~[`ud/5 `ta/'~20_sam'])
+    "._5_~~.~~20~-sam__"
+    ~zod/try=> ._5_~~.~~20~-sam__
+    [5 ~.~20_sam]
 
 ###++wick
 
 ```
-++  wick                                                ::  span format
+++  wick                                                ::  coin format
   |=  a=@
   ^-  @ta
   =+  b=(rip 3 a)
@@ -391,7 +395,7 @@ Escape span
 ::
 ```
 
-Span unsecape
+Unescape span ~~ as ~ and ~- as _
     
     /~zod/try=> `@t`(wick '~-ams~~lop')
     '_ams~lop'

@@ -693,13 +693,22 @@ Literal rendering engine
 
 Prepend to tape
 
+    ~zod/try=> (~(rear co %$ %ux 200) "--ha")
+    "0xc8--ha"
+    
 ###++rent
 
 ```
       ++  rent  `@ta`(rap 3 rend)
 ```
 
-Print to tape
+Print to span
+
+    ~zod/try=> ~(rent co %$ %ux 200)
+    ~.0xc8
+    ~zod/try=> `@t`~(rent co %$ %ux 200)
+    '0xc8'
+
 
 ###++rend
 
@@ -836,7 +845,12 @@ Print to tape
   =<  |%
 ```
 
-XX document
+Print to tape, using helper arms
+
+    ~zod/try=> ~(rend co %$ %ux 200)
+    "0xc8"
+    ~zod/try=> ~(rend co %many ~[[%$ ux/200] [%$ p/40]])
+    "._0xc8_~~tem__"
 
 ###++a-co
 
@@ -1004,7 +1018,11 @@ XX document
   |_  tig=@
 ```
 
-XX document
+Render digit at base. Helper core.
+
+    ~zod/try=> ~(. ne 20)
+    <4.gut [@ud <414.hhh 100.xkc 1.ypj %164>]>
+
 
 ###++d
 
@@ -1012,7 +1030,10 @@ XX document
   ++  d  (add tig '0')
 ```
 
-XX document
+Decimal
+
+    ~zod/try=> `@t`~(d ne 7)
+    '7'
 
 ###++x
 
@@ -1020,7 +1041,12 @@ XX document
   ++  x  ?:((gte tig 10) (add tig 87) d)
 ```
 
-XX document
+Hexadecimal
+
+    ~zod/try=> `@t`~(x ne 7)
+    '7'
+    ~zod/try=> `@t`~(x ne 14)
+    'e'
 
 ###++v
 
@@ -1028,7 +1054,15 @@ XX document
   ++  v  ?:((gte tig 10) (add tig 87) d)
 ```
 
-XX document
+Base 32
+
+    ~zod/try=> `@t`~(v ne 7)
+    '7'
+    ~zod/try=> `@t`~(v ne 14)
+    'e'
+    ~zod/try=> `@t`~(v ne 25)
+    'p'
+
 
 ###++w
 
@@ -1038,7 +1072,23 @@ XX document
 ::
 ```
 
-XX document
+Base 64: 0-9a-zA-Z-~
+
+    ~zod/try=> `@t`~(w ne 7)
+    '7'
+    ~zod/try=> `@t`~(w ne 14)
+    'e'
+    ~zod/try=> `@t`~(w ne 25)
+    'p'
+    ~zod/try=> `@t`~(w ne 52)
+    'Q'
+    ~zod/try=> `@t`~(w ne 61)
+    'Z'
+    ~zod/try=> `@t`~(w ne 63)
+    '~'
+    ~zod/try=> `@t`~(w ne 62)
+    '-'
+
 
 ###++mu
 
@@ -1047,7 +1097,10 @@ XX document
   |_  [top=@ bot=@]
 ```
 
-XX document
+16-bit rotator core
+
+    ~zod/try=> ~(. mu 0x20e5 0x5901)
+    <3.sjm [[@ux @ux] <414.hhh 100.xkc 1.ypj %164>]>
 
 ###++zag
 
@@ -1055,7 +1108,10 @@ XX document
   ++  zag  [p=(end 4 1 (add top bot)) q=bot]
 ```
 
-XX document
+Add bottom into top
+
+    ~zod/try=> `[@ux @ux]`~(zag mu 0x20e0 0x201)
+    [0x22e1 0x201]
 
 ###++zig
 
@@ -1063,8 +1119,11 @@ XX document
   ++  zig  [p=(end 4 1 (add top (sub 0x1.0000 bot))) q=bot]
 ```
 
-XX document
+Subtract bottom out of top
 
+    ~zod/try=> `[@ux @ux]`~(zig mu 0x2f46 0x1042)
+    [0x1f04 0x1042]
+    
 ###++zug
 
 ```
@@ -1073,7 +1132,10 @@ XX document
 ::
 ```
 
-XX document
+Concat into atom
+
+    ~zod/try=> `@ux`~(zug mu 0x10e1 0xfa)
+    0x10e1.00fa
 
 ###++so
 
@@ -1082,7 +1144,10 @@ XX document
   |%
 ```
 
-XX document
+Coin parsing core.
+
+    ~zod/try=> so
+    <10.mkn 414.hhh 100.xkc 1.ypj %164>
 
 ###++bisk
 
@@ -1102,7 +1167,12 @@ XX document
     ==
 ```
 
-XX document
+Dime parser: numeric literal.
+
+    ~zod/try=> (scan "25" bisk:so)
+    [%ud q=25]
+    ~zod/try=> (scan "0x12.6401" bisk:so)
+    [%ux q=1.205.249]
 
 ###++crub
 
@@ -1162,7 +1232,20 @@ XX document
     ==
 ```
 
-XX document
+Dime parser: absolute or relative date, phonetic base, or text
+
+    ~zod/try=> (scan "1926.5.12" crub:so)
+    [p=~.da q=170.141.184.449.747.016.871.285.095.307.149.312.000]
+    ~zod/try=> (,[%da @da] (scan "1926.5.12" crub:so))
+    [%da ~1926.5.12]
+    ~zod/try=> (scan "s10" crub:so)
+    [p=~.dr q=184.467.440.737.095.516.160]
+    ~zod/try=> (,[%dr @dr] (scan "s10" crub:so))
+    [%dr ~s10]
+    ~zod/try=> (scan "doznec" crub:so)
+    [%p 256]
+    ~zod/try=> (scan ".mas" crub:so)
+    [%ta 7.561.581]
 
 ###++nuck
 
@@ -1179,7 +1262,30 @@ XX document
     ==
 ```
 
-XX document
+Coin parser: top level
+
+    ~zod/try=> (scan "~pillyt" nuck:so)
+    [% p=[p=~.p q=32.819]]
+    ~zod/try=> (scan "0x12" nuck:so)
+    [% p=[p=~.ux q=18]]
+    ~zod/try=> (scan ".127.0.0.1" nuck:so)
+    [% p=[p=~.if q=2.130.706.433]]
+    ~zod/try=> `@ud`.127.0.0.1
+    2.130.706.433
+    ~zod/try=> (scan "._20_0w25_sam__" nuck:so)
+    [ %many 
+        p
+      ~[[% p=[p=~.ud q=20]] [% p=[p=~.uw q=133]] [% p=[p=~.tas q=7.168.371]]]
+    ]
+    ~zod/try=> `@`%sam
+    7.168.371
+    ~zod/try=> (scan "~0ph" nuck:so)
+    [%blob p=[1 1]]
+    ~zod/try=> ~0ph
+    [1 1]
+    ~zod/try=> `@uv`(jam [1 1])
+    0vph
+
 
 ###++nusk
 
@@ -1188,7 +1294,16 @@ XX document
     (sear |=(a=@ta (rush (wick a) nuck)) urt:ab)
 ```
 
-XX document
+Parse singly tuple-literal-escaped coin
+
+    ~zod/try=> ~.asd_a
+    ~.asd_a
+    ~zod/try=> ._1_~~.asd~-a__
+    [1 ~.asd_a]
+    ~zod/try=> (scan "~~.asd~-a" nusk:so)
+    [% p=[p=~.ta q=418.212.246.369]]
+    ~zod/try=> (,[~ %ta @ta] (scan "~~.asd~-a" nusk:so))
+    [~ %ta ~.asd_a]
 
 ###++perd
 
@@ -1200,7 +1315,16 @@ XX document
     ==
 ```
 
-XX document
+Parse . prefixed dime or tuple.
+
+    ~zod/try=> (scan "y" perd:so)
+    [~ [%f %.y]]
+    ~zod/try=> (scan "n" perd:so)
+    [~ [%f %.n]]
+    ~zod/try=> |
+    %.n
+    ~zod/try=> (scan "_20_x__" perd:so)
+    [%many [[% p=[p=~.ud q=20]] ~[[% p=[p=~.tas q=120]]]]]
 
 ###++royl
 
@@ -1225,11 +1349,16 @@ XX document
       (stag %rh (cook rylh ;~(pfix ;~(plug sig sig) voy)))
       (stag %rq (cook rylq ;~(pfix ;~(plug sig sig sig) voy)))
       (stag %rd (cook ryld ;~(pfix sig voy)))
-      (stag %rs (cook ryls voy))
+      (stag %rs (cook ryls voy)
     ==
 ```
 
-XX document
+Dime parser: float
+
+    /~zod/try=> (scan "~3.14" royl:so)
+    [%rd .~3.13999999999999]
+    /~zod/try=> .~3.14
+    .~3.13999999999999
 
 ###++royl-cell
 
@@ -1244,7 +1373,7 @@ XX document
     [a c.b d.b e.b [~ (dec (mul i.u.f 2))]]
 ```
 
-XX document
+Intermediate parsed float convereter
 
 ###++tash
 
@@ -1262,7 +1391,17 @@ XX document
     ==
 ```
 
-XX document
+Dime parser: signed
+
+    ~zod/try=> (scan "-20" tash:so)
+    [p=~.sd q=39]
+    ~zod/try=> (,[%sd @sd] (scan "-20" tash:so))
+    [%sd -20]
+    ~zod/try=> (,[%sd @sd] (scan "--20" tash:so))
+    [%sd --20]
+    ~zod/try=> (,[%sx @sx] (scan "--0x2e" tash:so))
+    [%sx --0x2e]
+
 
 ###++twid
 
@@ -1275,7 +1414,19 @@ XX document
   ::
 ```
 
-XX document
+Parse ~ prefixed coin: base32 jam-noun or dime.
+
+    ~zod/try=> (scan "zod" twid:so)
+    [~ [%p 0]]
+    ~zod/try=> (scan ".sam" twid:so)
+    [~ [%ta 7.168.371]]
+    ~zod/try=> `@ud`~.sam
+    7.168.371
+    ~zod/try=> `@t`~.sam
+    'sam'
+    ~zod/try=> (scan "0ph" twid:so)
+    [%blob [1 1]]
+
 
 ###++zust
 
@@ -1290,7 +1441,20 @@ XX document
   --
 ```
 
-XX document
+Parse . prefixed dime: ip adress, loobean, or float.
+
+    ~zod/try=> (scan "127.0.0.1" zust:so)
+    [%if q=2.130.706.433]
+    ~zod/try=> (scan "af.0.0.0.0.e7a5.30d2.7" zust:so)
+    [%is q=908.651.950.243.594.834.993.091.554.288.205.831]
+    ~zod/try=> (,[%is @is] (scan "af.0.0.0.0.e7a5.30d2.7" zust:so))
+    [%is .af.0.0.0.0.e7a5.30d2.7]
+    ~zod/try=> (,[%is @ux] (scan "af.0.0.0.0.e7a5.30d2.7" zust:so))
+    [%is 0xaf.0000.0000.0000.0000.e7a5.30d2.0007]
+    ~zod/try=> (scan "y" zust:so)
+    [%f %.y]
+    ~zod/try=> (scan "12.09" zust:so)
+    [%rd .~12.00999999999999]
 
 ###++scot
 
@@ -1298,7 +1462,7 @@ XX document
 ++  scot  |=(mol=dime ~(rent co %$ mol))
 ```
 
-XX document
+Render dime to cord
 
 ###++scow
 
@@ -1306,7 +1470,7 @@ XX document
 ++  scow  |=(mol=dime ~(rend co %$ mol))
 ```
 
-XX document
+Render dime to tape
 
 ###++slat
 
@@ -1314,7 +1478,7 @@ XX document
 ++  slat  |=(mod=@tas |=(txt=@ta (slaw mod txt)))
 ```
 
-XX document
+Parse cord to odor partial
 
 ###++slav
 
@@ -1322,7 +1486,7 @@ XX document
 ++  slav  |=([mod=@tas txt=@ta] (need (slaw mod txt)))
 ```
 
-XX document
+Demand parse cord with odor
 
 ###++slaw
 
@@ -1335,7 +1499,7 @@ XX document
 ::
 ```
 
-XX document
+Parse cord with odor
 
 ###++slay
 
@@ -1349,7 +1513,7 @@ XX document
 ::
 ```
 
-XX document
+Parse cord as coin
 
 ###++smyt
 
@@ -1359,7 +1523,8 @@ XX document
   :+  %rose  [['/' ~] ['/' ~] ['/' ~]]
   |-  ^-  (list tank)
   (turn bon |=(a=@ [%leaf (rip 3 a)]))
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ```
 
-XX document
+Render path as tank
+
+XX move?
