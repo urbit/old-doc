@@ -7,6 +7,8 @@
   |%
 ```
 
+Reversible scrambling, used in `@p` phonetic base.
+
 ###++wren
 
 ```
@@ -29,8 +31,16 @@
   ::
 ```
 
-XX document
+Scramble bytestring by adding the current position to each byte, looking it up
+in an s-box, and xoring the result forward.
   
+    ~zod/try=> `@ux`(wren:un 'testing')
+    0x30.bf6a.b9fe.7d8f
+    ~zod/try=> `@ux`'testing'
+    0x67.6e69.7473.6574
+    ~zod/try=> `@da`(wred:un (wren:un ~2001.2.5))
+    ~2001.2.5
+
 ###++wred
 
 ```
@@ -53,16 +63,28 @@ XX document
   ::
 ```
 
-XX document
+Unscramble bytestring by subtracting the current position from each byte,
+looking it up in an s-box, and xoring the result forward.
 
-  
+    ~zod/try=> (wred:un 0x30.bf6a.b9fe.7d8f)
+    29.113.321.805.538.676
+    ~zod/try=> `@t`(wred:un 0x30.bf6a.b9fe.7d8f)
+    'testing'
+    ~zod/try=> (wred:un (wren:un 200.038.426))
+    200.038.426
+
 ###++xafo
 
 ```
   ++  xafo  |=([a=@ b=@] +((mod (add (dec b) a) 255)))
 ```
 
-XX document
+Add modulo 255, offset 1 (output range from 1 to 256)
+
+    ~zod/try=> (xafo:un 5 6)
+    11
+    ~zod/try=> (xafo:un 256 20)
+    21
   
 ###++xaro
 
@@ -71,13 +93,19 @@ XX document
   ::
 ```
 
-XX document
+Subtracct modulo 255, offset 1
+
+    ~zod/try=> (xaro:un 17 57)
+    40
+    ~zod/try=> (xaro:un 265 12)
+    2
+
 
 ###++zaft
 
 ```
   ++  zaft                                              ::  forward 255-sbox
-    |=  a=@
+    |=  a=@D
     =+  ^=  b
         0xcc.75bc.86c8.2fb1.9a42.f0b3.79a0.92ca.21f6.1e41.cde5.fcc0.
         7e85.51ae.1005.c72d.1246.07e8.7c64.a914.8d69.d9f4.59c2.8038.
@@ -94,13 +122,21 @@ XX document
   ::
 ```
 
-XX document
+Look up nonzero byte in substiution box
+
+    ~zod/try=> (zaft:un 0x12)
+    42
+    ~zod/try=> (zaft:un 0xff)
+    204
+    ~zod/try=> (zaft:un 0x0)
+    ! decrement-underflow
+    ! exit
 
 ###++zart
 
 ```
   ++  zart                                              ::  reverse 255-sbox
-    |=  a=@
+    |=  a=@D
     =+  ^=  b
         0x68.4f07.ea1c.73c9.75c2.efc8.d559.5125.f621.a7a8.8591.5613.
         dd52.40eb.65a2.60b7.4bcb.1123.ceb0.1bd6.3c84.2906.b164.19b3.
@@ -117,14 +153,18 @@ XX document
   ::
 ```
 
-XX document
+Reverse look up nonzero byte in substitution box
 
+    ~zod/try=> `@ux`(zart:un 204)
+    0xff
+    ~zod/try=> `@ux`(zart:un 42)
+    0x12
   
 ###++zyft
 
 ```
   ++  zyft                                              ::  forward 256-sbox
-    |=  a=@
+    |=  a=@D
     =+  ^=  b
         0xbb49.b71f.b881.b402.17e4.6b86.69b5.1647.115f.dddb.7ca5.
           8371.4bd5.19a9.b092.605d.0d9b.e030.a0cc.78ba.5706.4d2d.
@@ -142,13 +182,20 @@ XX document
   ::
 ```
 
-XX document
+Look up byte in substitution box
+  
+    ~zod/try=> (zyft:un 0x12)
+    57
+    ~zod/try=> (zyft:un 0x0)
+    225
+    ~zod/try=> (zyft:un 0xff)
+    187
   
 ###++zyrt
 
 ```
   ++  zyrt                                              ::  reverse 256-sbox
-    |=  a=@
+    |=  a=@D
     =+  ^=  b
         0x9fc8.2753.6e02.8fcf.8b35.2b20.5598.7caa.c9a9.30b0.9b48.
           47ce.6371.80f6.407d.00dd.0aa5.ed10.ecb7.0f5a.5c3a.e605.
@@ -165,4 +212,11 @@ XX document
     (cut 3 [a 1] b)
 ```
 
-XX document
+Reverse look up byte in substitution box
+
+    ~zod/try=> `@ux`(zyrt:un 57)
+    0x12
+    ~zod/try=> `@ux`(zyrt:un 225)
+    0x0
+    ~zod/try=> `@ux`(zyrt:un 187)
+    0xff
