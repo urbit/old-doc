@@ -7,18 +7,20 @@
   |%
 ```
 
-Core containing numeric parser primitives
+A core containing numeric parser primitives.
 
     /~zod/try=> ab
     <36.ecc 414.gly 100.xkc 1.ypj %164>
 
 ###++bix
 
+Parse hex digit pair
+
 ```
   ++  bix  (bass 16 (stun [2 2] six))
 ```
 
-Parse pair of base16 digits, used in escapes
+Parsing rule. Parses a pair of base16 digits. Used in escapes.
 
     /~zod/try=> (scan "07" bix:ab)
     q=7
@@ -29,11 +31,13 @@ Parse pair of base16 digits, used in escapes
 
 ###++hif
 
+Parse phonemic pair
+
 ```
   ++  hif  (boss 256 ;~(plug tip tiq (easy ~)))
 ```
 
-Parse single @p trochee
+Parsing rule. Parses an atom of odor [@pE], a phrase of two bytes encoded phonetically.
 
     /~zod/try=> (scan "doznec" hif:ab)
     q=256
@@ -42,13 +46,15 @@ Parse single @p trochee
 
 ###++huf
 
+Parse two phonemic pairs
+
 ```
   ++  huf  %+  cook
              |=([a=@ b=@] (wred:un ~(zug mu ~(zag mu [a b]))))
            ;~(plug hif ;~(pfix hep hif))
 ```
 
-Parse scrambled pair of @p trochees
+Parsing rule. Parses and unscrambles and atom of odor [@pF](), a phrase of two two-byte pairs that are encoded (and scrambled) phonetically.
 
     /~zod/try=> (scan "pittyp-pittyp" huf:ab)
     328.203.557
@@ -59,11 +65,13 @@ Parse scrambled pair of @p trochees
 
 ###++hyf
 
+Parse 8 phonemic bytes
+
 ```
   ++  hyf  (bass 0x1.0000.0000 ;~(plug huf ;~(pfix hep huf) (easy ~)))
 ```
 
-Parse 8 syllable @p phrase
+Parsing rule. Parses an atom of odor [@pG](), a phrase of eight of phonemic byes. 
 
     /~zod/try=> (scan "sondel-forsut-tillyn-nillyt" hyf:ab)
     q=365.637.097.828.335.095
@@ -72,11 +80,13 @@ Parse 8 syllable @p phrase
 
 ###++pev
 
+Parse up to 4 base32
+
 ```
   ++  pev  (bass 32 ;~(plug sev (stun [0 4] siv)))
 ```
 
-Parse up to four base32 digits
+Parsing rule. Parses up to four base-32 digits
 
     /~zod/try=> (scan "a" pev:ab)
     q=10
@@ -87,11 +97,13 @@ Parse up to four base32 digits
 
 ###++pew
 
+Parse up to 4 base64
+
 ```
   ++  pew  (bass 64 ;~(plug sew (stun [0 4] siw)))
 ```
 
-Parse up to four base64 digts
+Parsing rule. Parses up to four base-64 digits.
 
     /~zod/try=> (scan "Q" pew:ab)
     q=52
@@ -102,25 +114,34 @@ Parse up to four base64 digts
 
 ###++piv
 
+Parse 5 base32
+
 ```
   ++  piv  (bass 32 (stun [5 5] siv))
 ```
 
-Parse five base32 digits
+Parsing rule. Parses exactly five base32 digits.
 
     /~zod/try=> (scan "10b3l" piv:ab)
     q=1.059.957
-
+    ~zod/try=> (scan "1" piv:ab)
+        ! {1 2}
+        ! exit
 ###++piw
 
 ```
   ++  piw  (bass 64 (stun [5 5] siw))
 ```
 
-Parse five base64 digits
+Parses exactly five base64 digits.
 
     /~zod/try=> (scan "2C-pZ" piw:ab)
     q=43.771.517
+    ~zod/socialnet=> (scan "2" piv:ab)
+    ! {1 2}
+    ! exit
+    
+    
 
 ###++qeb
 
@@ -128,7 +149,7 @@ Parse five base64 digits
   ++  qeb  (bass 2 ;~(plug seb (stun [0 3] sib)))
 ```
 
-Parse a binary number of up to 4 digits
+Parses a binary number of up to 4 digits.
 
     /~zod/try=> (scan "1" qeb:ab)
     q=1
