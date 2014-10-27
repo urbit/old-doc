@@ -1,4 +1,5 @@
 ##section 2eO, virtualization
+
 ---
 
 ###++mack
@@ -15,16 +16,19 @@
 Accpet a nock subject-formula cell.
 Produce a unit result, treating 11 as a crash (i.e. pure nock).
 
-        ~zod/try=> (mack [[1 2 3] [0 1]])
-        [~ [1 2 3]]
-        ~zod/try=> (mack [41 4 0 1])
-        [~ 42]
-        ~zod/try=> (mack [4 0 4])
-        ~
-        ~zod/try=> (mack [[[0 2] [1 3]] 4 4 4 4 0 5])
-        [~ 6]
-        ~zod/try=> ;;((unit ,@tas) (mack [[1 %yes %no] 6 [0 2] [0 6] 0 7]))
-        [~ %no]
+    ~zod/try=> (mack [[1 2 3] [0 1]])
+    [~ [1 2 3]]
+    ~zod/try=> (mack [41 4 0 1])
+    [~ 42]
+    ~zod/try=> (mack [4 0 4])
+    ~
+    ~zod/try=> (mack [[[0 2] [1 3]] 4 4 4 4 0 5])
+    [~ 6]
+    ~zod/try=> ;;((unit ,@tas) (mack [[1 %yes %no] 6 [0 2] [0 6] 0 7]))
+    [~ %no]
+    
+
+---
 
 ###++mink
 
@@ -108,7 +112,24 @@ Produce a unit result, treating 11 as a crash (i.e. pure nock).
 
 Bottom-level mock (virtual nock) interpreter.
 
-        XX
+    ~zod/try=> (mink [20 [4 0 1]] ,~)
+    [%0 p=21]
+    ~zod/try=> (mink [[90 5 3] [0 3]] ,~)
+    [%0 p=[5 3]]
+    ~zod/try=> (mink 20^[4 0 1] ,~)
+    [%0 p=21]
+    ~zod/try=> (mink [90 5 3]^[0 3] ,~)
+    [%0 p=[5 3]]
+    ~zod/try=> (mink [0]^[11 1 20] ,~)
+    [%1 p=~[20]]
+    ~zod/try=> (mink [0]^[11 1 20] |=(a=* `[40 a]))
+    [%0 p=[40 20]]
+    ~zod/try=> (mink [5]^[0 2] ,~)
+    [%2 p=~]
+    ~zod/try=> (mink [5]^[10 yelp/[0 1] 0 0] ,~)
+    [%2 p=~[[~.yelp 5]]]
+
+---
 
 ###++mock
 
@@ -123,20 +144,22 @@ Accepts a nock subject-formula cell and an %iron gate which
 accepts any noun and produces a unit (this is used as nock 11).
 Produces a ++toon, which is a sucesful, blocked, or crashed result.
 
-        ~zod/try=> (mock [5 4 0 1] ,~)
-        [%0 p=6]
-        ~zod/try=> (mock [~ 11 1 0] |=(* `999))
-        [%0 p=999]
-        ~zod/try=> (mock [~ 0 1.337] ,~)
-        [%2 p=~]
-        ~zod/try=> (mock [~ 11 1 1.337] ,~)
-        [%1 p=~[1.337]]
-        ~zod/try=> (mock [[[4 4 4 4 0 3] 10] 11 9 2 0 1] |=(* `[+<]))
-        [%0 p=14]
-        ~zod/try=> (mock [[[4 4 4 4 0 3] 10] 11 9 2 0 1] |=(* `[<+<>]))
-        [%0 p=[49 52 0]]
-        ~zod/try=> ;;(tape +:(mock [[[4 4 4 4 0 3] 10] 11 9 2 0 1] |=(* `[<+<>])))
-        "14"
+    ~zod/try=> (mock [5 4 0 1] ,~)
+    [%0 p=6]
+    ~zod/try=> (mock [~ 11 1 0] |=(* `999))
+    [%0 p=999]
+    ~zod/try=> (mock [~ 0 1.337] ,~)
+    [%2 p=~]
+    ~zod/try=> (mock [~ 11 1 1.337] ,~)
+    [%1 p=~[1.337]]
+    ~zod/try=> (mock [[[4 4 4 4 0 3] 10] 11 9 2 0 1] |=(* `[+<]))
+    [%0 p=14]
+    ~zod/try=> (mock [[[4 4 4 4 0 3] 10] 11 9 2 0 1] |=(* `[<+<>]))
+    [%0 p=[49 52 0]]
+    ~zod/try=> ;;(tape +:(mock [[[4 4 4 4 0 3] 10] 11 9 2 0 1] |=(* `[<+<>])))
+    "14"
+
+---
 
 ###++mook
 
@@ -191,14 +214,16 @@ Produces a ++toon, which is a sucesful, blocked, or crashed result.
 
 Intelligently render crash annotation.
 
-        ~zod/try=> (mook [%0 5 4 5 1])
-        [%0 p=[5 4 5 1]]
-        ~zod/try=> (mook [%2 ~[[%hunk %rose ["<" "," ">"] ~[[%leaf "err"]]]]])
-        [%2 p=~[[%rose p=[p="<" q="," r=">"] q=[i=[%leaf p="err"] t=~]]]]
-        ~zod/try=> (mook [%2 ~[[%malformed %elem] [%lose 'do print']]])
-        [%2 p=~[[%leaf p="do print"]]]
-        ~zod/try=> (mook [%2 ~[[%spot /b/repl [[1 1] 1 2]] [%mean |.(!!)]]])
-        [%2 p=~[[%leaf p="/b/repl/:<[1 1].[1 2]>"] [%leaf p="####"]]]
+    ~zod/try=> (mook [%0 5 4 5 1])
+    [%0 p=[5 4 5 1]]
+    ~zod/try=> (mook [%2 ~[[%hunk %rose ["<" "," ">"] ~[[%leaf "err"]]]]])
+    [%2 p=~[[%rose p=[p="<" q="," r=">"] q=[i=[%leaf p="err"] t=~]]]]
+    ~zod/try=> (mook [%2 ~[[%malformed %elem] [%lose 'do print']]])
+    [%2 p=~[[%leaf p="do print"]]]
+    ~zod/try=> (mook [%2 ~[[%mean |.(>(add 5 6)<)]]])
+    [%2 p=~[[%leaf p="11"]]]
+    ~zod/try=> (mook [%2 ~[[%spot /b/repl [1 1]^[1 2]] [%mean |.(!!)]]])
+    [%2 p=~[[%leaf p="/b/repl/:<[1 1].[1 2]>"] [%leaf p="####"]]]
 
 ---
 
@@ -216,6 +241,27 @@ Intelligently render crash annotation.
 Work just like in `++makc`, but accept a `++sky`.
 Produce a unit computation result.
 
+    ~zod/try=> (mang [|=(@ 20) ~] ,~)
+    [~ 20]
+    ~zod/try=> (mang [|=(@ !!) ~] ,~)
+    ~
+    ~zod/try=> (mang [|=(a=@ (add 20 a)) ~] ,~)
+    [~ 20]
+    ~zod/try=> (mang [|=(a=[@ @] (add 20 -.a)) ~] ,~)
+    ~
+    ~zod/try=> (mang [|=(a=[@ @] (add 20 -.a)) [4 6]] ,~)
+    [~ 24]
+    ~zod/try=> (mang [|=(a=@ .^(a)) ~] ,~)
+    ~
+    ~zod/try=> (mang [|=(a=@ .^(a)) ~] ,[~ %42])
+    [~ 42]
+    ~zod/try=> (mang [|=(a=@ .^(a)) ~] |=(a=* [~ a 6]))
+    [~ [0 6]]
+    ~zod/try=> (mang [|=(a=@ .^(a)) 8] |=(a=* [~ a 6]))
+    [~ [8 6]]
+
+---
+
 ###++mong
 
 ```
@@ -231,6 +277,27 @@ Produce a unit computation result.
 Work just like in `++mung`, but for `++mink`
 Produce a unit computation result.
 
+    ~zod/try=> (mong [|=(@ 20) ~] ,~)
+    [%0 p=20]
+    ~zod/try=> (mong [|=(@ !!) ~] ,~)
+    [%2 p=~]
+    ~zod/try=> (mong [|=(a=@ (add 20 a)) ~] ,~)
+    [%0 p=20]
+    ~zod/try=> (mong [|=(a=[@ @] (add 20 -.a)) ~] ,~)
+    [%2 p=~]
+    ~zod/try=> (mong [|=(a=[@ @] (add 20 -.a)) [4 6]] ,~)
+    [%0 p=24]
+    ~zod/try=> (mong [|=(a=@ .^(a)) ~] ,~)
+    [%1 p=~[0]]
+    ~zod/try=> (mong [|=(a=@ .^(a)) ~] ,[~ %42])
+    [%0 p=42]
+    ~zod/try=> (mong [|=(a=@ .^(a)) ~] |=(a=* [~ a 6]))
+    [%0 p=[0 6]]
+    ~zod/try=> (mong [|=(a=@ .^(a)) 8] |=(a=* [~ a 6]))
+    [%0 p=[8 6]]
+
+---
+
 ###++mung
 
 ```
@@ -242,6 +309,27 @@ Produce a unit computation result.
   (mink [[-.gat [sam +>.gat]] -.gat] sky)
 ::
 ```
+
+Virtualize slamming of gate
+
+    ~zod/try=> (mung [|=(@ 20) ~] ,~)
+    [%0 p=20]
+    ~zod/try=> (mung [|=(@ !!) ~] ,~)
+    [%2 p=~]
+    ~zod/try=> (mung [|=(a=@ (add 20 a)) ~] ,~)
+    [%0 p=20]
+    ~zod/try=> (mung [|=(a=[@ @] (add 20 -.a)) ~] ,~)
+    [%2 p=~]
+    ~zod/try=> (mung [|=(a=[@ @] (add 20 -.a)) [4 6]] ,~)
+    [%0 p=24]
+    ~zod/try=> (mung [|=(a=@ .^(a)) ~] ,~)
+    [%1 p=~[0]]
+    ~zod/try=> (mung [|=(a=@ .^(a)) ~] ,[~ %42])
+    [%0 p=42]
+    ~zod/try=> (mung [|=(a=@ .^(a)) ~] |=(a=* [~ a 6]))
+    [%0 p=[0 6]]
+    ~zod/try=> (mung [|=(a=@ .^(a)) 8] |=(a=* [~ a 6]))
+    [%0 p=[8 6]]
 
 ---
 
@@ -259,6 +347,27 @@ Produce a unit computation result.
 ::
 ```
 
+Kick error trap, producing its results or any erros that occur along the way.
+
+~zod/try=> (mule |.(leaf/"hello"))
+[%.y p=[%leaf "hello"]]
+~zod/try=> (mule |.(!!))
+[%.n p=~]
+~zod/try=> (mule |.(.^(a//=pals/1)))
+[ %.n
+    p
+  ~[
+    [ %rose
+      p=[p="/" q="/" r="/"]
+        q
+      [ i=[%leaf p="a"] 
+        t=[i=[%leaf p="~zod"] t=[i=[%leaf p="pals"] t=[i=[%leaf p="1"] t=~]]]
+      ]
+    ]
+  ]
+]
+
+
 ---
 
 ###++mute 
@@ -274,5 +383,24 @@ Produce a unit computation result.
     %2  [%| p.ton]
   ==
 ```
+
+Kick error trap, and produce its result or the tanks of any errors it itself
+incurred.
+
+    ~zod/try=>  (mute |.(leaf/"hello"))
+    [%.y p=[1.717.658.988 104 101 108 108 111 0]]
+    ~zod/try=> (mute |.(!!))
+    [%.n p=~]
+    ~zod/try=> (mute |.(.^(a//=pals/1)))
+    [ %.n
+        p
+      ~[
+        [ %rose
+          p=[p="/" q="/" r="/"]
+          q=[i=[%leaf p="a"] t=[i=[%leaf p="~zod"] t=[i=[%leaf p="pals"] t=[i=[%leaf p="1"] t=~]]]]
+        ]
+      ]
+    ]
+
 
 ---
