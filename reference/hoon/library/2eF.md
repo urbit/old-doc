@@ -1,347 +1,380 @@
 ##section 2eF, parsing (ascii)          
 
----
 
 ###++ace
 
+Space
+
 ```
-++  ace  (just ' ')                                     ::  spACE
+++  ace  (just ' ')
 ```
 
-Parse ASCII character 32, ace.
+Parses ASCII character 32, space.
 
-        ~zod/try=> (scan " " ace)
-        ~~. 
-        ~zod/try=> `cord`(scan " " ace)
-        ' '
-        ~zod/try=> (ace [[1 1] " "])
-        [p=[p=1 q=2] q=[~ [p=~~. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (ace [[1 1] " abc "])
-        [p=[p=1 q=2] q=[~ [p=~~. q=[p=[p=1 q=2] q="abc "]]]]
+    ~zod/try=> (scan " " ace)
+    ~~. 
+    ~zod/try=> `cord`(scan " " ace)
+    ' '
+    ~zod/try=> (ace [[1 1] " "])
+    [p=[p=1 q=2] q=[~ [p=~~. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (ace [[1 1] " abc "])
+    [p=[p=1 q=2] q=[~ [p=~~. q=[p=[p=1 q=2] q="abc "]]]]
 
 ---
 
 ###++bar 
 
+Vertical bar
+
 ```
-++  bar  (just '|')                                     ::  vertical BAR
+++  bar  (just '|')
 ```
 
-Parse ASCII character 124, bar.
+Parses ASCII character 124, the vertical bar.
 
-       ~zod/try=> (scan "|" bar)
-        ~~~7c. 
-        ~zod/try=> `cord`(scan "|" bar)
-        '|'
-        ~zod/try=> (bar [[1 1] "|"])
-        [p=[p=1 q=2] q=[~ [p=~~~7c. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (bar [[1 1] "|="])
-        [p=[p=1 q=2] q=[~ [p=~~~7c. q=[p=[p=1 q=2] q="="]]]]
+   ~zod/try=> (scan "|" bar)
+    ~~~7c. 
+    ~zod/try=> `cord`(scan "|" bar)
+    '|'
+    ~zod/try=> (bar [[1 1] "|"])
+    [p=[p=1 q=2] q=[~ [p=~~~7c. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (bar [[1 1] "|="])
+    [p=[p=1 q=2] q=[~ [p=~~~7c. q=[p=[p=1 q=2] q="="]]]]
 
 ---
 
 ###++bas 
 
+Backslash
+
 ```
-++  bas  (just '\\')                                    ::  Back Slash (escaped)
+++  bas  (just '\\')
 ```
 
-Parse ASCII character 92, bas.
+Parses ASCII character 92, the backslash.
 Note the extra '\' in the slam of bas with just is to escape the escape character, bas.
 
-        ~zod/try=> (scan "\\" bas)
-        ~~~5c.
-        ~zod/try=> `cord`(scan "\\" bas)
-        '\'
-        ~zod/try=> (bas [[1 1] "\"])
-        ~ <syntax error at [1 18]>
-        ~zod/try=> (bas [[1 1] "\\"])
-        [p=[p=1 q=2] q=[~ [p=~~~5c. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (bas [[1 1] "\""])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "\\" bas)
+    ~~~5c.
+    ~zod/try=> `cord`(scan "\\" bas)
+    '\'
+    ~zod/try=> (bas [[1 1] "\"])
+    ~ <syntax error at [1 18]>
+    ~zod/try=> (bas [[1 1] "\\"])
+    [p=[p=1 q=2] q=[~ [p=~~~5c. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (bas [[1 1] "\""])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++buc 
 
+Dollar sign
+
 ```
-++  buc  (just '$')                                     ::  dollars BUCks
+++  buc  (just '$')
 ```
 
-Parse ASCII character 36, buc.
+Parses ASCII character 36, the dollar sign.
 
-        ~zod/try=> (scan "$" buc)
-        ~~~24.
-        ~zod/try=> `cord`(scan "$" buc)
-        '$'
-        ~zod/try=> (buc [[1 1] "$"])
-        [p=[p=1 q=2] q=[~ [p=~~~24. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (buc [[1 1] "$%"])
-        [p=[p=1 q=2] q=[~ [p=~~~24. q=[p=[p=1 q=2] q="%"]]]]
+    ~zod/try=> (scan "$" buc)
+    ~~~24.
+    ~zod/try=> `cord`(scan "$" buc)
+    '$'
+    ~zod/try=> (buc [[1 1] "$"])
+    [p=[p=1 q=2] q=[~ [p=~~~24. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (buc [[1 1] "$%"])
+    [p=[p=1 q=2] q=[~ [p=~~~24. q=[p=[p=1 q=2] q="%"]]]]
 
 ---
 
 ###++cab 
 
+Underscore
+
 ```
-++  cab  (just '_')                                     ::  CABoose
+++  cab  (just '_')
 ```
 
-Parse ASCII character 95, cab.
+Parses ASCII character 95, the underscore.
 
-        ~zod/try=> (scan "_" cab)
-        ~~~5f.
-        ~zod/try=> `cord`(scan "_" cab)
-        '_'
-        ~zod/try=> (cab [[1 1] "_"])
-        [p=[p=1 q=2] q=[~ [p=~~~5f. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (cab [[1 1] "|_"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "_" cab)
+    ~~~5f.
+    ~zod/try=> `cord`(scan "_" cab)
+    '_'
+    ~zod/try=> (cab [[1 1] "_"])
+    [p=[p=1 q=2] q=[~ [p=~~~5f. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (cab [[1 1] "|_"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++cen 
 
+Percent sign
+
 ```
-++  cen  (just '%')                                     ::  perCENt
+++  cen  (just '%')
 ```
 
-Parse ASCII character 37, cen.
+Parses ASCII character 37, the percent sign.
 
-        ~zod/try=> (scan "%" cen)
-        ~~~25.
-        ~zod/try=> `cord`(scan "%" cen)
-        '%'
-        ~zod/try=> (cen [[1 1] "%"])
-        [p=[p=1 q=2] q=[~ [p=~~~25. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (cen [[1 1] "%^"])
-        [p=[p=1 q=2] q=[~ [p=~~~25. q=[p=[p=1 q=2] q="^"]]]] 
+    ~zod/try=> (scan "%" cen)
+    ~~~25.
+    ~zod/try=> `cord`(scan "%" cen)
+    '%'
+    ~zod/try=> (cen [[1 1] "%"])
+    [p=[p=1 q=2] q=[~ [p=~~~25. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (cen [[1 1] "%^"])
+    [p=[p=1 q=2] q=[~ [p=~~~25. q=[p=[p=1 q=2] q="^"]]]] 
 
 ---
 
 ###++col 
 
+Colon
+
 ```
-++  col  (just ':')                                     ::  COLon
+++  col  (just ':')
 ```
 
-Parse ASCII character 58, col.
+Parses ASCII character 58, the colon
 
-        ~zod/try=> (scan ":" col)
-        ~~~3a.
-        ~zod/try=> `cord`(scan ":" col)
-        ':'
-        ~zod/try=> (col [[1 1] ":"])
-        [p=[p=1 q=2] q=[~ [p=~~~3a. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (col [[1 1] ":-"])
-        [p=[p=1 q=2] q=[~ [p=~~~3a. q=[p=[p=1 q=2] q="-"]]]]
+    ~zod/try=> (scan ":" col)
+    ~~~3a.
+    ~zod/try=> `cord`(scan ":" col)
+    ':'
+    ~zod/try=> (col [[1 1] ":"])
+    [p=[p=1 q=2] q=[~ [p=~~~3a. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (col [[1 1] ":-"])
+    [p=[p=1 q=2] q=[~ [p=~~~3a. q=[p=[p=1 q=2] q="-"]]]]
 
 ---
 
 ###++com 
 
+Comma
+
 ```
-++  com  (just ',')                                     ::  COMma
+++  com  (just ',')
 ```
 
-Parse ASCII character 44, com.
+Parses ASCII character 44, the comma.
 
-        ~zod/try=> (scan "," com)
-        ~~~2c.
-        ~zod/try=> `cord`(scan "," com)
-        ','
-        ~zod/try=> (com [[1 1] ","])
-        [p=[p=1 q=2] q=[~ [p=~~~2c. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (com [[1 1] "not com"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "," com)
+    ~~~2c.
+    ~zod/try=> `cord`(scan "," com)
+    ','
+    ~zod/try=> (com [[1 1] ","])
+    [p=[p=1 q=2] q=[~ [p=~~~2c. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (com [[1 1] "not com"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++doq 
 
+Double quote
+
 ```
-++  doq  (just '"')                                     ::  Double Quote
+++  doq  (just '"')
 ```
 
-Parse ASCII character 34, doq.
+Parses ASCII character 34, doq.
 
-       ~tadbyl-hilbel/try=> (scan "\"" doq)
-        ~~~22.
-        ~tadbyl-hilbel/try=> `cord`(scan "\"" doq)
-        '"'
-        ~tadbyl-hilbel/try=> (doq [[1 1] "\""])
-        [p=[p=1 q=2] q=[~ [p=~~~22. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (doq [[1 1] "not successfully parsed"])
-        [p=[p=1 q=1] q=~]
-        ~tadbyl-hilbel/try=> (scan "see?" doq)
-        ! {1 1}
-        ! 'syntax-error'
-        ! exit 
+   ~tadbyl-hilbel/try=> (scan "\"" doq)
+    ~~~22.
+    ~tadbyl-hilbel/try=> `cord`(scan "\"" doq)
+    '"'
+    ~tadbyl-hilbel/try=> (doq [[1 1] "\""])
+    [p=[p=1 q=2] q=[~ [p=~~~22. q=[p=[p=1 q=2] q=""]]]]
+    ~tadbyl-hilbel/try=> (doq [[1 1] "not successfully parsed"])
+    [p=[p=1 q=1] q=~]
+    ~tadbyl-hilbel/try=> (scan "see?" doq)
+    ! {1 1}
+    ! 'syntax-error'
+    ! exit 
 
 ---
 
 ###++dot 
 
+Period
+
 ```
-++  dot  (just '.')                                     ::  dot dot dot ...
+++  dot  (just '.')
 ```
 
-Parse ASCII character 46, dot.
+Parses ASCII character 46, the period.
 
-        ~zod/try=> (scan "." dot)
-        ~~~.
-        ~zod/try=> `cord`(scan "." dot)
-        '.'
-        ~zod/try=> (dot [[1 1] "."])
-        [p=[p=1 q=2] q=[~ [p=~~~. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (dot [[1 1] ".^"])
-        [p=[p=1 q=2] q=[~ [p=~~~. q=[p=[p=1 q=2] q="^"]]]]
+    ~zod/try=> (scan "." dot)
+    ~~~.
+    ~zod/try=> `cord`(scan "." dot)
+    '.'
+    ~zod/try=> (dot [[1 1] "."])
+    [p=[p=1 q=2] q=[~ [p=~~~. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (dot [[1 1] ".^"])
+    [p=[p=1 q=2] q=[~ [p=~~~. q=[p=[p=1 q=2] q="^"]]]]
 
 ---
 
 ###++fas 
 
+Forward slash
+
 ```
-++  fas  (just '/')                                     ::  Forward Slash
+++  fas  (just '/')
 ```
 
-Parse ASCII character 47, fas.
+Parses ASCII character 47, the forward slash.
 
-        ~zod/try=> (scan "/" fas)
-        ~~~2f.
-        ~zod/try=> `cord`(scan "/" fas)
-        '/'
-        ~zod/try=> (fas [[1 1] "/"])
-        [p=[p=1 q=2] q=[~ [p=~~~2f. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (fas [[1 1] "|/"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "/" fas)
+    ~~~2f.
+    ~zod/try=> `cord`(scan "/" fas)
+    '/'
+    ~zod/try=> (fas [[1 1] "/"])
+    [p=[p=1 q=2] q=[~ [p=~~~2f. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (fas [[1 1] "|/"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++gal 
 
+Less-than sign
+
 ```
-++  gal  (just '<')                                     ::  Greater Left
+++  gal  (just '<')
 ```
 
-Parse ASCII character 60, gal.
+Parses ASCII character 60, the less-than sign.
 
-        ~zod/try=> (scan "<" gal)
-        ~~~3c.
-        ~zod/try=> `cord`(scan "<" gal)
-        '<'
-        ~zod/try=> (gal [[1 1] "<"])
-        [p=[p=1 q=2] q=[~ [p=~~~3c. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (gal [[1 1] "<+"])
-        [p=[p=1 q=2] q=[~ [p=~~~3c. q=[p=[p=1 q=2] q="+"]]]]
-        ~zod/try=> (gal [[1 1] "+<"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "<" gal)
+    ~~~3c.
+    ~zod/try=> `cord`(scan "<" gal)
+    '<'
+    ~zod/try=> (gal [[1 1] "<"])
+    [p=[p=1 q=2] q=[~ [p=~~~3c. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (gal [[1 1] "<+"])
+    [p=[p=1 q=2] q=[~ [p=~~~3c. q=[p=[p=1 q=2] q="+"]]]]
+    ~zod/try=> (gal [[1 1] "+<"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++gar 
 
+Greater-than sign
+
 ```
-++  gar  (just '>')                                     ::  Greater Right
+++  gar  (just '>')
 ```
 
-Parse ASCII character 62, gar.
+Parses ASCII character 62, the greater-than sign.
 
-        ~zod/try=> (scan ">" gar)
-        ~~~3e.
-        ~zod/try=> `cord`(scan ">" gar)
-        '>'
-        ~zod/try=> (gar [[1 1] ">"])
-        [p=[p=1 q=2] q=[~ [p=~~~3e. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (gar [[1 1] "=>"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan ">" gar)
+    ~~~3e.
+    ~zod/try=> `cord`(scan ">" gar)
+    '>'
+    ~zod/try=> (gar [[1 1] ">"])
+    [p=[p=1 q=2] q=[~ [p=~~~3e. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (gar [[1 1] "=>"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++hax 
 
+Number sign
+
 ```
-++  hax  (just '#')                                     ::  Hash
+++  hax  (just '#')
 ```
 
-Parse ASCII character 35, hax.
+Parses ASCII character 35, the number sign.
 
-        ~zod/try=> (scan "#" hax)
-        ~~~23.
-        ~zod/try=> `cord`(scan "#" hax)
-        '#'
-        ~zod/try=> (hax [[1 1] "#"])
-        [p=[p=1 q=2] q=[~ [p=~~~23. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (hax [[1 1] "#!"])
-        [p=[p=1 q=2] q=[~ [p=~~~23. q=[p=[p=1 q=2] q="!"]]]]
+    ~zod/try=> (scan "#" hax)
+    ~~~23.
+    ~zod/try=> `cord`(scan "#" hax)
+    '#'
+    ~zod/try=> (hax [[1 1] "#"])
+    [p=[p=1 q=2] q=[~ [p=~~~23. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (hax [[1 1] "#!"])
+    [p=[p=1 q=2] q=[~ [p=~~~23. q=[p=[p=1 q=2] q="!"]]]]
 
 ---
 
 ###++kel 
 
+Left curley bracket
+
 ```
-++  kel  (just '{')                                     ::  Curly Left
+++  kel  (just '{')
 ```
 
-Parse ASCII character 123, kel.
-Note that this, with ker, opens and closes a Hoon expression for Hoon string interpolation.  Escape kel to parse it.
+Parses ASCII character 123, the left cutly bracket.
+Note that `kel` and `ker` open and close a Hoon expression for Hoon string interpolation.To parse either of them, they must be escaped.
 
-        ~zod/try=> (scan "\{" kel)
-        ~~~7b.
-        ~zod/try=> `cord`(scan "\{" kel)
-        '{'
-        ~zod/try=> (kel [[1 1] "\{"])
-        [p=[p=1 q=2] q=[~ [p=~~~7b. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (kel [[1 1] " \{"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "\{" kel)
+    ~~~7b.
+    ~zod/try=> `cord`(scan "\{" kel)
+    '{'
+    ~zod/try=> (kel [[1 1] "\{"])
+    [p=[p=1 q=2] q=[~ [p=~~~7b. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (kel [[1 1] " \{"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++ker 
 
+Right curley bracket
+
 ```
-++  ker  (just '}')                                     ::  Curly Right
+++  ker  (just '}')
 ```
 
-Parse ASCII character 125, ker.
+Parses ASCII character 125, ker.
 
-        ~zod/try=> (scan "}" ker)
-        ~~~7d.
-        ~zod/try=> `cord`(scan "}" ker)
-        '}'
-        ~zod/try=> (ker [[1 1] "}"])
-        [p=[p=1 q=2] q=[~ [p=~~~7d. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (ker [[1 1] "\{}"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "}" ker)
+    ~~~7d.
+    ~zod/try=> `cord`(scan "}" ker)
+    '}'
+    ~zod/try=> (ker [[1 1] "}"])
+    [p=[p=1 q=2] q=[~ [p=~~~7d. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (ker [[1 1] "\{}"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++ket 
 
+Caret
+
 ```
-++  ket  (just '^')                                     ::  CareT
+++  ket  (just '^')
 ```
 
-Parse ASCII character 94, ket.
+Parses ASCII character 94, the caret.
 
-        ~zod/try=> (scan "^" ket)
-        ~~~5e.
-        ~zod/try=> `cord`(scan "^" ket)
-        '^'
-        ~zod/try=> (ket [[1 1] "^"])
-        [p=[p=1 q=2] q=[~ [p=~~~5e. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (ket [[1 1] ".^"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "^" ket)
+    ~~~5e.
+    ~zod/try=> `cord`(scan "^" ket)
+    '^'
+    ~zod/try=> (ket [[1 1] "^"])
+    [p=[p=1 q=2] q=[~ [p=~~~5e. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (ket [[1 1] ".^"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++lus 
 
 ```
-++  lus  (just '+')                                     ::  pLUS
+++  lus  (just '+')
 ```
 
-Parse ASCII character 43, lus.
+Parses ASCII character 43, the plus sign.
 
         ~zod/try=> (scan "+" lus)
         ~~~2b.
@@ -357,105 +390,115 @@ Parse ASCII character 43, lus.
 ###++hep 
 
 ```
-++  hep  (just '-')                                     ::  HyPhen
+++  hep  (just '-')
 ```
 
-Parse ASCII character 45, hep.
+Parses ASCII character 45, the hyphen.
 
-        ~zod/try=> (scan "-" hep)
-        ~~-
-        ~zod/try=> `cord`(scan "-" hep)
-        '-'
-        ~zod/try=> (hep [[1 1] "-"])
-        [p=[p=1 q=2] q=[~ [p=~~- q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (hep [[1 1] ":-"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "-" hep)
+    ~~-
+    ~zod/try=> `cord`(scan "-" hep)
+    '-'
+    ~zod/try=> (hep [[1 1] "-"])
+    [p=[p=1 q=2] q=[~ [p=~~- q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (hep [[1 1] ":-"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++pel 
 
+Left parenthesis
+
 ```
-++  pel  (just '(')                                     ::  Paren Left
+++  pel  (just '(')
 ```
 
-Parse ASCII character 40, pel.
+Parses ASCII character 40, the left parenthesis.
 
-        ~zod/try=> (scan "(" pel)
-        ~~~28.
-        ~zod/try=> `cord`(scan "(" pel)
-        '('
-        ~zod/try=> (pel [[1 1] "("])
-        [p=[p=1 q=2] q=[~ [p=~~~28. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (pel [[1 1] ";("])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "(" pel)
+    ~~~28.
+    ~zod/try=> `cord`(scan "(" pel)
+    '('
+    ~zod/try=> (pel [[1 1] "("])
+    [p=[p=1 q=2] q=[~ [p=~~~28. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (pel [[1 1] ";("])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++pam 
 
+Ampersand
+
 ```
-++  pam  (just '&')                                     ::  AMPersand pampersand
+++  pam  (just '&')
 ```
 
-Parse ASCII character 38, pam.
+Parses ASCII character 38, the ampersand.
 
-        ~zod/try=> (scan "&" pam)
-        ~~~26.
-        ~zod/try=> `cord`(scan "&" pam)
-        '&'
-        ~zod/try=> (pam [[1 1] "&"])
-        [p=[p=1 q=2] q=[~ [p=~~~26. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (pam [[1 1] "?&"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "&" pam)
+    ~~~26.
+    ~zod/try=> `cord`(scan "&" pam)
+    '&'
+    ~zod/try=> (pam [[1 1] "&"])
+    [p=[p=1 q=2] q=[~ [p=~~~26. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (pam [[1 1] "?&"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++per 
 
+Right parenthesis
+
 ```
-++  per  (just ')')                                     ::  Paren Right
+++  per  (just ')')
 ```
 
-Parse ASCII character 41, per.
+Parses ASCII character 41, the right parenthesis.
 
-        ~zod/try=> (scan ")" per)
-        ~~~29.
-        ~zod/try=> `cord`(scan ")" per)
-        ')'
-        ~zod/try=> (per [[1 1] ")"])
-        [p=[p=1 q=2] q=[~ [p=~~~29. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (per [[1 1] " )"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan ")" per)
+    ~~~29.
+    ~zod/try=> `cord`(scan ")" per)
+    ')'
+    ~zod/try=> (per [[1 1] ")"])
+    [p=[p=1 q=2] q=[~ [p=~~~29. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (per [[1 1] " )"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++pat 
 
+"At" sign
+
 ```
-++  pat  (just '@')                                     ::  AT pat
+++  pat  (just '@')
 ```
 
-Parse ASCII character 64, pat.
+Parses ASCII character 64, the "at" sign.
 
-        ~zod/try=> (scan "@" pat)
-        ~~~4.
-        ~zod/try=> `cord`(scan "@" pat)
-        '@'
-        ~zod/try=> (pat [[1 1] "@"])
-        [p=[p=1 q=2] q=[~ [p=~~~4. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (pat [[1 1] "?@"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "@" pat)
+    ~~~4.
+    ~zod/try=> `cord`(scan "@" pat)
+    '@'
+    ~zod/try=> (pat [[1 1] "@"])
+    [p=[p=1 q=2] q=[~ [p=~~~4. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (pat [[1 1] "?@"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++sel
 
+Left square bracket
+
 ```
-++  sel  (just '[')                                     ::  Square Left
+++  sel  (just '[')
 ```
 
-Parse ASCII character 91, sel.
+Parses ASCII character 91, the left square bracket.
 
         ~zod/try=> (scan "[" sel)
         ~~~5b.
@@ -470,165 +513,183 @@ Parse ASCII character 91, sel.
 
 ###++sem 
 
+Semicolon
+
 ```
-++  sem  (just ';')                                     ::  SEMicolon
+++  sem  (just ';')
 ```
 
-Parse ASCII character 59, sem.
+Parses ASCII character 59, the semicolon.
 
-###Exampels
+###Examples
 
-        ~tadbyl-hilbel/try=> (scan ";" sem)
-        ~~~3b.
-        ~tadbyl-hilbel/try=> `cord`(scan ";" sem)
-        ';'
-        ~tadbyl-hilbel/try=> (sem [[1 1] ";"])
-        [p=[p=1 q=2] q=[~ [p=~~~3b. q=[p=[p=1 q=2] q=""]]]]
-        ~tadbyl-hilbel/try=> (sem [[1 1] " ;"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan ";" sem)
+    ~~~3b.
+    ~zod/try=> `cord`(scan ";" sem)
+    ';'
+    ~zod/try=> (sem [[1 1] ";"])
+    [p=[p=1 q=2] q=[~ [p=~~~3b. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (sem [[1 1] " ;"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++ser 
 
+Right square bracket
+
 ```
-++  ser  (just ']')                                     ::  Square Right
+++  ser  (just ']')
 ```
 
-Parse ASCII character 93, ser.
+Parses ASCII character 93, the right square bracket.
 
-        ~zod/try=> (scan "]" ser)
-        ~~~5d.
-        ~zod/try=> `cord`(scan "]" ser)
-        ']'
-        ~zod/try=> (ser [[1 1] "]"])
-        [p=[p=1 q=2] q=[~ [p=~~~5d. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (ser [[1 1] "[ ]"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "]" ser)
+    ~~~5d.
+    ~zod/try=> `cord`(scan "]" ser)
+    ']'
+    ~zod/try=> (ser [[1 1] "]"])
+    [p=[p=1 q=2] q=[~ [p=~~~5d. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (ser [[1 1] "[ ]"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++sig 
 
+Tilde
+
 ```
-++  sig  (just '~')                                     ::  SIGnature squiggle
+++  sig  (just '~')
 ```
 
-Parse ASCII character 126, sig.
+Parses ASCII character 126, the tilde.
 
-        ~zod/try=> (scan "~" sig)
-        ~~~~
-        ~zod/try=> `cord`(scan "~" sig)
-        '~'
-        ~zod/try=> (sig [[1 1] "~"])
-        [p=[p=1 q=2] q=[~ [p=~~~~ q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (sig [[1 1] "?~"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "~" sig)
+    ~~~~
+    ~zod/try=> `cord`(scan "~" sig)
+    '~'
+    ~zod/try=> (sig [[1 1] "~"])
+    [p=[p=1 q=2] q=[~ [p=~~~~ q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (sig [[1 1] "?~"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++soq 
 
+Single quote
+
 ```
-++  soq  (just '\'')                                    ::  Single Quote
+++  soq  (just '\'')
 ```
 
-Parse ASCII character 39, soq.
-Note the extra '\' in the slam of soq with just is to escape the first soq because soq denotes a crip.
+Parses ASCII character 39, soq.
+Note the extra '\' is to escape the first `soq` because soq denotes a crip.
 
-        ~zod/try=> (scan "'" soq)
-        ~~~27.
-        ~zod/try=> `cord`(scan "'" soq)
-        '''
-        ~zod/try=> (soq [[1 1] "'"])
-        [p=[p=1 q=2] q=[~ [p=~~~27. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (soq [[1 1] ">'"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "'" soq)
+    ~~~27.
+    ~zod/try=> `cord`(scan "'" soq)
+    '''
+    ~zod/try=> (soq [[1 1] "'"])
+    [p=[p=1 q=2] q=[~ [p=~~~27. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (soq [[1 1] ">'"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++tar 
 
+Asterisk
+
 ```
-++  tar  (just '*')                                     ::  sTAR
+++  tar  (just '*')
 ```
 
-Parse ASCII character 42, tar.
+Parses ASCII character 42, the asterisk.
 
-        ~zod/try=> (scan "*" tar)
-        ~~~2a.
-        ~zod/try=> `cord`(scan "*" tar)
-        '*'
-        ~zod/try=> (tar [[1 1] "*"])
-        [p=[p=1 q=2] q=[~ [p=~~~2a. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (tar [[1 1] ".*"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "*" tar)
+    ~~~2a.
+    ~zod/try=> `cord`(scan "*" tar)
+    '*'
+    ~zod/try=> (tar [[1 1] "*"])
+    [p=[p=1 q=2] q=[~ [p=~~~2a. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (tar [[1 1] ".*"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++tec 
 
+Backtick
+
 ```
 ++  tec  (just '`')                                     ::  backTiCk
 ```
 
-Parse ASCII character 96, tec.
+Parses ASCII character 96, the backtick (also known as the "grave accent".
 
-        ~zod/try=> (scan "`" tec)
-        ~~~6.
-        ~zod/try=> `cord`(scan "`" tec)
-        '`'
-        ~zod/try=> (tec [[1 1] "`"])
-        [p=[p=1 q=2] q=[~ [p=~~~6. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (tec [[1 1] " `"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "`" tec)
+    ~~~6.
+    ~zod/try=> `cord`(scan "`" tec)
+    '`'
+    ~zod/try=> (tec [[1 1] "`"])
+    [p=[p=1 q=2] q=[~ [p=~~~6. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (tec [[1 1] " `"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++tis 
 
+Equals sign
+
 ```
-++  tis  (just '=')                                     ::  'tis tis, it is
+++  tis  (just '=')
 ```
 
-Parse ASCII character 61, tis.
+Parses ASCII character 61, the equals sign.
 
-        ~zod/try=> (scan "=" tis)
-        ~~~3d.
-        ~zod/try=> `cord`(scan "=" tis)
-        '='
-        ~zod/try=> (tis [[1 1] "="])
-        [p=[p=1 q=2] q=[~ [p=~~~3d. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (tis [[1 1] "|="])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "=" tis)
+    ~~~3d.
+    ~zod/try=> `cord`(scan "=" tis)
+    '='
+    ~zod/try=> (tis [[1 1] "="])
+    [p=[p=1 q=2] q=[~ [p=~~~3d. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (tis [[1 1] "|="])
+    [p=[p=1 q=1] q=~]
 ---
 
 ###++wut 
 
+Question mark
+
 ```
-++  wut  (just '?')                                     ::  wut, what?
+++  wut  (just '?')
 ```
 
-Parse ASCII character 63, wut.
+Parses ASCII character 63, wut.
 
-        ~zod/try=> (scan "?" wut)
-        ~~~3f.
-        ~zod/try=> `cord`(scan "?" wut)
-        '?'
-        ~zod/try=> (wut [[1 1] "?"])
-        [p=[p=1 q=2] q=[~ [p=~~~3f. q=[p=[p=1 q=2] q=""]]]]
-        ~zod/try=> (wut [[1 1] ".?"])
-        [p=[p=1 q=1] q=~]
+    ~zod/try=> (scan "?" wut)
+    ~~~3f.
+    ~zod/try=> `cord`(scan "?" wut)
+    '?'
+    ~zod/try=> (wut [[1 1] "?"])
+    [p=[p=1 q=2] q=[~ [p=~~~3f. q=[p=[p=1 q=2] q=""]]]]
+    ~zod/try=> (wut [[1 1] ".?"])
+    [p=[p=1 q=1] q=~]
 
 ---
 
 ###++zap 
 
+Exclamation point
+
 ```
-++  zap  (just '!')                                     ::  zap! bang! crash!!
+++  zap  (just '!')
 ```
 
-Parse ASCII character 33, zap.
+Parses ASCII character 33, the exclamation point zap.
 
         ~zod/try=> (scan "!" zap)
         ~~~21.
