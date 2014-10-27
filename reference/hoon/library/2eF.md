@@ -585,7 +585,7 @@ Single quote
 ```
 
 Parses ASCII character 39, soq.
-Note the extra '\' is to escape the first `soq` because soq denotes a crip.
+Note the extra '\' is to escape the first `soq` because soq delimits a cord.
 
     ~zod/try=> (scan "'" soq)
     ~~~27.
