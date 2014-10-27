@@ -1464,6 +1464,11 @@ Parse . prefixed dime: ip adress, loobean, or float.
 
 Render dime to cord
 
+    ~zod/try=> (scot %p 256)
+    ~.~doznec
+    ~zod/try=> (scot %ux 20)
+    ~.0x14
+
 ###++scow
 
 ```
@@ -1471,6 +1476,11 @@ Render dime to cord
 ```
 
 Render dime to tape
+
+    ~zod/try=> (scow %p 256)
+    "~doznec"
+    ~zod/try=> (scow %ux 20)
+    "0x14"
 
 ###++slat
 
@@ -1480,6 +1490,14 @@ Render dime to tape
 
 Parse cord to odor partial
 
+    ~zod/try=> ((slat %p) '~doznec')
+    [~ 256]
+    ~zod/try=> ((slat %ux) '0x20')
+    [~ 32]
+    ~zod/try=> ((slat %ud) '0x20')
+    ~
+
+
 ###++slav
 
 ```
@@ -1487,6 +1505,17 @@ Parse cord to odor partial
 ```
 
 Demand parse cord with odor
+
+    ~zod/try=> (slav %p ~.~doznec)
+    256
+    ~zod/try=> `@p`(slav %p ~.~doznec)
+    ~doznec
+    ~zod/try=> (slav %ux ~.0x14)
+    20
+    ~zod/try=> (slav %ud '0x20')
+    ~
+    ! /~zod/try/~2014.10.26..19.17.01..0e5d/:<[1 1].[1 18]>
+
 
 ###++slaw
 
@@ -1500,6 +1529,13 @@ Demand parse cord with odor
 ```
 
 Parse cord with odor
+
+    ~zod/try=> (slaw %p '~doznec')
+    [~ 256]
+    ~zod/try=> (slaw %ux '0x20')
+    [~ 32]
+    ~zod/try=> (slaw %ud '0x20')
+    ~
 
 ###++slay
 
@@ -1515,6 +1551,24 @@ Parse cord with odor
 
 Parse cord as coin
 
+    ~zod/try=> (slay '~zod')
+    [~ [% p=[p=~.p q=0]]]
+    ~zod/try=> (slay '._1_2__')
+    [~ [%many p=~[[% p=[p=~.ud q=1]] [% p=[p=~.ud q=2]]]]]
+    ~zod/try=> (slay '._0xc8_~~tem__')
+    [~ [%many p=~[[% p=[p=~.ux q=200]] [% p=[p=~.p q=40]]]]]
+    ~zod/try=> (slay '~0ph')
+    [~ [%blob p=[1 1]]]
+    ~zod/try=> (slay '~s5')
+    [~ [% p=[p=~.dr q=92.233.720.368.547.758.080]]]
+    ~zod/try=> (div 92.233.720.368.547.758.080 ~s1)
+    5
+    ~zod/try=> (slay 'maldon')
+    [~ [% p=[p=~.tas q=121.424.705.249.645]]]
+    ~zod/try=> (slay '-~maldon')
+    ~
+
+
 ###++smyt
 
 ```
@@ -1527,4 +1581,33 @@ Parse cord as coin
 
 Render path as tank
 
-XX move?
+    /~zod/try=> (smyt %)
+    [ %rose
+      p=[p="/" q="/" r="/"]
+        q
+      ~[ [%leaf p="~zod"]
+         [%leaf p="try"]
+         [%leaf p="~2014.10.26..19.23.36..8c82"]
+       ]
+    ]
+    /~zod/try=> %/mek/tol
+    =% /~zod/try/0/mek/tol
+    /~zod/try=/mek/tol> (smyt %)
+    [ %rose
+      p=[p="/" q="/" r="/"]
+        q
+      ~[
+        [%leaf p="~zod"]
+        [%leaf p="try"]
+        [%leaf p="~2014.10.26..19.23.02..95cc"]
+        [%leaf p="mek"]
+        [%leaf p="tol"]
+      ]
+    ]
+    ~zod/try=> (smyt /sam/~del)
+    [%rose p=[p="/" q="/" r="/"] q=~[[%leaf p="sam"] [%leaf p="~del"]]]
+    ~zod/try=> (smyt /lines/main)
+    [%rose p=[p="/" q="/" r="/"] q=~[[%leaf p="lines"] [%leaf p="main"]]]
+    ~zod/try=> ~(ram re (smyt /lines/main))
+    "/lines/main/"
+
