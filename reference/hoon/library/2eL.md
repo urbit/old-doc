@@ -847,6 +847,8 @@ Print to span
 
 Print to tape, using helper arms
 
+Put children inside rend
+
     ~zod/try=> ~(rend co %$ %ux 200)
     "0xc8"
     ~zod/try=> ~(rend co %many ~[[%$ ux/200] [%$ p/40]])
