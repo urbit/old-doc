@@ -7,18 +7,20 @@
   |%
 ```
 
-Core containing numeric parser primitives
+A core containing numeric parser primitives.
 
     /~zod/try=> ab
     <36.ecc 414.gly 100.xkc 1.ypj %164>
 
 ###++bix
 
+Parse hex digit pair
+
 ```
   ++  bix  (bass 16 (stun [2 2] six))
 ```
 
-Parse pair of base16 digits, used in escapes
+Parsing rule. Parses a pair of base16 digits. Used in escapes.
 
     /~zod/try=> (scan "07" bix:ab)
     q=7
@@ -29,11 +31,13 @@ Parse pair of base16 digits, used in escapes
 
 ###++hif
 
+Parse phonemic pair
+
 ```
   ++  hif  (boss 256 ;~(plug tip tiq (easy ~)))
 ```
 
-Parse single @p trochee
+Parsing rule. Parses an atom of odor [@pE](), a phrase of two bytes encoded phonetically.
 
     /~zod/try=> (scan "doznec" hif:ab)
     q=256
@@ -42,13 +46,15 @@ Parse single @p trochee
 
 ###++huf
 
+Parse two phonemic pairs
+
 ```
   ++  huf  %+  cook
              |=([a=@ b=@] (wred:un ~(zug mu ~(zag mu [a b]))))
            ;~(plug hif ;~(pfix hep hif))
 ```
 
-Parse scrambled pair of @p trochees
+Parsing rule. Parses and unscrambles and atom of odor [@pF](), a phrase of two two-byte pairs that are encoded (and scrambled) phonetically.
 
     /~zod/try=> (scan "pittyp-pittyp" huf:ab)
     328.203.557
@@ -59,11 +65,13 @@ Parse scrambled pair of @p trochees
 
 ###++hyf
 
+Parse 8 phonemic bytes
+
 ```
   ++  hyf  (bass 0x1.0000.0000 ;~(plug huf ;~(pfix hep huf) (easy ~)))
 ```
 
-Parse 8 syllable @p phrase
+Parsing rule. Parses an atom of odor [@pG](), a phrase of eight of phonemic byes. 
 
     /~zod/try=> (scan "sondel-forsut-tillyn-nillyt" hyf:ab)
     q=365.637.097.828.335.095
@@ -72,11 +80,13 @@ Parse 8 syllable @p phrase
 
 ###++pev
 
+Parse up to 4 base32
+
 ```
   ++  pev  (bass 32 ;~(plug sev (stun [0 4] siv)))
 ```
 
-Parse up to four base32 digits
+Parsing rule. Parses up to four base-32 digits
 
     /~zod/try=> (scan "a" pev:ab)
     q=10
@@ -87,11 +97,13 @@ Parse up to four base32 digits
 
 ###++pew
 
+Parse up to 4 base64
+
 ```
-  ++  pew  (bass 64 ;~(plug sew (stun [0 4] siw)))
+++  pew  (bass 64 ;~(plug sew (stun [0 4] siw)))
 ```
 
-Parse up to four base64 digts
+Parsing rule. Parses up to four base-64 digits.
 
     /~zod/try=> (scan "Q" pew:ab)
     q=52
@@ -102,25 +114,34 @@ Parse up to four base64 digts
 
 ###++piv
 
+Parse 5 base32
+
 ```
-  ++  piv  (bass 32 (stun [5 5] siv))
+++  piv  (bass 32 (stun [5 5] siv))
 ```
 
-Parse five base32 digits
+Parsing rule. Parses exactly five base32 digits.
 
     /~zod/try=> (scan "10b3l" piv:ab)
     q=1.059.957
-
+    ~zod/try=> (scan "1" piv:ab)
+        ! {1 2}
+        ! exit
 ###++piw
 
 ```
   ++  piw  (bass 64 (stun [5 5] siw))
 ```
 
-Parse five base64 digits
+Parses exactly five base64 digits.
 
     /~zod/try=> (scan "2C-pZ" piw:ab)
     q=43.771.517
+    ~zod/socialnet=> (scan "2" piv:ab)
+    ! {1 2}
+    ! exit
+    
+    
 
 ###++qeb
 
@@ -128,7 +149,7 @@ Parse five base64 digits
   ++  qeb  (bass 2 ;~(plug seb (stun [0 3] sib)))
 ```
 
-Parse a binary number of up to 4 digits
+Parses a binary number of up to 4 digits.
 
     /~zod/try=> (scan "1" qeb:ab)
     q=1
@@ -847,8 +868,6 @@ Print to span
 
 Print to tape, using helper arms
 
-Put children inside rend
-
     ~zod/try=> ~(rend co %$ %ux 200)
     "0xc8"
     ~zod/try=> ~(rend co %many ~[[%$ ux/200] [%$ p/40]])
@@ -1466,11 +1485,6 @@ Parse . prefixed dime: ip adress, loobean, or float.
 
 Render dime to cord
 
-    ~zod/try=> (scot %p 256)
-    ~.~doznec
-    ~zod/try=> (scot %ux 20)
-    ~.0x14
-
 ###++scow
 
 ```
@@ -1478,11 +1492,6 @@ Render dime to cord
 ```
 
 Render dime to tape
-
-    ~zod/try=> (scow %p 256)
-    "~doznec"
-    ~zod/try=> (scow %ux 20)
-    "0x14"
 
 ###++slat
 
@@ -1492,14 +1501,6 @@ Render dime to tape
 
 Parse cord to odor partial
 
-    ~zod/try=> ((slat %p) '~doznec')
-    [~ 256]
-    ~zod/try=> ((slat %ux) '0x20')
-    [~ 32]
-    ~zod/try=> ((slat %ud) '0x20')
-    ~
-
-
 ###++slav
 
 ```
@@ -1507,17 +1508,6 @@ Parse cord to odor partial
 ```
 
 Demand parse cord with odor
-
-    ~zod/try=> (slav %p ~.~doznec)
-    256
-    ~zod/try=> `@p`(slav %p ~.~doznec)
-    ~doznec
-    ~zod/try=> (slav %ux ~.0x14)
-    20
-    ~zod/try=> (slav %ud '0x20')
-    ~
-    ! /~zod/try/~2014.10.26..19.17.01..0e5d/:<[1 1].[1 18]>
-
 
 ###++slaw
 
@@ -1531,13 +1521,6 @@ Demand parse cord with odor
 ```
 
 Parse cord with odor
-
-    ~zod/try=> (slaw %p '~doznec')
-    [~ 256]
-    ~zod/try=> (slaw %ux '0x20')
-    [~ 32]
-    ~zod/try=> (slaw %ud '0x20')
-    ~
 
 ###++slay
 
@@ -1553,24 +1536,6 @@ Parse cord with odor
 
 Parse cord as coin
 
-    ~zod/try=> (slay '~zod')
-    [~ [% p=[p=~.p q=0]]]
-    ~zod/try=> (slay '._1_2__')
-    [~ [%many p=~[[% p=[p=~.ud q=1]] [% p=[p=~.ud q=2]]]]]
-    ~zod/try=> (slay '._0xc8_~~tem__')
-    [~ [%many p=~[[% p=[p=~.ux q=200]] [% p=[p=~.p q=40]]]]]
-    ~zod/try=> (slay '~0ph')
-    [~ [%blob p=[1 1]]]
-    ~zod/try=> (slay '~s5')
-    [~ [% p=[p=~.dr q=92.233.720.368.547.758.080]]]
-    ~zod/try=> (div 92.233.720.368.547.758.080 ~s1)
-    5
-    ~zod/try=> (slay 'maldon')
-    [~ [% p=[p=~.tas q=121.424.705.249.645]]]
-    ~zod/try=> (slay '-~maldon')
-    ~
-
-
 ###++smyt
 
 ```
@@ -1583,33 +1548,4 @@ Parse cord as coin
 
 Render path as tank
 
-    /~zod/try=> (smyt %)
-    [ %rose
-      p=[p="/" q="/" r="/"]
-        q
-      ~[ [%leaf p="~zod"]
-         [%leaf p="try"]
-         [%leaf p="~2014.10.26..19.23.36..8c82"]
-       ]
-    ]
-    /~zod/try=> %/mek/tol
-    =% /~zod/try/0/mek/tol
-    /~zod/try=/mek/tol> (smyt %)
-    [ %rose
-      p=[p="/" q="/" r="/"]
-        q
-      ~[
-        [%leaf p="~zod"]
-        [%leaf p="try"]
-        [%leaf p="~2014.10.26..19.23.02..95cc"]
-        [%leaf p="mek"]
-        [%leaf p="tol"]
-      ]
-    ]
-    ~zod/try=> (smyt /sam/~del)
-    [%rose p=[p="/" q="/" r="/"] q=~[[%leaf p="sam"] [%leaf p="~del"]]]
-    ~zod/try=> (smyt /lines/main)
-    [%rose p=[p="/" q="/" r="/"] q=~[[%leaf p="lines"] [%leaf p="main"]]]
-    ~zod/try=> ~(ram re (smyt /lines/main))
-    "/lines/main/"
-
+XX move?
