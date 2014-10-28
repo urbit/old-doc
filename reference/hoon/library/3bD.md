@@ -14,7 +14,14 @@
 ::
 ```
 
-XX document
+Render path with infix `/`
+
+    ~zod/try=> `@t`(moon /image/png)
+    'image/png'
+    ~zod/try=> `@t`(moon /text/x-hoon)
+    'text/x-hoon'
+    ~zod/try=> `@t`(moon /application/x-pnacl)
+    'application/x-pnacl'
 
 ###++perk
 
@@ -29,7 +36,14 @@ XX document
 ::
 ```
 
-XX document
+Parser generator: finite list of term options.
+
+    ~zod/try=> (scan "ham" (perk %sam %ham %lam ~))
+    %ham
+    ~zod/try=> (scan "ram" (perk %sam %ham %lam ~))
+    ! {1 1}
+    ! exit
+
 
 ###++poja
 
@@ -38,24 +52,26 @@ XX document
   |%
 ```
 
-XX document
+JSON parser core
+
+    ~zod/try=> poja
+    <21.svd 250.qyy 41.jdd 373.unk 100.kzl 1.ypj %164>
 
 ###++apex
 
 ```
-  ++  apex
-    =+  spa=;~(pose comt whit)
-    %+  knee  *manx  |.  ~+
-    %+  ifix  [(star spa) (star spa)]
-    ;~  pose
-      %+  sear  |=([a=marx b=marl c=mane] ?.(=(c n.a) ~ (some [a b])))
-        ;~(plug head (more (star comt) ;~(pose apex chrd)) tail)
-      empt
-    == 
-  :: 
+   ++  apex  ;~(pose abox obox)                          ::  JSON object
 ```
 
-XX document
+Top level: a JSON is an array or an object.
+
+    ~zod/try=> (rash '[1,2]' apex:poja)
+    [%a p=~[[%n p=~.1] [%n p=~.2]]]
+    ~zod/try=> (rash '{"sam": "kot"}' apex:poja)
+    [%o p={[p=~.sam q=[%s p=~.kot]]}]
+    ~zod/try=> (rash 'null' apex:poja)
+    ! {1 1}
+    ! exit
 
 ###++valu
 
@@ -72,35 +88,48 @@ XX document
         obox
       ==
     ==
-  ::  JSON arrays
 ```
 
-XX document
+Value: a JSON value is a null, boolean, string, number, array, or object.
 
-###++arra
-
-```
-  ++  arra  (ifix [sel (ws ser)] (more (ws com) valu))
-```
-
-XX document
+    ~zod/try=> (rash '[1,2]' valu:poja)
+    [%a p=~[[%n p=~.1] [%n p=~.2]]]
+    ~zod/try=> (rash '{"sam": "kot"}' valu:poja)
+    [%o p={[p='sam' q=[%s p=~.kot]]}]
+    ~zod/try=> (rash 'null' valu:poja)
+    ~
+    ~zod/try=> (rash '20' valu:poja)
+    [%n p=~.20]
+    ~zod/try=> (rash '"str"' valu:poja)
+    [%s p=~.str]
+    ~zod/try=> (rash 'true' valu:poja)
+    [%b p=%.y]
+   
+##JSON arrays
 
 ###++abox
 
 ```
-  ++  abox  (cook |=(elts=(list json) [%a p=elts]) arra)
-  ::  JSON objects
+  ++  abox  (stag %a (ifix [sel (ws ser)] (more (ws com) valu)))
 ```
 
-XX document
+Array: values in `[]` separated by `,`
+
+    ~zod/try=> (rash '[1, 2,4]' abox:poja)
+    [[%n p=~.1] ~[[%n p=~.2] [%n p=~.4]]]
+
+##JSON Objects
 
 ###++pair
 
 ```
-  ++  pair  ;~((comp |=([k=@ta v=json] [k v])) ;~(sfix (ws stri) (ws col)) valu)
+  ++  pair  ;~(plug ;~(sfix (ws stri) (ws col)) valu)
 ```
 
-XX document
+Key-value pair: string and value delimited by `:`
+
+    ~zod/try=> (rash '"ham": 2' pair:poja)
+    ['ham' [%n p=~.2]]
 
 ###++obje
 
@@ -108,52 +137,79 @@ XX document
   ++  obje  (ifix [(ws kel) (ws ker)] (more (ws com) pair))
 ```
 
-XX document
+Object: pairs in `{}` separated by `,`
+
+    ~zod/try=> (rash '{"ham": 2, "lam":true}' obje:poja)
+    [['ham' [%n p=~.2]] ~[['lam' [%b p=%.y]]]]
 
 ###++obox
 
 ```
-  ++  obox  (cook |=(s=(list ,[@ta json]) [%o p=(mo s)]) obje)
-  ::  JSON booleans
+  ++  obox  (stag %o (cook mo obje))
 ```
 
-XX document
+Boxed object: map with a tag of `%o`.
+
+    ~zod/try=> (rash '{"ham": 2, "lam":true}' obox:poja)
+    [%o {[p='lam' q=[%b p=%.y]] [p='ham' q=[%n p=~.2]]}]
+
+##JSON Booleans
 
 ###++bool
 
 ```
   ++  bool  ;~(pose (cold & (jest 'true')) (cold | (jest 'false')))
-  ::  JSON strings
 ```
 
-XX document
+Boolean: `true` or `false`
+
+    ~zod/try=> (rash 'true' bool:poja)
+    %.y
+    ~zod/try=> (rash 'false' bool:poja)
+    %.n
+    ~zod/try=> (rash 'null' bool:poja)
+    ! {1 1}
+    ! exit
+
+##JSON strings
 
 ###++stri
 
 ```
   ++  stri
-    (cook |=(s=(list ,@) (rap 3 s)) (ifix [doq doq] (star jcha)))
+    (cook crip (ifix [doq doq] (star jcha)))
 ```
 
-XX document
+String: characters in double quotes, backslashes escaping. 
+
+    ~zod/try=> (rash '"ham"' stri:poja)
+    'ham'
+    ~zod/try=> (rash '"h\\nam"' stri:poja)
+    'h
+      am'
+    ~zod/try=> (rash '"This be \\"quoted\\""' stri:poja)
+    'This be "quoted"'
 
 ###++jcha
 
 ```
-  ++  jcha                                               :: character in string
-    ;~  pose
-      esca
-      ;~  pose
-        :: Non-escape string characters
-        (shim 32 33)
-        (shim 35 91)
-        (shim 93 126)
-        (shim 128 255)
-      ==
-    ==
+ ++  jcha  ;~(pose ;~(less doq bas prn) esca)           :: character in string
 ```
 
-XX document
+Character: literal or escaped
+
+    ~zod/try=> (rash 'a' jcha:poja)
+    'a'
+    ~zod/try=> (rash '!' jcha:poja)
+    '!'
+    ~zod/try=> (rash '\\"' jcha:poja)
+    '"'
+    ~zod/try=> (rash '\\u00a4' jcha:poja)
+    '¤'
+    ~zod/try=> (rash '\\n' jcha:poja)
+    '
+     '
+
 
 ###++esca
 
@@ -161,22 +217,30 @@ XX document
   ++  esca                                               :: Escaped character
     ;~  pfix  bas
       ;~  pose
-        doq
-        fas
-        soq
-        bas
-        (cold 8 (just 'b'))
-        (cold 9 (just 't'))
-        (cold 10 (just 'n'))
-        (cold 12 (just 'f'))
-        (cold 13 (just 'r'))
-        ;~(pfix (just 'u') (cook tuft qix:ab)) :: Convert 4-digit hex to UTF-8
+        doq  fas  soq  bas
+        (sear ~(get by `(map ,@t ,@)`(mo b/8 t/9 n/10 f/12 r/13 ~)) low)
+        ;~(pfix (just 'u') (cook tuft qix:ab))           :: 4-digit hex to UTF-8
       ==
-    ==
-  ::  JSON numbers
 ```
 
-XX document
+Backslash escaped special character, low ASCII, or UTF16 codepoint
+
+    ~zod/try=> (rash 'b' esca:poja)
+    ! {1 1}
+    ! exit
+    ~zod/try=> (rash '\n' esca:poja)
+    ~ <syntax error at [1 9]>
+    ~zod/try=> (rash '\\n' esca:poja)
+    '
+     '
+    ~zod/try=> `@`(rash '\\r' esca:poja)
+    13
+    ~zod/try=> (rash '\\u00c4' esca:poja)
+    'Ä'
+    ~zod/try=> (rash '\\u00df' esca:poja)
+    'ß'
+
+##JSON numbers
 
 ###++numb
 
@@ -186,14 +250,29 @@ XX document
       (mayb (piec hep))
       ;~  pose
         (piec (just '0'))
-        ;~((comp twel) (piec (shim '1' '9')) digs)
+        ;~(plug (shim '1' '9') digs)
       ==
       (mayb frac)
       (mayb expo)
     ==
 ```
 
-XX document
+Float: optional `-`, decimal number, optional fractional and exponent parts.
+
+    ~zod/try=> (rash '0' numb:poja)
+    ~[~~0]
+    ~zod/try=> (rash '1' numb:poja)
+    ~[~~1]
+    ~zod/try=> `tape`(rash '1' numb:poja)
+    "1"
+    ~zod/try=> `tape`(rash '12.6' numb:poja)
+    "12.6"
+    ~zod/try=> `tape`(rash '-2e20' numb:poja)
+    "-2e20"
+    ~zod/try=> `tape`(rash '00e20' numb:poja)
+    ! {1 2}
+    ! exit
+
 
 ###++digs
 
@@ -201,7 +280,16 @@ XX document
   ++  digs  (star (shim '0' '9'))
 ```
 
-XX document
+Digits: `0` to `9`
+
+    ~zod/try=> (rash '' digs:poja)
+    ""
+    ~zod/try=> (rash '25' digs:poja)
+    "25"
+    ~zod/try=> (rash '016' digs:poja)
+    "016"
+    ~zod/try=> (rash '7' digs:poja)
+    "7"
 
 ###++expo
 
@@ -214,20 +302,31 @@ XX document
     ==
 ```
 
-XX document
+Exponent part: e, optional `+` or `-`, and digits
+
+    ~zod/try=> `tape`(rash 'e7' expo:poja)
+    "e7"
+    ~zod/try=> `tape`(rash 'E17' expo:poja)
+    "E17"
+    ~zod/try=> `tape`(rash 'E-4' expo:poja)
+    "E-4"
 
 ###++frac
 
 ```
-  ++  frac                                               :: Fractional part
-    ;~  (comp twel)
-      (piec dot)
-      digs
-    ==
-  ::  whitespace
+  ++  frac   ;~(plug dot digs)                          :: Fractional part
 ```
 
-XX document
+Dot followed by digits
+
+    ~zod/try=> (rash '.25' frac:poja)
+    [~~~. "25"]
+    ~zod/try=> (rash '.016' frac:poja)
+    [~~~. "016"]
+    ~zod/try=> (rash '.7' frac:poja)
+    [~~~. "7"]
+
+##whitespace
 
 ###++spac
 
@@ -241,10 +340,11 @@ XX document
 
 ```
   ++  ws  |*(sef=_rule ;~(pfix spac sef))
-  ::  plumbing
 ```
 
 XX document
+
+##plumbing
 
 ###++jify
 

@@ -1,16 +1,20 @@
 #buccom `$,` %bccm
 
-Normalizing gate (or [Clam]())
+Normalizing gate (or [clam]())
 
 `$,` is a synthetic rune that produces a normalizing gate [clam]() for `p`. `$,` is used to ensure an input value fits a certain type:if it does match, the value is produced. If it doesn't, the default value for the desired type is produced.
 
 ##Produces
 
-[Twig]()
+[Twig](): `[%bccb p=tile] `
+
+##Sample
+
+`p`  is a [tile]()
 
 ##Tall form
 
-$,  p
+    $,  p
 
 ##Wide form
 
@@ -18,11 +22,11 @@ None
 
 ##Irregular form
 
-,p
+    ,p
 
 ##Examples
 
-++  cord  ,@t                                           ::  text atom (UTF-8)
+    ++  cord  ,@t                                           ::  text atom (UTF-8)
 
-In ++cord, `,` creates a gate that validates atoms of the odor [`@t`]().
+In `++cord`, `,` creates a gate that validates atoms of the odor [`@t`]().
 

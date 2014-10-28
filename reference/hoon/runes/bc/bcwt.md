@@ -2,7 +2,7 @@
 
 Fork
 
-`$?` is used to create forks. `$?` is a tile rune that produces a `%fern`, which is a non-empty list of cases whose [icon]() is a [`fork`]().
+`$?` produces a fork, called a `%fern`. A `%fern` is a non-empty list of cases.
 
 ##Produces
 
@@ -14,9 +14,9 @@ Fork
 
 ##Tall form
 
-$?  p
-        q
-    ==
+    $?  p
+            q
+        ==
 
 ##Wide form
 
@@ -24,11 +24,11 @@ None
 
 ##Irregular form
 
-?(p q)
+    ?(p q)
 
 ##Examples
 
-++  base  ?([%atom p=odor] %noun %cell %bean %null)     ::  axils, @ * ^ ? ~
+    ++  base  ?([%atom p=odor] %noun %cell %bean %null)     ::  axils, @ * ^ ? ~
 
-In ++base, `?` (the irregular form of $?) specifies a list of orthoganal casesfor the %axil tile.
+`++base`, `?` (the irregular form of `$?`) specifies a list of orthoganal cases for the `%axil` tile.
 

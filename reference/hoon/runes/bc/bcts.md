@@ -1,6 +1,6 @@
 #buctis `$=` %bcts
 
-[Short description]
+Face for tile
 
 `$=` is a tile rune that produces a `%bark`. A `%bark` is a tile that wraps a [face]() around another tile. Used primarily to add faces to [nouns]().
 
@@ -16,8 +16,8 @@
 
 ##Tall form
 
-$=  p
-    q
+    $=  p
+        q
 
 ##Wide form
 
@@ -28,7 +28,7 @@ None
 None
 
 ##Examples
- `a=*` parses as `[%bark %a %noun]`.
+`a=*` parses as `[%bark %a %noun]`.
 
 
 
