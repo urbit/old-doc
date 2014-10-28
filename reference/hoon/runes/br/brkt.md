@@ -1,28 +1,30 @@
 #[barket, `|^`, %brkt](#brkt)
 
-[Short description]
+Kicked book
 
-#Syntax
+`|^`, `barket`,  is a synthetic hoon that produces a [`%gold`]() [book]() with arms `q`, plus `p` as `%$`, and kicks it. `|^` takes an associative list of names, [++term](), and expressions [++foot](), each pair of which is called an arm. The list must be closed with a `--`. 
 
-`|^`, `barket`, `[%brkt p=twig q=(map term foot)]` is a synthetic hoon
-that produces a `%gold` book with arms `q`, plus `p` as `%$`, and 
-kicks it.
+`|^` is similar to `|-`, but it can contain internal arms.
+
+##See also
+#[barhep, `|-`, %brhp](#brhp)
+#[barcab, `|_`, %brcb](#brcb)
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%brkt p=twig q=(map term foot)]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [twig]().
+`q` is a [`map`]() with [`++term`]() keys and [`++foot`]() values.
 
 ##Tall form
 
-|^  p
-      ++  p.n.q
-        q.n.q
-    --
+    |^  p
+          ++  p.n.q
+            q.n.q
+        --
 
 ##Wide form
 
@@ -34,15 +36,14 @@ None
 
 ##Examples
 
-
     /~zod/try=> =+  a=21
                 |^  [square double]
                 ++  square  (mul a a)
                 ++  double  (mul 2 a)
                 --
     [441 42]
-    
-Two helper arms are used to compute intermediate results. 
+
+Here `|^` computes a result by calling its helper arms `++square` and `++double`. Notice that `a` is also in the context. `|^` is most commonly used inside another gate or core.
 
 ```
 ++  mum                                                 ::  mug with murmur3
