@@ -17,7 +17,17 @@
 ::
 ```
 
-XX document
+Invert list changes: skips stay constant, replaces are swapped
+
+    ~zod/try=> (berk `(urge)`~[`10 %|^[~[2] ~[3 4]] `5])
+    ~[[%.y p=10] [%.n p=~[3 4] q=~[2]] [%.y p=5]]
+    ~zod/try=> (lurk "somes" `(urge char)`~[`1 [%| "o" "a"] `3])
+    "sames"
+    ~zod/try=> (berk `(urge char)`~[`1 [%| "o" "a"] `3])
+    ~[[%.y p=1] [%.n p="a" q="o"] [%.y p=3]]
+    ~zod/try=> (lurk "sames" (berk `(urge char)`~[`1 [%| "o" "a"] `3]))
+    "somes"
+
 
 ###++diff 
 
@@ -36,7 +46,29 @@ XX document
 ::
 ```
 
-XX document
+Produce patch between two nouns, by change type
+
+    ~zod/try=> ((diff %a) 20 21)
+    [p=%a q=[%d p=[%1 p=21] q=[%1 p=20]]]
+    ~zod/try=> ((diff %a) [1 2 3] [1 2 4])
+    [ p=%a
+        q
+      [ %d
+        p=[p=[%0 p=2] q=[p=[%0 p=6] q=[%1 p=4]]] 
+        q=[p=[%0 p=2] q=[p=[%0 p=6] q=[%1 p=3]]]
+      ]
+    ]
+    ~zod/try=> ~04hh
+    [1 2]
+    ~zod/try=> ~0ph
+    [1 1]
+    ~zod/try=> ((diff %b) 0v4hh 0vph)
+    [p=%b q=[%d p=[p=[%0 p=2] q=[%0 p=2]] q=[p=[%0 p=3] q=[%1 p=2]]]]
+    ~zod/try=> ((diff %c) (role 'sam' 'les' 'les' 'kor' ~) (role 'sam' 'mor' 'kor' ~))
+    [p=%c q=[%c p=~[[%.y p=1] [%.n p=~[7.562.604 7.562.604] q=~[7.499.629]] [%.y p=1]]]]
+    ~[[%.y p=0] [%.y p=0] [%.y p=1] [%.n p=<|les les|> q=<|mor|>] [%.y p=1]]
+    ~zod/try=> (,[%c %c (urge cord)] ((diff %c) (role 'sam' 'les' 'les' 'kor' ~) (role 'sam' 'mor' 'kor' ~)))
+    [%c %c ~[[%.y p=1] [%.n p=<|les les|> q=<|mor|>] [%.y p=1]]]
 
 ###++loss 
 
@@ -55,43 +87,15 @@ XX document
   =<  abet
   =<  main
   |%
-```
-
-XX document
-
-###++abet
-
-```
   ++  abet  =.(q.rag ?:(=([& 0] p.rag) q.rag [p.rag q.rag]) (flop q.rag))
-```
-
-XX document
-
-###++hink
-
-```
   ++  hink                                              ::  extend fits top
     |=  [inx=@ud goy=@ud]  ^-  ?
     |(=(p.gox inx) (lth goy p:(need (~(get by q.gox) inx))))
   ::
-```
-
-XX document
-
-###++lonk
-
-```
   ++  lonk                                              ::  extend fits bottom
     |=  [inx=@ud goy=@ud]  ^-  ?
     |(=(0 inx) (gth goy p:(need (~(get by q.gox) (dec inx)))))
   ::
-```
-
-XX document
-
-###++lune
-
-```
   ++  lune                                              ::  extend
     |=  [inx=@ud goy=@ud]
     ^+  +>
@@ -102,13 +106,6 @@ XX document
       [goy (snag goy hev) ?:(=(0 inx) ~ q:(need (~(get by q.gox) (dec inx))))]
     ==
   ::
-```
-
-XX document
-
-###++merg
-
-```
   ++  merg                                              ::  merge all matches
     |=  gay=(list ,@ud)
     ^+  +>
@@ -122,13 +119,6 @@ XX document
     |-  ^+  +>.^$
     ?~(zes +>.^$ $(zes t.zes, +>.^$ (lune i.zes)))
   ::
-```
-
-XX document
-
-###++main
-
-```
   ++  main
     |-  ^+  +
     ?~  hel
@@ -147,9 +137,21 @@ XX document
       $(hel t.hel, rag (done %| [i.hel ~] ~))
     $(hel t.hel, hev t.hev, rag (done %| [i.hel ~] [i.hev ~]))
   --
+
 ```
 
-XX document
+Find subsequence of repeated elements, using helper arms.
+
+    ~zod/try=> (loss "sam" "sem")
+    "sm"
+    ~zod/try=> (loss "samo" "semo")
+    "smo"
+    ~zod/try=> (loss "sakmo" "semo")
+    "smo"
+    ~zod/try=> (loss "ferdinham" "ferdilapos
+    ~ <syntax error at [1 30]>
+    ~zod/try=> (loss "ferdinham" "ferdilapos")
+    "ferdia"
 
 ###++locz  
 
@@ -172,7 +174,12 @@ XX document
 ::
 ```
 
-XX document
+Simpler subsequence reducer
+
+    ~zod/try=> (locz "samukot" "semelkot")
+    "smkot"
+    ~zod/try=> (locz "samukot" "samelkot")
+    "samkot"
 
 ###++lore  
 
@@ -195,7 +202,18 @@ XX document
 ::
 ```
 
-XX document
+Split on newlines, ascii `10`
+
+    ~zod/try=> (lore 'soke\0alas\0amep')
+    <|soke las mep|>
+    ~zod/try=> (lore '|=  a=@\0a=+  b=(add a 5)\0a(mix b a)')
+    <||=  a=@ =+  b=(add a 5) (mix b a)|>
+    ~zod/try=> `wain`[(fil 3 80 ' ') (lore '|=  a=@\0a=+  b=(add a 5)\0a(mix b a)')]
+    <|                                                                                
+      |=  a=@
+      =+  b=(add a 5)
+      (mix b a)
+    |>
 
 ###++role  
 
@@ -206,7 +224,16 @@ XX document
 ::
 ```
 
-XX document
+Join line list with newlines.
+
+    ~zod/try=> (role 'sep' 'tek' 'lap' ~)
+    3.230.709.852.558.292.782.985.274.739
+    ~zod/try=> `@t`(role 'sep' 'tek' 'lap' ~)
+    '''
+    sep
+    tek
+    lap
+    '''
 
 ###++lump
 
@@ -233,7 +260,26 @@ XX document
 ::
 ```
 
-XX document
+Use udon to change noun
+
+    ~zod/try=> (lump [%a %a 20 25] 20)
+    25
+    ~zod/try=> (lump [%a %d [[%0 1] [%0 1]] [%0 2]] 20)
+    [20 20]
+    ~zod/try=> (lump [%c %a ~['sa' 'le'] ~['sa' 'lo']] 'sa\0ale')
+    11.473.670.267.251
+    ~zod/try=> (,@t (lump [%c %a ~['sa' 'le'] ~['sa' 'lo']] 'sa\0ale'))
+    '''
+    sa
+    lo
+    '''
+    ~zod/try=> (,@t (lump [%c %c `1 [%| ~['le'] ~['lo' 'ma']] ~] 'sa\0ale'))
+    '''
+    sa
+    ma
+    lo
+    '''
+
 
 ###++lure
 
@@ -249,7 +295,12 @@ XX document
   ==
 ```
 
-XX document
+Patch a by references to axis and literal.
+
+    ~zod/try=> (lure ~[1 2] [[%0 2] [%1 3] [%0 7]])
+    [1 3 0]
+    ~zod/try=> (lure ~[1 2 4] [[%0 2] [%1 3] [%0 7]])
+    [1 3 4 0]
 
 ###++limp  
 
@@ -265,7 +316,14 @@ XX document
 ::
 ```
 
-XX document
+Reverse a patch (preprocessor unchanged)
+
+    ~zod/try=> (limp [%a %a 20 40])
+    [p=%a q=[%a p=40 q=20]]
+    ~zod/try=> (limp [%c %c ~[`20 [%| ~[52 53] ~[51]] `6]])
+    [p=%c q=[%c p=~[[%.y p=20] [%.n p=~[51] q=~[52 53]] [%.y p=6]]]]
+    ~zod/try=> (limp [%a %d [[%0 1] [%0 1]] [%0 2]])
+    [p=%a q=[%d p=[%0 p=2] q=[p=[%0 p=1] q=[%0 p=1]]]]
 
 ###++hump  
 
@@ -280,7 +338,20 @@ XX document
 ::
 ```
 
-XX document
+Prep atom for diff: leave alone, cue, or split by newlines.
+
+    ~zod/try=> (hump %a ~)
+    0
+    ~zod/try=> (hump %a 40)
+    40
+    ~zod/try=> (hump %c 40)
+    [40 0]
+    ~zod/try=> (hump %c 'as')
+    [29.537 0]
+    ~zod/try=> (hump %c 'as\0alok')
+    [29.537 7.040.876 0]
+    ~zod/try=> (hump %b 0vph)
+    [1 1]
 
 ###++husk  
 
@@ -295,7 +366,38 @@ XX document
 ::
 ```
 
-XX document
+Re-atomize after diff: leave alone, jam, or join with newlines.
+
+    ~zod/try=> (husk %a 0)
+    0
+    ~zod/try=> (husk %a 40)
+    40
+    ~zod/try=> (husk %c [40 0])
+    2.600
+    ~zod/try=> (rip 3 (,@ (husk %c [40 0])))
+    ~[40 10]
+    ~zod/try=> (husk %c [%as 0])
+    684.897
+    ~zod/try=> (husk %c [%as 0])
+    684.897
+    ~zod/try=> (,@t (husk %c [%as 0]))
+    '''
+    as
+    '''
+    ~zod/try=> (husk %c [%as %lok 0])
+    2.932.876.065.272.673
+    ~zod/try=> (,@t (husk %c [%as %lok 0]))
+    '''
+    as
+    lok
+    '''
+    ~zod/try=> (husk %b [1 1])
+    817
+    ~zod/try=> (,@uv (husk %b [1 1]))
+    0vph
+    ~zod/try=> ~0ph
+    [1 1]
+
 
 ###++lurk  
 
@@ -327,7 +429,12 @@ XX document
 ::
 ```
 
-XX document
+Amend list using an urge: list of `[%& {number skipped}]` and `[%| old new]`
+
+    ~zod/try=> (lurk "hema" `(urge char)`~[`1 [%| "e" "ru"] `2])
+    "hurma"
+    ~zod/try=> (lurk "koltep" `(urge char)`~[`3 [%| "et" ""] `1])
+    "kolp"
 
 ###++lusk  
 
@@ -342,21 +449,7 @@ XX document
   =>  .(rag [p=rag q=*(list ,_rag)])
   =<  abet  =<  main
   |%
-```
-
-XX document
-
-###++abet
-
-```
   ++  abet  =.(q.rag ?:(=([& 0] p.rag) q.rag [p.rag q.rag]) (flop q.rag))
-```
-
-XX document
-
-###++done
-
-```
   ++  done
     |=  new=_p.rag
     ^+  rag
@@ -371,13 +464,6 @@ XX document
           ==
     ==
   ::
-```
-
-XX document
-
-###++main
-
-```
   ++  main
     |-  ^+  +
     ?~  hel
@@ -398,7 +484,17 @@ XX document
   --
 ```
 
-XX document
+Using a common sequence, generate urge from two lists
+
+    ~zod/try=> (lusk "hamok" "hasok" "haok")
+    ~[[%.y p=2] [%.n p="m" q="s"] [%.y p=2]]
+    ~zod/try=> (lusk "hamok" "hasok" "hak")
+    ~[[%.y p=2] [%.n p="om" q="os"] [%.y p=1]]
+    ~zod/try=> (lusk "telroga" "tesomga" "teoga") 
+    ~[[%.y p=2] [%.n p="rl" q="s"] [%.y p=1] [%.n p="" q="m"] [%.y p=2]]
+    ~zod/try=> (lurk "telroga" `(urge char)`~[[%.y p=2] [%.n p="rl" q="s"] [%.y p=1] [%.n p="" q="m"] [%.y p=2]])
+    "tesomga"
+
 
 ###++nude   
 
@@ -408,13 +504,6 @@ XX document
   ^-  [p=upas q=upas]
   =<  [p=(tred a b) q=(tred b a)]
   |%
-```
-
-XX document
-
-###++axes
-
-```
   ++  axes                                              ::  locs of nouns
     |=  [a=@ b=*]  ^-  (map ,* axis)
     =+  c=*(map ,* axis)
@@ -426,13 +515,6 @@ XX document
     %-  ~(uni by $(a (mul 2 a), b -.b))
     $(a +((mul 2 a)), b +.b)
   ::
-```
-
-XX document
-
-###++tred
-
-```
   ++  tred                                              ::  diff a->b
     |=  [a=* b=*]  ^-  upas
     =|  c=(unit ,*)
@@ -449,7 +531,17 @@ XX document
       ==
     [%0 u.c]
   --
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 ```
+
+Generate tree diff from two nouns.
+
+    ~zod/try=> (nude 40 20)
+    [p=[%1 p=20] q=[%1 p=40]]
+    ~zod/try=> (nude [5 5] 5)
+    [p=[%0 p=3] q=[p=[%0 p=1] q=[%0 p=1]]]
+    ~zod/try=> (nude "sam" "sal")
+    [ p=[p=[%1 p=115] q=[p=[%1 p=97] q=[p=[%1 p=108] q=[%0 p=15]]]]
+      q=[p=[%1 p=115] q=[p=[%1 p=97] q=[p=[%1 p=109] q=[%0 p=15]]]]
+    ]
 
 ---

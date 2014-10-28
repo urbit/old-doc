@@ -887,57 +887,17 @@ Print to span
       --
   =+  rex=*tape
   =<  |%
-```
-
-Print to tape, using helper arms
-
-    ~zod/try=> ~(rend co %$ %ux 200)
-    "0xc8"
-    ~zod/try=> ~(rend co %many ~[[%$ ux/200] [%$ p/40]])
-    "._0xc8_~~tem__"
-
-###++a-co
-
-```
       ++  a-co  |=(dat=@ ((d-co 1) dat))
-```
-
-XX document
-
-###++d-co
-
-```
       ++  d-co  |=(min=@ (em-co [10 min] |=([? b=@ c=tape] [~(d ne b) c])))
-```
-
-XX document
-
-###++r-co
-
-```
       ++  r-co
         |=  [syn=? nub=@ der=@ ign=(unit tape) ne=?]
         =>  .(rex ['.' (t-co ((d-co 1) der) ne)])
         =>  .(rex ((d-co 1) nub))
         ?:(syn rex ['-' rex])
-```
-
-XX document
-
-###++t-co
-
-```
       ++  t-co  |=  [a=tape n=?]  ^-  tape 
         ?:  n  a
         ?~  a  ~|(%empty-frac !!)  t.a
       ::
-```
-
-XX document
-
-###++s-co
-
-```
       ++  s-co
         |=  esc=(list ,@)  ^-  tape
         ~|  [%so-co esc]
@@ -947,56 +907,14 @@ XX document
         =>(.(rex $(esc t.esc)) ((x-co 4) i.esc))
         
     ::
-```
-
-XX document
-
-###++v-co
-
-```
       ++  v-co  |=(min=@ (em-co [32 min] |=([? b=@ c=tape] [~(v ne b) c])))
-```
-
-XX document
-
-###++w-co
-
-```
       ++  w-co  |=(min=@ (em-co [64 min] |=([? b=@ c=tape] [~(w ne b) c])))
-```
-
-XX document
-
-###++x-co
-
-```
       ++  x-co  |=(min=@ (em-co [16 min] |=([? b=@ c=tape] [~(x ne b) c])))
-```
-
-XX document
-
-###++y-co
-
-```
       ++  y-co  |=(dat=@ ((d-co 2) dat))
-```
-
-XX document
-
-###++z-co
-
-```
       ++  z-co  |=(dat=@ `tape`['0' 'x' ((x-co 1) dat)])
       --
   ~%  %co  +>  ~
   |%
-```
-
-XX document
-
-###++em-co
-
-```
   ++  em-co
     ~/  %emco
     |=  [[bas=@ min=@] [par=$+([? @ tape] tape)]]
@@ -1011,13 +929,6 @@ XX document
       rex  (par =(0 dar) rad rex)
     ==
   ::
-```
-
-XX document
-
-###++ox-co
-
-```
   ++  ox-co
     ~/  %oxco
     |=  [[bas=@ gop=@] dug=$+(@ @)]
@@ -1031,13 +942,6 @@ XX document
       [bas ?:(top 0 gop)]
     |=([? b=@ c=tape] [(dug b) c])
   ::
-```
-
-XX document
-
-###++ro-co
-
-```
   ++  ro-co
     ~/  %roco
     |=  [[buz=@ bas=@ dop=@] dug=$+(@ @)]
@@ -1053,7 +957,29 @@ XX document
 ::
 ```
 
-XX document
+Print to tape, using helper arms
+
+    ~zod/try=> ~(rend co ~ %ux 200)
+    "0xc8"
+    ~zod/try=> ~(rend co %many ~[[%$ ux/200] [%$ p/40]])
+    "._0xc8_~~tem__"
+    ~zod/try=> ~(rend co ~ %p 32.819)
+    "~pillyt"
+    ~zod/try=> ~(rend co ~ %ux 18)
+    "0x12"
+    ~zod/try=> ~(rend co [~ p=[p=%if q=0x7f00.0001]])
+    ".127.0.0.1"
+    ~zod/try=> `@ux`.127.0.0.1
+    2.130.706.433
+    ~zod/try=> ~(rend co %many ~[[~ %ud 20] [~ %uw 133] [~ %tas 'sam']])
+    "._20_0w25_sam__"
+    ~zod/try=> ~(rend co %blob [1 1])
+    "~0ph"
+    ~zod/try=> ~0ph
+    [1 1]
+    ~zod/try=> `@uv`(jam [1 1])
+    0vph
+
 
 ###++ne
 

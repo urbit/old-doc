@@ -25,8 +25,19 @@
 ::
 ```
 
+Greatest common denominator
 
-XX document
+    ~zod/try=> (egcd 20 15)
+    [d=5 u=2 v=1]
+    ~zod/try=> (egcd 24 16)
+    [d=8 u=2 v=1]
+    ~zod/try=> (egcd 7 5)
+    [d=1 u=3 v=6]
+    ~zod/try=> (egcd (shaf ~ %ham) (shaf ~ %sam))
+    [ d=1
+      u=59.983.396.314.566.203.239.184.568.129.921.874.787  
+      v=38.716.650.351.034.402.960.165.718.823.532.275.722
+    ]
 
 ###++pram
 
@@ -69,8 +80,19 @@ XX document
 ::
 ```
 
+Probable prime test
 
-XX document
+    ~zod/try=> (pram 31)
+    %.y
+    ~zod/try=> =+(a=2 |-(?:(=(a 31) ~ [i=(mod 31 a) t=$(a +(a))])))
+    ~[1 1 3 1 1 3 7 4 1 9 7 5 3 1 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1]
+    ~zod/try=> =+(a=2 |-(?:(=(a 31) ~ [i=(mod 30 a) t=$(a +(a))])))
+    ~[0 0 2 0 0 2 6 3 0 8 6 4 2 0 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0]
+    ~zod/try=> (pram 256)
+    %.n
+    ~zod/try=> (pram (dec (bex 127)))
+    %.y
+
 
 ###++ramp
 
@@ -83,14 +105,27 @@ XX document
   ?:  =((mul 100 a) d)
     ~|(%ar-ramp !!)
   =+  e=(~(raw og c) a)
-  ?:  &(|-(?~(b & &(!=(1 (mod e i.b)) $(b +.b)))) (pram e))
+  ?:  &((levy b |=(f=@ !=(1 (mod e f)))) (pram e))
     e
   $(c +(c), d (shax d))
 ::
 ```
 
+Random `a` bit prime, which isn't 1 modulo a list of other numbers, using salt
+`c`.
 
-XX document
+    ~zod/try=> (ramp 20 ~ %hamelok)
+    0xf.1f0d
+    ~zod/try=> (ramp 20 ~ %hameloe)
+    0x2.d341
+    ~zod/try=> (ramp 5 ~ %kole)
+    0x1f
+    ~zod/try=> (ramp 7 ~ %kole)
+    0x4f
+    ~zod/try=> (ramp 7 ~[0x4e] %kole)
+    0x43
+    ~zod/try=> `@uw`(ramp 128 ~ %late)
+    0w3y.irKIL.l-pp1.2CkG4.3lsTF
 
 ###++fo
 
@@ -101,7 +136,10 @@ XX document
 
 XX DO NOT RERUN GET.LS, THERE EXIST ARM COLLISIONS
 
-XX document
+Core for performing arithmetic modulo a prime number
+
+    ~zod/try=> ~(. fo 79)
+    <7.get [@ud <373.jdd 100.kzl 1.ypj %164>]>
 
 ###++dif
 
@@ -112,7 +150,12 @@ XX document
   ::
 ```
 
-XX document
+Subtract 
+
+    ~zod/try=> (~(dif fo 79) 10 5)
+    5
+    ~zod/try=> (~(dif fo 79) 5 10)
+    74
 
 ###++exp
 
@@ -127,7 +170,10 @@ XX document
   ::
 ```
 
-XX document
+Exponent
+
+    ~zod/try=> (~(exp fo 79) 3 5)
+    46
 
 ###++fra
 
@@ -138,7 +184,12 @@ XX document
   ::
 ```
 
-XX document
+Divide
+
+    ~zod/try=> (~(fra fo 79) 20 4)
+    5
+    ~zod/try=> (~(fra fo 79) 7 11)
+    15
 
 ###++inv
 
@@ -150,7 +201,15 @@ XX document
   ::
 ```
 
-XX document
+Multiplicative inverse
+
+    ~zod/try=> (~(inv fo 79) 12)
+    33
+    ~zod/try=> (~(pro fo 79) 12 33)
+    1
+    ~zod/try=> (~(inv fo 79) 0)
+    0
+
 
 ###++pro
 
@@ -161,7 +220,12 @@ XX document
   ::
 ```
 
-XX document
+Product
+
+    ~zod/try=> (~(pro fo 79) 5 10)
+    50
+    ~zod/try=> (~(pro fo 79) 5 20)
+    21
 
 ###++sit
 
@@ -172,7 +236,13 @@ XX document
   ::
 ```
 
-XX document
+Bounds check
+
+    ~zod/try=> (~(sit fo 79) 9)
+    9
+    ~zod/try=> (~(sit fo 79) 99)
+    20
+
 
 ###++sum
 
@@ -183,7 +253,13 @@ XX document
   --
 ```
 
-XX document
+Add
+
+    ~zod/try=> (~(sum fo 79) 9 9)
+    18
+    ~zod/try=> (~(sum fo 79) 70 9)
+    0
+
 
 ###++ga
 
@@ -194,6 +270,8 @@ XX document
   =+  ma=(dec si)
   =>  |%
 ```
+
+RSA internals
 
 XX document
 
