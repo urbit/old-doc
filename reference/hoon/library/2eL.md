@@ -80,30 +80,32 @@ Parsing rule. Parses an atom of odor [@pG](), a phrase of eight of phonetic byte
 
 ###++pev
 
-Parse <= 4 base-32
+Parse <= 5 base-32
 
 ```
   ++  pev  (bass 32 ;~(plug sev (stun [0 4] siv)))
 ```
 
-Parsing rule. Parses up to four base-32 digits.
+Parsing rule. Parses up to five base-32 digits with no leading zeroes.
 
     /~zod/try=> (scan "a" pev:ab)
     q=10
     /~zod/try=> (scan "290j" pev:ab)
     q=74.771
-    /~zod/try=> `@`0v290j
-    74.771
-
+    ~zod/try=> (scan "123456" pev:ab)
+    ! {1 6}
+    ! exit
+    ~zod/try=> (scan "090j" pev:ab)
+    ~ <syntax error at [1 11]>
 ###++pew
 
-Parse up to 4 base-64
+Parse <= 5 base-64
 
 ```
   ++  pew  (bass 64 ;~(plug sew (stun [0 4] siw)))
 ```
 
-Parsing rule. Parses up to four base-64 digits.
+Parsing rule. Parses up to five base-64 digits with no leading zeroes.
 
     /~zod/try=> (scan "Q" pew:ab)
     q=52
@@ -111,6 +113,12 @@ Parsing rule. Parses up to four base-64 digits.
     q=2.838.473
     /~zod/try=> `@`0waQ~9
     2.838.473
+    ~zod/socialnet=> (scan "123456" pew:ab)
+    ! {1 6}
+    ! exit
+    ~zod/socialnet=> (scan "012345" pew:ab)
+    ! {1 1}
+    ! exit
 
 ###++piv
 
@@ -125,8 +133,8 @@ Parsing rule. Parses exactly five base-32 digits.
     /~zod/try=> (scan "10b3l" piv:ab)
     q=1.059.957
     ~zod/try=> (scan "1" piv:ab)
-        ! {1 2}
-        ! exit
+    ! {1 2}
+    ! exit
 
 ###++piw
 
@@ -152,7 +160,7 @@ Parse <= 4 binary
   ++  qeb  (bass 2 ;~(plug seb (stun [0 3] sib)))
 ```
 
-Parsing rule. Parses a binary number of up to 4 digits in length.
+Parsing rule. Parses a binary number of up to 4 digits in length with no leading zeroes.
 
     /~zod/try=> (scan "1" qeb:ab)
     q=1
@@ -160,6 +168,12 @@ Parsing rule. Parses a binary number of up to 4 digits in length.
     q=5
     ~zod/try=> (scan "1111" qeb:ab)
     q=15
+    ~zod/socialnet=> (scan "11111" qeb:ab)
+    ! {1 5}
+    ! exit
+    ~zod/socialnet=> (scan "01" qeb:ab)
+    ! {1 1}
+    ! exit
 
 ###++qex
 
@@ -169,18 +183,22 @@ Parse <= 4 hex
   ++  qex  (bass 16 ;~(plug sex (stun [0 3] hit)))
 ```
 
-Parsing rule. Parses a hexadecimal number of up to 4 digits in length.
+Parsing rule. Parses a hexadecimal number of up to 4 digits in length with no leading zeroes.
 
-    /~zod/try=> (scan "c" qex:ab)
-    q=12
-    /~zod/try=> (scan "ca" qex:ab)
+    ~zod/try=> (scan "ca" qex:ab)
     q=202
     /~zod/try=> (scan "18ac" qex:ab)
     q=6.316
-
+    ~zod/socialnet=> (scan "18acc" qex:ab)
+    ! {1 5}
+    ! exit
+    ~zod/socialnet=> (scan "08ac" qex:ab)
+    ! {1 1}
+    ! exit
+    
 ###++qib
 
-Parse 4 bin digits
+Parse 4 binary
 
 ```
   ++  qib  (bass 2 (stun [4 4] sib))
@@ -198,7 +216,7 @@ Parsing rule. Parses exactly four binary digits.
 
 ###++qix
 
-Parse 4 hexadecimal 
+Parse 4 hex
 
 ```
   ++  qix  (bass 16 (stun [4 4] six))
@@ -270,7 +288,7 @@ Parse base-64
   ++  sew  ;~(pose sed sow)
 ```
 
-Parsing rule. Parses nonzero base-64 digit
+Parsing rule. Parses a nonzero base-64 digit
 
     /~zod/try=> (scan "M" sew:ab)
     48
@@ -301,29 +319,6 @@ Parsing rule. Parses a binary digit.
     /~zod/try=> (scan "1" sib:ab)
     1
 
-###++siq
-
-```
-  ++  siq  ;~  pose
-             (shim 'a' 'z')
-             (shim 'A' 'Z')
-             (shim '0' '9')
-             hep
-             (cold 32 dot)
-             ;~(pfix sig ;~(pose sig dot bix))
-           ==
-```
-
-Single formal cord character
-
-    /~zod/try=> ~~20.a
-    '20 a'
-    /~zod/try=> (tape (scan "20.a" (star siq:ab)))
-    "20 a"
-    /~zod/try=> (tape (scan "20.~43-2" (star siq:ab)))
-    "20 C-2"
-
-
 ###++sid
 
 Parse decimal
@@ -332,7 +327,7 @@ Parse decimal
   ++  sid  (cook |=(a=@ (sub a '0')) (shim '0' '9'))
 ```
 
-Parse decimal digit
+Parsing rule. Parses a decimal digit.
 
     /~zod/try=> (scan "5" sid:ab)
     5
@@ -358,20 +353,20 @@ Parse base-64
   ++  siw  ;~(pose sid sow)
 ```
 
-Parsing rule. Parses a base64 digit.
+Parsing rule. Parses a base-64 digit.
 
     /~zod/try=> (scan "M" siw:ab)
     48
 
 ###++six
 
-Parse hexadecimal
+Parse hex
 
 ```
   ++  six  ;~(pose sid sox)
 ```
 
-Parse hexadecimal digit
+Parsing rule. Parses a hexadecimal digit.
 
     /~zod/try=> (scan "e" six:ab)
     14
@@ -384,7 +379,7 @@ Parse base-32
   ++  sov  (cook |=(a=@ (sub a 87)) (shim 'a' 'v'))
 ```
 
-Parsing rule. Parses base-32 letter.
+Parsing rule. Parses a base-32 letter.
 
     /~zod/try=> (scan "c" sov:ab)
     12
@@ -415,14 +410,14 @@ Parse hex letter
   ++  sox  (cook |=(a=@ (sub a 87)) (shim 'a' 'f'))
 ```
 
-Parse hexadecimal letter
+Parsing rule. Parses a hexadecimal letter.
 
     /~zod/try=> (scan "e" sox:ab)
     14
 
 ###++ted
 
-Parse 3 decimal digits
+Parse <= 3 decimal
 
 ```
   ++  ted  (bass 10 ;~(plug sed (stun [0 2] sid)))
@@ -512,7 +507,7 @@ Parse span characters
            (star ;~(pose nud low hep dot sig cab))
 ```
 
-Parsing rule. Parses characters of the odor [`@ta`](), which represents a span. 
+Parsing rule. Parses characters from atoms of the span odor [`@ta`]().
 
     ~zod/socialnet=> `@ta`(scan "asa-lom_tak" urs:ab)
     ~.asa-lom_tak 
@@ -529,7 +524,7 @@ Parse non-'_' span
            (star ;~(pose nud low hep dot sig))
 ```
 
-Parsing rule. Parses all characters of the odor [`@ta`](), which represents a span.
+Parsing rule. Parses all characters of the span odor [`@ta`]() except for '_'.
 
     ~zod/try=> `@t`(scan "asa-lom.t0k" urt:ab)
     'asa-lom.t0k'
@@ -701,23 +696,6 @@ IPv4 address
     .127.0.0.1
     /~zod/try=> `@if`(scan "8.8.8.8" lip:ag)
     .8.8.8.8
-
-###++tyq
-
-```
-  ++  tyq  (cook |=(a=(list ,@) (rap 3 a)) (plus siq:ab))
-```
-
-Formal cord form
-
-    /~zod/try=> (scan "20.a" tyq:ag)
-    1.629.499.442
-    /~zod/try=> `@t`(scan "20.a" tyq:ag)
-    '20 a'
-    /~zod/try=> ~~20.a
-    '20 a'
-    /~zod/try=> `@t`(scan "20.~43-2" tyq:ag)
-    '20 C-2'
 
 ###++viz
 
