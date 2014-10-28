@@ -1,34 +1,30 @@
 #[barhep, `|-`, %brhp](#brhp)
 
-[Short description]
+Kicked trap
 
-#Syntax
-
-`|-`, `barhep`, `[%brhp p=twig]` is a synthetic rune that produces
-a dry `%gold` trap and kicks it (cores, link). `|-` takes a twig.
+`|-`, `barhep`, `[%brhp p=twig]` is a synthetic rune that produces a dry `%gold` trap and kicks it (cores, link). `|-` takes a twig.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%brhp p=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a twig
 
 ##Tall form
 
-|-  p
+    |-  p
 
-|-
-p
-
-|-
+    |-
     p
+
+    |-
+        p
 
 ##Wide form
 
-|-(p)
+    |-(p)
 
 ##Irregular form
 

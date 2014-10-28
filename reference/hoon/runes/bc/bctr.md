@@ -10,15 +10,15 @@ Default value
 
 ##Tall form
 
-$*  p
+    $*  p
 
 ##Wide form
 
-$*(p)
+    $*(p)
 
 ##Irregular form
 
-*p
+    *p
 
 ##Examples
 
