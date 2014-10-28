@@ -194,13 +194,13 @@ Parsing rule. Parses four binary digits.
 
 ###++qix
 
-Parse 4 hex digits
+Parse 4 hexadecimal 
 
 ```
   ++  qix  (bass 16 (stun [4 4] six))
 ```
 
-Parsing rule. Parses four hexadecimal digits
+Parsing rule. Parses exactly four hexadecimal digits.
 
     /~zod/try=> (scan "0100" qix:ab)
     q=256
@@ -266,29 +266,33 @@ Parse base-64
   ++  sew  ;~(pose sed sow)
 ```
 
-Parse nonzero base64 digit
+Parsing rule. Parses nonzero base-64 digit
 
     /~zod/try=> (scan "M" sew:ab)
     48
 
 ###++sex
 
+Parse hexadecimal
+
 ```
   ++  sex  ;~(pose sed sox)
 ```
 
-Parse nonzero hexadecimal digit
+Parsing rule. Parses a nonzero hexadecimal digit.
 
     /~zod/try=> (scan "e" sex:ab)
     14
 
 ###++sib
 
+Parse binary
+
 ```
   ++  sib  (cook |=(a=@ (sub a '0')) (shim '0' '1'))
 ```
 
-Parse binary digit
+Parsing rule. Parses a binary digit.
 
     /~zod/try=> (scan "1" sib:ab)
     1
@@ -318,6 +322,8 @@ Single formal cord character
 
 ###++sid
 
+Parse decimal
+
 ```
   ++  sid  (cook |=(a=@ (sub a '0')) (shim '0' '9'))
 ```
@@ -329,27 +335,33 @@ Parse decimal digit
 
 ###++siv
 
+Parse base-32
+
 ```
   ++  siv  ;~(pose sid sov)
 ```
 
-Parse base32 digit
+Parsing rule. Parses a base-32 digit.
 
     /~zod/try=> (scan "c" siv:ab)
     12
 
 ###++siw
 
+Parse base-64
+
 ```
   ++  siw  ;~(pose sid sow)
 ```
 
-Parse base64 digit
+Parsing rule. Parses a base64 digit.
 
     /~zod/try=> (scan "M" siw:ab)
     48
 
 ###++six
+
+Parse hexadecimal
 
 ```
   ++  six  ;~(pose sid sox)
@@ -362,16 +374,20 @@ Parse hexadecimal digit
 
 ###++sov
 
+Parse base-32
+
 ```
   ++  sov  (cook |=(a=@ (sub a 87)) (shim 'a' 'v'))
 ```
 
-Parse base32 letter
+Parsing rule. Parses base-32 letter.
 
     /~zod/try=> (scan "c" sov:ab)
     12
 
 ###++sow
+
+Parse base-64
 
 ```
   ++  sow  ;~  pose
@@ -382,12 +398,14 @@ Parse base32 letter
            ==
 ```
 
-Parse base64 letter/symbol
+Parsing rule. Parses a base-64 letter/symbol.
 
     /~zod/try=> (scan "M" sow:ab)
     48
 
 ###++sox
+
+Parse hex letter
 
 ```
   ++  sox  (cook |=(a=@ (sub a 87)) (shim 'a' 'f'))
@@ -399,6 +417,8 @@ Parse hexadecimal letter
     14
 
 ###++ted
+
+Parse 3 decimal digits
 
 ```
   ++  ted  (bass 10 ;~(plug sed (stun [0 2] sid)))
@@ -416,25 +436,28 @@ Parse decimal number of up to 3 digits
 
 ###++tip
 
+Leading phonetic byte
+
 ```
   ++  tip  (sear |=(a=@ (ins:po a)) til)
 ```
 
-Leading phonetic syllable
+Parsing rule. Parses the leading phonetic byte that represents a syllable.
 
     /~zod/try=> (scan "doz" tip:ab)
     0
     /~zod/try=> (scan "pit" tip:ab)
     242
 
-
 ###++tiq
+
+Trailing phonetic syllable
 
 ```
   ++  tiq  (sear |=(a=@ (ind:po a)) til)
 ```
 
-Trailing phonetic syllable
+Parsing rule. Parses the trailing phonetic byte that represents a syllable.
 
     /~zod/try=> (scan "zod" tiq:ab)
     0
@@ -443,29 +466,41 @@ Trailing phonetic syllable
 
 ###++tid
 
+Parse 3 decimal digits
+
 ```
   ++  tid  (bass 10 (stun [3 3] sid))
 ```
 
-Three decimal digits
+Parsing rule. Parses exactly three decimal digits.
     
     /~zod/try=> (scan "013" tid:ab)
     q=13
+    ~zod/socialnet=> (scan "01" tid:ab)
+    ! {1 3}
+    ! exit
 
 ###++til
+
+Parse 3 lowercase
 
 ```
   ++  til  (boss 256 (stun [3 3] low))
 ```
 
-Three lowercase letters
+Parsing rule. Parses exactly three lowercase letters.
 
     /~zod/try=> (scan "mer" til:ab)
     q=7.497.069
     /~zod/try=> `@t`(scan "mer" til:ab)
     'mer'
+    ~zod/socialnet=> (scan "me" til:ab)
+    ! {1 3}
+    ! exit
 
 ###++urs
+
+Parse span characters
 
 ```
   ++  urs  %+  cook
@@ -473,12 +508,16 @@ Three lowercase letters
            (star ;~(pose nud low hep dot sig cab))
 ```
 
-Span characters
+Parsing rule. Parses characters
 
-    /~zod/try=> `@t`(scan "asa-lom_tak" urs:ab)
+    ~zod/socialnet=> `@ta`(scan "asa-lom_tak" urs:ab)
+    ~.asa-lom_tak 
+    ~zod/try=> `@t`(scan "asa-lom_tak" urs:ab)
     'asa-lom_tak'
 
 ###++urt
+
+Parse non-'_' span
 
 ```
   ++  urt  %+  cook
@@ -486,18 +525,20 @@ Span characters
            (star ;~(pose nud low hep dot sig))
 ```
 
-Non-'_' span characters.
+Parsing rule. Parses non-'_' span characters.
 
     /~zod/try=> `@t`(scan "asa-lom.t0k" urt:ab)
     'asa-lom.t0k'
 
 ###++voy
 
+Parse bas, soq, or bix
+
 ```
   ++  voy  ;~(pfix bas ;~(pose bas soq bix))
 ```
 
-Escaped backslash, single quote, or hex pair byte.
+Parsing rule. Parses an escaped backslash, single quote, or hex pair byte.
 
     /~zod/try=> (scan "\\0a" voy:ab)
     q=10
@@ -505,6 +546,8 @@ Escaped backslash, single quote, or hex pair byte.
     q=39
 
 ###++ag
+
+Top-level atom parsers
 
 ```
 ++  ag
