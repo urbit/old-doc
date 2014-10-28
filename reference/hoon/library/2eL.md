@@ -20,7 +20,7 @@ Parse hex digit pair
   ++  bix  (bass 16 (stun [2 2] six))
 ```
 
-Parsing rule. Parses a pair of base16 digits. Used in escapes.
+Parsing rule. Parses a pair of base-16 digits. Used in escapes.
 
     /~zod/try=> (scan "07" bix:ab)
     q=7
@@ -50,8 +50,8 @@ Parse two phonemic pairs
 
 ```
   ++  huf  %+  cook
-             |=([a=@ b=@] (wred:un ~(zug mu ~(zag mu [a b]))))
-           ;~(plug hif ;~(pfix hep hif))
+               |=([a=@ b=@] (wred:un ~(zug mu ~(zag mu [a b]))))
+             ;~(plug hif ;~(pfix hep hif))
 ```
 
 Parsing rule. Parses and unscrambles and atom of odor [@pF](), a phrase of two two-byte pairs that are encoded (and scrambled) phonetically.
@@ -71,7 +71,7 @@ Parse 8 phonemic bytes
   ++  hyf  (bass 0x1.0000.0000 ;~(plug huf ;~(pfix hep huf) (easy ~)))
 ```
 
-Parsing rule. Parses an atom of odor [@pG](), a phrase of eight of phonemic byes. 
+Parsing rule. Parses an atom of odor [@pG](), a phrase of eight of phonemic bytes. 
 
     /~zod/try=> (scan "sondel-forsut-tillyn-nillyt" hyf:ab)
     q=365.637.097.828.335.095
@@ -80,7 +80,7 @@ Parsing rule. Parses an atom of odor [@pG](), a phrase of eight of phonemic byes
 
 ###++pev
 
-Parse up to 4 base32
+Parse up to 4 base-32
 
 ```
   ++  pev  (bass 32 ;~(plug sev (stun [0 4] siv)))
@@ -97,10 +97,10 @@ Parsing rule. Parses up to four base-32 digits
 
 ###++pew
 
-Parse up to 4 base64
+Parse up to 4 base-64
 
 ```
-++  pew  (bass 64 ;~(plug sew (stun [0 4] siw)))
+  ++  pew  (bass 64 ;~(plug sew (stun [0 4] siw)))
 ```
 
 Parsing rule. Parses up to four base-64 digits.
@@ -114,42 +114,45 @@ Parsing rule. Parses up to four base-64 digits.
 
 ###++piv
 
-Parse 5 base32
+Parse 5 base-32
 
 ```
-++  piv  (bass 32 (stun [5 5] siv))
+  ++  piv  (bass 32 (stun [5 5] siv))
 ```
 
-Parsing rule. Parses exactly five base32 digits.
+Parsing rule. Parses exactly five base-32 digits.
 
     /~zod/try=> (scan "10b3l" piv:ab)
     q=1.059.957
     ~zod/try=> (scan "1" piv:ab)
         ! {1 2}
         ! exit
+
 ###++piw
+
+Parse 5 base-64
 
 ```
   ++  piw  (bass 64 (stun [5 5] siw))
 ```
 
-Parses exactly five base64 digits.
+Parsing rule. Parses exactly five base-64 digits.
 
     /~zod/try=> (scan "2C-pZ" piw:ab)
     q=43.771.517
     ~zod/socialnet=> (scan "2" piv:ab)
     ! {1 2}
     ! exit
-    
-    
 
 ###++qeb
+
+Parse up to 4 digit binary
 
 ```
   ++  qeb  (bass 2 ;~(plug seb (stun [0 3] sib)))
 ```
 
-Parses a binary number of up to 4 digits.
+Parsing rule. Parses a binary number of up to 4 digits in length.
 
     /~zod/try=> (scan "1" qeb:ab)
     q=1
@@ -158,11 +161,13 @@ Parses a binary number of up to 4 digits.
 
 ###++qex
 
+Parse up to 4 digit hex
+
 ```
   ++  qex  (bass 16 ;~(plug sex (stun [0 3] hit)))
 ```
 
-Parse a hexadecimal number of up to 4 digits
+Parsing rule. Parses a hexadecimal number of up to 4 digits in length.
 
     /~zod/try=> (scan "c" qex:ab)
     q=12
@@ -173,11 +178,13 @@ Parse a hexadecimal number of up to 4 digits
 
 ###++qib
 
+Parse 4 bin digits
+
 ```
   ++  qib  (bass 2 (stun [4 4] sib))
 ```
 
-Parse four binary digits
+Parsing rule. Parses four binary digits.
 
     /~zod/try=> (scan "0001" qib:ab)
     q=1
@@ -187,24 +194,31 @@ Parse four binary digits
 
 ###++qix
 
+Parse 4 hex digits
+
 ```
   ++  qix  (bass 16 (stun [4 4] six))
 ```
 
-Parse four hexadecimal digits
+Parsing rule. Parses four hexadecimal digits
 
     /~zod/try=> (scan "0100" qix:ab)
     q=256
     /~zod/try=> (scan "10ff" qix:ab)
     q=4.351
+    ~zod/socialnet=> (scan "0" qix:ab)
+    ! {1 2}
+    ! exit
 
 ###++seb
+
+Parse 1
 
 ```
   ++  seb  (cold 1 (just '1'))
 ```
 
-Parse 1.
+Parsing rule. Parses the number 1.
 
     /~zod/try=> (scan "1" seb:ab)
     1
@@ -217,27 +231,36 @@ Parse 1.
 
 ###++sed
 
+Parse decimal
+
 ```
   ++  sed  (cook |=(a=@ (sub a '0')) (shim '1' '9'))
 ```
 
-Parse nonzero decimal digit
+Parsing rule. Parses a nonzero decimal digit.
 
     /~zod/try=> (scan "5" sed:ab)
     5
+    ~zod/socialnet=> (scan "55" sed:ab)
+    ! {1 2}
+    ! exit
 
 ###++sev
+
+Parse base-32
 
 ```
   ++  sev  ;~(pose sed sov)
 ```
 
-Parse nonzero base32 digit
+Parsing rule. Parses a nonzero base-32 digit
 
     /~zod/try=> (scan "c" sev:ab)
     12
 
 ###++sew
+
+Parse base-64
 
 ```
   ++  sew  ;~(pose sed sow)
