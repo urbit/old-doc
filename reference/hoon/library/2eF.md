@@ -1,6 +1,5 @@
 ##section 2eF, parsing (ascii)          
 
-
 ###++ace
 
 Space
