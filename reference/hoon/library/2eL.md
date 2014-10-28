@@ -1477,6 +1477,23 @@ Parse . prefixed dime: ip adress, loobean, or float.
 
 Render dime to cord
 
+    ~zod/try=> (scot %p ~pillyt)
+    ~.~pillyt
+    ~zod/try=> `@t`(scot %p ~pillyt)
+    '~pillyt'
+    ~zod/try=> (scot %ux 0x12)
+    ~.0x12
+    ~zod/try=> `@t`(scot %ux 0x12)
+    '0x12'
+    ~zod/try=> (scot %if .127.0.0.1)
+    ~..127.0.0.1
+    ~zod/try=> `@t`(scot %if .127.0.0.1)
+    '.127.0.0.1'
+    ~zod/try=> (scot %ta ~.asd_a)
+    ~.~.asd_a
+    ~zod/try=> `@t`(scot %ta ~.asd_a)
+    '~.asd_a'
+
 ###++scow
 
 ```
@@ -1485,13 +1502,31 @@ Render dime to cord
 
 Render dime to tape
 
+    ~zod/try=> (scow %p ~pillyt)
+    "~pillyt"
+    ~zod/try=> (scow %ux 0x12)
+    "0x12"
+    ~zod/try=> (scow %if .127.0.0.1)
+    ".127.0.0.1"
+    ~zod/try=> (scow %ta ~.asd_a)
+    "~.asd_a"
+
 ###++slat
 
 ```
 ++  slat  |=(mod=@tas |=(txt=@ta (slaw mod txt)))
 ```
 
-Parse cord to odor partial
+Parse span to odor partial
+
+    ~zod/try=> `(unit ,@p)`((slat %p) '~pillyt')
+    [~ ~pillyt]
+    ~zod/try=> `(unit ,@ux)`((slat %ux) '0x12')
+    [~ 0x12]
+    ~zod/try=> `(unit ,@if)`((slat %if) '.127.0.0.1')
+    [~ .127.0.0.1]
+    ~zod/try=> `(unit ,@ta)`((slat %ta) '~.asd_a')
+    [~ ~.asd_a
 
 ###++slav
 
@@ -1499,7 +1534,24 @@ Parse cord to odor partial
 ++  slav  |=([mod=@tas txt=@ta] (need (slaw mod txt)))
 ```
 
-Demand parse cord with odor
+Demand parse span with odor
+
+    ~zod/try=> `@p`(slav %p '~pillyt')
+    ~pillyt
+    ~zod/try=> `@p`(slav %p '~pillam')
+    ! exit
+    ~zod/try=> `@ux`(slav %ux '0x12')
+    0x12
+    ~zod/try=> `@ux`(slav %ux '0b10')
+    ! exit
+    ~zod/try=> `@if`(slav %if '.127.0.0.1')
+    .127.0.0.1
+    ~zod/try=> `@if`(slav %if '.fe80.0.0.202')
+    ! exit
+    ~zod/try=> `@ta`(slav %ta '~.asd_a')
+    ~.asd_a
+    ~zod/try=> `@ta`(slav %ta '~~asd-a')
+    ! exit
 
 ###++slaw
 
@@ -1512,7 +1564,25 @@ Demand parse cord with odor
 ::
 ```
 
-Parse cord with odor
+Parse span with odor
+
+    ~zod/try=> `(unit ,@p)`(slaw %p '~pillyt')
+    [~ ~pillyt]
+    ~zod/try=> `(unit ,@p)`(slaw %p '~pillam')
+    ~
+    ~zod/try=> `(unit ,@ux)`(slaw %ux '0x12')
+    [~ 0x12]
+    ~zod/try=> `(unit ,@ux)`(slaw %ux '0b10')
+    ~
+    ~zod/try=> `(unit ,@if)`(slaw %if '.127.0.0.1')
+    [~ .127.0.0.1]
+    ~zod/try=> `(unit ,@if)`(slaw %if '.fe80.0.0.202')
+    ~
+    ~zod/try=> `(unit ,@ta)`(slaw %ta '~.asd_a')
+    [~ ~.asd_a]
+    ~zod/try=> `(unit ,@ta)`(slaw %ta '~~asd-a')
+    ~
+
 
 ###++slay
 
@@ -1526,7 +1596,31 @@ Parse cord with odor
 ::
 ```
 
-Parse cord as coin
+Parse span as coin
+
+    ~zod/try=> (slay '~pillyt')
+    [%$ p=[p=~.p q=32.819]]
+    ~zod/try=> (slay '0x12')
+    [%$ p=[p=~.ux q=18]]
+    ~zod/try=> (slay '.127.0.0.1')
+    [%$ p=[p=~.if q=2.130.706.433]]
+    ~zod/try=> `@ud`.127.0.0.1
+    2.130.706.433
+    ~zod/try=> (slay '._20_0w25_sam__')
+    [ %many 
+        p
+      ~[[%$ p=[p=~.ud q=20]] [%$ p=[p=~.uw q=133]] [%$ p=[p=~.tas q=7.168.371]]]
+    ]
+    ~zod/try=> `@`%sam
+    7.168.371
+    ~zod/try=> (slay '~0ph')
+    [%blob p=[1 1]]
+    ~zod/try=> ~0ph
+    [1 1]
+    ~zod/try=> `@uv`(jam [1 1])
+    0vph
+
+---
 
 ###++smyt
 
@@ -1540,4 +1634,71 @@ Parse cord as coin
 
 Render path as tank
 
-XX move?
+    ~zod/try=> (smyt %)
+    [ %rose
+      p=[p="/" q="/" r="/"]
+        q
+      ~[ [%leaf p="~zod"]
+         [%leaf p="try"] 
+         [%leaf p="~2014.10.28..18.36.58..a280"]
+       ]
+    ]
+    ~zod/try=> (smyt /as/les/top)
+    [ %rose
+      p=[p="/" q="/" r="/"]
+      q=~[[%leaf p="as"] [%leaf p="les"] [%leaf p="top"]]
+    ]
+
+###++spat
+
+```
+++  spat  |=(pax=path (crip (spud pax)))               ::  path to cord
+```
+
+Render path as cord
+
+    ~zod/try=> (spat %)
+    '/~zod/try/~2014.10.28..18.40.20..4287'
+    ~zod/try=> (spat %/bin)
+    '/~zod/try/~2014.10.28..18.41.12..3bcd/bin'
+    ~zod/try=> (spat /as/les/top)
+    '/as/les/top'
+
+###++spud
+
+```
+++  spud  |=(pax=path ~(ram re (smyt pax)))             ::  path to tape
+```
+
+Render path as tape
+
+    ~zod/try=> (spud %)
+    "/~zod/try/~2014.10.28..18.40.46..e951"
+    ~zod/try=> (spud %/bin)
+    "/~zod/try/~2014.10.28..18.41.05..16f2/bin"
+    ~zod/try=> (spud /as/les/top)
+    "/as/les/top"
+
+###++stab
+
+```
+++  stab                                                ::  parse span to path
+  |=  zep=@ta  ^-  path
+  (rash zep ;~(pfix fas ;~(sfix (more fas urs:ab) fas)))
+```
+
+Parser: span to static path
+
+    ~zod/try=> (stab '/as/lek/tor')
+    /as/lek/tor
+    ~zod/try=> `(pole ,@ta)`(stab '/as/lek/tor')
+    [~.as [~.lek [~.tor ~]]]
+    ~zod/try=> (stab '/~zod/arvo/~2014.10.28..18.48.41..335f/zuse')
+    /~zod/arvo/~2014.10.28..18.48.41..335f/zuse
+    ~zod/try=> `(pole ,@ta)`(stab '/~zod/arvo/~2014.10.28..18.48.41..335f/zuse')
+    [~.~zod [~.arvo [~.~2014.10.28..18.48.41..335f [~.zuse ~]]]]
+    ~zod/try=> (stab '/a/~pillyt/pals/1')
+    /a/~pillyt/pals/1
+    ~zod/try=> `(pole ,@ta)`(stab '/a/~pillyt/pals/1')
+    [~.a [~.~pillyt [~.pals [~.1 ~]]]]
+
