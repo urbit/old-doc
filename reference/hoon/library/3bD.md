@@ -334,7 +334,18 @@ Dot followed by digits
   ++  spac  (star (mask [`@`9 `@`10 `@`13 ' ' ~]))
 ```
 
-XX document
+JSON whitespace
+
+    ~zod/try=> (scan "" spac:poja)
+    ""
+    ~zod/try=> (scan "   " spac:poja)
+    "   "
+    ~zod/try=> `*`(scan `tape`~[' ' ' ' ' ' `@`9 ' ' ' ' `@`13] spac:poja)
+    [32 32 32 9 32 32 13 0]
+    ~zod/try=> (scan "   m " spac:poja)
+    ! {1 4}
+    ! exit
+
 
 ###++ws
 
@@ -342,17 +353,21 @@ XX document
   ++  ws  |*(sef=_rule ;~(pfix spac sef))
 ```
 
-XX document
+Allow whitespace before rule
+
+    ~zod/try=> (rash '   4' digs:poja)
+    ! {1 1}
+    ! exit
+    ~zod/try=> (rash '   4' (ws digs):poja)
+    "4"
+    ~zod/try=> (rash '''
+                     
+                     4
+                     ''' (ws digs):poja)
+    "4"
 
 ##plumbing
 
-###++jify
-
-```
-  ++  jify  |*([t=@ta r=_rule] (cook |*([v=*] [t p=v]) r))
-```
-
-XX document
 
 ###++mayb
 
@@ -360,7 +375,12 @@ XX document
   ++  mayb  |*(bus=_rule ;~(pose bus (easy "")))
 ```
 
-XX document
+Optionally parse rule
+
+    ~zod/try=> (abox:poja 1^1 "not-an-array")
+    [p=[p=1 q=1] q=~]
+    ~zod/try=> ((mayb abox):poja 1^1 "not-an-array")
+    [p=[p=1 q=1] q=[~ [p="" q=[p=[p=1 q=1] q="not-an-array"]]]]
 
 ###++twel
 
