@@ -3,6 +3,11 @@
 Door with sample
 
 `|_` is a synthetic hoon that produces a [`%gold`]() [door]() with sample `p`, arms `q`. `|_` takes an associative list of names, [++term](), and expressions [++foot](), each pair of which is called an arm. The list must be closed with a `--`. `|_` is similar to `|%`, but defines a sample for the set of arms it contains. 
+
+##See also
+
+`|/`
+
 ##Produces
 
 Twig: `[%brcb p=tile q=(map term foot)]`

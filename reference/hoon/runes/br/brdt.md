@@ -58,7 +58,7 @@ None
     $:a
     42
 
-This is a simple example. We assign a shell variable `a` to be a trap that just produces the atom `42`. Printing `a` prints the core and its context. Calling `a` using `(`, the irregular form of [`%-`](), produces its value. As does pulling the arm `$` from inside it using `$:a`.
+This is a simple example. We assign a shell variable `a` to be a trap that simply produces the atom `42`. Printing `a` prints the core and its context. Calling `a` using `(`, the irregular form of [`%-`](), produces its value. As does pulling the arm `$` from inside it using `$:a`.
 
     /~zod/try=> 
     =a  10
