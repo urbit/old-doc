@@ -31,7 +31,7 @@ Parsing rule. Parses a pair of base-16 digits. Used in escapes.
 
 ###++hif
 
-Parse phonemic pair
+Parse phonetic pair
 
 ```
   ++  hif  (boss 256 ;~(plug tip tiq (easy ~)))
@@ -46,7 +46,7 @@ Parsing rule. Parses an atom of odor [@pE](), a phrase of two bytes encoded phon
 
 ###++huf
 
-Parse two phonemic pairs
+Parse two phonetic pairs
 
 ```
   ++  huf  %+  cook
@@ -54,7 +54,7 @@ Parse two phonemic pairs
              ;~(plug hif ;~(pfix hep hif))
 ```
 
-Parsing rule. Parses and unscrambles and atom of odor [@pF](), a phrase of two two-byte pairs that are encoded (and scrambled) phonetically.
+Parsing rule. Parses and unscrambles an atom of odor [@pF](), a phrase of two two-byte pairs that are encoded (and scrambled) phonetically.
 
     /~zod/try=> (scan "pittyp-pittyp" huf:ab)
     328.203.557
@@ -65,13 +65,13 @@ Parsing rule. Parses and unscrambles and atom of odor [@pF](), a phrase of two t
 
 ###++hyf
 
-Parse 8 phonemic bytes
+Parse 8 phonetic bytes
 
 ```
   ++  hyf  (bass 0x1.0000.0000 ;~(plug huf ;~(pfix hep huf) (easy ~)))
 ```
 
-Parsing rule. Parses an atom of odor [@pG](), a phrase of eight of phonemic bytes. 
+Parsing rule. Parses an atom of odor [@pG](), a phrase of eight of phonetic bytes. 
 
     /~zod/try=> (scan "sondel-forsut-tillyn-nillyt" hyf:ab)
     q=365.637.097.828.335.095
@@ -80,13 +80,13 @@ Parsing rule. Parses an atom of odor [@pG](), a phrase of eight of phonemic byte
 
 ###++pev
 
-Parse up to 4 base-32
+Parse <= 4 base-32
 
 ```
   ++  pev  (bass 32 ;~(plug sev (stun [0 4] siv)))
 ```
 
-Parsing rule. Parses up to four base-32 digits
+Parsing rule. Parses up to four base-32 digits.
 
     /~zod/try=> (scan "a" pev:ab)
     q=10
@@ -146,7 +146,7 @@ Parsing rule. Parses exactly five base-64 digits.
 
 ###++qeb
 
-Parse up to 4 digit binary
+Parse <= 4 binary
 
 ```
   ++  qeb  (bass 2 ;~(plug seb (stun [0 3] sib)))
@@ -158,10 +158,12 @@ Parsing rule. Parses a binary number of up to 4 digits in length.
     q=1
     /~zod/try=> (scan "101" qeb:ab)
     q=5
+    ~zod/try=> (scan "1111" qeb:ab)
+    q=15
 
 ###++qex
 
-Parse up to 4 digit hex
+Parse <= 4 hex
 
 ```
   ++  qex  (bass 16 ;~(plug sex (stun [0 3] hit)))
@@ -184,13 +186,15 @@ Parse 4 bin digits
   ++  qib  (bass 2 (stun [4 4] sib))
 ```
 
-Parsing rule. Parses four binary digits.
+Parsing rule. Parses exactly four binary digits.
 
     /~zod/try=> (scan "0001" qib:ab)
     q=1
     /~zod/try=> (scan "0100" qib:ab)
     q=4
-
+    ~zod/socialnet=> (scan "110" qib:ab)
+    ! {1 4}
+    ! exit
 
 ###++qix
 
@@ -273,7 +277,7 @@ Parsing rule. Parses nonzero base-64 digit
 
 ###++sex
 
-Parse hexadecimal
+Parse hex
 
 ```
   ++  sex  ;~(pose sed sox)
@@ -508,7 +512,7 @@ Parse span characters
            (star ;~(pose nud low hep dot sig cab))
 ```
 
-Parsing rule. Parses characters
+Parsing rule. Parses characters of the odor [`@ta`](), which represents a span. 
 
     ~zod/socialnet=> `@ta`(scan "asa-lom_tak" urs:ab)
     ~.asa-lom_tak 
@@ -525,9 +529,9 @@ Parse non-'_' span
            (star ;~(pose nud low hep dot sig))
 ```
 
-Parsing rule. Parses non-'_' span characters.
+Parsing rule. Parses all characters of the odor [`@ta`](), which represents a span.
 
-    /~zod/try=> `@t`(scan "asa-lom.t0k" urt:ab)
+    ~zod/try=> `@t`(scan "asa-lom.t0k" urt:ab)
     'asa-lom.t0k'
 
 ###++voy
@@ -554,7 +558,7 @@ Top-level atom parsers
   |%
 ```
 
-Core containing toplevel atom parsers.
+A core containing top-level atom parsers.
 
     /~zod/try=> ag
     <14.vpu 414.mof 100.xkc 1.ypj %164>
