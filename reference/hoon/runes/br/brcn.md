@@ -2,26 +2,24 @@
 
 Build Core
 
-`|%` is a natural rune that produces a [core](). `|%` takes a list of names ([++term]()) and expressions [++foot](), each pair of which is called an [++arm](). The list must be closed with a `--`. The product of `|%` is similar to an object with named properties, either functions or data.
+`|%` is a natural rune that produces a [core](). `|%` takes an associative list of names, [++term](), and expressions [++foot](), each pair of which is called an arm. . The list must be closed with a `--`. The product of `|%` is similar to an object with named properties each containing either functions or data.
 
 ##Produces
 
-Twig
+Twig: `[%brcn p=(map term foot)]`
 
 ##Sample
 
-`[%brcn p=(map term foot)]`
-
-`p` is a [`map`]() with [`term`] keys and [foot]() values.
+`p` is a [`map`]() with [`++term`]() keys and [`++foot`]() values.
 
 ##Tall form
 
-|%  
-    ++  p.n.q
-      q.n.q
-    +-  p.n.l.q
-      q.n.l.q
-    --
+    |%  
+        ++  p.n.q
+          q.n.q
+        +-  p.n.l.q
+          q.n.l.q
+        --
 
 ##Wide form
 
@@ -32,6 +30,35 @@ None
 None
 
 ##Examples
+
+    /~zod/try=> 
+    =a  |%
+        ++  n  100
+        ++  g  |=  b=@
+                (add b n)
+        --
+    new var %a
+    /~zod/try=> 
+    (g.a 1)
+    101
+
+Here we create a core with two arms `n`, a constant and `g`, a simple funciton. `g` adds our constant `n` to whatever is passed to it. 
+
+    /~zod/try=> 
+    =a  |%
+        ++  l  |%
+               ++  r  100
+               ++  s  4
+               --
+        ++  g  |=  b=@
+                (div (add b r:l) s:l)
+        --
+    changed %a
+    /~zod/try=> 
+    (g.a 4)
+    26
+
+Extending our previous example a bit, we nest a core inside our arm `l` and make our gate `g` a bit more complicated. `g` now computes the sum of its argument and the arm `r` inside `l`, and divides that by `s` inside `l`. 
 
 ```
 ++  yo
@@ -48,7 +75,7 @@ None
       --
 ```
 
-In ++yo, `|%` creates a core whose arms contain useful constant data for calculating time.
+[`++yo`](), found in `hoon.hoon`, uses `|%` to create a core whose arms contain constant data for calculating time. Using `|%` for constant data is as common as our next example. 
 
 ```
     ++  si                                                  ::  signed integer
@@ -82,16 +109,4 @@ In ++yo, `|%` creates a core whose arms contain useful constant data for calcula
       --
 ```
 
-In ++si, `|%` creates a core whose arms contain gates used to calculate with signed integers (@s, link).
-
-```
-/~zod/try=> =dec  =+  a=0
-                  =+  b=0
-                  |%
-                  ++  me
-                    ?:  =(b +(a))  a
-                    me(a +(a))
-                  --
-/~zod/try=> me:dec(b 20)
-19
-```
+[`++si`](), found in `hoon.hoon`, uses `|%` to create a core whose arms contain gates used to calculate with signed integers, [`@s`](). In this case our core is made up entirely of gates. 

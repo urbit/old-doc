@@ -2,9 +2,7 @@
 
 Axil bunt
 
-#Syntax
-
-`$!` is an synthetic internal twig that produces the bunt (default value) for `[%axil p]`.
+`$!` is an synthetic internal twig that produces the [bunt]() (default value) for `[%axil p]`. 
 
 ##Produces
 
