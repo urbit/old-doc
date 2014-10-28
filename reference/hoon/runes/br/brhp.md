@@ -69,8 +69,10 @@ the last loop.  If we push `c=0` onto our subject within the loop, we will set
 the value of `c` as 0 every loop. We use `|-` to create an inner core, so that
 when we loop (`%=`, link) we only loop over the expressions within the `|-`.
 
-    ~zod/try=> |-(20)
+    /~zod/try=> |-(20)
     20
     /~zod/try=> =+  a=`*`~[30 31]
-    |-(?~(a ~ [-.a %m $(a +.a)]))
+                |-
+                ?~  a  ~
+                [-.a %m $(a +.a)]
     [30 %m [31 %m ~]]
