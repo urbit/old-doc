@@ -1,33 +1,31 @@
 #[colhep, `:-`, %clhp](#clhp)
 
-[Short description]
+Cell
 
-#Syntax
-
-`:-`, `colhep`, `[%clhp p=twig q=twig]` is a synthetic hoon that
+`:-`, `colhep`, `[%clhp p=twig q=twig]` is a synthetic rune that
 produces the cell `[p q]`.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%clhp p=twig q=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [twig]().
+`q` is a [twig]().
 
 ##Tall form
 
-:-  p
-    q
+    :-  p
+        q
 
 ##Wide form
 
-:-(p q)
+    :-(p q)
 
 ##Irregular form
 
-[p q]
+    [p q]
 
 ##Examples
 
@@ -36,5 +34,12 @@ produces the cell `[p q]`.
     ~zod/try=> :-  'a'
                %b
     ['a' %b]
-    
-Cell of two nouns
+
+This is the most straightforward case of `:-`, producing a cell of static data in either tall or wide form.
+
+    /~zod/try=> 
+        :-  (add 2 2)
+        |-  (div 4 2)
+    [4 2]
+
+Most commonly `:-` helps to organize code, allowing you to produce a cell from nested computation.
