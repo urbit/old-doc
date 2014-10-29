@@ -2,7 +2,7 @@
 
 ###++ace
 
-Space
+Parse space
 
 ```
 ++  ace  (just ' ')
@@ -23,7 +23,7 @@ Parses ASCII character 32, space.
 
 ###++bar 
 
-Vertical bar
+Parse vertical bar
 
 ```
 ++  bar  (just '|')
@@ -44,7 +44,7 @@ Parses ASCII character 124, the vertical bar.
 
 ###++bas 
 
-Backslash
+Parse backslash
 
 ```
 ++  bas  (just '\\')
@@ -68,7 +68,7 @@ Note the extra '\' in the slam of bas with just is to escape the escape characte
 
 ###++buc 
 
-Dollar sign
+Parse dollar sign
 
 ```
 ++  buc  (just '$')
@@ -89,7 +89,7 @@ Parses ASCII character 36, the dollar sign.
 
 ###++cab 
 
-Underscore
+Parse underscore
 
 ```
 ++  cab  (just '_')
@@ -110,7 +110,7 @@ Parses ASCII character 95, the underscore.
 
 ###++cen 
 
-Percent sign
+Parses percent sign
 
 ```
 ++  cen  (just '%')
@@ -131,7 +131,7 @@ Parses ASCII character 37, the percent sign.
 
 ###++col 
 
-Colon
+Parse colon
 
 ```
 ++  col  (just ':')
@@ -152,7 +152,7 @@ Parses ASCII character 58, the colon
 
 ###++com 
 
-Comma
+Parse comma
 
 ```
 ++  com  (just ',')
@@ -173,7 +173,7 @@ Parses ASCII character 44, the comma.
 
 ###++doq 
 
-Double quote
+Parse double quote
 
 ```
 ++  doq  (just '"')
@@ -198,7 +198,7 @@ Parses ASCII character 34, the double quote.
 
 ###++dot 
 
-Period
+Parse period
 
 ```
 ++  dot  (just '.')
@@ -219,7 +219,7 @@ Parses ASCII character 46, the period.
 
 ###++fas 
 
-Forward slash
+Parse forward slash
 
 ```
 ++  fas  (just '/')
@@ -240,7 +240,7 @@ Parses ASCII character 47, the forward slash.
 
 ###++gal 
 
-Less-than sign
+Parse less-than sign
 
 ```
 ++  gal  (just '<')
@@ -263,7 +263,7 @@ Parses ASCII character 60, the less-than sign.
 
 ###++gar 
 
-Greater-than sign
+Parse greater-than sign
 
 ```
 ++  gar  (just '>')
@@ -284,7 +284,7 @@ Parses ASCII character 62, the greater-than sign.
 
 ###++hax 
 
-Number sign
+Parse number sign
 
 ```
 ++  hax  (just '#')
@@ -305,7 +305,7 @@ Parses ASCII character 35, the number sign.
 
 ###++kel 
 
-Left curley bracket
+Parse left curley bracket
 
 ```
 ++  kel  (just '{')
@@ -327,7 +327,7 @@ Note that `kel` and `ker` open and close a Hoon expression for Hoon string inter
 
 ###++ker 
 
-Right curley bracket
+Parse right curley bracket
 
 ```
 ++  ker  (just '}')
@@ -348,7 +348,7 @@ Parses ASCII character 125, ker.
 
 ###++ket 
 
-Caret
+Parse caret
 
 ```
 ++  ket  (just '^')
@@ -369,6 +369,8 @@ Parses ASCII character 94, the caret.
 
 ###++lus 
 
+Parse plus sign
+
 ```
 ++  lus  (just '+')
 ```
@@ -387,6 +389,8 @@ Parses ASCII character 43, the plus sign.
 ---
 
 ###++hep 
+
+Parse hyphen
 
 ```
 ++  hep  (just '-')
@@ -407,7 +411,7 @@ Parses ASCII character 45, the hyphen.
 
 ###++pel 
 
-Left parenthesis
+Parse left parenthesis
 
 ```
 ++  pel  (just '(')
@@ -428,7 +432,7 @@ Parses ASCII character 40, the left parenthesis.
 
 ###++pam 
 
-Ampersand
+Parse ampersand
 
 ```
 ++  pam  (just '&')
@@ -449,7 +453,7 @@ Parses ASCII character 38, the ampersand.
 
 ###++per 
 
-Right parenthesis
+Parse right parenthesis
 
 ```
 ++  per  (just ')')
@@ -470,7 +474,7 @@ Parses ASCII character 41, the right parenthesis.
 
 ###++pat 
 
-"At" sign
+Parse "at" sign
 
 ```
 ++  pat  (just '@')
@@ -490,6 +494,8 @@ Parses ASCII character 64, the "at" sign.
 ---
 
 ###++sel
+
+Parse left square bracket
 
 Left square bracket
 
@@ -512,7 +518,7 @@ Parses ASCII character 91, the left square bracket.
 
 ###++sem 
 
-Semicolon
+Parse semicolon
 
 ```
 ++  sem  (just ';')
@@ -535,7 +541,7 @@ Parses ASCII character 59, the semicolon.
 
 ###++ser 
 
-Right square bracket
+Parse right square bracket
 
 ```
 ++  ser  (just ']')
@@ -556,7 +562,7 @@ Parses ASCII character 93, the right square bracket.
 
 ###++sig 
 
-Tilde
+Parse tilde
 
 ```
 ++  sig  (just '~')
@@ -577,7 +583,7 @@ Parses ASCII character 126, the tilde.
 
 ###++soq 
 
-Single quote
+Parse single quote
 
 ```
 ++  soq  (just '\'')
@@ -599,7 +605,7 @@ Note the extra '\' is to escape the first `soq` because soq delimits a cord.
 
 ###++tar 
 
-Asterisk
+Parse asterisk
 
 ```
 ++  tar  (just '*')
@@ -620,7 +626,7 @@ Parses ASCII character 42, the asterisk.
 
 ###++tec 
 
-Backtick
+Parse backtick
 
 ```
 ++  tec  (just '`')                                     ::  backTiCk
@@ -641,7 +647,7 @@ Parses ASCII character 96, the backtick (also known as the "grave accent".
 
 ###++tis 
 
-Equals sign
+Parse equals sign
 
 ```
 ++  tis  (just '=')
@@ -661,7 +667,7 @@ Parses ASCII character 61, the equals sign.
 
 ###++wut 
 
-Question mark
+Parses question mark
 
 ```
 ++  wut  (just '?')
