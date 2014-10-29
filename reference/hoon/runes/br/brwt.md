@@ -1,28 +1,26 @@
 #[barwut, `|?`, %brwt](#brwt)
 
-[Short description]
+`%lead` trap
 
 #Syntax
 
-`|?`, `barwut`, `[%brwt q=twig]` is a synthetic hoon that produces a
-dry `%lead` trap.
+`|?` is a synthetic hoon that produces a dry `%lead` trap.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%brwt q=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`q` is a [twig]().
 
 ##Tall form
 
-|?  p
+    |?  p
 
 ##Wide form
 
-|?(p)
+    |?(p)
 
 ##Irregular form
 

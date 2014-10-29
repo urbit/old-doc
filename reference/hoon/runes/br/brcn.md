@@ -2,7 +2,13 @@
 
 Build Core
 
-`|%` is a natural rune that produces a [core](). `|%` takes an associative list of names, [++term](), and expressions [++foot](), each pair of which is called an arm. . The list must be closed with a `--`. The product of `|%` is similar to an object with named properties each containing either functions or data.
+`|%` is a natural rune that produces a [core](). `|%` takes an associative list of names, [++term](), and expressions [++foot](), each pair of which is called an arm. The list must be closed with a `--`. 
+
+The product of `|%` is similar to an object with named properties containing either functions or data. A `|%` accepts both [dry or `%elm`]() and [wet or `%ash`]() arms. For more about variance, see the [glossary]().
+
+##See also
+[`|_`]()
+[`|/`]()
 
 ##Produces
 

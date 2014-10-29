@@ -2,7 +2,11 @@
 
 Trap
 
-`|.`, is a synthetic hoon that produces a dry [`%gold`]() trap. You can think of it like a 'trap door', since `|.` is a [`door`]() with one arm [`$`](), the empty name. The default action performed on a trap is kicking it by pulling the arm `$`. `|.` is similar to `|=` with no arguments.
+`|.`, is a synthetic hoon that produces a dry [`%gold`]() trap. You can think of a trap like a 'trap door', since `|.` is a [`door`]() with one arm [`$`](), the empty name. The default action performed on a trap is kicking it by pulling the arm `$`. `|.` is similar to `|=` with no arguments.
+
+##See also
+
+[barhep, `|-`, %brhp](#brhp)
 
 ##Produces
 
@@ -71,3 +75,17 @@ This is a simple example. We assign a shell variable `a` to be a trap that simpl
     12
 
 In this case we assign a variable `a` to be `10`, and create a trap `b` to add `2` to it. This is a trivial example, but is meant to show that traps are useful when you need a gate that only operates on values that are already in its context. 
+
+    /~zod/try=> 
+    =loop  =+  reps=10
+           =+  step=0
+           =+  outp=0
+           |.
+           ?:  =(step reps)
+             outp
+           $(outp (add outp 2), step +(step))
+    changed %loop
+    /~zod/try=> (loop)
+    20
+
+Expanding on our previous example a bit we create a trap with three local variables, `reps`, `step`, and `outp`. We use a trap to create a loop, testing each time if `step` is equal to `reps`, if so producing `outp` otherwise calling our trap again with `outp` replaced with `outp+2`, and `step` incremented.

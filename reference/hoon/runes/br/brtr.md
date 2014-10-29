@@ -1,29 +1,32 @@
 #[bartar, `|*`, %brtr](#brtr)
 
-[Short description]
+Wet gate
 
-#Syntax
+`|*` is a synthetic hoon that produces a  [wet]() [gate]() with sample `[%bctr p]`, arm `q`. A gate is a core with one arm, [`$`](), the empty name. 
 
-`|*`, `bartar`, `[%brtr p=tile q=twig]` is a synthetic hoon that
-produces a vulcanized wet gate with arm `q`, sample `[%bctr p]`.
+`|*` is similar to a function in the same way that `|=` is, but does its type checking at runtime. With `|*` the product type is checked to be the same as the input type, rather than the sample type.
+
+##See also
+
+#[bartis, `|=`, %brts](#brts)
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%brtr p=tile q=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [tile]().
+`q` is a [twig]().
 
 ##Tall form
 
-|*  p
-    q
+    |*  p
+        q
 
 ##Wide form
 
-|*(p q)
+    |*(p q)
 
 ##Irregular form
 
@@ -31,14 +34,12 @@ None
 
 ##Examples
 
-
     ~zod/try=> %.('c' |*(a=@ a))
     'c'
     ~zod/try=> %.('c' |=(a=@ a))
     99
 
-A wet gate is type-inferenced per call, (possibly) saving type information from
-the sample as opposed to having one predetermined product type.
+This is a concise way of understanding the difference between `|*` and `|=`. We use `%.` in both cases to slam each gate with the sample `'c'`. `|=` uses its tile `a=@` to cast `'c'` to an atom (`99` is the ASCII code for `'c'`). `|*` simply ensures that the product type matches the input sample type.
 
 ```
 ++  flop                                                ::  reverse
@@ -53,5 +54,5 @@ the sample as opposed to having one predetermined product type.
       $(a t.a, b [i.a b])
 ```
 
-In ++flop, `|*` creates a wet gate that takes a ++list (link).
+In [`++flop`](), `|*` is used so the type information within the passed in list is maintained. Without a `|*` any cords would be cast to nouns as in our previous example.
 

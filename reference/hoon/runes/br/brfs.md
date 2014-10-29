@@ -2,11 +2,14 @@
 
 Door with tile
 
-`|/` is a synthetic hoon that produces a [`%gold`]() [door]() with arms `q` and sample `[%bctr p]`. `|/` takes an associative list of names, [++term](), and expressions [++foot](), each pair of which is called an arm. The list must be closed with a `--`. `|/` is similar to `|_`, but defines a tile to be used by its arms rather than a sample.
+`|/` is a synthetic hoon that produces a [`%gold`]() [door]() with sample `[%bctr p]` and arms `q`. `|/` takes an associative list of names, [++term](), and expressions [++foot](), each pair of which is called an arm. The list must be closed with a `--`. 
+
+`|/` is similar to `|_`, but accepts [wet or `%ash`]() arms. 
 
 ##See also
 
-`|_`
+[`|_`]()
+[`|%`]()
 
 ##Produces
 
@@ -34,26 +37,41 @@ None
 
 ##Examples
 
-    /~zod/try=> =kot
-                  |/  a=(list)
-                  +-  hed  -.a
-                  +-  tal  +.a
-                  --
-    /~zod/try=> ~(hed kot "abc")
-    i=~~a
-    /~zod/try=> ~(tal kot ((list ,@ux) "abc"))
-    t=~[0x62 0x63]
-    /~zod/try=> =kom
-                  |_  a=(list)
-                  ++  hed  -.a
-                  ++  tal  +.a
-                  --
-    /~zod/try=> ~(hed kom "abc")
-    i=97
-    /~zod/try=> ~(tal kom ((list ,@ux) "abc"))
-    t=~[98 99]
+    /~zod/try=> =fas  |/
+          a=@
+          +-  two  (mul a 2)
+          +-  for  (div a 2)
+          --
+    new var %fas
+    /~zod/try=> ~(two fas 2)
+    4
+    /~zod/try=> ~(for fas ~(for fas ~(two fas 12)))
+    6
 
-This example is intended to show the difference between `|/` and `|_`. In both cases we create a door that takes a list, and implements two arms. One arm produces the head of the list, `+-  hed  -.a` and one the tail, `+-  tal  +.a`. When we call our `hed` function inside `|/` our type information is retained, and `i=~~a` is produced. Using `|_` we simply get `i=97`. `97` is the ASCII code for `a`. 
+In this simple example we're creating a door with two arms. One arm divides our sample by two, the other divides by two. 
+
+    /~zod/try=> =kom
+                      |_  a=(list)
+                      ++  hed  -.a
+                      ++  tal  +.a
+                      --
+    new var %kom
+    /~zod/try=> =kot
+                      |/  a=(list)
+                      +-  hed  -.a
+                      +-  tal  +.a
+                      --
+    new var %kot
+    /~zod/try=> ~(tal kom "abc")
+    t=~[98 99]
+    /~zod/try=> ~(tal kot "abc")
+    t="bc"
+    /~zod/try=> ~(tal kot [1 2 3 ~])
+    [2 3 ~]
+    /~zod/try=> ~(tal kom [1 2 3 ~])
+    t=~[2 3]
+
+Here we're demonstrating the difference between `|_` and `|/`. We create a nearly identical door using both runes, each with an arm that produces the tail of the sample, `a`. You can see that our wet gates use the sample as a tile to produce well-typed output. 
 
     ++  by                                                  ::  map engine
           ~/  %by
