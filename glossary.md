@@ -2,9 +2,9 @@
 
 #[cons]()
 
-#[gold, copper, zinc....]()
+#[demand](demand) "fail unless.."
 
-#[%ash, %elm]()
+#[gold, copper, zinc....]()
 
 #[frond](#frond)
 
@@ -12,15 +12,13 @@
 
 #[slam](#slam)
 
-#[kick](#kick)
-
 #[pull](#pull)
 
 #[face](#face)
 
-#[door](#door)
+#[filter](#filter) XX this is Anton's new word for a gate that accepts an odor and produces 
 
-#[book](#book)
+#[door](#door)
 
 #[gate](#gate)
 
