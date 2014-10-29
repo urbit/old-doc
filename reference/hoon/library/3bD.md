@@ -49,13 +49,19 @@ Parser generator: finite list of term options.
 
 ```
 ++  poja                                                ::  parse JSON
+  =<  |=(a=cord (rush a apex))
   |%
 ```
 
 JSON parser core
 
-    ~zod/try=> poja
-    <21.svd 250.qyy 41.jdd 373.unk 100.kzl 1.ypj %164>
+    ~zod/try=> (poja '[1,2,3]')
+    [~ [%a p=~[[%n p=~.1] [%n p=~.2] [%n p=~.3]]]]
+    ~zod/try=> (poja 'null')
+    [~ ~]
+    ~zod/try=> (poja 'invalid{json')
+    ~
+
 
 ###++apex
 
@@ -499,7 +505,7 @@ A `fist` is a gate that produces some manner of unit from json. Most arms in
   ::
 ```
 
-Parse JSON array as typed list.
+With fist, parse JSON array as homogenous list.
 
 ```
 ~zod/try=> :type; ((ar ni):jo a/~[n/'1' n/'2'])
@@ -519,7 +525,7 @@ Parse JSON array as typed list.
   ::
 ```
 
-Parse JSON array as a fixed-length tuple.
+With list of fists, parse JSON array as a fixed-length tuple.
 
 ```
 ~zod/try=> :type; ((ar ni):jo a/~[n/'3' s/'to' n/''])
@@ -539,7 +545,7 @@ Parse JSON array as a fixed-length tuple.
   ::
 ```
 
-Parse json array as a tuple of unit results
+Parse list of json as a tuple of unit results
 
 ```
 ~zod/try=> ((at-raw ni ni bo ~):jo ~[s/'hi' n/'1' b/&])
@@ -658,7 +664,7 @@ Parse javascript millisecond date integer.
   ::
 ```
 
-Parse null as unit
+With fist, parse null or some containing that fist.
 
     ~zod/try=> ((mu ni):jo [%n '20'])
     [~ [~ u=q=20]]
@@ -679,7 +685,7 @@ Parse null as unit
   ::
 ```
 
-XX document
+XX  Currently unimplemented
 
 ###++ni
 
@@ -687,11 +693,27 @@ XX document
   ++  ni                                                ::  number as integer
     |=  jon=json 
     ?.  ?=([%n *] jon)  ~
-    (slaw %ui (cat 3 '0i' p.jon))
+    (rush p.jon dem)
   ::
 ```
 
-XX document
+Parse integer representation.
+
+    ~zod/try=> (ni:jo [%n '0'])
+    [~ q=0]
+    ~zod/try=> (ni:jo [%n '200'])
+    [~ q=200]
+    ~zod/try=> (ni:jo [%n '-2.5'])
+    ~
+    ~zod/try=> (ni:jo [%s '10'])
+    ~
+    ~zod/try=> (ni:jo [%b |])
+    ~
+    ~zod/try=> (ni:jo [%n '4'])
+    [~ q=4]
+    ~zod/try=> (ni:jo [%a ~[b/& b/& b/& b/&]])
+    ~
+
 
 ###++no
 
@@ -703,7 +725,23 @@ XX document
   ::
 ```
 
-XX document
+Retrieve numeric representation as text.
+
+    ~zod/try=> (no:jo [%n '0'])
+    [~ u=~.0]
+    ~zod/try=> (no:jo [%n '200'])
+    [~ u=~.200]
+    ~zod/try=> (no:jo [%n '-2.5'])
+    [~ u=~.-2.5]
+    ~zod/try=> (no:jo [%s '10'])
+    ~
+    ~zod/try=> (no:jo [%b |])
+    ~
+    ~zod/try=> (no:jo [%n '4'])
+    [~ u=~.4]
+    ~zod/try=> (no:jo [%a ~[b/& b/& b/& b/&]])
+    ~
+
 
 ###++of
 
@@ -720,7 +758,27 @@ XX document
   ::
 ```
 
-XX document
+With list of possible keys and parsers for their values, parse object with one key-value pair
+
+    ~zod/try=> ((of sem/sa som/ni ~):jo %o [%sem s/'hi'] ~ ~)
+    [~ [%sem "hi"]]
+    ~zod/try=> ((of sem/sa som/ni ~):jo %o [%som n/'20'] ~ ~)
+    [~ [%som q=20]]
+    ~zod/try=> ((of sem/sa som/ni ~):jo %o [%som s/'he'] ~ ~)
+    ~
+    ~zod/try=> ((of sem/sa som/ni ~):jo %o [%som s/'5'] ~ ~)
+    ~
+    ~zod/try=> ((of sem/sa som/ni ~):jo %o [%sem s/'5'] ~ ~)
+    [~ [%sem "5"]]
+    ~zod/try=> ((of sem/sa som/ni ~):jo %o [%sem n/'2'] ~ ~)
+    ~
+    ~zod/try=> ((of sem/sa som/ni ~):jo %o [%sem b/&] ~ ~)
+    ~
+    ~zod/try=> ((of sem/sa som/ni ~):jo %a ~[s/'som' n/'4'])
+    ~
+    ~zod/try=> ((of sem/sa som/ni ~):jo %o [%sem s/'hey'] ~ [%sam s/'other value'] ~ ~)
+    ~
+
 
 ###++ot
 
@@ -734,7 +792,12 @@ XX document
   ::
 ```
 
-XX document
+With list of keys and fists, parse object with those keys to a tuple of their values
+
+    ~zod/try=> (jobe [%sem s/'ha'] [%som n/'20'] ~)
+    [%o p={[p='sem' q=[%s p=~.ha]] [p='som' q=[%n p=~.20]]}]
+    ~zod/try=> ((ot sem/sa som/ni sem/sa ~):jo (jobe [%sem s/'ha'] [%som n/'20'] ~))
+    [~ u=["ha" q=20 "ha"]]
 
 ###++ot-raw
 
@@ -748,23 +811,30 @@ XX document
     ::
 ```
 
-XX document
+Parse map of cords to json with a list of parsers per key, producing a list of their results
+
+    ~zod/try=> ((ot-raw sem/sa som/ni sem/sa ~):jo (mo [%sem s/'ha'] [%som n/'20'] ~))
+    [[~ u="ha"] [~ q=20] [~ u="ha"] ~]
+    ~zod/try=> ((ot-raw sem/sa som/ni sem/sa ~):jo (mo [%sem s/'ha'] [%som b/|] ~))
+    [[~ u="ha"] ~ [~ u="ha"] ~]
 
 ###++om
 
 ```
-  ++  om                                                ::  object as map
+    ++  om                                                ::  object as map
     |*  wit=fist
     |=  jon=json
     ?.  ?=([%o *] jon)  ~
-    %-  zm
-    |-  
-    ?~  p.jon  ~
-    [n=[p=p.n.p.jon q=(wit q.n.p.jon)] l=$(p.jon l.p.jon) r=$(p.jon r.p.jon)]
+    (zm ~(run by p.jon) wit)
   ::
 ```
 
-XX document
+With fist, parse json object to homogenous map
+
+    ~zod/try=> ((om ni):jo (jobe [%sap n/'20'] [%sup n/'5'] [%sop n/'177'] ~))
+    [~ {[p='sup' q=q=5] [p='sop' q=q=177] [p='sap' q=q=20]}]
+    ~zod/try=> ((om ni):jo (jobe [%sap n/'20'] [%sup n/'0x5'] [%sop n/'177'] ~))
+    ~    
 
 ###++pe
 
@@ -775,7 +845,19 @@ XX document
   ::
 ```
 
-XX document
+Add static prefix to parse result
+
+See also: stag
+
+    ~zod/try=> (ni:jo n/'2')
+    [~ q=2]
+    ~zod/try=> (ni:jo b/|)
+    ~
+    ~zod/try=> ((pe %hi ni):jo n/'2')
+    [~ [%hi q=2]]
+    ~zod/try=> ((pe %hi ni):jo b/|)
+    ~
+
 
 ###++sa
 
@@ -786,7 +868,15 @@ XX document
   ::
 ```
 
-XX document
+Parse string at char list
+
+    ~zod/try=> (sa:jo s/'value')
+    [~ u="value"]
+    ~zod/try=> (sa:jo n/'46')
+    ~
+    ~zod/try=> (sa:jo a/~[s/'val 2'])
+    ~
+
 
 ###++so
 
@@ -797,7 +887,15 @@ XX document
   ::
 ```
 
-XX document
+Parse string as LSB atom
+
+    ~zod/try=> (so:jo s/'value')
+    [~ u=~.value]
+    ~zod/try=> (so:jo n/'46')
+    ~
+    ~zod/try=> (so:jo a/~[s/'val 2'])
+    ~
+
 
 ###++su
 
@@ -810,7 +908,17 @@ XX document
   ::
 ```
 
-XX document
+Apply parsing rule to string
+
+    ~zod/try=> ((su:jo fed:ag) s/'zod')
+    [~ 0]
+    ~zod/try=> ((su:jo fed:ag) s/'doznec')
+    [~ 256]
+    ~zod/try=> ((su:jo fed:ag) s/'notship')
+    ~
+    ~zod/try=> ((su:jo fed:ag) n/'20')
+    ~
+
 
 ###++ul
 
@@ -818,7 +926,17 @@ XX document
   ++  ul  |=(jon=json ?~(jon (some ~) ~))               ::  null
 ```
 
-XX document
+Expect null
+
+    ~zod/try=> (ul:jo `json`~)
+    [~ u=~]
+    ~zod/try=> (ul:jo s/'null')
+    ~
+    ~zod/try=> (ul:jo b/|)
+    ~
+    ~zod/try=> (ul:jo b/&)
+    ~
+
 
 ###++za
 
@@ -831,7 +949,12 @@ XX document
   ::
 ```
 
-XX document
+Determine if pole of units contains no empty ones. Used internally
+
+    ~zod/try=> (za:jo ~[`1 `2 `3])
+    %.y
+    ~zod/try=> (za:jo ~[`1 ~ `3])
+    %.n
 
 ###++zl
 
@@ -848,7 +971,16 @@ XX document
   ::
 ```
 
-XX document
+Promote unithood: if any elements of a list of units are empty, produce nil,
+otherwise produce a full unit containing a list of the contents of the elements.
+
+    ~zod/try=> (zl:jo `(list (unit))`~[`1 `2 `3])
+    [~ u=~[1 2 3]]
+    ~zod/try=> (zl:jo `(list (unit))`~[`1 `17 `3])
+    [~ u=~[1 17 3]]
+    ~zod/try=> (zl:jo `(list (unit))`~[`1 ~ `3])
+    ~
+
 
 ###++zp
 
@@ -862,85 +994,110 @@ XX document
   ::
 ```
 
-XX document
+Force collapse pole of units to tuple
 
-###++zt
+    ~zod/try=> (zp:jo `(pole (unit))`~[`1 `2 `3])
+    [1 2 3]
+    ~zod/try=> (zp:jo `(pole (unit))`~[`1 `17 `3])
+    [1 17 3]
+    ~zod/try=> (zp:jo `(pole (unit))`~[`1 ~ `3])
+    ! exit
 
-```
-  ++  zt                                                ::  unit tuple
-    |*  lut=(list (unit))
-    ?:  =(~ lut)  ~
-    ?.  |-  ^-  ?
-        ?~(lut & ?~(i.lut | $(lut t.lut)))
-      ~
-    %-  some
-    |-
-    ?~  lut  !!
-    ?~  t.lut  u:+.i.lut
-    [u:+.i.lut $(lut t.lut)]
-  ::
-```
-
-XX document
 
 ###++zm
 
 ```
   ++  zm                                                ::  collapse unit map
     |*  lum=(map term (unit))
-    ?.  |-  ^-  ?
-        ?~(lum & ?~(q.n.lum | &($(lum l.lum) $(lum r.lum))))
+    ?:  (~(rep by lum) | |=([[@ a=(unit)] b=?] |(b ?=(~ a))))
       ~
-    %-  some
-    |-
-    ?~  lum  ~
-    [[p.n.lum u:+.q.n.lum] $(lum l.lum) $(lum r.lum)]
+    (some (~(run by lum) need))
 ::
 ```
 
-XX document
+If any values in map to units are empty, produce empty, otherwise produce
+some of the map with elements promoted.
+
+See also: zp, zl
+
+    ~zod/try=> (zm:jo `(map term (unit ,@u))`(mo a/`4 b/`1 c/`2 ~))
+    [~ {[p=%a q=4] [p=%c q=2] [p=%b q=1]}]
+    ~zod/try=> (zm:jo `(map term (unit ,@u))`(mo a/`4 b/~ c/`2 ~))
+    ~
+    ~zod/try=> (~(run by `(map ,@t ,@u)`(mo a/1 b/2 c/3 ~)) (flit |=(a=@ (lth a 5))))
+    {[p='a' q=[~ u=1]] [p='c' q=[~ u=3]] [p='b' q=[~ u=2]]}
+    ~zod/try=> (zm:jo (~(run by `(map ,@t ,@u)`(mo a/1 b/2 c/3 ~)) (flit |=(a=@ (lth a 5)))))
+    [~ {[p='a' q=1] [p='c' q=3] [p='b' q=2]}]
+    ~zod/try=> (zm:jo (~(run by `(map ,@t ,@u)`(mo a/1 b/7 c/3 ~)) (flit |=(a=@ (lth a 5)))))
+    ~
+    ~zod/try=> (~(run by `(map ,@t ,@u)`(mo a/1 b/7 c/3 ~)) (flit |=(a=@ (lth a 5))))
+    {[p='a' q=[~ u=1]] [p='c' q=[~ u=3]] [p='b' q=~]}
+
 
 ###++joba
 
 ```
-++  joba
+++  joba                                                ::  object from k-v pair
   |=  [p=@t q=json]
   ^-  json
   [%o [[p q] ~ ~]]
 ::
 ```
 
-XX document
+JSON object from one key-value
+
+    ~zod/try=> (joba %hi %b |)
+    [%o p={[p='hi' q=[%b p=%.n]]}]
+    ~zod/try=> (crip (pojo (joba %hi %b |)))
+    '{"hi":false}'
+    ~zod/try=> (joba %hi (jone 2.130))
+    [%o p={[p='hi' q=[%n p=~.2130]]}]
+    ~zod/try=> (crip (pojo (joba %hi (jone 2.130))))
+    '{"hi":2130}'
 
 ###++jobe
 
 ```
-++  jobe
+++  jobe                                                ::  object from k-v list
   |=  a=(list ,[p=@t q=json])
   ^-  json
   [%o (~(gas by *(map ,@t json)) a)]
 ::
 ```
 
-XX document
+JSON object from key-value pairs
 
+    ~zod/try=> (jobe a/n/'20' b/~ c/a/~[s/'mol'] ~)
+    [%o p={[p='a' q=[%n p=~.20]] [p='c' q=[%a p=~[[%s p=~.mol]]]] [p='b' q=~]}]
+    ~zod/try=> (crip (pojo (jobe a/n/'20' b/~ c/a/~[s/'mol'] ~)))
+    '{"b":null,"c":["mol"],"a":20}'
+    
 ###++jape
 
 ```
-++  jape
+++  jape                                                ::  string from tape
   |=  a=tape
   ^-  json
   [%s (crip a)]
 ::
 ```
 
-XX document
+JSON string from tape
+
+    ~zod/try=> (jape ~)
+    [%s p=~.]
+    ~zod/try=> (jape "lam")
+    [%s p=~.lam]
+    ~zod/try=> (crip (pojo (jape "lam")))
+    '"lam"'
+    ~zod/try=> (crip (pojo (jape "semtek som? zeplo!")))
+    '"semtek som? zeplo!"'
 
 ###++jone
 
 ```
-++  jone
-  |=  a=@
+++  jone                                                ::  number from unsigned
+  |=  a=@u
   ^-  json
   :-  %n
   ?:  =(0 a)  '0'
@@ -948,7 +1105,16 @@ XX document
 ::
 ```
 
-XX document
+Unsigned integer as JSON number
+
+    ~zod/try=> (jone 1)
+    [%n p=~.1]
+    ~zod/try=> (pojo (jone 1))
+    "1"
+    ~zod/try=> (jone 1.203.196)
+    [%n p=~.1203196]
+    ~zod/try=> (pojo (jone 1.203.196))
+    "1203196"
 
 ###++jesc
 
@@ -963,7 +1129,16 @@ XX document
 ::
 ```
 
-XX document
+Escape JSON character
+
+    ~zod/try=> (jesc 'a')
+    "a"
+    ~zod/try=> (jesc 'c')
+    "c"
+    ~zod/try=> (jesc '\\')
+    "\\"
+    ~zod/try=> (jesc '"')
+    "\""
 
 ###++scanf
 
@@ -1041,6 +1216,7 @@ convenient list of discriminated tapes and rules.
     ?:  ?=(| -.i)  ;~(pfix (jest (crip p.i)) $(+< t))
     %+  cook  |*([* *] [i t]=+<)
     ;~(plug p.i $(+< t))
+  --
 ::
 ```
 
@@ -1056,7 +1232,12 @@ and producing a list of the rules' results.
 ::
 ```
 
-XX document
+An [octs] contains a length, to encode trailing zeroes.
+
+    ~zod/try=> (taco 'abc')
+    [p=3 q=6.513.249]
+    ~zod/try=> `@t`6.513.249
+    'abc'
 
 ###++tact
 
@@ -1067,7 +1248,12 @@ XX document
 ::
 ```
 
-XX document
+octs from tape
+
+    ~zod/try=> (tact "abc")
+    [p=3 q=6.513.249]
+    ~zod/try=> `@t`6.513.249
+    'abc'
 
 ###++tell
 
@@ -1079,7 +1265,17 @@ XX document
 ::
 ```
 
-XX document
+octs from wall
+
+    ~zod/try=> (tell ~["abc" "line" "3"])
+    [p=11 q=12.330.290.663.108.538.769.039.969]
+    ~zod/try=> `@t`12.330.290.663.108.538.769.039.969
+    '''
+    abc
+    line
+    3
+    '''
+
 
 ###++txml
 
@@ -1090,7 +1286,12 @@ XX document
 ::
 ```
 
-XX document
+Tape to xml CDATA node
+
+    ~zod/try=> (txml "hi")
+    [g=[n=%$ a=~[[n=%$ v="hi"]]] c=~]
+    ~zod/try=> (txml "larton bestok")
+    [g=[n=%$ a=~[[n=%$ v="larton bestok"]]] c=~]
 
 ###++xmla
 
@@ -1104,7 +1305,14 @@ XX document
 ::
 ```
 
-XX document
+Render XML attributes
+
+    ~zod/try=> (xmla ~ "")
+    ""
+    ~zod/try=> (crip (xmla ~[sam/"hem" [%tok %ns]^"reptor"] ""))
+    'sam="hem" tok:ns="reptor"'
+    ~zod/try=> (crip (xmla ~[sam/"hem" [%tok %ns]^"reptor"] "|appen"))
+    'sam="hem" tok:ns="reptor"|appen'
 
 ###++xmle
 
@@ -1130,7 +1338,16 @@ XX document
 ::
 ```
 
-XX document
+Escape xml entities
+
+    ~zod/try=> (xmle | "astra" ~)
+    ~[~~a ~~s ~~t ~~r ~~a]
+    ~zod/try=> `tape`(xmle | "astra" ~)
+    "astra"
+    ~zod/try=> `tape`(xmle | "x > y" ~)
+    "x &gt; y"
+    ~zod/try=> `tape`(xmle & "x > y" ~)
+    "x > y"
 
 ###++xmln
 
@@ -1142,7 +1359,14 @@ XX document
 ::
 ```
 
-XX document
+Render xml name
+
+    ~zod/try=> (xmln %$)
+    ""
+    ~zod/try=> (xmln %ham)
+    "ham"
+    ~zod/try=> (xmln %ham^%tor)
+    "ham:tor"
 
 ###++xmll
 
@@ -1155,7 +1379,16 @@ XX document
 ::
 ```
 
-XX document
+Dump XML nodes to tape
+
+    ~zod/try=> (xmll | ~ "")
+    ""
+    ~zod/try=> (xmll | ;"hare" "")
+    "hare"
+    ~zod/try=> (xmll | ;"hare;{lep}ton" "")
+    "hare<lep></lep>ton"
+    ~zod/try=> ;"hare;{lep}ton"
+    [[[%~. [%~. "hare"] ~] ~] [[%lep ~] ~] [[%~. [%~. "ton"] ~] ~] ~]
 
 ###++xmlt
 
@@ -1177,16 +1410,36 @@ XX document
 ::
 ```
 
-XX document
+Print xml
+
+    ~zod/try=> (xmlt | ;div; "")
+    "<div></div>"
+    ~zod/try=> (xmlt | ;div:(p a) "")
+    "<div><p></p><a></a></div>"
+    ~zod/try=> (xmlt | ;div:(p:"tree > text" a) "")
+    "<div><p>tree &gt; text</p><a></a></div>"
+    ~zod/try=> (xmlt & ;div:(p:"tree > text" a) "")
+    "<div><p>tree > text</p><a></a></div>"
 
 ###++xmlp
 
 ```
 ++  xmlp                                                ::  xml parser
+  =<  |=(a=cord (rush a apex))
   |%
 ```
 
-XX document
+Parse xml
+
+    ~zod/try=> (xmlp '<div />')
+    [~ [g=[n=%div a=~] c=~]]
+    ~zod/try=> (xmlp '<html><head/> <body/></html>')
+    [~ [g=[n=%html a=~] c=~[[g=[n=%head a=~] c=~] [g=[n=%body a=~] c=~]]]]
+    ~zod/try=> (xmlp '<script src="/gep/hart.js"/>')
+    [~ [g=[n=%script a=~[[n=%src v="/gep/hart.js"]]] c=~]]
+    ~zod/try=> (xmlp '<<<<')
+    ~
+
 
 ###++apex
 
@@ -1203,50 +1456,95 @@ XX document
   :: 
 ```
 
-XX document
+Top level parser
+
+    ~zod/try=> (rash '<div />' apex:xmlp)
+    [g=[n=%div a=~] c=~]
+    ~zod/try=> (rash '<html><head/> <body/></html>' apex:xmlp)
+    [g=[n=%html a=~] c=~[[g=[n=%head a=~] c=~] [g=[n=%body a=~] c=~]]]
+    ~zod/try=> (rash '<script src="/gep/hart.js"/>' apex:xmlp)
+    [g=[n=%script a=~[[n=%src v="/gep/hart.js"]]] c=~]
+    ~zod/try=> (rash '<<<<' apex:xmlp)
+    ! {1 2}
+    ! exit
+
 
 ###++attr
 
 ```
-  ++  attr                                              ::  attribute
+  ++  attr                                              ::  attributes
     %+  knee  *mart  |.  ~+ 
     %-  star
-    ;~  pfix  (plus whit)
-      ;~  plug  name  
-        ;~  pfix  tis
-          ;~  pose 
-              (ifix [doq doq] (star ;~(less doq escp)))
-              (ifix [soq soq] (star ;~(less soq escp)))
-          ==  
+    ;~  plug
+        ;~(sfix name tis)
+        ;~  pose 
+            (ifix [doq doq] (star ;~(less doq escp)))
+            (ifix [soq soq] (star ;~(less soq escp)))
         ==
       ==  
-    ==
   ::
 ```
 
-XX document
+0 or more . gap [mane] tis {quoted string}
+
+    ~zod/try=> (rash '' attr:xmlp)
+    ~
+    ~zod/try=> (rash 'sam=""' attr:xmlp)
+    ! {1 1}
+    ! exit
+    ~zod/try=> (rash ' sam=""' attr:xmlp)
+    ~[[n=%sam v=""]]
+    ~zod/try=> (rash ' sam="hek"' attr:xmlp)
+    ~[[n=%sam v="hek"]]
+    ~zod/try=> (rash ' sam="hek" res="actor"' attr:xmlp)
+    ~[[n=%sam v="hek"] [n=%res v="actor"]]
+    ~zod/try=> (rash ' sam=\'hek\' res="actor"' attr:xmlp)
+    ~[[n=%sam v="hek"] [n=%res v="actor"]]
+    ~zod/try=> (rash ' sam=\'hek" res="actor"' attr:xmlp)
+    ! {1 23}
+    ! exit
 
 ###++chrd
 
 ```
   ++  chrd                                              ::  character data
-    %+  knee  *manx  |.  ~+
-    %+  cook  |=(a=tape :/(a))
+    %+  cook  |=(a=tape ^-(mars :/(a)))
     (plus ;~(less soq doq ;~(pose (just `@`10) escp)))
   ::
 ```
 
-XX document
+Char data
+
+    ~zod/try=> (rash 'asa' chrd:xmlp)
+    [g=[n=%$ a=~[[n=%$ v="asa"]]] c=~]
+    ~zod/try=> (rash 'asa &gt; are' chrd:xmlp)
+    [g=[n=%$ a=~[[n=%$ v="asa > are"]]] c=~]
+    ~zod/try=> (rash 'asa > are' chrd:xmlp)
+    ! {1 6}
+    ! exit
 
 ###++comt
 
 ```
-  ++  comt  %+  ifix  [(jest '<!--') (jest '-->')]      ::  comments 
-            (star ;~(less (jest '-->') ;~(pose whit prn)))
+  ++  comt                                              ::  comments 
+    =-  (ifix [(jest '<!--') (jest '-->')] (star -))
+    ;~  pose 
+      ;~(less hep prn) 
+      whit
+      ;~(less (jest '-->') hep)
+    ==
   ::
 ```
 
-XX document
+Comment block
+
+    ~zod/try=> (rash '<!--  bye -->' comt:xmlp)
+    "  bye "
+    ~zod/try=> (rash '<!--  bye  ><<<>< - - -->' comt:xmlp)
+    "  bye  ><<<>< - - "
+    ~zod/try=> (rash '<!--  invalid -->-->' comt:xmlp)
+    ! {1 18}
+    ! exit
 
 ###++escp
 
@@ -1262,29 +1560,61 @@ XX document
     ==
 ```
 
-XX document
+Nonspecial or escaped character
+
+    ~zod/try=> (rash 'a' escp:xmlp)
+    'a'
+    ~zod/try=> (rash 'ab' escp:xmlp)
+    ! {1 2}
+    ! exit
+    ~zod/try=> (rash '.' escp:xmlp)
+    '.'
+    ~zod/try=> (rash '!' escp:xmlp)
+    '!'
+    ~zod/try=> (rash '>' escp:xmlp)
+    ! {1 2}
+    ! exit
+    ~zod/try=> (rash '&gt;' escp:xmlp)
+    '>'
+    ~zod/try=> (rash '&quot;' escp:xmlp)
+    '"'
 
 ###++empt
 
 ```
   ++  empt                                              ::  self-closing tag
-    %+  ifix  [gal ;~(plug (stun [0 1] ace) (jest '/>'))] 
+    %+  ifix  [gal (jest '/>')]  
     ;~(plug ;~(plug name attr) (cold ~ (star whit)))  
   ::
 ```
 
-XX document
+XML tags can self-close by ending in `/>`
+
+    ~zod/try=> (rash '<div/>' empt:xmlp)
+    [[%div ~] ~]
+    ~zod/try=> (rash '<pre color="#eeffee" />' empt:xmlp)
+    [[%pre ~[[n=%color v="#eeffee"]]] ~]
+    ~zod/try=> (rash '<pre color="#eeffee"></pre>' empt:xmlp)
+    ! {1 21}
+    ! exit
 
 ###++head
 
 ```
   ++  head                                              ::  opening tag
-    %+  knee  *marx  |.  ~+
     (ifix [gal gar] ;~(plug name attr))
   ::
 ```
 
-XX document
+XML node start
+
+    ~zod/try=> (rash '<a>' head:xmlp)
+    [n=%a a=~]
+    ~zod/try=> (rash '<div mal="tok">' head:xmlp)
+    [n=%div a=~[[n=%mal v="tok"]]]
+    ~zod/try=> (rash '<div mal="tok" />' head:xmlp)
+    ! {1 16}
+    ! exit
 
 ###++name
 
@@ -1301,7 +1631,17 @@ XX document
   ::
 ```
 
-XX document
+XML node name
+
+    ~zod/try=> (scan "ham" name:xmlp)
+    %ham
+    ~zod/try=> (scan "ham:tor" name:xmlp)
+    [%ham %tor]
+    ~zod/try=> (scan "ham-tor" name:xmlp)
+    %ham-tor
+    ~zod/try=> (scan "ham tor" name:xmlp)
+    ! {1 4}
+    ! exit
 
 ###++tail
 
@@ -1309,13 +1649,33 @@ XX document
   ++  tail  (ifix [(jest '</') gar] name)               ::  closing tag
 ```
 
-XX document
+    ~zod/try=> (scan "</div>" tail:xmlp)
+    %div
+    ~zod/try=> (scan "</a>" tail:xmlp)
+    %a
+    ~zod/try=> (scan "</>" tail:xmlp)
+    ! {1 3}
+    ! exit
 
 ###++whit
 
 ```
-  ++  whit  (mask ~[`@`0x20 `@`0x9 `@`0xa])             ::  whitespace
+  ++  whit  (mask ~[' ' `@`0x9 `@`0xa])                 ::  whitespace
 ::
 ```
 
-XX document
+Newlines, tabs, and spaces
+
+    ~zod/try=> `@`(scan " " whit:xmlp)
+    32
+    ~zod/try=> `@`(scan "  " whit:xmlp)
+    ! {1 2}
+    ! exit
+    ~zod/try=> `@`(scan "\0a" whit:xmlp)
+    10
+    ~zod/try=> `@`(scan "\09" whit:xmlp)
+    9
+    ~zod/try=> `@`(scan "\08" whit:xmlp)
+    ! {1 1}
+    ! exit
+
