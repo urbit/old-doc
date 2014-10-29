@@ -30,5 +30,17 @@ None
 
 ##Examples
 
-
-
+    ~zod/try=> .?(~)
+    %.n
+    ~zod/try=> .?(5)
+    %.n
+    ~zod/try=> .?([1 2 3])
+    %.y
+    ~zod/try=> .?("ha")
+    %.y
+    ~zod/try=> .?(~porlep)
+    %.n
+    ~zod/try=> ._a_b__
+    [%a %b]
+    ~zod/try=> .?(._a_b__)
+    %.y

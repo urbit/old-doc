@@ -30,5 +30,15 @@
 
 ##Examples
 
-
-
+    ~zod/try=> =(0 ~)
+    %.y
+    ~zod/try=> =(1 2)
+    %.n
+    ~zod/try=> =(" " [32 0])
+    %.y
+    ~zod/try=> =(~nec 1)
+    %.y
+    ~zod/try=> =([%a 2] a/(dec 3))
+    %.y
+    ~zod/try=> =([%b 2] a/(dec 3))
+    %.n
