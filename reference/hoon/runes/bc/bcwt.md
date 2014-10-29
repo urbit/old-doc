@@ -1,4 +1,4 @@
-#bucwut `$?` %bcwt
+#[bucwut `$?` %bcwt](#bcwt)
 
 Fork
 
@@ -6,7 +6,7 @@ Fork
 
 ##Produces
 
-[Tile](): `[%fern p=[i=tile t=(list tile)]]`
+[Tile](): `[%fern p=[i=tile t=(list tile)]]`.
 
 ##Sample
 

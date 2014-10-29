@@ -1,4 +1,4 @@
-#buctis `$=` %bcts
+#[buctis `$=` %bcts](#bcts)
 
 Face for tile
 

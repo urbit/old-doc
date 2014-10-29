@@ -1,12 +1,12 @@
-#buccab `$_` %bccb
+#[buccab `$_` %bccb](#bccb)
 
-Default value ([Bunt]())
+Default value, bunt
 
-`$_` is a synthetic rune used to produce the default value ([bunt]]()) of a given tile. `$_` is one of the four [tile reductions]() in hoon.
+`$_` is a synthetic rune that produces a `%weed`, the default value or [bunt]](), of a given twig. `$_` is one of the four [tile reductions]() in hoon.
 
 ##Produces
 
-[Twig]()
+Tile: `[%weed p=twig]`
 
 ##Sample
 
