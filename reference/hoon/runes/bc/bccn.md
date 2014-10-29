@@ -1,8 +1,8 @@
-#buccen `$%` %bccn
+#[buccen `$%` %bccn](#bccn)
 
 Tagged union
 
-`$%`, `buccen`, is a tile rune that produces a [`%kelp`](), the tile of the discriminated union. `$%` takes a list of lines which are labeled cases, called fronds, closed by `==`. Commonly used for pattern matching.
+`$%` is a tile rune that produces a [`%kelp`](), the tile of the discriminated union. `$%` takes a list of lines which are labeled cases, called fronds, closed by `==`. Commonly used for pattern matching.
 
 ##Produces
 

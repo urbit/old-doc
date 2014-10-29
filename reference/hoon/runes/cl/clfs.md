@@ -1,8 +1,12 @@
 #[colfas, `:/`, %clfs](#clfs)
 
-Interpolation
+Internal interpolation
 
 `:/`, `colfas`,  is a synthetic hoon that produces `[%$ [%$ p ~] ~]`, i.e., `[0 [0 p 0] 0]`.
+
+##See also
+[`++manx`]()
+#[semdoq, %smdq](#smdq)
 
 ##Produces
 

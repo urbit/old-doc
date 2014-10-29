@@ -1,8 +1,8 @@
-#bucpam `$&` %bcpm
+#[bucpam `$&` %bcpm](#bcpm)
 
-[Short description]
+Pair / tag
 
-`$&`, `bucpam`, is a tile rune that produces a `%bush`. A `%bush` is a tile whose [icon]() is a [fork]() between two different kinds of nouns: cells whose head is a cell and cells whose head is an atom `(tile q)`. Its default value is the value of `q`. One important use of `$&` is to implement autocons in [`++twig`]() and [`++tile`]().
+`$&` is a tile rune that produces a `%bush`. A `%bush` is a tile whose [icon]() is a [fork]() between two different kinds of nouns: cells whose head is a cell and cells whose head is an atom `(tile q)`. Its default value is the value of `q`. One important use of `$&` is to implement autocons in [`++twig`]() and [`++tile`]().
 
 ##Produces
 

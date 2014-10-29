@@ -1,4 +1,4 @@
-buctar `$*` %bctr
+#[buctar `$*` %bctr](#bctr)
 
 Default value 
 
