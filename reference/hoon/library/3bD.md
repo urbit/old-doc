@@ -388,7 +388,13 @@ Optionally parse rule
   ++  twel  |=([a=tape b=tape] (weld a b))
 ```
 
-XX document
+Weld two tapes
+
+    ~zod/try=> (twel "sam" "hok"):poja
+    ~[~~s ~~a ~~m ~~h ~~o ~~k]
+    ~zod/try=> (twel "kre" ""):poja
+    ~[~~k ~~r ~~e]
+
 
 ###++piec
 
@@ -399,7 +405,10 @@ XX document
 ::
 ```
 
-XX document
+Piece to list
+
+    ~zod/try=> (scan "4" (piec:poja dem:ag))
+    [4 ~]
 
 ###++pojo
 
@@ -447,7 +456,20 @@ XX document
 ::
 ```
 
-XX document
+Print JSON to tape
+
+    ~zod/try=> (pojo [%n '12.6'])
+    "12.6"
+    ~zod/try=> (crip (pojo %n '12.6'))
+    '12.6'
+    ~zod/try=> (crip (pojo %s 'samtel'))
+    '"samtel"'
+    ~zod/try=> (crip (pojo %a ~[(jone 12) (jape "ha")]))
+    '[12,"ha"]'
+    ~zod/try=> (crip (pojo %a ~[(jone 12) ~ (jape "ha")]))
+    '[12,null,"ha"]'
+    ~zod/try=> (crip (pojo %o (mo sale/(jone 12) same/b/| ~)))
+    '{"same":false,"sale":12}'
 
 ###++jo
 
@@ -519,6 +541,11 @@ Parse JSON array as a fixed-length tuple.
 
 Parse json array as a tuple of unit results
 
+```
+~zod/try=> ((at-raw ni ni bo ~):jo ~[s/'hi' n/'1' b/&])
+[~ [~ 1] [~ u=%.y] ~]
+```
+
 ###++bo
 
 ```
@@ -528,6 +555,15 @@ Parse json array as a tuple of unit results
 ```
 
 Parse JSON boolean.
+
+```
+~zod/try=> (bo:jo [%b &])
+[~ u=%.y]
+~zod/try=> (bo:jo [%b |])
+[~ u=%.n]
+~zod/try=> (bo:jo [%s 'hi'])
+~
+```
 
 ###++bu
 
@@ -539,7 +575,14 @@ Parse JSON boolean.
 
 Parse inverse of JSON boolean.
 
-XX  Finish
+```
+~zod/try=> (bu:jo [%b &])
+[~ u=%.n]
+~zod/try=> (bu:jo [%b |])
+[~ u=%.y]
+~zod/try=> (bu:jo [%s 'hi'])
+~
+```
 
 ###++cu
 
@@ -551,7 +594,14 @@ XX  Finish
   ::
 ```
 
-XX document
+Slam result through gate.
+
+```
+~zod/try=> ((cu dec ni):jo [%n '20'])
+[~ 19]
+~zod/try=> ((cu dec ni):jo [%b &])
+~
+```
 
 ###++da
 
@@ -563,7 +613,40 @@ XX document
   ::
 ```
 
-XX document
+Parse UTC date string
+
+```
+~zod/try=> (da:jo [%s 'Wed, 29 Oct 2014 0:26:15 +0000'])
+[~ ~2014.10.29..00.26.15]
+~zod/try=> (da:jo [%s 'Wed, 29 Oct 2012 0:26:15'])
+[~ ~2012.10.29..00.26.15]
+~zod/try=> (da:jo [%n '20'])
+~
+```
+
+###++di
+
+```
+  ++  di                                                ::  millisecond date
+    |=  jon=json
+    %+  bind  (ni jon)
+    |=  a=@u  ^-  @da
+    (add ~1970.1.1 (div (mul ~s1 a) 1.000))
+  ::
+```
+
+Parse javascript millisecond date integer.
+
+```
+~zod/try=> (di:jo [%s '2014-10-29'])
+~
+~zod/try=> (di:jo [%n '1414545548325'])
+[~ ~2014.10.29..01.19.08..5333.3333.3333.3333]
+~zod/try=> (di:jo [%n '1414545615128'])
+[~ ~2014.10.29..01.20.15..20c4.9ba5.e353.f7ce]
+~zod/try=> (di:jo [%n '25000'])
+[~ ~1970.1.1..00.00.25]
+```
 
 ###++mu
 
@@ -571,11 +654,20 @@ XX document
   ++  mu                                                ::  true unit
     |*  wit=fist
     |=  jon=json
-    ?~(jon (some ~) (wit jon))
+    ?~(jon (some ~) (bind (wit jon) some))
   ::
 ```
 
-XX document
+Parse null as unit
+
+    ~zod/try=> ((mu ni):jo [%n '20'])
+    [~ [~ u=q=20]]
+    ~zod/try=> ((mu ni):jo [%n '15'])
+    [~ [~ u=q=15]]
+    ~zod/try=> ((mu ni):jo ~)
+    [~ u=~]
+    ~zod/try=> ((mu ni):jo [%s 'ma'])
+    ~
 
 ###++ne
 
