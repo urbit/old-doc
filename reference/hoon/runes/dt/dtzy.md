@@ -31,5 +31,9 @@ See chapter 6 for constant forms.
 
 ##Examples
 
-
-
+    ~zod/try=> (ream '12')
+    [%dtzy p=%ud q=12]
+    ~zod/try=> (ream '&')
+    [%dtzy p=%f q=0]
+    ~zod/try=> (ream '~.sam')
+    [%dtzy p=%ta q=7.168.371]

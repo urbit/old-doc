@@ -2,7 +2,11 @@
 
 Kicked trap
 
-`|-`, `barhep`, `[%brhp p=twig]` is a synthetic rune that produces a dry `%gold` trap and kicks it (cores, link). `|-` takes a twig.
+`|-` is a synthetic rune that produces a dry [`%gold`]() trap and [kicks]() it. You can think of a trap like a 'trap door', since `|-` is a [`door`]() with one arm [`$`](), the empty name. `|-` is kicked by default. `|-` is similar to creating and calling an anonymous function and is quite commonly used for loops or recursion.
+
+##See also 
+
+[bardot, `|.`, %brdt](#brdt)
 
 ##Produces
 
@@ -32,43 +36,29 @@ None
 
 ##Examples
 
-```
-++  dec                                                 ::  decrement
-  ~/  %dec
-  |=  a=@
-  ~|  %decrement-underflow
-  ?<  =(0 a)
-  =+  b=0
-  |-  ^-  @
-  ?:  =(a +(b))
-    b
-  $(b +(b))
-```
+    /~zod/try=> |-(42)
+      42
 
-In ++dec, `|-` creates a trap that contains the test and looping semantics. For looping, the `$` arm of the trap is called using `$(b +(b))`. (See `%=`)
+In contrast to our `|.` example, `|-` is kicked by default, so its internals are produced immediately.
 
-```
-++  mul                                                 ::  multiply
-  ~/  %mul
-  |=  [a=@ b=@]
-  ^-  @
-  =+  c=0
-  |-
-  ?:  =(0 a)
-    c
-  $(a (dec a), c (add b c))
-```
-
-In ++mul, we create a counter `c` (with =+, link) that we test against and
-update each loop. That is, we loop we want to preserve the value of `c` from
-the last loop.  If we push `c=0` onto our subject within the loop, we will set
-the value of `c` as 0 every loop. We use `|-` to create an inner core, so that
-when we loop (`%=`, link) we only loop over the expressions within the `|-`.
-
-    /~zod/try=> |-(20)
-    20
-    /~zod/try=> =+  a=`*`~[30 31]
+    /~zod/try=> =+  a=`*`~[41 42]
                 |-
-                ?~  a  ~
+                ?~  a
+                  ~
                 [-.a %m $(a +.a)]
-    [30 %m [31 %m ~]]
+      [41 %m [42 %m ~]]
+
+In this case we use `|-` for one of its most common applications, a loop. Here we walk across `a` by calling `$` with `a` replaced by `+.a`, producing a nested tuple. 
+
+    ++  dec                                                 ::  decrement
+      ~/  %dec
+      |=  a=@
+      ~|  %decrement-underflow
+      ?<  =(0 a)
+      =+  b=0
+      |-  ^-  @
+      ?:  =(a +(b))
+        b
+      $(b +(b))
+
+In `++dec`, found in `hoon.hoon`, `|-` creates a trap that contains the test and looping semantics. Basically, we count up to `a-1` by incrementing `b`. More common than our previous example, we usually use `|-` inside an existing core. 

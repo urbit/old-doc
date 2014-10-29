@@ -31,4 +31,16 @@ nock operator `4`, which increments an atomic operand.
 ##Examples
 
 
-
+    ~zod/try=> +(6)
+    7
+    ~zod/try=> +(2)
+    3
+    ~zod/try=> +(~zod)
+    1
+    ~zod/try=> +(0xff)
+    256
+    ~zod/try=> +(41)
+    42
+    ~zod/try=> +([1 2])
+    ! type-fail
+    ! exit

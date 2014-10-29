@@ -27,5 +27,17 @@ None
 
 ##Examples
 
-
-
+    ~zod/try=> .^(a//=name=/~zod)
+    587.481.414.525.965.665.129.596
+    ~zod/try=> (,@t .^(a//=name=/~zod))
+    '|Tianming|'
+    ~zod/try=> .^(cw//===)
+    1
+    ~zod/try=> :into %/test 'hello'
+    + /~zod/try/2/test
+    ~zod/try=> .^(cw//===)
+    2
+    ~zod/try=> .^(cx/%/test)
+    478.560.413.032
+    ~zod/try=> (,@t .^(cx/%/test))
+    'hello'

@@ -1,29 +1,30 @@
 #[barlus, `|+`, %brls](#brls)
 
-[Short description]
+`%iron` gate
 
-#Syntax
+`|+`, `barlus`, `[%brls p=tile q=twig]` is a synthetic hoon that produces a [dry]() [`%iron`]() [gate]() with sample `[%bctr p]` and arm `q`. `|+` is similar to `|=` but its sample cannot be read. It can be thought of as similar to a private function.
 
-`|+`, `barlus`, `[%brls p=tile q=twig]` is a synthetic hoon that
-produces a dry `%iron` gate with arm `q`, sample `[%bctr p]`.
+##See also
+
+#[bartis, `|=`, %brts](#brts)
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%brls p=tile q=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [tile]().
+`q` is a [twig]().
 
 ##Tall form
 
-|+  p
-    q
+    |+  p
+        q
 
 ##Wide form
 
-|+(p q)
+    |+(p q)
 
 ##Irregular form
 
@@ -38,10 +39,14 @@ None
     ! exit
     ~zod/try=> +<:|=(a=@ a)
     a=0
+
+Here we're trying to read the sample, using `+<` of two different kinds of gates. With `|+` you can see we cause an error, whereas with `|=` our default sample is `a=0`.
+
     ~zod/try=> %.(20 |+(a=@ a))
+    20
+    ~zod/try=> %.(20 |=(a=@ a))
     20
     ~zod/try=> %.(20 |+(a=@ (add a 12)))
     32
 
-An `iron` gate is like a `gold` gate, but cannot have its sample read, only
-written.
+Kicking a `|+` gate, however, is the same as `|=`.

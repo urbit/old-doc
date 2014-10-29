@@ -1,29 +1,30 @@
 #[bartis, `|=`, %brts](#brts)
 
-[Short description]
+Dry gate
 
-#Syntax
+`|=`, `bartis`,  is a synthetic hoon that produces a [dry]() [`%gold`]() gate with sample `[%bctr p]`, arm `q`. A gate is a core with one arm, [`$`](), the empty name. `|=` checks its input sample against its tile, `p`.
 
-`|=`, `bartis`, `[%brts p=tile q=twig]` is a synthetic hoon that
-produces a dry `%gold` gate with arm `q`, sample `[%bctr p]`.
+##See also
+
+#[bartar, `|*`, %brtr](#brtr)
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%brts p=tile q=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [tile]().
+`q` is a [twig]().
 
 ##Tall form
 
-|=  p
-    q
+    |=  p
+        q
 
 ##Wide form
 
-|=(p q)
+    |=(p q)
 
 ##Irregular form
 
@@ -34,8 +35,8 @@ None
     ~zod/try=> =inc |=(a=@ +(a))
     ~zod/try=> (inc 20)
     21
-    
-Here there be lambdas, see [gate]() doc
+
+Here we create a very simple gate that increments its sample, `a`. You can think of `|=` as similar to a function.
 
 ```
 ++  add                                                 ::  add
@@ -47,7 +48,5 @@ Here there be lambdas, see [gate]() doc
       $(a (dec a), b +(b))
 ```
 
-In ++add, `|=` creates a gate whose sample takes two atoms
-labeled `a` and `b`, and whose arm evaluates an expression that
-produces the sum of the atoms.
+In [++add](), from `hoon.hoon`, `|=` creates a gate whose sample takes two atoms labeled `a` and `b`, and whose arm evaluates an expression that produces the sum of the atoms by decrementing `a` until it is `0` and incrementing `b` at each step. `$` is used for recursion.
 

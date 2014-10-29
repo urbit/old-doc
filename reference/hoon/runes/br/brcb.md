@@ -2,11 +2,14 @@
 
 Door with sample
 
-`|_` is a synthetic hoon that produces a [`%gold`]() [door]() with sample `p`, arms `q`. `|_` takes an associative list of names, [++term](), and expressions [++foot](), each pair of which is called an arm. The list must be closed with a `--`. `|_` is similar to `|%`, but defines a sample for the set of arms it contains. 
+`|_` is a synthetic hoon that produces a [`%gold`]() [door]() with sample `p`, arms `q`. `|_` takes an associative list of names, [++term](), and expressions [++foot](), each pair of which is called an arm. The list must be closed with a `--`. 
+
+`|_` is similar to `|%`, but defines a sample for the set of arms it contains. Additionally `|_` only accepts [dry or `%elm`]() arms. Put simply, type checking on these arms is performed on the input before computation. For more on variance, see the [glossary entry]() and the examples below.
 
 ##See also
 
-`|/`
+[barcen, `|%`, `%brcn`]()
+[barfas, `|/`, `%brfs`]()
 
 ##Produces
 
@@ -45,6 +48,29 @@ None
     6
 
 In this example we create a door `mol` that operates on a [`@ud`](), `a`. We add two arms to our door, `++succ` and `++prev` and test invoking them with the irregular form of `%~`. Doors are commonly invoked with `%~`, irregular form `~(arm door sample)`, which replaces the door's sample and pulls the specified arm.
+
+    /~zod/try=> =kom
+                      |_  a=(list)
+                      ++  hed  -.a
+                      ++  tal  +.a
+                      --
+    new var %kom
+    /~zod/try=> =kot
+                      |/  a=(list)
+                      +-  hed  -.a
+                      +-  tal  +.a
+                      --
+    new var %kot
+    /~zod/try=> ~(tal kom "abc")
+    t=~[98 99]
+    /~zod/try=> ~(tal kot "abc")
+    t="bc"
+    /~zod/try=> ~(tal kot [1 2 3 ~])
+    [2 3 ~]
+    /~zod/try=> ~(tal kom [1 2 3 ~])
+    t=~[2 3]
+
+Here we're demonstrating the difference between `|_` and `|/`. We create a nearly identical door using both runes, each with an arm that produces the tail of the sample, `a`. You can see that our wet gates use the sample as a tile to produce well-typed output. 
 
 ```
 ++  ne
