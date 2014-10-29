@@ -1,28 +1,24 @@
 #[colfas, `:/`, %clfs](#clfs)
 
-[Short description]
+Interpolation
 
-#Syntax
-
-`:/`, `colfas`, `[%clfs p=twig]` is a synthetic hoon that
-produces `[%$ [%$ p ~] ~]`, ie, `[0 [0 p 0] 0]`.
+`:/`, `colfas`,  is a synthetic hoon that produces `[%$ [%$ p ~] ~]`, i.e., `[0 [0 p 0] 0]`.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%clfs p=twig]` 
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [twig]()
 
 ##Tall form
 
-:/  p
+    :/  p
 
 ##Wide form
 
-:/(p)
+    :/(p)
 
 ##Irregular form
 
