@@ -1,33 +1,26 @@
-#bucket `$^` %bckt
+#[bucket `$^` %bckt](#bckt)
 
-[Short description]
+Normalizing gate, `%herb`
 
-#Syntax
-
-`$^`, `bucket`, is a tile hoon that declares an `%herb`:
-
-    [%herb p=twig]
-
-An `%herb` is just a gate, accepting a sample of * and normalizing it as you choose. If you use a twig as a tile, it's treated as an herb.
+`$^`, is a tile hoon that declares an [`%herb`](). An `%herb` is a gate, accepting a sample of * and normalizing it as you choose. If you use a twig as a tile, it's treated as an herb.
 
 ##Produces
 
-[Twig or tile]
+Tile: `[%herb p=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [twig]().
 
 ##Tall form
 
-$^  p
-        q
-    ==
+    $^  p
+            q
+        ==
 
 ##Wide form
 
-$^(p q)
+    $^(p q)
 
 ##Irregular form
 

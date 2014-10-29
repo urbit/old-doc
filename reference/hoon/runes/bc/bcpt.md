@@ -1,33 +1,30 @@
-#bucpat `$@` %bcpt
+#[bucpat `$@` %bcpt](#bcpt)
 
-[Short description]
+Wing to tile
 
-#Syntax
-
-`$@`, `bucpat`, `[%bcpt p=wing q=tile]` is a (just barely) natural 
-hoon that whips (normalizes) wing `p` into tile `q`.
+`$@` is a natural rune that whips (normalizes) wing `p` into tile `q`.
 
 ##Produces
 
-[Twig or tile]
+Tile: `[%bcpt p=wing q=tile]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [`++wing`]().
+`q` is a [tile]().
 
 ##Tall form
 
-$@  p
-    q
+    $@  p
+        q
 
 ##Wide form
 
-$@(p q)
+    $@(p q)
 
 ##Irregular form
 
-p@q
+    p@q
 
 ##Examples
 

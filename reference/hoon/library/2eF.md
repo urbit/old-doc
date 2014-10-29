@@ -179,9 +179,9 @@ Double quote
 ++  doq  (just '"')
 ```
 
-Parses ASCII character 34, doq.
+Parses ASCII character 34, the double quote.
 
-   ~tadbyl-hilbel/try=> (scan "\"" doq)
+    ~tadbyl-hilbel/try=> (scan "\"" doq)
     ~~~22.
     ~tadbyl-hilbel/try=> `cord`(scan "\"" doq)
     '"'

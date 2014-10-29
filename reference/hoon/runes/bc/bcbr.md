@@ -1,8 +1,8 @@
-#bucbar `$|` %bcbr
+#[bucbar `$|` %bcbr](#bcbr)
 
-Fork of either atom or cell
+Atom / cell
 
-`$|` is a tile rune that produces a , a tile whose [icon]() is a [fork]() between two nouns: an [atom]() of `tile` `p` and a cell of `tile` `q`. `$|` is similar to [`$?`](), but is more strict in that in only contains one atom tile and one cell tile.
+`$|` is a tile rune that produces a [`%reed`](), a tile whose [icon]() is a [fork]() between two nouns: an [atom]() of `tile` `p` and a cell of `tile` `q`. `$|` is similar to [`$?`](), but is more strict in that in only contains one atom tile and one cell tile.
 
 ##Produces
 

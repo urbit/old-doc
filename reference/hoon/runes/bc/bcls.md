@@ -1,27 +1,25 @@
-#buclus `$+` %bcls
+#[buclus `$+` %bcls](#bcls)
 
-[Short description]
+Signature
 
-#Syntax
-
-`$+`, `buclus`, a tile for a gate which accepts `p` and produces `q`. The spectre of function signatures once again rears its ugly head - but `$+(p q)` is no different from `$_(|+(p _q))`.
+`$+` a tile for a gate which accepts `p` and produces `q`. `$+` is similar to a function signature. `$+(p q)` is a `%bark` of a `%weed`, or `$_(|+(p _q))`. 
 
 ##Produces
 
-[Twig or tile]
+Tile: `$_(|+(p _q))`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [tile]()
+`q` is a [tile]()
 
 ##Tall form
 
-$+  p  q
+      $+  p  q
 
 ##Wide form
 
-$+(p q)
+      $+(p q)
 
 ##Irregular form
 
@@ -29,17 +27,17 @@ None
 
 ##Examples
 
-++  sort                                                ::  quicksort
-      ~/  %sort
-      !:
-      |*  [a=(list) b=$+([* *] ?)]
-      =>  .(a ^.(homo a))
-      |-  ^+  a
-      ?~  a  ~
-      %+  weld
-        $(a (skim t.a |=(c=_i.a (b c i.a))))
-      ^+  t.a
-      [i.a $(a (skim t.a |=(c=_i.a !(b c i.a))))]
+      ++  sort                                                ::  quicksort
+            ~/  %sort
+            !:
+            |*  [a=(list) b=$+([* *] ?)]
+            =>  .(a ^.(homo a))
+            |-  ^+  a
+            ?~  a  ~
+            %+  weld
+              $(a (skim t.a |=(c=_i.a (b c i.a))))
+            ^+  t.a
+            [i.a $(a (skim t.a |=(c=_i.a !(b c i.a))))]
 
 In ++sort, `$+` is a tile for a comparator gate, which takes two nouns and produces a loobean.
 

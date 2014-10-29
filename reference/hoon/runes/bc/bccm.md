@@ -1,8 +1,8 @@
-#buccom `$,` %bccm
+#[buccom `$,` %bccm](#bccm)
 
-Normalizing gate (or [clam]())
+Normalizing gate, `%clam`
 
-`$,` is a synthetic rune that produces a normalizing gate [clam]() for `p`. `$,` is used to ensure an input value fits a certain type:if it does match, the value is produced. If it doesn't, the default value for the desired type is produced.
+`$,` is a synthetic rune that produces a `%leaf`, a normalizing gate or [clam]() for `p`. `$,` is used to ensure an input value fits a certain type: if it does match, the value is produced. If it doesn't, the default value for the desired type is produced.
 
 ##Produces
 
