@@ -36,5 +36,10 @@ None
 
 ##Examples
 
-
-
+    ~zod/try=> =+  a=[b=1 c=2]
+               =.  b.a  3
+               a
+    [b=3 c=2]
+    ~zod/try=> =+  a=[b=1 c=2]
+               =.(b.a 3 a)
+    [b=3 c=2]

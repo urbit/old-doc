@@ -40,5 +40,13 @@ None
 
 ##Examples
 
-
-
+    ~zod/try=> =~(~ [1 2 3 .] [+ +])
+    [[2 3 ~] 2 3 ~]
+    ~zod/try=> =~  ~
+                   |%
+                   ++  ham  1
+                   ++  tel  2
+                   --
+                   |.(ham)
+               ==
+    <1.epy 2.msr %~>

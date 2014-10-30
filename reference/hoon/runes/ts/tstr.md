@@ -31,5 +31,7 @@ None
 
 ##Examples
 
-
-
+    ~zod/try=> =+  a=[b=1 c=2]
+               =*  d  b.a
+               [d 3]
+    [1 3]

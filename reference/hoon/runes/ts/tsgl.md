@@ -31,5 +31,12 @@ p:q
 
 ##Examples
 
-
+    ~zod/try=> b:[a=1 b=2 c=3]
+    2
+    ~zod/try=> =<  lom
+               |%
+               ++  lom  (add 2 tak)
+               ++  tak  4
+               --
+    6
 
