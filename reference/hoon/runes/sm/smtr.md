@@ -31,6 +31,9 @@ None
 
 ##Examples
 
+    ~zod/try=> ;div  ;*  ~[;hi; ;p;]
+               ==
+    [[%div ~] [[%hi ~] ~] [[%p ~] ~] ~]
     ~zod/try=> ;div:"*{~[;hi; ;p;]}"
     [[%div ~] [[%hi ~] ~] [[%p ~] ~] ~]
     ~zod/try=> ;div:"a*{~[;hi; ;p;]}b"
