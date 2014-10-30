@@ -1,11 +1,14 @@
 #[semsem, `;;`, %smsm](#smsm)
 
-[Short description]
+Slams q through gate p, asserting that the resulting noun .= the original, and producing it.
 
 #Syntax
 
 `;;`, `semsem`, `[%smsm p=twig q=twig]` is a synthetic hoon that
 types `q` as a fixpoint of `p`.
+
+See also: [hard]
+
 
 ##Produces
 
@@ -32,4 +35,12 @@ None
 ##Examples
 
 
-
+    ~zod/try=> ^-(tape ~[97 98 99])
+    ! type-fail
+    ! exit
+    ~zod/try=> ;;(tape ~[97 98 99])
+    "abc"
+    ~zod/try=> (tape [50 51 52])
+    "23"
+    ~zod/try=> ;;(tape [50 51 52])
+    ! exit

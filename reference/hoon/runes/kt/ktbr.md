@@ -7,6 +7,8 @@
 `^|`, `ketbar`, `[%ktbr p=twig]` is a natural hoon that
 converts a gold core into an iron core.
 
+Variance or sth.
+
 ##Produces
 
 [Twig or tile]
@@ -30,5 +32,7 @@ None
 
 ##Examples
 
-
-
+    ~zod/try=> |=(@ 1)
+    <1.gcq [@ @n <250.yur 41.wda 374.hzt 100.kzl 1.ypj %164>]>
+    ~zod/try=> ^|(|=(@ 1))
+    <1|gcq [@ @n <250.yur 41.wda 374.hzt 100.kzl 1.ypj %164>]>

@@ -4,8 +4,7 @@
 
 #Syntax
 
-`semdoq`, `[%smdq p=(list beer)]` is a synthetic hoon used to
-make strings, interpreted or not.
+`semdoq`, `[%smdq p=(list beer)]` is a synthetic rune used to make strings, interpreted or not.
 
 ##Produces
 
@@ -26,9 +25,20 @@ None
 
 ##Irregular form
 
-None
+    "foo"
 
 ##Examples
 
 
-
+    ~zod/try=> "foo"
+    "foo"
+    ~zod/try=> "bar"
+    "bar"
+    ~zod/try=> "ba{<+(2)>}r"
+    "ba3r"
+    ~zod/try=> (ream '"foo"')
+    [%smdq p=~[102 111 111]]
+    ~zod/try=> (ream '"ba{<+(2)>}r"')
+    [ %smdq
+      p=~[98 97 [~ p=[%cltr p=~[[%hxgl p=~[[%dtls p=[%dtzy p=%ud q=2]]]]]]] 114]
+    ]

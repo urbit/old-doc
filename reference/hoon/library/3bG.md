@@ -25,6 +25,23 @@
 
 XX document
 
+###++fain
+
+```
+++  fain                                                ::  path restructure
+  |=  [hom=path raw=path]
+  =+  bem=(need (tome raw))
+  =+  [mer=(flop s.bem) moh=(flop hom)]
+  |-  ^-  (pair beam path)
+  ?~  moh
+    [bem(s hom) (flop mer)]
+  ?>  &(?=(^ mer) =(i.mer i.moh))
+  $(mer t.mer, moh t.moh)
+::
+```
+
+XX  Document
+
 ###++fest
 
 ```

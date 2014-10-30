@@ -30,5 +30,8 @@ None
 
 ##Examples
 
-
+    ~zod/try=> (add 90 7)
+    97
+    ~zod/try=> ^+('cord' (add 90 7))
+    'a'
 

@@ -30,5 +30,8 @@ None
 
 ##Examples
 
-
+    ~zod/try=> ~[1 2 3 4]
+    [1 2 3 4 ~]
+    ~zod/try=> ^.(limo ~[1 2 3 4])
+    [i=1 t=[i=2 t=[i=3 t=[i=4 t=~]]]]
 

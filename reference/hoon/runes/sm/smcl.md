@@ -34,5 +34,16 @@ applies `p`, a binary gate, to the n-ary tuple `q`.
 
 ##Examples
 
+    ~zod/try=> ;:(add 3 4 5)
+    12
+    ~zod/try=> :(add 3 4 5)
+    12
+    ~zod/try=> :(weld "foo" "bar" "baz")
+    ~[~~f ~~o ~~o ~~b ~~a ~~r ~~b ~~a ~~z]
+    ~zod/try=> `tape`:(weld "foo" "bar" "baz")
+    "foobarbaz"
+    ~zod/try=> `tape`(weld "foo" (weld "bar" "baz"))
+    "foobarbaz"
+
 
 
