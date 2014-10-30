@@ -30,5 +30,10 @@
 
 ##Examples
 
-
+    ~zod/try=> (add 90 7)
+    97
+    ~zod/try=> `@t`(add 90 7)
+    'a'
+    ~zod/try=> ^-(@t (add 90 7))
+    'a'
 
