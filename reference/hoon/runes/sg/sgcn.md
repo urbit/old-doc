@@ -42,4 +42,19 @@ None
 ##Examples
 
 
-
+```
+++  aesc                                                ::  AES-256
+  ~%  %aesc  +  ~
+  |%
+  ++  en                                                ::  ECB enc
+    ~/  %en
+    |=  [a=@I b=@H]  ^-  @uxH
+    =+  ahem
+    (be & (ex a) b)
+  ++  de                                                ::  ECB dec
+    ~/  %de
+    |=  [a=@I b=@H]  ^-  @uxH
+    =+  ahem
+    (be | (ix (ex a)) b)
+  --
+```

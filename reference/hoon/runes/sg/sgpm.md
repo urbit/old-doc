@@ -4,9 +4,9 @@
 
 #Syntax
 
-`~&`, `sigpam`, `[%sgpm p=@ud q=twig r=twig]` is a synthetic hoon 
-that prints `q` on the console before computing `r`.  `p` is the
-log priority, 0-3 defaulting to 0.
+`~&`, `sigpam`, `[%sgpm p=@ud q=twig r=twig]` is a synthetic hoon that prints
+`q` on the console before computing `r`.  `p` is the log priority, 0-3
+defaulting to 0.
 
 ##Produces
 
@@ -49,5 +49,9 @@ undefined
 
 ##Examples
 
-undefined
+    ~zod/try=> ~
+    ~
+    ~zod/try=> ~&(5 ~)
+    5
+    ~
 
