@@ -61,5 +61,5 @@ None
         [g=[n=%p a=~] c=~]
       ]
     ]
-    ~zod/try=> (poxa ;div:"%{|=(a=marl (weld a a))};{hi}foo;{p}")
+    ~zod/try=> (poxo ;div:"%{|=(a=marl (weld a a))};{hi}foo;{p}")
     "<div><hi></hi>foo<p></p><hi></hi>foo<p></p></div>"

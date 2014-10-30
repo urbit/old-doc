@@ -36,5 +36,5 @@ None
     [[%div ~] [[%~. [%~. "hi"] ~] ~] ~]
     ~zod/try=> ;div:"-{"hi"}"
     [[%div ~] [[%~. [%~. "hi"] ~] ~] ~]
-    ~zod/try=> (poxa ;div:"-{"hi"}")
+    ~zod/try=> (poxo ;div:"-{"hi"}")
     "<div>hi</div>"

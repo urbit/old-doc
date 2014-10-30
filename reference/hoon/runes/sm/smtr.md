@@ -41,5 +41,5 @@ None
       [[%~. [%~. "b"] ~] ~]
       ~
     ]
-    ~zod/try=> (poxa ;div:"a*{~[;hi; ;p;]}b")
+    ~zod/try=> (poxo ;div:"a*{~[;hi; ;p;]}b")
     "<div>a<hi></hi><p></p>b</div>"

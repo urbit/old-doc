@@ -476,6 +476,416 @@ Print JSON to tape
     '[12,null,"ha"]'
     ~zod/try=> (crip (pojo %o (mo sale/(jone 12) same/b/| ~)))
     '{"same":false,"sale":12}'
+    
+###++poxo
+
+```
+++  poxo                                                ::  node to tape
+  =<  |=(a=manx `tape`(apex a ~))
+  |_  unq=?                                             ::  unq
+```
+
+Print xml
+
+    ~zod/try=> (poxo ;div;)
+    "<div></div>"
+    ~zod/try=> (poxo ;div:(p a))
+    "<div><p></p><a></a></div>"
+    ~zod/try=> (poxo ;div:(p:"tree > text" a))
+    "<div><p>tree &gt; text</p><a></a></div>"
+
+###++apex
+
+```
+  ++  apex                                              ::  top level
+    |=  [mex=manx rez=tape]
+    ^-  tape
+    ?:  ?=([%$ [[%$ *] ~]] g.mex)
+      (escp v.i.a.g.mex rez)
+    =+  man=`mane`n.g.mex
+    =.  unq  |(unq =(%script man) =(%style man))
+    =+  tam=(name man)
+    =.  rez  :(weld "</" tam ">" rez)
+    =+  att=`mart`a.g.mex
+    :-  '<'
+    %+  welp  tam
+    =.  rez  ['>' (many c.mex rez)]
+    ?~(att rez [' ' (attr att rez)])
+  ::  
+```
+
+Inner XML printer
+
+    ~zod/try=> (apex:poxo ;div; "")
+    "<div></div>"
+    ~zod/try=> (apex:poxo ;div:(p a) "")
+    "<div><p></p><a></a></div>"
+    ~zod/try=> (apex:poxo ;div:(p:"tree > text" a) "")
+    "<div><p>tree &gt; text</p><a></a></div>"
+    ~zod/try=> (~(apex poxo &) ;div:(p:"tree > text" a) "")
+    "<div><p>tree > text</p><a></a></div>"
+    
+###++attr
+
+```
+  ++  attr                                              ::  attributes to tape
+    |=  [tat=mart rez=tape]
+    ^-  tape
+    ?~  tat  rez
+    =.  rez  $(tat t.tat)
+    ;:  weld 
+      (name n.i.tat)
+      "=\"" 
+      (escp(unq |) v.i.tat '"' ?~(t.tat rez [' ' rez]))
+    ==
+```
+
+Render XML attributes
+
+    ~zod/try=> (attr:poxo ~ "")
+    ""
+    ~zod/try=> (crip (attr:poxo ~[sam/"hem" [%tok %ns]^"reptor"] ""))
+    'sam="hem" tok:ns="reptor"'
+    ~zod/try=> (crip (attr:poxo ~[sam/"hem" [%tok %ns]^"reptor"] "|appen"))
+    'sam="hem" tok:ns="reptor"|appen'
+
+###++escp
+
+```
+  ++  escp                                              ::  escape for xml
+    |=  [tex=tape rez=tape]
+    ?:  unq
+      (weld tex rez)
+    =+  xet=`tape`(flop tex)
+    |-  ^-  tape
+    ?~  xet  rez
+    %=    $
+      xet  t.xet
+      rez  ?-  i.xet
+             34  ['&' 'q' 'u' 'o' 't' ';' rez]
+             38  ['&' 'a' 'm' 'p' ';' rez]
+             39  ['&' '#' '3' '9' ';' rez]
+             60  ['&' 'l' 't' ';' rez]
+             62  ['&' 'g' 't' ';' rez]
+             *   [i.xet rez]
+           ==
+    ==
+  ::
+```
+
+Escape xml entities
+
+    ~zod/try=> (escp:poxo "astra" ~)
+    ~[~~a ~~s ~~t ~~r ~~a]
+    ~zod/try=> `tape`(escp:poxo "astra" ~)
+    "astra"
+    ~zod/try=> `tape`(escp:poxo "x > y" ~)
+    "x &gt; y"
+    ~zod/try=> `tape`(~(escp poxo &) "x > y" ~)
+    "x > y"
+
+###++name
+
+```
+  ++  name                                              ::  name to tape
+    |=  man=mane  ^-  tape
+    ?@  man  (trip man)
+    (weld (trip -.man) `tape`[':' (trip +.man)])
+  ::
+```
+
+Render `mane`
+
+    ~zod/try=> (name:poxo %$)
+    ""
+    ~zod/try=> (name:poxo %ham)
+    "ham"
+    ~zod/try=> (name:poxo %ham^%tor)
+    "ham:tor"
+
+###++many
+
+```
+  ++  many                                              ::  nodelist to tape
+    |=  [lix=(list manx) rez=tape]
+    |-  ^-  tape
+    ?~  lix  rez
+    (apex i.lix $(lix t.lix))
+  ::
+```
+
+Multiple XML nodes to tape
+
+    ~zod/try=> (many:poxo ~ "")
+    ""
+    ~zod/try=> (many:poxo ;"hare" "")
+    "hare"
+    ~zod/try=> (many:poxo ;"hare;{lep}ton" "")
+    "hare<lep></lep>ton"
+    ~zod/try=> ;"hare;{lep}ton"
+    [[[%~. [%~. "hare"] ~] ~] [[%lep ~] ~] [[%~. [%~. "ton"] ~] ~] ~]
+
+---
+
+###++poxa
+
+```
+++  poxa                                                ::  xml parser
+  =<  |=(a=cord (rush a apex))
+  |%
+```
+
+Parse xml
+
+    ~zod/try=> (poxa '<div />')
+    [~ [g=[n=%div a=~] c=~]]
+    ~zod/try=> (poxa '<html><head/> <body/></html>')
+    [~ [g=[n=%html a=~] c=~[[g=[n=%head a=~] c=~] [g=[n=%body a=~] c=~]]]]
+    ~zod/try=> (poxa '<script src="/gep/hart.js"/>')
+    [~ [g=[n=%script a=~[[n=%src v="/gep/hart.js"]]] c=~]]
+    ~zod/try=> (poxa '<<<<')
+    ~
+
+
+###++apex
+
+```
+  ++  apex
+    =+  spa=;~(pose comt whit)
+    %+  knee  *manx  |.  ~+
+    %+  ifix  [(star spa) (star spa)]
+    ;~  pose
+      %+  sear  |=([a=marx b=marl c=mane] ?.(=(c n.a) ~ (some [a b])))
+        ;~(plug head (more (star comt) ;~(pose apex chrd)) tail)
+      empt
+    == 
+  :: 
+```
+
+Top level parser
+
+    ~zod/try=> (rash '<div />' apex:xmlp)
+    [g=[n=%div a=~] c=~]
+    ~zod/try=> (rash '<html><head/> <body/></html>' apex:xmlp)
+    [g=[n=%html a=~] c=~[[g=[n=%head a=~] c=~] [g=[n=%body a=~] c=~]]]
+    ~zod/try=> (rash '<script src="/gep/hart.js"/>' apex:xmlp)
+    [g=[n=%script a=~[[n=%src v="/gep/hart.js"]]] c=~]
+    ~zod/try=> (rash '<<<<' apex:xmlp)
+    ! {1 2}
+    ! exit
+
+
+###++attr
+
+```
+  ++  attr                                              ::  attributes
+    %+  knee  *mart  |.  ~+ 
+    %-  star
+    ;~  plug
+        ;~(sfix name tis)
+        ;~  pose 
+            (ifix [doq doq] (star ;~(less doq escp)))
+            (ifix [soq soq] (star ;~(less soq escp)))
+        ==
+      ==  
+  ::
+```
+
+0 or more . gap [mane] tis {quoted string}
+
+    ~zod/try=> (rash '' attr:xmlp)
+    ~
+    ~zod/try=> (rash 'sam=""' attr:xmlp)
+    ! {1 1}
+    ! exit
+    ~zod/try=> (rash ' sam=""' attr:xmlp)
+    ~[[n=%sam v=""]]
+    ~zod/try=> (rash ' sam="hek"' attr:xmlp)
+    ~[[n=%sam v="hek"]]
+    ~zod/try=> (rash ' sam="hek" res="actor"' attr:xmlp)
+    ~[[n=%sam v="hek"] [n=%res v="actor"]]
+    ~zod/try=> (rash ' sam=\'hek\' res="actor"' attr:xmlp)
+    ~[[n=%sam v="hek"] [n=%res v="actor"]]
+    ~zod/try=> (rash ' sam=\'hek" res="actor"' attr:xmlp)
+    ! {1 23}
+    ! exit
+
+###++chrd
+
+```
+  ++  chrd                                              ::  character data
+    %+  cook  |=(a=tape ^-(mars :/(a)))
+    (plus ;~(less soq doq ;~(pose (just `@`10) escp)))
+  ::
+```
+
+Char data
+
+    ~zod/try=> (rash 'asa' chrd:xmlp)
+    [g=[n=%$ a=~[[n=%$ v="asa"]]] c=~]
+    ~zod/try=> (rash 'asa &gt; are' chrd:xmlp)
+    [g=[n=%$ a=~[[n=%$ v="asa > are"]]] c=~]
+    ~zod/try=> (rash 'asa > are' chrd:xmlp)
+    ! {1 6}
+    ! exit
+
+###++comt
+
+```
+  ++  comt                                              ::  comments 
+    =-  (ifix [(jest '<!--') (jest '-->')] (star -))
+    ;~  pose 
+      ;~(less hep prn) 
+      whit
+      ;~(less (jest '-->') hep)
+    ==
+  ::
+```
+
+Comment block
+
+    ~zod/try=> (rash '<!--  bye -->' comt:xmlp)
+    "  bye "
+    ~zod/try=> (rash '<!--  bye  ><<<>< - - -->' comt:xmlp)
+    "  bye  ><<<>< - - "
+    ~zod/try=> (rash '<!--  invalid -->-->' comt:xmlp)
+    ! {1 18}
+    ! exit
+
+###++escp
+
+```
+  ++  escp
+    ;~  pose
+      ;~(less gal gar pam prn)
+      (cold '>' (jest '&gt;'))
+      (cold '<' (jest '&lt;'))
+      (cold '&' (jest '&amp;'))
+      (cold '"' (jest '&quot;'))
+      (cold '\'' (jest '&apos;'))
+    ==
+```
+
+Nonspecial or escaped character
+
+    ~zod/try=> (rash 'a' escp:xmlp)
+    'a'
+    ~zod/try=> (rash 'ab' escp:xmlp)
+    ! {1 2}
+    ! exit
+    ~zod/try=> (rash '.' escp:xmlp)
+    '.'
+    ~zod/try=> (rash '!' escp:xmlp)
+    '!'
+    ~zod/try=> (rash '>' escp:xmlp)
+    ! {1 2}
+    ! exit
+    ~zod/try=> (rash '&gt;' escp:xmlp)
+    '>'
+    ~zod/try=> (rash '&quot;' escp:xmlp)
+    '"'
+
+###++empt
+
+```
+  ++  empt                                              ::  self-closing tag
+    %+  ifix  [gal (jest '/>')]  
+    ;~(plug ;~(plug name attr) (cold ~ (star whit)))  
+  ::
+```
+
+XML tags can self-close by ending in `/>`
+
+    ~zod/try=> (rash '<div/>' empt:xmlp)
+    [[%div ~] ~]
+    ~zod/try=> (rash '<pre color="#eeffee" />' empt:xmlp)
+    [[%pre ~[[n=%color v="#eeffee"]]] ~]
+    ~zod/try=> (rash '<pre color="#eeffee"></pre>' empt:xmlp)
+    ! {1 21}
+    ! exit
+
+###++head
+
+```
+  ++  head                                              ::  opening tag
+    (ifix [gal gar] ;~(plug name attr))
+  ::
+```
+
+XML node start
+
+    ~zod/try=> (rash '<a>' head:xmlp)
+    [n=%a a=~]
+    ~zod/try=> (rash '<div mal="tok">' head:xmlp)
+    [n=%div a=~[[n=%mal v="tok"]]]
+    ~zod/try=> (rash '<div mal="tok" />' head:xmlp)
+    ! {1 16}
+    ! exit
+
+###++name
+
+```
+  ++  name                                              ::  tag name 
+    %+  knee  *mane  |.  ~+
+    =+  ^=  chx
+        %+  cook  crip 
+        ;~  plug 
+            ;~(pose cab alf) 
+            (star ;~(pose cab dot alp))
+        ==
+    ;~(pose ;~(plug ;~(sfix chx col) chx) chx)
+  ::
+```
+
+XML node name
+
+    ~zod/try=> (scan "ham" name:xmlp)
+    %ham
+    ~zod/try=> (scan "ham:tor" name:xmlp)
+    [%ham %tor]
+    ~zod/try=> (scan "ham-tor" name:xmlp)
+    %ham-tor
+    ~zod/try=> (scan "ham tor" name:xmlp)
+    ! {1 4}
+    ! exit
+
+###++tail
+
+```
+  ++  tail  (ifix [(jest '</') gar] name)               ::  closing tag
+```
+
+`</foo>` closes an xml tag.
+
+    ~zod/try=> (scan "</div>" tail:xmlp)
+    %div
+    ~zod/try=> (scan "</a>" tail:xmlp)
+    %a
+    ~zod/try=> (scan "</>" tail:xmlp)
+    ! {1 3}
+    ! exit
+
+###++whit
+
+```
+  ++  whit  (mask ~[' ' `@`0x9 `@`0xa])                 ::  whitespace
+::
+```
+
+Newlines, tabs, and spaces
+
+    ~zod/try=> `@`(scan " " whit:xmlp)
+    32
+    ~zod/try=> `@`(scan "  " whit:xmlp)
+    ! {1 2}
+    ! exit
+    ~zod/try=> `@`(scan "\0a" whit:xmlp)
+    10
+    ~zod/try=> `@`(scan "\09" whit:xmlp)
+    9
+    ~zod/try=> `@`(scan "\08" whit:xmlp)
+    ! {1 1}
+    ! exit
 
 ###++jo
 
@@ -1276,7 +1686,6 @@ octs from wall
     3
     '''
 
-
 ###++txml
 
 ```
@@ -1292,390 +1701,3 @@ Tape to xml CDATA node
     [g=[n=%$ a=~[[n=%$ v="hi"]]] c=~]
     ~zod/try=> (txml "larton bestok")
     [g=[n=%$ a=~[[n=%$ v="larton bestok"]]] c=~]
-
-###++xmla
-
-```
-++  xmla                                                ::  attributes to tape
-  |=  [tat=mart rez=tape]
-  ^-  tape
-  ?~  tat  rez
-  =+  ryq=$(tat t.tat)
-  :(weld (xmln n.i.tat) "=\"" (xmle | v.i.tat '"' ?~(t.tat ryq [' ' ryq])))
-::
-```
-
-Render XML attributes
-
-    ~zod/try=> (xmla ~ "")
-    ""
-    ~zod/try=> (crip (xmla ~[sam/"hem" [%tok %ns]^"reptor"] ""))
-    'sam="hem" tok:ns="reptor"'
-    ~zod/try=> (crip (xmla ~[sam/"hem" [%tok %ns]^"reptor"] "|appen"))
-    'sam="hem" tok:ns="reptor"|appen'
-
-###++xmle
-
-```
-++  xmle                                                ::  escape for xml
-  |=  [unq=? tex=tape rez=tape]
-  ?:  unq
-    (weld tex rez)
-  =+  xet=`tape`(flop tex)
-  |-  ^-  tape
-  ?~  xet  rez
-  %=    $
-    xet  t.xet
-    rez  ?-  i.xet
-           34  ['&' 'q' 'u' 'o' 't' ';' rez]
-           38  ['&' 'a' 'm' 'p' ';' rez]
-           39  ['&' '#' '3' '9' ';' rez]
-           60  ['&' 'l' 't' ';' rez]
-           62  ['&' 'g' 't' ';' rez]
-           *   [i.xet rez]
-         ==
-  ==
-::
-```
-
-Escape xml entities
-
-    ~zod/try=> (xmle | "astra" ~)
-    ~[~~a ~~s ~~t ~~r ~~a]
-    ~zod/try=> `tape`(xmle | "astra" ~)
-    "astra"
-    ~zod/try=> `tape`(xmle | "x > y" ~)
-    "x &gt; y"
-    ~zod/try=> `tape`(xmle & "x > y" ~)
-    "x > y"
-
-###++xmln
-
-```
-++  xmln                                                ::  name to tape
-  |=  man=mane  ^-  tape
-  ?@  man  (trip man)
-  (weld (trip -.man) `tape`[':' (trip +.man)])
-::
-```
-
-Render xml name
-
-    ~zod/try=> (xmln %$)
-    ""
-    ~zod/try=> (xmln %ham)
-    "ham"
-    ~zod/try=> (xmln %ham^%tor)
-    "ham:tor"
-
-###++xmll
-
-```
-++  xmll                                                ::  nodelist to tape
-  |=  [unq=? lix=(list manx) rez=tape]
-  |-  ^-  tape
-  ?~  lix  rez
-  (xmlt unq i.lix $(lix t.lix))
-::
-```
-
-Dump XML nodes to tape
-
-    ~zod/try=> (xmll | ~ "")
-    ""
-    ~zod/try=> (xmll | ;"hare" "")
-    "hare"
-    ~zod/try=> (xmll | ;"hare;{lep}ton" "")
-    "hare<lep></lep>ton"
-    ~zod/try=> ;"hare;{lep}ton"
-    [[[%~. [%~. "hare"] ~] ~] [[%lep ~] ~] [[%~. [%~. "ton"] ~] ~] ~]
-
-###++xmlt
-
-```
-++  xmlt                                                ::  node to tape
-  |=  [unq=? mex=manx rez=tape]
-  ^-  tape
-  ?:  ?=([%$ [[%$ *] ~]] g.mex)
-    (xmle unq v.i.a.g.mex rez)
-  =+  man=`mane`-.g.mex
-  =.  unq  |(unq =(%script man) =(%style man))
-  =+  tam=(xmln man)
-  =+  end=:(weld "</" tam ">" rez)
-  =+  bod=['>' (xmll unq c.mex :(weld "</" tam ">" rez))]
-  =+  att=`mart`a.g.mex
-  :-  '<'
-  %+  weld  tam
-  `_tam`?~(att bod [' ' (xmla att bod)])
-::
-```
-
-Print xml
-
-    ~zod/try=> (xmlt | ;div; "")
-    "<div></div>"
-    ~zod/try=> (xmlt | ;div:(p a) "")
-    "<div><p></p><a></a></div>"
-    ~zod/try=> (xmlt | ;div:(p:"tree > text" a) "")
-    "<div><p>tree &gt; text</p><a></a></div>"
-    ~zod/try=> (xmlt & ;div:(p:"tree > text" a) "")
-    "<div><p>tree > text</p><a></a></div>"
-
-###++xmlp
-
-```
-++  xmlp                                                ::  xml parser
-  =<  |=(a=cord (rush a apex))
-  |%
-```
-
-Parse xml
-
-    ~zod/try=> (xmlp '<div />')
-    [~ [g=[n=%div a=~] c=~]]
-    ~zod/try=> (xmlp '<html><head/> <body/></html>')
-    [~ [g=[n=%html a=~] c=~[[g=[n=%head a=~] c=~] [g=[n=%body a=~] c=~]]]]
-    ~zod/try=> (xmlp '<script src="/gep/hart.js"/>')
-    [~ [g=[n=%script a=~[[n=%src v="/gep/hart.js"]]] c=~]]
-    ~zod/try=> (xmlp '<<<<')
-    ~
-
-
-###++apex
-
-```
-  ++  apex
-    =+  spa=;~(pose comt whit)
-    %+  knee  *manx  |.  ~+
-    %+  ifix  [(star spa) (star spa)]
-    ;~  pose
-      %+  sear  |=([a=marx b=marl c=mane] ?.(=(c n.a) ~ (some [a b])))
-        ;~(plug head (more (star comt) ;~(pose apex chrd)) tail)
-      empt
-    == 
-  :: 
-```
-
-Top level parser
-
-    ~zod/try=> (rash '<div />' apex:xmlp)
-    [g=[n=%div a=~] c=~]
-    ~zod/try=> (rash '<html><head/> <body/></html>' apex:xmlp)
-    [g=[n=%html a=~] c=~[[g=[n=%head a=~] c=~] [g=[n=%body a=~] c=~]]]
-    ~zod/try=> (rash '<script src="/gep/hart.js"/>' apex:xmlp)
-    [g=[n=%script a=~[[n=%src v="/gep/hart.js"]]] c=~]
-    ~zod/try=> (rash '<<<<' apex:xmlp)
-    ! {1 2}
-    ! exit
-
-
-###++attr
-
-```
-  ++  attr                                              ::  attributes
-    %+  knee  *mart  |.  ~+ 
-    %-  star
-    ;~  plug
-        ;~(sfix name tis)
-        ;~  pose 
-            (ifix [doq doq] (star ;~(less doq escp)))
-            (ifix [soq soq] (star ;~(less soq escp)))
-        ==
-      ==  
-  ::
-```
-
-0 or more . gap [mane] tis {quoted string}
-
-    ~zod/try=> (rash '' attr:xmlp)
-    ~
-    ~zod/try=> (rash 'sam=""' attr:xmlp)
-    ! {1 1}
-    ! exit
-    ~zod/try=> (rash ' sam=""' attr:xmlp)
-    ~[[n=%sam v=""]]
-    ~zod/try=> (rash ' sam="hek"' attr:xmlp)
-    ~[[n=%sam v="hek"]]
-    ~zod/try=> (rash ' sam="hek" res="actor"' attr:xmlp)
-    ~[[n=%sam v="hek"] [n=%res v="actor"]]
-    ~zod/try=> (rash ' sam=\'hek\' res="actor"' attr:xmlp)
-    ~[[n=%sam v="hek"] [n=%res v="actor"]]
-    ~zod/try=> (rash ' sam=\'hek" res="actor"' attr:xmlp)
-    ! {1 23}
-    ! exit
-
-###++chrd
-
-```
-  ++  chrd                                              ::  character data
-    %+  cook  |=(a=tape ^-(mars :/(a)))
-    (plus ;~(less soq doq ;~(pose (just `@`10) escp)))
-  ::
-```
-
-Char data
-
-    ~zod/try=> (rash 'asa' chrd:xmlp)
-    [g=[n=%$ a=~[[n=%$ v="asa"]]] c=~]
-    ~zod/try=> (rash 'asa &gt; are' chrd:xmlp)
-    [g=[n=%$ a=~[[n=%$ v="asa > are"]]] c=~]
-    ~zod/try=> (rash 'asa > are' chrd:xmlp)
-    ! {1 6}
-    ! exit
-
-###++comt
-
-```
-  ++  comt                                              ::  comments 
-    =-  (ifix [(jest '<!--') (jest '-->')] (star -))
-    ;~  pose 
-      ;~(less hep prn) 
-      whit
-      ;~(less (jest '-->') hep)
-    ==
-  ::
-```
-
-Comment block
-
-    ~zod/try=> (rash '<!--  bye -->' comt:xmlp)
-    "  bye "
-    ~zod/try=> (rash '<!--  bye  ><<<>< - - -->' comt:xmlp)
-    "  bye  ><<<>< - - "
-    ~zod/try=> (rash '<!--  invalid -->-->' comt:xmlp)
-    ! {1 18}
-    ! exit
-
-###++escp
-
-```
-  ++  escp
-    ;~  pose
-      ;~(less gal gar pam prn)
-      (cold '>' (jest '&gt;'))
-      (cold '<' (jest '&lt;'))
-      (cold '&' (jest '&amp;'))
-      (cold '"' (jest '&quot;'))
-      (cold '\'' (jest '&apos;'))
-    ==
-```
-
-Nonspecial or escaped character
-
-    ~zod/try=> (rash 'a' escp:xmlp)
-    'a'
-    ~zod/try=> (rash 'ab' escp:xmlp)
-    ! {1 2}
-    ! exit
-    ~zod/try=> (rash '.' escp:xmlp)
-    '.'
-    ~zod/try=> (rash '!' escp:xmlp)
-    '!'
-    ~zod/try=> (rash '>' escp:xmlp)
-    ! {1 2}
-    ! exit
-    ~zod/try=> (rash '&gt;' escp:xmlp)
-    '>'
-    ~zod/try=> (rash '&quot;' escp:xmlp)
-    '"'
-
-###++empt
-
-```
-  ++  empt                                              ::  self-closing tag
-    %+  ifix  [gal (jest '/>')]  
-    ;~(plug ;~(plug name attr) (cold ~ (star whit)))  
-  ::
-```
-
-XML tags can self-close by ending in `/>`
-
-    ~zod/try=> (rash '<div/>' empt:xmlp)
-    [[%div ~] ~]
-    ~zod/try=> (rash '<pre color="#eeffee" />' empt:xmlp)
-    [[%pre ~[[n=%color v="#eeffee"]]] ~]
-    ~zod/try=> (rash '<pre color="#eeffee"></pre>' empt:xmlp)
-    ! {1 21}
-    ! exit
-
-###++head
-
-```
-  ++  head                                              ::  opening tag
-    (ifix [gal gar] ;~(plug name attr))
-  ::
-```
-
-XML node start
-
-    ~zod/try=> (rash '<a>' head:xmlp)
-    [n=%a a=~]
-    ~zod/try=> (rash '<div mal="tok">' head:xmlp)
-    [n=%div a=~[[n=%mal v="tok"]]]
-    ~zod/try=> (rash '<div mal="tok" />' head:xmlp)
-    ! {1 16}
-    ! exit
-
-###++name
-
-```
-  ++  name                                              ::  tag name 
-    %+  knee  *mane  |.  ~+
-    =+  ^=  chx
-        %+  cook  crip 
-        ;~  plug 
-            ;~(pose cab alf) 
-            (star ;~(pose cab dot alp))
-        ==
-    ;~(pose ;~(plug ;~(sfix chx col) chx) chx)
-  ::
-```
-
-XML node name
-
-    ~zod/try=> (scan "ham" name:xmlp)
-    %ham
-    ~zod/try=> (scan "ham:tor" name:xmlp)
-    [%ham %tor]
-    ~zod/try=> (scan "ham-tor" name:xmlp)
-    %ham-tor
-    ~zod/try=> (scan "ham tor" name:xmlp)
-    ! {1 4}
-    ! exit
-
-###++tail
-
-```
-  ++  tail  (ifix [(jest '</') gar] name)               ::  closing tag
-```
-
-    ~zod/try=> (scan "</div>" tail:xmlp)
-    %div
-    ~zod/try=> (scan "</a>" tail:xmlp)
-    %a
-    ~zod/try=> (scan "</>" tail:xmlp)
-    ! {1 3}
-    ! exit
-
-###++whit
-
-```
-  ++  whit  (mask ~[' ' `@`0x9 `@`0xa])                 ::  whitespace
-::
-```
-
-Newlines, tabs, and spaces
-
-    ~zod/try=> `@`(scan " " whit:xmlp)
-    32
-    ~zod/try=> `@`(scan "  " whit:xmlp)
-    ! {1 2}
-    ! exit
-    ~zod/try=> `@`(scan "\0a" whit:xmlp)
-    10
-    ~zod/try=> `@`(scan "\09" whit:xmlp)
-    9
-    ~zod/try=> `@`(scan "\08" whit:xmlp)
-    ! {1 1}
-    ! exit
-
