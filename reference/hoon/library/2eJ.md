@@ -2,6 +2,8 @@
 
 ###++cass
 
+To lowercase
+
 ```
 ++  cass                                                ::  lowercase
   |=  vib=tape
@@ -12,6 +14,8 @@
 
 Produce the case insensitive (all lowercase) cord of a tape.
 
+`vib` is a [tape]().
+
     ~zod/try=> (cass "john doe")
     7.309.170.810.699.673.450
     ~zod/try=> `cord`(cass "john doe")
@@ -21,7 +25,11 @@ Produce the case insensitive (all lowercase) cord of a tape.
     ~zod/try=> `cord`(cass "abc, 123, !@#")
     'abc, 123, !@#' 
 
+---
+
 ###++cuss
+
+To uppercase
 
 ```
 ++  cuss                                                ::  uppercase
@@ -34,6 +42,8 @@ Produce the case insensitive (all lowercase) cord of a tape.
 
 Turn all occurances of lowercase letters in any tape into uppercase letters, as a cord.
 
+`vib` is a [tape]().
+
     ~zod/try=> (cuss "john doe")
     'JOHN DOE'
     ~zod/try=> (cuss "abc ABC 123 !@#")
@@ -43,14 +53,19 @@ Turn all occurances of lowercase letters in any tape into uppercase letters, as 
     ~zod/try=> (cuss "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsQqRrVvWwXxYyZz")
     'AABBCCDDEEFFGGHHIIJJKKLLMMNNOOPPQQRRSSQQRRVVWWXXYYZZ'
 
+---
+
 ###++crip
+
+Tape to cord
 
 ```
 ++  crip  |=(a=tape `@t`(rap 3 a))                      ::  tape to cord
-::
 ```
 
 Produce cord from a tape.
+
+`a` is a [tape]().
 
     ~zod/try=> (crip "john doe")
     'john doe'
@@ -59,7 +74,11 @@ Produce cord from a tape.
     ~zod/try=> `@ud`(crip "abc")
     6.513.249
 
+---
+
 ###++mesc
+
+Escape special chars
 
 ```
 ++  mesc                                                ::  ctrl code escape
@@ -75,7 +94,9 @@ Produce cord from a tape.
 ::
 ```
 
-Escape special characters, used in ++show
+Escape special characters, used in [`++show`]()
+
+`vib` is a [tape]().
 
     /~zod/try=> (mesc "ham lus")
     "ham lus"
@@ -85,7 +106,11 @@ Escape special characters, used in ++show
     "as\0x27/sa\0xc3/\0x9f/"
 
 
+---
+
 ###++runt
+
+Prepend `n` times
 
 ```
 ++  runt                                                ::  prepend repeatedly
@@ -99,12 +124,20 @@ Escape special characters, used in ++show
 
 Add `a` repetitions of character `b` to the head of `c`
 
+`a` and `b` are [atom]()s.
+
+`c` is a [tape]().
+
     /~zod/try=> (runt [2 '/'] "ham")
     "//ham"
     /~zod/try=> (runt [10 'a'] "")
     "aaaaaaaaaa"
 
+---
+
 ###++sand
+
+Soft-cast by odor
 
 ```
 ++  sand                                                ::  atom sanity
@@ -116,12 +149,20 @@ Add `a` repetitions of character `b` to the head of `c`
 
 Soft-cast validity by odor.
 
+`a` is a [`@ta`]().
+
+`b` is an [atom]().
+
     /~zod/try=> `(unit ,@ta)`((sand %ta) 'sym-som')
     [~ ~.sym-som]
     /~zod/try=> `(unit ,@ta)`((sand %ta) 'err!')
     ~
 
+---
+
 ###++sane
+
+Check odor validity
 
 ```
 ++  sane                                                ::  atom sanity
@@ -161,7 +202,11 @@ Soft-cast validity by odor.
 ::
 ```
 
-Check validity by odor.
+Check validity by odor. Produces a gate.
+
+`a` is a [`@ta`]().
+
+`b` is an [atom]().
 
     /~zod/try=> ((sane %tas) %mol)
     %.y
@@ -169,8 +214,12 @@ Check validity by odor.
     %.y
     /~zod/try=> ((sane %tas) 'more ace')
     %.n
-    
+
+---
+
 ###++trim
+
+Tape split
 
 ```
 ++  trim                                                ::  tape split
@@ -187,12 +236,20 @@ Check validity by odor.
 
 Split first `a` characters off tape.
 
+`a` is an [atom]().
+
+`b` is a [tape]().
+
     /~zod/try=> (trim 5 "lasok termun")
     [p="lasok" q=" termun"]
     /~zod/try=> (trim 5 "zam")
     [p="zam" q=""]
 
+---
+
 ###++trip
+
+Cord to tape
 
 ```
 ++  trip                                                ::  cord to tape
@@ -206,6 +263,8 @@ Split first `a` characters off tape.
 
 Produce tape from cord.
 
+`a` is an [atom]().
+
     /~zod/try=> (trip 'john doe')
     "john doe"
     /~zod/try=> (trip 'abc 123 !@#')
@@ -214,7 +273,11 @@ Produce tape from cord.
     "abc"
 
 
+---
+
 ###++teff
+
+UTF8 Length
 
 ```
 ++  teff                                                ::  length utf8
@@ -229,13 +292,19 @@ Produce tape from cord.
 
 Number of utf8 bytes.
 
+`a` is a [`@t`]().
+
     /~zod/try=> (teff 'a')
     1
     /~zod/try=> (teff 'ß')
     2
 
 
+---
+
 ###++turf
+
+UTF8 to UTF32 cord
 
 ```
 ++  turf                                                ::  utf8 to utf32
@@ -259,7 +328,9 @@ Number of utf8 bytes.
 ::
 ```
 
-Convert utf8 [cord] to utf32 codepoints.
+Convert utf8 ([cord]()) to utf32 codepoints.
+
+`a` is a [`@t`]().
 
     /~zod/try=> (turf 'my ßam')
     ~-my.~df.am
@@ -273,7 +344,11 @@ Convert utf8 [cord] to utf32 codepoints.
     0x442.0000.0443.0000.0442.0000.0020.0000.044f
 
 
+---
+
 ###++tuba
+
+UTF8 to UTF32 tape
 
 ```
 ++  tuba                                                ::  utf8 to utf32 tape
@@ -285,12 +360,18 @@ Convert utf8 [cord] to utf32 codepoints.
 
 Convert tape to list of codepoints.
 
+`a` is a [tape]()
+
     /~zod/try=> (tuba "я тут")
     ~[~-~44f. ~-. ~-~442. ~-~443. ~-~442.]
     /~zod/try=> (tuba "chars")
     ~[~-c ~-h ~-a ~-r ~-s]
 
+---
+
 ###++tufa
+
+UTF32 to UTF8 tape
 
 ```
 ++  tufa                                                ::  utf32 to utf8 tape
@@ -301,14 +382,20 @@ Convert tape to list of codepoints.
 ::
 ```
 
-Wrap list of utf32 codepoints to utf8 [tape]
+Wrap list of utf32 codepoints to utf8 [tape]().
+
+`a` is a [list]() of [`@c`]().
 
     /~zod/try=> (tufa ~[~-~44f. ~-. ~-~442. ~-~443. ~-~442.])
     "я тут"
     /~zod/try=> (tufa ((list ,@c) ~[%a %b 0xb1 %c]))
     "ab±c"
 
+---
+
 ###++tuft
+
+UTF32 to UTF8 text
 
 ```
 ++  tuft                                                ::  utf32 to utf8 text
@@ -342,14 +429,20 @@ Wrap list of utf32 codepoints to utf8 [tape]
 ::
 ```
 
-Convert utf32 glyph to LSB utf8 cord.
+Convert utf32 glyph to [LSB](http://en.wikipedia.org/wiki/Least_significant_bit) utf8 cord.
+
+`a` is a [`@c`]().
 
     /~zod/try=> (tuft `@c`%a)
     'a'
     /~zod/try=> (tuft `@c`0xb6)
     '¶'
 
+---
+
 ###++wack
+
+Coin format encode
 
 ```
 ++  wack                                                ::  coin format
@@ -366,7 +459,9 @@ Convert utf32 glyph to LSB utf8 cord.
 ::
 ```
 
-Escape span ~ as ~~ and _ as ~-
+Escape span `~` as `~~` and `_` as `~-`. Used for printing.
+
+`a` is a [`@ta`]().
 
     /~zod/try=> (wack '~20_sam~')
     ~.~~20~-sam~~
@@ -377,7 +472,11 @@ Escape span ~ as ~~ and _ as ~-
     ~zod/try=> ._5_~~.~~20~-sam__
     [5 ~.~20_sam]
 
+---
+
 ###++wick
+
+Coin format decode
 
 ```
 ++  wick                                                ::  coin format
@@ -395,14 +494,20 @@ Escape span ~ as ~~ and _ as ~-
 ::
 ```
 
-Unescape span ~~ as ~ and ~- as _
+Unescape span `~~` as `~` and `~-` as `_`. 
+
+`a` is a an [atom]().
     
     /~zod/try=> `@t`(wick '~-ams~~lop')
     '_ams~lop'
     /~zod/try=> `@t`(wick (wack '~20_sam~'))
     '~20_sam~'
 
+---
+
 ###++woad
+
+Unescape cord
 
 ```
 ++  woad                                                ::  cord format
@@ -442,10 +547,16 @@ Unescape span ~~ as ~ and ~- as _
 
 Unescape cord codepoints.
 
+`a` is a [`@ta`]().
+
     /~zod/try=> (woad ~.~b6.20.as)
     '¶20 as'
 
+---
+
 ###++wood
+
+Escape cord
 
 ```
 ++  wood                                                ::  cord format
@@ -480,6 +591,8 @@ Unescape cord codepoints.
 ```
 
 Escape cord codepoints.
+
+`a` is a [`@ta`]().
 
     /~zod/try=> (wood 'my ßam')
     ~.my.~df.am

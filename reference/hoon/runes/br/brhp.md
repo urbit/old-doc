@@ -2,7 +2,9 @@
 
 Kicked trap
 
-`|-` is a synthetic rune that produces a dry [`%gold`]() trap and [kicks]() it. You can think of a trap like a 'trap door', since `|-` is a [`door`]() with one arm [`$`](), the empty name. `|-` is kicked by default. `|-` is similar to creating and calling an anonymous function and is quite commonly used for loops or recursion.
+`|-` is a synthetic rune that produces a dry [`%gold`]() trap and [kicks]() it. You can think of a trap like a 'trap door', since `|-` is a [`door`]() with only one arm [`$`](), the empty name. 
+
+`|-` is kicked by default. `|-` is similar to creating and calling an anonymous function and is quite commonly used for loops or recursion.
 
 ##See also 
 

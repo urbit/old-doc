@@ -31,7 +31,7 @@ Parse vertical bar
 
 Parses ASCII character 124, the vertical bar.
 
-   ~zod/try=> (scan "|" bar)
+    ~zod/try=> (scan "|" bar)
     ~~~7c. 
     ~zod/try=> `cord`(scan "|" bar)
     '|'
@@ -50,8 +50,7 @@ Parse backslash
 ++  bas  (just '\\')
 ```
 
-Parses ASCII character 92, the backslash.
-Note the extra '\' in the slam of bas with just is to escape the escape character, bas.
+Parses ASCII character 92, the backslash. Note the extra `\` in the slam of `bas` with [`++just`]() is to escape the escape character, `\`.
 
     ~zod/try=> (scan "\\" bas)
     ~~~5c.
@@ -311,8 +310,7 @@ Parse left curley bracket
 ++  kel  (just '{')
 ```
 
-Parses ASCII character 123, the left cutly bracket.
-Note that `kel` and `ker` open and close a Hoon expression for Hoon string interpolation.To parse either of them, they must be escaped.
+Parses ASCII character 123, the left curly bracket. Note that `{` (`kel`) and `}` (`ker`) open and close a Hoon expression for Hoon string interpolation. To parse either of them, they must be escaped.
 
     ~zod/try=> (scan "\{" kel)
     ~~~7b.
@@ -333,7 +331,7 @@ Parse right curley bracket
 ++  ker  (just '}')
 ```
 
-Parses ASCII character 125, ker.
+Parses ASCII character 125, the right curly bracket. Note that `{` (`kel`) and `}` (`ker`) open and close a Hoon expression for Hoon string interpolation. To parse either of them, they must be escaped.
 
     ~zod/try=> (scan "}" ker)
     ~~~7d.

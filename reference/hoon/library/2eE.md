@@ -16,7 +16,11 @@
 ::
 ```
 
-Parser modifier: LSB ordered list as atom of a base.
+Parser modifier: [LSB](http://en.wikipedia.org/wiki/Least_significant_bit) ordered list as atom of a base.
+
+`wuc` is an [atom]().
+
+`tyd` is a [rule]().
 
     ~zod/try=> (scan "123" (bass 10 (star dit)))
     q=123
@@ -41,7 +45,11 @@ Parser modifier: LSB ordered list as atom of a base.
 ::
 ```
 
-Parser modifier: LSB ordered list as atom of a base.
+Parser modifier: [LSB](http://en.wikipedia.org/wiki/Least_significant_bit) ordered list as atom of a base.
+
+`wuc` is an [atom]().
+
+`tyd` is a [rule]().
 
     ~zod/try=> (scan "123" (boss 10 (star dit)))
     q=321
@@ -63,13 +71,17 @@ Parser modifier: LSB ordered list as atom of a base.
 
 Parser modifier: surround with pair of rules, output of which is discarded.
 
+`fel` is a pair of [rule]()s.
+
+`hof` is a [rule]().
+
     ~zod/try=> (scan "-40-" (ifix [hep hep] dem))
     q=40
     ~zod/try=> (scan "4my4" (ifix [dit dit] (star alf)))
     "my"
-    
+
 ---
-        
+
 ###++more
 
 ```
@@ -80,6 +92,10 @@ Parser modifier: surround with pair of rules, output of which is discarded.
 ```
 
 Parser modifier: using a delimiter rule, parse a list of matches.
+
+`bus` is a [rule]().
+
+`fel` is a [rule]().
 
     ~zod/try=> (scan "" (more ace dem))
     ~
@@ -101,6 +117,10 @@ Parser modifier: using a delimiter rule, parse a list of matches.
 
 Parser modifier: using a delimiter rule, parse a list of at least one match.
 
+`bus` is a [rule]().
+
+`fel` is a [rule]().
+
     ~zod/try=> (scan "40 20" (most ace dem))
     [q=40 ~[q=20]]
     ~zod/try=> (scan "40 20 60 1 5" (most ace dem))
@@ -110,7 +130,7 @@ Parser modifier: using a delimiter rule, parse a list of at least one match.
     ! exit
 
 ---
-        
+
 ###++plus  
 
 ```
@@ -118,6 +138,8 @@ Parser modifier: using a delimiter rule, parse a list of at least one match.
 ```
 
 Parser modifier: parse list of at least one match
+
+`fel` is a [rule]().
 
     ~zod/try=> (scan ">>>>" (cook lent (plus gar)))
     4
@@ -129,7 +151,7 @@ Parser modifier: parse list of at least one match
     ['-' [' ' [' ' ['-' [' ' ~]]]]]
 
 ---
-        
+
 ###++slug
 
 ```
@@ -142,13 +164,17 @@ Parser modifier: parse list of at least one match
 
 Parser modifier: By composing with a gate, parse a delimited list of matches.
 
+`bus` is a [rule]().
+
+`fel` is a [rule]().
+
     ~zod/try=> (scan "20+5+110" ((slug add) lus dem))
     135
     ~zod/try=> `@t`(scan "a b c" ((slug |=(a=[@ @t] (cat 3 a))) ace alp))
     'abc'
 
 ---
-        
+
 ###++star
 
 ```
@@ -158,6 +184,8 @@ Parser modifier: By composing with a gate, parse a delimited list of matches.
 ```
 
 Parser modifier: parse list of matches.
+
+`fel` is a [rule]().
 
         ~zod/try=> (scan "aaaaa" (just 'a'))
         ! {1 2}

@@ -1,20 +1,21 @@
 #[dotzaz, %dtzz](#dtzz)
 
-`dotzaz`, `[%dtzz p=term q=*]` is a natural hoon that produces an
-cubed noun constant of value `q` and odor `p`, if `q` is an atom.
+Cube
 
-[Short description]
+`dotzaz` is a natural hoon that produces a cubed noun constant of value `q` and odor `p`, if `q` is an atom. A cube is an atom whose type contains only itself. 
 
-undefined
+##See also
+
+[`cube`]()
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%dtzz p=term q=*]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [`++term`]().
+`q` is an [noun]().
 
 ##Tall form
 
@@ -26,10 +27,9 @@ None
 
 ##Irregular form
 
-See chapter 6 for constant forms.
+None
 
 ##Examples
-
 
     ~zod/try=> (ream '%12')
     [%dtzz p=%ud q=12]
@@ -37,3 +37,5 @@ See chapter 6 for constant forms.
     [%dtzz p=%f q=0]
     ~zod/try=> (ream '%sam')
     [%dtzz p=%tas q=7.168.371]
+
+Here we use [`++ream`]() to unpack how values are parsed. Prefixing a value with a `%` implicitly turns it into a `%cube` with the following value: an odored noun.

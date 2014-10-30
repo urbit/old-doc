@@ -4,6 +4,8 @@
 
 ###++dog
 
+`.` optional gap
+
 ```
 ++  dog  ;~(plug dot gay)                               ::
 ```
@@ -19,6 +21,8 @@ Dot followed by an optional gap, used in numbers.
 ---
 
 ###++doh 
+
+`@p` separator
 
 ```
 ++  doh  ;~(plug ;~(plug hep hep) gay)                  ::
@@ -40,11 +44,13 @@ Phonetic base phrase separator
 
 ###++dun
 
+`--` to `~`
+
 ```
 ++  dun  (cold ~ ;~(plug hep hep))                      ::  -- (phep) to ~
 ```
 
-Parse phep (--) to null (~).
+Parse phep, `--`, to null, `~`.
 
     ~zod/try=> (scan "--" dun)
     ~
@@ -55,11 +61,13 @@ Parse phep (--) to null (~).
 
 ###++duz 
 
+`==` to `~`
+
 ```
 ++  duz  (cold ~ ;~(plug tis tis))                      ::  == (stet) to ~
 ```
 
-Parse stet (==) to null (~).
+Parse stet, `==`, to null `~`.
 
     ~zod/try=> (scan "==" duz)
     ~
@@ -70,11 +78,13 @@ Parse stet (==) to null (~).
 
 ###++gah 
 
+Newline or ' '
+
 ```
 ++  gah  (mask [`@`10 ' ' ~])                           ::  newline or ace
 ```
 
-Whitespace component.
+Whitespace component, either newline or space.
 
     /~zod/try=> ^-  *  ::  show spaces
                 """
@@ -99,15 +109,19 @@ Whitespace component.
 
 ###++gap 
 
+Plural whitespace
+
 ```
 ++  gap  (cold ~ ;~(plug gaq (star ;~(pose vul gah))))  ::  plural whitespace
 ```
-        
+
 Separates tall runes
 
 ---
 
 ###++gaq
+
+End of line
 
 ```
 ++  gaq  ;~  pose                                       ::  end of line
@@ -122,7 +136,9 @@ Two spaces, a newline, or comment.
 ---
 
 ###++gaw
-   
+
+Classic whitespace
+
 ```   
 ++  gaw  (cold ~ (star ;~(pose vul gah)))               ::  classic white
 ```
@@ -133,14 +149,16 @@ Terran whitespace
 
 ###++gay 
 
+Optional gap.
+
 ```
 ++  gay  ;~(pose gap (easy ~))                          ::
 ```
-        
+
 Optional gap.
 
 ---
-        
+
 ###++vul 
 
 ```

@@ -37,6 +37,22 @@ Twig: `[%cnts p=wing q=tram]`
     /~zod/try=> =+  a=[p=5 q=6]
                 a(p 2)
     [p=2 q=6]
-    /~zod/try=> =+  a=[p=5 q=6]
-                a(q 'c')
-    [p=5 q='c']
+
+In this example we are using the irregular form of `%=` to replace `p` in `a`. 
+
+    /~zod/try=> =+  a=[p=1 q=2 r=3 s=4]
+        a(p 5, q 6, r 7, s 8)
+    [p=5 q=6 r=7 s=8]
+
+Here we show how you can replace multiple faces at once. We start with a new `a` and replace all of its values with the irregular form of `%=`.
+
+    /~zod/try=> =+  step=0
+                =+  leng=10
+                =+  valu=0
+                |-
+                    ?:  =(step leng)
+                       valu
+                $(valu (mul 2 valu), step +(step))
+    1.024
+
+In this case we create a simple loop, using [`|-`](). To recurse, we use `%=` with [`$`](), the empty name — our `|-` — replacing our `valu` with `(mul 2 valu)` and `step` with `+(step)`.

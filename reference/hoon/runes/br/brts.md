@@ -36,7 +36,7 @@ None
     ~zod/try=> (inc 20)
     21
 
-Here we create a very simple gate that increments its sample, `a`. You can think of `|=` as similar to a function.
+Here we create a very simple gate that increments its sample, `a`. You can think of `|=` as similar to a straightforward function that takes arguments.
 
 ```
 ++  add                                                 ::  add
