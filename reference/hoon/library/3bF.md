@@ -1,22 +1,5 @@
 ##section 3bF, filesystem interface
 
-###++fain
-
-```
-++  fain                                                ::  path restructure
-  |=  [hom=path raw=path]
-  =+  bem=(need (tome raw))
-  =+  [mer=(flop s.bem) moh=(flop hom)]
-  |-  ^-  (pair beam path)
-  ?~  moh
-    [bem(s hom) (flop mer)]
-  ?>  &(?=(^ mer) =(i.mer i.moh))
-  $(mer t.mer, moh t.moh)
-::
-```
-
-XX  Document
-
 ###++feel
 
 ```
@@ -31,7 +14,18 @@ XX  Document
 ::
 ```
 
-XX  Document
+Generate file diff
+
+    ~zod/try=> + %/mel 'test'
+    + /~zod/try/2/mel
+    ~zod/try=> (feel %/mel 'tesh?')
+    [%mut p=[p=%a q=[%a p=44.903.392.628 q=272.335.332.724]]]
+    ~zod/try=> `@t`44.903.392.628
+    '''
+    test
+    '''
+    ~zod/try=> `@t`272.335.332.724
+    'tesh?'
 
 ###++file
 
@@ -44,7 +38,20 @@ XX  Document
 ::
 ```
 
-XX  Document
+Read value of file
+
+    ~zod/try=> %/zak
+    ~zod/try=/zak> :ls %
+    ~zod/try=/zak> + %/mop 20
+    + /~zod/try/3/zak/mop
+    ~zod/try=/zak> :ls %
+    mop
+    ~zod/try=/zak> (file %/mop)
+    [~ 20]
+    ~zod/try=/zak> (file %/lak)
+    ~
+    ~zod/try=/zak> (file /==2%/mop)
+    ~
 
 ###++foal
 
@@ -57,7 +64,17 @@ XX  Document
 ::
 ```
 
-XX  Document
+Produces a ++toro, ready to be sent to %clay
+
+    ~zod/try=> + %/mek 'a'
+    + /~zod/try/4/mek
+    ~zod/try=> (foal %/mek 'b')
+    [ p=~.try
+        q
+      [%.y q=[p=[p=0v0 q=0v0] q=~[[p=/mek q=[%mut p=[p=%a q=[%a p=97 q=98]]]]]]]
+    ]
+    ~zod/try=> (feel %/mek 'b')
+    [%mut p=[p=%a q=[%a p=97 q=98]]]
 
 ###++fray
 
@@ -70,7 +87,14 @@ XX  Document
 ::
 ```
 
-XX  Document
+Produce a deletion toro for a file
+
+    ~zod/try=> + %/mek 'a'
+    + /~zod/try/4/mek
+    ~zod/try=> (fray %/mek)
+    [p=~.try q=[%.y q=[p=[p=0v0 q=0v0] q=~[[p=/mek q=[%del p=97]]]]]]
+    ~zod/try=> `@t`97
+    'a'
 
 ###++furl
 
@@ -86,7 +110,21 @@ XX  Document
 ::
 ```
 
-XX  Document
+Merge two toros of the same desk
+
+    ~zod/try=> %/zak
+    ~zod/try=/zak> :ls %
+    mop
+    ~zod/try=/zak> (furl (fray %/mop) (foal %/mok 'hi'))
+    [ p=~.try
+        q
+      [ %.y
+          q
+        [ p=[p=0v0 q=0v0]
+          q=~[[p=/zak/mop q=[%del p=20]] [p=/zak/mok q=[%ins p=26.984]]]
+        ]
+      ]
+    ]
 
 ###++meat
 
@@ -98,7 +136,26 @@ XX  Document
 ::
 ```
 
-XX  Document
+Convert type request name to path
+
+    zod/try=/zop> `kite`[%x ud/1 ~zod %main /sur/down/gate/hook]
+    [p=%x q=[%ud p=1] r=~zod s=%main t=/sur/down/gate/hook]
+    ~zod/try=/zop> (meat [%x ud/1 ~zod %main /sur/down/gate/hook])
+    /cx/~zod/main/1/sur/down/gate/hook
+    ~zod/try=/zop> .^((meat [%x ud/1 ~zod %main /sur/down/gate/hook]))
+    8.024.240.839.827.090.233.853.057.929.619.452.695.436.878.709.611.140.677.
+    745.908.646.440.925.885.935.296.374.867.974.972.908.054.571.544.099.882.490.
+    677.391.983.737.511.220.072.391.888.081.664.570
+    ~zod/try=/zop> (,@t .^((meat [%x ud/1 ~zod %main /sur/down/gate/hook])))
+    '''
+    ::
+    ::::  /hoon/gate/down/sur
+    ::
+    /?  314
+    /-  *markdown
+    down
+
+    '''
 
 ###++tame
 
@@ -127,7 +184,15 @@ XX  Document
 ::
 ```
 
-XX  Document
+Parse clay .^ path to request details
+
+    ~zod/try=/zop> (tame /cx/~zod/main/1/sur/down/gate/hook)
+    [~ [p=%x q=[%ud p=1] r=~zod s=%main t=/sur/down/gate/hook]]
+    ~zod/try=/zop> (tame /cx/0/main/1/sur/down/gate/hook)
+    ~
+    ~zod/try=/zop> (tame /~zod/main/0x12/sur/down/gate/hook)
+    ~
+
 
 ###++tome
 
@@ -147,6 +212,31 @@ XX  Document
 ::
 ```
 
-XX  Document
+Parse to well-typed location
 
-###++tope
+    ~zod/try=/zop> (tome /~fyr/try/2/for/me)
+    [~ [[p=~fyr q=%try r=[%ud p=2]] s=/me/for]]
+    ~zod/try=/zop> (tome /~zod/main/1)
+    [~ [[p=~zod q=%main r=[%ud p=1]] s=/]]
+    ~zod/try=/zop> (tome /0/main/1)
+    ~
+    ~zod/try=/zop> (tome /~zod/main/0x12)
+    ~
+
+
+###++tope                                               ::  beam to path
+
+```
+|=  bem=beam
+  ^-  path
+  [(scot %p p.bem) q.bem (scot r.bem) (flop s.bem)]
+```
+
+Render beam as path
+
+    ~zod/try=/zop> (tope [~zod %main ud/1] /hook/down/sur)
+    /~zod/main/1/sur/down/hook
+    ~zod/try=/zop> (tope [~fyr %try da/~2015.1.1] /txt/test)
+    /~fyr/try/~2015.1.1/test/txt
+    ~zod/try=/zop> (tope [~doznec %try da/-<-] /txt/test)
+    /~doznec/try/~2014.10.30..00.32.48..3ae4/test/txt
