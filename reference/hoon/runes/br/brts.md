@@ -2,7 +2,7 @@
 
 Dry gate
 
-`|=`, `bartis`,  is a synthetic hoon that produces a [dry]() [`%gold`]() gate with sample `[%bctr p]`, arm `q`. A gate is a core with one arm, [`$`](), the empty name. `|=` checks its input sample against its tile, `p`.
+`|=`, `bartis`, is a synthetic hoon that produces a [dry]() [`%gold`]() gate with sample [`[%bctr p]`](), arm `q`. A gate is a core with one arm, [`$`](), the empty name. `|=` checks its input sample against its tile, `p`.
 
 ##See also
 
@@ -48,5 +48,5 @@ Here we create a very simple gate that increments its sample, `a`. You can think
       $(a (dec a), b +(b))
 ```
 
-In [++add](), from `hoon.hoon`, `|=` creates a gate whose sample takes two atoms labeled `a` and `b`, and whose arm evaluates an expression that produces the sum of the atoms by decrementing `a` until it is `0` and incrementing `b` at each step. `$` is used for recursion.
+In [++add](), from `hoon.hoon`, `|=` creates a gate whose sample takes two atoms labeled `a` and `b`, and whose arm evaluates an expression that produces the sum of the atoms by decrementing `a` until it is `0` and incrementing `b` at each step. Here, `$` is used for recursion, calling for the gate produced by `|=` to be run again with `a` replaced by `(dec a)` and `b` replaced by `+(b)` incremented.
 

@@ -2,13 +2,14 @@
 
 Kicked book
 
-`|^`, `barket`,  is a synthetic hoon that produces a [`%gold`]() [book]() with arms `q`, plus `p` as `%$`, and kicks it. `|^` takes an associative list of names, [++term](), and expressions [++foot](), each pair of which is called an arm. The list must be closed with a `--`. 
+`|^` is a synthetic rune that produces and then kicks a [`%gold`]() [book]() with sample `p` as a [`%$(p)`](), and a list of [arm]()s `q`. The list must be closed with a `--`. 
 
-`|^` is similar to `|-`, but it can contain internal arms.
+`|^` is similar to `|-`, but differs in that it can contain internal arms.
 
 ##See also
-#[barhep, `|-`, %brhp](#brhp)
-#[barcab, `|_`, %brcb](#brcb)
+
+[barhep, `|-`, %brhp](#brhp)
+[barcab, `|_`, %brcb](#brcb)
 
 ##Produces
 
@@ -17,7 +18,7 @@ Twig: `[%brkt p=twig q=(map term foot)]`
 ##Sample
 
 `p` is a [twig]().
-`q` is a [`map`]() with [`++term`]() keys and [`++foot`]() values.
+`q` is a [`map`]() with [`++term`]() keys and [`++foot`]() values, which are called arms.
 
 ##Tall form
 

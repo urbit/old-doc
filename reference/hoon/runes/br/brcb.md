@@ -1,10 +1,10 @@
 #[barcab, `|_`, %brcb](#brcb)
 
-Door with sample
+Door: core with sample
 
-`|_` is a synthetic hoon that produces a [`%gold`]() [door]() with sample `p`, arms `q`. `|_` takes an associative list of names, [++term](), and expressions [++foot](), each pair of which is called an arm. The list must be closed with a `--`. 
+`|_` is a synthetic hoon that produces a [`%gold`]() [door]() with sample `p` and [arms]() `q`. The list must be closed with a `--`. 
 
-`|_` is similar to `|%`, but defines a sample for the set of arms it contains. Additionally `|_` only accepts [dry or `%elm`]() arms. Put simply, type checking on these arms is performed on the input before computation. For more on variance, see the [glossary entry]() and the examples below.
+`|_` is similar to `|%`, but defines a sample for the set of arms it contains. Moreover, `|_` only accepts [dry or `%elm`]() arms. Put simply, type checking on these arms is performed on the input before computation. For more on variance, see the [glossary entry]() and the examples below.
 
 ##See also
 
@@ -47,7 +47,7 @@ None
     /~zod/try=> ~(succ mol ~(succ mol ~(prev mol 5)))
     6
 
-In this example we create a door `mol` that operates on a [`@ud`](), `a`. We add two arms to our door, `++succ` and `++prev` and test invoking them with the irregular form of `%~`. Doors are commonly invoked with `%~`, irregular form `~(arm door sample)`, which replaces the door's sample and pulls the specified arm.
+In this example we create a door `mol` that operates on a [`@ud`](), `a`. We add two arms to our door, `++succ` and `++prev`, and invoke them with the irregular form of [`%~`](). Doors are commonly invoked with `%~`, irregular form `~(arm door sample)`, which replaces the door's sample and pulls the specified arm.
 
     /~zod/try=> =kom
                       |_  a=(list)
