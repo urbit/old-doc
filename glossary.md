@@ -1,8 +1,19 @@
 #Glossary 
 
+#[arm]()
+An associative list of names, ++term, and expressions ++foot,
+
 #[cons]()
 
+#[container engines](container engine)
+
+#[context](context)
+
 #[demand](demand) "fail unless.."
+
+#[dry](dry)
+
+#[elm](elm)
 
 #[gold, copper, zinc....]()
 
@@ -21,4 +32,6 @@
 #[door](#door)
 
 #[gate](#gate)
+
+#[sample]()
 

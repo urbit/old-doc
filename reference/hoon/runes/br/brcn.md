@@ -2,13 +2,14 @@
 
 Build Core
 
-`|%` is a natural rune that produces a [core](). `|%` takes an associative list of names, [++term](), and expressions [++foot](), each pair of which is called an arm. The list must be closed with a `--`. 
+`|%` is a natural rune that produces a [core](). `|%` takes a list of [arm]()s . The list must be closed with a `--`. 
 
 The product of `|%` is similar to an object with named properties containing either functions or data. A `|%` accepts both [dry or `%elm`]() and [wet or `%ash`]() arms. For more about variance, see the [glossary]().
 
 ##See also
-[`|_`]()
-[`|/`]()
+
+[barcab, `|_`, `%brcb`]()
+[barfas, `|/`, `%brfs`]()
 
 ##Produces
 
@@ -16,7 +17,7 @@ Twig: `[%brcn p=(map term foot)]`
 
 ##Sample
 
-`p` is a [`map`]() with [`++term`]() keys and [`++foot`]() values.
+`p` is a [`map`]() with [`++term`]() keys and [`++foot`]() values, which are called arms.
 
 ##Tall form
 
@@ -64,7 +65,7 @@ Here we create a core with two arms `n`, a constant and `g`, a simple funciton. 
     (g.a 4)
     26
 
-Extending our previous example a bit, we nest a core inside our arm `l` and make our gate `g` a bit more complicated. `g` now computes the sum of its argument and the arm `r` inside `l`, and divides that by `s` inside `l`. 
+Extending our previous example a bit, we nest a core inside our arm `l` and make our [gate]() `g` a bit more complicated. `g` now computes the sum of its argument and the arm `r` inside `l`, and divides that by `s` inside `l`. 
 
 ```
 ++  yo
@@ -81,7 +82,7 @@ Extending our previous example a bit, we nest a core inside our arm `l` and make
       --
 ```
 
-[`++yo`](), found in `hoon.hoon`, uses `|%` to create a core whose arms contain constant data for calculating time. Using `|%` for constant data is as common as our next example. 
+[`++yo`](), found in `hoon.hoon`, uses `|%` to create a core whose arms contain constant data for calculating time. As the following examples shows, `|%` is also used to encapsulate arms that perform calculations.
 
 ```
     ++  si                                                  ::  signed integer

@@ -2,14 +2,14 @@
 
 Door with tile
 
-`|/` is a synthetic hoon that produces a [`%gold`]() [door]() with sample `[%bctr p]` and arms `q`. `|/` takes an associative list of names, [++term](), and expressions [++foot](), each pair of which is called an arm. The list must be closed with a `--`. 
+`|/` is a synthetic rune that produces a [`%gold`]() [door]() with sample `[%bctr p]` and list of [arm]()s `q`. The list of arms must be closed with a `--`. 
 
-`|/` is similar to `|_`, but accepts [wet or `%ash`]() arms. 
+`|/` is similar to `|_` in that it accepts a sample for the set of arms , but differs in that it accepts [wet or `%ash`]() arms.
 
 ##See also
 
-[`|_`]()
-[`|%`]()
+[barcab, `|_`, `%brcb`]()
+[barcen, `|%`, `%brcn`]()
 
 ##Produces
 

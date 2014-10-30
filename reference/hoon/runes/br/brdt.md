@@ -2,7 +2,7 @@
 
 Trap
 
-`|.`, is a synthetic hoon that produces a dry [`%gold`]() trap. You can think of a trap like a 'trap door', since `|.` is a [`door`]() with one arm [`$`](), the empty name. The default action performed on a trap is kicking it by pulling the arm `$`. `|.` is similar to `|=` with no arguments.
+`|.`, is a synthetic hoon that produces a [dry]() [`%gold`]() trap. A trap is a [`door`]() with one arm [`$`](), the empty name. The default action performed on a trap is kicking it by pulling the arm `$`. `|.` is similar to `|=` with no arguments.
 
 ##See also
 
@@ -88,4 +88,4 @@ In this case we assign a variable `a` to be `10`, and create a trap `b` to add `
     /~zod/try=> (loop)
     20
 
-Expanding on our previous example a bit we create a trap with three local variables, `reps`, `step`, and `outp`. We use a trap to create a loop, testing each time if `step` is equal to `reps`, if so producing `outp` otherwise calling our trap again with `outp` replaced with `outp+2`, and `step` incremented.
+Expanding on our previous example, we create a trap with three local variables, `reps`, `step`, and `outp`. We use a trap to create a loop, testing each time if `step` is equal to `reps`, if so producing `outp` otherwise calling our trap again with `outp` replaced with `outp+2`, and `step` incremented.
