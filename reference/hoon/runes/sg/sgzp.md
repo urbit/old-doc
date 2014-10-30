@@ -33,5 +33,22 @@ None
 
 ##Examples
 
-
-
+    ~zod/try=> a
+    ! -find-limb.a
+    ! find-none
+    ! exit
+    ~zod/try=> ~!('foo' a)
+    ! @t
+    ! -find-limb.a
+    ! find-none
+    ! exit
+    ~zod/try=> ~!(%foo a)
+    ! %foo
+    ! -find-limb.a
+    ! find-none
+    ! exit
+    ~zod/try=> ~!(*(list ,@) a)
+    ! it(@)
+    ! -find-limb.a
+    ! find-none
+    ! exit

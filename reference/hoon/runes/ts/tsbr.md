@@ -31,5 +31,7 @@ None
 
 ##Examples
 
-
-
+    ~zod/try=> =|(a=^ a)
+    [0 0]
+    ~zod/try=> =|(a=@p a)
+    ~zod

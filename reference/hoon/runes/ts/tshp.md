@@ -7,6 +7,8 @@
 `=-`, `tishep`, `[%tshp p=twig q=twig]` is a synthetic hoon that
 pushes `q` on the subject and sends it to `p`.
 
+See also: `=+`
+
 ##Produces
 
 [Twig or tile]
@@ -32,4 +34,7 @@ None
 ##Examples
 
 
-
+    ~zod/try=> =-  [%a (add 10 -)]
+               %-  lent
+               ~[0 1 2 3 4]
+    [%a 15]

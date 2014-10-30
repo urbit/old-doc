@@ -24,17 +24,17 @@ Priority 0 (debug):
         ~&  q
         r
 
-    Priority 1 (notice):
+Priority 1 (notice):
 
         ~&  >  q
         r
 
-    Priority 2 (warning):
+Priority 2 (warning):
 
         ~&  >>  q
         r
 
-    Priority 3 (alarm):
+Priority 3 (alarm):
 
         ~&  >>>  q
         r
@@ -49,5 +49,8 @@ None
 
 ##Examples
 
-
-
+    ~zod/try=> ~?((gth 1 2) 5 ~)
+    ~
+    ~zod/try=> ~?((gth 1 0) 5 ~)
+    5
+    ~
