@@ -2,9 +2,9 @@
 
 Wet gate
 
-`|*` is a synthetic hoon that produces a  [wet]() [gate]() with sample `[%bctr p]`, arm `q`. A gate is a core with one arm, [`$`](), the empty name. 
+`|*` is a synthetic hoon that produces a  [wet]() [gate]() with sample [`$*(p)`](), arm `q`. A gate is a core with one arm, [`$`](), the empty name. 
 
-`|*` is similar to a function in the same way that `|=` is, but does its type checking at runtime. With `|*` the product type is checked to be the same as the input type, rather than the sample type.
+`|*` is similar to a function in the same way that `|=` is, but differs in that it does type checking at runtime. With `|*`, the product type is checked to be the same as the input type, rather than the sample tile.
 
 ##See also
 
@@ -54,5 +54,5 @@ This is a concise way of understanding the difference between `|*` and `|=`. We 
       $(a t.a, b [i.a b])
 ```
 
-In [`++flop`](), `|*` is used so the type information within the passed in list is maintained. Without a `|*` any cords would be cast to nouns as in our previous example.
+In [`++flop`](), `|*` is used so the type information within the passed in list is maintained. Without a `|*`, any cords would be cast to nouns as in our previous example.
 

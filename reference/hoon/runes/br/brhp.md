@@ -4,7 +4,7 @@ Kicked trap
 
 `|-` is a synthetic rune that produces a dry [`%gold`]() trap and [kicks]() it. You can think of a trap like a 'trap door', since `|-` is a [`door`]() with only one arm [`$`](), the empty name. 
 
-`|-` is kicked by default. `|-` is similar to creating and calling an anonymous function and is quite commonly used for loops or recursion.
+`|-` is different from `|.` in that it is kicked by default. `|-` is similar to creating and calling an anonymous function and is quite commonly used for loops or recursion.
 
 ##See also 
 
@@ -48,7 +48,7 @@ In contrast to our `|.` example, `|-` is kicked by default, so its internals are
                 ?~  a
                   ~
                 [-.a %m $(a +.a)]
-      [41 %m [42 %m ~]]
+    [41 %m [42 %m ~]]
 
 In this case we use `|-` for one of its most common applications, a loop. Here we walk across `a` by calling `$` with `a` replaced by `+.a`, producing a nested tuple. 
 
@@ -63,4 +63,4 @@ In this case we use `|-` for one of its most common applications, a loop. Here w
         b
       $(b +(b))
 
-In `++dec`, found in `hoon.hoon`, `|-` creates a trap that contains the test and looping semantics. Basically, we count up to `a-1` by incrementing `b`. More common than our previous example, we usually use `|-` inside an existing core. 
+In `++dec`, found in `hoon.hoon`, `|-` creates a trap that contains the test and looping semantics. Essentially, we count up to `a-1` by incrementing `b`. Using `|-` inside an existing core as we do here is its most common use.
