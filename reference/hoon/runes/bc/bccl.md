@@ -29,5 +29,9 @@ Tile autocons
 
 ##Examples
 
-XX
-
+    ~zod/try=> *[1 2]
+    [%1 %2]
+    ~zod/try=> (,[1 2] "ham")
+    [%1 %2]
+    ~zod/try=> (,[@ 2] "ham")
+    [104 %2]

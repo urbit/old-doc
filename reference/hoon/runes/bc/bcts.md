@@ -28,7 +28,17 @@ None
 None
 
 ##Examples
+
 `a=*` parses as `[%bark %a %noun]`.
 
-
-
+    ~zod/try=> *$=(a @)
+    a=0
+    ~zod/try=> :type; *$=(a @)
+    a=0
+    a=@
+    ~zod/try=> :type; *a=@
+    a=0
+    a=@
+    ~zod/try=> :type; *a=[1 2]
+    a=[%1 %2]
+    a=[%1 %2]
