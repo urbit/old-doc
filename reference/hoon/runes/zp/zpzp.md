@@ -31,5 +31,16 @@ None
 
 ##Examples
 
+Frequently used as sentinel
 
-
+    ~zod/try=> !!
+    ! exit
+    ~zod/try=> =|(a=(unit) ?^(a !! %none))
+    %none
+    ~zod/try=> :type; =|(a=(unit) ?^(a !! %none))
+    %none
+    %none
+    ~zod/try=> ?+('a' !! %a 1, %b 2)
+    1
+    ~zod/try=> ?+('c' !! %a 1, %b 2)
+    ! exit

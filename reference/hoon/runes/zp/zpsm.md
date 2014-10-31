@@ -6,7 +6,7 @@
 
 `!;`, `zapsem`, `[%zpsm p=twig q=twig]` is a natural hoon that
 produces the product of twig `q` as a `[type noun]` pair, with
-twig `p` defining the type of the type.
+twig `p` serving as an example the type of the type.
 
 ##Produces
 
@@ -33,4 +33,9 @@ None
 ##Examples
 
 
-
+    ~zod/try=> !;(*type 1)
+    [[%atom p=%ud] 1]
+    ~zod/try=> !;(*type [1 2])
+    [[%cell p=[%atom p=%ud] q=[%atom p=%ud]] 1 2]
+    ~zod/try=> !;([%atom ''] ~doznec)
+    [[%atom 'p'] ~doznec]

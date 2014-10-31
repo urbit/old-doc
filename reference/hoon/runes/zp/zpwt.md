@@ -40,3 +40,9 @@ None
 
 
 
+    ~zod/try=> !?(264 (add 2 2))
+    4
+    ~zod/try=> !?(164 (add 2 2))
+    4
+    ~zod/try=> !?(163 (add 2 2))
+    ! exit
