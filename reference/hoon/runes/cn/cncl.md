@@ -29,5 +29,14 @@ None
 
 ##Examples
 
+    /~zod/try=> %:(dec 42)
+    41
 
+Here we use `%:` in its most straightforward form, to call an arm that takes one argument.
 
+    /~zod/try=> %:  dec
+                  %+  add  2
+                %+  mul  2  20
+    41
+
+Here we call [`++dec`]() with the sum of `2` and the product of `2` and `20` using `%:`. As you can see, `%:` is most useful for code organization, when you need to compute intermediate products for your final result

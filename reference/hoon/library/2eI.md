@@ -2,32 +2,47 @@
 
 ###++rash
 
+Parse or crash
+
 ```
 ++  rash  |*([naf=@ sab=_rule] (scan (trip naf) sab))   ::
 ```
-        
+
 Parse a cord with a given rule and crash if the cord isn't entirely parsed.
 
-        ~zod/try=> (rash 'I was the world in which I walked, and what I saw' (star (shim 0 200)))
-        "I was the world in which I walked, and what I saw"
-        ~zod/try=> (rash 'abc' (just 'a'))
-        ! {1 2}
-        ! 'syntax-error'
-        ! exit
-        ~zod/try=> (rash 'abc' (jest 'abc'))
-        'abc'
-        `~zod/try=> (rash 'abc' (jest 'ab'))
-        ! {1 3}
-        ! 'syntax-error'
-        ! exit
+`naf` is an [atom]().
+
+`sab` is a [rule]().
+
+    ~zod/try=> (rash 'I was the world in which I walked, and what I saw' (star (shim 0 200)))
+    "I was the world in which I walked, and what I saw"
+    ~zod/try=> (rash 'abc' (just 'a'))
+    ! {1 2}
+    ! 'syntax-error'
+    ! exit
+    ~zod/try=> (rash 'abc' (jest 'abc'))
+    'abc'
+    `~zod/try=> (rash 'abc' (jest 'ab'))
+    ! {1 3}
+    ! 'syntax-error'
+    ! exit
+
+---
 
 ###++rush
+
+Parse or null
 
 ```
 ++  rush  |*([naf=@ sab=_rule] (rust (trip naf) sab))
 ```
 
 Parse a given with a given rule and produce null if the cord isn't entirely parsed.
+
+
+`naf` is an [atom]().
+
+`sab` is a [rule]().
 
         ~zod/try=> (rush 'I was the world in which I walked, and what I saw' (star (shim 0 200)))
         [~ "I was the world in which I walked, and what I saw"]
@@ -40,7 +55,11 @@ Parse a given with a given rule and produce null if the cord isn't entirely pars
         ~zod/try=> (rush 'abc' (jest 'ab'))
         ~
 
+---
+
 ###++rust
+
+Parse tape or null
 
 ```
 ++  rust  |*  [los=tape sab=_rule]
@@ -50,6 +69,10 @@ Parse a given with a given rule and produce null if the cord isn't entirely pars
 
 Parse a tape with a given rule and produce null if the tape isn't entirely parsed.
 
+`los` is a [tape]().
+
+`sab` is a [rule]().
+
         ~zod/try=> (rust "I was the world in which I walked, and what I saw" (star (shim 0 200)))
         [~ "I was the world in which I walked, and what I saw"]
         ~zod/try=> (rust "Or heard or felt came not but from myself;" (star (shim 0 200)))
@@ -57,7 +80,11 @@ Parse a tape with a given rule and produce null if the tape isn't entirely parse
         ~zod/try=> (rust "And there I found myself more truly and more strange." (jest 'And there I'))
         ~
 
+---
+
 ###++scan
+
+Parse tape or crash
 
 ```
 ++  scan  |*  [los=tape sab=_rule]
@@ -69,6 +96,10 @@ Parse a tape with a given rule and produce null if the tape isn't entirely parse
 ```
 
 Parse a tape with a given rule and crash if the tape isn't entirely parsed.
+
+`los` is a [tape]().
+
+`sab` is a [rule]().
 
         ~zod/try=> (scan "I was the world in which I walked, and what I saw" (star (shim 0 200)))
         "I was the world in which I walked, and what I saw"

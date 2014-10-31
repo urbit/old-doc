@@ -2,7 +2,7 @@
 
 Pull with changes
 
-`%*` is a synthetic rune that [pull]()s the wing `p` from a [door]() `q` with changes `r`. `%*` is used to specify changes in the context of a wing when it is pulled.
+`%*` is a synthetic rune that [pull]()s the wing `p` from a [door]() `q` with changes `r`, terminated by `==`. `%*` is used to specify changes in the context of a wing when it is pulled.
 
 ##See also
 
@@ -35,5 +35,15 @@ None
 
 ##Examples
 
-    /~zod/try=> %*($ add +< [2 4])
-    6
+    /~zod/try=> =a  42
+    new var %a
+    /~zod/try=> =b  |%
+        ++  mult  (mul 2 a)
+        --
+    new var %b
+    /~zod/try=> mult.b
+    84
+    /~zod/try=> %*(mult b a 2)
+    4
+
+Here we add a variable `a` to our context, and a door `b` with a wing `++mult`that depends on `a`. Calling `++mult` produces `84`, and we can use `%*` to replace `a` in the context of `mult.b` with `2` to simply produce `4`.

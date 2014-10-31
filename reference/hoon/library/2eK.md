@@ -2,17 +2,23 @@
 
 ###++re
 
+Pretty-printing engine
+
 ```
 ++  re
   |_  tac=tank
 ```
 
-Pretty-printing engine
+Pretty-printing engine.
+
+`tac` is a [`++tank`]().
 
     /~zod/try=> ~(. re leaf/"ham")
     <2.ghl [[%leaf ""] <414.gly 100.xkc 1.ypj %164>]>
 
 ###++ram
+
+Flatten to tape
 
 ```
   ++  ram
@@ -32,7 +38,7 @@ Pretty-printing engine
   ::
 ```
 
-Flatten tank out into a tape
+Flatten tank out into a tape.
 
     /~zod/try=> ~(ram re leaf/"foo")
     "foo"
@@ -40,6 +46,8 @@ Flatten tank out into a tape
     "(bar.baz.bam)"
 
 ###++win
+
+Render at indent
 
 ```
   ++  win
@@ -83,7 +91,9 @@ Flatten tank out into a tape
     ::
 ```
 
-Render at indent level and width
+Render at indent level `tab` and width `edg`.
+
+`tab` and `edg` are [atom]()s.
 
     /~zod/try=> (~(win re leaf/"samoltekon-lapdok") 0 20)
     <<"samoltekon-lapdok">>
@@ -104,13 +114,17 @@ XX document
 
 ###++fit 
 
+Fit on one line test
+
 ```
     ++  fit  (lte (lent ram) (sub edg tab))
 ```
 
-Determine whether `a` fits on one line. Internal to `++win`
+Determine whether `tac` fits on one line. Internal to `++win`
 
 ###++rig
+
+Wrap in `\/`
 
 ```
     ++  rig
@@ -137,6 +151,8 @@ Wrap tape in `\/` if it doesn't fit at current indentation. Internal to `++win`
 
 ###++wig
 
+`++win` render tape
+
 ```
     ++  wig
       |=  hom=tape
@@ -155,4 +171,4 @@ Wrap tape in `\/` if it doesn't fit at current indentation. Internal to `++win`
   --
 ```
 
-Render tape. Internal to `++win`
+Render tape. Internal to `++win`.

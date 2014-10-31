@@ -1,30 +1,28 @@
 #[ketbar, `^|`, %ktbr](#ktbr)
 
-[Short description]
+Convert `%gold` to `%iron`
 
-#Syntax
+`^|` is a natural hoon that converts a [`%gold`]() core into an [`%iron`]() core.
 
-`^|`, `ketbar`, `[%ktbr p=twig]` is a natural hoon that
-converts a gold core into an iron core.
+##See also
 
-Variance or sth.
+#[barlus, `|+`, %brls](#brls)
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%ktbr p=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [twig]().
 
 ##Tall form
 
-^|  p
+    ^|  p
 
 ##Wide form
 
-^|(p)
+    ^|(p)
 
 ##Irregular form
 
@@ -32,7 +30,16 @@ None
 
 ##Examples
 
-    ~zod/try=> |=(@ 1)
-    <1.gcq [@ @n <250.yur 41.wda 374.hzt 100.kzl 1.ypj %164>]>
-    ~zod/try=> ^|(|=(@ 1))
-    <1|gcq [@ @n <250.yur 41.wda 374.hzt 100.kzl 1.ypj %164>]>
+    /~zod/try=> =cor  |=  a=@
+          +(a)
+    new var %cor
+    /~zod/try=> +<.cor
+    a=0
+    /~zod/try=> =iro  ^|(cor)
+    new var %iro
+    /~zod/try=> +<.iro
+    ! -axis.6
+    ! peek-park
+    ! exit
+
+Here we crete a simple gate and assign it to the shell variable `cor`. We can examine the sample of `cor` with `+<` to produce `a=0`. Assigning a new shell variable, `iro` as the `^|` of `cor` we can no longer peek in to its subject. 
