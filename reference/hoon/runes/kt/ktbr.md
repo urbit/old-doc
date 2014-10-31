@@ -7,6 +7,7 @@ Convert `%gold` to `%iron`
 ##See also
 
 #[barlus, `|+`, %brls](#brls)
+#[ketpam, `^&`, %ktpm](#ktpm)
 
 ##Produces
 

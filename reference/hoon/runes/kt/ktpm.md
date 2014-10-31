@@ -1,30 +1,28 @@
 #[ketpam, `^&`, %ktpm](#ktpm)
 
-[Short description]
+Convert `%gold` to `%zinc`
 
-#Syntax
+`^&` is a natural hoon that converts a `%gold` core into a `%zinc` core. At present, `%zinc` cores are not commonly used.
 
-`^&`, `ketpam`, `[%ktpm p=twig]` is a natural hoon that
-converts a gold core into a zinc core.
+##See also
 
-Variance or sth.
+#[ketbar, `^|`, %ktbr](#ktbr)
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%ktpm p=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [twig]().
 
 ##Tall form
 
-^&  p
+    ^&  p
 
 ##Wide form
 
-^&(p)
+    ^&(p)
 
 ##Irregular form
 
