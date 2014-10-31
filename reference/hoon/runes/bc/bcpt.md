@@ -15,12 +15,11 @@ Tile: `[%bcpt p=wing q=tile]`
 
 ##Tall form
 
-    $@  p
-        q
+None
 
 ##Wide form
 
-    $@(p q)
+None
 
 ##Irregular form
 
@@ -29,4 +28,5 @@ Tile: `[%bcpt p=wing q=tile]`
 ##Examples
 
 
-
+    ~zod/try=> =+(a=97 a@cord)
+    'a'

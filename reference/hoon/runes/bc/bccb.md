@@ -28,4 +28,10 @@ Tile: `[%weed p=twig]`
 ##Examples
 
 
-
+    ~zod/try=> *_12
+    12
+    ~zod/try=> :type; *_12
+    12
+    @ud
+    ~zod/try=> ^-(_(add 2 2) 'a')
+    97

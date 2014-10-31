@@ -15,12 +15,10 @@ Tile: `[%herb p=twig]`
 ##Tall form
 
     $^  p
-            q
-        ==
 
 ##Wide form
 
-    $^(p q)
+    $^(p)
 
 ##Irregular form
 
@@ -28,5 +26,15 @@ None
 
 ##Examples
 
-
-
+    ~zod/try=> *$^(cord)
+    ''
+    ~zod/try=> *$^(|=(a=* ?^(a a [~ a])))
+    [~ 0]
+    ~zod/try=> `$^(|=(a=* ?^(a a [~ a])))`1
+    ! type-fail
+    ! exit
+    ~zod/try=> `$^(|=(a=* ?^(a a [~ a])))`[1 2]
+    [1 2]
+    ~zod/try=> :type; *$^(|=(a=* ?^(a a [~ a])))
+    [~ 0]
+    {[%~ @] [* *]}

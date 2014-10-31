@@ -22,5 +22,9 @@ Default value
 
 ##Examples
 
-
-
+    ~zod/try=> *@t
+    ''
+    ~zod/try=> *[@p @ux]
+    [~zod 0x0]
+    ~zod/try=> *(list ,@)
+    ~
