@@ -33,5 +33,19 @@ computes the "or" of the loobeans in `p`.
 
 ##Examples
 
-undefined
-
+    ~zod/try=> ?|(& |)
+    %.y
+    ~zod/try=> |(& |)
+    %.y
+    ~zod/try=> |(| |)
+    %.n
+    ~zod/try=> (gth 2 1)
+    %.y
+    ~zod/try=> |((gth 2 1) |)
+    %.y
+    ~zod/try=> |((gth 1 2) |)
+    %.n
+    ~zod/try=> |((gth 2 1) &)
+    %.y
+    ~zod/try=> |((gth 1 2) &)
+    %.y

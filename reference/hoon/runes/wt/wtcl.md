@@ -8,6 +8,9 @@
 that produces `q` if `p` is yes (`&`, `0`), or `r` if `p` is no
 (`|`, 1).
 
+
+See also `?.`
+
 ##Produces
 
 [Twig or tile]
@@ -33,5 +36,7 @@ None
 
 ##Examples
 
-
-
+    ~zod/try=> ?:((gth 1 2) 1 2)
+    2
+    ~zod/try=> ?:(?=(%a 'a') %yup %not-a)
+    %yup

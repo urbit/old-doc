@@ -34,5 +34,17 @@ None
 
 ##Examples
 
-
-
+    ~zod/try=> ?@(~ 1 2)
+    ! mint-vain
+    ! exit
+    ~zod/try=> ?@(%ha 1 2)
+    1
+    ~zod/try=> ?@("" 1 2)
+    1
+    ~zod/try=> ?@("a" 1 2)
+    2
+    ~zod/try=> ?@([1 1] 1 2)
+    ! mint-vain
+    ! exit
+    ~zod/try=> ?@(`*`[1 1] 1 2)
+    2 

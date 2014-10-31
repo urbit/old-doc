@@ -33,5 +33,14 @@ computes the "and" of the loobeans in `p`.
 
 ##Examples
 
-
-
+    1
+    ~zod/try=> ?&(& &)
+    %.y
+    ~zod/try=> &(& &)
+    %.y
+    ~zod/try=> &(& |)
+    %.n
+    ~zod/try=> &((gth 2 1) |)
+    %.n
+    ~zod/try=> &((gth 2 1) &)
+    %.y

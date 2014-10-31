@@ -33,5 +33,19 @@ None
 
 ##Examples
 
-
-
+    ~zod/try=> ?^  ""
+                 %full
+               %empty
+    %empty
+    ~zod/try=> ?^  "asd"
+                 %full
+               %empty
+    %full
+    ~zod/try=> ?^  `(unit)`~
+                 %full
+               %empty
+    %empty
+    ~zod/try=> ?^  `(unit)`[~ u=20]
+                 %full
+               %empty
+    %full
