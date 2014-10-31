@@ -1,37 +1,38 @@
 #[haxgar, `#>`, %hxgr](#hxgr)
 
-[Short description]
+Prettyprint `++tank`
 
-#Syntax
+`#>`, `haxgar`, `[%hxgr p=tusk]`is a synthetic hoon that slams the assumed gate `cain` on `[%zpgr %cntr p]`.
 
-`#>`, `haxgar`, `[%hxgr p=tusk]`is a synthetic hoon that
-slams the assumed gate `cain` on `[%zpgr %cntr p]`.
+`#>` is a synthetic hoon that slams the gate [`++cain`]() with `p`. `#>` is used to produce a [`++tank`]() of the computation passed to it, and is only used in the irregular form. 
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%hxgr p=tusk]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [++tusk]().
 
 ##Tall form
 
-?
+None
 
 ##Wide form
 
-?
+None
 
 ##Irregular form
 
-    <i.p i.t.p i.t.t.p>
+    >i.p i.t.p i.t.t.p<
 
 ##Examples
     
     ~zod/try=/zop> >1<
     [%leaf p="1"]
+
+This is the simplest example of `#>`, pass it a constant and it produces a `++tank` of the constant.
+
     ~zod/try=/zop> >`path`"abc"<
     [%rose p=[p="/" q="/" r=""] q=~[[%leaf p="a"] [%leaf p="b"] [%leaf p="c"]]]
     ~zod/try=/zop> >0x5 ~zod 'a'<
@@ -66,3 +67,5 @@ slams the assumed gate `cain` on `[%zpgr %cntr p]`.
         ]
       ]
     ]
+
+In these cases we use `#>` to produce the result of a simple computation as a `++tank`.
