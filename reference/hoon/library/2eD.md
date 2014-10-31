@@ -40,6 +40,10 @@ Parsing composer: connects the edge `vex` with the subsequent rule `sab` as an o
     ~zod/try=> (scan "ba" ;~((bend |=([a=char b=char] ?.(=(a b) ~ (some +(a))))) prn prn))
     ! {1 3}
     ! exit
+    ~zod/try=> `(unit ,@tas)`(scan "" ;~((bend) (easy ~) sym))
+    ~
+    ~zod/try=> `(unit ,@tas)`(scan "sep" ;~((bend) (easy ~) sym))
+    [~ %sep]
 
 ---
 
