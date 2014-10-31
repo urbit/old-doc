@@ -1,29 +1,30 @@
 #[semcen, `;%`](#smcn)
 
-[Short description]
+`++sail` interpolate tape
 
-#Syntax
+`;%` is a virtual rune used within [`++sail`]() for passing a list of child nodes to a gate. `;%` is used for transforming a list of child elements inside a [`++manx`]().
 
-`;%`, `semcen`, is a virtual hoon that is used within [sail] to interpolate in a
-tape.
+##See also
+
+The `%e` case inside of [`++tuna`]().
 
 ##Produces
 
-Affects surrounding manx
+Twig: [`++marl`]()
 
 ##Sample
 
-`p` is a twig
+`p` is a [twig]().
 
 ##Tall form
 
-;%  a
+    ;%  p
 
 ##Wide form
 
-Within quoted form, 
+    %{p}
 
-`%{a}` or `{a}`
+(within quoted form)
 
 ##Irregular form
 
