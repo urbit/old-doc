@@ -1,30 +1,28 @@
 #[ketwut, `^?`, %ktwt](#ktwt)
 
-[Short description]
+Convert `%gold` to `%lead`
 
-#Syntax
+`^?` is a natural hoon that converts a `%gold` core into a `%lead` core.
 
-`^?`, `ketwut`, `[%ktwt p=twig]` is a natural hoon that
-converts a gold core into a lead core.
+##See also
 
-Variance or sth.
+#[ketbar, `^|`, %ktbr](#ktbr)
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%ktwt p=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [twig]().
 
 ##Tall form
 
-^?  p
+    ^?  p
 
 ##Wide form
 
-^?(p)
+    ^?(p)
 
 ##Irregular form
 
