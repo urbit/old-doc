@@ -35,3 +35,5 @@ An associative list of names, ++term, and expressions ++foot,
 
 #[sample]()
 
+#[hint]()
+

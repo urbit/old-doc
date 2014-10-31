@@ -1,31 +1,26 @@
 #[sigbuc, `~$`, %sgbc](#sgbc)
 
-[Short description]
+Label for profiling
 
-#Syntax
-
-`~$`, `sigbuc`, `[%sgbc p=term q=twig]` is a synthetic hoon that
-labels computation `q` as `p` for profiling.
-
-XX unused
+`~$`, `sigbuc`, `[%sgbc p=term q=twig]` is a synthetic rune that labels computation `q` as `p` for profiling.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%sgbc p=term q=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [term]().
+`q` is a [twig]().
 
 ##Tall form
 
-~?  p
-        q
+    ~?  p
+            q
 
 ##Wide form
 
-^?(q)
+    ^?(q)
 
 ##Irregular form
 

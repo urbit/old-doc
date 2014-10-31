@@ -1,21 +1,19 @@
 #[sigwut, `~?`, %sgwt](#sgwt)
 
-[Short description]
+Conditional printf
 
-#Syntax
-
-`~?`, `sigwut`, `[%sgwt p=@ud q=twig r=twig s=twig]` is a
-synthetic hoon with the same hint effect, printing `r`,
-as `[%sgpm p r s]`, iff `q` produces yes.
+`~?` is a synthetic rune with the same hint effect as `~&`, printing `r` if and only if `q` produces `&`, loobean yes.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%sgwt p=@ud q=twig r=twig s=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [`@ud`]().
+`q` is a [twig]().
+`r` is a [twig]().
+`s` is a [twig]().
 
 ##Tall form
 
@@ -41,7 +39,7 @@ Priority 3 (alarm):
 
 ##Wide form
 
-~&(>> q r)
+    ~&(>> q r)
 
 ##Irregular form
 
@@ -49,8 +47,10 @@ None
 
 ##Examples
 
-    ~zod/try=> ~?((gth 1 2) 5 ~)
+    ~zod/try=> ~?((gth 1 2) 'oops' ~)
     ~
-    ~zod/try=> ~?((gth 1 0) 5 ~)
-    5
+    ~zod/try=> ~?((gth 1 0) 'oops' ~)
+    'oops'
     ~
+
+A simple case of the conditional printf. When our condition evaluates to `&` we print our `r`. Most useful in computation dealing with dynamic data.
