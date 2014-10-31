@@ -64,3 +64,33 @@ None
     ]
     ~zod/try=> (poxo ;div:"%{|=(a=marl (weld a a))};{hi}foo;{p}")
     "<div><hi></hi>foo<p></p><hi></hi>foo<p></p></div>"
+
+    ~zod/try=> 
+    ;=
+      ;%  |=(a=marl (turn a |=(b=manx ;script(src (poxo b));)))
+      ; /gep/hart.js
+      ; /gen/main/lib/urb.js
+      ; //cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js
+    ==
+    ~[
+      [[%script [%src "/gep/hart.js
+    "] ~] ~]
+      [[%script [%src "/gen/main/lib/urb.js
+    "] ~] ~]
+      [ [ %script
+          [%src "//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js
+    "]
+          ~
+        ]
+        ~
+      ]
+    ]
+    ~zod/try=> 
+    %-  many:poxo  :_  ~
+    ;=
+      ;%  |=(a=marl (turn a |=(b=manx ;script(src (poxo b));)))
+      ; /gep/hart.js
+      ; /gen/main/lib/urb.js
+      ; //cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js
+    ==
+    "<script src="/gep/hart.js"></script><script src="/gen/main/lib/urb.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>" 
