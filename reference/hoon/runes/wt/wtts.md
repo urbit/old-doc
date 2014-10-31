@@ -32,4 +32,11 @@ None
 ##Examples
 
 
-
+    ~zod/try=> ?=(@ 'a')
+    %.y
+    ~zod/try=> ?=(^ 'a')
+    %.n
+    ~zod/try=> ?=(%b 'a')
+    %.n
+    ~zod/try=> ?=(%a 'a')
+    %.y
