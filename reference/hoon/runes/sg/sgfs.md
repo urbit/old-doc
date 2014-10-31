@@ -1,31 +1,26 @@
 #[sigfas, `~/`, %sgfs](#sgfs)
 
-[Short description]
+Book arm jet
 
-#Syntax
-
-`~/`, `sigfas`, `[%sgfs p=term q=twig]` is a synthetic hoon that
-implements one common case - a gate arm in a book, ie, a library
-function - of the `%sgcn` jet hint.  `%sgfs` assumes the parent
-axis is `7` and there are no children.
+`~/` is a synthetic rune that implements one common case - a gate arm in a book, i.e. a library function - of the [`~%`]() jet hint. `~/` assumes the parent axis is `7` and there are no children.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%sgfs p=term q=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [term]().
+`q` is a [twig]().
 
 ##Tall form
 
-~/  p
+    ~/  p
         q
 
 ##Wide form
 
-~/(p q)
+    ~/(p q)
 
 ##Irregular form
 
