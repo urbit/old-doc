@@ -10,7 +10,7 @@ Twig: `[%cnsg p=wing q=twig r=twig]`
 
 ##Sample
 
-`p` is a [`wing`]()
+`p` is a [`wing`]().
 `q` and `r` are [`twig`]()s.
 
 ##Tall form

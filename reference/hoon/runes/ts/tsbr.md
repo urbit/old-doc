@@ -1,37 +1,40 @@
 #[tisbar, `=|`, %tsbr](#tsbr)
 
-[Short description]
+Bunt to subject
 
-#Syntax
-
-`=|`, `tisbar`, `[%tsbr p=tile q=twig]` is a synthetic hoon that
-pushes `~(bunt al p)` on the subject and sends it to `q`.
+`=|` is a synthetic hoon that pushes the [bunt](), or default value, of `p` on the subject and sends it to `q`.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%tsbr p=tile q=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [tile]().
+`q` is a [twig]().
 
 ##Tall form
 
-=|  p
+    =|  p
         q
 
 ##Wide form
 
-=|(p q)
+    =|(p q)
 
 ##Irregular form
 
 None
 
 ##Examples
-
-    ~zod/try=> =|(a=^ a)
-    [0 0]
     ~zod/try=> =|(a=@p a)
     ~zod
+
+Here we use `=|` to generate the default value of a `@p`, which is `~zod`. 
+
+    /~zod/try=> 
+        =|  a=[b=@ c=@]
+        [+(b.a) +(+(c.a))]
+    [1 2]
+
+Here we add the bunt of `a=[b=@ c=@]` and perform a very basic operation on it.
