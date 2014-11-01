@@ -1026,7 +1026,7 @@ Parse array to list
   ::
 ```
 
-Reparser modifier. Parses an array as a homogenous [`++list`]() using a `wit` to re-parse every element.
+Reparser modifier. Reparses an array as a homogenous [`++list`]() using a `wit` to re-parse every element.
 
 `wit` is a [`++fist`](), a JSON reparser.
 
@@ -1050,7 +1050,9 @@ Reparse
   ::
 ```
 
-Reparser generator. Parses an array as a fixed-length tuple, using a list of [`++fist`]s.
+Reparser generator. Reparses an array as a fixed-length tuple, using a list of [`++fist`]s.
+
+`wil` is a [`++pole`](), a list faceless list, of [`++fist`]()s.
 
 ```
 ~zod/try=> ((at ni so ni ~):jo a/~[n/'3' s/'to' n/'4'])
@@ -1076,7 +1078,9 @@ Reparse array to tuple
   ::
 ```
 
-Reparse a list of json as a tuple of units containing the parsed results.
+Reparser generator. Reparses a list of json to a tuple of units using `wil`.
+
+`wil` is a [`++pole`](), a list faceless list, of [`++fist`]()s.
 
 ```
 ~zod/try=> ((at-raw ni ni bo ~):jo ~[s/'hi' n/'1' b/&])
@@ -1085,7 +1089,7 @@ Reparse a list of json as a tuple of units containing the parsed results.
 
 ###++bo
 
-Parse boolean
+Reparse boolean
 
 ```
   ++  bo                                                ::  boolean
@@ -1093,7 +1097,7 @@ Parse boolean
   ::
 ```
 
-Parse JSON boolean.
+Reparser modifier. Reparses a boolean.
 
 ```
 ~zod/try=> (bo:jo [%b &])
@@ -1106,13 +1110,15 @@ Parse JSON boolean.
 
 ###++bu
 
+Reparse boolean not
+
 ```
   ++  bu                                                ::  boolean not
     |=(jon=json ?.(?=([%b *] jon) ~ [~ u=!p.jon]))
   ::
 ```
 
-Parse inverse of JSON boolean.
+Reparser modifier. Reparses the inverse of a boolean.
 
 ```
 ~zod/try=> (bu:jo [%b &])
@@ -1125,6 +1131,8 @@ Parse inverse of JSON boolean.
 
 ###++cu
 
+Reparse and transform
+
 ```
   ++  cu                                                ::  transform
     |*  [poq=$+(* *) wit=fist]
@@ -1133,7 +1141,11 @@ Parse inverse of JSON boolean.
   ::
 ```
 
-Slam result through gate.
+Reparser modifier. Reparses `jon` and slams the result through `wit`.
+
+`wit` is a [`++fist`]().
+
+`poq` is a [`gate`]() that accepts and returns a [noun]().
 
 ```
 ~zod/try=> ((cu dec ni):jo [%n '20'])
@@ -1144,6 +1156,8 @@ Slam result through gate.
 
 ###++da
 
+Reparse UTC date
+
 ```
   ++  da                                                ::  UTC date
     |=  jon=json
@@ -1152,7 +1166,7 @@ Slam result through gate.
   ::
 ```
 
-Parse UTC date string
+Reparser modifier. Reparses a UTC date string.
 
 ```
 ~zod/try=> (da:jo [%s 'Wed, 29 Oct 2014 0:26:15 +0000'])
@@ -1165,6 +1179,8 @@ Parse UTC date string
 
 ###++di
 
+Reparse millisecond date
+
 ```
   ++  di                                                ::  millisecond date
     |=  jon=json
@@ -1174,7 +1190,7 @@ Parse UTC date string
   ::
 ```
 
-Parse javascript millisecond date integer.
+Reparser modifier. Reparses the javascript millisecond date integer.
 
 ```
 ~zod/try=> (di:jo [%s '2014-10-29'])
@@ -1188,6 +1204,8 @@ Parse javascript millisecond date integer.
 ```
 
 ###++mu
+
+Reparse true unit
 
 ```
   ++  mu                                                ::  true unit
@@ -1210,6 +1228,8 @@ With fist, parse null or some containing that fist.
 
 ###++ne
 
+Reparse number as real
+
 ```
   ++  ne                                                ::  number as real
     |=  jon=json
@@ -1222,6 +1242,8 @@ XX  Currently unimplemented
 
 ###++ni
 
+Reparse number as integer
+
 ```
   ++  ni                                                ::  number as integer
     |=  jon=json 
@@ -1230,7 +1252,7 @@ XX  Currently unimplemented
   ::
 ```
 
-Parse integer representation.
+Reparser modifier. Reparses an integer representation.
 
     ~zod/try=> (ni:jo [%n '0'])
     [~ q=0]
@@ -1247,8 +1269,9 @@ Parse integer representation.
     ~zod/try=> (ni:jo [%a ~[b/& b/& b/& b/&]])
     ~
 
-
 ###++no
+
+Reparse number as cord
 
 ```
   ++  no                                                ::  number as cord
@@ -1258,7 +1281,7 @@ Parse integer representation.
   ::
 ```
 
-Retrieve numeric representation as text.
+Reparser modifier. Reparses a numeric representation as text.
 
     ~zod/try=> (no:jo [%n '0'])
     [~ u=~.0]
@@ -1275,8 +1298,9 @@ Retrieve numeric representation as text.
     ~zod/try=> (no:jo [%a ~[b/& b/& b/& b/&]])
     ~
 
-
 ###++of
+
+Reparse object to frond
 
 ```
   ++  of                                                ::  object as frond
@@ -1291,7 +1315,9 @@ Retrieve numeric representation as text.
   ::
 ```
 
-With list of possible keys and parsers for their values, parse object with one key-value pair
+Reparser modifier. Reparses an object matching one of the key-value pairs in `wer`.
+
+`wer` is a [`++pole`](), a [`++faceless`]() list of [`++cord`]() and [`++fist`]() [`++pairs`]().
 
     ~zod/try=> ((of sem/sa som/ni ~):jo %o [%sem s/'hi'] ~ ~)
     [~ [%sem "hi"]]
