@@ -26,5 +26,8 @@ None
 
 ##Examples
 
-None
+    ~zod/try=> (ream '~')
+    [%bczp p=%null]
+    ~zod/try=> (make '~')
+    [%1 p=0]
 

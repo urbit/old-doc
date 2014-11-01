@@ -27,8 +27,18 @@ None
 
 ##Examples
 
+    /~zod/try=> (dec 42)
+    41
     ~zod/try=> %.(42 dec)
-        41
+    41
 
-In the above example, `%.` slams `++dec` with the sample `42`.
+In the most straightforward case `%.` allows us to reverse the order of arm and arguments. 
 
+    /~zod/try=> %.
+                  %+  add
+                    %+  mul  2  20
+                  2
+                dec
+    41
+
+Here we add `2` to the product of `2` and `20`, and use `%.` to decrement our result. As you can see, `%.` is most useful for code organization, when you need to compute intermediate products for your final result.

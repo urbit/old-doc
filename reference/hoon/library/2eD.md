@@ -40,6 +40,12 @@ Parsing composer: connects the edge `vex` with the subsequent rule `sab` as an o
     ~zod/try=> (scan "ba" ;~((bend |=([a=char b=char] ?.(=(a b) ~ (some +(a))))) prn prn))
     ! {1 3}
     ! exit
+    ~zod/try=> `(unit ,@tas)`(scan "" ;~((bend) (easy ~) sym))
+    ~
+    ~zod/try=> `(unit ,@tas)`(scan "sep" ;~((bend) (easy ~) sym))
+    [~ %sep]
+
+---
 
 ###++comp
 
@@ -75,6 +81,8 @@ Parsing composer: connects the edge `vex` with a following rule `sab`, combining
     ! {1 3}
     ! exit
 
+---
+
 ###++glue
 
 Skip delimiter
@@ -91,6 +99,12 @@ Skip delimiter
 
 Parsing composer: connects an edge `vex` with a following rule `sab` by parsing the rule `bus` (the delimiting symbol) and throwing out the result. 
 
+`bus` is a [rule]().
+
+`sab` is a [rule]().
+
+`vex` is an [edge]().
+
     ~zod/try=> (scan "200|mal|bon" ;~((glue bar) dem sym sym))
     [q=200 7.102.829 7.237.474]
     ~zod/try=> `[@u @tas @tas]`(scan "200|mal|bon" ;~((glue bar) dem sym sym))
@@ -99,6 +113,8 @@ Parsing composer: connects an edge `vex` with a following rule `sab` by parsing 
     [q=200 ~~~3b. 7.237.474]
     ~zod/try=>  (scan "200.;.bon" ;~((glue dot) dem sem sym))
     [q=200 ~~~3b. 7.237.474]
+
+---
 
 ###++less
 
@@ -116,6 +132,10 @@ Parse unless
 
 Parsing composer: if an edge `vex` reflects a success, fail. Otherwise, connect `vex` with the following rule.
 
+`sab` is a [rule]().
+
+`vex` is an [edge]().
+
     ~zod/try=> (scan "sas-/lo" (star ;~(less lus bar prn)))
     "sas-/lo"
     ~zod/try=> (scan "sas-/l+o" (star ;~(less lus bar prn)))
@@ -124,6 +144,8 @@ Parsing composer: if an edge `vex` reflects a success, fail. Otherwise, connect 
     ~zod/try=> (scan "sas|-/lo" (star ;~(less lus bar prn)))
     ! {1 5}
     ! exit
+
+---
 
 ###++pfix
 
@@ -138,10 +160,14 @@ Discard first rule
 
 Parsing composer: connects an [edge]() `vex` with two subsequent rules, ignoring the result of the first and producing the result of the second.
 
+`vex` is an [edge]().
+
     ~zod/try=> `@t`(scan "%him" ;~(pfix cen sym))
     'him'
     ~zod/try=> (scan "+++10" ;~(pfix (star lus) dem))
     q=10
+
+---
 
 ###++plug
 
@@ -163,12 +189,18 @@ Parse to tuple
 
 Parsing composer: connects `vex` with a following rule `sab`, producing a cell of both the results. See also: the monad applicator [;~]() for a more detailed explanation.
 
+`sab` is a [rule]().
+
+`vex` is an [edge]().
+
     ~zod/try=> (scan "1..20" ;~(plug dem dot dot dem))
     [q=1 ~~~. ~~~. q=20]
     ~zod/try=> (scan "moke/~2014.1.1" ;~(plug sym fas nuck:so))
     [1.701.539.693 ~~~2f. [% p=[p=~.da q=170.141.184.500.766.106.671.844.917.172.921.958.400]]]
     ~zod/try=> ;;(,[@tas @t ~ %da @da] (scan "moke/~2014.1.1" ;~(plug sym fas nuck:so)))
     [%moke '/' ~ %da ~2014.1.1]
+
+---
 
 ###++pose
 
@@ -200,6 +232,8 @@ Parsing composer: if `vex` reflects a failure, connect it with the following rul
     ! {1 1}
     ! exit
 
+---
+
 ###++simu
 
 First and second
@@ -230,6 +264,8 @@ Parsing composer: if an edge `vex` reflects a failure, fail. Otherwise, connect 
     ! {1 1}
     ! exit
 
+---
+
 ###++sfix
 
 Discard second rule
@@ -250,3 +286,5 @@ Parsing composer: connects `vex` with two subsequent rules returning the result 
     'him'
     ~zod/try=> (scan "10+++" ;~(sfix dem (star lus)))
     q=10
+
+---

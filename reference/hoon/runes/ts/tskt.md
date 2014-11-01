@@ -42,5 +42,11 @@ None
 
 ##Examples
 
-
-
+    ~zod/try=> =+  a=3
+               =^  b  a  [a +(a)]
+               [a ~ b]
+    [4 ~ 3]
+    ~zod/try=> =+  a="ham"
+               =^  b  a  a
+               [<`@tas`b> a]
+    ["%h" "am"]

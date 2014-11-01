@@ -89,4 +89,4 @@ Here `|^` computes a result by calling its helper arms `++square` and `++double`
 ::
 ```
 
-++mum is a hashing gate, which uses two helper arms.
+[`++mum`]() is a hashing gate, which uses two helper arms to computes its results. The `|^` at the top performs the computation.

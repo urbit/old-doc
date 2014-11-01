@@ -1,30 +1,26 @@
 #[sigbar, `~|`, %sgbr](#sgbr)
 
-[Short description]
+Add to stacktrace
 
-#Syntax
-
-`~|`, `sigbar`, `[%sgbr p=twig q=twig]` is a synthetic hoon that
-presents the product of `p` in the stack trace if `q` crashes.
-The computation is only performed if needed.
+`~|` is a synthetic hoon that presents the product of `p` in the stack trace if `q` crashes. The computation is only performed if needed.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%sgbr p=twig q=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [twig]().
+`q` is a [twig]().
 
 ##Tall form
 
-~|  p
+    ~|  p
         q
 
 ##Wide form
 
-^|(p q)
+    ~|(p q)
 
 ##Irregular form
 

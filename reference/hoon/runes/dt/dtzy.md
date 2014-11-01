@@ -1,21 +1,17 @@
 #[dotzey, %dtzy](#dttr)
 
-`dotzey`, `[%dtzy p=term q=@]` is a natural hoon that produces a non-cubed atomic constant of odor `p` and value `q`.
+Odored atom
 
-[Short description]
-
-#Syntax
-
-`dotzay`, `[%dtzy p=term q=@]` is a natural hoon that produces a non-cubed atomic constant of odor p and value q.
+`dotzay` is a natural hoon that produces a non-cubed atomic constant of odor `p` and value `q`. `dotzay` is never used explicitly, but always implicitly to give odors to atoms.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%dtzy p=term q=@]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [`++term`]().
+`q` is an [atom]().
 
 ##Tall form
 
@@ -27,7 +23,7 @@ None
 
 ##Irregular form
 
-See chapter 6 for constant forms.
+None
 
 ##Examples
 
@@ -37,3 +33,5 @@ See chapter 6 for constant forms.
     [%dtzy p=%f q=0]
     ~zod/try=> (ream '~.sam')
     [%dtzy p=%ta q=7.168.371]
+
+Here we use [`++ream`]() to unpack how values are parsed. Passing what what would appear to be constants reveals that they are in fact parsed into an odor [`++term`] and their numeric atom representation.

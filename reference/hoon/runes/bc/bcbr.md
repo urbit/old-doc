@@ -29,8 +29,16 @@ None
 
 ##Examples
 
-    ++  list  |*  a=_,*                                     ::  null-terminated list
-                  $|(~ [i=a t=(list a)])                        ::
+    ~zod/try=> *$|(~ [~ u=@])
+    ~
+    ~zod/try=> :type; *$|(~ [~ u=@])
+    ~
+    u(@)
+
+```
+++  list  |*  a=_,*                                     ::  null-terminated list
+          $|(~ [i=a t=(list a)])                        ::
+```
 
 In `++list`, `$|` specifies that every element in a noun that can be cast to a `++list` is either the atom `~` or the cell `[i=a t=(list a)]`.
 

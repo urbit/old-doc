@@ -1,15 +1,16 @@
 #[semtar, `;*`](#smtr)
 
-[Short description]
+`++sail` list `++manx`
 
-#Syntax
+`;*`  is a virtual rune used within [`++sail`]() to interpolate a list of marl.
 
-`;*`, `semtar`, is a virtual hoon that is used within [sail] to interpolate in a
-marl.
+##See also
+
+The `%c` case inside of [`++tuna`]().
 
 ##Produces
 
-Affects surrounding manx
+Twig: [`++marl`]()
 
 ##Sample
 
@@ -17,13 +18,13 @@ Affects surrounding manx
 
 ##Tall form
 
-;*  a
+    ;*  a
 
 ##Wide form
 
-Within quoted form, 
+    *{a}
 
-`*{a}` or `{a}`
+(within quoted form)
 
 ##Irregular form
 
@@ -46,3 +47,5 @@ None
     ]
     ~zod/try=> (poxo ;div:"a*{~[;hi; ;p;]}b")
     "<div>a<hi></hi><p></p>b</div>"
+
+Here we use the tall, wide and irregular forms of `;*` to interpolate a list of `++marl` into our containing [`++manx`]() `;div`.

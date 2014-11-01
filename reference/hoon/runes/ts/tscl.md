@@ -6,6 +6,8 @@
 
 `=:`, `tiscol`, `[%tscl p=tram q=twig]` is a synthetic hoon that produces `q` with the subject modified by `p`.
 
+See also `=.`
+
 ##Produces
 
 [Twig or tile]
@@ -33,5 +35,9 @@ None
 
 ##Examples
 
-
-
+    ~zod/try=> =+  a=[b=1 c=2]
+               =:  c.a  4
+                   b.a  3
+                 ==
+               a
+    [b=3 c=4]

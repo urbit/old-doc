@@ -4,8 +4,9 @@
 
 #Syntax
 
-`!_`,`zapcab`, `[%zpcb p=spot q=twig]` is a natural hoon that puts
-debugging information in the stack trace.
+`!_`,`zapcab`, `[%zpcb p=spot q=twig]` is a virtual natural hoon that traces
+the stack if debugging is enabled, putting the current path and location range
+of each rune.
 
 ##Produces
 
@@ -31,4 +32,24 @@ debugging information in the stack trace.
 ##Examples
 
 
-
+    ~zod/try=> (ream '20')
+    [%dtzy p=%ud q=20]
+    ~zod/try=> (ream '!:(20)')
+    [%zpcb p=[p=/ q=[p=[p=1 q=4] q=[p=1 q=6]]] q=[%dtzy p=%ud q=20]]
+    ~zod/try=> (ream '=+(20 ~)')
+    [%tsls p=[%dtzy p=%ud q=20] q=[%bczp p=%null]]
+    ~zod/try=> (ream '!:(=+(20 ~))')
+    [ %zpcb
+      p=[p=/ q=[p=[p=1 q=4] q=[p=1 q=12]]]
+        q
+      [ %tsls
+        p=[%zpcb p=[p=/ q=[p=[p=1 q=7] q=[p=1 q=9]]] q=[%dtzy p=%ud q=20]]
+        q=[%zpcb p=[p=/ q=[p=[p=1 q=10] q=[p=1 q=11]]] q=[%bczp p=%null]]
+      ]
+    ]
+    ~zod/try=> =+(20 !!)
+    ! exit
+    ~zod/try=> !:(=+(20 !!))
+    ! /~zod/try/~2014.10.31..21.11.11..be6c/:<[1 4].[1 13]>
+    ! /~zod/try/~2014.10.31..21.11.11..be6c/:<[1 10].[1 12]>
+    ! exit

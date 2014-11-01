@@ -1,29 +1,30 @@
 #[semhep, `;-`](#smhp)
 
-[Short description]
+`++sail` tape
 
-#Syntax
+`;-` is a virtual rune used within [`++sail`]() to interpolate a tape. 
 
-`;-`, `semhep`, is a virtual hoon that is used within [sail] to interpolate in a
-tape.
+##See also
+
+The `%a` case inside of [`++tuna`]().
 
 ##Produces
 
-Affects surrounding manx
+Twig: [`++tape`]()
 
 ##Sample
 
-`p` is a twig
+`p` is a [twig]().
 
 ##Tall form
 
-;-  a
+    ;-  a
 
 ##Wide form
 
-Within quoted form, 
+    -{a}
 
-`-{a}` or `{a}`
+(within quoted form)
 
 ##Irregular form
 
@@ -31,10 +32,14 @@ None
 
 ##Examples
 
-    ~zod/try=> ;div  ;-  "hi"
-               ==
-    [[%div ~] [[%~. [%~. "hi"] ~] ~] ~]
-    ~zod/try=> ;div:"-{"hi"}"
-    [[%div ~] [[%~. [%~. "hi"] ~] ~] ~]
-    ~zod/try=> (poxo ;div:"-{"hi"}")
-    "<div>hi</div>"
+    ~zod/try=> 
+    =+  c="contents!"
+    ;div: -{c}
+    [[%div ~] [[%~. [%~. "contents!"] ~] ~] ~]
+    ~zod/try=> 
+    %-  poxo
+    =+  c="contents!"
+    ;div: -{c}
+    "<div>contents!</div>"
+
+Here we add `c` to our context as a `++tape`, and interpolate it within our `;div` using the irregular form of `;-`. By using [`++poxo`]() we can see our result in XML form.

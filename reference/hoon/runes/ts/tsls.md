@@ -31,5 +31,8 @@ None
 
 ##Examples
 
-
+    ~zod/try=> =+(a=1 =+(b=(add 10 a) [a b]))
+    [1 11]
+    ~zod/try=> .*(. =+(a=1 =+(b=(add 10 a) [a b])))
+    11
 

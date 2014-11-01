@@ -32,3 +32,8 @@ None
 
 `++base`, `?` (the irregular form of `$?`) specifies a list of orthoganal cases for the `%axil` tile.
 
+    ~zod/try=> *?(%a %b %c)
+    %a
+    ~zod/try=> :type; *?(%a %b %c)
+    %a
+    {%a %b %c}

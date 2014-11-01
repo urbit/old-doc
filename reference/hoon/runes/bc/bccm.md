@@ -6,7 +6,7 @@ Normalizing gate, `%clam`
 
 ##Produces
 
-[Twig](): `[%bccb p=tile] `
+[Twig](): `[%bccm p=tile] `
 
 ##Sample
 
@@ -30,3 +30,21 @@ None
 
 In `++cord`, `,` creates a gate that validates atoms of the odor [`@t`]().
 
+    ~zod/try=> (,[1 2] "ham")
+    [%1 %2]
+    ~zod/try=> (,[@ 2] "ham")
+    [104 %2]
+    ~zod/try=> (,~ %foo)
+    ~
+    ~zod/try=> (,~ [%ba %r])
+    ~
+    ~zod/try=> (,$%([%a @] [%b ^]) [%b 5])
+    [%b 0 0]
+    ~zod/try=> (,$%([%a @] [%b ^]) [%a 5])
+    [%a 5]
+    ~zod/try=> (,$%([%a @] [%b ^]) [%a 6 7])
+    [%a 0]
+    ~zod/try=> (,$%([%a @] [%b ^]) [%b ~])
+    [%b 0 0]
+    ~zod/try=> (,$%([%a @] [%b ^]) [%b "ame"])
+    [%b 97 [109 101 0]]

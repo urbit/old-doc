@@ -2,7 +2,9 @@
 
 Trap
 
-`|.`, is a synthetic hoon that produces a [dry]() [`%gold`]() trap. A trap is a [`door`]() with one arm [`$`](), the empty name. The default action performed on a trap is kicking it by pulling the arm `$`. `|.` is similar to `|=` with no arguments.
+`|.`, is a synthetic hoon that produces a [dry]() [`%gold`]() trap. A trap is a [`door`]() with one only arm [`$`](), the empty name. 
+
+The default action performed on a trap is kicking it by pulling the arm `$`. `|.` is similar to `|=` with no arguments.
 
 ##See also
 

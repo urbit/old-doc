@@ -41,3 +41,13 @@ None
 
 In ++sort, `$+` is a tile for a comparator gate, which takes two nouns and produces a loobean.
 
+    ~zod/try=> |=(a=@ (add 2 a))
+    <1.sgg [a=@ [[@da @ta] [@p @ta] *''] @n <246.qra 41.uuw 374.glo 100.rip 1.ypj %164>]>
+    ~zod/try=> `$+(@ @)`|=(a=@ (add 2 a))
+    <1|crm [@ [[@da @ta] [@p @ta] *''] @n <246.qra 41.uuw 374.glo 100.rip 1.ypj %164>]>
+    ~zod/try=> +<:|=(a=@ (add 2 a))
+    a=0
+    ~zod/try=> +<:`$+(@ @)`|=(a=@ (add 2 a))
+    ! -axis.6
+    ! peek-park
+    ! exit

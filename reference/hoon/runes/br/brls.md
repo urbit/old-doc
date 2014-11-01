@@ -2,7 +2,7 @@
 
 `%iron` gate
 
-`|+`, `barlus`, `[%brls p=tile q=twig]` is a synthetic hoon that produces a [dry]() [`%iron`]() [gate]() with sample `[%bctr p]` and arm `q`. `|+` is similar to `|=`, but different in that its sample cannot be read. It can be thought of as similar to a private function.
+`|+` is a synthetic rune that produces a [dry]() [`%iron`]() [gate]() with sample [`$*(p)`]() and [arm]()s `q`. `|+` is similar to `|=`, but differs in that its sample cannot be read. It can be thought of as similar to a private function.
 
 ##See also
 

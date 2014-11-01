@@ -1,8 +1,9 @@
 #[buccab `$_` %bccb](#bccb)
 
-Default value, bunt
+Default value
 
-`$_` is a synthetic rune that produces a `%weed`, the default value or [bunt]](), of a given twig. `$_` is one of the four [tile reductions]() in hoon.
+`$_` produces a tile-by-example, called a `%weed`. A `%weed` contains the twig
+used to make the example.
 
 ##Produces
 
@@ -27,4 +28,10 @@ Tile: `[%weed p=twig]`
 ##Examples
 
 
-
+    ~zod/try=> *_12
+    12
+    ~zod/try=> :type; *_12
+    12
+    @ud
+    ~zod/try=> ^-(_(add 2 2) 'a')
+    97

@@ -1,29 +1,24 @@
 #[siglus, `~+`, %sgls](#sgls)
 
-[Short description]
+Memoize
 
-#Syntax
-
-`~+`, `siglus`, `[%sgls p=twig]` is a synthetic hoon that
-hints to the interpreter to memoize (cache) the computation 
-of `p`.
+`~+`, `siglus`,  is a synthetic hoon that hints to the interpreter to memoize (cache) the computation of `p`.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%sgls p=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [twig]()
 
 ##Tall form
 
-~+  p
+    ~+  p
 
 ##Wide form
 
-~+(p)
+    ~+(p)
 
 ##Irregular form
 
@@ -31,5 +26,16 @@ None
 
 ##Examples
 
+    ~zod/try=> 20
+    20
+    ~zod/try=> ~+(20)
+    20
+    ~zod/try=> 20
+    ~zod/try=> (make '20')
+    [%1 p=20]
+    ~zod/try=> (make '~+(20)')
+    [%10 p=[p=1.869.440.365 q=[%1 p=0]] q=[%1 p=20]]
+    ~zod/try=> `@tas`1.869.440.365
+    %memo
 
-
+By using [`++make`]() to display the compiled nock, we can see that `~+` inserts a `%memo` hint.

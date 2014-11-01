@@ -14,6 +14,8 @@ A core containing numeric parser primitives.
     ~zod/try=> ab
     <36.ecc 414.gly 100.xkc 1.ypj %164>
 
+---
+
 ###++bix
 
 Parse hex pair
@@ -31,6 +33,8 @@ Parsing rule. Parses a pair of base-16 digits. Used in escapes.
     ~zod/try=> (scan "a3" bix:ab)
     q=163
 
+---
+
 ###++hif
 
 Parse phonetic pair
@@ -39,12 +43,14 @@ Parse phonetic pair
   ++  hif  (boss 256 ;~(plug tip tiq (easy ~)))
 ```
 
-Parsing rule. Parses an atom of odor [@pE](), a phrase of two bytes encoded phonetically.
+Parsing rule. Parses an atom of odor [`@pE`](), a phrase of two bytes encoded phonetically.
 
     ~zod/try=> (scan "doznec" hif:ab)
     q=256
     ~zod/try=> (scan "pittyp" hif:ab)
     q=48.626
+
+---
 
 ###++huf
 
@@ -65,6 +71,8 @@ Parsing rule. Parses and unscrambles an atom of odor [@pF](), a phrase of two tw
     ~zod/try=> `@ux`(scan "tasfyn-partyv" huf:ab)
     0x1.0100
 
+---
+
 ###++hyf
 
 Parse 8 phonetic bytes
@@ -79,6 +87,8 @@ Parsing rule. Parses an atom of odor [@pG](), a phrase of eight of phonetic byte
     q=365.637.097.828.335.095
     ~zod/try=> `@u`~sondel-forsut-tillyn-nillyt
     365.637.097.828.335.095
+
+---
 
 ###++pev
 
@@ -99,6 +109,9 @@ Parsing rule. Parses up to five base-32 digits without a leading zero.
     ! exit
     ~zod/try=> (scan "090j" pev:ab)
     ~ <syntax error at [1 11]>
+
+---
+
 ###++pew
 
 Parse <= 5 base-64
@@ -122,6 +135,8 @@ Parsing rule. Parses up to five base-64 digits without a leading zero.
     ! {1 1}
     ! exit
 
+---
+
 ###++piv
 
 Parse 5 base-32
@@ -138,6 +153,8 @@ Parsing rule. Parses exactly five base-32 digits.
     ! {1 2}
     ! exit
 
+---
+
 ###++piw
 
 Parse 5 base-64
@@ -153,6 +170,8 @@ Parsing rule. Parses exactly five base-64 digits.
     ~zod/try=> (scan "2" piv:ab)
     ! {1 2}
     ! exit
+
+---
 
 ###++qeb
 
@@ -177,6 +196,8 @@ Parsing rule. Parses a binary number of up to 4 digits in length without a leadi
     ! {1 1}
     ! exit
 
+---
+
 ###++qex
 
 Parse <= 4 hex
@@ -198,6 +219,8 @@ Parsing rule. Parses a hexadecimal number of up to 4 digits in length without a 
     ! {1 1}
     ! exit
     
+---
+
 ###++qib
 
 Parse 4 binary
@@ -216,6 +239,8 @@ Parsing rule. Parses exactly four binary digits.
     ! {1 4}
     ! exit
 
+---
+
 ###++qix
 
 Parse 4 hex
@@ -233,6 +258,8 @@ Parsing rule. Parses exactly four hexadecimal digits.
     ~zod/try=> (scan "0" qix:ab)
     ! {1 2}
     ! exit
+
+---
 
 ###++seb
 
@@ -253,6 +280,8 @@ Parsing rule. Parses the number 1.
     ! ~zod/try/~2014.10.23..22.34.29..d399/:<[1 1].[1 18]>
     ! {1 1}
 
+---
+
 ###++sed
 
 Parse decimal
@@ -268,6 +297,8 @@ Parsing rule. Parses a nonzero decimal digit.
     ~zod/try=> (scan "0" sed:ab)
     ! {1 1}
     ! exit
+
+---
 
 ###++sev
 
@@ -285,6 +316,8 @@ Parsing rule. Parses a nonzero base-32 digit
     ! {1 1}
     ! exit
 
+---
+
 ###++sew
 
 Parse base-64
@@ -300,6 +333,8 @@ Parsing rule. Parses a nonzero base-64 digit
     ~zod/try=> (scan "0" sew:ab)
     ! {1 1}
     ! exit
+
+---
 
 ###++sex
 
@@ -317,6 +352,8 @@ Parsing rule. Parses a nonzero hexadecimal digit.
     ! {1 1}
     ! exit
     
+---
+
 ###++sib
 
 Parse binary
@@ -332,6 +369,8 @@ Parsing rule. Parses a binary digit.
     ~zod/socialnet=> (scan "0" sib:ab)
     0
 
+---
+
 ###++sid
 
 Parse decimal
@@ -344,6 +383,8 @@ Parsing rule. Parses a decimal digit.
 
     ~zod/try=> (scan "5" sid:ab)
     5
+
+---
 
 ###++siv
 
@@ -358,6 +399,8 @@ Parsing rule. Parses a base-32 digit.
     ~zod/try=> (scan "c" siv:ab)
     12
 
+---
+
 ###++siw
 
 Parse base-64
@@ -370,6 +413,8 @@ Parsing rule. Parses a base-64 digit.
 
     ~zod/try=> (scan "M" siw:ab)
     48
+
+---
 
 ###++six
 
@@ -384,6 +429,8 @@ Parsing rule. Parses a hexadecimal digit.
     ~zod/try=> (scan "e" six:ab)
     14
 
+---
+
 ###++sov
 
 Parse base-32
@@ -396,6 +443,8 @@ Parsing rule. Parses a base-32 letter.
 
     ~zod/try=> (scan "c" sov:ab)
     12
+
+---
 
 ###++sow
 
@@ -415,6 +464,8 @@ Parsing rule. Parses a base-64 letter/symbol.
     ~zod/try=> (scan "M" sow:ab)
     48
 
+---
+
 ###++sox
 
 Parse hex letter
@@ -427,6 +478,8 @@ Parsing rule. Parses a hexadecimal letter.
 
     ~zod/try=> (scan "e" sox:ab)
     14
+
+---
 
 ###++ted
 
@@ -448,6 +501,8 @@ Parsing rule. Parses a decimal number of up to 3 digits without a leading zero.
     ! {1 1}
     ! exit
 
+---
+
 ###++tip
 
 Leading phonetic byte
@@ -462,6 +517,8 @@ Parsing rule. Parses the leading phonetic byte, which represents a syllable.
     0
     ~zod/try=> (scan "pit" tip:ab)
     242
+
+---
 
 ###++tiq
 
@@ -478,6 +535,8 @@ Parsing rule. Parses the trailing phonetic byte, which represents a syllable.
     ~zod/try=> (scan "nec" tiq:ab)
     1
 
+---
+
 ###++tid
 
 Parse 3 decimal digits
@@ -493,6 +552,8 @@ Parsing rule. Parses exactly three decimal digits.
     ~zod/try=> (scan "01" tid:ab)
     ! {1 3}
     ! exit
+
+---
 
 ###++til
 
@@ -512,6 +573,8 @@ Parsing rule. Parses exactly three lowercase letters.
     ! {1 3}
     ! exit
 
+---
+
 ###++urs
 
 Parse span characters
@@ -529,9 +592,11 @@ Parsing rule. Parses characters from an atom of the span odor [`@ta`]().
     ~zod/try=> `@t`(scan "asa-lom_tak" urs:ab)
     'asa-lom_tak'
 
+---
+
 ###++urt
 
-Parse non-'_' span
+Parse non-`_` span
 
 ```
   ++  urt  %+  cook
@@ -539,10 +604,12 @@ Parse non-'_' span
            (star ;~(pose nud low hep dot sig))
 ```
 
-Parsing rule. Parses all characters of the span odor [`@ta`]() except for cab ('_').
+Parsing rule. Parses all characters of the span odor [`@ta`]() except for cab, `_`.
 
     ~zod/try=> `@t`(scan "asa-lom.t0k" urt:ab)
     'asa-lom.t0k'
+
+---
 
 ###++voy
 
@@ -559,6 +626,8 @@ Parsing rule. Parses an escaped backslash, single quote, or hex pair byte.
     ~zod/try=> (scan "\\'" voy:ab)
     q=39
 
+---
+
 ###++ag
 
 Top-level atom parser engine
@@ -572,6 +641,8 @@ A core containing top-level atom parsers.
 
     ~zod/try=> ag
     <14.vpu 414.mof 100.xkc 1.ypj %164>
+
+---
 
 ###++ape
 
@@ -588,6 +659,8 @@ Parser modifier. Parses 0 or the sample rule `fel`.
     ~zod/try=> (scan "202" (star (ape:ag (cold 2 (just '2')))))
     ~[2 0 2]
 
+---
+
 ###++bay
 
 Parses binary number
@@ -600,6 +673,8 @@ Parsing rule. Parses a binary number without a leading zero.
 
     ~zod/try=> (scan "10.0110" bay:ag)
     q=38
+
+---
 
 ###++bip
 
@@ -617,6 +692,8 @@ Parsing rule. Parses a [`@is`](), an IPv6 address.
     ~zod/try=> `@is`(scan "0.0.ea.3e6c.0.0.0.0" bip:ag)
     .0.0.ea.3e6c.0.0.0.0
 
+---
+
 ###++dem
 
 Parse decimal with dots
@@ -631,6 +708,8 @@ Parsing rule. Parses a decimal number that includes dot separators.
     q=52
     ~zod/try=> (scan "13.507" dem:ag)
     q=13.507
+
+---
 
 ###++dim
 
@@ -648,9 +727,11 @@ Parsing rule. Parses a decimal number without a leading zero.
     ! {1 2}
     ! exit
 
+---
+
 ###++dum
 
-Parse decimal with leading 0
+Parse decimal with leading `0`
 
 ```
   ++  dum  (bass 10 (plus sid:ab))
@@ -664,6 +745,8 @@ Parsing rule. Parses a decmial number with leading zeroes.
     q=52
     ~zod/try=> (scan "13507" dim:ag)
     q=13.507
+
+---
 
 ###++fed
 
@@ -696,6 +779,8 @@ Parsing rule. Parses an atom of odor [`@p`](), the phonetic base.
     282.810.089.790.159.633.869.501.053.313.363.681.181
 
 
+---
+
 ###++hex
 
 Parse hex
@@ -715,6 +800,8 @@ Parsing rule. Parses a hexadecimal number
     ~zod/try=> `@ux`(scan "3.ac8d" hex:ag)
     0x3.ac8d
 
+---
+
 ###++lip
 
 Parse IPv4 address
@@ -733,6 +820,8 @@ Parsing rule. Parses an IPv4 address.
     ~zod/try=> `@if`(scan "8.8.8.8" lip:ag)
     .8.8.8.8
 
+---
+
 ###++viz
 
 Parse Base-32 with dots
@@ -746,6 +835,8 @@ Parsing rule. Parses a Base-32 number with dot separators.
     ~zod/try=> (scan "e2.ol4pm" viz:ag)
     q=15.125.353.270
 
+---
+
 ###++vum
 
 Parse base-32 string
@@ -758,6 +849,8 @@ Parsing rule. Parses a raw base-32 string.
 
     ~zod/try=> (scan "e2ol4pm" vum:ag)
     q=15.125.353.270
+
+---
 
 ###++wiz
 
@@ -773,6 +866,8 @@ Parsing rule. Parses a base-64 number.
 
     ~zod/try=> (scan "e2O.l4Xpm" wiz:ag)
     q=61.764.130.813.526
+
+---
 
 ###++co
 
@@ -798,6 +893,8 @@ A [door]() that contains arms that operate on the sample coin `lot`.
       ]
     >
 
+---
+
 ###++rear
 
 Prepend & render as tape
@@ -815,6 +912,8 @@ Renders a coin `lot` as a [tape]() prepended to the sample tape `rom`.
     ~zod/try=> (~(rear co %$ %ux 200) "--ha")
     "0xc8--ha"
     
+---
+
 ###++rent
 
 Render as span
@@ -831,6 +930,8 @@ Renders a coin `lot` as a span.
     ~.0xc8
     ~zod/try=> `@t`~(rent co %$ %ux 200)
     '0xc8'
+
+---
 
 ###++rend
 
@@ -1062,6 +1163,8 @@ Renders a coin `lot` as a tape.
     ~zod/try=> `@uv`(jam [1 1])
     0vph
 
+---
+
 ###++ne
 
 Digit rendering engine
@@ -1079,6 +1182,8 @@ A [door]() containing arms that render digits at bases 10, 16, 32, and 64.
     <4.gut [@ud <414.hhh 100.xkc 1.ypj %164>]>
 
 
+---
+
 ###++d
 
 Render decimal
@@ -1093,6 +1198,8 @@ Renders a decimal digit as an atom of an ACII byte value.
 
     ~zod/try=> `@t`~(d ne 7)
     '7'
+
+---
 
 ###++x
 
@@ -1111,6 +1218,8 @@ Renders a hexadecimal digit as an atom of an ASCII byte value.
     ~zod/try=> `@t`~(x ne 14)
     'e'
 
+---
+
 ###++v
 
 Render base-32
@@ -1128,6 +1237,8 @@ Renders a base-32 digit as an atom of an ASCII byte value.
     ~zod/try=> `@t`~(v ne 25)
     'p'
 
+
+---
 
 ###++w
 
@@ -1158,6 +1269,8 @@ Renders a base-64 digit as an atom of an ASCII byte value.
     ~zod/try=> `@t`~(w ne 62)
     '-'
 
+---
+
 ###++mu
 
 Core used to scramble 16-bit atoms
@@ -1176,13 +1289,11 @@ A [door]() that contains arms that are used to scramble two atoms, `top` and `bo
     ~zod/try=> ~(. mu 0x20e5 0x5901)
     <3.sjm [[@ux @ux] <414.hhh 100.xkc 1.ypj %164>]>
 
+---
+
 ###++zag
 
 Add bottom into top
-
-`bot` is an [atom]().
-
-`top` is an [atom]().
 
 ```
   ++  zag  [p=(end 4 1 (add top bot)) q=bot]
@@ -1196,6 +1307,8 @@ Produces the cell of `top` and `bot` with `top` scrambled to the result of addin
 
     ~zod/try=> `[@ux @ux]`~(zag mu 0x20e0 0x201)
     [0x22e1 0x201]
+
+---
 
 ###++zig
 
@@ -1213,15 +1326,15 @@ The inverse of [`++zag`](). Produces the cell of `top` and `bot` with `top` unsc
 
     ~zod/try=> `[@ux @ux]`~(zig mu 0x2f46 0x1042)
     [0x1f04 0x1042]
-    
+
+---
+
 ###++zug
 
 Concatenate into atom
 
 ```
   ++  zug  (mix (lsh 4 1 top) bot)
-  --
-::
 ```
 
 Produces the concatenation of `top` and `bot`. Used to assemble a destroyer name.
@@ -1232,6 +1345,8 @@ Produces the concatenation of `top` and `bot`. Used to assemble a destroyer name
 
     ~zod/try=> `@ux`~(zug mu 0x10e1 0xfa)
     0x10e1.00fa
+
+---
 
 ###++so
 
@@ -1246,6 +1361,8 @@ Core containing arms that parse [`++coin`]s.
 
     ~zod/try=> so
     <10.mkn 414.hhh 100.xkc 1.ypj %164>
+
+---
 
 ###++bisk
 
@@ -1274,9 +1391,11 @@ Parsing rule. Parses an unsigned integer of any permitted base, producing a [`++
     ~zod/try=> (scan "0x12.6401" bisk:so)
     [%ux q=1.205.249]
 
+---
+
 ###++crub
 
-Parse @da, @dr, @p, @t
+Parse `@da`, `@dr`, `@p`, `@t`
 
 ```
   ++  crub
@@ -1334,7 +1453,7 @@ Parse @da, @dr, @p, @t
     ==
 ```
 
-Parsing rule. Parses any atom of any of the following odors after a leading sig ('~') into a [`++dime`](): [`@da`](), [`@dr`](), [`@p`](), and [`@t`](), producing a [`++dime`]().
+Parsing rule. Parses any atom of any of the following odors after a leading sig, `~` into a [`++dime`](): [`@da`](), [`@dr`](), [`@p`](), and [`@t`](), producing a [`++dime`]().
 
     ~zod/try=> (scan "1926.5.12" crub:so)
     [p=~.da q=170.141.184.449.747.016.871.285.095.307.149.312.000]
@@ -1348,6 +1467,8 @@ Parsing rule. Parses any atom of any of the following odors after a leading sig 
     [%p 256]
     ~zod/try=> (scan ".mas" crub:so)
     [%ta 7.561.581]
+
+---
 
 ###++nuck
 
@@ -1366,7 +1487,7 @@ Top-level coin parser
     ==
 ```
 
-Parsing rule. Switches on the first character and applies the corresponding [`coin`]() parser.
+Parsing rule. Switches on the first character and applies the corresponding [`++coin`]() parser.
 
     ~zod/try=> (scan "~pillyt" nuck:so)
     [% p=[p=~.p q=32.819]]
@@ -1391,6 +1512,8 @@ Parsing rule. Switches on the first character and applies the corresponding [`co
     0vph
 
 
+---
+
 ###++nusk
 
 Parse coin literal with escapes
@@ -1400,7 +1523,7 @@ Parse coin literal with escapes
     (sear |=(a=@ta (rush (wick a) nuck)) urt:ab)
 ```
 
-Parsing rule. Parses a coin literal with escapes. (See also: xxtuple formatting).
+Parsing rule. Parses a coin literal with escapes. (See also: xx tuple formatting).
 
     ~zod/try=> ~.asd_a
     ~.asd_a
@@ -1410,6 +1533,8 @@ Parsing rule. Parses a coin literal with escapes. (See also: xxtuple formatting)
     [% p=[p=~.ta q=418.212.246.369]]
     ~zod/try=> (,[~ %ta @ta] (scan "~~.asd~-a" nusk:so))
     [~ %ta ~.asd_a]
+
+---
 
 ###++perd
 
@@ -1433,6 +1558,8 @@ Parsing rule. Parses a dime or tuple without their respective standard prefixes.
     %.n
     ~zod/try=> (scan "_20_x__" perd:so)
     [%many [[% p=[p=~.ud q=20]] ~[[% p=[p=~.tas q=120]]]]]
+
+---
 
 ###++royl
 
@@ -1470,6 +1597,8 @@ Parsing rule. Parses a number into a [`++dime`]() float.
     ~zod/try=> .~3.14
     .~3.13999999999999
 
+---
+
 ###++royl-cell
 
  XX still not fully functional
@@ -1486,6 +1615,8 @@ Parsing rule. Parses a number into a [`++dime`]() float.
 ```
 
 Intermediate parsed float convereter
+
+---
 
 ###++tash
 
@@ -1505,7 +1636,7 @@ Parse signed dime
     ==
 ```
 
-Parsing rule. Parses a signed number into a [`++dime`].
+Parsing rule. Parses a signed number into a [`++dime`]().
 
     ~zod/try=> (scan "-20" tash:so)
     [p=~.sd q=39]
@@ -1517,9 +1648,11 @@ Parsing rule. Parses a signed number into a [`++dime`].
     [%sx --0x2e]
 
 
+---
+
 ###++twid
 
-Parse coins without ~ prefix
+Parse coins without `~` prefix
 
 ```
   ++  twid
@@ -1530,7 +1663,7 @@ Parse coins without ~ prefix
   ::
 ```
 
-Parsing rule. Parses coins after a leading sig ('~').
+Parsing rule. Parses coins after a leading sig, `~`.
 
     ~zod/try=> (scan "zod" twid:so)
     [~ [%p 0]]
@@ -1543,9 +1676,11 @@ Parsing rule. Parses coins after a leading sig ('~').
     ~zod/try=> (scan "0ph" twid:so)
     [%blob [1 1]]
 
+---
+
 ###++zust
 
-Parse prefixed dimes from @if, @f, @rd
+Parse prefixed dimes from `@if`, `@f`, `@rd`
 
 ```
   ++  zust
@@ -1558,7 +1693,7 @@ Parse prefixed dimes from @if, @f, @rd
   --
 ```
 
-Parsing rule. Parses an atom of either [`@if`]() (IP address), [`@f`]()(loobean), or [`rf`]()(floating point) into a [`++dime`]().
+Parsing rule. Parses an atom of either [`@if`]() (IP address), [`@f`]() (loobean), or [`rf`]()(floating point) into a [`++dime`]().
 
     ~zod/try=> (scan "127.0.0.1" zust:so)
     [%if q=2.130.706.433]
@@ -1572,6 +1707,8 @@ Parsing rule. Parses an atom of either [`@if`]() (IP address), [`@f`]()(loobean)
     [%f %.y]
     ~zod/try=> (scan "12.09" zust:so)
     [%rd .~12.00999999999999]
+
+---
 
 ###++scot
 
@@ -1602,6 +1739,8 @@ Renders a dime `mol` as a cord.
     ~zod/try=> `@t`(scot %ta ~.asd_a)
     '~.asd_a'
 
+---
+
 ###++scow
 
 Render dime as tape
@@ -1622,6 +1761,8 @@ Renders `mol` as a tape.
     ".127.0.0.1"
     ~zod/try=> (scow %ta ~.asd_a)
     "~.asd_a"
+
+---
 
 ###++slat
 
@@ -1645,6 +1786,8 @@ Produces a [`gate`]() that parses a [`term`]() `txt` to an atom of the odor spec
     [~ .127.0.0.1]
     ~zod/try=> `(unit ,@ta)`((slat %ta) '~.asd_a')
     [~ ~.asd_a
+
+---
 
 ###++slav
 
@@ -1676,6 +1819,8 @@ Parses a span `txt` to an atom of the odor specificed by `mod`. Crashes if it fa
     ~.asd_a
     ~zod/try=> `@ta`(slav %ta '~~asd-a')
     ! exit
+
+---
 
 ###++slaw
 
@@ -1712,6 +1857,8 @@ Parses a span `txt` to an atom of the odor specified by `mod`.
     [~ ~.asd_a]
     ~zod/try=> `(unit ,@ta)`(slaw %ta '~~asd-a')
     ~
+
+---
 
 ###++slay
 
@@ -1758,6 +1905,8 @@ Parses a span `txt` to the unit of a [`++coin`]().
 
 ---
 
+---
+
 ###++smyt
 
 Render path as tank
@@ -1789,6 +1938,8 @@ Renders the path `bon` as a [`tank`](), which is used for pretty-printing.
       q=~[[%leaf p="as"] [%leaf p="les"] [%leaf p="top"]]
     ]
 
+---
+
 ###++spat
 
 Render path as cord
@@ -1808,6 +1959,8 @@ Renders a path `pax` as cord.
     ~zod/try=> (spat /as/les/top)
     '/as/les/top'
 
+---
+
 ###++spud
 
 Render path as tape
@@ -1826,6 +1979,8 @@ Renders a path `pax` as [tape]().
     "~zod/try/~2014.10.28..18.41.05..16f2/bin"
     ~zod/try=> (spud /as/les/top)
     "/as/les/top"
+
+---
 
 ###++stab
 

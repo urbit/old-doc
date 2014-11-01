@@ -1,30 +1,29 @@
 #[sigcen, `~%`, %sgcn](#sgcn)
 
-[Short description]
+Core jet
 
-#Syntax
-
-`~%`, `sigcen`, `[%sgcn p=term q=twig r=tyre s=twig]`, a  
-synthetic hoon, identifies a core for specific optimization.
+`~%` is a synthetic rune, identifies a core for specific optimization.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%sgcn p=term q=twig r=tyre s=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [`++term`]()
+`q` is a [twig]()
+`r` is a [`++tyre`]()
+`s` is a [twig]()
 
 ##Tall form
 
-~%    p
-        q
-      ==
-        p.i.r    q.i.r
-        p.i.t.r  q.i.t.r
-      ==
-    s
+    ~%    p
+            q
+          ==
+            p.i.r    q.i.r
+            p.i.t.r  q.i.t.r
+          ==
+        s
 
     ~%    p
         q
@@ -41,5 +40,21 @@ None
 
 ##Examples
 
+```
+++  aesc                                                ::  AES-256
+  ~%  %aesc  +  ~
+  |%
+  ++  en                                                ::  ECB enc
+    ~/  %en
+    |=  [a=@I b=@H]  ^-  @uxH
+    =+  ahem
+    (be & (ex a) b)
+  ++  de                                                ::  ECB dec
+    ~/  %de
+    |=  [a=@I b=@H]  ^-  @uxH
+    =+  ahem
+    (be | (ix (ex a)) b)
+  --
+```
 
-
+Here we label the entire `++aesc` core for optimization. You can see the jet in `gen164/5/aesc.c`.

@@ -31,4 +31,14 @@ produces the logical "not" of `p`.
 ##Examples
 
 
-
+    ~zod/try=> !&
+    %.n
+    ~zod/try=> !|
+    %.y
+    ~zod/try=> (gth 5 6)
+    %.n
+    ~zod/try=> !(gth 5 6)
+    %.y
+    ~zod/try=> !1
+    ! type-fail
+    ! exit

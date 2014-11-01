@@ -31,5 +31,7 @@ None
 
 ##Examples
 
-
-
+    ~zod/try=> ?<(=(0x1 0) %foo)
+    %foo
+    ~zod/try=> ?<(=(0x1 1) %foo)
+    ! exit

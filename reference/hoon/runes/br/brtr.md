@@ -2,9 +2,9 @@
 
 Wet gate
 
-`|*` is a synthetic hoon that produces a  [wet]() [gate]() with sample `[%bctr p]`, arm `q`. A gate is a core with one arm, [`$`](), the empty name. 
+`|*` is a synthetic hoon that produces a  [wet]() [gate]() with sample [`$*(p)`](), arm `q`. A gate is a core with one arm, [`$`](), the empty name. 
 
-`|*` is similar to a function in the same way that `|=` is, butd different in that it does its type checking at runtime. With `|*`, the product type is checked to be the same as the input type, rather than the sample type.
+`|*` is similar to a function in the same way that `|=` is, but differs in that it does type checking at runtime. With `|*`, the product type is checked to be the same as the input type, rather than the sample tile.
 
 ##See also
 
