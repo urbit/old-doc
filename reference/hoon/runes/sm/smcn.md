@@ -1,6 +1,6 @@
 #[semcen, `;%`](#smcn)
 
-`++sail` interpolate tape
+`++sail` list
 
 `;%` is a virtual rune used within [`++sail`]() for passing a list of child nodes to a gate. `;%` is used for transforming a list of child elements inside a [`++manx`]().
 
@@ -32,38 +32,19 @@ None
 
 ##Examples
 
-    ~zod/try=> ;div  ;%  |=(a=marl (weld a a))
-               ;hi;
-               ; foo
-               ;p;
-    ==
+    ~zod/try=> 
+    ;div:"%{|=(a=marl (weld a a))} repeat"
     [ [%div ~]
       ~[
-        [g=[n=%hi a=~] c=~]
-        [g=[n=%$ a=~[[n=%$ v="""
-                             foo
-                             """]]] c=~]
-        [g=[n=%p a=~] c=~]
-        [g=[n=%hi a=~] c=~]
-        [g=[n=%$ a=~[[n=%$ v="""
-                             foo
-                             """]]] c=~]
-        [g=[n=%p a=~] c=~]
+        [g=[n=%$ a=~[[n=%$ v=" repeat"]]] c=~]
+        [g=[n=%$ a=~[[n=%$ v=" repeat"]]] c=~]
       ]
     ]
-    ~zod/try=> ;div:"%{|=(a=marl (weld a a))};{hi}foo;{p}"
-    [ [%div ~]
-      ~[
-        [g=[n=%hi a=~] c=~]
-        [g=[n=%$ a=~[[n=%$ v="foo"]]] c=~]
-        [g=[n=%p a=~] c=~]
-        [g=[n=%hi a=~] c=~]
-        [g=[n=%$ a=~[[n=%$ v="foo"]]] c=~]
-        [g=[n=%p a=~] c=~]
-      ]
-    ]
-    ~zod/try=> (poxo ;div:"%{|=(a=marl (weld a a))};{hi}foo;{p}")
-    "<div><hi></hi>foo<p></p><hi></hi>foo<p></p></div>"
+    ~zod/try=> 
+    (poxo ;div:"%{|=(a=marl (weld a a))} repeat")
+    "<div> repeat repeat</div>"
+
+In this simple example we use a gate, `|=(a=marl (weld a a))` that produces a `++marl` twice. Using the irregular form of `;%` we produce a repeated child node `'repeat'`. [`++poxo`]() prints our result in XML.
 
     ~zod/try=> 
     ;=
@@ -94,3 +75,5 @@ None
       ; //cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js
     ==
     "<script src="/gep/hart.js"></script><script src="/gen/main/lib/urb.js"></script><script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>" 
+
+Here we go through a similar example, passing a list of urls for a script tag to a gate that produces a `<script>` tag. Since we produce multiple tags, we use `many:poxo` to print our result as XML.
