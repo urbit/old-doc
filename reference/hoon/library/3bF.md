@@ -2,6 +2,8 @@
 
 ###++feel
 
+Generate file diff
+
 ```
 ++  feel                                                ::  simple file write
   |=  [pax=path val=*]
@@ -14,7 +16,11 @@
 ::
 ```
 
-Generate file diff
+Generates a diff between a file located at `pax` and an input value `val`.
+
+`pax` is a [`++path`]().
+
+`val` is a value as a [noun]().
 
     ~zod/try=> + %/mel 'test'
     + /~zod/try/2/mel
@@ -29,6 +35,8 @@ Generate file diff
 
 ###++file
 
+Simple file load
+
 ```
 ++  file                                                ::  simple file load
   |=  pax=path
@@ -38,7 +46,9 @@ Generate file diff
 ::
 ```
 
-Read value of file
+Reads the value of a file located at `pax` and renders it as a [`++unit`]().
+
+`pax` is a [`++path`]().
 
     ~zod/try=> %/zak
     ~zod/try=/zak> :ls %
@@ -55,6 +65,8 @@ Read value of file
 
 ###++foal
 
+Write high-level change
+
 ```
 ++  foal                                                ::  high-level write
   |=  [pax=path val=*]
@@ -64,7 +76,11 @@ Read value of file
 ::
 ```
 
-Produces a ++toro, ready to be sent to %clay
+Produces a [`++toro`](), a change intended for whatever file is located at `pax`. Handled by `%clay`.
+
+`pax` is a [`++path`]().
+
+`val` is a value as a [noun]().
 
     ~zod/try=> + %/mek 'a'
     + /~zod/try/4/mek
@@ -78,6 +94,8 @@ Produces a ++toro, ready to be sent to %clay
 
 ###++fray
 
+High-level delete
+
 ```
 ++  fray                                                ::  high-level delete
   |=  pax=path
@@ -87,7 +105,9 @@ Produces a ++toro, ready to be sent to %clay
 ::
 ```
 
-Produce a deletion toro for a file
+Produces a deletion [`++toro`]() for a file located at path `pax`. Handled by `%clay`.
+
+`pax` is a [`++path`]().
 
     ~zod/try=> + %/mek 'a'
     + /~zod/try/4/mek
@@ -97,6 +117,8 @@ Produce a deletion toro for a file
     'a'
 
 ###++furl
+
+Unify changes
 
 ```
 ++  furl                                                ::  unify changes
@@ -110,7 +132,11 @@ Produce a deletion toro for a file
 ::
 ```
 
-Merge two toros of the same desk
+Merge two [`++toro`]()s `one` and `two` that are in the same [`desk`]() and pointed at the same [`++path`]().
+
+`one` is a [`++toro`]().
+
+`two` is a [`++toro`]().
 
     ~zod/try=> %/zak
     ~zod/try=/zak> :ls %
@@ -128,6 +154,8 @@ Merge two toros of the same desk
 
 ###++meat
 
+Kite to .^ path
+
 ```
 ++  meat                                                ::  kite to .^ path
   |=  kit=kite
@@ -136,7 +164,9 @@ Merge two toros of the same desk
 ::
 ```
 
-Convert type request name to path
+Converts a type request name to a [`++path`]().
+
+`kit` is a [`++kite`]().
 
     zod/try=/zop> `kite`[%x ud/1 ~zod %main /sur/down/gate/hook]
     [p=%x q=[%ud p=1] r=~zod s=%main t=/sur/down/gate/hook]
@@ -158,6 +188,8 @@ Convert type request name to path
     '''
 
 ###++tame
+
+Parse kite path
 
 ```
 ++  tame                                                ::  parse kite path
@@ -184,7 +216,9 @@ Convert type request name to path
 ::
 ```
 
-Parse clay .^ path to request details
+Parses a clay [.^]() [`++path]()to request details. Produces the [`++unit`]() of a [`++kite`]().
+
+`hap` is a [`++path`]().
 
     ~zod/try=/zop> (tame /cx/~zod/main/1/sur/down/gate/hook)
     [~ [p=%x q=[%ud p=1] r=~zod s=%main t=/sur/down/gate/hook]]
@@ -195,6 +229,8 @@ Parse clay .^ path to request details
 
 
 ###++tome
+
+Parse path to beam
 
 ```
 ++  tome                                                ::  parse path to beam
@@ -212,7 +248,7 @@ Parse clay .^ path to request details
 ::
 ```
 
-Parse to well-typed location
+Parses a [`++path`]() `pax` to a [`++beam](), a well-typed location.
 
     ~zod/try=/zop> (tome /~fyr/try/2/for/me)
     [~ [[p=~fyr q=%try r=[%ud p=2]] s=/me/for]]
@@ -226,13 +262,15 @@ Parse to well-typed location
 
 ###++tope                                               ::  beam to path
 
+Parse beam to path
+
 ```
 |=  bem=beam
   ^-  path
   [(scot %p p.bem) q.bem (scot r.bem) (flop s.bem)]
 ```
 
-Render beam as path
+Parses a [`++beam`]() to a [`++path`]().
 
     ~zod/try=/zop> (tope [~zod %main ud/1] /hook/down/sur)
     /~zod/main/1/sur/down/hook
