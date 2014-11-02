@@ -4,6 +4,8 @@
 
 ###++mack
 
+Nock subject to unit
+
 ```
 ++  mack
   |=  [sub=* fol=*]
@@ -13,8 +15,7 @@
 ::
 ```
 
-Accpet a nock subject-formula cell.
-Produce a unit result, treating 11 as a crash (i.e. pure nock).
+Accepts a nock subject-formula cell and wraps it into a [`++unit`](). `11` (pure nock) is treated as a crash.
 
     ~zod/try=> (mack [[1 2 3] [0 1]])
     [~ [1 2 3]]
@@ -31,6 +32,8 @@ Produce a unit result, treating 11 as a crash (i.e. pure nock).
 ---
 
 ###++mink
+
+Mock interpreter
 
 ```
 ++  mink
@@ -110,7 +113,11 @@ Produce a unit result, treating 11 as a crash (i.e. pure nock).
 ::
 ```
 
-Bottom-level mock (virtual nock) interpreter.
+Bottom-level [mock]() (virtual nock) interpreter.
+
+`sub` is the subject as a [noun]().
+
+`fol` is the formula as a [noun]().
 
     ~zod/try=> (mink [20 [4 0 1]] ,~)
     [%0 p=21]
@@ -133,6 +140,8 @@ Bottom-level mock (virtual nock) interpreter.
 
 ###++mock
 
+Compute formula on subject with hint
+
 ```
 ++  mock
   |=  [[sub=* fol=*] sky=$+(* (unit))]
@@ -140,9 +149,14 @@ Bottom-level mock (virtual nock) interpreter.
 ::
 ```
 
-Accepts a nock subject-formula cell and an %iron gate which
-accepts any noun and produces a unit (this is used as nock 11).
-Produces a ++toon, which is a sucesful, blocked, or crashed result.
+Accepts a nock subject-formula cell and a gate that accepts any noun and produces a unit, which is applied to the subject if nock 11 is invoked. Produces a ++toon, which is either a sucessful, blocked, or crashed result.
+
+`sub` is the subject as a [noun]().
+
+`fol` is the formula as a [noun]().
+
+`sky` is an [%iron]() gate which accepts a noun and produces a unit.
+
 
     ~zod/try=> (mock [5 4 0 1] ,~)
     [%0 p=6]
@@ -162,6 +176,8 @@ Produces a ++toon, which is a sucesful, blocked, or crashed result.
 ---
 
 ###++mook
+
+Intelligently render crash annotation
 
 ```
 ++  mook
@@ -212,7 +228,7 @@ Produces a ++toon, which is a sucesful, blocked, or crashed result.
 ::
 ```
 
-Intelligently render crash annotation.
+Intelligently renders a crash annotation.
 
     ~zod/try=> (mook [%0 5 4 5 1])
     [%0 p=[5 4 5 1]]
@@ -229,6 +245,8 @@ Intelligently render crash annotation.
 
 ###++mang
 
+
+
 ```
 ++  mang
   |=  [[gat=* sam=*] sky=$+(* (unit))]
@@ -239,7 +257,7 @@ Intelligently render crash annotation.
 ```
 
 Work just like in `++makc`, but accept a `++sky`.
-Produce a unit computation result.
+Produces a unit computation result from....
 
     ~zod/try=> (mang [|=(@ 20) ~] ,~)
     [~ 20]
@@ -263,6 +281,8 @@ Produce a unit computation result.
 ---
 
 ###++mong
+
+
 
 ```
 ++  mong
@@ -299,6 +319,8 @@ Produce a unit computation result.
 ---
 
 ###++mung
+
+Virtualize slamming gate
 
 ```
 ++  mung
