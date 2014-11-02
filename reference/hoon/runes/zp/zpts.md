@@ -1,36 +1,30 @@
 #[zaptis, `!=`, %zpts](#zpts)
 
-[Short description]
+Show nock
 
-#Syntax
-
-    `!=`, `zaptis`, `[%zpts p=twig]` is a natural hoon that produces the formula of twig p as a noun.
-
-See also: nock doc
+`!=` is a natural hoon that produces the formula of twig p as a noun.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%zpts p=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [twig]().
 
 ##Tall form
 
-!=  p
+    !=  p
 
 ##Wide form
 
-!=  p
+    !=(p)
 
 ##Irregular form
 
 None
 
 ##Examples
-
 
     ~zod/try=> !=(20)
     [1 20]

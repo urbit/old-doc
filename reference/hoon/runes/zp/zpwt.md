@@ -1,20 +1,16 @@
 #[zapwut, `!?`, %zpwt](#zpwt)
 
-[Short description]
+Restrict version
 
-#Syntax
-
-    `!?`, `zapwut`, `[%zpwt p=twig]` is a synthetic hoon that
-enforces a Hoon version restriction.
+`!?` is a synthetic rune that enforces a Hoon version restriction.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%zpwt p=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [twig]().
 
 ##Tall form
 
@@ -37,8 +33,6 @@ None
 None
 
 ##Examples
-
-
 
     ~zod/try=> !?(264 (add 2 2))
     4
