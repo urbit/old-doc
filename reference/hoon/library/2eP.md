@@ -4,6 +4,8 @@
 
 ###++berk 
 
+Invert diff patches
+
 ```
 ++  berk                                                ::  invert diff patch
   |*  bur=(urge)
@@ -17,7 +19,9 @@
 ::
 ```
 
-Invert list changes: skips stay constant, replaces are swapped
+Inverts a list of changes `bur`. Skips stay constant and replaces are swapped. Produces a `bur`.
+
+`bur` is a [`++urge`]().
 
     ~zod/try=> (berk `(urge)`~[`10 %|^[~[2] ~[3 4]] `5])
     ~[[%.y p=10] [%.n p=~[3 4] q=~[2]] [%.y p=5]]
@@ -30,6 +34,8 @@ Invert list changes: skips stay constant, replaces are swapped
 
 
 ###++diff 
+
+Generate patch
 
 ```
 ++  diff                                                ::  generate patch
@@ -46,7 +52,7 @@ Invert list changes: skips stay constant, replaces are swapped
 ::
 ```
 
-Produce patch between two nouns, by change type
+Produces a patch between two nouns, by change type
 
     ~zod/try=> ((diff %a) 20 21)
     [p=%a q=[%d p=[%1 p=21] q=[%1 p=20]]]
@@ -71,6 +77,8 @@ Produce patch between two nouns, by change type
     [%c %c ~[[%.y p=1] [%.n p=<|les les|> q=<|mor|>] [%.y p=1]]]
 
 ###++loss 
+
+Longest subsequence
 
 ```
 ++  loss                                                ::  longest subsequence
@@ -140,7 +148,11 @@ Produce patch between two nouns, by change type
 
 ```
 
-Find subsequence of repeated elements, using helper arms.
+Finds a subsequence of repeated elements within two `++list()s, using several internal helper arms. Produces a [`++tape`]().
+
+`hel` is a [`++list`]() of characters.
+
+`hev` is a [++list`]() of characters.
 
     ~zod/try=> (loss "sam" "sem")
     "sm"
@@ -174,14 +186,14 @@ Find subsequence of repeated elements, using helper arms.
 ::
 ```
 
-Simpler subsequence reducer
+Finds a subsequence of repeated elements within two `++list()s, producing a [`++tape]().
 
     ~zod/try=> (locz "samukot" "semelkot")
     "smkot"
     ~zod/try=> (locz "samukot" "samelkot")
     "samkot"
 
-###++lore  
+###++lore
 
 ```
 ++  lore                                                ::  atom to line list
