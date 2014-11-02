@@ -63,7 +63,9 @@ JSON parser core
   |%
 ```
 
-JSON parser core
+JSON parser core: parses a `++cord` `a` to the hoon structure for JSON, a [`++json`]().
+
+`a` is [`++cord`]().
 
     ~zod/try=> (poja '[1,2,3]')
     [~ [%a p=~[[%n p=~.1] [%n p=~.2] [%n p=~.3]]]]
@@ -81,7 +83,7 @@ Parse object
    ++  apex  ;~(pose abox obox)                          ::  JSON object
 ```
 
-Top level parsing rule. Parses a JSON object, either in an array or by itself. See also: [`++abox`](), [`++obox`](). 
+Top level parsing rule. Parses either a single JSON object, or an array of JSON objects to a [`++json`](). See also: [`++abox`](), [`++obox`](). 
 
     ~zod/try=> (rash '[1,2]' apex:poja)
     [%a p=~[[%n p=~.1] [%n p=~.2]]]
@@ -133,7 +135,7 @@ Parse array
   ++  abox  (stag %a (ifix [sel (ws ser)] (more (ws com) valu)))
 ```
 
-Parsing rule. Parses an array with values that are enclosed in `[]` and delimited by a `,`.
+Parsing rule. Parses an array with values that are enclosed within `[]` and delimited by a `,`.
 
     ~zod/try=> (rash '[1, 2,4]' abox:poja)
     [[%n p=~.1] ~[[%n p=~.2] [%n p=~.4]]]
@@ -148,7 +150,7 @@ Parse key value pair
   ++  pair  ;~(plug ;~(sfix (ws stri) (ws col)) valu)
 ```
 
-Parsing rule. Parses a key-value pair of a string and value delimited by `:`.
+Parsing rule. Parses a [`++json`]() from a JSON key-value pair of a string and value delimited by `:`.
 
     ~zod/try=> (rash '"ham": 2' pair:poja)
     ['ham' [%n p=~.2]]
@@ -161,7 +163,7 @@ Parse array of objects
   ++  obje  (ifix [(ws kel) (ws ker)] (more (ws com) pair))
 ```
 
-Parsing rule. Parses an array of object key-value pairs that are enclosed within `{}` and separated by `,`.
+Parsing rule. Parses a [`++json`]() from an array of JSON object key-value pairs that are enclosed within `{}` and separated by `,`.
 
     ~zod/try=> (rash '{"ham": 2, "lam":true}' obje:poja)
     [['ham' [%n p=~.2]] ~[['lam' [%b p=%.y]]]]
@@ -174,7 +176,7 @@ Parse boxed object
   ++  obox  (stag %o (cook mo obje))
 ```
 
-Parsing rule. Parses an array of objects to a map with a tag of `%o`. See also: [`++json`]().
+Parsing rule. Parses an array of JSON objects to a [`++json`]() map with a tag of `%o`. See also: [`++json`]().
 
     ~zod/try=> (rash '{"ham": 2, "lam":true}' obox:poja)
     [%o {[p='lam' q=[%b p=%.y]] [p='ham' q=[%n p=~.2]]}]
@@ -189,7 +191,7 @@ Parse boolean
   ++  bool  ;~(pose (cold & (jest 'true')) (cold | (jest 'false')))
 ```
 
-Parsing rule. Parses a boolean: `true` or `false`.
+Parsing rule. Parses a JSON string of either `true` or `false` to a [`++json`]() boolean.
 
     ~zod/try=> (rash 'true' bool:poja)
     %.y
@@ -210,7 +212,7 @@ Parse string
     (cook crip (ifix [doq doq] (star jcha)))
 ```
 
-Parsing rule. Parses a string: characters enclosed in double quotes along with escaping `\`s. See also [`++jcha`]().
+Parsing rule. Parses a JSON string, characters enclosed in double quotes along with escaping `\`s, to a [`++cord`](): See also [`++jcha`]().
 
     ~zod/try=> (rash '"ham"' stri:poja)
     'ham'
@@ -228,7 +230,7 @@ Parse char from string
  ++  jcha  ;~(pose ;~(less doq bas prn) esca)           :: character in string
 ```
 
-Parsing rule. Parses either a literal or escaped character from a string.
+Parsing rule. Parses either a literal or escaped character from a JSON string.
 
     ~zod/try=> (rash 'a' jcha:poja)
     'a'
@@ -256,7 +258,7 @@ Parse escaped char
       ==
 ```
 
-Parsing rule. Parses a backslash-escaped special character, low ASCII, or UTF16 codepoint.
+Parsing rule. Parses a backslash-escaped special character, low ASCII, or UTF16 codepoint, to a [`++cord`]().
 
     ~zod/try=> (rash 'b' esca:poja)
     ! {1 1}
@@ -292,7 +294,7 @@ Parse number
     ==
 ```
 
-Parsing rule. Parses decimal numbers, with an optional `-`, fractional part, and exponent part. 
+Parsing rule. Parses decimal numbers with an optional `-`, fractional part, or exponent part, to a [`++cord`]().
 
     ~zod/try=> (rash '0' numb:poja)
     ~[~~0]
@@ -317,7 +319,7 @@ Parse 1-9
   ++  digs  (star (shim '0' '9'))
 ```
 
-Parsing rule. Parses digits `0` through `9`.
+Parsing rule. Parses digits `0` through `9` to a [`++tape`]().
 
     ~zod/try=> (rash '' digs:poja)
     ""
@@ -330,6 +332,8 @@ Parsing rule. Parses digits `0` through `9`.
 
 ###++expo
 
+Parse exponent part
+
 ```
   ++  expo                                               :: Exponent part
     ;~  (comp twel)
@@ -339,7 +343,7 @@ Parsing rule. Parses digits `0` through `9`.
     ==
 ```
 
-Parsing rule. Parses an exponent: `e`, an optional `+` or `-`, follow by digits.
+Parsing rule. Parses an exponent to a [`++cord`](). An exponent is an `e`, followed by an optional `+` or `-`, followed by digits.
 
     ~zod/try=> `tape`(rash 'e7' expo:poja)
     "e7"
@@ -356,7 +360,7 @@ Fractional part
   ++  frac   ;~(plug dot digs)                          :: Fractional part
 ```
 
-Parsing rule. Parses a dot followed by digits.
+Parsing rule. Parses a dot followed by digits to a [`++cord`]().
 
     ~zod/try=> (rash '.25' frac:poja)
     [~~~. "25"]
@@ -375,7 +379,7 @@ Parse whitespace
   ++  spac  (star (mask [`@`9 `@`10 `@`13 ' ' ~]))
 ```
 
-Parsing rule. Parses a whitespace.
+Parsing rule. Parses a whitespace to a [`tape`]().
 
     ~zod/try=> (scan "" spac:poja)
     ""
@@ -438,7 +442,7 @@ Weld two tapes
   ++  twel  |=([a=tape b=tape] (weld a b))
 ```
 
-Concatenates two tapes, `a` and `b`, producing a tape.
+Concatenates two tapes, `a` and `b`, producing a `++tape`.
 
 `a` is a [tape]().
 
@@ -1749,6 +1753,8 @@ Produces a `++tape` of an escaped [`++json`]() character `a`.
 
 ###++scanf
 
+Formatted scan
+
 ```
 ++  scanf                                              ::  formatted scan
   |*  [tape (pole ,_:/(*$&(_rule tape)))]
@@ -1793,6 +1799,8 @@ rules' results.
 Two intermediate arms are used:
 
 ####++norm
+
+
 
 ```
   ++  norm                                             
