@@ -1,31 +1,25 @@
 #[wutkaz, %wtkz](#wtkz)
 
-[Short description]
+[`++tiki`]() version of [`%wtkt`]()
 
-#Syntax
-
-`wutkaz`, `[%wtkz p=tiki q=twig r=twig]` is a synthetic hoon that
-evaluates `r` if `p` is equal to the bunt for its tile, otherwise
-`q` is evaluated.
+`wutkaz` is only used internally.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%wtkz p=tiki q=twig r=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [`++tiki`]().
+`q` and `r` are [twig]()s.
 
 ##Tall form
 
-?^  p
-      q
-    r
+None
 
 ##Wide form
 
-?^(p q r)
+None
 
 ##Irregular form
 

@@ -1,29 +1,26 @@
 #[wuttaz, `?=`, %wttz](#wttz)
 
-[Short description]
+[`++tiki`]() version of [`%wtkz`]()
 
-#Syntax
-
-`wuttaz`, `[%wttz p=tile q=tiki]` is a synthetic hoon that
-produces true if `q` is in tile `p`.
+`wuttaz` is only used internally.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%wttz p=tile q=tiki]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [tile]().
+`q` is a [`++tiki`]().
 
 ##Tall form
 
-?=  p
-        q
+    ?=  p
+            q
 
 ##Wide form
 
-?=(p q)
+    ?=(p q)
 
 ##Irregular form
 

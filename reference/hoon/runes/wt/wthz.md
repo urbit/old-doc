@@ -2,10 +2,7 @@
 
 [Short description]
 
-#Syntax
-
-`wuthaz`, `[%wthz p=wing q=tine]` is a synthetic hoon that
-selects a case in `q` for the actual type of `p`.
+`wuthaz`, `[%wthz p=wing q=tine]` is a synthetic hoon that selects a case in `q` for the actual type of `p`.
 
 ##Produces
 

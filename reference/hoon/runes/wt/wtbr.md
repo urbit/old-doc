@@ -1,35 +1,31 @@
 #[wutbar, `?|`, %wtbr](#wtbr)
 
-[Short description]
+OR
 
-#Syntax
-
-`?|`, `wutbar`, `[%wtbr p=tusk]` is a synthetic hoon that
-computes the "or" of the loobeans in `p`.
+`?|` is a synthetic hoon that computes the "or" of the loobeans in `p`. `?|` is commonly used as a control-flow mechanism.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%wtbr p=tusk]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [`++tusk`](), a list of [twig]()s.
 
 ##Tall form
 
-?|  i.p
-        i.t.p
-        i.t.t.p
-    ==
+    ?|  i.p
+            i.t.p
+            i.t.t.p
+        ==
 
 ##Wide form
 
-?|(i.p i.t.p i.t.t.p)
+    ?|(i.p i.t.p i.t.t.p)
 
 ##Irregular form
 
-|(i.p i.t.p i.t.t.p)
+    |(i.p i.t.p i.t.t.p)
 
 ##Examples
 

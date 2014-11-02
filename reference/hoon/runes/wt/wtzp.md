@@ -1,35 +1,30 @@
 #[wutzap, `?!`, %wtzp](#wtzp)
 
-[Short description]
+NOT
 
-#Syntax
-
-`?!`, `wutzap`, `[%wtzp p=twig]` is a synthetic hoon that
-produces the logical "not" of `p`.
+`?!` is a synthetic rune that produces the logical "not" of `p`.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%wtzp p=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [twig]().
 
 ##Tall form
 
-?!  p
+    ?!  p
 
 ##Wide form
 
-?!(p)
+    ?!(p)
 
 ##Irregular form
 
-!p
+    !p
 
 ##Examples
-
 
     ~zod/try=> !&
     %.n

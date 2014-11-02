@@ -1,29 +1,29 @@
 #[wutgal, `?<`, %wtgl](#wtgl)
 
-[Short description]
+Assert no
 
-#Syntax
+`?<` is a synthetic hoon that produces `q`, asserting that `p` is no (`|`, 1).
 
-`?<`, `wutgal`, `[%wtgl p=twig q=twig]` is a synthetic hoon that
-produces `q`, asserting that `p` is no (`|`, 1).
+##See also
+
+#[wutgar, `?>`, %wtgr](#wtgr)
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%wtgl p=twig q=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` and `q` are [twig]()s.
 
 ##Tall form
 
-?<  p
-        q
+    ?<  p
+            q
 
 ##Wide form
 
-?<(p q)
+    ?<(p q)
 
 ##Irregular form
 
