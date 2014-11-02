@@ -2,12 +2,14 @@
 
 ###++un   
 
+Reversible scrambling core
+
 ```
 ++  un                                                  ::  =(x (wred (wren x)))
   |%
 ```
 
-Reversible scrambling, used in `@p` phonetic base.
+A core that contains arms that perform reversible scrambling operations. Used in the `@p` phonetic base.
 
 ###++wren
 
@@ -31,8 +33,10 @@ Reversible scrambling, used in `@p` phonetic base.
   ::
 ```
 
-Scramble bytestring by adding the current position to each byte, looking it up
-in an s-box, and xoring the result forward.
+Scrambles a bytestring `pyn` by adding the current position to each byte, looking it up
+in an s-box, and then performing the XOR operation on the result, pushing it forward. Produces an atom.
+
+`pyn` is an [atom]().
   
     ~zod/try=> `@ux`(wren:un 'testing')
     0x30.bf6a.b9fe.7d8f
@@ -42,6 +46,8 @@ in an s-box, and xoring the result forward.
     ~2001.2.5
 
 ###++wred
+
+Restore structure
 
 ```
   ++  wred                                              ::  restore structure
@@ -63,8 +69,10 @@ in an s-box, and xoring the result forward.
   ::
 ```
 
-Unscramble bytestring by subtracting the current position from each byte,
-looking it up in an s-box, and xoring the result forward.
+Unscrambles a bytestring `cry` by subtracting the current position from each byte,
+looking it up in an s-box, and performing the XOR operation on the result, pushing it forward. Produces an atom.
+
+`cry` is an [atom]().
 
     ~zod/try=> (wred:un 0x30.bf6a.b9fe.7d8f)
     29.113.321.805.538.676
@@ -75,11 +83,13 @@ looking it up in an s-box, and xoring the result forward.
 
 ###++xafo
 
+Add modulo 255
+
 ```
   ++  xafo  |=([a=@ b=@] +((mod (add (dec b) a) 255)))
 ```
 
-Add modulo 255, offset 1 (output range from 1 to 256)
+Produces 
 
     ~zod/try=> (xafo:un 5 6)
     11
@@ -93,7 +103,7 @@ Add modulo 255, offset 1 (output range from 1 to 256)
   ::
 ```
 
-Subtracct modulo 255, offset 1
+Produces                       Subtracct modulo 255, offset 1
 
     ~zod/try=> (xaro:un 17 57)
     40
@@ -102,6 +112,8 @@ Subtracct modulo 255, offset 1
 
 
 ###++zaft
+
+Look up in 255 sub box
 
 ```
   ++  zaft                                              ::  forward 255-sbox
@@ -122,7 +134,9 @@ Subtracct modulo 255, offset 1
   ::
 ```
 
-Look up nonzero byte in substiution box
+Look up nonzero byte `a` in the 255-bit substiution box.
+
+`a` is an [atom]() of one byte in length.
 
     ~zod/try=> (zaft:un 0x12)
     42
@@ -133,6 +147,8 @@ Look up nonzero byte in substiution box
     ! exit
 
 ###++zart
+
+Reverse look up in 255 sub box
 
 ```
   ++  zart                                              ::  reverse 255-sbox
@@ -153,7 +169,9 @@ Look up nonzero byte in substiution box
   ::
 ```
 
-Reverse look up nonzero byte in substitution box
+Reverse look up a nonzero byte `a` in the 255-bit substitution box, producing an atom.
+
+`a` is an [atom]() of one byte in length.
 
     ~zod/try=> `@ux`(zart:un 204)
     0xff
@@ -161,6 +179,8 @@ Reverse look up nonzero byte in substitution box
     0x12
   
 ###++zyft
+
+Lookup byte in 256 sub box
 
 ```
   ++  zyft                                              ::  forward 256-sbox
@@ -182,7 +202,7 @@ Reverse look up nonzero byte in substitution box
   ::
 ```
 
-Look up byte in substitution box
+Looks up a byte `a` in the 256-bit substitution box, producing an atom.
   
     ~zod/try=> (zyft:un 0x12)
     57
@@ -212,7 +232,7 @@ Look up byte in substitution box
     (cut 3 [a 1] b)
 ```
 
-Reverse look up byte in substitution box
+Reverse look up a byte `a` in the 256 bit substitution box
 
     ~zod/try=> `@ux`(zyrt:un 57)
     0x12
