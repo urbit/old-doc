@@ -169,7 +169,7 @@ Reverse look up in 255 sub box
   ::
 ```
 
-Reverse look up a nonzero byte `a` in the 255-bit substitution box, producing an atom.
+Reverse look up a nonzero byte `a` in the 255-bit substitution box, producing an atom of odor [`@ux`]().
 
 `a` is an [atom]() of one byte in length.
 
@@ -232,7 +232,7 @@ Looks up a byte `a` in the 256-bit substitution box, producing an atom.
     (cut 3 [a 1] b)
 ```
 
-Reverse look up a byte `a` in the 256 bit substitution box
+Reverse looks up a byte `a` in the 256-bit substitution box, producing an atom of odor [`@ux`]().
 
     ~zod/try=> `@ux`(zyrt:un 57)
     0x12
