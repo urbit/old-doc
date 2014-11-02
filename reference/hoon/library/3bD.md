@@ -112,7 +112,7 @@ Parse value
     ==
 ```
 
-Parsing rule. Parses JSON values to [`++json`].
+Parsing rule. Parses JSON values to [`++json`]().
 
     ~zod/try=> (rash '[1,2]' valu:poja)
     [%a p=~[[%n p=~.1] [%n p=~.2]]]
@@ -135,7 +135,7 @@ Parse array
   ++  abox  (stag %a (ifix [sel (ws ser)] (more (ws com) valu)))
 ```
 
-Parsing rule. Parses an array with values that are enclosed within `[]` and delimited by a `,`.
+Parsing rule. Parses a JSON array with values enclosed within `[]` and delimited by a `,`.
 
     ~zod/try=> (rash '[1, 2,4]' abox:poja)
     [[%n p=~.1] ~[[%n p=~.2] [%n p=~.4]]]
@@ -212,7 +212,7 @@ Parse string
     (cook crip (ifix [doq doq] (star jcha)))
 ```
 
-Parsing rule. Parses a JSON string, characters enclosed in double quotes along with escaping `\`s, to a [`++cord`](): See also [`++jcha`]().
+Parsing rule. Parses a JSON string, which is a list of characters enclosed in double quotes along with escaping `\`s, to a [`++cord`](). See also [`++jcha`]().
 
     ~zod/try=> (rash '"ham"' stri:poja)
     'ham'
@@ -230,10 +230,10 @@ Parse char from string
  ++  jcha  ;~(pose ;~(less doq bas prn) esca)           :: character in string
 ```
 
-Parsing rule. Parses either a literal or escaped character from a JSON string.
+Parsing rule. Parses either a literal or escaped character from a JSON string to a [`++cord`]()
 
     ~zod/try=> (rash 'a' jcha:poja)
-    'a'
+    'a'.
     ~zod/try=> (rash '!' jcha:poja)
     '!'
     ~zod/try=> (rash '\\"' jcha:poja)
@@ -379,7 +379,7 @@ Parse whitespace
   ++  spac  (star (mask [`@`9 `@`10 `@`13 ' ' ~]))
 ```
 
-Parsing rule. Parses a whitespace to a [`tape`]().
+Parsing rule. Parses a whitespace to a [`++tape`]().
 
     ~zod/try=> (scan "" spac:poja)
     ""
@@ -415,9 +415,7 @@ Parser modifier. Produces a rule that allows for a whitespace before applying `s
                      ''' (ws digs):poja)
     "4"
 
-##plumbing
-
-Optionally parse rule
+##Plumbing
 
 ###++mayb
 
@@ -427,7 +425,7 @@ Maybe parse
   ++  mayb  |*(bus=_rule ;~(pose bus (easy "")))
 ```
 
-Parser modifier. 
+Parser modifier.
 
     ~zod/try=> (abox:poja 1^1 "not-an-array")
     [p=[p=1 q=1] q=~]
@@ -444,9 +442,9 @@ Weld two tapes
 
 Concatenates two tapes, `a` and `b`, producing a `++tape`.
 
-`a` is a [tape]().
+`a` is a [++tape]().
 
-`b` is a [tape]().
+`b` is a [++tape]().
 
     ~zod/try=> (twel "sam" "hok"):poja
     ~[~~s ~~a ~~m ~~h ~~o ~~k]
@@ -520,7 +518,7 @@ Print JSON
 ::
 ```
 
-Renders a `++json` `val` as a [tape]().
+Renders a `++json` `val` as a [++tape]().
 
 `val` is a [`json`]().
 
@@ -547,9 +545,9 @@ Print XML
   |_  unq=?                                             ::  unq
 ```
 
-Renders a `++manx` a as a tape.
+Renders a `++manx` a as a [`++tape`]().
 
-`a` is a [`manx`]().
+`a` is a [`++manx`]().
 
     ~zod/try=> (poxo ;div;)
     "<div></div>"
@@ -580,7 +578,7 @@ Inner XML printer
   ::  
 ```
 
-Renders a `++manx` as a tape, appending a suffix `rez`.
+Renders a `++manx` as a [`++tape](), appending a suffix `rez`.
 
 `rez` is a [`++tape`]().
 
@@ -612,7 +610,11 @@ Print attributes
     ==
 ```
 
-Render XML attributes as a `++tape`.
+Render XML attributes as a [`++tape`]().
+
+`tat` is a [`++mart`]().
+
+`rez` is a [`tape`]().
 
     ~zod/try=> (attr:poxo ~ "")
     ""
@@ -647,7 +649,7 @@ Escape XML
   ::
 ```
 
-Escape XML special characters `" & ' < >`.
+Escapes the XML special characters `"`, `&`, `'`, `<`, `>`.
 
 `tex`is a [`++tape`]().
 
@@ -674,9 +676,9 @@ Print name
   ::
 ```
 
-Render a `mane` as a `++tape`.
+Renders a `++mane` as a `++tape`.
 
-`man` is a `++mane`.
+`man` is a [`++mane`]().
 
     ~zod/try=> (name:poxo %$)
     ""
@@ -754,7 +756,7 @@ Top level parser
   :: 
 ```
 
-Top level parser
+Parses a node of XML.
 
     ~zod/try=> (rash '<div />' apex:xmlp)
     [g=[n=%div a=~] c=~]
@@ -866,7 +868,7 @@ Parse (possibly) escaped char
     ==
 ```
 
-Parsing rule. Parses a nonspecial or escaped character
+Parsing rule. Parses a nonspecial or escaped character.
 
     ~zod/try=> (rash 'a' escp:xmlp)
     'a'
@@ -1030,7 +1032,7 @@ Parse array to list
   ::
 ```
 
-Reparser modifier. Reparses an array as a homogenous [`++list`]() using a `wit` to re-parse every element.
+Reparser modifier. Reparses an array as a homogenous [`++list`]() using a `wit` to reparse every element.
 
 `wit` is a [`++fist`](), a JSON reparser.
 
@@ -1054,7 +1056,7 @@ Reparse array as tuple
   ::
 ```
 
-Reparser generator. Reparses an array as a fixed-length tuple, using a list of [`++fist`]s.
+Reparser generator. Reparses an array as a fixed-length tuple, using a list of `++fist`s.
 
 `wil` is a [`++pole`](), a list faceless list, of [`++fist`]()s.
 
@@ -1082,9 +1084,9 @@ Reparse array to tuple
   ::
 ```
 
-Reparser generator. Reparses a list of json to a tuple of units using `wil`.
+Reparser generator. Reparses a list of [`++json`]() to a tuple of [`++unit]() using `wil`.
 
-`wil` is a [`++pole`](), a list faceless list, of [`++fist`]()s.
+`wil` is a [`++pole`](), a list [face]()less list of [`++fist`]()s.
 
 ```
 ~zod/try=> ((at-raw ni ni bo ~):jo ~[s/'hi' n/'1' b/&])
@@ -1221,7 +1223,7 @@ Reparse unit
 
 Reparser modifier. Reparses `wit` to a [unit]().
 
-`wit` is a [`++fist]().
+`wit` is a [`++fist`]().
 
     ~zod/try=> ((mu ni):jo [%n '20'])
     [~ [~ u=q=20]]
