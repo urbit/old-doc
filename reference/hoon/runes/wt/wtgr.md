@@ -1,36 +1,35 @@
 #[wutgar, `?>`, %wtgr](#wtgr)
 
-[Short description]
+Assert yes
 
-#Syntax
+`?>` is a synthetic rune that produces `q`, asserting that `p` is yes (`&`, 0).
 
-`?>`, `wutgar`, `[%wtgr p=twig q=twig]` is a synthetic hoon that
-produces `q`, asserting that `p` is yes (`&`, 0).
+##See also
+
+#[wutgal, `?<`, %wtgl](#wtgl)
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%wtgr p=twig q=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` and `q` are [twig]()s.
 
 ##Tall form
 
-?>  p
-        q
+    ?>  p
+            q
 
 ##Wide form
 
-?>(p q)
+    ?>(p q)
 
 ##Irregular form
 
 None
 
 ##Examples
-
 
     ~zod/try=> ?>(=(0x1 1) %foo)
     %foo

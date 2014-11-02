@@ -1,37 +1,31 @@
 #[zapsem, `!;`, %zpsm](#zpsm)
 
-[Short description]
+`[type noun]` pair
 
-#Syntax
-
-`!;`, `zapsem`, `[%zpsm p=twig q=twig]` is a natural hoon that
-produces the product of twig `q` as a `[type noun]` pair, with
-twig `p` serving as an example the type of the type.
+`!;` is a natural rune that produces the product of twig `q` as a `[type noun]` pair, with twig `p` serving as an example of the type.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%zpsm p=twig q=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` and `q` are [twig]()s.
 
 ##Tall form
 
-!;  p
-        q
+    !;  p
+            q
 
 ##Wide form
 
-!;(p q)
+    !;(p q)
 
 ##Irregular form
 
 None
 
 ##Examples
-
 
     ~zod/try=> !;(*type 1)
     [[%atom p=%ud] 1]

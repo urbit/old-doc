@@ -1,38 +1,31 @@
 #[zapfas, `!/`, %zpfs](#zpfs)
 
-[Short description]
+Report as error
 
-#Syntax
-
-`!/`, `zapfas`, `[%zpfs p=twig q=twig]` is a virtual natural hoon that should
-never be compiled.  When compiled with error checking turned on,
-it reports its subject as an error.
+`!/` is a virtual natural rune that should never be compiled.  When compiled with error checking turned on, it reports its subject as an error.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%zpfs p=twig q=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` and `q` are [twig]()s.
 
 ##Tall form
 
-?,  p
-        q
+    !/  p
+            q
 
 ##Wide form
 
-?,(p q)
+    !/(p q)
 
 ##Irregular form
 
 None
 
 ##Examples
-
-
 
     ~zod/try=> (~(mint ut %noun) %noun [%zpfs %dtzz %tas %foo])
     ! -lost.%foo

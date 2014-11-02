@@ -1,25 +1,25 @@
 #[tisdot, `=.`, %tsdt](#tsdt)
 
-[Short description]
+Single change subject
 
-#Syntax
-
-`=.`, `tisdot`, `[%tsdt p=wing q=twig r=twig]` is a synthetic hoon that produces `r` with `p` in the subject set to `q`.
+`=.` is a synthetic hoon that produces `r` with `p` in the subject set to `q`.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%tsdt p=wing q=twig r=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [`wing`]().
+`q` and `r` are [`twig`]()s.
 
 ##Tall form
 
-=.  p 
-      q
-    r
+Kingside:
+
+    =.  p 
+          q
+        r
 
 Queenside:
 
@@ -28,7 +28,7 @@ Queenside:
 
 ##Wide form
 
-=.(p q r)
+    =.(p q r)
 
 ##Irregular form
 
@@ -43,3 +43,5 @@ None
     ~zod/try=> =+  a=[b=1 c=2]
                =.(b.a 3 a)
     [b=3 c=2]
+
+Here we see the tall and wide forms of `=.` used to manipulate our simple subject `a=[b=1 c=2]`.

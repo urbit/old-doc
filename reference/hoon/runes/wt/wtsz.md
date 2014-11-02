@@ -1,30 +1,27 @@
 #[wutsaz, %wtsz](#wtsz)
 
-[Short description]
+[`++tiki`]() version of [`%wtsg`]()
 
-#Syntax
-
-`wutsaz`, `[%wtsz p=tiki q=twig r=twig]` is a synthetic hoon 
-that produces `q` if `p` is `~`, `r` otherwise.
+`wutsaz` is a synthetic rune that produces `q` if `p` is `~`, `r` otherwise.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%wtsz p=tiki q=twig r=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [`++tiki`]().
+`q` and `r` are [twig]()s.
 
 ##Tall form
 
-?~  p
-          q
-        r
+    ?~  p
+              q
+            r
 
 ##Wide form
 
-?~(p q r)
+    ?~(p q r)
 
 ##Irregular form
 

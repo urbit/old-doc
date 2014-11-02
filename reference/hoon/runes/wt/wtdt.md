@@ -1,34 +1,30 @@
 #[wutdot, `?.`, %wtdt](#wtdt)
 
-[Short description]
+If, else
 
-#Syntax
+`?.`is a synthetic hoon that produces `r` if `p` is yes (`&`, `0`), or `q` if `p` is no (`|`, 1). `?.` is sort of like "if not", producing the second expression if the loobean is true. `?.` is the inverse of `?:`.
 
-`?.`, `wutdot`, `[%wtdt p=twig q=twig r=twig]` is a synthetic hoon
-that produces `r` if `p` is yes (`&`, `0`), or `q` if `p` is no
-(`|`, 1).
+##See also
 
-
-See also `?:`
+#[wutcol, `?:`, %wtcl](#wtcl)
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%wtdt p=twig q=twig r=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p`, `q`, and `r` are [twig]()s.
 
 ##Tall form
 
-?.  p
-      q
-    r
+    ?.  p
+          q
+        r
 
 ##Wide form
 
-?:(p q r)
+    ?:(p q r)
 
 ##Irregular form
 
@@ -40,3 +36,5 @@ None
     1
     ~zod/try=> ?.(?=(%a 'a') %not-a %yup)
     %yup
+
+Here we see two common cases of `?:` in the wide form, one uses an expression `gte` that produces a loobean and the other [`?=`]() to produce one of its cases. 

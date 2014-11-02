@@ -1,47 +1,26 @@
 #[wutlaz, %wtlz](#wtlz)
 
-[Short description]
+[`++tiki`]() version of [`%wtls`]()
 
-#Syntax
-
-`wutlaz`, `[%wtlz p=wing q=twig r=tine]` is a synthetic
-hoon that selects a case in `q` for the actual type of `p`.
+`wutlaz` is a synthetic rune that selects a case in `q` for the actual type of `p`. Only used internally.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%wtlz p=wing q=twig r=tine]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [`++wing`]().
+`q` is a [twig]().
+`r` is a [`++tine`]().
 
 ##Tall form
 
-Kingside:
-
-    ?+  p
-      q
-      p.i.r      q.i.r
-      p.i.t.r    q.i.t.r
-      p.i.t.t.r  q.i.t.t.r
-    ==
-
-Queenside:
-
-    ?+    p
-      q
-        p.i.r      
-      q.i.r
-        p.i.t.r    
-      q.i.t.r
-        p.i.t.t.r  
-      q.i.t.t.r
-    ==
+None
 
 ##Wide form
 
-?+(p p.i.r q.i.r, p.i.t.r q.i.t.r, p.i.t.t.r q.i.t.t.r)
+None
 
 ##Irregular form
 

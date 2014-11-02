@@ -1,36 +1,32 @@
 #[wuttis, `?=`, %wtts](#wtts)
 
-[Short description]
+Is in tile 
 
-#Syntax
-
-`?=`, `wuttis`, `[%wtts p=tile q=wing]` is a natural hoon that
-produces true if the leg at wing `q` is in tile `p`.
+`?=` is a natural hoon that produces true if the leg at wing `q` is in tile `p`.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%wtts p=tile q=wing]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [tile]().
+`q` is a [`++wing`]().
 
 ##Tall form
 
-?=  p
-        q
+    ?=  p
+            q
 
 ##Wide form
 
-?=(p q)
+    ?=(p q)
 
 ##Irregular form
 
 None
 
 ##Examples
-
 
     ~zod/try=> ?=(@ 'a')
     %.y
