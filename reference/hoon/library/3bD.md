@@ -191,7 +191,7 @@ Parse boolean
   ++  bool  ;~(pose (cold & (jest 'true')) (cold | (jest 'false')))
 ```
 
-Parsing rule. Parses a JSON string of either `true` or `false` to a [`++json`]() boolean.
+Parsing rule. Parses a string of either `true` or `false` to a [`++json`]() boolean.
 
     ~zod/try=> (rash 'true' bool:poja)
     %.y
@@ -212,7 +212,7 @@ Parse string
     (cook crip (ifix [doq doq] (star jcha)))
 ```
 
-Parsing rule. Parses a JSON string, which is a list of characters enclosed in double quotes along with escaping `\`s, to a [`++cord`](). See also [`++jcha`]().
+Parsing rule. Parse a string to a [`++cord`](). A JSON string is a list of characters enclosed in double quotes along with escaping `\`s, to a [`++cord`](). See also [`++jcha`]().
 
     ~zod/try=> (rash '"ham"' stri:poja)
     'ham'
@@ -230,7 +230,7 @@ Parse char from string
  ++  jcha  ;~(pose ;~(less doq bas prn) esca)           :: character in string
 ```
 
-Parsing rule. Parses either a literal or escaped character from a JSON string to a [`++cord`]()
+Parsing rule. Parses either a literal or escaped character from a JSON string to a [`++cord`]().
 
     ~zod/try=> (rash 'a' jcha:poja)
     'a'.
@@ -425,7 +425,7 @@ Maybe parse
   ++  mayb  |*(bus=_rule ;~(pose bus (easy "")))
 ```
 
-Parser modifier.
+Parser modifier. Need to document, an example showing failure.
 
     ~zod/try=> (abox:poja 1^1 "not-an-array")
     [p=[p=1 q=1] q=~]
@@ -545,7 +545,7 @@ Print XML
   |_  unq=?                                             ::  unq
 ```
 
-Renders a `++manx` a as a [`++tape`]().
+Renders a `++manx` `a` as a [`++tape`]().
 
 `a` is a [`++manx`]().
 
@@ -614,7 +614,7 @@ Render XML attributes as a [`++tape`]().
 
 `tat` is a [`++mart`]().
 
-`rez` is a [`tape`]().
+`rez` is a [`++tape`]().
 
     ~zod/try=> (attr:poxo ~ "")
     ""
@@ -653,7 +653,7 @@ Escapes the XML special characters `"`, `&`, `'`, `<`, `>`.
 
 `tex`is a [`++tape`]().
 
-`rez` is a [`tape`]().
+`rez` is a [`++tape`]().
 
     ~zod/try=> (escp:poxo "astra" ~)
     ~[~~a ~~s ~~t ~~r ~~a]
@@ -1032,7 +1032,7 @@ Parse array to list
   ::
 ```
 
-Reparser modifier. Reparses an array as a homogenous [`++list`]() using a `wit` to reparse every element.
+Reparser modifier. Reparses an array to the [`++unit`]() of a homogenous [`++list`]() using `wit` to reparse every element.
 
 `wit` is a [`++fist`](), a JSON reparser.
 
@@ -1056,9 +1056,9 @@ Reparse array as tuple
   ::
 ```
 
-Reparser generator. Reparses an array as a fixed-length tuple, using a list of `++fist`s.
+Reparser generator. Reparses an array as a fixed-length tuple of [`++unit`]()s, using a list of `++fist`s.
 
-`wil` is a [`++pole`](), a list faceless list, of [`++fist`]()s.
+`wil` is a [`++pole`]() a [`face`]()less list of [`++fist`]()s.
 
 ```
 ~zod/try=> ((at ni so ni ~):jo a/~[n/'3' s/'to' n/'4'])
@@ -1084,9 +1084,9 @@ Reparse array to tuple
   ::
 ```
 
-Reparser generator. Reparses a list of [`++json`]() to a tuple of [`++unit]() using `wil`.
+Reparser generator. Reparses a list of [`++json`]() to a tuple of [`++unit`]() using `wil`.
 
-`wil` is a [`++pole`](), a list [face]()less list of [`++fist`]()s.
+`wil` is a [`++pole`](), a [face]()less list of [`++fist`]()s.
 
 ```
 ~zod/try=> ((at-raw ni ni bo ~):jo ~[s/'hi' n/'1' b/&])
@@ -1103,7 +1103,7 @@ Reparse boolean
   ::
 ```
 
-Reparser modifier. Reparses a boolean.
+Reparser modifier. Reparses a boolean to the [`++unit`]() of a [`loobean`]().
 
 ```
 ~zod/try=> (bo:jo [%b &])
@@ -1124,7 +1124,7 @@ Reparse boolean not
   ::
 ```
 
-Reparser modifier. Reparses the inverse of a boolean.
+Reparser modifier. Reparses the inverse of a boolean to the [`++unit`]() of a loobean.
 
 ```
 ~zod/try=> (bu:jo [%b &])
@@ -1147,7 +1147,7 @@ Reparse and transform
   ::
 ```
 
-Reparser modifier. Reparses `jon` and slams the result through `wit`.
+Reparser modifier. Reparses `jon` and slams the result through `wit`, producing a [`++unit`]().
 
 `wit` is a [`++fist`]().
 
@@ -1172,7 +1172,7 @@ Reparse UTC date
   ::
 ```
 
-Reparser modifier. Reparses a UTC date string.
+Reparser modifier. Reparses a UTC date string to a [`++unit`]().
 
 ```
 ~zod/try=> (da:jo [%s 'Wed, 29 Oct 2014 0:26:15 +0000'])
@@ -1196,7 +1196,7 @@ Reparse millisecond date
   ::
 ```
 
-Reparser modifier. Reparses the javascript millisecond date integer.
+Reparser modifier. Reparses the javascript millisecond date integer to a [`++unit`]().
 
 ```
 ~zod/try=> (di:jo [%s '2014-10-29'])
@@ -1221,7 +1221,7 @@ Reparse unit
   ::
 ```
 
-Reparser modifier. Reparses `wit` to a [unit]().
+Reparser modifier. Reparses `wit` to a [`++unit`]().
 
 `wit` is a [`++fist`]().
 
@@ -1260,7 +1260,7 @@ Reparse number as integer
   ::
 ```
 
-Reparser modifier. Reparses an integer representation to a unit.
+Reparser modifier. Reparses an integer representation to a [`++unit]().
 
     ~zod/try=> (ni:jo [%n '0'])
     [~ q=0]
@@ -1325,7 +1325,7 @@ Reparse object to frond
 
 Reparser generator. Reparses an object, succeeding if it corresponds to one of the key-value pairs in `wer`.
 
-`wer` is a [`++pole`](), a [`++face`]()less list of [`++cord`]() and [`++fist`]() [`++pairs`]().
+`wer` is a [`++pole`](), a [`++face`]()less list of [`++cord`]() and [`++fist`]() key-value pairs.
 
     ~zod/try=> ((of sem/sa som/ni ~):jo %o [%sem s/'hi'] ~ ~)
     [~ [%sem "hi"]]
@@ -1346,8 +1346,9 @@ Reparser generator. Reparses an object, succeeding if it corresponds to one of t
     ~zod/try=> ((of sem/sa som/ni ~):jo %o [%sem s/'hey'] ~ [%sam s/'other value'] ~ ~)
     ~
 
-
 ###++ot
+
+Reparse object as tuple
 
 ```
   ++  ot                                                ::  object as tuple
@@ -1380,7 +1381,7 @@ Reparser generator. For every key in `wer` that matches a key in the [`++edge`],
     ::
 ```
 
-Reparser generator. Reparses a map `jom` using `wer`; for every key in `wer` that matches a key in `map`, the corresponding `++fist` is applied to the corresponding value in `jom`, the results of which are produced in a list.
+Reparser generator. Reparses a map `jom` using `wer`; for every key in `wer` that matches a key in `map`, the corresponding `++fist` is applied to the corresponding value in `jom`, the results of which are produced in a tuple.
 
     ~zod/try=> ((ot-raw sem/sa som/ni sem/sa ~):jo (mo [%sem s/'ha'] [%som n/'20'] ~))
     [[~ u="ha"] [~ q=20] [~ u="ha"] ~]
@@ -1420,7 +1421,9 @@ Add prefix
   ::
 ```
 
-Reparser modifier. Adds a static prefix to parse result. See also: [`++stag`]().
+Reparser modifier. Adds a static prefix `pre` to the parse result of `wit`. See also: [`++stag`]().
+
+`pre` is a prefix [`noun`]().
 
     ~zod/try=> (ni:jo n/'2')
     [~ q=2]
@@ -1430,7 +1433,6 @@ Reparser modifier. Adds a static prefix to parse result. See also: [`++stag`]().
     [~ [%hi q=2]]
     ~zod/try=> ((pe %hi ni):jo b/|)
     ~
-
 
 ###++sa
 
@@ -1464,7 +1466,7 @@ Reparse string to cord
   ::
 ```
 
-Reparser modifier. Reparses a string as a [`++cord`]().
+Reparser modifier. Reparses a string to a [`++cord`]().
 
     ~zod/try=> (so:jo s/'value')
     [~ u=~.value]
@@ -1534,7 +1536,7 @@ Pole of nonempty units
   ::
 ```
 
-Determines if `pod` contains no empty units, producing a loobean. Used internally
+Determines if `pod` contains no empty units, producing a loobean. Used internally.
 
 `pod` is a [`++pole`]() of [`++units`]().
 
@@ -1597,7 +1599,6 @@ Collapses a `++pole` of `++unit`s `but`, producing a tuple.
     ~zod/try=> (zp:jo `(pole (unit))`~[`1 ~ `3])
     ! exit
 
-
 ###++zm
 
 Collapse unit map
@@ -1612,6 +1613,8 @@ Collapse unit map
 ```
 
 Produces a `++unit` of the map `lum` of term to `++unit` key value pairs, with all of the nonempty values stripped of their `++unit` wrappers. If any of the `++units` in `lum` are empty, `~` is produced. See also: [`++zp`](), [`++zl`]().
+
+`lum` is a map of [`++term`]() to [`++unit`]()s.
 
     ~zod/try=> (zm:jo `(map term (unit ,@u))`(mo a/`4 b/`1 c/`2 ~))
     [~ {[p=%a q=4] [p=%c q=2] [p=%b q=1]}]
@@ -1668,7 +1671,7 @@ Object from key-value list
 
 Produces a `++json` object from a list `a` of key to `++json` values.
 
-`a` is a [`++list`]() of [`@t`]() to [`++json`]() values.
+`a` is a [`++list`]() of [`++cord`]() to [`++json`]() values.
 
     ~zod/try=> (jobe a/n/'20' b/~ c/a/~[s/'mol'] ~)
     [%o p={[p='a' q=[%n p=~.20]] [p='c' q=[%a p=~[[%s p=~.mol]]]] [p='b' q=~]}]
