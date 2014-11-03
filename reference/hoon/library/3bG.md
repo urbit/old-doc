@@ -2,6 +2,8 @@
 
 ###++deft
 
+Import URL path 
+
 ```
 ++  deft                                                ::  import url path
   |=  rax=(list ,@t)
@@ -23,7 +25,9 @@
 ::
 ```
 
-Parse extension from last element of url
+Parse the extension the from last element of url, which is delimited either by a `.` or a `/`.
+
+`rax` is a [`++list`]() of [`@t`]().
 
     ~zod/try=> (deft /foo/bar/'baz.txt')
     [p=[~ ~.txt] q=<|foo bar baz|>]
@@ -31,6 +35,8 @@ Parse extension from last element of url
     [p=~ q=<|foo bar baz|>]
 
 ###++fain
+
+Restructure path
 
 ```
 ++  fain                                                ::  path restructure
@@ -45,7 +51,9 @@ Parse extension from last element of url
 ::
 ```
 
-Split concrete spur out of full path, producing location beam and remainder path
+Splits a concrete [`++spur]() out of a full `++path`, producing a location [`++beam`]() and a remainder [`++path`]().
+
+`hom` is a [`++path`]()
 
     ~zod/try=> (fain / %)
     [p=[[p=~zod q=%try r=[%da p=~2014.11.1..00.07.17..c835]] s=/] q=/]
@@ -68,6 +76,8 @@ Split concrete spur out of full path, producing location beam and remainder path
 
 
 ###++fuel
+
+Parse fcgi
 
 ```
 ++  fuel                                                ::  parse fcgi
@@ -107,9 +117,11 @@ Split concrete spur out of full path, producing location beam and remainder path
 ::
 ```
 
-Retrieieve %унку fcgi, used primarily in /hook files.
+Retrieieves the %eyre FCGI, producing a [`++epic`](). Used primarily in [`/hook`]() files. See the [`%eyre`]() doc for more detail.
 
-See %ащкв doc.
+`bem` is a [`++beam`]().
+
+`but` is a [`++path`]().
 
 ```
 ~zod/main=> (fuel [[p=~zod q=%try r=[%ud p=2]] s=/psal] /web/'._.~-~~~~.gen~-~-_~~05vg0001v09f0n30fbh7dn6ab2jakmmspdq04nef5h70qbd5lh6atr4c5j2qrbldpp62q1df1in0sr1ding0c3qgt7kclj74qb65lm6atrkc5k2qpr5e1mmispdchin4p3fegmiqrjpdlo62p1dchsn4p39comn8pbcehgmsbbef5p7crrifr3o035dhgfrk2b5__')
@@ -130,6 +142,8 @@ See %ащкв doc.
 
 ###++sifo
 
+64-bit encode
+
 ```
 ++  sifo                                                ::  64-bit encode
   |=  tig=@
@@ -148,7 +162,7 @@ See %ащкв doc.
 ::
 ```
 
-Encode atom to MIME base64
+Encodes an atom to MIME base64, producing a [`++tape`]().
 
     ~zod/main=> (sifo 'foobar')
     "Zm9vYmFy"
@@ -159,6 +173,8 @@ Encode atom to MIME base64
 
 
 ###++urle
+
+Encode URL
 
 ```
 ++  urle                                                ::  URL encode
@@ -181,7 +197,7 @@ Encode atom to MIME base64
 ::
 ```
 
-URL escape tape
+The inverse of [`++urld`](). Accepts a tape `tep` and replaces all characters other than alphanumerics and `.`, `-`, `~`, and `_`, with URL escape sequences.
 
     ~zod/main=> (urle "hello")
     "hello"
@@ -192,6 +208,8 @@ URL escape tape
 
 
 ###++urld
+
+Decode URL
 
 ```
 ++  urld                                                ::  URL decode
@@ -210,7 +228,9 @@ URL escape tape
 ::
 ```
 
-Parse URL escaped tape
+The inverse of [`++urle`](). Parses a URL escaped tape to the [`++unit`]() of an unescaped `++tape`.
+
+`tep` is a [`++tape`]().
 
     ~zod/main=> (urld "hello")
     [~ "hello"]
@@ -223,6 +243,8 @@ Parse URL escaped tape
 
 ###++earl
 
+Localize purl
+
 ```
 ++  earl                                                ::  localize purl
   |=  [who=@p pul=purl]
@@ -231,7 +253,11 @@ Parse URL escaped tape
 ::
 ```
 
-Prepend ship to spur of purl
+Prepends a ship name to the spur of a [`++purl`]().
+
+`who` is a [`@p`](), a ship name.
+
+`pul` is a [`++purl`]().
 
     ~zod/main=> (need (epur 'http://123.1.1.1/me.ham'))
     [p=[p=%.n q=~ r=[%.n p=.123.1.1.1]] q=[p=[~ ~.ham] q=<|me|>] r=~]
@@ -244,6 +270,8 @@ Prepend ship to spur of purl
 
 ###++earn
 
+Purl to tape
+
 ```
 ++  earn                                                ::  purl to tape
   |^  |=  pul=purl
@@ -252,8 +280,9 @@ Prepend ship to spur of purl
   ::
 ```
 
-Render purl to tape
+Parses a `++purl` `pul` to a [`++tape`]().
 
+`pul` is a [`++purl`]().
 
     ~zod/main=> (earn [| ~ [%| .127.0.0.1]] [~ ~] ~)
     "http://127.0.0.1/"
@@ -273,6 +302,8 @@ Render purl to tape
     "https://www.google.com/search?q=urbit%20escaping%3F"
 
 ###++body
+
+Render URL path
   
 ```
   ++  body
@@ -287,7 +318,7 @@ Render purl to tape
   
 ```
 
-Render URL path
+Renders URL path `pok` as a [`++tape`]().
 
     ~zod/main=> (body:earn ~ /foo/mol/lok)
     "foo/mol/lok"
@@ -297,7 +328,9 @@ Render URL path
     ""
 
 ###++head
-  
+
+Render URL beginning
+
 ```
   ++  head
     |=  har=hart
@@ -317,7 +350,7 @@ Render URL path
   ::
 ```
 
-Render URL beginning
+Renders a `++hart`, usually the beginning of a URL, as the [`++tape`]() of a traditional URL.
 
     ~zod/main=> (head:earn | ~ %| .127.0.0.1)
     "http://127.0.0.1"
@@ -329,6 +362,8 @@ Render URL beginning
     "https://www.google.com:8080"
 
 ###++tail
+
+Render query string
   
 ```
   ++  tail
@@ -348,7 +383,9 @@ Render URL beginning
 ::
 ```
 
-Render query string
+Renders a `quay`, a query string in hoon, to the [`++tape`]() of a traditional query string.
+
+`kay` is a [`++quay`]().
 
     ~zod/main=> (tail:earn ~)
     ""
@@ -360,13 +397,17 @@ Render query string
 
 ###++epur
 
+Top-level URL parser
+
 ```
 ++  epur                                                ::  url/header parser
   =<  |=(a=cord (rush a auri))
   |%
 ```
 
-Toplevel url parser
+Toplevel URL parser.
+
+`a` is a [`++cord`]().
 
     ~zod/main=> (epur 'http://127.0.0.1/')
     [~ [p=[p=%.n q=~ r=[%.n p=.127.0.0.1]] q=[p=~ q=<||>] r=~]]
