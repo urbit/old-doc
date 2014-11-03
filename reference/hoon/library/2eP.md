@@ -1,5 +1,7 @@
 ##section 2eP, diff          **noted as "(move me)" in source**
 
+A- more or less low priority and/or currently in the wrong section anyway.
+
 ---
 
 ###++berk 

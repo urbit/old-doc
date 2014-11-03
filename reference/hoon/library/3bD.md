@@ -44,6 +44,15 @@ Parse cube with fork
 
 Parser generator. Produces a parser that succeeds upon encountering one of the [`++term`]()s in a faceless list `a`.
 
+A- perk is an arm used to parse one of a finite set of options, formally a
+choice between terms: if you want to match "true" or "false", and nothing else,
+(perk ~[%true %false]) produces the relevant parser, whose result type is
+`?(%true %false)`. For more complicated transformations, a combintation of
+++sear and map ++get is recommended, e.g. 
+`(sear ~(get by (mo ~[[%true &] [%false |]]))) sym)` will have a similar effect
+but produce `?(& |)` ,a loobean. However, constructions such as
+`(sear (flit ~(has in (sa %true %false %other ~))) sym)` are needlessly unwieldy.
+
 `a` is a [`++pole`](), which is a [`++list`]() without [`%face`]()s
 
     ~zod/try=> (scan "ham" (perk %sam %ham %lam ~))
@@ -84,6 +93,10 @@ Parse object
 ```
 
 Top level parsing rule. Parses either a single JSON object, or an array of JSON objects to a [`++json`](). See also: [`++abox`](), [`++obox`](). 
+
+A- this is now called ++tops, and ++apex is the old ++valu, which apparently
+didn't make its way into the docs. Apologies for the confusion, many things have
+been restructured in ++shell inconsistently with current test:urbit.git
 
     ~zod/try=> (rash '[1,2]' apex:poja)
     [%a p=~[[%n p=~.1] [%n p=~.2]]]
@@ -276,6 +289,9 @@ Parsing rule. Parses a backslash-escaped special character, low ASCII, or UTF16 
     'ß'
 
 ##JSON numbers
+
+A- JSON numbers are stored as cords internally in lieu of full float support, so
+++numb and subarms are really more _validators_ than parsers per se. 
 
 ###++numb
 
@@ -726,7 +742,7 @@ Parse XML
   =<  |=(a=cord (rush a apex))
   |%
 ```
-Parses an XML node from a [`++cord`](), producing a [`++manx`]().
+Parses an XML node from a [`++cord`](), producing a unit [`++manx`]().
 
 `a` is a [`++cord`]().
 
@@ -756,7 +772,7 @@ Top level parser
   :: 
 ```
 
-Parses a node of XML.
+Parses a node of XML, type [`++manx`]().
 
     ~zod/try=> (rash '<div />' apex:xmlp)
     [g=[n=%div a=~] c=~]
@@ -787,7 +803,7 @@ Parse XML attributes
   ::
 ```
 
-Parses the list of attributes inside the opening XML tag, which is zero or more space-prefixed name to string values.
+Parses the list of attributes inside the opening XML tag, which is zero or more space-prefixed name to string values. Result type [`++mart`]()
 
     ~zod/try=> (rash '' attr:xmlp)
     ~
@@ -817,7 +833,7 @@ Parse character data
   ::
 ```
 
-Parsing rule. Parses XML character data.
+Parsing rule. Parses XML character data. Result type [`++mars`]()
 
     ~zod/try=> (rash 'asa' chrd:xmlp)
     [g=[n=%$ a=~[[n=%$ v="asa"]]] c=~]
@@ -868,7 +884,7 @@ Parse (possibly) escaped char
     ==
 ```
 
-Parsing rule. Parses a nonspecial or escaped character.
+Parsing rule. Parses a nonspecial or escaped character. Result type [`++char`]()
 
     ~zod/try=> (rash 'a' escp:xmlp)
     'a'
@@ -918,7 +934,7 @@ Parse opening tag
   ::
 ```
 
-Parsing rule. Parses the opening tag of an XML node. 
+Parsing rule. Parses the opening tag of an XML node. Result type [`++marx`]()
 
     ~zod/try=> (rash '<a>' head:xmlp)
     [n=%a a=~]
@@ -945,7 +961,7 @@ Parse tag name
   ::
 ```
 
-Parsing rule. Parses the name of an XML tag.
+Parsing rule. Parses the name of an XML tag. Result type [`++mane`]()
 
     ~zod/try=> (scan "ham" name:xmlp)
     %ham
@@ -1223,6 +1239,9 @@ Reparse unit
 
 Reparser modifier. Reparses `wit` to a [`++unit`]().
 
+A- JSON units are considered to be either JSON null or the requested value, and
+are reparsed to results of ~ or (some {value}) respectively
+
 `wit` is a [`++fist`]().
 
     ~zod/try=> ((mu ni):jo [%n '20'])
@@ -1247,6 +1266,9 @@ Reparse number as real
 ```
 
 XX  Currently unimplemented
+
+A- yup, this will eventually reparse a floating point atom, but interfaces for
+the latter are not currently stable.
 
 ###++ni
 
@@ -1769,6 +1791,16 @@ Formatted scan
 
 Scan with `;"`-interpolated parsers.
 
+A- here there be monsters, monsters of my making. But the basic idea is you use
+`;"` (which currently is parsed by sail but shouldn't be) to mix literal text
+and [++rule]s, and apply this to text which is a correspending mixture of
+aforementioned literals and sections parsable by the relevant rules. ++parsf is
+the parser form that combines a tape-rule mix into one big ++rule, ++norm being
+a parsf internal that winnows the `;"` result into a list of discriminate
+literals and rules, and ++bill doing the actual composing: ++$:parsf just adds a
+layer that collapses the result list to a tuple, such that (scanf "foo 1 2 bar"
+;"foo {dem} {dem} bar") parses [1 2] and not [1 2 ~].
+
 ```
 ~zod/try=> `[p=@ud q=@ud]`(scanf "Score is 5 to 2" [;"Score is {n} to {n}"]:n=dim:ag)
 [p=5 q=2]
@@ -1794,7 +1826,6 @@ Scan with `;"`-interpolated parsers.
       ?~  t  i
       [i $(+< t)]
   ::
-  ::  .=  (norm [;"{n}, {n}"]:n=dim:ag)  ~[[& dim] [| ", "] [& dim]]:ag
 ```
 
 `parsf` generates a `_rule` from a tape with rules embedded in it, literal
@@ -1808,6 +1839,7 @@ Two intermediate arms are used:
 
 
 ```
+  ::  .=  (norm [;"{n}, {n}"]:n=dim:ag)  ~[[& dim] [| ", "] [& dim]]:ag
   ++  norm                                             
     |*  (pole ,_:/(*$&(_rule tape)))
     ?~  +<  ~
@@ -1820,8 +1852,6 @@ Two intermediate arms are used:
     ?@  &2.rul  [%| p=;;(tape rul)]
     [%& p=rul]
   ::
-  ::  .=  (bill ~[[& dim] [| ", "] [& dim]]:ag)
-  ::  ;~(plug dim ;~(pfix com ace ;~(plug dim (easy)))):ag
 ```
 
 `norm` converts a `;"` pole of `[[%~. [%~. ?(tape _rule)] ~] ~]` into a more
@@ -1830,6 +1860,8 @@ convenient list of discriminated tapes and rules.
 ####++bill
 
 ```
+  ::  .=  (bill ~[[& dim] [| ", "] [& dim]]:ag)
+  ::  ;~(plug dim ;~(pfix com ace ;~(plug dim (easy)))):ag
   ++  bill
     |*  (list (each ,_rule tape))
     ?~  +<  (easy ~)

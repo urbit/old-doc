@@ -15,7 +15,8 @@ Nock subject to unit
 ::
 ```
 
-Accepts a nock subject-formula cell and wraps it into a [`++unit`](). `11` (pure nock) is treated as a crash.
+Accepts a nock subject-formula cell and wraps it into a [`++unit`](). `fol` is
+pure nock, `11` operations resulting in a crash and ~ result.
 
     ~zod/try=> (mack [[1 2 3] [0 1]])
     [~ [1 2 3]]
@@ -228,7 +229,7 @@ Intelligently render crash annotation
 ::
 ```
 
-Intelligently renders a crash annotation.
+Convert `%2` nock stack trace to tanks. Each may be a tank, cord, [`++spot`](), or trapped tank.
 
     ~zod/try=> (mook [%0 5 4 5 1])
     [%0 p=[5 4 5 1]]

@@ -89,7 +89,7 @@ Add modulo 255
   ++  xafo  |=([a=@ b=@] +((mod (add (dec b) a) 255)))
 ```
 
-Produces 
+Produces `@D` sum of two atoms modulo 255, encoded as nonzero bytes.
 
     ~zod/try=> (xafo:un 5 6)
     11
@@ -103,7 +103,7 @@ Produces
   ::
 ```
 
-Produces                       Subtracct modulo 255, offset 1
+Produces `@D` difference of two atoms modulo 255, encoded as nonzero bytes.
 
     ~zod/try=> (xaro:un 17 57)
     40
