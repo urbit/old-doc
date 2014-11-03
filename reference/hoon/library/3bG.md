@@ -581,7 +581,15 @@ URL parsing rule
     (most ;~(plug sem ace) ;~(plug toke ;~(pfix tis tosk)))
 ```
 
-XX document
+HTTP cookies, results in associative list of cord to cord.
+
+    ~zod/try=> (scan "sam=lop" cock:epur)
+    [['sam' 'lop'] ~]
+    ~zod/try=> (scan "sam=lop; res=\"salo don -keg!mo\"" cock:epur)
+    [['sam' 'lop'] ~[['res' 'salo don -keg!mo']]]
+    ~zod/try=> (scan "sam=lop; res=\"salo don -keg!mo\";  so" cock:epur)
+    ! {1 34}
+    ! exit
 
 ###++dlab
   
@@ -613,7 +621,19 @@ Domain label: alphanumeric, with `-` allowed in middle.
   ++  fque  (cook crip (plus pquo))                     ::  normal query field
 ```
 
-XX document
+One or more query string characters
+
+    ~zod/try=> (scan "%20" fque:epur)
+    ' '
+    ~zod/try=> (scan "sam" fque:epur)
+    'sam'
+    ~zod/try=> (scan "les+tor" fque:epur)
+    'les tor'
+    ~zod/try=> (scan "sore-%22mek%22" fque:epur)
+    'sore-"mek"'
+    ~zod/try=> (scan "" fque:epur)
+    ! {1 1}
+    ! exit
 
 ###++fquu
   
@@ -621,7 +641,18 @@ XX document
   ++  fquu  (cook crip (star pquo))                     ::  optional field
 ```
 
-XX document
+Zero or more query string characters
+
+    ~zod/try=> (scan "%20" fquu:epur)
+    ' '
+    ~zod/try=> (scan "sam" fquu:epur)
+    'sam'
+    ~zod/try=> (scan "les+tor" fquu:epur)
+    'les tor'
+    ~zod/try=> (scan "sore-%22mek%22" fquu:epur)
+    'sore-"mek"'
+    ~zod/try=> (scan "" fquu:epur)
+    ''
 
 ###++pcar
   
@@ -648,16 +679,21 @@ Single URL path character: literal, `%` escape, subpath delimiter, `:` or `@`
 ###++pcok
   
 ```
-  ++  pcok  ;~  pose                                    ::  cookie char
-              (just `@`0x21)
-              (shim 0x23 0x2b)
-              (shim 0x2d 0x3a)
-              (shim 0x3c 0x5b)
-              (shim 0x5d 0x7e)
-            ==
+  ++  pcok  ;~(less bas sem com doq prn)                ::  cookie char
 ```
 
-XX document
+Cookie character
+
+    ~zod/try=> (scan "a" pcok:epur)
+    ~~a
+    ~zod/try=> (scan "ab" pcok:epur)
+    ! {1 2}
+    ! exit
+    ~zod/try=> (scan "!" pcok:epur)
+    ~~~21.
+    ~zod/try=> (scan ";" pcok:epur)
+    ! {1 2}
+    ! exit
 
 ###++pesc
   
@@ -665,7 +701,12 @@ XX document
   ++  pesc  ;~(pfix cen mes)                            ::  2396 escaped
 ```
 
-XX document
+URL `%` escape, by two hex characters.
+
+    ~zod/try=> `@t`(scan "%22" pesc:epur)
+    '"'
+    ~zod/try=> `@t`(scan "%20" pesc:epur)
+    ' '
 
 ###++pold
   
@@ -673,7 +714,13 @@ XX document
   ++  pold  (cold ' ' (just '+'))                       ::  old space code
 ```
 
-XX document
+Old URL `' '` escape
+
+    ~zod/try=> `@t`(scan "+" pold:epur)
+    ' '
+    ~zod/try=> `@t`(scan " " pold:epur)
+    ! {1 1}
+    ! exit
 
 ###++pque
   
@@ -681,7 +728,17 @@ XX document
   ++  pque  ;~(pose pcar fas wut)                       ::  3986 query char
 ```
 
-XX document
+Irregular query string character.
+
+    ~zod/try=> `@t`(scan "a" pque:epur)
+    'a'
+    ~zod/try=> `@t`(scan "?" pque:epur)
+    '?'
+    ~zod/try=> `@t`(scan "%20" pque:epur)
+    ' '
+    ~zod/try=> `@t`(scan "+" pque:epur)
+    '+'
+
 
 ###++pquo
   
@@ -689,7 +746,20 @@ XX document
   ++  pquo  ;~(pose pure pesc pold)                     ::  normal query char
 ```
 
-XX document
+Character in query string key/value
+
+    ~zod/try=> (scan "a" pquo:epur)
+    'a'
+    ~zod/try=> (scan "ab" pquo:epur)
+    ! {1 2}
+    ! exit
+    ~zod/try=> (scan "%22" pquo:epur)
+    '"'
+    ~zod/try=> (scan "%20" pquo:epur)
+    ' '
+    ~zod/try=> (scan "+" pquo:epur)
+    ' '
+
 
 ###++pure
   
@@ -697,7 +767,17 @@ XX document
   ++  pure  ;~(pose aln hep dot cab sig)                ::  2396 unreserved
 ```
 
-XX document
+URL-safe character
+
+    ~zod/try=> (scan "a" pure:epur)
+    ~~a
+    ~zod/try=> (scan "%20" pure:epur)
+    ! {1 1}
+    ! exit
+    ~zod/try=> (scan "." pure:epur)
+    ~~~.
+    ~zod/try=> (scan "-" pure:epur)
+    ~~-
 
 ###++psub
   
@@ -708,7 +788,17 @@ XX document
             ==
 ```
 
-XX document
+URL path subdelimeter
+
+    ~zod/try=> `@t`(scan "+" psub:epur)
+    '+'
+    ~zod/try=> `@t`(scan "(" psub:epur)
+    '('
+    ~zod/try=> `@t`(scan "$" psub:epur)
+    '$'
+    ~zod/try=> `@t`(scan "a" psub:epur)
+    ! {1 1}
+    ! exit
 
 ###++ptok
   
@@ -719,7 +809,12 @@ XX document
             ==
 ```
 
-XX document
+Character valid in HTTP token
+
+    ~zod/try=> `tape`(murn =+(a=' ' |-(`tape`?:(=(0x7f a) ~ [a $(a +(a))]))) (curr rush ptok):epur)
+    "!#$%&'*+-.0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ^_`abcdefghijklmnopqrstuvwxyz|~"
+    ~zod/try=> `tape`(skim =+(a=' ' |-(`tape`?:(=(0x7f a) ~ [a $(a +(a))]))) |=(a=char ?=(~ (rush a ptok:epur))))
+    " "(),/:;<=>?@[\]{}"
 
 ###++scem
   
@@ -758,7 +853,16 @@ URL path segment
   ++  tock  (cook crip (plus pcok))                     ::  6265 cookie-value
 ```
 
-XX document
+HTTP cookie value
+
+    ~zod/try=> (rush 'sam' tock:epur)
+    [~ 'sam']
+    ~zod/try=> (rush 'las!tore' tock:epur)
+    [~ 'las!tore']
+    ~zod/try=> (rush '"sop""les"tor' tock:epur)
+    ~
+    ~zod/try=> (rush '"zemug"' tock:epur)
+    ~
 
 ###++tosk
   
@@ -766,7 +870,16 @@ XX document
   ++  tosk  ;~(pose tock (ifix [doq doq] tock))         ::  6265 cookie-value
 ```
 
-XX document
+Possibly quoted HTTP cookie value
+
+    ~zod/try=> (rush 'sam' tosk:epur)
+    [~ 'sam']
+    ~zod/try=> (rush 'las!tore' tosk:epur)
+    [~ 'las!tore']
+    ~zod/try=> (rush '"sop""les"tor' tosk:epur)
+    ~
+    ~zod/try=> (rush '"zemug"' tosk:epur)
+    [~ 'zemug']
 
 ###++toke
   
@@ -774,7 +887,17 @@ XX document
   ++  toke  (cook crip (plus ptok))                     ::  2616 token
 ```
 
-XX document
+HTTP cookie name
+
+    ~zod/try=> (rush 'sam' toke:epur)
+    [~ 'sam']
+    ~zod/try=> (rush 'las!tore' toke:epur)
+    [~ 'las!tore']
+    ~zod/try=> (rush 'sop""les"tor' toke:epur)
+    ~
+    ~zod/try=> (rush '"zemug"' toke:epur)
+    ~
+
 
 ###++thor
   
@@ -888,4 +1011,9 @@ Parse query string after `?`
   --
 ```
 
-XX document
+Parse ++quri absolute or relative request path
+
+    ~zod/try=> (scan "http://www.google.com:80/search?q=foo" zest:epur)
+    [%.y p=[p=%.n q=[~ 80] r=[%.y p=<|com google www|>]] q=[p=~ q=<|search|>] r=~[[p='q' q='foo']]]
+    ~zod/try=> (scan "/rel/bat" zest:epur)
+    [%.n [p=~ q=<|rel bat|>] ~]
