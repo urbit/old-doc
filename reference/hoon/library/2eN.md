@@ -89,7 +89,7 @@ Add modulo 255
   ++  xafo  |=([a=@ b=@] +((mod (add (dec b) a) 255)))
 ```
 
-Produces `@D` sum of two atoms modulo 255, encoded as nonzero bytes.
+Produces the sum of two atoms modulo 255, encoded as a nonzero byte.
 
     ~zod/try=> (xafo:un 5 6)
     11
@@ -103,7 +103,7 @@ Produces `@D` sum of two atoms modulo 255, encoded as nonzero bytes.
   ::
 ```
 
-Produces `@D` difference of two atoms modulo 255, encoded as nonzero bytes.
+Produces the difference between two atoms modulo 255, encoded as a nonzero byte.
 
     ~zod/try=> (xaro:un 17 57)
     40
@@ -134,7 +134,7 @@ Look up in 255 sub box
   ::
 ```
 
-Look up nonzero byte `a` in the 255-bit substiution box.
+The inverse of [`++zaft](). Looks up a nonzero byte `a` in a substiution box with 255 values, producing a unique nonzero byte.
 
 `a` is an [atom]() of one byte in length.
 
@@ -169,7 +169,7 @@ Reverse look up in 255 sub box
   ::
 ```
 
-Reverse look up a nonzero byte `a` in the 255-bit substitution box, producing an atom of odor [`@ux`]().
+The inverse of [`++zaft`](). Looks up the index of a nonzero byte `a` in the substitution box with 255 values, producing a unique nonzero byte.
 
 `a` is an [atom]() of one byte in length.
 
@@ -202,7 +202,7 @@ Lookup byte in 256 sub box
   ::
 ```
 
-Looks up a byte `a` in the 256-bit substitution box, producing an atom.
+The inverse of [`++zyrt`](). Looks up a byte `a` in a substituion box with 256 values, producing a byte.
   
     ~zod/try=> (zyft:un 0x12)
     57
@@ -212,6 +212,8 @@ Looks up a byte `a` in the 256-bit substitution box, producing an atom.
     187
   
 ###++zyrt
+
+Reverse lookup byte in 256 sub box
 
 ```
   ++  zyrt                                              ::  reverse 256-sbox
@@ -232,7 +234,7 @@ Looks up a byte `a` in the 256-bit substitution box, producing an atom.
     (cut 3 [a 1] b)
 ```
 
-Reverse looks up a byte `a` in the 256-bit substitution box, producing an atom of odor [`@ux`]().
+The inverse of [`++zyft`](). Looks up a byte `a` in a substituion box with 256 values, producing a byte.
 
     ~zod/try=> `@ux`(zyrt:un 57)
     0x12
