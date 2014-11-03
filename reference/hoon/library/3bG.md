@@ -67,30 +67,6 @@ Split concrete spur out of full path, producing location beam and remainder path
     ]
 
 
-###++fest
-
-```
-++  fest                                                ::  web synthesizer
-  |=  [hom=path raw=path]
-  |*  yax=$+(epic *)
-  (yax (fuel (fain hom raw)))
-::
-```
-
-XX document
-
-###++folk
-
-```
-++  folk                                                ::  silk construction
-  |=  [hom=path raw=path]
-  |*  yox=$+((pair beam path) *)
-  (yox (fain hom raw))
-::
-```
-
-XX document
-
 ###++fuel
 
 ```
@@ -131,35 +107,26 @@ XX document
 ::
 ```
 
-XX document
+Retrieieve %унку fcgi, used primarily in /hook files.
 
-###++gist
+See %ащкв doc.
 
 ```
-++  gist                                                ::  convenient html
-  |=  [hom=path raw=path]
-  |=  yax=$+(epic marl)
-  %-  (fest hom raw)
-  |=  piq=epic
-  ^-  manx
-  =+  ^=  sip                                           ::  skip blanks
-      |=  mal=marl
-      ?~(mal ~ ?.(|(=(:/(~) i.mal) =(:/([10 ~]) i.mal)) mal $(mal t.mal)))
-  =+  zay=`marl`(yax piq)
-  =.  zay  (sip zay)
-  =+  ^=  twa
-      |-  ^-  [p=marl q=marl]
-      ?~  zay  [~ ~]
-      ?:  ?=([[[%head *] *] *] zay)
-        [c.i.zay ?:(?=([[[%body *] *] ~] t.zay) c.i.t.zay t.zay)]
-      ?:  ?=([[[%title *] *] *] zay)
-        [[i.zay ~] t.zay]
-      [~ zay]
-  [/html [/head (sip p.twa)] [/body (sip q.twa)] ~]
-::
+~zod/main=> (fuel [[p=~zod q=%try r=[%ud p=2]] s=/psal] /web/'._.~-~~~~.gen~-~-_~~05vg0001v09f0n30fbh7dn6ab2jakmmspdq04nef5h70qbd5lh6atr4c5j2qrbldpp62q1df1in0sr1ding0c3qgt7kclj74qb65lm6atrkc5k2qpr5e1mmispdchin4p3fegmiqrjpdlo62p1dchsn4p39comn8pbcehgmsbbef5p7crrifr3o035dhgfrk2b5__')
+[ qix={}
+    ced
+  [ hut=[p=%.y q=[~ 8.445] r=[%.n p=.0.0.0.0]]
+    aut={[p=%$ q={'~rovryn-natlet-fidryd-dapmyn--todred-simpeg-hatwel-firfet'}]}
+    orx='laspex-harnum-fadweb-mipbyn'
+    acl=[~ 'en-US,en;q=0.8']
+    cip=[%.y p=.127.0.0.1]
+    cum={}
+  ]
+  bem=[[p=~zod q=%try r=[%ud p=2]] s=/psal]
+  but=/
+  nyp=/gen
+]
 ```
-
-XX document
 
 ###++sifo
 
@@ -172,17 +139,24 @@ XX document
   =+  ^=  cha
   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
   =+  ^=  sif
-      %-  flop
       |-  ^-  tape
       ?~  pad
         ~
       =+  d=(end 0 6 pad)
-      [(cut 3 [0 d] cha) $(pad (rsh 0 6 pad))]
-  (weld (scag (sub (lent sif) poc) sif) (trip (fil 3 poc '=')))
+      [(cut 3 [d 1] cha) $(pad (rsh 0 6 pad))]
+  (weld (flop (slag poc sif)) (trip (fil 3 poc '=')))
 ::
 ```
 
-XX document
+Encode atom to MIME base64
+
+    ~zod/main=> (sifo 'foobar')
+    "Zm9vYmFy"
+    ~zod/main=> (sifo 1)
+    "Q=="
+    ~zod/main=> (sifo (shax %hi))
+    "j0NDRmSPa5bfid2pAcUXaxCm2Dlh3TwayItZstwyeqQ="
+
 
 ###++urle
 
@@ -207,7 +181,15 @@ XX document
 ::
 ```
 
-XX document
+URL escape tape
+
+    ~zod/main=> (urle "hello")
+    "hello"
+    ~zod/main=> (urle "hello dear")
+    "hello%20dear"
+    ~zod/main=> (urle "hello-my?=me  !")
+    "hello-my%3F%3Dme%20%20%21"
+
 
 ###++urld
 
@@ -228,99 +210,151 @@ XX document
 ::
 ```
 
-XX document
+Parse URL escaped tape
+
+    ~zod/main=> (urld "hello")
+    [~ "hello"]
+    ~zod/main=> (urld "hello%20dear")
+    [~ "hello dear"]
+    ~zod/main=> (urld "hello-my%3F%3Dme%20%20%21")
+    [~ "hello-my?=me  !"]
+    ~zod/main=> (urld "hello-my%3F%3Dme%20%2%21")
+    ~
 
 ###++earl
 
 ```
-++  earl                                                ::  local purl to tape
+++  earl                                                ::  localize purl
   |=  [who=@p pul=purl]
   ^-  purl
   pul(q.q [(rsh 3 1 (scot %p who)) q.q.pul])
 ::
 ```
 
-XX document
+Prepend ship to spur of purl
+
+    ~zod/main=> (need (epur 'http://123.1.1.1/me.ham'))
+    [p=[p=%.n q=~ r=[%.n p=.123.1.1.1]] q=[p=[~ ~.ham] q=<|me|>] r=~]
+    ~zod/main=> (earl ~zod (need (epur 'http://123.1.1.1/me.ham')))
+    [p=[p=%.n q=~ r=[%.n p=.123.1.1.1]] q=[p=[~ ~.ham] q=<|zod me|>] r=~]
+    ~zod/main=> (earl ~pittyp (need (epur 'http://123.1.1.1/me.ham')))
+    [p=[p=%.n q=~ r=[%.n p=.123.1.1.1]] q=[p=[~ ~.ham] q=<|pittyp me|>] r=~]
+    ~zod/main=> (earn (earl ~pittyp (need (epur 'http://123.1.1.1/me.ham'))))
+    "http://123.1.1.1/pittyp/me"
 
 ###++earn
 
 ```
 ++  earn                                                ::  purl to tape
-  |=  pul=purl
-  ^-  tape
-  =<  apex
-  |%
-```
-
-XX document
-
-###++apex
-  
-```
-  ++  apex
-    ^-  tape
-    :(weld head "/" body tail)
+  |^  |=  pul=purl
+      ^-  tape
+      :(weld (head p.pul) "/" (body q.pul) (tail r.pul))
   ::
 ```
 
-XX document
+Render purl to tape
+
+
+    ~zod/main=> (earn [| ~ [%| .127.0.0.1]] [~ ~] ~)
+    "http://127.0.0.1/"
+    ~zod/main=> (earn [| ~ `/com/google/www] [~ ~] ~)
+    "http://www.google.com/"
+    ~zod/main=> (earn [& ~ `/com/google/www] [~ ~] ~)
+    "https://www.google.com/"
+    ~zod/main=> (earn [& `200 `/com/google/www] [~ ~] ~)
+    "https://www.google.com:200/"
+    ~zod/main=> (earn [& `200 `/com/google/www] [~ /search] ~)
+    "https://www.google.com:200/search"
+    ~zod/main=> (earn [& ~ `/com/google/www] [`%html /search] ~)
+    "https://www.google.com/search"
+    ~zod/main=> (earn [& ~ `/com/google/www] [~ /search] [%q 'urbit'] ~)
+    "https://www.google.com/search?q=urbit"
 
 ###++body
   
 ```
   ++  body
-    |-  ^-  tape
-    ?~  q.q.pul
-      ?~(p.q.pul ~ ['.' (trip u.p.q.pul)])
-    =+  seg=(trip i.q.q.pul)
-    ?:(=(~ t.q.q.pul) seg (weld seg `tape`['/' $(q.q.pul t.q.q.pul)]))
+    |=  pok=pork  ^-  tape
+    ?~  q.pok  ~
+    |-
+    =+  seg=(trip i.q.pok)
+    ?~  t.q.pok
+      ?~(p.pok seg (welp seg '.' (trip u.p.pok)))
+    (welp seg '/' $(q.pok t.q.pok))
   ::
+  
 ```
 
-XX document
+Render URL path
+
+    ~zod/main=> (body:earn ~ /foo/mol/lok)
+    "foo/mol/lok"
+    ~zod/main=> (body:earn `%htm /foo/mol/lok)
+    "foo/mol/lok.htm"
+    ~zod/main=> (body:earn `%htm /)
+    ""
 
 ###++head
   
 ```
   ++  head
+    |=  har=hart
     ^-  tape
     ;:  weld
-      ?:(&(p.p.pul !=([& /localhost] r.p.pul)) "https://" "http://")
+      ?:(&(p.har !=([& /localhost] r.har)) "https://" "http://")
     ::
-      ?-  -.r.p.pul
-        |  (trip (rsh 3 1 (scot %if p.r.p.pul)))
-        &  =+  rit=(flop p.r.p.pul)
+      ?-  -.r.har
+        |  (trip (rsh 3 1 (scot %if p.r.har)))
+        &  =+  rit=(flop p.r.har)
            |-  ^-  tape
            ?~(rit ~ (weld (trip i.rit) ?~(t.rit "" `tape`['.' $(rit t.rit)])))
       ==
     ::
-      ?~(q.p.pul ~ `tape`[':' (trip (rsh 3 2 (scot %ui u.q.p.pul)))])
+      ?~(q.har ~ `tape`[':' (trip (rsh 3 2 (scot %ui u.q.har)))])
     ==
   ::
 ```
 
-XX document
+Render URL beginning
+
+    ~zod/main=> (head:earn | ~ %| .127.0.0.1)
+    "http://127.0.0.1"
+    ~zod/main=> (head:earn & ~ %| .127.0.0.1)
+    "https://127.0.0.1"
+    ~zod/main=> (head:earn & [~ 8.080] %| .127.0.0.1)
+    "https://127.0.0.1:8080"
+    ~zod/main=> (head:earn & [~ 8.080] %& /com/google/www)
+    "https://www.google.com:8080"
 
 ###++tail
   
 ```
-  ++  tail
+++  tail
+    |=  kay=quay
     ^-  tape
-    ?:  =(~ r.pul)  ~
+    ?:  =(~ kay)  ~
     :-  '?'
     |-  ^-  tape
-    ?~  r.pul  ~
+    ?~  kay  ~
     ;:  weld
-      (trip p.i.r.pul)
+      (trip p.i.kay)
       "="
-      (trip q.i.r.pul)
-      ?~(t.r.pul ~ `tape`['&' $(r.pul t.r.pul)])
+      (trip q.i.kay)
+      ?~(t.kay ~ `tape`['&' $(kay t.kay)])
     ==
   --
 ::
 ```
 
-XX document
+Render query string
+
+    ~zod/main=> (tail:earn ~)
+    ""
+    ~zod/main=> (tail:earn [%ask 'bid'] ~)
+    "?ask=bid"
+    ~zod/main=> (tail:earn [%ask 'bid'] [%make 'well'] ~)
+    "?ask=bid&make=well"
+
 
 ###++epur
 
