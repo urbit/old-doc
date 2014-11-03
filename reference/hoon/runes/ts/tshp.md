@@ -1,31 +1,29 @@
 #[tishep, `=-`, %tshp](#tshp)
 
-[Short description]
+Push on, inverse
 
-#Syntax
+`=-` is a synthetic rune that pushes `q` on the subject and sends it to `p`. `=-` is the inverse of `=+`. Use `=-` when your computation, `q` is lengthier and `=-` makes for more readable code.
 
-`=-`, `tishep`, `[%tshp p=twig q=twig]` is a synthetic hoon that
-pushes `q` on the subject and sends it to `p`.
+##See also
 
-See also: `=+`
+#[tislus, `=+`, %tsls](#tsls)
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%tshp p=twig q=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` and `q` are [twig]()s.
 
 ##Tall form
 
-=-  p
-    q
+    =-  p
+        q
 
 ##Wide form
 
-=-(p q)
+    =-(p q)
 
 ##Irregular form
 
@@ -33,8 +31,18 @@ None
 
 ##Examples
 
+    ~zod/try=> =-  [%a a]
+                   [a=1]
+    [%a 1]
 
-    ~zod/try=> =-  [%a (add 10 -)]
-               %-  lent
-               ~[0 1 2 3 4]
-    [%a 15]
+In this simple example we push `[a=1]` on to our subject, and produce `[%a a]` which pulls the value of `a` from the subject producing `[%a 1]`.
+
+    ~zod/try=> 
+    =cor  |=  [a=@ b=@]
+          =-  [[%a a] [%b b]]
+          [a b]=[(add a 2) (add a b)]
+    new var %cor
+    ~zod/try=> (cor 2 4)
+    [[%a 4] %b 6]
+
+Here we create a gate `cor` that takes two atoms `a` and `b`. We use `=-` to put the product of our computation first.

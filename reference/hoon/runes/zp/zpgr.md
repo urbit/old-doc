@@ -1,30 +1,24 @@
 #[zapgar, `!>`, %zpgr](#zpgr)
 
-[Short description]
+`++vase` with value
 
-#Syntax
-
-`!>`, `zapgar`, `[%zpgr p=twig]` is a synthetic hoon that
-produces a vase (a [type noun] cell) with the value `p`.
-
-Uses biblical arms `onan`, `abel`
+`!>` is a synthetic rune that produces a vase (a `[type noun]` cell) with the value `p`. Uses biblical arms [`++onan`](), [`++abel`](). `!>` is useful for debugging type information.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%zpgr p=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [twig]().
 
 ##Tall form
 
-!>  p
+    !>  p
 
 ##Wide form
 
-!>(p)
+    !>(p)
 
 ##Irregular form
 
@@ -36,6 +30,9 @@ None
     [p=[%atom p=%ud] q=1]
     ~zod/try=> !>(~zod)
     [p=[%atom p=%p] q=0]
+
+In these simple examples we see constant type information printed. `1` and `~zod` are shown to be odored atoms of `%ud` and `%p` respectively.
+
     ~zod/try=> !>([1 2])
     [p=[%cell p=[%atom p=%ud] q=[%atom p=%ud]] q=[1 2]]
     ~zod/try=> !>([|.(20)]:~)
@@ -50,3 +47,5 @@ None
       ]
       q=[[1 20] 0]
     ]
+
+In these slightly more complex cases we see a cell and a core expanded to show their type information.

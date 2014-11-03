@@ -1,29 +1,27 @@
 #[tistar, `=*`, %tstr](#tstr)
 
-[Short description]
+Alias
 
-#Syntax
-
-`=*`, `tistar`, `[%tstr p=term q=wing r=twig]` is a natural hoon
-that creates a `%bull`, or alias, type.
+`=*` is a natural hoon that creates a `%bull`, or alias, type. 
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%tstr p=term q=wing r=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [`term`]().
+`q` is a [`++wing`]().
+`r` is a [twig]().
 
 ##Tall form
 
-=*  p  q
-        r
+    =*  p  q
+            r
 
 ##Wide form
 
-=*(p q r)
+    =*(p q r)
 
 ##Irregular form
 
@@ -31,7 +29,16 @@ None
 
 ##Examples
 
-    ~zod/try=> =+  a=[b=1 c=2]
-               =*  d  b.a
-               [d 3]
-    [1 3]
+    ~zod/try=> 
+        =+  a=1
+        =*  b  a
+        [a b]
+    [1 1]
+    ~zod/try=> 
+        =+  a=1
+        =*  b  a
+        =.  a  2
+        [a b]
+    [2 2]
+
+Here we see two simple examples of `=*`, both aliasing `b` to the value of `a`. In our second case you can see that even when we change the value of `a`, `b` continues to point to that value.

@@ -1,15 +1,16 @@
 #[semlus, `;+`](#smls)
 
-[Short description]
+`++sail` manx
 
-#Syntax
+`;+`  is a virtual rune used within [`++sail`]() to interpolate a manx. `;+` is useful when you need to dynamically produce a tag in a `++sail` block.
 
-`;+`, `semlus`, is a virtual hoon that is used within [sail] to interpolate in a
-manx.
+##See also
+
+The `%b` case inside of [`++tuna`]().
 
 ##Produces
 
-Affects surrounding manx
+Twig: [`++manx`]()
 
 ##Sample
 
@@ -17,13 +18,13 @@ Affects surrounding manx
 
 ##Tall form
 
-;+  a
+    ;+  a
 
 ##Wide form
 
-Within quoted form, 
+    +{a}
 
-`+{a}` or `{a}`
+(within quoted form)
 
 ##Irregular form
 
@@ -31,10 +32,16 @@ None
 
 ##Examples
 
-    ~zod/try=> ;div  ;+  ;hi;
-               ==
-    [[%div ~] [[%hi ~] ~] ~]
-    ~zod/try=> ;div:"+{;hi;}"
-    [[%div ~] [[%hi ~] ~] ~]
-    ~zod/try=> (poxo ;div:"+{;hi;}")
-    "<div><hi></hi></div>"
+    ~zod/try=> 
+    =+  tag=;p(class "doc")
+    ;div  ;+  tag
+    ==
+    [[%div ~] [[%p [%class "doc"] ~] ~] ~]
+    ~zod/try=> 
+    %-  poxo
+    =+  tag=;p(class "doc")
+    ;div  ;+  tag
+    ==
+    "<div><p class="doc"></p></div>"
+
+Here we add `tag` to our context as a `;p` tag and use `;+` to add it to our `;div`. Using [`++poxo`]() we can print our result as XML.

@@ -1,32 +1,28 @@
 #[semsig, `;~`, %smsg](#smsg)
 
-Composer: 
+Monad composer
 
-#Syntax
-
-`semsig`, `[%smsg p=(list beer)]` is a synthetic hoon used to compose functions
-under a monad
+`;!` is a synthetic rune used to compose functions under a monad.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%smsg p=(list beer)]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [`++list`]() of [`++beer`]().
 
 ##Tall form
 
-;~  p
-      i.q
-      i.t.q
-      i.t.t.q
-    ==
+    ;~  p
+          i.q
+          i.t.q
+          i.t.t.q
+        ==
 
 ##Wide form
 
-;~(p i.q i.t.q i.t.t.q)
+    ;~(p i.q i.t.q i.t.t.q)
 
 ##Irregular form
 
@@ -34,23 +30,21 @@ None
 
 ##Examples
 
-`:~` accepts a composer and a nonempty list of gates; at one gate, the composer
-is ignored, and the gate applied directly
-
     ~zod/try=> =cmp |=([a=tape b=$+(char tape)] `tape`?~(a ~ (weld (b i.a) t.a)))
     ~zod/try=> ;~(cmp trip)
     <1.xef [a=@ <374.hzt 100.kzl 1.ypj %164>]>
     ~zod/try=> (;~(cmp trip) 'a')
     "a"
-    
-For multiple gates, `;~` uses the composer to connect the gates in order
+
+`;~` accepts a composer and a nonempty list of gates; at one gate, the composer
+is ignored, and the gate applied directly.
 
     ~zod/try=> (;~(cmp trip |=(a=@ ~[a a])) 'a')
     "aa"
     ~zod/try=> (;~(cmp trip |=(a=@ ~[a a])) '')
     ""
-    
-Multiple gates are equivalent to stacked semsigs
+
+For multiple gates, `;~` uses the composer to connect the gates in order.
     
     ~zod/try=> (;~(cmp trip ;~(cmp |=(a=@ ~[a a]) |=(a=@ <(dec a)>))) 'b')
     "97b"
@@ -63,10 +57,9 @@ Multiple gates are equivalent to stacked semsigs
     ~zod/try=> (;~(cmp trip |=(a=@ ~[a a]) |=(a=@ <(dec a)>)) 'acd')
     "96acd"
 
----
+Multiple gates are equivalent to stacked semsigs.
 
-More commonly, this can be used for unit composition. `(slat %p)` parses cords in
-phonetic base, failure case: invalid text
+---
 
     [~ 0]
     ~zod/try=> ((slat %p) '~nec')
@@ -82,8 +75,7 @@ phonetic base, failure case: invalid text
     ~zod/try=> (;~(biff (slat %p)) '~nec')
     [~ 1]
 
-`mo` makes a map, and `+-get`:by is used to retrieve values from one, failure
-case: no such key
+More commonly, this can be used for unit composition. `(slat %p)` parses cords in phonetic base, failure case: invalid text
 
     ~zod/try=> (mo [~nec 12] [~tug 16] ~)
     {[p=~nec q=12] [p=~tug q=16]}
@@ -97,8 +89,8 @@ case: no such key
     ~zod/try=> (yaz ~tug)
     [~ 16]
 
-These can be combined with `biff`, which connects a previous succeeded unit
-result by a gate that itself produces a unit from it.
+`mo` makes a map, and `+-get`:by is used to retrieve values from one, failure
+case: no such key
 
     ~zod/try=> (;~(biff (slat %p) yaz) '~zod')
     ~
@@ -115,10 +107,11 @@ result by a gate that itself produces a unit from it.
     ~
     ~zod/try=> (;~(biff (slat %p) yaz |=(a=@ud [~ (add 100 a)])) 'mal')
     ~
-    
----
 
-Most prominently, however, `;~` is used for combinator parsers, composing [rule]s in various ways
+These can be combined with `biff`, which connects a previous succeeded unit
+result by a gate that itself produces a unit from it.
+
+---
 
     ~zod/try=> (hep [1 1] "")
     [p=[p=1 q=1] q=~]
@@ -153,6 +146,7 @@ Most prominently, however, `;~` is used for combinator parsers, composing [rule]
     ~zod/try=> `(like ,[cord cord])`(;~(plug hep lus) [1 1] "-+ ")
     [p=[p=1 q=3] q=[~ [p=['-' '+'] q=[p=[p=1 q=3] q=" "]]]]
 
+Most prominently, however, `;~` is used for combinator parsers, composing [rule]s in various ways
 
 See parsing sections 2eA - 2eH, and specifically section 2eD, for more
 information.

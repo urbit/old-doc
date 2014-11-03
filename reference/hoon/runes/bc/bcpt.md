@@ -27,6 +27,5 @@ None
 
 ##Examples
 
-
     ~zod/try=> =+(a=97 a@cord)
     'a'

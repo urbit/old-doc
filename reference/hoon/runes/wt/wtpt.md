@@ -1,20 +1,17 @@
 #[wutpat, `?@`, %wtpt](#wtpt)
 
-[Short description]
+If atom
 
-#Syntax
-
-`?@`, `wutpat`, `[%wtpt p=wing q=twig r=twig]` is a synthetic hoon 
-that produces `q` if `p` is an atom, `r` otherwise.
+`?@` is a synthetic rune that produces `q` if `p` is an atom, `r` otherwise.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%wtpt p=wing q=twig r=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [`++wing`]().
+`q` and `r` are [twig]()s.
 
 ##Tall form
 
@@ -26,7 +23,7 @@ Kingside:
 
 ##Wide form
 
-?@(p q r)
+    ?@(p q r)
 
 ##Irregular form
 

@@ -1,30 +1,27 @@
 #[wutsig, `?~`, %wtsg](#wtsg)
 
-[Short description]
+If `~`
 
-#Syntax
-
-`?~`, `wutsig`, `[%wtsg p=wing q=twig r=twig]` is a synthetic hoon 
-that produces `q` if `p` is `~`, `r` otherwise.
+`?~` is a synthetic rune that produces `q` if `p` is `~`, `r` otherwise.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%wtsg p=wing q=twig r=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [`++wing`]().
+`q` and `r` are [twig]()s.
 
 ##Tall form
 
-?~  p
-      q
-    r
+    ?~  p
+          q
+        r
 
 ##Wide form
 
-?~(p q r)
+    ?~(p q r)
 
 ##Irregular form
 

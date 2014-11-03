@@ -1,21 +1,16 @@
 #[zapzap, `!!`, %zpzp](#zpzp)
 
-[Short description]
+Crash
 
-#Syntax
-
-    ++  twig  
-      $%  [%zpzp p=~]
-      ==
+`!?` is a natural rune that always crashes.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%zpzp ~]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+Always ignored
 
 ##Tall form
 
@@ -23,7 +18,7 @@ None
 
 ##Wide form
 
-!!
+    !!
 
 ##Irregular form
 

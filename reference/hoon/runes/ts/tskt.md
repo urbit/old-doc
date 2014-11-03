@@ -2,20 +2,15 @@
 
 [Short description]
 
-#Syntax
-
-`=^`, `tisket`, `[%tskt p=twig q=twig r=twig s=twig]` is a synthetic 
-hoon that handles a product which is a cell of a new result, and
-a mutation to the subject.
+`=^` is a synthetic rune that handles a product which is a cell of a new result, and a mutation to the subject.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%tskt p=twig q=twig r=twig s=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p`, `q`, `r` and `s` are [twig]()s.
 
 ##Tall form
 
@@ -34,7 +29,7 @@ Queenside:
 
 ##Wide form
 
-=^(p q r s)
+    =^(p q r s)
 
 ##Irregular form
 

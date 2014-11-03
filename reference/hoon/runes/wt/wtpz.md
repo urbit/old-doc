@@ -1,30 +1,25 @@
 #[wutpaz, %wtpz](#wtpz)
 
-[Short description]
+[`++tiki`]() version of [`%wtpt`]()
 
-#Syntax
-
-`wutpaz`, `[%wtpz p=tiki q=twig r=twig]` is a synthetic hoon 
-that produces `q` if `p` is an atom, `r` otherwise.
+`wutpaz` is used internally.
 
 ##Produces
 
-[Twig or tile]
+Twig: `[%wtpz p=tiki q=twig r=twig]`
 
 ##Sample
 
-[`p` is a _
-`q` is a _]
+`p` is a [`++tiki`]().
+`q` and `r` are [twig]()s.
 
 ##Tall form
 
-?@  p
-      q
-    r
+None
 
 ##Wide form
 
-?@(p q r)
+None
 
 ##Irregular form
 
