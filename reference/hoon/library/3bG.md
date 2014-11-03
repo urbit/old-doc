@@ -447,7 +447,93 @@ XX document
     ==
 ```
 
-XX document
+URL parsing rule
+
+    ~zod/main=> (auri:epur [1 1] "http://127.0.0.1/")
+    [ p=[p=1 q=18] 
+        q
+      [ ~
+          u
+        [ p=[p=[p=%.n q=~ r=[%.n p=.127.0.0.1]] q=[p=~ q=<||>] r=~]
+          q=[p=[p=1 q=18] q=""]
+        ]
+      ]
+    ]
+    ~zod/main=> (auri:epur [1 1] "http://www.google.com/")
+    [ p=[p=1 q=23]
+        q
+      [ ~
+         u
+        [ p=[p=[p=%.n q=~ r=[%.y p=<|com google www|>]] q=[p=~ q=<||>] r=~] 
+          q=[p=[p=1 q=23] q=""]
+        ]
+      ]
+    ]
+    ~zod/main=> (auri:epur [1 1] "https://www.google.com/")
+    [ p=[p=1 q=24]
+        q
+      [ ~
+         u
+        [ p=[p=[p=%.y q=~ r=[%.y p=<|com google www|>]] q=[p=~ q=<||>] r=~] 
+          q=[p=[p=1 q=24] q=""]
+        ]
+      ]
+    ]
+    ~zod/main=> (auri:epur [1 1] "https//www.google.com/")
+    [ p=[p=1 q=6] q=~]
+    ~zod/main=> (auri:epur [1 1] "https://www.google.com:200/")
+    [ p=[p=1 q=28]
+      q=[~ u=[p=[p=[p=%.y q=[~ 200] r=[%.y p=<|com google www|>]] q=[p=~ q=<||>] r=~] q=[p=[p=1 q=28] q=""]]]
+    ]
+    ~zod/main=> (auri:epur [1 1] "https://www.google.com:200/search")
+    [ p=[p=1 q=34]
+      q=[~ u=[p=[p=[p=%.y q=[~ 200] r=[%.y p=<|com google www|>]] q=[p=~ q=<|search|>] r=~] q=[p=[p=1 q=34] q=""]]]
+    ]
+    ~zod/main=> (auri:epur [1 1] "https://www.google.com/search")
+    [ p=[p=1 q=30]
+      q=[~ u=[p=[p=[p=%.y q=~ r=[%.y p=<|com google www|>]] q=[p=~ q=<|search|>] r=~] q=[p=[p=1 q=30] q=""]]]
+    ]
+    ~zod/main=> (auri:epur [1 1] "https://www.google.com/search?q=urbit")
+    [ p=[p=1 q=38]
+        q
+      [ ~
+          u
+        [ p=[p=[p=%.y q=~ r=[%.y p=<|com google www|>]] q=[p=~ q=<|search|>] r=~[[p='q' q='urbit']]]
+          q=[p=[p=1 q=38] q=""]
+        ]
+      ]
+    ]
+    ~zod/main=> (auri:epur [1 1] "https://www.google.com/search?q=urb it")
+    [ p=[p=1 q=36]
+        q
+      [ ~
+          u
+        [ p=[p=[p=%.y q=~ r=[%.y p=<|com google www|>]] q=[p=~ q=<|search|>] r=~[[p='q' q='urb']]]
+          q=[p=[p=1 q=36] q=" it"]
+        ]
+      ]
+    ]
+    ~zod/main=> (auri:epur [1 1] "https://www.google.com/search?q=urb%20it")
+    [ p=[p=1 q=41]
+        q
+      [ ~
+          u
+        [ p=[p=[p=%.y q=~ r=[%.y p=<|com google www|>]] q=[p=~ q=<|search|>] r=~[[p='q' q='urb it']]]
+          q=[p=[p=1 q=41] q=""]
+        ]
+      ]
+    ]
+    ~zod/main=> (auri:epur [1 1] "https://www.google.com/search?q=urbit%20escaping%3F")
+    [ p=[p=1 q=52]
+        q
+      [ ~
+          u
+        [ p=[p=[p=%.y q=~ r=[%.y p=<|com google www|>]] q=[p=~ q=<|search|>] r=~[[p='q' q='urbit escaping?']]]
+          q=[p=[p=1 q=52] q=""]
+        ]
+      ]
+    ]
+
 
 ###++cock
   
