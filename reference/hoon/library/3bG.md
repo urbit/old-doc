@@ -269,6 +269,8 @@ Render purl to tape
     "https://www.google.com/search"
     ~zod/main=> (earn [& ~ `/com/google/www] [~ /search] [%q 'urbit'] ~)
     "https://www.google.com/search?q=urbit"
+    ~zod/main=> (earn [& ~ `/com/google/www] [~ /search] [%q 'urbit escaping?'] ~)
+    "https://www.google.com/search?q=urbit%20escaping%3F"
 
 ###++body
   
@@ -329,7 +331,7 @@ Render URL beginning
 ###++tail
   
 ```
-++  tail
+  ++  tail
     |=  kay=quay
     ^-  tape
     ?:  =(~ kay)  ~
@@ -337,9 +339,9 @@ Render URL beginning
     |-  ^-  tape
     ?~  kay  ~
     ;:  weld
-      (trip p.i.kay)
+      (urle (trip p.i.kay))
       "="
-      (trip q.i.kay)
+      (urle (trip q.i.kay))
       ?~(t.kay ~ `tape`['&' $(kay t.kay)])
     ==
   --
@@ -364,7 +366,48 @@ Render query string
   |%
 ```
 
-XX document
+Toplevel url parser
+
+    ~zod/main=> (epur 'http://127.0.0.1/')
+    [~ [p=[p=%.n q=~ r=[%.n p=.127.0.0.1]] q=[p=~ q=<||>] r=~]]
+    ~zod/main=> (epur 'http://www.google.com/')
+    [~ [p=[p=%.n q=~ r=[%.y p=<|com google www|>]] q=[p=~ q=<||>] r=~]]
+    ~zod/main=> (epur 'https://www.google.com/')
+    [~ [p=[p=%.y q=~ r=[%.y p=<|com google www|>]] q=[p=~ q=<||>] r=~]]
+    ~zod/main=> (epur 'https//www.google.com/')
+    ~
+    ~zod/main=> (epur 'https://www.google.com:200/')
+    [~ [p=[p=%.y q=[~ 200] r=[%.y p=<|com google www|>]] q=[p=~ q=<||>] r=~]]
+    ~zod/main=> (epur 'https://www.google.com:200/search')
+    [ ~
+      [p=[p=%.y q=[~ 200] r=[%.y p=<|com google www|>]] q=[p=~ q=<|search|>] r=~]
+    ]
+    ~zod/main=> (epur 'https://www.google.com/search')
+    [~ [p=[p=%.y q=~ r=[%.y p=<|com google www|>]] q=[p=~ q=<|search|>] r=~]]
+    ~zod/main=> (epur 'https://www.google.com/search?q=urbit')
+    [ ~ 
+      [ p=[p=%.y q=~ r=[%.y p=<|com google www|>]]
+        q=[p=~ q=<|search|>]
+        r=~[[p='q' q='urbit']]
+      ]
+    ]
+    ~zod/main=> (epur 'https://www.google.com/search?q=urb it')
+    ~
+    ~zod/main=> (epur 'https://www.google.com/search?q=urb%20it')
+    [ ~
+      [ p=[p=%.y q=~ r=[%.y p=<|com google www|>]] 
+        q=[p=~ q=<|search|>] 
+        r=~[[p='q' q='urb it']]
+      ]
+    ]
+    ~zod/main=> (epur 'https://www.google.com/search?q=urbit%20escaping%3F')
+    [ ~ 
+      [ p=[p=%.y q=~ r=[%.y p=<|com google www|>]] 
+        q=[p=~ q=<|search|>]
+        r=~[[p='q' q='urbit escaping?']]
+      ]
+    ]
+
 
 ###++apat
   
