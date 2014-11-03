@@ -7,7 +7,15 @@
           $_  ^?  |%                                    ::  opaque object
 ```
 
-XX document
+Cryptosuite interface, see %ames documentation
+
+    ~zod/main=> `acru`crua
+    <6?guc 243.nxm 41.spz 374.iqw 100.rip 1.ypj %164>
+    ~zod/main=> `acru`crub
+    <6?guc 243.nxm 41.spz 374.iqw 100.rip 1.ypj %164>
+    ~zod/main=> *acru
+    <6?guc 243.nxm 41.spz 374.iqw 100.rip 1.ypj %164>
+
 
 ###++as
 
@@ -157,7 +165,7 @@ XX document
 ++  aeon  ,@ud                                          ::
 ```
 
-XX document
+Clay revision number
 
 ###++agon
 
@@ -165,7 +173,10 @@ XX document
 ++  agon  (map ,[p=ship q=desk] ,[p=@ud q=@ud r=waks])  ::  mergepts
 ```
 
-XX document
+See %clay doc
+
+    ~zod/main=> *agon
+    {}
 
 ###++ankh
 

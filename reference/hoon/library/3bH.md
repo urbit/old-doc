@@ -14,7 +14,16 @@
 ::
 ```
 
-XX Document
+Ship class
+
+    ~zod/main=> (clan ~zod)
+    %czar
+    ~zod/main=> (clan ~tyr)
+    %czar
+    ~zod/main=> (clan ~doznec)
+    %king
+    ~zod/main=> (clan ~tasfyn-partyv)
+    %duke
 
 ###++glam
 
@@ -81,7 +90,12 @@ XX Document
 ::
 ```
 
-XX Document
+Retrieve carrier name.
+
+    ~zod/main=> (glam ~zod)
+    "Tianming"
+    ~zod/main=> (glam ~fyr)
+    "Bolivar"
 
 ###++glon
 
@@ -278,7 +292,15 @@ XX Document
 ::
 ```
 
-XX Document
+ISO language code
+
+    ~zod/main=> (glon %cs)
+    [~ "Czech"]
+    ~zod/main=> (glon %en)
+    [~ "English"]
+    ~zod/main=> (glon %mz)
+    ~
+
 
 ###++gnom
 
@@ -293,7 +315,14 @@ XX Document
 ::
 ```
 
-XX Document
+Fetch display name from %ames
+
+    ~zod/main=> (gnom [->-< -<-] ~zod)
+    '~zod |Tianming|'
+    ~zod/main=> (gnom [->-< -<-] ~doznec)
+    '~doznec ~doznec'
+    ~zod/main=> (gnom [->-< -<-] ~tug)
+    '~tug |Go-Daigo|'
 
 ###++gnow
 
@@ -421,7 +450,14 @@ XX Document
 ::
 ```
 
-XX Document
+Compute list of ancestors
+
+    ~zod/main=> (saxo ~pittyp-pittyp)
+    ~[~pittyp-pittyp ~dalnel ~del]
+    ~zod/main=> (saxo ~tasfyn-partyv)
+    ~[~tasfyn-partyv ~doznec ~zod]
+    ~zod/main=> (saxo ~ractul-fodsug-sibryg-modsyl--difrun-mirfun-filrec-patmet)
+    ~[~ractul-fodsug-sibryg-modsyl--difrun-mirfun-filrec-patmet ~zod]
 
 ###++sein
 
@@ -438,4 +474,18 @@ XX Document
   ==
 ```
 
-XX Document
+Compute direct senior.
+
+    ~zod/main=> (sein ~tasfyn-partyv)
+    ~doznec
+    ~zod/main=> (sein ~doznec)
+    ~zod
+    ~zod/main=> (sein ~zod)
+    ~zod
+    ~zod/main=> (sein ~pittyp-pittyp)
+    ~dalnel
+    ~zod/main=> (sein ~dalnel)
+    ~del
+    ~zod/main=> (sein ~ractul-fodsug-sibryg-modsyl--difrun-mirfun-filrec-patmet)
+    ~zod
+
