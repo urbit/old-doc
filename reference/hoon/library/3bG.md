@@ -23,7 +23,12 @@
 ::
 ```
 
-XX document
+Parse extension from last element of url
+
+    ~zod/try=> (deft /foo/bar/'baz.txt')
+    [p=[~ ~.txt] q=<|foo bar baz|>]
+    ~zod/try=> (deft /foo/bar/baz)
+    [p=~ q=<|foo bar baz|>]
 
 ###++fain
 
@@ -40,7 +45,27 @@ XX document
 ::
 ```
 
-XX  Document
+Split concrete spur out of full path, producing location beam and remainder path
+
+    ~zod/try=> (fain / %)
+    [p=[[p=~zod q=%try r=[%da p=~2014.11.1..00.07.17..c835]] s=/] q=/]
+    ~zod/try=> (fain /lok %)
+    ! exit
+    ~zod/try=> (fain / %/mer/lok/tem)
+    [ p=[[p=~zod q=%try r=[%da p=~2014.11.1..00.08.03..bfdf]] s=/] 
+      q=/tem/lok/mer
+    ]
+    ~zod/try=> (fain /mer %/mer/lok/tem)
+    [p=[[p=~zod q=%try r=[%da p=~2014.11.1..00.08.15..4da0]] s=/mer] q=/tem/lok]
+    ~zod/try=> (fain /lok/mer %/mer/lok/tem)
+    [p=[[p=~zod q=%try r=[%da p=~2014.11.1..00.08.24..4d9e]] s=/lok/mer] q=/tem]
+    ~zod/try=> (fain /lok/mer %/mer)
+    ! exit
+    ~zod/try=> (fain /hook/hymn/tor %/tor/hymn/hook/'._req_1234__')
+    [ p=[[p=~zod q=%try r=[%da p=~2014.11.1..00.09.25..c321]] s=/hook/hymn/tor]
+      q=/._req_1234__
+    ]
+
 
 ###++fest
 
