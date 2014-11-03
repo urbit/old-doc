@@ -188,7 +188,9 @@ See %clay doc
           ==                                            ::
 ```
 
-XX document
+State at path
+
+See also ++ze, %clay documentation
 
 ###++ankz
 
@@ -212,7 +214,14 @@ XX document
 ++  ares  (unit ,[p=term q=(list tank)])                ::  possible error
 ```
 
-XX document
+Failure cause: unknown, or machine-readable term and stack trace.
+
+    ~zod/main=> `ares`~
+    ~
+    ~zod/main=> `ares`[~ %syntax-error leaf/"[1 27]" ~]
+    [~ [p=%syntax-error q=~[[%leaf p="[1 27]"]]]]
+    ~zod/main=> 
+
 
 ###++ball
 
@@ -248,7 +257,11 @@ XX document
 ++  beam  ,[[p=ship q=desk r=case] s=path]              ::  global name
 ```
 
-XX document
+See section 2dF, %clay documentation
+
+    ~zod/try=> (need (tome %/bin))
+    [[p=~zod q=%try r=[%da p=~2014.11.3..17.30.07..ca8f]] s=/bin]
+
 
 ###++beak
 
@@ -256,7 +269,7 @@ XX document
 ++  beak  ,[p=ship q=desk r=case]                       ::  garnish with beak
 ```
 
-XX document
+Global root
 
 ###++bird
 
@@ -281,7 +294,7 @@ XX document
           ==                                            ::
 ```
 
-XX document
+Stored data, see ++ze
 
 ###++boat
 
@@ -289,7 +302,7 @@ XX document
 ++  boat  ,[(list slip) tart]                           ::  user stage
 ```
 
-XX document
+XX deprecated
 
 ###++boon
 
@@ -306,7 +319,7 @@ XX document
           ==                                            ::
 ```
 
-XX document
+See %ford documentation
 
 ###++bowl
 
@@ -314,7 +327,7 @@ XX document
 ++  bowl  ,[p=(list gift) q=(unit boat)]                ::  app product
 ```
 
-XX document
+XX deprecated
 
 ###++bray
 
@@ -322,7 +335,7 @@ XX document
 ++  bray  ,[p=life q=(unit life) r=ship s=@da]          ::  our parent us now
 ```
 
-XX document
+Ship identity. See %ames documentation
 
 ###++brow
 
@@ -330,7 +343,7 @@ XX document
 ++  brow  ,[p=@da q=@tas]                               ::  browser version
 ```
 
-XX document
+XX unused?
 
 ###++buck
 
@@ -385,7 +398,7 @@ XX document
           ==                                            ::
 ```
 
-XX document
+Access by absolute date, term label, or revision number. See %clay documentation
 
 ###++cash
 

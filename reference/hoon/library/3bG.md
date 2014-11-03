@@ -362,7 +362,7 @@ Render query string
 
 ```
 ++  epur                                                ::  url/header parser
-  =<  |=(a=cord (rush a apex))
+  =<  |=(a=cord (rush a auri))
   |%
 ```
 
@@ -417,15 +417,13 @@ Toplevel url parser
     (ifix [fas ;~(pose fas (easy ~))] (more fas smeg))
 ```
 
-XX document
+URL path as ++pork
 
-###++apex
-  
-```
-  ++  apex  auri
-```
+    ~zod/try=> (scan "/foo/mol/lok" apat:epur)
+    [p=~ q=<|foo mol lok|>]
+    ~zod/try=> (scan "/foo/mol/lok.htm" apat:epur)
+    [p=[~ ~.htm] q=<|foo mol lok|>]
 
-XX document
 
 ###++auri
   
@@ -556,7 +554,17 @@ XX document
   ::
 ```
 
-XX document
+Domain label: alphanumeric, with `-` allowed in middle.
+
+    ~zod/try=> (scan "google" dlab:epur)
+    ~.google
+    ~zod/try=> (scan "lera2" dlab:epur)
+    ~.lera2
+    ~zod/try=> (scan "gor-tem" dlab:epur)
+    ~.gor-tem
+    ~zod/try=> (scan "gortem-" dlab:epur)
+    ! {1 8}
+    ! exit
 
 ###++fque
   
@@ -580,7 +588,21 @@ XX document
   ++  pcar  ;~(pose pure pesc psub col pat)             ::  2396 path char
 ```
 
-XX document
+Single URL path character: literal, `%` escape, subpath delimiter, `:` or `@`
+
+    ~zod/try=> (scan "a" pcar:epur)
+    ~~a
+    ~zod/try=> (scan "ab" pcar:epur)
+    ! {1 2}
+    ! exit
+    ~zod/try=> (scan "-" pcar:epur)
+    ~~-
+    ~zod/try=> (scan "." pcar:epur)
+    ~~~.
+    ~zod/try=> (scan "%20" pcar:epur)
+    ~~.
+    ~zod/try=> (scan "!" pcar:epur)
+    ~~~21.
 
 ###++pcok
   
@@ -667,7 +689,14 @@ XX document
   ::
 ```
 
-XX document
+URI scheme: alphabetic character, followed by any number of alphanumeric, `+` `-` or `.`
+
+    ~zod/try=> `@t`(scan "http" scem:epur)
+    'http'
+    ~zod/try=> `@t`(scan "https" scem:epur)
+    'https'
+    ~zod/try=> `@t`(scan "chrome-extension" scem:epur)
+    'chrome-extension'
 
 ###++smeg
   
@@ -675,7 +704,12 @@ XX document
   ++  smeg  (cook crip (plus pcar))                     ::  2396 segment
 ```
 
-XX document
+URL path segment
+
+    ~zod/try=> (scan "foo" smeg:epur)
+    'foo'
+    ~zod/try=> (scan "bar%20baz-bam" smeg:epur)
+    'bar baz-bam'
 
 ###++tock
   
@@ -712,7 +746,17 @@ XX document
     ==
 ```
 
-XX document
+
+Parse ++host and unit `@ui` port.
+
+    ~zod/try=> (scan "localhost" thor:epur)
+    [~ [%.y i='localhost' t=~]]
+    ~zod/try=> (scan "localhost:8080" thor:epur)
+    [[~ q=8.080] [%.y i='localhost' t=~]]
+    ~zod/try=> (scan "192.168.0.1:8080" thor:epur)
+    [[~ q=8.080] [%.n q=3.232.235.521]]
+    ~zod/try=> (scan "www.google.com" thor:epur)
+    [~ [%.y i='com' t=~['google' 'www']]]
 
 ###++thos
   
@@ -737,7 +781,17 @@ XX document
     ==
 ```
 
-XX document
+URI host: dot-separated segments, or IP address.
+
+    ~zod/try=> (scan "localhost" thos:epur)
+    [%.y i='localhost' t=~]
+    ~zod/try=> (scan "192.168.0.1" thos:epur)
+    [%.n q=3.232.235.521]
+    ~zod/try=> (scan "192.168.0.1:80" thos:epur)
+    ! {1 12}
+    ! exit
+    ~zod/try=> (scan "www.google.com" thos:epur)
+    [%.y i='com' t=~['google' 'www']]
 
 ###++yque
   
@@ -749,7 +803,14 @@ XX document
     ==
 ```
 
-XX document
+Parses query string, or lack thereof. Result type ++quay
+
+    ~zod/try=> (scan "?sar=tok" yque:epur)
+    [['sar' 'tok'] ~]
+    ~zod/try=> (scan "?les=urbit%20sep&met=kam" yque:epur)
+    [['les' 'urbit sep'] ~[['met' 'kam']]]
+    ~zod/try=> (scan "" yque:epur)
+    ~
 
 ###++yquy
   
@@ -766,7 +827,14 @@ XX document
     ==
 ```
 
-XX document
+Parse query string after `?`
+
+    ~zod/try=> (scan "sar=tok" yquy:epur)
+    [['sar' 'tok'] ~]
+    ~zod/try=> (scan "les=urbit%20sep&met=kam" yquy:epur)
+    [['les' 'urbit sep'] ~[['met' 'kam']]]
+    ~zod/try=> (scan "" yquy:epur)
+    ~
 
 ###++zest
   
