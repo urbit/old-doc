@@ -16,7 +16,12 @@ Nock subject to unit
 ```
 
 Accepts a nock subject-formula cell and wraps it into a [`++unit`](). `fol` is
-pure nock, `11` operations resulting in a crash and ~ result.
+pure nock, meaning that nock `11` operations result in a block, producing a `~`.
+
+`sub` is a subject [noun]().
+
+`fol` is a formula [noun](), which is generally a `++nock`.
+
 
     ~zod/try=> (mack [[1 2 3] [0 1]])
     [~ [1 2 3]]
@@ -114,11 +119,14 @@ Mock interpreter
 ::
 ```
 
-Bottom-level [mock]() (virtual nock) interpreter.
+Bottom-level [mock]() (virtual nock) interpreter. Produces a [`++tone`](), a nock computation result. If nock 11 is invoked, `sky` computes on the subject and produces a [`++unit`]() result. An empty result becomes a `%1` `++tone`, indicating a block.
+
 
 `sub` is the subject as a [noun]().
 
 `fol` is the formula as a [noun]().
+
+`sky` is an [`%iron`]() gate invoked with [nock operator 11]().
 
     ~zod/try=> (mink [20 [4 0 1]] ,~)
     [%0 p=21]
@@ -150,14 +158,13 @@ Compute formula on subject with hint
 ::
 ```
 
-Accepts a nock subject-formula cell and a gate that accepts any noun and produces a unit, which is applied to the subject if nock 11 is invoked. Produces a ++toon, which is either a sucessful, blocked, or crashed result.
+Produces a [`++toon`](), which is either a sucessful, blocked, or crashed result. If nock 11 is invoked, `sky` computes on the subject and produces a [`++unit`]() result. An empty result becomes a `%1` `++tune`, indicating a block.
 
 `sub` is the subject as a [noun]().
 
 `fol` is the formula as a [noun]().
 
-`sky` is an [%iron]() gate which accepts a noun and produces a unit.
-
+`sky` is an [%iron]() gate invoked with [nock operator 11]().
 
     ~zod/try=> (mock [5 4 0 1] ,~)
     [%0 p=6]
@@ -229,7 +236,9 @@ Intelligently render crash annotation
 ::
 ```
 
-Convert `%2` nock stack trace to tanks. Each may be a tank, cord, [`++spot`](), or trapped tank.
+Converts a `%2` `++tone` nock stack trace to a list of [`++tank`](). Each may be a tank, cord, [`++spot`](), or trapped tank. Produces a [`++toon`]().
+
+`ton` is a [`++tone`]().
 
     ~zod/try=> (mook [%0 5 4 5 1])
     [%0 p=[5 4 5 1]]
@@ -246,7 +255,7 @@ Convert `%2` nock stack trace to tanks. Each may be a tank, cord, [`++spot`](), 
 
 ###++mang
 
-
+Unit: Slam gate with sample
 
 ```
 ++  mang
@@ -256,9 +265,13 @@ Convert `%2` nock stack trace to tanks. Each may be a tank, cord, [`++spot`](), 
   ?.(?=([0 *] ton) ~ [~ p.ton])
 ::
 ```
+Produces a [`++unit`]() computation result from slamming `gat` with `sam`, using `sky` to compute or block on nock 11 when applicable. Similar to [`++mong`]().
 
-Work just like in `++makc`, but accept a `++sky`.
-Produces a unit computation result from....
+`gat` is a [noun]() that is generally a [`gate`]().
+
+`sam` is a [`sample`]() noun.
+
+`sky` is an [%iron]() gate invoked with [nock operator 11]().
 
     ~zod/try=> (mang [|=(@ 20) ~] ,~)
     [~ 20]
@@ -283,7 +296,7 @@ Produces a unit computation result from....
 
 ###++mong
 
-
+Slam gate with sample
 
 ```
 ++  mong
@@ -295,8 +308,13 @@ Produces a unit computation result from....
 ::
 ```
 
-Work just like in `++mung`, but for `++mink`
-Produce a unit computation result.
+Produces a [`++toon`]() computation result from slamming `gat` with `sam`, using `sky` to compute or block on nock 11 when applicable.
+
+`gat` is a [noun]() that is generally a [`gate`]().
+
+`sam` is a [`sample`]() noun.
+
+`sky` is an [%iron]() gate invoked with [nock operator 11]().
 
     ~zod/try=> (mong [|=(@ 20) ~] ,~)
     [%0 p=20]
@@ -333,7 +351,14 @@ Virtualize slamming gate
 ::
 ```
 
-Virtualize slamming of gate
+Produces a [`++tone`]() computation result from slamming `gat` with `sam`, using `sky` to compute or block on nock 11 when applicable.
+
+`gat` is a [noun]() that is generally a [`gate`]().
+
+`sam` is a [`sample`]() noun.
+
+`sky` is an [%iron]() gate invoked with [nock operator 11]().
+
 
     ~zod/try=> (mung [|=(@ 20) ~] ,~)
     [%0 p=20]
@@ -370,8 +395,11 @@ Virtualize slamming of gate
 ::
 ```
 
-Kick error trap, producing its results or any erros that occur along the way.
+Kicks a `++trap`, producing its results or any errors that occur along the way. Used to lazily compute stack traces.
 
+`taq` is a [`++trap`](), generally producing a list of [`++tank`]()s.
+
+```
 ~zod/try=> (mule |.(leaf/"hello"))
 [%.y p=[%leaf "hello"]]
 ~zod/try=> (mule |.(!!))
@@ -389,7 +417,7 @@ Kick error trap, producing its results or any erros that occur along the way.
     ]
   ]
 ]
-
+```
 
 ---
 
@@ -407,8 +435,9 @@ Kick error trap, producing its results or any erros that occur along the way.
   ==
 ```
 
-Kick error trap, and produce its result or the tanks of any errors it itself
-incurred.
+Kicks a `++trap`, producing its result as a noun or the tanks of any error that occurs. Similar to [`++mule`](), but preserves no type information.
+
+`taq` is a [`++trap`]().
 
     ~zod/try=>  (mute |.(leaf/"hello"))
     [%.y p=[1.717.658.988 104 101 108 108 111 0]]
