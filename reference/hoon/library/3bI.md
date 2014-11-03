@@ -460,7 +460,16 @@ XX document
 ++  clip  (each ,@if ,@is)                              ::  client IP
 ```
 
-XX document
+See %eyre documentation.
+
+    ~zod/try=> `clip`[%& .127.0.0.1]
+    [%.y p=.127.0.0.1]
+    ~zod/try=> `clip`[%| .12.0.0.0.342d.d24d.0.0]
+    [%.n p=.12.0.0.0.342d.d24d.0.0]
+    ~zod/try=> `clip`[%| .0.0.0.1]
+    ! type-fail
+    ! exit
+
 
 ###++coal
 
