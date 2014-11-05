@@ -3,26 +3,35 @@
 Let's publish a webpage
 
 In
+
     /pub/fab/guide/exercise/1/hymn.hook
 
 Put
 
-    ;div
-      ;h1: Exercise 1 — Simple HTML
-      ;p: As you may notice, urbit has no problem talking to the web.
+    ;html
+      ;head
+        ;meta(charset "utf-8");
+        ;title: Exercise 1
+      ==
+      ;body
+        ;div
+          ;h1: Exercise 1 — Simple HTML
+          ;p: As you may notice, urbit has no problem talking to the web.
+        ==
+      ==
     ==
 
 Try it
 
-    http://talsur-todres.urbit.org/gen/main/pub/fab/guide/exercise/1/
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/1/
 
 What did you just do?
 
-The code you just wrote is urbit's naitive programming langauge, hoon. Generating HTML with hoon is similar to writing [jade](link) or other similar HTML shorthand. In hoon, this shorthand is called `++sail` and it's a naitive part of the hoon language.
+The code you just wrote is urbit's naitive programming langauge, hoon. Generating HTML with hoon is similar to writing [jade](link) or other similar HTML shorthand. In hoon, this shorthand is called [`++sail`]() and it's a naitive part of the hoon language.
 
-In `++sail` node-names are prefixed with a `;` and closed with a `==`. Nodes that have text content and are only on one line use a `:` and are closed implicitly with a new line. Nodes with no content are closed with another `;`, such as `;br;`. 
+In `++sail` node-names are prefixed with a `;` and closed with a `==`. Nodes that have text content and are only on one line use a `:`, such as our `;h1:` above, and are closed implicitly with a new line. Nodes with no content are closed with another `;`, such as `;br;`. 
 
-When you need to you can find more information about `++sail` [here](link). 
+You can find more information about `++sail` in our [rune library documentation](link). 
 
 
 2.
@@ -30,23 +39,32 @@ When you need to you can find more information about `++sail` [here](link).
 Let's do some programming on the page. 
 
 In
+
     /pub/fab/guide/exercise/2/hymn.hook
 
 Put
 
-    ;div
-      ;h1: Exercise 2 — Call a function
-      ;p: Although it may be obvious, 2+2={<(add 2 2)>}
+    ;html
+      ;head
+        ;meta(charset "utf-8");
+        ;title: Exercise 2
+      ==
+      ;body
+        ;div
+          ;h1: Exercise 2 — Call a function
+          ;p: Although it may be obvious, 2+2={<(add 2 2)>}
+        ==
+      ==
     ==
 
 Try it
-    http://talsur-todres.urbit.org/gen/main/pub/fab/guide/exercise/2/
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/2/
 
 What's going on there?
 
-Clearly, the code `(add 2 2)` is generating `4`, and it's not too hard to see why. `add` is one of the library functions that are a part of `hoon.hoon`. Try replacing `(add 2 2)` with `(sub 2 2)`. You can find documentaiton for the full hoon library in the [library reference](link) if you're interested. 
+Clearly, the code `(add 2 2)` is generating `4`, and it's not too hard to see why. `add` is one of the library functions that are a part of `hoon.hoon`. Try replacing `(add 2 2)` with `(sub 2 (add 2 2))`. You can find documentaiton for the full hoon library in the [library reference](link). 
 
-Since the product of `(add 2 2)` is a number, we need a few extra things to have it print properly. In `++sail` we use `{` and `}` to do string interpolation. Everything after the `:` is considered a string, so we need to tell the parser when we start writing code again. The `<` and `>` are converting our result `4`, a number, to the string `"4"`. hoon is a strongly typed language kind of like haskell. 
+Since the product of `(add 2 2)` is a number, we need a few extra things to have it print properly. In `++sail` we use `{` and `}` to do string interpolation. Everything after the `:` is expected to be a string, so we need to tell the parser when we start writing code. The `<` and `>` inside our `{` `}` are converting our result `4`, a number, to the string `"4"`. hoon is a strongly typed language kind of like haskell, so we need to explicitly convert our types. 
 
 
 3. 
@@ -54,26 +72,39 @@ Since the product of `(add 2 2)` is a number, we need a few extra things to have
 Let's assign some variables.
 
 In
+
     /pub/fab/guide/exercise/3/hymn.hook
 
 Put
-    =+  a=2
-    =+  ^=  b  (add 2 2)
-    ;div
-      ;h1: Exercise 3 — Assignment
-      ;p: a is {<a>}
-      ;p: b is {<b>}
-      ;p: a plus b is {<(add a b)>}
+
+    =+  ^=  a  1
+    =+  b=2
+    ::
+    ^-  manx
+    ;html
+      ;head
+        ;meta(charset "utf-8");
+        ;title: Exercise 3
+      ==
+      ;body
+        ;div
+          ;h1: Exercise 3 — Assignment
+          ;p: a={<a>}
+          ;p: b={<b>}
+          ;p: a+b={<(add a b)>}
+        ==
+      ==
     ==
 
 Try it
-    http://talsur-todres.urbit.org/gen/main/pub/fab/guide/exercise/3/
+
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/3/
 
 How does that work?
 
 The first thing you should notice in this example is the `=+` at the top of our file. `=+` is a rune. hoon is a programming with no reserved words. We don't use `if` `this` or `function` at all. Instead, runes have their own pronunciation. `=+` is pronounced 'tislus'. You can find the table of pronunciation [here](link). In hoon you construct your programs using runes, which are two character ascii pairs. You can see the whole set of runes in the [rune index](link).
 
-`=+` pushes an expression on to our subject. The subject in hoon is something like `this` in other languages. hoon being a functional language if we want something to be available further on in our computation we need to attach it to the subject first. 
+`=+` pushes an expression on to our subject. The subject in hoon is similar to `this` in other languages. hoon being a functional language if we want something to be available further on in our computation we need to attach it to the subject first. 
 
 Looking at the rendered page it's clear that we're assigning `a` to be `1` and `b` to be `2`. Looking at the code, however, you can see that we're doing this in two different ways. Runes in hoon can have irregular forms, and `^=` is one of them. The first two lines of our example are doing the same thing, where `a=2` is simply the irregular form of `^=  a  2`. You can see the full list of irregular forms [here](link).
 
@@ -102,7 +133,7 @@ Put
     ==
 
 Try it
-    http://talsur-todres.urbit.org/gen/main/pub/fab/guide/exercise/4/
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/4/
 
 What's happening?
 
@@ -136,7 +167,7 @@ Put
     ==
 
 Try it
-    http://talsur-todres.urbit.org/gen/main/pub/fab/guide/exercise/5/
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/5/
 
 What's the difference?
 
@@ -174,7 +205,7 @@ Put
     ==
 
 Try it
-    http://talsur-todres.urbit.org/gen/main/pub/fab/guide/exercise/5.1/
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/5.1/
 
 What is that doing?
 
@@ -212,8 +243,8 @@ Put
     ==
 
 Try it
-    http://talsur-todres.urbit.org/gen/main/pub/fab/guide/exercise/5/
-    http://talsur-todres.urbit.org/gin/del/main/pub/fab/guide/exercise/5/
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/5/
+    http://ship-name.urbit.org/gin/del/main/pub/fab/guide/exercise/5/
 
 We're printing out some of the parameters our page is passed: who is looking at it, where it is and what revision our desk is on. We have also thrown in all our FCGI parameters in a codeblock for reference.
 
