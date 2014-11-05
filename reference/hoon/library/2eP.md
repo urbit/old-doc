@@ -4,6 +4,8 @@ A- more or less low priority and/or currently in the wrong section anyway.
 
 ---
 
+---
+
 ###++berk 
 
 Invert diff patches
@@ -35,6 +37,8 @@ Inverts a list of changes `bur`. Skips stay constant and replaces are swapped. P
     "somes"
 
 
+---
+
 ###++diff 
 
 Generate patch
@@ -55,6 +59,8 @@ Generate patch
 ```
 
 Produces a patch between two nouns, by change type
+
+`pum` is an [`++umph`]().
 
     ~zod/try=> ((diff %a) 20 21)
     [p=%a q=[%d p=[%1 p=21] q=[%1 p=20]]]
@@ -77,6 +83,8 @@ Produces a patch between two nouns, by change type
     ~[[%.y p=0] [%.y p=0] [%.y p=1] [%.n p=<|les les|> q=<|mor|>] [%.y p=1]]
     ~zod/try=> (,[%c %c (urge cord)] ((diff %c) (role 'sam' 'les' 'les' 'kor' ~) (role 'sam' 'mor' 'kor' ~)))
     [%c %c ~[[%.y p=1] [%.n p=<|les les|> q=<|mor|>] [%.y p=1]]]
+
+---
 
 ###++loss 
 
@@ -150,7 +158,7 @@ Longest subsequence
 
 ```
 
-Finds a subsequence of repeated elements within two `++list()s, using several internal helper arms. Produces a [`++tape`]().
+Finds a subsequence of repeated elements within two [`++list`]()s, using several internal helper arms. Produces a [`++tape`]().
 
 `hel` is a [`++list`]() of characters.
 
@@ -167,7 +175,11 @@ Finds a subsequence of repeated elements within two `++list()s, using several in
     ~zod/try=> (loss "ferdinham" "ferdilapos")
     "ferdia"
 
+---
+
 ###++locz  
+
+Find common
 
 ```
 ++  locz                                                ::  trivial algorithm
@@ -188,14 +200,18 @@ Finds a subsequence of repeated elements within two `++list()s, using several in
 ::
 ```
 
-Finds a subsequence of repeated elements within two `++list()s, producing a [`++tape]().
+Finds a subsequence of repeated elements within two [`++list`]()s, producing a [`++tape]().
 
     ~zod/try=> (locz "samukot" "semelkot")
     "smkot"
     ~zod/try=> (locz "samukot" "samelkot")
     "samkot"
 
+---
+
 ###++lore
+
+Split on `\n`
 
 ```
 ++  lore                                                ::  atom to line list
@@ -229,7 +245,11 @@ Split on newlines, ascii `10`
       (mix b a)
     |>
 
+---
+
 ###++role  
+
+Join with `\n`
 
 ```
 ++  role                                                ::  line list to atom
@@ -249,7 +269,11 @@ Join line list with newlines.
     lap
     '''
 
+---
+
 ###++lump
+
+Change with `++udon`
 
 ```
 ++  lump                                                ::  apply patch
@@ -295,7 +319,11 @@ Use udon to change noun
     '''
 
 
+---
+
 ###++lure
+
+Patch `a`
 
 ```
 ++  lure                                                ::  apply tree diff
@@ -316,7 +344,11 @@ Patch a by references to axis and literal.
     ~zod/try=> (lure ~[1 2 4] [[%0 2] [%1 3] [%0 7]])
     [1 3 4 0]
 
+---
+
 ###++limp  
+
+Reverse patch
 
 ```
 ++  limp                                                ::  invert patch
@@ -339,7 +371,11 @@ Reverse a patch (preprocessor unchanged)
     ~zod/try=> (limp [%a %d [[%0 1] [%0 1]] [%0 2]])
     [p=%a q=[%d p=[%0 p=2] q=[p=[%0 p=1] q=[%0 p=1]]]]
 
-###++hump  
+---
+
+###++hump
+
+Prep for diff
 
 ```
 ++  hump                                                ::  general prepatch
@@ -367,7 +403,11 @@ Prep atom for diff: leave alone, cue, or split by newlines.
     ~zod/try=> (hump %b 0vph)
     [1 1]
 
+---
+
 ###++husk  
+
+Atomize post diff
 
 ```
 ++  husk                                                ::  unprepatch
@@ -413,7 +453,11 @@ Re-atomize after diff: leave alone, jam, or join with newlines.
     [1 1]
 
 
+---
+
 ###++lurk  
+
+Apply list patch
 
 ```
 ++  lurk                                                ::  apply list patch
@@ -450,7 +494,11 @@ Amend list using an urge: list of `[%& {number skipped}]` and `[%| old new]`
     ~zod/try=> (lurk "koltep" `(urge char)`~[`3 [%| "et" ""] `1])
     "kolp"
 
+---
+
 ###++lusk  
+
+`lcs` to list patch
 
 ```
 ++  lusk                                                ::  lcs to list patch
@@ -510,7 +558,11 @@ Using a common sequence, generate urge from two lists
     "tesomga"
 
 
+---
+
 ###++nude   
+
+Tree change
 
 ```
 ++  nude                                                ::  tree change

@@ -2,7 +2,7 @@
 
 ###++moon
 
-Mime type to text
+Mime type to `++cord`
 
 ```
 ++  moon                                                ::  mime type to text
@@ -16,7 +16,7 @@ Mime type to text
 ::
 ```
 
-Renders a [mime]() type path with infix `/` to a [cord]().
+Renders a [mime](http://en.wikipedia.org/wiki/MIME) type path with infix `/` to a [cord]().
 
 `myn` is a ++[mite](), a list of [@ta]().
 

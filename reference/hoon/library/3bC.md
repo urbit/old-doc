@@ -39,7 +39,7 @@ Weekday of date
 ::
 ```
 
-Produces the day of the week of a given date `yed`. Weeks are zero-indexed beginning on Sunday.
+Produces the day of the week of a given date `yed` as an atom. Weeks are zero-indexed beginning on Sunday.
 
 `yed` is a [`date`]().
 

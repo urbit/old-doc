@@ -11,7 +11,11 @@ Reversible scrambling core
 
 A core that contains arms that perform reversible scrambling operations. Used in the `@p` phonetic base.
 
+---
+
 ###++wren
+
+Conceal structure
 
 ```
   ++  wren                                              ::  conceal structure
@@ -45,6 +49,8 @@ in an s-box, and then performing the XOR operation on the result, pushing it for
     ~zod/try=> `@da`(wred:un (wren:un ~2001.2.5))
     ~2001.2.5
 
+---
+
 ###++wred
 
 Restore structure
@@ -69,8 +75,7 @@ Restore structure
   ::
 ```
 
-Unscrambles a bytestring `cry` by subtracting the current position from each byte,
-looking it up in an s-box, and performing the XOR operation on the result, pushing it forward. Produces an atom.
+Unscrambles a bytestring `cry` by subtracting the current position from each byte, looking it up in an s-box, and performing the XOR operation on the result, pushing it forward. Produces an atom.
 
 `cry` is an [atom]().
 
@@ -80,6 +85,8 @@ looking it up in an s-box, and performing the XOR operation on the result, pushi
     'testing'
     ~zod/try=> (wred:un (wren:un 200.038.426))
     200.038.426
+
+---
 
 ###++xafo
 
@@ -96,11 +103,14 @@ Produces the sum of two atoms modulo 255, encoded as a nonzero byte.
     ~zod/try=> (xafo:un 256 20)
     21
   
+---
+
 ###++xaro
+
+Subtract modulo 255
 
 ```
   ++  xaro  |=([a=@ b=@] +((mod (add (dec b) (sub 255 (mod a 255))) 255)))
-  ::
 ```
 
 Produces the difference between two atoms modulo 255, encoded as a nonzero byte.
@@ -110,6 +120,7 @@ Produces the difference between two atoms modulo 255, encoded as a nonzero byte.
     ~zod/try=> (xaro:un 265 12)
     2
 
+---
 
 ###++zaft
 
@@ -146,6 +157,8 @@ The inverse of [`++zaft](). Looks up a nonzero byte `a` in a substiution box wit
     ! decrement-underflow
     ! exit
 
+---
+
 ###++zart
 
 Reverse look up in 255 sub box
@@ -178,6 +191,8 @@ The inverse of [`++zaft`](). Looks up the index of a nonzero byte `a` in the sub
     ~zod/try=> `@ux`(zart:un 42)
     0x12
   
+---
+
 ###++zyft
 
 Lookup byte in 256 sub box
@@ -203,7 +218,9 @@ Lookup byte in 256 sub box
 ```
 
 The inverse of [`++zyrt`](). Looks up a byte `a` in a substituion box with 256 values, producing a byte.
-  
+
+`a` is an [atom]() of one byte in length.
+
     ~zod/try=> (zyft:un 0x12)
     57
     ~zod/try=> (zyft:un 0x0)
@@ -211,6 +228,8 @@ The inverse of [`++zyrt`](). Looks up a byte `a` in a substituion box with 256 v
     ~zod/try=> (zyft:un 0xff)
     187
   
+---
+
 ###++zyrt
 
 Reverse lookup byte in 256 sub box
@@ -235,6 +254,8 @@ Reverse lookup byte in 256 sub box
 ```
 
 The inverse of [`++zyft`](). Looks up a byte `a` in a substituion box with 256 values, producing a byte.
+
+`a` is an [atom]() of one byte in length.
 
     ~zod/try=> `@ux`(zyrt:un 57)
     0x12
