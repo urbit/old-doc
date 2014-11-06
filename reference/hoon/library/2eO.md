@@ -1,7 +1,5 @@
 ##section 2eO, virtualization
 
----
-
 ###++mack
 
 Nock subject to unit
@@ -120,7 +118,6 @@ Mock interpreter
 ```
 
 Bottom-level [mock]() (virtual nock) interpreter. Produces a [`++tone`](), a nock computation result. If nock 11 is invoked, `sky` computes on the subject and produces a [`++unit`]() result. An empty result becomes a `%1` `++tone`, indicating a block.
-
 
 `sub` is the subject as a [noun]().
 
@@ -265,6 +262,7 @@ Unit: Slam gate with sample
   ?.(?=([0 *] ton) ~ [~ p.ton])
 ::
 ```
+
 Produces a [`++unit`]() computation result from slamming `gat` with `sam`, using `sky` to compute or block on nock 11 when applicable. Similar to [`++mong`]().
 
 `gat` is a [noun]() that is generally a [`gate`]().
@@ -383,6 +381,8 @@ Produces a [`++tone`]() computation result from slamming `gat` with `sam`, using
 
 ###++mule 
 
+Typed virtual
+
 ```
 ++  mule                                                ::  typed virtual
   ~/  %mule
@@ -422,6 +422,8 @@ Kicks a `++trap`, producing its results or any errors that occur along the way. 
 ---
 
 ###++mute 
+
+Untyped virtual
 
 ```
 ++  mute                                                ::  untyped virtual

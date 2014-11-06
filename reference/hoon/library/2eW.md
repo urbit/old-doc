@@ -1,7 +1,11 @@
 ##section 2eW, lite number theory           
 ---
 
+---
+
 ###++egcd
+
+GCD
 
 ```
 ++  egcd                                                ::  schneier's egcd
@@ -39,7 +43,11 @@ Greatest common denominator
       v=38.716.650.351.034.402.960.165.718.823.532.275.722
     ]
 
+---
+
 ###++pram
+
+Probable prime
 
 ```
 ++  pram                                                ::  rabin-miller
@@ -94,7 +102,11 @@ Probable prime test
     %.y
 
 
+---
+
 ###++ramp
+
+`r-m` prime
 
 ```
 ++  ramp                                                ::  make r-m prime
@@ -127,7 +139,11 @@ Random `a` bit prime, which isn't 1 modulo a list of other numbers, using salt
     ~zod/try=> `@uw`(ramp 128 ~ %late)
     0w3y.irKIL.l-pp1.2CkG4.3lsTF
 
+---
+
 ###++fo
+
+Prime engine
 
 ```
 ++  fo                                                  ::  modulo prime
@@ -141,7 +157,11 @@ Core for performing arithmetic modulo a prime number
     ~zod/try=> ~(. fo 79)
     <7.get [@ud <373.jdd 100.kzl 1.ypj %164>]>
 
+---
+
 ###++dif
+
+Difference
 
 ```
   ++  dif
@@ -157,7 +177,11 @@ Subtract
     ~zod/try=> (~(dif fo 79) 5 10)
     74
 
+---
+
 ###++exp
+
+Exponent
 
 ```
   ++  exp
@@ -175,7 +199,11 @@ Exponent
     ~zod/try=> (~(exp fo 79) 3 5)
     46
 
+---
+
 ###++fra
+
+Divide
 
 ```
   ++  fra
@@ -191,7 +219,11 @@ Divide
     ~zod/try=> (~(fra fo 79) 7 11)
     15
 
+---
+
 ###++inv
+
+Inverse
 
 ```
   ++  inv
@@ -211,7 +243,11 @@ Multiplicative inverse
     0
 
 
+---
+
 ###++pro
+
+Product
 
 ```
   ++  pro
@@ -227,7 +263,11 @@ Product
     ~zod/try=> (~(pro fo 79) 5 20)
     21
 
+---
+
 ###++sit
+
+Bounds
 
 ```
   ++  sit
@@ -243,8 +283,11 @@ Bounds check
     ~zod/try=> (~(sit fo 79) 99)
     20
 
+---
 
 ###++sum
+
+Sum
 
 ```
   ++  sum
@@ -261,6 +304,8 @@ Add
     0
 
 
+---
+
 ###++ga
 
 ```
@@ -276,6 +321,8 @@ RSA internals
 XX document
 
 
+---
+
 ###++dif
 
 ```
@@ -288,6 +335,8 @@ XX document
 ```
 
 XX document
+
+---
 
 ###++dub
 
@@ -304,6 +353,8 @@ XX document
 
 XX document
 
+---
+
 ###++pro
 
 ```
@@ -318,6 +369,8 @@ XX document
 ```
 
 XX document
+
+---
 
 ###++toe
 
@@ -350,6 +403,8 @@ XX document
 
 XX document
 
+---
+
 ###++sit
 
 ```
@@ -361,6 +416,8 @@ XX document
 
 XX document
 
+---
+
 ###++fra
 
 ```
@@ -371,6 +428,8 @@ XX document
 ```
 
 XX document
+
+---
 
 ###++inv
 
@@ -386,6 +445,8 @@ XX document
 ```
 
 XX document
+
+---
 
 ###++pow
 
@@ -403,6 +464,8 @@ XX document
 ```
 
 XX document
+
+---
 
 ###++pro
 
