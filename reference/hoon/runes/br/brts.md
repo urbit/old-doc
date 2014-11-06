@@ -2,7 +2,7 @@
 
 Dry gate
 
-`|=`, is a synthetic hoon that produces a [dry]() [`%gold`]() gate with sample [`$*(p)`](), arm `q`. A gate is a core with one arm, [`$`](), the empty name. `|=` checks its input sample against its tile, `p`.
+`|=`, is a synthetic rune that produces a [dry]() [`%gold`]() gate with sample [`$*(p)`](), arm `q`. A gate is a core with one arm, [`$`](), the empty name. `|=` checks its input sample against its tile, `p`.
 
 ##See also
 

@@ -4,7 +4,7 @@ Cast to type
 
 #Syntax
 
-`^+` is a natural hoon that casts the product of `q` to the type of `p`, verifying that it contains the type of `q`. `^+` is similar to `^-`, but doesn't bunt the subject. Most often we use `^+` to cast when our type is already defined by something inside our context.
+`^+` is a natural rune that casts the product of `q` to the type of `p`, verifying that it contains the type of `q`. `^+` is similar to `^-`, but doesn't bunt the subject. Most often we use `^+` to cast when our type is already defined by something inside our context.
 
 ##See also
 
