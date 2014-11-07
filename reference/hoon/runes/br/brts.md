@@ -4,6 +4,8 @@ Dry gate
 
 `|=`, is a synthetic rune that produces a [dry]() [`%gold`]() gate with sample [`$*(p)`](), arm `q`. A gate is a core with one arm, [`$`](), the empty name. `|=` checks its input sample against its tile, `p`.
 
+`|=` is similar to a function that takes a defined input and produces the result of some computation. `|=` differs from `|*` in that its typechecking occurs at compile-time to ensure that all inputs match its sample tile.
+
 ##See also
 
 #[bartar, `|*`, %brtr](#brtr)

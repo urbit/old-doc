@@ -1,15 +1,14 @@
 ##Overview
 
-The `|` runes construct [cores](). A core is similar to an object with named properties that can contain either functions or data. 
+The `|` runes construct [core]()s. In the broadest case you can think of a core as similar to an object with named properties that can contain either functions or data. hoon also defines special cases of [core]()s for common operations, functions, functions called by default, and so on.
 
-`|%` is the natural `|` rune. It builds a core using a list of [`++arm`]()s, which generally contain [`++twig`]()s.
+##[`|%`]() 
+The natural `|` rune. `|%` builds a core using a list of [`++arm`]()s, which generally contain [`++twig`]()s.
 
-Other notable `|` runes:
+##[`|=`]()
+##[`|*`]()
+Gates. A gate is a core with one arm [`$`], the empty name and which takes a sample `p`. `|=` creates a `dry` gate, where the sample is typechecked at compile time. `|*` creates a `wet` gate, where the sample is typechecked at runtime against its product type. 
 
--`|.` reduces to a `|%` with one arm `$`, the empty name. We use `|.` to put a [`++twig`]() into a wrapper, called a trap.
-
--`|-` is identical to `|.` except for that it is automatically kicked after construction.
-
--`|=` creates a `dry` [gate](), which is a core with one arm [`$`], the empty name. It is different from `|.` and `|-` in that it has a [sample](), from which the output type is computed.
-
--`|*` is a synthetic rune that is used to create a `wet` [gate](), whose output type is computed from the type of the actual (as opposed to formal) sample.
+##[`|-`]()
+##[`|.`]()
+Traps. Both reduce to a `|%` with one arm `$`, the empty name. We use `|.` to put some computation into a wrapper, which we call a "trap". `|-` is identical to `|.` except for that it is automatically kicked after construction.
