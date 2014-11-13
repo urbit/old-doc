@@ -1,5 +1,5 @@
 ##Overview
-There are two categories of `~` runes, which are used to provide information at runtime:
+There are two categories of `~` runes, which are used to provide information at runtime. You can think of them as hints to the interpreter.
 
 For Printing:
 

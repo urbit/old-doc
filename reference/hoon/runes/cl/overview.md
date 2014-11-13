@@ -4,7 +4,7 @@ The `:` runes construct [tuples]().
 
 There is no natural `:` rune. Instead, all of them derive from the autocons property of `++twig`, as show below.
 
-++  twig  $&  [p=twig q=twig]
+    ++  twig  $&  [p=twig q=twig]
 
 Namely, a cell of two twigs is a twig producing a cell of the results of the two original sub-twigs.
 
