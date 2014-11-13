@@ -1,6 +1,6 @@
 ##Overview
 
-The `?` runes, with the exception of `?=`, produce conditional statements.
+The `?` runes, with the exception of `?=`, produce conditional statements. The `?` runes are the workhorse of control-flow. 
 
 There are three basic categories:
 

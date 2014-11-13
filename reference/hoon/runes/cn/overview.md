@@ -1,6 +1,6 @@
 ##Overview
 
-The `%` runes [pull]() [`++arms`]() and [`++wings`]() from the [subject](), often modifying their values. You can think of them kind of like....
+The `%` runes [pull]() [`++arms`]() and [`++wings`]() from the [subject](), often modifying their values. The `%` runes are similar to function calls, or execution tools. We use them to either compute some code with changes in the subject, or produce the output from a core.
 
 There are two categories of `%` runes: 
 
