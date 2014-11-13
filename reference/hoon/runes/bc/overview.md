@@ -2,16 +2,22 @@
 
 The `$` runes construct [`++tile`]()s. [`++tile`]()s are one of our primary building blocks in hoon, they define how we reduce our ASTs into well typed nouns that nock can compute. You can think of a [`++tile`]() sort of like a typeclass in Haskell.
 
-##[`$?`]()
-##[`$|`]()
-##[`$&`]()
-Forks: [`++tile`]()s that can be one of two things.
+There are three basic categories of `$` runes:
 
-##[`$:`]()
-##[`$=`]()
-Tuples: unlabelled arrays, and tuples with [`++face`]s(), respectively.
+Forks: [`++tile`]()s that can be one of multiple cases.
 
-##[`$*`]()
-##[`$,`]()
-##[`$@`]()
-Reductions: [bunt](), [clam](), and [whip](), respectively. Tile reductions are important convenience methods for working with tiles, and are very broadly used.
+##[`$?`]()  Non-empty list of cases.
+##[`$|`]()  Fork between atom and cell.
+##[`$&`]()  Fork between cells whose head is a cell and cells whose head is an atom.
+
+Tuples.
+
+##[`$:`]()  Unlabelled arrays.
+##[`$=`]()  Tuple with [++face]()s.
+
+Reductions: important convenience methods for working with 
+tiles, and are very broadly used.
+
+##[`$*`]()  [bunt]()
+##[`$,`]()  [clam]()
+##[`$@`]()  [whip]()

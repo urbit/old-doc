@@ -8,14 +8,22 @@ There is no natural `:` rune. Instead, all of them derive from the autocons prop
 
 Namely, a cell of two twigs is a twig producing a cell of the results of the two original sub-twigs.
 
-Notable `;` runes:
+The `:` runes produce one of three categories of tuples:
 
--`:-` creates a tuple of two elements `p` and `q`.
+Tuples of determinate size:
 
--`:+` creates a tuple of three elements `p`, `q`, and `r`.
+##[`:-`]()  Tuples of two elements, `p` and `q`.
+##[`:_`]()  Tuples of two reversed elements, `q` and `p`. Used to ensure vertical code flow.    
+##[`:+`]()  Tuples of three elements `p`, `q`, and `r`.
+##[`:^`]()  Tuples of four elements `p`, `q`, `r`, and `s`.
 
--`:^` creates a tuple of four elements `p`, `q`, `r`, and `s`.
+Tuples of indeterminate size:
 
--`:*` creates a tuple n elements.
+##[`:*`]()  Tuples of n elements.
+##[`:~`]()  Null terminated tuples of n elements.
 
--`:~` creates a null terminated tuple of n elements.
+Tuples used for interpolation:
+
+##[`:/`]()  Tuple designed to be interpolated into an XML structure.
+
+

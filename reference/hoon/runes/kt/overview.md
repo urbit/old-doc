@@ -2,13 +2,22 @@
 
 The `^` runes perform type operations.
 
-Notable `^` runes:
+There are three basic categories of `^` runes:
 
--`^-` and `^+` cast values to specific types.
+Ones that cast values to specific types:
 
--`^|`, `^&`, and `^?` change the variance of cores.
+##[`^-`]()  Casts `q` to the type of the [bunt]()  of `p`.
+##[`^+`]()  Casts `q` to the type of `p`.
 
--`^=` changes the type of a value by adding a [`++face`]().
+Ones that change the [variance]() of [cores]():
+
+##[`^|`]()  Converts core from [%gold]() to [%iron]().
+##[`^&`]()  Converts core from [%gold]() to [%zinc]().
+##[`^?`]()  Converts core from [%gold]() to [%lead]().
+
+One that adds a variable name:
+
+##[`^=`]()  Changes the type of a value by adding a [`++face`]().
 
 
 

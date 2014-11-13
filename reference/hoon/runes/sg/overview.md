@@ -1,15 +1,15 @@
 ##Overview
-The `~` runes provide runtime hints. The natural `~` rune is `~>`, which implements Nock 10, applying an arbitrary hint `p` to `q`.
+There are two categories of `~` runes, which are used to provide information at runtime:
 
-Other notable `~` runes:
+For Printing:
+##[`~&`]()  Prints to the console.
+##[`~!`]()  Prints the type of a [twig]() if compilation fails.
 
--`~&` prints to the console.
+For [jetting]()
 
--`~!` prints the type of a twig if compilation fails.
-
--`~/` attaches a formula-level jet hint. 
-
--`~%` marks a core-level jet hint.
+##[`~>`]()  The natural `~` rune. Implements Nock 10, applying an arbitrary [`++arm]() hint `p` to `q`.
+##[`~/`]()  Attaches a formula-level jet hint. 
+##[`~%`]()  Attaches a core-level jet hint.
 
 
 

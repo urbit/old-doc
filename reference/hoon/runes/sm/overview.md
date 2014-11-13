@@ -1,16 +1,24 @@
 ##Overview
 
-The `;` runes are used for composition. They are all synthetic.
+The `;` runes are used for composition. They are all synthetic. 
 
--`;:` applies a binary gate to multiple arguments.
+There are three categories of `;` runes:
 
--`;~` uses a monad to compose multiple gates, producing a gate of a similar type.
+Gate composers
 
--`;;` composes a [clam]() with a value, slamming the value through the clam and forcefully verifying that it is unchanged. See also: [`++hard`]().
+##[`;:`]()  Applies a binary gate to multiple arguments.
 
--`;"` composes [`++tapes`]() and twigs that produce `++tape`s. Generally used in its irregular form, of [text surrounded by double quotes](string interpolation).
+##[`;~`]()  Uses a monad to compose multiple gates, producing a gate of a similar type.
 
--`;-`, `;+`, `;*`, `;%`, and `%cnzy` all compose a tree structure. See also: [`++sail`]().
+##[`;;`]() Composes a [clam]() with a value, slamming the value through the clam and forcefully verifying that it is unchanged. See also: [`++hard`]().
+
+Interpolators:
+
+##[`;"`]() Composes [`++tapes`]() and twigs that produce `++tape`s. Generally used in its irregular form, of (text surrounded by double quotes).
+
+[++sail] runes:
+
+`;-`, `;+`, `;*`, `;%`, and `%cnzy` all compose a tree structure. See also: [`++sail`]().
 
 
 

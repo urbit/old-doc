@@ -2,12 +2,21 @@
 
 The `=` runes modify the subject. They are used whenever you want to push something on the subject, or use the results of one formula in another.
 
-The natural `=` rune is `=>`, `[%tsgr p=twig q=twig]`, which uses the product of `p` as the subject for the formula `q`.
+There are three basic categories of `=` runes:
 
-Other notable `=` runes:
+Those that replace the subject:
 
-`=<`, an inversion of `=>`, which uses the product of `q` as the subject for the formula `a`. Used to make code more readable by making it flow vertically.
+##[`=>`]()  The natural `=` rune. Uses the product of `p` as the subject for the formula `q`.
+##[`=<`]()  Inverse of `=>`. Uses the product of `q` as the subject for the formula `a`. Used to make code more readable by making it flow vertically.
 
-`=+` pushes data and code on the subject.
+Those that expand the subject:
 
-`=.` changes data in the subject. 
+##[`=+`]()  Implements Nock 8. Pushes data and code `p` on the subject for the formula `q`.
+##[`=-`]()  Inverse of `=+`. Pushes data and code `q` on the subject for the formula `q`.
+##[`=|`]()  Pushes the bunt of a tile `p` on the subject for the formula `q`.
+##[`=*`]()  Pushes on an alias of the subject.
+
+Those that alter the subject
+
+##[`=.`]()  Modifies the subject with a single change.
+##[`=:`]()  Modifies the subject with a multiple changes.

@@ -1,14 +1,19 @@
 ##Overview
 
-The `|` runes construct [core]()s. In the broadest case you can think of a core as similar to an object with named properties that can contain either functions or data. hoon also defines special cases of [core]()s for common operations, functions, functions called by default, and so on.
+The `|` runes construct [core]()s. In the broadest case you can think of a core as similar to an object with named properties that can contain either functions or data. 
 
-##[`|%`]() 
-The natural `|` rune. `|%` builds a core using a list of [`++arm`]()s, which generally contain [`++twig`]()s.
+The `|` runes accept an associative array of names ([++term]()) to ([++foot]()), each pair of which are called an [++arm](), to produce one of three basic categories of core:
 
-##[`|=`]()
-##[`|*`]()
-Gates. A gate is a core with one arm [`$`], the empty name and which takes a sample `p`. `|=` creates a `dry` gate, where the sample is typechecked at compile time. `|*` creates a `wet` gate, where the sample is typechecked at runtime against its product type. 
+The natural, generic core.
 
-##[`|-`]()
-##[`|.`]()
-Traps. Both reduce to a `|%` with one arm `$`, the empty name. We use `|.` to put some computation into a wrapper, which we call a "trap". `|-` is identical to `|.` except for that it is automatically kicked after construction.
+##[`|%`]() Generic core, with [++arms] generally containing [++twig]()s
+
+Gates: cores with one arm [`$`], the empty name and which takes a sample `p`. The closest thing in Hoon to a function.
+
+##[`|=`]()  [`dry`]() gate, where the [sample]() is typechecked at compile time.
+##[`|*`]()  [`wet`]() gate, where the sample is typechecked at runtime against its product type. 
+
+Traps: reduce to a `|%` with one arm `$`, the empty name. Some computation that has been put inside of a wrapper so that it may be passed around.
+
+##[`|.`]()  Generic trap.
+##[`|-`]()  Trap automatically [kick]ed (called) after construction.
