@@ -6,18 +6,18 @@ There are three basic categories of `$` runes:
 
 Forks: [`++tile`]()s that can be one of multiple cases.
 
-##[`$?`]()  Non-empty list of cases.
-##[`$|`]()  Fork between atom and cell.
-##[`$&`]()  Fork between cells whose head is a cell and cells whose head is an atom.
+[`$?`]()  Non-empty list of cases.
+[`$|`]()  Fork between atom and cell.
+[`$&`]()  Fork between cells whose head is a cell and cells whose head is an atom.
 
 Tuples.
 
-##[`$:`]()  Unlabelled arrays.
-##[`$=`]()  Tuple with [++face]()s.
+[`$:`]()  Unlabelled arrays.
+[`$=`]()  Tuple with [++face]()s.
 
 Reductions: important convenience methods for working with 
 tiles, and are very broadly used.
 
-##[`$*`]()  [bunt]()
-##[`$,`]()  [clam]()
-##[`$@`]()  [whip]()
+[`$*`]()  [bunt]()
+[`$,`]()  [clam]()
+[`$@`]()  [whip]()

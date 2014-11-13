@@ -6,12 +6,12 @@ There are two basic categories of `.` runes:
 
 Nock operators:
 
-##[`.+`]()  Nock 4. Increments an atom.
+[`.+`]()  Nock 4. Increments an atom.
 
-##[`.=`]()  Nock 5. Tests two atoms for equality.
+[`.=`]()  Nock 5. Tests two atoms for equality.
 
-##[`.^`]()  Nock 11. In virtual userspace nock, loads a file from the global namespace.
+[`.^`]()  Nock 11. Loads a file from the global namespace in virtual userspace nock.
 
 Nock evaluators:
 
-##[`.*`]()  Executes a Nock expression in user space.
+[`.*`]()  Executes a Nock expression in userspace.

@@ -6,17 +6,17 @@ There are three basic categories:
 
 If-then-else statements:
 
-##[`?:`]()  A natural `?` rune. The traditional if-than-else statement.
-##[`?.`]()  Inversion of `?:`. An "unless" statement. Used to keep the code flowing vertically.
+[`?:`]()  A natural `?` rune. The traditional if-than-else statement.
+[`?.`]()  Inversion of `?:`. An "unless" statement. Used to keep the code flowing vertically.
 
 Switches:
 
-##[`?-`]()  Tradional switch.
-##[`?+`]()  Switch with a default return value.
+[`?-`]()  Tradional switch.
+[`?+`]()  Switch with a default return value.
 
-A Type Test:
+Type Tests:
 
-##[`?=`]()  Tests if the [icon]() of [`++tile`]() `p` contains `q`.
+[`?=`]()  Tests if the [icon]() of [`++tile`]() `p` contains `q`.
 
 
 
