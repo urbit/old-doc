@@ -4,7 +4,7 @@
 
 Since Everything in Hoon is a natural number, the interpreter needs to know both how to render them and subject them to type enforcement. Odors, which are just ASCII spans beginning with a `@`, carry all of the information necessary for the interpreter to do this. For instance, the interpreter knows to render an atom of odor `@t` as UTF-8 text.
 
-The span composing the Odor consists of two parts: a lowercase prefix carrying type information, and an upper-case suffix containing information about its size. The prefix is taxonomy that grows more specific to the right. For example, atoms of the odor `@ta` are URL-safe ASCII text, and Atoms of the odor `@tas` are the more specific subset of ASCII text that is acceptable in hoon.
+The span composing the Odor consists of two parts: a lowercase prefix carrying type information, and an upper-case suffix containing information about its size. The prefix is a taxonomy that grows more specific to the right. For example, atoms of the odor `@ta` are URL-safe ASCII text, and Atoms of the odor `@tas` are the more specific subset of ASCII text that is acceptable in hoon.
 
 The general principle of type enforcement is that atoms change freely either up or down the taxonomy, but not across. You can treat a `@tas` as a `@t`, as in a strong type system; but you can also treat a `@t` as a `@tas`, or an `@` as anything.  However, passing a `@t` to a function that expects an `@ux` is a type error.
 
@@ -20,7 +20,7 @@ For example, you can cast a `@t` to a `@tas`, or vice-versa:
 
 However, you cannot pass a `@ux` to a function that expects a `@t` without casting it to a `@` first:
 
-    ~zod/socialnet=> (|=(a=@t [%foo a]) 0x20)
+    ~zod/try=> (|=(a=@t [%foo a]) 0x20)
     ! type-fail
     ! exit
     ~zod/try=> =a 0x21
@@ -103,11 +103,11 @@ Atoms of the odor `@c` represent Unicode text, constructed with a UTF-32 bytestr
 
 #####Forms
 
-`~-`[text].
+`~-[text]`
 
 #####Examples
 
-    ~zod/socialnet=> :type; ~-foo
+    ~zod/try=> :type; ~-foo
     ~-foo
     @c
     ~zod/try=> ~-i~2764.u
@@ -135,7 +135,7 @@ Atoms of the odor `@da` represent absolute Urbit dates. Urbit dates represent 12
 
 #####Forms
 
-`~~`[year]`.`[month]`.`[date]`..`[hour]`.`[minute]`.`[second]`..`[millisecond]
+`~~[year].[month].[date]..[hour].[minute].[second]..[millisecond]`
 
 Note: the time of day and/or millisecond fragment is optional.
 
@@ -146,12 +146,12 @@ Note: the time of day and/or millisecond fragment is optional.
     ~zod/try=> :type; ~2014.1.1
     ~2014.1.1
     @da
-    ~zod/socialnet=> ~2014.1.1..01.01.01
+    ~zod/try=> ~2014.1.1..01.01.01
     ~2014.1.1..01.01.01
-    ~zod/socialnet=> :type; ~2014.1.1..01.01.01
+    ~zod/try=> :type; ~2014.1.1..01.01.01
     ~2014.1.1..01.01.01
     @da
-    ~zod/socialnet=> ~2014.1.1..01.01.01..1234
+    ~zod/try=> ~2014.1.1..01.01.01..1234
     ~2014.1.1..01.01.01..1234
     ~zod/try=> `@da`(bex 127)
     ~226.12.5..15.30.08
@@ -176,7 +176,7 @@ Atoms of the odor `@dr` atoms represent basic time intervals in milliseconds. Th
 
 #####Forms
 
-`~d`[day].`h`[hour]`m`[minute].`s`[second]..[fractionals]
+`~d[day].h[hour]m[minute].s[second]..[fractionals]`
 
 Note: Every measurement is optional, so long as those that are present are in order. The largest measurement is preceded by a `~`.
 
@@ -219,7 +219,7 @@ Atoms of the odor `@f` represent loobeans, where `0` is yes  and `1` is no. Loob
 #####Forms
 
 `0`, `1` as numbers.
-`%.y`, `%.n` as [%cube]s.
+`%.y`, `%.n` as [`%cube`]()s.
 `&`, `|` as short forms.
 
 #####Examples
@@ -231,11 +231,11 @@ Atoms of the odor `@f` represent loobeans, where `0` is yes  and `1` is no. Loob
     {%.y %.n}
     ~zod/try=> `@ud`.n
     1
-    ~zod/socialnet=> .y
+    ~zod/try=> .y
     %.y
-    ~zod/socialnet=> &
+    ~zod/try=> &
     %.y
-    ~zod/socialnet=> |
+    ~zod/try=> |
     %.n
 
 ---
@@ -247,10 +247,10 @@ Nil
 Atoms of the odor `@n` indicate an absence of information, as in a list terminator.
 The only value is `~`, which is just `0`.
 
-    ~zod/socialnet=> :type; ~
+    ~zod/try=> :type; ~
     ~
     %~
-    ~zod/socialnet=> `@ud`%~
+    ~zod/try=> `@ud`%~
     0
     ~zod/try=> `@ud`~
     0
@@ -265,13 +265,13 @@ Atoms of `@p` are primarily used to represent ships names, but they can be used 
 
 #####Forms
 
-`~`followed by a ship name.
+`~[phonemic]`
 
 Every syllable is a byte. Pairs of two bytes are separated by `-`, and phrases of four pairs are separated by `--`.
 
     ~zod/try=> ~pasnut
     ~pasnut
-    ~zod/socialnet=> :type; ~pasnut
+    ~zod/try=> :type; ~pasnut
     ~pasnut
     @p
     ~zod/try=> `@p`0x4321
@@ -289,7 +289,7 @@ Every syllable is a byte. Pairs of two bytes are separated by `-`, and phrases o
 
 IEEE floating-points
 
-Hoon does not yet support floating point, so these syntaxes don't actually work. But the syntax for a single-precision float is the normal English syntax, with a `.` prefix:
+Hoon does not yet support floating point, so these syntaxes don't work yet. But the syntax for a single-precision float is the normal English syntax, with a `.` prefix:
 
 ---
 
@@ -309,12 +309,12 @@ Atoms of the odor `@sb` represent signed binary numbers.
 
 ####Forms
 
-`-`0b[negative_binary]
-`--`0b[postive_binary]
+`-0b[negative_binary]`
+`--0b[postive_binary]`
 
 ####Examples
 
-    ~zod/socialnet=> :type; -0b1
+    ~zod/try=> :type; -0b1
     -0b1
     @sb
     ~zod/try=> `@sd`-0b1
@@ -336,8 +336,8 @@ Atoms of odor `@sd` represent signed decimal numbers.
 
 ####Forms
 
-`-`[negative[decimal]()]
-`--`[postive_[decimal]()]
+`-[negative[decimal]()]`
+`--[postive_[decimal]()]`
 
 ####Examples
 
@@ -362,8 +362,8 @@ Atoms of odor `@sv` represent signed base32 numbers.
 
 #####Forms
 
-`-0v`[negative_base32]. The digits are, in order, `0-9`, `a-v`.
-`--0v`[positive_base32].
+`-0v[negative_base32]` The digits are, in order, `0-9`, `a-v`.
+`--0v[positive_base32]`
 
 #####Examples
 
@@ -391,8 +391,8 @@ Atoms of odor `@sw` represent base64 numbers.
 
 #####Forms
 
-`-0w`[negative_base64]. The digits are, in order, `0-9`, `a-z`, `A-Z`,`-`, and `~`. 
-`--0w`[positive_base64]. The digits are, in order, `0-9`
+`-0w[negative_base64]` The digits are, in order, `0-9`, `a-z`, `A-Z`,`-`, and `~`. 
+`--0w[positive_base64]` The digits are, in order, `0-9`
 
 #####Examples
 
@@ -412,8 +412,8 @@ Atoms of odor `@sx` represent signed hexadecimal numbers.
 
 #####Forms
 
-`-`[negative_hexadecimal]
-`--`[positive_hexadecimal]
+`-[negative_hexadecimal]`
+`--[positive_hexadecimal]`
 
 #####Examples
 
@@ -440,15 +440,17 @@ Atoms of the odor `@t` represent a [cord](http://en.wikipedia.org/wiki/Rope_data
 
 #####Forms
 
-`~~`[text]
-`'`[text]`'`
+`~~[text]`
+`'[text]'`
+
+#####Examples
 
     ~zod/try=> ~~foo
     'foo'
-    ~zod/socialnet=> :type; 'foo'
+    ~zod/try=> :type; 'foo'
     'foo'
     @t
-    ~zod/socialnet=> :type; ~~foo
+    ~zod/try=> :type; ~~foo
     'foo'
     @t
 
@@ -462,9 +464,10 @@ Atoms of the odor `@ta` represent the ASCII text subset used in hoon literals: `
 
 #####Forms
 
-`~.`[text]. There are no escape sequences.
+`~.[text]` There are no escape sequences.
 
 #####Examples
+
     ~zod/try=> ~..asdf
     ~..asdf
     ~zod/try=> :type; ~.asdf
@@ -483,7 +486,7 @@ Atoms of `@tas` represent [`++term`]()s, the most exclusive text odor. The only 
 
 #####Forms
 
-`%`[text]. This means a term is always [cubical]().
+`%[text]` This means a term is always [cubical]().
 
 #####Examples
 
@@ -509,16 +512,18 @@ Atoms of the odor `@ub` represent unsigned binary numbers.
 
 ####Forms
 
-`0b`[number]. Numbers are least-significant bit first.
+`0b[number]` Numbers are least-significant bit first.
 
-    ~zod/socialnet=> `@`0b1
+#####Examples
+
+    ~zod/try=> `@`0b1
     1
     ~zod/try=> :type; 0b1
     0b1
     @ub
-    ~zod/socialnet=> `@`0b10
+    ~zod/try=> `@`0b10
     2
-    ~zod/socialnet=> `@`0b100
+    ~zod/try=> `@`0b100
     4
 
 ---
@@ -557,16 +562,16 @@ Atoms of the odor `@uv` represent unsigned base64 numbers.
 
 #####Forms
 
-`0v`[number]. The digits are, in order, `0-9`, `a-v`.
+`0v[number]` The digits are, in order, `0-9`, `a-v`.
 
 #####Examples
 
-    ~zod/socialnet=> `@ud`0vv
+    ~zod/try=> `@ud`0vv
     31
     ~zod/try=> :type; 0vv
     0vv
     @uv
-    ~zod/socialnet=> `@ud`(add 0vv 0v9)
+    ~zod/try=> `@ud`(add 0vv 0v9)
     40
 
 ---
@@ -577,7 +582,7 @@ Unsigned base64
 
 #####Forms
 
-`ow`[number]. The digits are, in order, `0-9`, `a-z`, `A-Z`,`-`, and `~`. 
+`ow[number]` The digits are, in order, `0-9`, `a-z`, `A-Z`,`-`, and `~`. 
 
 #####Examples
 
@@ -586,9 +591,9 @@ Unsigned base64
     ~zod/try=> :type; 0w~
     0w~
     @uw
-    ~zod/socialnet=> `@uv`(add 0w~ 0wZ)
+    ~zod/try=> `@uv`(add 0w~ 0wZ)
     0v3s
-    ~zod/socialnet=> `@ud``@uv`(add 0w~ 0wZ)
+    ~zod/try=> `@ud``@uv`(add 0w~ 0wZ)
     124
 
 ---
