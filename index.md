@@ -1,19 +1,6 @@
 Doc Index
 =========
 
-How to Read this Doc
---------------------
-
-
-- Intro
-- FAQ
-
-TODO: Write Instructions here
-
-
-Urbit Source Index   TODO: Redesign
-------------------
-
 - Foreword: Nock
 - Preface
 - 0: version stub
@@ -102,6 +89,4 @@ Urbit Source Index   TODO: Redesign
   - 4k: kahn, contacts 
   - 4l: lunt, job-control
   - 4m: musk, profiling
-
-- Postface
 

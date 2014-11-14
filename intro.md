@@ -1,3 +1,3 @@
-Introduction: What is Urbit?
+Introduction to Urbit
 ===========================
 
