@@ -24,7 +24,7 @@ Twig: `[%wtdt p=twig q=twig r=twig]`
 
 ##Wide form
 
-    ?:(p q r)
+    ?.(p q r)
 
 ##Irregular form
 
@@ -37,4 +37,4 @@ None
     ~zod/try=> ?.(?=(%a 'a') %not-a %yup)
     %yup
 
-Here we see two common cases of `?:` in the wide form, one uses an expression `gte` that produces a loobean and the other [`?=`]() to produce one of its cases. 
+Here we see two common cases of `?.` in the wide form, one uses an expression `gth` that produces a loobean and the other [`?=`]() to produce one of its cases. 
