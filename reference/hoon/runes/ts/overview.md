@@ -1,6 +1,6 @@
 ##Overview
 
-The `=` runes modify the subject. They are used whenever you want to push something on the subject, or use the results of one formula in another.
+The `=` runes modify the subject. They are used whenever you want to push something on the subject, modify the subject, or use the results of one formula in another.
 
 There are three basic categories of `=` runes:
 
