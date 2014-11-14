@@ -4,9 +4,11 @@ The `|` runes construct [core]()s. In the broadest case you can think of a core 
 
 The `|` runes accept an associative array of names ([++term]()) to ([++foot]()), each pair of which are called an [++arm](), producing one of the three basic categories of core:
 
-The natural, generic core.
+The natural, generic core:
 
 [`|%`]() Generic core, with [++arms] generally containing [++twig]()s
+
+Doors, generic core with a sample:
 
 Gates: cores with one arm [`$`], the empty name and which takes a sample `p`. The closest thing in Hoon to a function.
 
