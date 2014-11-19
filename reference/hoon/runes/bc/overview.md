@@ -1,5 +1,7 @@
 ##Overview
 
+Tile construction
+
 The `$` runes construct [`++tile`]()s. [`++tile`]()s are one of our primary building blocks in hoon, they define how we reduce our ASTs into well typed nouns that nock can compute. You can think of a [`++tile`]() sort of like a typeclass in Haskell.
 
 There are three basic categories of `$` runes:
