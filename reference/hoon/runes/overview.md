@@ -16,7 +16,7 @@ In a program, it is used like so:
 
 Here the `=(0 a)` is `p`, the `b` is `q`, and the bottom line is the `r`.
 
-There are several benefits to using runes in lieu of reserved words. First, it prevents the programmer from accidentally misusing a reserved word as a variable name, which also allows her to be sure that any word in her progam is an identifier. Next, as the first ASCII symbol of the rune digraphs bears semantic significance, the programmer can look at any rune and immediately have a basic, intuitive understanding as to what it does. Furthermore, runes produce cleaner code. For example, here is the C equivalent of the `++add` source code printed above:
+There are several benefits to using runes in lieu of reserved words. First, it prevents the programmer from accidentally misusing a reserved word as a variable name, which also allows her to be sure that any word in her progam is an identifier. Next, as the first ASCII symbol of the rune digraphs bears semantic significance, the programmer can look at any rune and immediately have a basic, intuitive understanding as to what it does. Furthermore, runes produce cleaner, less verbose code. For example, here is the C equivalent of the `++add` source code printed above:
 
         attribute add {
              function(left-operand: atom, right-operand: atom)
