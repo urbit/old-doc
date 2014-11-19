@@ -87,7 +87,7 @@ A noun is an [atom]() or a [cell](). Everything in Hoon is a noun.
 `%$`, or `$` for short, is the empty name in Hoon.
 
 #[leg](#leg)
-If the result of [pulling]() something from `x` is a subtree, then it is a leg. 
+If the result of [pulling]() something from `x` is a subtree, then it is a leg.
 
 More here? Existing doc isn't quite clear here..
 
@@ -97,6 +97,8 @@ More here? Existing doc isn't quite clear here..
 A `%leaf` is a [`++tile`]() consisting of an atomic constant of value `q` and odor `p`. Its icon is a [`%cube`](). The syntax for a leaf is the same as the syntax for a [`++twig`](), except that % is never required to generate a cube. For instance, as a twig, 7 has a type of [%atom %ud]; %7 has a type of [%cube 7 [%atom %ud]]. But the icon of the leaf 7 is, again, [%cube 7 [%atom %ud]].
 
 Copied the bottom half from existing doc. Not sure about this one...
+
+#[loobean](#loobean)
 
 #[payload](#payload)
 [Cores](), at the most basic level, are of the structure [battery payload]. The payload consists of the data contained within a core. You can think of the payload as similar to the data of an object.
