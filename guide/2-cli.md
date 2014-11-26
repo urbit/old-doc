@@ -1,5 +1,7 @@
 This guide is intended to get you oriented in the Arvo command prompt and give you a tour of some basic utilities. The command prompt comes in two flavors, in a web browser and in a terminal. For the most part they're the same, except that in a browser you can evaluate tall-form Hoon expressions but you can't run readline apps, such as `:chat`.
 
+Every Arvo command prompt is also a Hoon REPL. The command line is a great place to test out your hoon knowledge. In this guide we're just going to talk about some basic system utilities and get comfortable moving around in `%clay`. If you'd just like to see a list of command-line utilities, you can find the Arvo man pages [here]().
+
 This rudimentary tour should work well in both places. 
 
 
@@ -76,6 +78,16 @@ Let's update our file with some new content, so we can see how `%clay` stores re
 
 Here we use `:ls` to investigate the filesystem across versions. You can see that our `helo` file exists in our first revision. Using the simple `:cat` command we can print the contents of `/=try/helo/txt` in its two separate, versioned states.
 
+We can even move to a different version of our desk and look around:
+
+    ~talsur-todres/try=> /=try/1
+    =% /~talsur-todres/try/1
+    ~talsur-todres/try/1> :ls %
+    readme helo
+    ~talsur-todres/try/1>
+
+This is sort of like being in a detatched HEAD in git.
+
 
 3
 
@@ -97,5 +109,54 @@ Start up a new `vere` process with something like `bin/vere -c yacht`. Then run 
 Which will appear on your new yacht:
 
     < ~talsur-todres: whats up
-    ~tasfyn-partyv-talsur-todres/try=> 
+    ~talsur-todres-talsur-todres/try=> 
+
+You should also see the contents of your `/try` desk mirrored on your yacht:
+
+    ~talsur-todres-talsur-todres/try=> :ls %
+    readme helo
+    ~talsur-todres-talsur-todres/try=>
+
+Making another change on your destroyer should automatically propigate down to your yacht:
+
+    ~talsur-todres/try=> :into %/helo/txt 'back to mars'
+    written
+    ~talsur-todres/try=>
+
+    [%merge-fine ~talsur-todres %try]    
+    ~talsur-todres-talsur-todres/try=> :cat %/helo/txt
+    back to mars
+    ~talsur-todres-talsur-todres/try=>
+
+
+4
+
+Move files around
+
+Another familiar command line utility is `:mv`:
+
+    ~talsur-todres/try=> :mv %/helo/txt %/test/helo/txt
+    moved
+    ~talsur-todres/try=>
+
+    [%merge-fine ~talsur-todres %try]    
+    ~talsur-todres-talsur-todres/try=> :cat %/test/helo/txt
+    back to mars
+    ~talsur-todres-talsur-todres/try=>
+
+In `%clay` we don't use file extensions or folders. A path either does or does not have anything in it. There's no need to do the equivalent of `mkdir` before moving something.
+
+We also implement the familiar `:rm`:
+
+    ~talsur-todres/try=> :rm %/test/helo/txt
+    removed
+    ~talsur-todres/try=> :cat %/test/helo/txt
+    file /~talsur-todres/try/~2014.11.26..16.49.52..3f5e/test/helo/txt not available
+    ~talsur-todres/try=> 
+
+    [%merge-fine ~talsur-todres %try]    
+    ~talsur-todres-talsur-todres/try=> :cat %/test/helo/txt
+    file /~tasfyn-partyv-talsur-todres/try/~2014.11.26..16.50.15..556b/test/helo/txt not available
+    ~talsur-todres-talsur-todres/try=>
+
 

@@ -11,7 +11,7 @@ In `/$URB_DIR`, run
 
         $ bin/vere -F -I ~zod -c zod
 
-This will boot `vere` into the carrier `~zod`. Because we're using the flag `-F` `vere` doesn't check any of the keys to confirm that we are in fact the owner of `~zod`. We use `-I` here to signal to `vere` that we want to start a carrier. `-I` takes a ship name. You can enter any one of the 256 Urbit carriers. More information on `vere` and its command line options can be found [here]().
+This will boot `vere` into the carrier `~zod`. Because we're using the flag `-F` `vere` doesn't check any of the keys to confirm that we are in fact the owner of `~zod`. We use `-I` here to signal to `vere` that we want to start an 'imperial' ship, or carrier. `-I` takes a ship name. You can enter any one of the 256 Urbit carriers. More information on `vere` and its command line options can be found [here]().
 
 You should see `vere` start as usual, although instead of copying its files from a parent ship the files are copied from `urb/zod` inside your Urbit directory. 
 
