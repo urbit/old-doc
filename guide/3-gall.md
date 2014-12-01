@@ -128,13 +128,46 @@ From our prior discussion we're familiar with a `++bone`, and `++gift` is define
           [%nice ~]                                       ::  Response message
       ==                                                  ::
 
-`++gift` defines the possible actions we can take in the moves that we produce. We can send eitehr partial or total updates with `%rush` and `%rust` respectively. We can also send either an error, `%mean` or default acknowledgement, `%nice`. 
+Which clearly depends on `++gilt`:
 
+    ++  gilt                                              ::  subscription frame
+      $%  [%hymn p=manx]                                  ::  html tree
+          [%json p=json]                                  ::  json
+      ==                                                  ::
+
+`++gift` defines the possible actions we can take in the moves that we produce. We can send either partial or total updates with `%rush` or `%rust` respectively. We can also send either an error, `%mean` or default acknowledgement, `%nice`. 
+
+Returning to our original `++move`, `[ost %give %rust %json vat-json]` we can now read it as 'send a total update with `++vat-json` as `++json`'. `++vat-json` simply takes our `(map @t @ud)` and turns it in to JSON. 
+
+Looking at the remainer of `++peer` we can see that it is mostly control-flow that produces a `%mean` if our `pax` is not matched, and a `%rush` if our `pax` is `%data`. We'll revisit this `%data` path later on.
 
 
 5.
 
-++poke-json
+How do we change our state?
+
+All of our state changes happen in `++poke-json`. Incoming messages are handled by `++poke` arms in `%gall` services. If an incoming message has a `%logo` it is appeneded after a `-`. Messages from the web are often sent as JSON, so `++poke-json` is common for services that face the web.
+
+Let's walk through this part:
+
+    =.  p.vat
+      (~(put by p.vat) newl)
+    :_  +>.$
+    :*  [ost %give %nice ~]
+        (deliver %upd-lead (joba -.newl [%n (scot %ud +.newl)]))
+    ==
+
+Using [`=.`]() we update the value of `p.vat` in our context using [`put:by`](), one of our map container functions. Then, we produce `+>.$` as our context. Since we have changed the value of `p.vat` within our immediate context, `$`, this is equivalient to updating the state of our service. Changing a value in your context and producing it is all you need to do to update your permanent state. That's one of the main goals of `%gall`, to be a single-level store.
+
+So, how did we get to this point in `++poke-json`?
+
+    =+  ^=  jop
+        ^-  kiss
+        %-  need  %.  jon
+        =>  jo  %-  of
+        :~  [%new-lead so]
+            [%add-lead so]
+        ==
 
 
 6.
