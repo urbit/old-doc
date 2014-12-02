@@ -51,7 +51,8 @@ acknowledge these responses since they're really independent one-way messages.
 `%wipe` wipes the given app from memory.  This is generally considered a hack,
 but it is sometimes useful during development to wipe the state of an app.  We
 don't guarantee that this actually completely wipes the app.  Generally, you
-want to use a `%cide` card if you actually want to kill an app.
+want to use a `%cide` card if you actually want to kill an app.  This gives no
+response.
 
 Even though it's not technically a part of `%gall`'s interface since it's not in
 `++kiss` and can't be called from the outside, it's worth discussing `%cide`,
