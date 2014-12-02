@@ -442,7 +442,6 @@ Set size
 
 ```
   +-  wyt                                               ::  size of set
-    .+
     |-  ^-  @
     ?~(a 0 +((add $(a l.a) $(a r.a))))
 ```
@@ -451,12 +450,12 @@ Produce the number of elements in set `a` as an atom.
 
 `a` is an [set]().
 
-    ~zod/try=> =a (~(gas in `(set ,@t)`~) `(list ,@t)`[`a` `b` `c` ~])
+    ~zod/try=> =a (~(put in (~(put in (sa)) 'a')) 'b')
     ~zod/try=> ~(wyt in a)
-    4
+    2
     ~zod/try=> b
     {'bonita' 'madeleine' 'daniel' 'john'}
     ~zod/try=> ~(wyt in b)
-    5
+    4
 
 ---
