@@ -217,14 +217,14 @@ One other thing to point out which may be immediately confusing coming from othe
 
 In
 
-    /pub/fab/guide/exercise/5/hymn.hook
+    /pub/fab/guide/exercise/6/hymn.hook
 
 Put
 
     |%
     ++  fib  
       |=  x=@
-        ?:  (lth x 2)
+        ?:  (lte x 2)
           1
         (add $(x (dec x)) $(x (sub x 2)))
     --
@@ -233,11 +233,11 @@ Put
     ;html
       ;head
         ;meta(charset "utf-8");
-        ;title: Exercise 5
+        ;title: Exercise 6
       ==
       ;body
         ;div
-          ;h1: Exercise 5 — Loops
+          ;h1: Exercise 6 — Loops
           ;p: {<(fib 1)>}, {<(fib 2)>}, {<(fib 3)>}, {<(fib 4)>}
         ==
       ==
@@ -260,13 +260,13 @@ If `x` is not less than `2` we compute `F(n-1) + F(n-2)` by using `$`. We mentio
 
 In
 
-    /pub/fab/guide/exercise/6/hymn.hook
+    /pub/fab/guide/exercise/7/hymn.hook
 
 Put
 
     ::
     ::
-    ::::  /hook/hymn/6/exercise/guide/fab/pub/
+    ::::  /hook/hymn/7/exercise/guide/fab/pub/
       ::
     /?    314
     /=    gas  /$  fuel
@@ -291,8 +291,8 @@ Put
 
 Try it
 
-    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/5/
-    http://ship-name.urbit.org/gin/del/main/pub/fab/guide/exercise/5/
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/7/
+    http://ship-name.urbit.org/gin/del/main/pub/fab/guide/exercise/7/
 
 Here we're putting our publishing framework, `%ford` to work a little bit. We're printing out some of the parameters our page is passed: who is looking at it, where it is and what revision our desk is on. We have also thrown in all our FCGI parameters in a codeblock for reference.
 
@@ -311,11 +311,11 @@ When we try changing the url from `gen/main` to `gin/del/main` we're using some 
 Path and identity are useful, but there are some other parameters worth checking out as well.
 
 
-7.
+8.
 
 In
   
-    /pub/fab/guide/exercise/7/hymn.hook
+    /pub/fab/guide/exercise/8/hymn.hook
 
 Put
   
@@ -339,8 +339,8 @@ Put
 
 Try it
   
-    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/7/
-    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/7/?code=yes-i-do
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/8/
+    http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/8/?code=yes-i-do
 
 This is a simple example, showing off another use of `/=    gas  /$  fuel`. In this case we're just pulling out the value of the `code` query string parameter. You should be able to change that value to any url-safe string and see it appear on the page. 
 
@@ -375,14 +375,14 @@ Put
 
 And in
 
-    /pub/fab/guide/exercise/9/lib.hook
+    /pub/fab/guide/exercise/9/lib.hoon
 
 Put
 
     |%
     ++  fib  
       |=  x=@
-        ?:  (lth x 2)
+        ?:  (lte x 2)
           1
         (add $(x (dec x)) $(x (sub x 2)))
     --
@@ -428,7 +428,7 @@ Put
     ^-  manx
     ;html
       ;head
-        ;title: %ford Example 3
+        ;title: %ford Example 4
       ==
       ;body
         ;div: {<(fib arg)>}
@@ -437,14 +437,14 @@ Put
 
 And in
 
-    /pub/fab/guide/exercise/10/lib.hook
+    /pub/fab/guide/exercise/10/lib.hoon
 
 Put
 
     |%
     ++  fib  
       |=  x=@
-        ?:  (lth x 2)
+        ?:  (lte x 2)
           1
         (add $(x (dec x)) $(x (sub x 2)))
     --
