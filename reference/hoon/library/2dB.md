@@ -829,7 +829,6 @@ Depth
 
 ```
   +-  wyt                                               ::  depth of map
-    .+
     |-  ^-  @
     ?~(a 0 +((add $(a l.a) $(a r.a))))
 ```
@@ -843,10 +842,10 @@ Produce the depth of the tree map `a`.
     ~zod/try=> o
     {[p='d' q=4] [p='c' q=3]}
     ~zod/try=> ~(wyt by m)
-    3
+    2
     ~zod/try=> ~(wyt by o)
-    3
+    2
     ~zod/try=> ~(wyt by (~(uni by m) o))
-    5
+    4
 
 ---
