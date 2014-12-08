@@ -1,11 +1,13 @@
 `%ford` is the typed and marked computation engine, used to functionally publish files from `%clay`, the file system.
+
+
 1. 
 
 Let's publish a webpage
 
 In
 
-    $yourpier/$yourship/pub/fab/guide/exercise/1/hymn.hook
+    $PIER/$SHIP-NAME/main/pub/fab/guide/exercise/1/hymn.hook
 
 Put
 
@@ -107,7 +109,7 @@ The first thing you should notice in this example is the `=+` at the top of our 
 
 `=+` pushes an expression on to our subject. The subject in hoon is similar to `this` in other languages. hoon being a functional language if we want something to be available further on in our computation we need to attach it to the subject first.
 
-The second thing you should notice is the `^- manx`. Here the rune `[^-]()` is used to cast the result of the subsequent code to a  [++manx](), which you can think of like the hoon MIME type for XML.
+The second thing you should notice is the `^- manx`. Here the rune `[^-]()` is used to cast the result of the subsequent code to a  [++manx](), which you can think of like the hoon MIME type for XML. Using a `^-` is not required, but helps us produce more informative error messages when we generate a type error or mismatch.
 
 Looking at the rendered page it's clear that we're assigning `a` to be `1` and `b` to be `2`. Looking at the code, however, you can see that we're doing this in two different ways. Runes in hoon can have irregular forms, and `^=` is one of them. The first two lines of our example are doing the same thing, where `a=2` is simply the irregular form of `^=  a  2`. You can see the full list of irregular forms [here](link).
 
@@ -128,8 +130,7 @@ Put
       ++  start  1
       ++  end  10
       ++  length
-        |=
-          [s=@ud e=@ud]
+        |=  [s=@ud e=@ud]
         (sub e s)
     --
     ::
@@ -149,7 +150,7 @@ Put
       ==
     ==
 
-Try it, and be sure to put two spaces between `++` and expressions!
+Try it, and be sure to put two spaces between `++` and arm names.
 
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/4/
 
@@ -177,8 +178,7 @@ Put
     |%
       ++  dist  ,[start=@ud end=@ud]
       ++  length
-        |=
-          [d=dist]
+        |=  [d=dist]
         (sub end.d start.d)
     --
     ::
