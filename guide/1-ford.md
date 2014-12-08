@@ -1,4 +1,9 @@
-`%ford` is the typed and marked computation engine, used to functionally publish files from `%clay`, the file system.
+`%ford` is the arvo` vane that handles asset management and publishing. We use
+`%ford` to compose our files when programming, and also to bundle files together for the web.
+
+This guide assumes that you have installed and started your urbit. Assuming you cloned the repo into `/$URB_DIR` you should be able to find the unix mirror of your ship's filesystem in `/$URB_DIR/$PIER/$SHIP-NAME`. All of the filesystem paths in this guide are relative to that Unix directory.
+
+Also, we refer to `http://ship-name.urbit.org/` in our URLs, but you can also use `http://localhost:8080/` if you prefer to just talk to your machine directly.
 
 
 1. 
@@ -7,7 +12,7 @@ Let's publish a webpage
 
 In
 
-    $PIER/$SHIP-NAME/main/pub/fab/guide/exercise/1/hymn.hook
+    /main/pub/fab/guide/exercise/1/hymn.hook
 
 Put
 
@@ -109,7 +114,7 @@ The first thing you should notice in this example is the `=+` at the top of our 
 
 `=+` pushes an expression on to our subject. The subject in hoon is similar to `this` in other languages. hoon being a functional language if we want something to be available further on in our computation we need to attach it to the subject first.
 
-The second thing you should notice is the `^- manx`. Here the rune `[^-]()` is used to cast the result of the subsequent code to a  [++manx](), which you can think of like the hoon MIME type for XML. Using a `^-` is not required, but helps us produce more informative error messages when we generate a type error or mismatch.
+The second thing you should notice is the `^- manx`. Here the rune `[^-]()` is used to cast our product to a  [++manx](), which you can think of like the hoon MIME type for XML. Using a `^-` is not required, but helps us produce more informative error messages when we generate a type error or mismatch.
 
 Looking at the rendered page it's clear that we're assigning `a` to be `1` and `b` to be `2`. Looking at the code, however, you can see that we're doing this in two different ways. Runes in hoon can have irregular forms, and `^=` is one of them. The first two lines of our example are doing the same thing, where `a=2` is simply the irregular form of `^=  a  2`. You can see the full list of irregular forms [here](link).
 
@@ -534,7 +539,7 @@ We're using `/=` to assign the `posts` face. `/:` sets the `++beam` for the comp
 
 If we take the next few lines and write them as pseudo code in wide form they might look something like this, `(/; [gate] (/@ /psal/))`. That being the case, let's start at the bottom and move upwards since that's how our data flows. In depth documentation on individual `++horn` runes can be found in the [horn section of the rune library](link).
 
-`/psal/` loads our `psal` mark. Marks are like content types, and we keep them in `/main/mar/`. You can open `/main/mar/psal/door.hook` to see that we specify the ways in which a particular mark can be converted to produced well typed output. The general form of this is [`/mark/`](link) where `mark` exists in the `/main/mar/` directory.
+`/psal/` loads our `psal` mark. Marks are like content types, and we keep them in `/main/mar/`. You can open `/main/mar/psal/door.hook` to see that we specify the ways in which a particular mark can be converted to produced well typed output. The general form of this is [`/mark/`]() where `mark` exists in the `/main/mar/` directory. A `psal` is a partial `hymn`, where `hymn` is the hoon structure for `html`.
 
 `/@` loads a list of files in numerical order from the previously specified `++beam` using our mark, `psal`. `/@` has a few close relatives. `/&`, for example, reads files by `@da` or absolute date. You can see the rest in the [horn section of the library](link). 
 
