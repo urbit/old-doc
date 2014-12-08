@@ -1,10 +1,11 @@
+`%ford` is the typed and marked computation engine, used to functionally publish files from `%clay`, the file system.
 1. 
 
 Let's publish a webpage
 
 In
 
-    /pub/fab/guide/exercise/1/hymn.hook
+    $yourpier/$yourship/pub/fab/guide/exercise/1/hymn.hook
 
 Put
 
@@ -104,7 +105,9 @@ How does that work?
 
 The first thing you should notice in this example is the `=+` at the top of our file. `=+` is a rune. hoon is a programming with no reserved words. We don't use `if` `this` or `function` at all. Instead, runes have their own pronunciation. `=+` is pronounced 'tislus'. You can find the table of pronunciation [here](link). In hoon you construct your programs using runes, which are two character ascii pairs. You can see the whole set of runes in the [rune index](link).
 
-`=+` pushes an expression on to our subject. The subject in hoon is similar to `this` in other languages. hoon being a functional language if we want something to be available further on in our computation we need to attach it to the subject first. 
+`=+` pushes an expression on to our subject. The subject in hoon is similar to `this` in other languages. hoon being a functional language if we want something to be available further on in our computation we need to attach it to the subject first.
+
+The second thing you should notice is the `^- manx`. Here the rune `[^-]()` is used to cast the result of the subsequent code to a  [++manx](), which you can think of like the hoon MIME type for XML.
 
 Looking at the rendered page it's clear that we're assigning `a` to be `1` and `b` to be `2`. Looking at the code, however, you can see that we're doing this in two different ways. Runes in hoon can have irregular forms, and `^=` is one of them. The first two lines of our example are doing the same thing, where `a=2` is simply the irregular form of `^=  a  2`. You can see the full list of irregular forms [here](link).
 
@@ -146,7 +149,7 @@ Put
       ==
     ==
 
-Try it
+Try it, and be sure to put two spaces between `++` and expressions!
 
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/4/
 
@@ -156,7 +159,7 @@ As you can see from the output, we have written a little function that takes two
 
 Each arm has a value, either static data (in the case of `++start` and `++end`) or a gate (in the case of `++length`). A gate is a kind of core. Gates only have one arm and are quite similar to a function in other languages. We use `|=` to construct our gate. Runes in hoon are generally categorized by their first character. `|` indicates a rune having to do with cores. You can find all of the `|` runes in the [rune library](link).
 
-Our `++length` gate takes two arguments, `s` and `e`. In hoon we call the data passed in to a gate the 'sample'. Every `|=` has two parts: the sample type and the computation, also known as a `tile` and a `twig`. Casually, `[s=@ud e=@ud]` means that the gate takes two arguments, labelled going forward as `s` and `e`, and required to both be `@ud` or unsigned decimal. Our computation, `(sub e s)` simply computes the difference between `e` and `s`. 
+Our `++length` [gate]() takes two arguments, `s` and `e`. In hoon we call the data passed in to a gate the 'sample'. Every `|=` has two parts: the sample type and the computation, also known as a `tile` and a `twig`. Casually, `[s=@ud e=@ud]` means that the gate takes two arguments, labelled going forward as `s` and `e`, and required to both be `@ud` or unsigned decimal. Our computation, `(sub e s)` simply computes the difference between `e` and `s`. 
 
 `@ud` is an odor. Odors aren't quite types, but they're similar. You'll learn the difference by example as we progress, and you can always refer to the [odor index](link). 
 
@@ -461,7 +464,7 @@ The first part of our assignment should look familiar from previous example, `=+
 
 To get a value out of our map of query string parameters `qix.gas` we use a method from the [maps library](link) that produces a `++unit`. `++unit`s are a common type in hoon used for optional values. A [`++unit`](link) is either `~` or `[~ p=value]`. Since we need to specify a value for `(fib arg)` even when someone doesn't enter the query string we use [`++fall`](link), which produces either the value of the unit, or the second argument if the `++unit` is null. Since our `qix.gas` has string values in it we specify a string in our second argument, `'0'`. As an aside, `'0'` is different from `"0"` in hoon. You can read about the difference in [`++cord`](link) and [`++tape`](link).
 
-Our outermost call, to [`++scow`](link), casts our string to a `@ud` — which is the type expected by `++fib`. `++scow` takes the name of an odor and a value, and tries to cast the value to that odor. 
+Our outermost call, to [`++slav`](link), casts our string to a `@ud` — which is the type expected by `++fib`. `++slav` takes the name of an odor and a value, and tries to cast the value to that odor. 
 
 
 11.
