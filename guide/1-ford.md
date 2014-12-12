@@ -1,4 +1,4 @@
-`%ford` is the arvo` vane that handles asset management and publishing. We use
+`%ford` is the arvo vane that handles asset management and publishing. We use
 `%ford` to compose our files when programming, and also to bundle files together for the web.
 
 This guide assumes that you have installed and started your urbit. Assuming you cloned the repo into `/$URB_DIR` you should be able to find the unix mirror of your ship's filesystem in `/$URB_DIR/$PIER/$SHIP-NAME`. All of the filesystem paths in this guide are relative to that Unix directory.
