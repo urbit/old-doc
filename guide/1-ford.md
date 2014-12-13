@@ -329,7 +329,7 @@ Put
   
     ::
     ::
-    ::::  /hook/hymn/five/guide/fab/pub/
+    ::::  /hook/hymn/8/exercise/guide/fab/pub/
       ::
     /?    314
     /=    gas  /$  fuel
@@ -365,7 +365,7 @@ Put
 
     ::
     ::
-    ::::  /hook/hymn/five/guide/fab/pub/
+    ::::  /hook/hymn/exercise/9/guide/fab/pub/
       ::
     /?    314
     ::
@@ -420,7 +420,7 @@ Put
 
     ::
     ::
-    ::::  /hook/hymn/five/guide/fab/pub/
+    ::::  /hook/hymn/10/exercise/guide/fab/pub/
       ::
     /?    314
     /=    gas  /$  fuel
