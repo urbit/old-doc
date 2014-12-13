@@ -492,7 +492,8 @@ Put
     ^-  manx
     ;html
       ;head
-        ;title: %ford Example
+        ;meta(charset "utf-8");
+        ;title: %ford Example 11
       ==
       ;body
         ;h1: Ford example — Loading Resources by Number
