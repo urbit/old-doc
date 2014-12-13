@@ -35,7 +35,7 @@ Try it
 
 What did you just do?
 
-The code you just wrote is urbit's naitive programming langauge, hoon. Generating HTML with hoon is similar to writing [jade](link) or other similar HTML shorthand. In hoon, this shorthand is called [`++sail`]() and it's a naitive part of the hoon language.
+The code you just wrote is urbit's native programming langauge, hoon. Generating HTML with hoon is similar to writing [jade](link) or other similar HTML shorthand. In hoon, this shorthand is called [`++sail`]() and it's a native part of the hoon language.
 
 In `++sail` node-names are prefixed with a `;` and closed with a `==`. Nodes that have text content and are only on one line use a `:`, such as our `;h1:` above, and are closed implicitly with a new line. Nodes with no content are closed with another `;`, such as `;br;`. 
 
@@ -70,7 +70,7 @@ Try it
 
 What's going on there?
 
-Clearly, the code `(add 2 2)` is generating `4`, and it's not too hard to see why. `add` is one of the library functions that are a part of `hoon.hoon`. Try replacing `(add 2 2)` with `(sub 2 (add 2 2))`. You can find documentaiton for the full hoon library in the [library reference](link). 
+Clearly, the code `(add 2 2)` is generating `4`, and it's not too hard to see why. `add` is one of the library functions that are a part of `hoon.hoon`. Try replacing `(add 2 2)` with `(sub 2 (add 2 2))`. You can find documentation for the full hoon library in the [library reference](link). 
 
 Since the product of `(add 2 2)` is a number, we need a few extra things to have it print properly. In `++sail` we use `{` and `}` to do string interpolation. Everything after the `:` is expected to be a string, so we need to tell the parser when we start writing code. The `<` and `>` inside our `{` `}` are converting our result `4`, a number, to the string `"4"`. hoon is a strongly typed language kind of like haskell, so we need to explicitly convert our types. 
 
