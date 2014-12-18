@@ -86,7 +86,7 @@ We can even move to a different version of our desk and look around:
     readme helo
     ~talsur-todres/try/1>
 
-This is sort of like being in a detatched HEAD in git.
+This is sort of like being in a detached HEAD in git.
 
 
 3
@@ -117,7 +117,7 @@ You should also see the contents of your `/try` desk mirrored on your yacht:
     readme helo
     ~talsur-todres-talsur-todres/try=>
 
-Making another change on your destroyer should automatically propigate down to your yacht:
+Making another change on your destroyer should automatically propagate down to your yacht:
 
     ~talsur-todres/try=> :into %/helo/txt 'back to mars'
     written
