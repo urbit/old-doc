@@ -81,6 +81,10 @@ Reload the standard library (zuse) and/or arvo vanes. If zuse is reloaded, vanes
 
 #[`:sync`](#sync)
 
+`:sync %source-desk ~hidduc-posmeg %target-desk`
+
+Sets up a subscription to the source desk on the target ship name to the target desk on your ship.
+
 ---
 
 #[`:ticket`](#ticket)
@@ -88,6 +92,11 @@ Reload the standard library (zuse) and/or arvo vanes. If zuse is reloaded, vanes
 ---
 
 #[`:unsync`](#unsync)
+
+`:sync %source-desk ~hidduc-posmeg %target-desk`
+
+Cancels the subscription to the source desk on the target ship name to the target desk on your ship.
+
 
 ---
 
