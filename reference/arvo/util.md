@@ -93,7 +93,7 @@ Sets up a subscription to the source desk on the target ship name to the target 
 
 #[`:unsync`](#unsync)
 
-`:sync %source-desk ~hidduc-posmeg %target-desk`
+`:unsync %source-desk ~hidduc-posmeg %target-desk`
 
 Cancels the subscription to the source desk on the target ship name to the target desk on your ship.
 
