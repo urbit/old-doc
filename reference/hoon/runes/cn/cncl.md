@@ -17,7 +17,6 @@ Twig: `[%cncl p=twig q=twig]`
 
     %:  p
         q
-    ==
 
 ##Wide form
 

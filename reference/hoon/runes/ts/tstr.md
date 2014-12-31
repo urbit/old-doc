@@ -17,7 +17,7 @@ Twig: `[%tstr p=term q=wing r=twig]`
 ##Tall form
 
     =*  p  q
-            r
+        r
 
 ##Wide form
 

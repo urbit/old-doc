@@ -20,9 +20,9 @@ Twig: `[%cncb p=wing q=tram]`
 ##Tall form
 
     %_  p
-          p.i.q  q.i.q
-          p.i.t.q  q.i.t.q
-        ==
+      p.i.q  q.i.q
+      p.i.t.q  q.i.t.q
+    ==
 
 ##Wide form
 

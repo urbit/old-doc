@@ -16,7 +16,7 @@ Twig: `[%wtts p=tile q=wing]`
 ##Tall form
 
     ?=  p
-            q
+        q
 
 ##Wide form
 

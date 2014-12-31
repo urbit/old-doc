@@ -18,8 +18,8 @@ Twig: `[%tsdt p=wing q=twig r=twig]`
 Kingside:
 
     =.  p 
-          q
-        r
+      q
+    r
 
 Queenside:
 

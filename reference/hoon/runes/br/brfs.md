@@ -23,9 +23,9 @@ Twig: `[%brfs p=tile q=(map term foot)]`
 ##Tall form
 
     |/  p
-          +-  p.n.q
-            q.n.q
-          --
+    +-  p.n.q
+      q.n.q
+    --
 
 ##Wide form
 

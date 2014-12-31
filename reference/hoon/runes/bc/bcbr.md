@@ -16,8 +16,7 @@ Atom / cell
 ##Tall form
 
     $|  p
-            q
-        ==
+        q
 
 ##Wide form
 

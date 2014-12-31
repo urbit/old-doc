@@ -16,7 +16,7 @@ Twig: `[%tskt p=twig q=twig r=twig s=twig]`
 
 Kingside:
 
-     =^    p 
+    =^    p 
         q
       r
     s

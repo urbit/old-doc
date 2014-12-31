@@ -15,9 +15,9 @@ Twig: `[%clsg p=tusk]`
 ##Tall form
 
     :~  i.p
-            i.t.p
-            i.t.t.p
-        ==
+        i.t.p
+        i.t.t.p
+    ==
 
 ##Wide form
 

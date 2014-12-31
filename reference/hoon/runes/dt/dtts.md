@@ -20,7 +20,7 @@ Twig: `[%dtts p=twig q=twig]`
 ##Tall form
 
     .=  p
-            q
+        q
 
 ##Wide form
 

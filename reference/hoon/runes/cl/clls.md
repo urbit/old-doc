@@ -24,7 +24,7 @@ Kingside:
 
 Queenside:
 
-    :+  p   q
+    :+  p  q
     r
 
 ##Wide form
