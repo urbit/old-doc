@@ -16,8 +16,8 @@ Tile autocons
 ##Tall form
 
     $:  p
-            q
-        ==
+        q
+    ==
 
 ##Wide form
 

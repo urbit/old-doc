@@ -22,12 +22,6 @@ Twig: `[%brhp p=twig]`
 
     |-  p
 
-    |-
-    p
-
-    |-
-        p
-
 ##Wide form
 
     |-(p)

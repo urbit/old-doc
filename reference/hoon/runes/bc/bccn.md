@@ -15,9 +15,8 @@ Tagged union
 ##Tall form
 
     $%  p
-            q
-            q
-        ==
+        q
+    ==
 
 ##Wide form
 

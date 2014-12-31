@@ -15,10 +15,10 @@ Twig: `[%smsg p=(list beer)]`
 ##Tall form
 
     ;~  p
-          i.q
-          i.t.q
-          i.t.t.q
-        ==
+      i.q
+      i.t.q
+      i.t.t.q
+    ==
 
 ##Wide form
 

@@ -16,7 +16,7 @@ Twig: `[%sgbc p=term q=twig]`
 ##Tall form
 
     ~?  p
-            q
+        q
 
 ##Wide form
 

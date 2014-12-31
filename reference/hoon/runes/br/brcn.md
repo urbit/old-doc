@@ -22,11 +22,11 @@ Twig: `[%brcn p=(map term foot)]`
 ##Tall form
 
     |%  
-        ++  p.n.q
-          q.n.q
-        +-  p.n.l.q
-          q.n.l.q
-        --
+    ++  p.n.q
+      q.n.q
+    +-  p.n.l.q
+      q.n.l.q
+    --
 
 ##Wide form
 

@@ -23,9 +23,9 @@ Twig: `[%brkt p=twig q=(map term foot)]`
 ##Tall form
 
     |^  p
-          ++  p.n.q
-            q.n.q
-        --
+    ++  p.n.q
+      q.n.q
+    --
 
 ##Wide form
 

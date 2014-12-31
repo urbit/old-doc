@@ -16,8 +16,8 @@ Twig: `[%wtsg p=wing q=twig r=twig]`
 ##Tall form
 
     ?~  p
-          q
-        r
+      q
+    r
 
 ##Wide form
 

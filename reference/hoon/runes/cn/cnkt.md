@@ -16,9 +16,9 @@ Twig: `[%cnkt p=twig q=twig r=twig s=twig]`
 ##Tall form
 
     %^    p
-            q
-          r
-        s
+        q
+      r
+    s
 
 ##Wide form
 

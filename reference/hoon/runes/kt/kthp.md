@@ -20,7 +20,7 @@ Twig: `[%kthp p=tile q=twig]`
 ##Tall form
 
     ^-  p
-            q
+        q
 
 ##Wide form
 
