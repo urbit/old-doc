@@ -312,7 +312,7 @@ For example:
 
     *[[19 42] [0 3] 0 2]
 
-The **subject** `s` is `[19 42]`. The **formula** `h` is `*[[0 3] 0 2]`.
+The **subject** `s` is `[19 42]`. The **formula** `h` is `[[0 3] 0 2]`.
 
     *[s h]
 
