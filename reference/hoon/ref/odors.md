@@ -62,7 +62,15 @@ Note that when explicitly casting a `@ux` to a `@t`, the interpreter automatical
 
 ##Odor Size Suffixes
 
-The suffix of an odor, if present, is a single upper-case character A-Z `c`,which indicates an atom of size less than or equal to `n` bits, where `n` is `1 << (c - 'A')`. Thus, `@tD` is one UTF-8 byte (whatever that means); `@tN` is a kilobyte or less of UTF-8. 
+The suffix of an odor, if present, is a single upper-case character A-Z `c`, which indicates the size of an atom. This is possible, because in Hoon, a letter maps to an ASCII code number, thus a number.
+
+Size is specified in bits in the form of `1 << (c - 'A')` resp. `2^c`, since most data aligns to the power of 2 or can be composed of such blocks.
+
+The size of a block of size `N` can be calculated for example using `(bex (sub 'N' 'A'))` in bits or `(div (bex (sub 'N' 'A')) 8)` in bytes.
+
+Thus, `@tD` is one UTF-8 byte (whatever that means) and `@tN` is 1 kilobyte or less of UTF-8.
+
+For reference:
 
     A   1 bit
     B   2 bits
@@ -92,6 +100,8 @@ The suffix of an odor, if present, is a single upper-case character A-Z `c`,whic
     Z   4MB
 
 It is possible to construct an atom bigger than 4Mb in size, but the type system would not be able to express an odor size for it.
+
+There is also the datatype `++bloq` to hold a to-the-power-of block size (though it is just an alias for `@`).
 
 ---
 
