@@ -26,8 +26,10 @@ Get the code.
 Clone the GitHub repository and move the files into your `/main` desk, under the
 corresponding paths. You will need four files:
 
-    /main/app/lead/core.hook main/pub/lead/hymn.hook main/pub/lead/src/main.css
-    /main/pub/lead/src/main.js
+* /main/app/lead/core.hook
+* /main/pub/lead/hymn.hook
+* /main/pub/lead/src/main.css
+* /main/pub/lead/src/main.js
 
 When everything is in place, try it:
 
@@ -90,7 +92,9 @@ How is our state stored?
 
 In `/main/app/lead/core.hook`:
 
-    ++  axle       $%  [%0 p=(map ,@t ,@ud)]          ==
+    ++  axle
+      $%  [%0 p=(map ,@t ,@ud)]
+      ==
 
 is the first arm inside our leading `|%` that's important to notice. `++axle`
 defines the tile for our state. By convention we store our state as a [`$%`](),
@@ -121,11 +125,20 @@ Where do requests go?
 
 In `/main/app/lead/core.hook`:
 
-      ++  peer         |=  [ost=bone you=ship pax=path]         ^-  [(list move)
-_+>]         ?~  pax           [[ost %give %rust %json vat-json]~ +>.$]
-:_  +>.$         :_  ~         ?+  -.pax           =-  [ost %give %mean -]
-`[%not-found [%leaf "you need to specify a path"]~]           %data
-=-  [ost %give %rush %json -]             (joba %conn %b &)         ==
+      ++  peer
+        |=  [ost=bone you=ship pax=path]
+        ^-  [(list move) _+>]
+        ?~  pax
+          [[ost %give %rust %json vat-json]~ +>.$]
+        :_  +>.$
+        :_  ~
+        ?+  -.pax
+          =-  [ost %give %mean -]
+          `[%not-found [%leaf "you need to specify a path"]~]
+          %data
+            =-  [ost %give %rush %json -]
+            (joba %conn %b &)
+        ==
 
 is the most important arm to look at first. `++peer` is one of the predefined
 arms that `%gall` calls when certain events happen. You can find them all in the
@@ -141,36 +154,36 @@ with changed values.
 
 Let's look at each of these parts of our context and the sample in `++peer`.
 
-`++hide`, labelled `hid` in peer`'s context, gives us some information about the
-`++request being passed in. You can look at the specifics in the [`%arvo`
-`++models](), but for our purposes we can think of it simply as request
-`++metadata.
+`++hide`, labelled `hid` in peer's context, gives us some information about the
+`++request` being passed in. You can look at the specifics in the [`%arvo`
+`++models`](), but for our purposes we can think of it simply as request
+metadata.
 
-`++axle`, labelled as `vat` in peer`'s context, should be familiar from the
-`++discussion in the previous step.
+`++axle`, labelled as `vat` in peer's context, should be familiar from the
+discussion in the previous step.
 
-`ost is a ++bone, or an identifier for an %arvo duct. 'Duct' is actually a
-`pretty good word for what a ++duct does. Informally, when an event is processed
-`in %arvo we patch together our requsite computations with ++ducts. For example,
-`when we get a network packet, parse it, pass it to the webserver, and then pass
-`it to the application framework we use a ++duct to make all those connections.
-`In ++peer our ost just identifies the incoming request by number. We don't have
-`access to the connecting ++duct, but we use ost in the effects we produce so
-`our responses are correctly coupled to the incoming request.
+`ost` is a `++bone`, or an identifier for an `%arvo` duct. 'Duct' is actually a
+pretty good word for what a ++duct does. Informally, when an event is processed
+in `%arvo` we patch together our requisite computations with `++ducts`. For example,
+when we get a network packet, parse it, pass it to the webserver, and then pass
+it to the application framework we use a `++duct` to make all those connections.
+In `++peer` our ost just identifies the incoming request by number. We don't have
+access to the connecting `++duct`, but we use `ost` in the effects we produce so
+our responses are correctly coupled to the incoming request.
 
-`you is a ++ship, which is just a [@p]() or a phonemic string like ~tasfyn-
-`partyv. %eyre does some work to figure out who this is, or uses a submarine
-`name if it can't be determined. You can read more about how we parse identities
-`in %eyre in the [%eyre reference]().
+`you` is a `++ship`, which is just a [`@p`]() or a phonemic string like `~tasfyn-
+partyv`. `%eyre` does some work to figure out who this is, or uses a submarine
+name if it can't be determined. You can read more about how we parse identities
+in `%eyre` in the [`%eyre` reference]().
 
-`pax is a ++path, or a list of @ta. In Hoon we most often write paths as you
-`would expect, /something/like/this. In %gall services requests come in on a
-`specific path, like /data or /.
+`pax` is a `++path`, or a list of `@ta`. In Hoon we most often write paths as you
+would expect, `/something/like/this`. In `%gall` services requests come in on a
+specific path, like `/data` or `/`.
 
 `++peer`, as with any arm that handles events, must produce a pair of a `(list
-`++move)` and our context, with any intended changes. In this peer` we handle
-`++two cases, when `pax` is empty, or `~`, when our `pax` is `/data`. We throw
-`++an error if `pax` is anything else.
+++move)` and our context, with any intended changes. In this peer we handle
+two cases, when `pax` is empty, or `~`, when our `pax` is `/data`. We throw
+an error if `pax` is anything else.
 
 
 5.
@@ -192,23 +205,25 @@ From our prior discussion we're familiar with a `++bone`, and `++gift` is
 defined right above in `core.hook`:
 
     ++  gift                                              ::  output action
-$%  [%rust gilt]                                    ::  total update
-[%rush gilt]                                    ::  partial update
-[%mean (unit (pair term (list tank)))]          ::  Error, maybe w/ msg
-[%nice ~]                                       ::  Response message       ==
-::
+      $%  [%rust gilt]                                    ::  total update
+          [%rush gilt]                                    ::  partial update
+          [%mean (unit (pair term (list tank)))]          ::  Error, maybe w/ msg
+          [%nice ~]                                       ::  Response message
+      ==
+      ::
 
 Which clearly depends on `++gilt`:
 
     ++  gilt                                              ::  subscription frame
-$%  [%hymn p=manx]                                  ::  html tree
-[%json p=json]                                  ::  json       ==
-::
+      $%  [%hymn p=manx]                                  ::  html tree
+          [%json p=json]                                  ::  json
+      ==
+      ::
 
 `++gift` defines the possible actions we can take in the moves that we produce.
-`++We can send either partial or total updates with `%rush` or `%rust`
-`++respectively. We can also send either an error, `%mean` or default
-`++acknowledgement, `%nice`.
+We can send either partial or total updates with `%rush` or `%rust`
+respectively. We can also send either an error, `%mean` or default
+acknowledgement, `%nice`.
 
 Returning to our original `++move`, `[ost %give %rust %json vat-json]` we can
 now read it as 'send a total update with `++vat-json` as `++json`'. `++vat-json`
@@ -230,8 +245,12 @@ json` is common for services that face the web.
 
 Let's walk through this part:
 
-    =.  p.vat       (~(put by p.vat) newl)     :_  +>.$     :*  [ost %give %nice
-~]         (deliver %upd-lead (joba -.newl [%n (scot %ud +.newl)]))     ==
+    =.  p.vat
+      (~(put by p.vat) newl)
+    :_  +>.$
+    :*  [ost %give %nice ~]
+        (deliver %upd-lead (joba -.newl [%n (scot %ud +.newl)]))
+    ==
 
 Using [`=.`]() we update the value of `p.vat` in our context using [`put:by`](),
 one of our map container functions. Then, we produce `+>.$` as our context.
@@ -242,13 +261,18 @@ state. That's one of the main goals of `%gall`, to be a single-level store.
 
 So, how did we get to this point in `++poke-json`?
 
-    =+  ^=  jop         ^-  kiss         %-  need  %.  jon         =>  jo  %-
-of         :~  [%new-lead so]             [%add-lead so]         ==
+    =+  ^=  jop
+        ^-  kiss
+        %-  need  %.  jon
+        =>  jo  %- of
+        :~  [%new-lead so]
+            [%add-lead so]
+        ==
 
 
 6.
 
-++deliver
+`++deliver`
 
 
 7.
