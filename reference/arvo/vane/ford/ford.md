@@ -72,10 +72,12 @@ by index in `q.kig`, and the next available index is `p.kig`.
               [%boil p=mark q=beam r=path]              ::  general synthesis
               [%call p=silk q=silk]                     ::  slam
               [%cast p=mark q=silk]                     ::  translate
+              [%diff p=silk q=silk]                     ::  diff
               [%done p=(set beam) q=cage]               ::  literal
               [%dude p=tank q=silk]                     ::  error wrap
               [%dune p=(set beam) q=(unit cage)]        ::  unit literal
               [%mute p=silk q=(list (pair wing silk))]  ::  mutant
+              [%pact p=silk q=silk]                     ::  patch
               [%plan p=beam q=spur r=hood]              ::  structured assembly
               [%reef ~]                                 ::  kernel reef
               [%ride p=twig q=silk]                     ::  silk thru twig
@@ -397,6 +399,10 @@ of the critical and fundamental operations of ford.
 silks are recursively defined in terms of other silks, so we often need a silk
 that simply produces its input.  A monadic return, if you will.
 
+`%diff` diffs the two given silks (which must be of the same mark), producing a
+cage of the mark specified in `++mark` in `++grad` for the mark of the two
+silks.
+
 `%dude` computes the given silk with the given tank as part of the stack trace
 if there is an error.
 
@@ -405,6 +411,10 @@ value in the unit.
 
 `%mute` takes a silk and a list of changes to make to the silk.  At each wing in
 the list we put the value of the associated silk.
+
+`%pact` applies the second silk as a patch to the first silk.  The second silk
+must be of the mark specified in `++mark` in `++grad` for the mark of the first
+silk.
 
 `%plan` performs a structured assembly directly.  This is not generally directly
 useful because several other silks perform supersets of this functionality.  We

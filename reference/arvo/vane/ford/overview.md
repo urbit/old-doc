@@ -20,7 +20,7 @@ Cards
 ===
 
 `%ford` accepts just one card, `%exec`.  This is misleading, however,
-since there are a dozen different `silk`s that may be used with it.
+since there are fourteen different `silk`s that may be used with it.
 In every case, the expected response to a `%exec` card is a `%made`
 gift with either an error or the produced result along with its set of
 dependencies.
@@ -49,6 +49,12 @@ Slams the result of one silk against the result of another.
 Translates the given silk to the given mark, if possible.  This is one
 of the critical and fundamental operations of ford.
 
+#[`%diff`](#diff)
+
+Diffs the two given silks (which must be of the same mark), producing
+a cage of the mark specified in `++mark` in `++grad` for the mark of
+the two silks.
+
 #[`%done`](#done)
 
 Produces exactly its input.  This is rarely used on its own, but many
@@ -70,6 +76,12 @@ value in the unit.
 
 Takes a silk and a list of changes to make to the silk.  At each wing
 in the list we put the value of the associated silk.
+
+#[`%pact`](#pact)
+
+Applies the second silk as a patch to the first silk.  The second silk
+must be of the mark specified in `++mark` in `++grad` for the mark of
+the first silk.
 
 #[`%plan`](#plan)
 
