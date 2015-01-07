@@ -92,7 +92,9 @@ How is our state stored?
 
 In `/main/app/lead/core.hook`:
 
-    ++  axle       $%  [%0 p=(map ,@t ,@ud)]          ==
+    ++  axle
+      $%  [%0 p=(map ,@t ,@ud)]
+      ==
 
 is the first arm inside our leading `|%` that's important to notice. `++axle`
 defines the tile for our state. By convention we store our state as a [`$%`](),
@@ -123,11 +125,20 @@ Where do requests go?
 
 In `/main/app/lead/core.hook`:
 
-      ++  peer         |=  [ost=bone you=ship pax=path]         ^-  [(list move)
-_+>]         ?~  pax           [[ost %give %rust %json vat-json]~ +>.$]
-:_  +>.$         :_  ~         ?+  -.pax           =-  [ost %give %mean -]
-`[%not-found [%leaf "you need to specify a path"]~]           %data
-=-  [ost %give %rush %json -]             (joba %conn %b &)         ==
+      ++  peer
+        |=  [ost=bone you=ship pax=path]
+        ^-  [(list move) _+>]
+        ?~  pax
+          [[ost %give %rust %json vat-json]~ +>.$]
+        :_  +>.$
+        :_  ~
+        ?+  -.pax
+          =-  [ost %give %mean -]
+          `[%not-found [%leaf "you need to specify a path"]~]
+          %data
+            =-  [ost %give %rush %json -]
+            (joba %conn %b &)
+        ==
 
 is the most important arm to look at first. `++peer` is one of the predefined
 arms that `%gall` calls when certain events happen. You can find them all in the
