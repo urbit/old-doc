@@ -2354,6 +2354,101 @@ superficially so different, remember that the correct arm in `++grow` does not
 have a sample while the one in `++grab` does.  This means they must be called
 rather differently.
 
+Lifecycle of a `%diff`
+----------------------
+
+```
+          %diff
+        %+  cool  |.(leaf/"ford: diff {<`@p`(mug p.kas)>} {<`@p`(mug q.kas)>}")
+        (diff cof p.kas q.kas)
+```
+
+We push debug information onto the trace and go right to `++diff`.
+
+```
+    ++  diff
+      |=  [cof=cafe kas=silk kos=silk]
+      ^-  (bolt cage)
+      %.  [cof kas kos]
+      ;~  cope
+        ;~  coax
+          |=([cof=cafe p=silk q=silk] (make cof p))
+          |=([cof=cafe p=silk q=silk] (make cof q))
+        ==
+        |=  [cof=cafe cay=cage coy=cage]
+```
+
+First, we process the two given silks to get our arguments.
+
+```
+        ?.  =(p.cay p.coy)
+          %+  flaw  cof  :_  ~
+          leaf/"diff on data of different marks: {(trip p.cay)} {(trip p.coy)}"
+```
+
+If the two cages have different marks, then we can't diff them, so we complain.
+
+```
+        %+  cope  (fang cof p.cay [our %main %da now])
+        |=  [cof=cafe pro=vase]
+```
+
+We pull in the relevant mark's definition.
+
+```
+        ?.  (slab %grad p.pro)
+          (flaw cof leaf/"no ++grad" ~)
+        =+  gar=(slap pro [%cnzy %grad])
+        ?.  (slab %form p.gar)
+          ?.  (slab %sted p.gar)
+            (flaw cof leaf/"no ++form:grad nor ++sted:grad" ~)
+          =+  for=((soft ,@tas) q:(slap gar [%cnzy %sted]))
+          ?~  for
+            (flaw cof leaf/"bad ++sted:grad" ~)
+          (make cof %diff [%cast u.for kas] [%cast u.for kos])
+```
+
+If there's no `++grad`, we complain.  If there's no `++form:grad`, then we look
+for a `++sted:grad`.  If we can't find either, or if `++sted:grad` isn't a term,
+then we complain.  If `++sted:grad` exists and is a term, then it represents the
+mark we should use as a proxy to get our diff.  So, we cast both our given cages
+to the new mark and start the dance again.
+
+```
+        ?.  (slab %diff p.gar)
+          (flaw cof leaf/"no ++diff:grad" ~)
+```
+
+Otherwise, we expect a `++diff:grad`.
+
+```
+        %+  cope  (keel cof pro [[%& 6]~ q.cay]~)
+        |=  [cof=cafe pox=vase]
+```
+
+We put the first cage's data into the sample of the given mark's definition.
+
+```
+        %+  cope
+          %^  maul  cof
+            (slap (slap pox [%cnzy %grad]) [%cnzy %diff])
+          q.coy
+        |=  [cof=cafe dif=vase]
+```
+
+We run `++diff:grad` with a sample of the second cage's data.
+
+```
+        =+  for=((soft ,@tas) q:(slap gar [%cnzy %form]))
+        ?~  for
+          (flaw cof leaf/"bad ++form:grad" ~)
+        (fine cof u.for dif)
+      ==
+```
+
+We check that `++form:grad` exists, and we tag the result with it to give the
+final cage.
+
 Lifecycle of a `%done`
 ----------------------
 
@@ -2451,6 +2546,103 @@ at.
 
 Note the use of `%_` instead of `%=` enforces that our mutations don't change
 the type of the subject, which justifies our use of the original mark.
+
+Lifecycle of a `%pact`
+----------------------
+
+```
+          %pact
+        %+  cool  |.(leaf/"ford: pact {<`@p`(mug p.kas)>} {<`@p`(mug q.kas)>}")
+        (pact cof p.kas q.kas)
+```
+
+We push debug information onto the trace and go right to `++pact`.
+
+```
+    ++  pact                                            ::  patch
+      |=  [cof=cafe kas=silk kos=silk]
+      ^-  (bolt cage)
+      %.  [cof kas kos]
+      ;~  cope
+        ;~  coax
+          |=([cof=cafe p=silk q=silk] (make cof p))
+          |=([cof=cafe p=silk q=silk] (make cof q))
+        ==
+        |=  [cof=cafe cay=cage coy=cage]
+```
+
+First, we process the two given silks to get our arguments.
+
+```
+        %+  cope  (fang cof p.cay [our %main %da now])
+        |=  [cof=cafe pro=vase]
+```
+
+We pull in the relevant mark's definition.
+
+```
+        ?.  (slab %grad p.pro)
+          (flaw cof leaf/"no ++grad" ~)
+        =+  gar=(slap pro [%cnzy %grad])
+        ?.  (slab %form p.gar)
+          ?.  (slab %sted p.gar)
+            (flaw cof leaf/"no ++form:grad nor ++sted:grad" ~)
+          =+  for=((soft ,@tas) q:(slap gar [%cnzy %sted]))
+          ?~  for
+            (flaw cof leaf/"bad ++sted:grad" ~)
+          (make cof %cast p.cay %pact [%cast u.for kas] kos)
+```
+
+If there's no `++grad`, we complain.  If there's no `++form:grad`, then we look
+for a `++sted:grad`.  If we can't find either, or if `++sted:grad` isn't a term,
+then we complain.  If `++sted:grad` exists and is a term, then it represents the
+mark we should use as a proxy to get our diff.  So, we cast the first argument
+to the new mark, then try to patch.  Afterward, we cast the result back to the
+original mark.
+
+```
+        =+  for=((soft ,@tas) q:(slap gar [%cnzy %form]))
+        ?~  for
+          (flaw cof leaf/"bad ++form:grad" ~)
+        ?.  =(u.for p.coy)
+          %+  flaw  cof  :_  ~
+          =<  leaf/"pact on data with wrong form: {-} {+<} {+>}"
+          [(trip p.cay) (trip u.for) (trip p.coy)]
+```
+
+If `++form:grad` isn't a term, or else our second argument isn't of that mark,
+we complain.
+
+```
+        ?.  (slab %pact p.gar)
+          (flaw cof leaf/"no ++pact:grad" ~)
+```
+
+If we don't have a `++pact:grad`, we complain.
+
+```
+        %+  cope  (keel cof pro [[%& 6]~ q.cay]~)
+        |=  [cof=cafe pox=vase]
+```
+
+We put the first cage's data into the sample of the given mark's definition.
+
+```
+        %+  cope
+          %^  maul  cof
+            (slap (slap pox [%cnzy %grad]) [%cnzy %pact])
+          q.coy
+        |=  [cof=cafe pat=vase]
+```
+
+We run `++pact:grad` with a sample of the second cage's data, which is the diff.
+
+```
+        (fine cof p.cay pat)
+      ==
+```
+
+We tag the result with the mark of our first argument.
 
 Lifecycle of a `%plan`
 ----------------------
