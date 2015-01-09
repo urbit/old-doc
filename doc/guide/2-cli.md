@@ -59,7 +59,48 @@ To confirm that our file was written, we can use `:ls`. `:ls` prints a list of d
     readme helo
     ~talsur-todres/try=> 
 
-Let's update our file with some new content, so we can see how `%clay` stores revisions.
+Let's quickly switch back to a unix command prompt to see a few things about both how files are synced between `%clay` and unix, and where your apps live.
+
+    my-pier/talsur-todres/$ ls try
+    helo.txt    readme.md
+    my-pier/talsur-todres/$ cat try/helo.txt
+    helo mars
+
+Here you can see that our files are synced back to unix as they are changed in urbit, and vice-versa. As you change files in unix you'll see those changes appear in `%clay`.
+
+    my-pier/talsur-todres/$ ls main/app/
+    bang        grep        poke        solid       unsync
+    began       hi          radio       sync        verb
+    begin       into        reload      talk        ye
+    cat         label       reset       terminal
+    chat        ls          rm          test
+    cp          mv          shell       ticket
+    my-pier/talsur-todres/$ cat main/app/ls/core.hook 
+    !:
+    |_  [hid=hide ~]
+    ++  poke-ls-args
+      |=  [ost=bone you=ship arg=path ~]
+      =+  lon=((hard arch) .^(%cy arg))
+      :_  +>.$
+      :*  [ost %pass / %g %cide %$]
+          [ost %give %nice ~]
+          %+  turn  (~(tap by sup.hid))
+          |=  [ost=bone *]
+          :^  ost  %give  %rush
+          :-  %tang
+          :_  ~  
+          :+  %rose  [" " ~ ~]
+          (turn (~(tap by r.lon) ~) |=([a=@ta b=*] leaf/(trip a)))
+      ==
+    ++  peer
+      |=
+        *
+      `+>
+    --
+
+Here you can see that `/main/app` is the main location where our apps are stored, and the contents of the `:ls` app. urbit applications are of course written in hoon, our naitive programming language. Don't worry about the contents of the file for now. Since changes in unix are synced back in to urbit, we can develop urbit programs by simply editing them in our favorite editor and saving them.
+
+For the time being let's switch back to urbit and update our file with some new content, so we can see how `%clay` stores revisions.
 
     ~talsur-todres/try=> :into %/helo/txt 'gbye mars'
     written
