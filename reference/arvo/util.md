@@ -111,4 +111,8 @@ Cancels the subscription to the source desk on the target ship name to the targe
 
 #[`:ye`](#ye)
 
+`~zod/try=> :ye ["message"]`
+
+Send a message to all ships. Often used to announce a continuity breach.
+
 ---
