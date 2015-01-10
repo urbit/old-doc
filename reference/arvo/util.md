@@ -89,6 +89,11 @@ Sets up a subscription to the source desk on the target ship name to the target 
 
 #[`:ticket`](#ticket)
 
+`~zod/try=> :ticket ~ship-name`
+
+Creates a will for a ship. `:ticket` outputs the ticket for a Urbit ship. Takes an option `[~ship-name]`.
+On destroyes this command creates a yacht and takes the option `[~yacht-name-destroyer-name]
+
 ---
 
 #[`:unsync`](#unsync)
