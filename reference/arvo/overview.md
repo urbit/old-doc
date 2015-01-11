@@ -21,3 +21,11 @@ types of cards it accepts.
 
 As of this writing, we have seven vanes:  `%ames`, `%clay`, `%dill`, `%eyre`,
 `%ford`, `%gall`, and `%time`. 
+
+- (%ames)[vane/ames/overview.md] name of both our network and the vane that communicates over it
+- (%clay)[vane/clay/overview.md] version-controlled, referentially- transparent, and global filesystem
+- (%dill)[vane/dill/overview.md] terminal driver. Unix sends keyboard events to  %dill  from either the console or telnet, and  %dill  produces terminal output.
+- (%eyre)[vane/eyre/overview.md] http server. Unix sends http messages to `%eyre`, and `%eyre` produces http messages in response
+- (%ford)[vane/ford/overview.md] handles resources and publishing
+- (%gall)[vane/gall/overview.md] manages our userspace applications.. `%gall` keeps state and manages subscribers
+- (%time)[vane/time/overview.md] a simple timer 
