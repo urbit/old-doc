@@ -45,6 +45,21 @@ Write text to a file. If the specified file does not exist, create a file by tha
 
 ---
 
+#[`:label`](#label)
+
+`~zod/try=> :label %path %label`
+
+"label". Add a label to a change number.
+```
+~zod/try=> :label %try %zebra
+= new /~zod/try/3
+~zod/try=> :ls /=try/zebra
+readme
+```
+Note that adding a label is part of the delta stream and creates a new change number, `3`.
+
+---
+
 #[`:ls`](#ls)
 
 `~zod/try=> :ls path/to/directory`
