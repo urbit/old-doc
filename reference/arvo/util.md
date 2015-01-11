@@ -87,7 +87,10 @@ Possible values for %vane-name see [Overview](overview.md "overview"):
 
 #[`:rm`](#rm)
 
-`~zod/try=> :cp /path/to/source`
+`~zod/try=> :rm /path/to/source`
+
+Remove a file.
+
 ---
 
 #[`:solid`](#solid)
