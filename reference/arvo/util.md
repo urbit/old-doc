@@ -65,6 +65,7 @@ Note that adding a label is part of the delta stream and creates a new change nu
 `~zod/try=> :ls path/to/directory`
 
 "ls". List files at a path. Unlike "ls" in Unix, the current path `%` must be explicitly given (you cannot call `:ls` with no arguments to display the files at the current path).
+
 ---
 
 #[`:mv`](#mv)
