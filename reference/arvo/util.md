@@ -131,6 +131,44 @@ Cancels the subscription to the source desk on the target ship name to the targe
 
 #[`:verb`](#verb)
 
+`~zod/try=> :verb`
+
+Turn verbose arvo mode on/off.
+
+You'll see events, internal cards, and effects.
+
+```
+[%unix p=%wake //temp]
+[ %give
+  %t
+  %wake
+  ~[
+    /c/tyme
+    /g/a/~zod/._~~.58_~~.shell_~~.terminal__/w/drug/~zod/main
+    /g/a/~harnyr-darlux-bitrux-litnum--falbec-tacsev-magdus-tobsyn/began/u
+    /g/a/~harnyr-darlux-bitrux-litnum--falbec-tacsev-magdus-tobsyn/._~~.2_~~.shell_~~.terminal__/u/to-gan
+    /g/a/~harnyr-darlux-bitrux-litnum--falbec-tacsev-magdus-tobsyn/._~~.shell_~~.terminal__/u/child/2/main
+    /g/a/~harnyr-darlux-bitrux-litnum--falbec-tacsev-magdus-tobsyn/terminal/u/txt
+    /d/term-mess
+    //term/1
+  ]
+]
+[ %give
+  %c
+  %writ
+  ~[
+    /g/a/~zod/._~~.58_~~.shell_~~.terminal__/w/drug/~zod
+    /g/a/~harnyr-darlux-bitrux-litnum--falbec-tacsev-magdus-tobsyn/began/u
+    /g/a/~harnyr-darlux-bitrux-litnum--falbec-tacsev-magdus-tobsyn/._~~.2_~~.shell_~~.terminal__/u/to-gan
+    /g/a/~harnyr-darlux-bitrux-litnum--falbec-tacsev-magdus-tobsyn/._~~.shell_~~.terminal__/u/child/2/main
+    /g/a/~harnyr-darlux-bitrux-litnum--falbec-tacsev-magdus-tobsyn/terminal/u/txt
+    /d/term-mess
+    //term/1
+  ]
+]
+...
+```
+
 ---
 
 #[`:ye`](#ye)
