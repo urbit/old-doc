@@ -77,7 +77,9 @@ Possible values for %vane-name see [Overview](overview.md "overview"):
 
 #[`:solid`](#solid)
 
-:solid "compile kernel"
+`~zod/try=> :solid `
+
+compiles a kernel into a new full urbit.pill
 
 ---
 
