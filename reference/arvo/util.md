@@ -11,6 +11,7 @@ Start a ship. `:begin` collects all of the necesarry information to start an Urb
 `~zod/try=> :cat path-to-file [...]`
 
 "cat" a file. `:cat` either prints a file, or concatenates and then prints multiple files to the terminal.
+
 ---
 
 #[`:cp`](#cp)
