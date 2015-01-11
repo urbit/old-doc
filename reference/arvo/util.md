@@ -120,6 +120,22 @@ On destroyes this command creates a yacht and takes the option `[~yacht-name-des
 
 ---
 
+#[`:thumb`](#thumb)
+
+`~zod/try=> :thumb ~ship-name`
+
+Show the ships information. Only works if you issued a [`:hi`] [`~ship-name] beforehand.
+
+This command is not avaible since the switch from batz to `%gall`!
+
+Use this for the time beeing:
+- will:
+  `~zod/try=> ((hard (unit gcos)) .^(%a /=gcos=/~ship-name))`
+- raw will:
+  `~zod/try=> ((hard will) .^(%a /=will=/~ship-name))`
+
+---
+
 #[`:unsync`](#unsync)
 
 `:unsync %source-desk ~hidduc-posmeg %target-desk`
