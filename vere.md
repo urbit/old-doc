@@ -30,11 +30,11 @@ Create. Creates a new pier. Takes a folder name, such as `pier`.
 
 ##`-p`
 
-Specify the ames udp listening port.
+Specify the [ames](doc/arvo/ames) udp listening port.
 
 `bin/vere -p 42665`
 
-It can sometimes help if you get a port pointed at you and run vere with `-p` to specify the ames udp listening port. VMs and docker containers and the like tend to put up some pretty effective barriers to NAT hole punching.
+It can sometimes help if you get a port pointed at you and run vere with `-p` to specify the [ames](doc/arvo/ames) udp listening port. VMs and [docker](http://www.docker.com/) containers and the like tend to put up some pretty effective barriers to [NAT](http://en.wikipedia.org/wiki/Network_address_translation) [hole punching](http://en.wikipedia.org/wiki/TCP_hole_punching).
 
 ---
 
