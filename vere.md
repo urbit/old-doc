@@ -18,6 +18,10 @@ Create. Creates a new pier. Takes a folder name, such as `pier`.
 
 ##`-L`
 
+Looks for all the carriers at localhost instead of at *.urbit.org
+
+`bin/vere -L`
+
 ---
 
 ##`-M`
