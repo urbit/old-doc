@@ -44,7 +44,7 @@ It can sometimes help if you get a port pointed at you and run vere with `-p` to
 
 ##`-F`
 
-Fake. Routes all networking over `0.0.0.0` and doesn't check any (carrier) keys. This allows you to start any carrier.
+Fake. Routes all networking over `0.0.0.0` and doesn't check any keys. This allows you to start any carrier.
 
 `bin/vere -F -I ~zod -c zod`
 
