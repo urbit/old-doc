@@ -63,3 +63,9 @@ Imperial. Takes a carrier name, such as `~zod`.
 ##`-X`
 
 ---
+
+#Tips
+##inability to mmap 2Gb with MAP_FIXED:
+it's probably because of ASLR (some shared library got its data mapped in the middle of your address space and you are screwed).  if so, applying ```bash
+setarch `uname -m` -R ./bin/vere```
+is supposed to help
