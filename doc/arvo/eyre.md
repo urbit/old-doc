@@ -1,3 +1,5 @@
+<div class="short">
+
 Overview
 ===
 
@@ -62,3 +64,5 @@ Unsubscribe from stream `[stream]` on a foreign Urbit.
 
 urb.js
 ===
+
+</div>

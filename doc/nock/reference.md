@@ -38,8 +38,7 @@ For instance, it's common to represent strings (or even whole text files) as
 atoms, arranging them LSB first - so "foo" becomes `0x6f6f66`. How do we know to
 print this as "foo", not `0x6f6f66`? We need external information - such as a
 Hoon type.  Similarly, other common atomic types - signed integers, floating
-point, etc
-- are all straightforward to map into **atoms**.
+point, etc &mdash; are all straightforward to map into **atoms**.
 
 It's also important to note that, unlike Lisp, Nock cannot create cyclical data
 structures. It is normal and common for **nouns** in a Nock runtime system to
@@ -50,6 +49,8 @@ collector. (Nor can dag structure be detected, as with Lisp eq.)
 There is also no single syntax for **nouns**. If you have **nouns** you have
 Nock; if you have Nock you have Hoon; if you have Hoon, you can write whatever
 parser you like.
+
+---
 
 ## The Nock Function
 
@@ -77,6 +78,8 @@ Normally `a` in `nock(a)` is a **cell** `[s f]`, or
 Intuitively, the formula is your function and the subject is its argument.
 Hoon, or any other high-level language built on Nock, will build its own
 function calling convention which does not map directly to `*[subject formula]`.
+
+---
 
 ## Bracket Grouping
 
@@ -120,6 +123,8 @@ which is equivalent to
 
 Note that we can and do use unnecessary brackets anyway, for emphasis.
 
+---
+
 ## Axiomatic Functions
 
     8  ::    ?[a b]           0
@@ -139,7 +144,9 @@ We should note that in Nock and Hoon, `0` (pronounced "yes") is true, and `1`
 ("no") is false. This convention is the opposite of old-fashioned booleans, so
 we try hard to say "yes" and "no" instead of "true" and "false."
 
-## #Cell-test: `?`
+---
+
+### Cell-test `?`
 
 `?` (pronounced "wut") tests whether is a **noun** is a **cell**.  Again, `0`
 means "yes", `1` means "no":
@@ -149,7 +156,7 @@ means "yes", `1` means "no":
 
 ---
 
-## #Increment: `+`
+### Increment `+`
 
 `+` (pronounced "lus") adds `1` to an **atom**:
 
@@ -158,7 +165,7 @@ means "yes", `1` means "no":
 
 ---
 
-## #Equals: `=`
+### Equals `=`
 
 `=` (pronounced "tis") tests a cell for
 equality. `0` means "yes", `1` means "no":
@@ -170,12 +177,10 @@ equality. `0` means "yes", `1` means "no":
 Testing an **atom** for equality makes no sense and logically fails to
 terminate.
 
----
-
 Because `+` works only for **atoms**, whereas `=` works only for **cells**, the
 error rules match first for `+` and last for `=`.
 
-
+---
 
 ## Noun Address
 
@@ -233,6 +238,8 @@ It's also fun to build nouns in which every atom is its own axis:
     [[4 5] [12 13] 14 15]
     [[4 [10 11]] [12 13] 14 15]
     [[[8 9] [10 11]] [12 13] 14 30 31]
+
+---
 
 ## Distribution
 
@@ -313,6 +320,8 @@ Since `h(s)` is `[f(s) g(s)]`, `h(s)` is `[42 19]`:
 
     *[[19 42] [0 3] 0 2] -> [42 19]
 
+---
+
 ## Operator 0: Axis
 
     25 ::    *[a 0 b]         /[b a]
@@ -326,6 +335,8 @@ For example,
 
     *[[19 42] 0 3] -> /[3 19 42] -> 42.
 
+---
+
 ## Operator 1: Just
 
     26 ::    *[a 1 b]          b
@@ -338,6 +349,8 @@ For example,
     *[42 1 57] -> 57
 
 **Operator 1** is named **Just** because it produces "just" its operand. 
+
+---
 
 ## Operator 2: Fire
 
@@ -360,6 +373,8 @@ For example:
 **Operator 2** is called **Fire** because it "fires" Nock **formulas** at its
 (possibly modified) **subject**.
 
+---
+
 ## Operator 3: Depth
 
     28 ::    *[a 3 b]         ?*[a b]
@@ -367,18 +382,10 @@ For example:
 **Operator 3** applies the **Cell-test** function defined in lines 8 and 9 to
 the product of `*[a b]`.
 
-## #Cell-test: `?`
-
-`?` (pronounced "wut") tests whether is a noun is a cell.  Again, 0 means yes, 1
-means no:
-
-    8  ::    ?[a b]           0
-    9  ::    ?a               1
-
----
-
 **Operator 3** is called **Depth** because it tests the "depth" of a noun.
 **Cell-test** properly refers to the pseudocode function `?`.
+
+---
 
 ## Operator 4: Bump
 
@@ -387,63 +394,39 @@ means no:
 **Operator 4** applies the **Increment** function defined in lines 10 and
 11 to the product of `*[a b]`. 
 
-## #Increment: +
-
-`+` (pronounced "lus) adds 1 to an **atom**:
-
-    10 ::    +[a b]           +[a b]
-    11 ::    +a               1 + a
+**Operator 4** is called **Bump** because it "bumps" the atomic product `*[a b]` up by 1. **Increment** properly refers to the pseudocode function `+`.
 
 ---
-
-**Operator 4** is called **Bump** because it "bumps" the atomic product `*[a b]`
-up by 1. **Increment** properly refers to the pseudocode function `+`.
-
 
 ## Operator 5: Same
 
     30 ::    *[a 5 b]         =*[a b]
 
-**Operator 5** applies the Equals function defined in lines 12, 13 and 14 to the
-product of *[a b]. 
+**Operator 5** applies the Equals function defined in lines 12, 13 and 14 to the product of *[a b]. 
 
-## #Equals: =
-
-= (pronounced "tis", or sometimes "is") tests a cell for equality. 0 means yes,
-1 means no:
-
-    12 ::    =[a a]           0
-    13 ::    =[a b]           1
-    14 ::    =a               =a
-
-Testing an atom for equality makes no sense and logically fails to terminate.
+**Operator 5** is called the **Same** operator, because it tests if the head and tail of the product of `*[a b]` are the same.  "Equals" properly refers to the pseudocode function "=".
 
 ---
-
-**Operator 5** is called the **Same** operator, because it tests if the head and
-tail of the product of `*[a b]` are the same.  "Equals" properly refers to the
-pseudocode function "=".
 
 ## Operator 6: If
 
     32 ::    *[a 6 b c d]     *[a 2 [0 1] 2 [1 c d] [1 0] 2 [1 2 3] [1 0] 4 4 b]
 
-**Operator 6** is a primitive known to every programmer - **If**. Its operands, a
-**test formula** `b`, a **then formula** `c` and an **else formula** `d`.
+**Operator 6** is a primitive known to every programmer - **If**. Its operands, a **test formula** `b`, a **then formula** `c` and an **else formula** `d`.
 
 If the **test** `b` applied to the **subject** evaluates to `0` ("yes"),
 
     *[a b] -> 0
-    
+
 then **If** produces the result of `c`, the **then formula**, applied to
 the **subject**,
 
     *[a c]
-    
+
 Else, if applying the **test** to the **subject** produces `1` ("no"), 
 
     *[a b] -> 1
-  
+
 **Operator 6** produces the result of `d`, the **else formula**, applied to the
 **subject**,
     
@@ -511,21 +494,17 @@ and is used as an axis to select the head of [[4 0 2] [4 0 3]]
 
     *[[40 43] [4 0 2]]
 
-which increments `40` to produce `41`. Had the **test** produced a "no" instead of a
-"yes", **If** would have incremented the **tail** of the subject instead of the
-**head**.
+which increments `40` to produce `41`. Had the **test** produced a "no" instead of a "yes", **If** would have incremented the **tail** of the subject instead of the **head**.
 
 The real **If** is only slightly more complicated:
 
     ::    *[a 6 b c d]     *[a *[[c d] [0 *[[2 3] [0 ++*[a b]]]]]]
 
-There is an extra step in the real **If** to prevent unexpected behaviour if the
-test produces a value other than 0 ("yes") or 1 ("no"). The real **If** will
-crash if this happens and the naive **If** may not (the reader will find it a
-useful exercise to figure out why).
+There is an extra step in the real **If** to prevent unexpected behaviour if the test produces a value other than 0 ("yes") or 1 ("no"). The real **If** will crash if this happens and the naive **If** may not (the reader will find it a useful exercise to figure out why).
 
-It's worth noting that practical, compiler-generated Nock never does anything as
-funky as these **Operator 6** macro internals. 
+It's worth noting that practical, compiler-generated Nock never does anything as funky as these **Operator 6** macro internals. 
+
+---
 
 ## Operator 7: Compose
 
@@ -547,6 +526,8 @@ This is apparent from the reduced pseudocode form of **Operator 7**:
 The above sequentially applies the **formulas** `[4 0 3]` and `[3 0 1]`
 to our subject `[42 44]`, first incrementing the **head**, then testing
 the **depth**.
+
+---
 
 ## Operator 8: Push
 
@@ -580,6 +561,7 @@ to generate an **Operator 8**, because the variable is computed against the
 present **subject**, and used in a calculation which depends both on the
 original **subject** and the new variable. 
 
+---
 
 ## Op 9: Call
 
@@ -654,6 +636,7 @@ Looking reduced pseudocode form of **Call**:
 produces a **core**. **Call** then calls an **arm** `b` of the **core**
 produced by `*[a c]` and reflexively applies it to the same **core**.
 
+---
  
 ## Op 10: Hint
 
@@ -677,6 +660,7 @@ When it gets the product, however, the product will be right.  (Why is the `c`
 in `[b c]` computed? Because `c` could crash. A correct Nock cannot simply
 ignore it, and treat both variants of `10` as equivalent.) 
 
+---
 
 ## Crash default
 

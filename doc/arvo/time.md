@@ -1,3 +1,5 @@
+<div class="short">
+
 Overview  
 ===
 
@@ -13,3 +15,5 @@ woken until after the given time.
 keeping track of time-specified file requests.  `%ames` should probably use `%time`
 to keep track of things like network timeouts and retry timing, but it currently
 uses its own alarm system.
+
+</div>

@@ -1,5 +1,7 @@
 # Nock
 
+<div class="short">
+
 Nock is a homoiconic combinator algebra, not much fancier than SKI combinators.
 The spec fits on a T-shirt and gzips to 340 bytes. 
 
@@ -19,4 +21,6 @@ or interesting about Nock. Of course, in a strictly formal sense, all of
 computing is math. But that doesn't mean it needs to feel like math. Nock is a
 simple mechanical device and it's meant to feel that way.
 
-To dive in deeper, continue to the [reference](doc/nock/reference).
+To dive in deeper, continue to the [reference](nock/reference).
+
+</div>

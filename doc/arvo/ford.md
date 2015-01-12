@@ -1,3 +1,5 @@
+<div class="short">
+
 Overview 
 ===
 
@@ -91,3 +93,5 @@ Slaps a twig against a subject silk.  The mark of the result is
 
 Validates untyped data from a ship against a given mark.  This is an
 extremely useful function.
+
+</div>

@@ -1,3 +1,5 @@
+<div class="short">
+
 Overview
 ===
 
@@ -14,3 +16,5 @@ apps and web pages.
 algorithms, which are mostly defined in `++ze` and `++zu` in zuse.  Second is
 the write, query, and subscription logic.  Finally, there is the logic for
 communicating requests to, and receiving requests from, foreign ships.
+
+</div>

@@ -1,3 +1,5 @@
+<div class="short">
+
 Overview
 ===
 
@@ -21,3 +23,5 @@ types of cards it accepts.
 
 As of this writing, we have seven vanes:  `%ames`, `%clay`, `%dill`, `%eyre`,
 `%ford`, `%gall`, and `%time`. 
+
+</div>
