@@ -87,6 +87,14 @@ Possible values for %vane-name see [Overview](overview.md "overview"):
 
 ---
 
+#[`:reset`](#reset)
+
+`~zod/try=> :reset`
+
+Reloads all vanes. See [`:reset`] for reloading only or a specific vane.
+
+---
+
 #[`:rm`](#rm)
 
 `~zod/try=> :rm /path/to/source`
