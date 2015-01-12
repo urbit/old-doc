@@ -18,6 +18,10 @@ Create. Creates a new pier. Takes a folder name, such as `pier`.
 
 ##`-L`
 
+Localhost. Routes all networking over `0.0.0.0` and checks the keys.
+
+`bin/vere -L -I ~del -c fz`
+
 ---
 
 ##`-M`
