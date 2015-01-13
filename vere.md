@@ -90,7 +90,7 @@ profile
 
 ##`-q`
 
-quite (see also [`:verb`](reference/arvo/util#verb)). (inverse of [`-v`])
+quite (see also [`:verb`](reference/arvo/util.md#verb)). (inverse of [`-v`](#-v))
 
 ---
 
@@ -98,7 +98,7 @@ quite (see also [`:verb`](reference/arvo/util#verb)). (inverse of [`-v`])
 
 raft flotilla
 
-needs also the ['-l'] option set
+needs also the [`-l`](#-l) option set
 
 ---
 
@@ -122,7 +122,7 @@ Imperial. Takes a carrier name, such as `~zod`.
 
 ##`-v`
 
-verbose (see also [`:verb`](reference/arvo/util#verb)). (inverse of [`-q`])
+verbose (see also [`:verb`](reference/arvo/util.md#verb)). (inverse of [`-q`](#-q))
 
 `bin/vere -v mypier`
 
