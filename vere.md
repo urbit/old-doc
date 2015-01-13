@@ -4,6 +4,12 @@ Vere is the Urbit virtual machine.
 
 #Options
 
+##`-b`
+
+batch create
+
+---
+
 ##`-c`
 
 Create. Creates a new pier. Takes a folder name, such as `pier`.
@@ -12,11 +18,41 @@ Create. Creates a new pier. Takes a folder name, such as `pier`.
 
 ---
 
+##`-d`
+
+daemon
+
+---
+
+##`-D`
+
+dry compute
+
+dry compute the north and/or south events
+
+---
+
+##`-f`
+
+fuzz testing
+
+---
+
 ##`-k`
+
+kernel version
+
+---
+
+##`-l`
+
+raft port
 
 ---
 
 ##`-L`
+
+local-only networking
 
 Looks for all the carriers at localhost instead of at *.urbit.org
 
@@ -26,9 +62,13 @@ Looks for all the carriers at localhost instead of at *.urbit.org
 
 ##`-M`
 
+memory madness
+
 ---
 
 ##`-n`
+
+unix hostname
 
 ---
 
@@ -42,7 +82,23 @@ It can sometimes help if you get a port pointed at you and run vere with `-p` to
 
 ---
 
+##`-P`
+
+profile
+
+---
+
+##`-q`
+
+quite (see also [`:verb`](reference/arvo/util#verb)). (inverse of [`-v`])
+
+---
+
 ##`-r`
+
+raft flotilla
+
+needs also the ['-l'] option set
 
 ---
 
@@ -64,7 +120,19 @@ Imperial. Takes a carrier name, such as `~zod`.
 
 ---
 
+##`-v`
+
+verbose (see also [`:verb`](reference/arvo/util#verb)). (inverse of [`-q`])
+
+`bin/vere -v mypier`
+
+---
+
 ##`-X`
+
+skip last event
+
+`bin/vere -Xwtf mypier`
 
 ---
 
