@@ -15,12 +15,12 @@ Twig: `[%sgbc p=term q=twig]`
 
 ##Tall form
 
-    ~?  p
+    ~$  p
         q
 
 ##Wide form
 
-    ^?(q)
+    ~$(p q)
 
 ##Irregular form
 
