@@ -1,4 +1,6 @@
-#Overview
+# Runes Overview
+
+## Introduction
 
 In Hoon there are no reserved words. Instead, [`++twigs`]() (abstract syntax trees), are formed using a diagraph of two ASCII symbols, which is called a rune. 
 
@@ -44,7 +46,7 @@ To address this problem, most Hoon `++twigs` have a short, fixed fan-out. Thus, 
 
 Lastly, but perhaps most significantly, code is meant to be seen, and not read. Anyone who has even slight experience coding Hoon will tell you that they can understand and connect with properly formatted Hoon code on a deeper, more intuitive level that cannot be explained but must be experienced. One doesn't read `++add`, she sees it.
 
-##Names and Categories
+## Names and Categories
 
 While the second glyph in a rune means little or nothing, the first defines a rough semantic category:
 
@@ -63,7 +65,7 @@ While the second glyph in a rune means little or nothing, the first defines a ro
 
 As shown above, each glyph has its own monosyllabic name, designed to be pronounced quickly in combination with another glyph to form a rune name. As languages are often read-aloud, this saves the programmer from having to say "dollar sign, question mark"--"bucwut" is much more compact.
 
-##Irregular pronuncations
+## Irregular pronuncations
 
 To avoid a few tongue-twisters, some runes have irregular pronunciations that should be noted:
 

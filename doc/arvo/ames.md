@@ -1,6 +1,5 @@
 <div class="short">
-Overview
-===
+# Overview
 
 `%ames` is the name of both our network and the vane that communicates over it.
 When Unix receives a packet over the correct UDP port, it pipes it straight into

@@ -1,4 +1,4 @@
-<div class="small">
+<div class="short">
 
 # Guides
 

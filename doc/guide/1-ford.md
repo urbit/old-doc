@@ -1,3 +1,9 @@
+# `%ford` Guide
+
+#### basic `hoon` and talking to the web
+
+<div class="short">
+
 `%ford` is the arvo vane that handles asset management and publishing. We use
 `%ford` to compose our files when programming, and also to bundle files together for the web.
 
@@ -5,16 +11,17 @@ This guide assumes that you have installed and started your urbit. Assuming you 
 
 Also, we refer to `http://ship-name.urbit.org/` in our URLs, but you can also use `http://localhost:8080/` if you prefer to just talk to your machine directly.
 
+</div>
 
-1. 
+<hr></hr>
 
-Let's publish a webpage
+## 1. Let's publish a webpage
 
-In
+#### In
 
     /main/pub/fab/guide/exercise/1/hymn.hook
 
-Put
+#### Put
 
     ;html
       ;head
@@ -29,11 +36,11 @@ Put
       ==
     ==
 
-Try it
+#### Try it
 
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/1/
 
-What did you just do?
+#### What did you just do?
 
 The code you just wrote is urbit's native programming langauge, hoon. Generating HTML with hoon is similar to writing [jade](link) or other similar HTML shorthand. In hoon, this shorthand is called [`++sail`]() and it's a native part of the hoon language.
 
@@ -41,16 +48,15 @@ In `++sail` node-names are prefixed with a `;` and closed with a `==`. Nodes tha
 
 You can find more information about `++sail` in our [rune library documentation](link). 
 
+<hr></hr>
 
-2.
+## 2. Let's do some programming on the page. 
 
-Let's do some programming on the page. 
-
-In
+#### In
 
     /pub/fab/guide/exercise/2/hymn.hook
 
-Put
+#### Put
 
     ;html
       ;head
@@ -65,25 +71,25 @@ Put
       ==
     ==
 
-Try it
+#### Try it
+
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/2/
 
-What's going on there?
+### What's going on there?
 
 Clearly, the code `(add 2 2)` is generating `4`, and it's not too hard to see why. `add` is one of the library functions that are a part of `hoon.hoon`. Try replacing `(add 2 2)` with `(sub 2 (add 2 2))`. You can find documentation for the full hoon library in the [library reference](link). 
 
 Since the product of `(add 2 2)` is a number, we need a few extra things to have it print properly. In `++sail` we use `{` and `}` to do string interpolation. Everything after the `:` is expected to be a string, so we need to tell the parser when we start writing code. The `<` and `>` inside our `{` `}` are converting our result `4`, a number, to the string `"4"`. hoon is a strongly typed language kind of like haskell, so we need to explicitly convert our types. 
 
+<hr></hr>
 
-3. 
+## 3. Let's assign some variables.
 
-Let's assign some variables.
-
-In
+#### In
 
     /pub/fab/guide/exercise/3/hymn.hook
 
-Put
+#### Put
 
     =+  ^=  a  1
     =+  b=2
@@ -104,11 +110,11 @@ Put
       ==
     ==
 
-Try it
+#### Try it
 
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/3/
 
-How does that work?
+#### How does that work?
 
 The first thing you should notice in this example is the `=+` at the top of our file. `=+` is a rune. hoon is a programming with no reserved words. We don't use `if` `this` or `function` at all. Instead, runes have their own pronunciation. `=+` is pronounced 'tislus'. You can find the table of pronunciation [here](link). In hoon you construct your programs using runes, which are two character ascii pairs. You can see the whole set of runes in the [rune index](link).
 
@@ -120,16 +126,15 @@ Looking at the rendered page it's clear that we're assigning `a` to be `1` and `
 
 Looking at the simple computation on the page, you can try changing the values of `a` and `b` to any integers to produce similar results.
 
+<hr></hr>
 
-4. 
+## 4. Let's build our own computation
 
-Let's build our own computation
-
-In
+#### In
 
     /pub/fab/guide/exercise/4/hymn.hook
 
-Put
+#### Put
 
     |%
       ++  start  1
@@ -155,11 +160,12 @@ Put
       ==
     ==
 
-Try it, and be sure to put two spaces between `++` and arm names.
+#### Try it
+(and be sure to put two spaces between `++` and arm names)
 
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/4/
 
-What's happening?
+### What's happening?
 
 As you can see from the output, we have written a little function that takes two numbers, `s` and `e`  and returns their difference. The first thing to notice about our code is the first rune. `|%` is a `core` rune. You can think of cores like functions or objects in other languages. `|%` runes contain an arbitrary number of arms, denoted with either `++` or `+-` and closed with `--`. 
 
@@ -171,14 +177,15 @@ Our `++length` [gate]() takes two arguments, `s` and `e`. In hoon we call the da
 
 You probably also noticed our indentation. In general hoon has both tall and wide forms. In tall form, hoon uses two spaces for indentation and is back-stepped so nested code doesn't drift away toward the right margin. In wide form we use parenthesis just like almost everyone else.
 
+<hr></hr>
 
-5.
+## 5.
 
-In
+#### In
 
     /pub/fab/guide/exercise/5/hymn.hook
 
-Put
+#### Put
 
     |%
       ++  dist  ,[start=@ud end=@ud]
@@ -202,11 +209,11 @@ Put
     ==
 
 
-Try it
+#### Try it
 
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/5/
 
-What's the difference?
+#### What's the difference?
 
 Clearly we're producing the same result as before, but we're doing it in a different way. 
 
@@ -220,14 +227,15 @@ In this specific example we are using the `$,` tile rune in its irregular form, 
 
 One other thing to point out which may be immediately confusing coming from other languages is the order of addressing `start` and `end`. We call these labels faces, and we address them in the opposite order than you're usually familiar with. We still separate our addressing with `.`, but do it from the inside out. Given a tuple such as `[a=1 b=[c=[d=2 e=3]]]` we can address the value of `e` with `e.c.b`. You can read more about how faces work in the commentary on `++type` [here](link).
 
+<hr></hr>
 
-6
+## 6.
 
-In
+#### In
 
     /pub/fab/guide/exercise/6/hymn.hook
 
-Put
+#### Put
 
     |%
     ++  fib  
@@ -251,11 +259,11 @@ Put
       ==
     ==
 
-Try it
+#### Try it
 
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/6/
 
-What is that doing?
+#### What is that doing?
 
 We're printing a few members of the [fibonacci sequence](link) by calling our arm `++fib` with a few values. The fibonacci sequence is a fairly straight forward algorithm: `F(n-1) + F(n-2)` where `F(1) = 1` and `F(2) = 1`. As is obvious from the formula, generating the fibonacci value at any number requires us to recurse, or loop. Let's walk through the code. 
 
@@ -263,14 +271,15 @@ Our example here should look similar to the previous one. We build a core with `
 
 If `x` is not less than `2` we compute `F(n-1) + F(n-2)` by using `$`. We mentioned previously that a gate is a special kind of core with only one arm, called `$`. Here we're using `$` to mimic the behavior of a loop. You can read the expression `$(x (dec x))` as 'call the gate again with `x` replaced by `(dec x)`. For more on how this works, check out the documentation of [`%=`](link) and [`%-`](link). With that in mind it should be clear how the last line of `++fib` produces the member of the sequence at a given value `x`. 
 
+<hr></hr>
 
-7.
+## 7.
 
-In
+#### In
 
     /pub/fab/guide/exercise/7/hymn.hook
 
-Put
+#### Put
 
     ::
     ::
@@ -297,7 +306,7 @@ Put
       ==
     ==
 
-Try it
+#### Try it
 
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/7/
     http://ship-name.urbit.org/gin/del/main/pub/fab/guide/exercise/7/
@@ -318,14 +327,15 @@ When we try changing the url from `gen/main` to `gin/del/main` we're using some 
 
 Path and identity are useful, but there are some other parameters worth checking out as well.
 
+<hr></hr>
 
-8.
+## 8.
 
-In
+#### In
   
     /pub/fab/guide/exercise/8/hymn.hook
 
-Put
+#### Put
   
     ::
     ::
@@ -345,7 +355,7 @@ Put
       ==
     ==
 
-Try it
+#### Try it
   
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/8/
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/8/?code=yes-i-do
@@ -354,14 +364,15 @@ This is a simple example, showing off another use of `/=    gas  /$  fuel`. In t
 
 We're using a few simple library functions to actually pull the value out, [`++fall`](link) and [`get:by`](link). Query string parameters are stored in `qix.gas` as a `++map`, one of the main container constructs used in hoon. We'll encounter a lot of maps along the way, and you can learn more about them in the [map section](link) of the library doc.
 
+<hr></hr>
 
-9.
+## 9.
 
-In
+#### In
 
     /pub/fab/guide/exercise/9/hymn.hook
 
-Put
+#### Put
 
     ::
     ::
@@ -381,11 +392,11 @@ Put
       ==
     ==
 
-And in
+#### And in
 
     /pub/fab/guide/exercise/9/lib.hoon
 
-Put
+#### Put
 
     |%
     ++  fib  
@@ -395,11 +406,11 @@ Put
         (add $(x (dec x)) $(x (sub x 2)))
     --
 
-Try it
+#### Try it
 
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/9/
 
-How are they getting combined?
+#### How are they getting combined?
 
 Clearly this looks a lot like our previous example using `++fib`, only now we're using two separate files. The majority of this code should be familiar to you from example 6, so let's focus on a single line, `//    /%%/lib`.
 
@@ -409,14 +420,15 @@ In `%clay` we use `%` to navigate relative paths. `%` is sort of like `.` when m
 
 We commonly use two kinds of extensions, `.hoon` for source files and `.hook` for files that generate something else. Since our hymn file is generating html, it's a `.hook`, and our source file is just a `.hoon`. In order to find our file one level up we need two `%%` to get to `/pub/fab/guide/exercise/9/`. Adding `lib` resolve to our neighboring file. You can read more about how `%clay` paths are parsed in the [`%clay` overview](link). It's also pretty easy to try them out using `:cd` and `:ls` in your `%arvo` terminal. 
 
+<hr></hr>
 
-10.
+## 10.
 
-In
+#### In
 
     /pub/fab/guide/exercise/10/hymn.hook
 
-Put
+#### Put
 
     ::
     ::
@@ -443,11 +455,11 @@ Put
       ==
     ==
 
-And in
+#### And in
 
     /pub/fab/guide/exercise/10/lib.hoon
 
-Put
+#### Put
 
     |%
     ++  fib  
@@ -457,7 +469,7 @@ Put
         (add $(x (dec x)) $(x (sub x 2)))
     --
 
-Try it
+#### Try it
 
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/10/
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/10/?number=7
@@ -471,14 +483,15 @@ To get a value out of our map of query string parameters `qix.gas` we use a meth
 
 Our outermost call, to [`++slav`](link), casts our string to a `@ud` — which is the type expected by `++fib`. `++slav` takes the name of an odor and a value, and tries to cast the value to that odor. 
 
+<hr></hr>
 
-11.
+## 11.
 
-In
+#### In
 
     /pub/fab/guide/exercise/11/hymn.hook
 
-Put
+#### Put
 
     /=    posts  /:  /%%/lib
                  /;  |=  a=(list (pair ,@ ,manx))
@@ -501,34 +514,34 @@ Put
       ==
     ==
 
-In
+#### In
 
     /pub/fab/guide/exercise/11/lib/1.md
 
-Put
+#### Put
 
     #1
     
     This is my first post.
 
 
-In
+#### In
 
     /pub/fab/guide/exercise/11/lib/2.md
 
-Put
+#### Put
 
     #2
     
     This is my second post.
 
-Try it
+#### Try it
 
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/11/
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/11/lib/1/
     http://ship-name.urbit.org/gen/main/pub/fab/guide/exercise/11/lib/2/
 
-Experiment with it
+#### Experiment with it
 
 Try adding other `.md` files with numeric file names (such as `3.md`) to the `11/lib/` directory to get a feel for what's going on.
 
@@ -548,19 +561,22 @@ If we take the next few lines and write them as pseudo code in wide form they mi
 
 Then, further down, we use [`;*`](link) to write the list to the page. 
 
+<hr></hr>
 
-12.
+## 12.
 
-Look in
+#### Look in
 
     /pub/fab/guide/hymn.hook
     /pub/fab/guide/main.css
     /pub/fab/guide/main.js
 
-Try it
+#### Try it
 
     http://ship-name.urbit.org/gen/main/pub/fab/guide/
 
-Bring it all together
+#### Bring it all together
 
 It turns out it's pretty easy to pull our examples together into a single blog-like page using what we just covered. We include some css to make things a bit prettier, and this should give you a good jumping off point for experimenting with your own publishing code.
+
+#### Have fun!

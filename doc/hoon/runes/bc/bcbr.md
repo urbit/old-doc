@@ -1,32 +1,38 @@
-#[bucbar `$|` %bcbr](#bcbr)
+# [`bucbar $| %bcbr`](#bcbr)
 
-Atom / cell
+<div class="short">
+
+## Atom or cell
 
 `$|` is a tile rune that produces a [`%reed`](), a tile whose [icon]() is a [fork]() between two nouns: an [atom]() of `tile` `p` and a cell of `tile` `q`. `$|` is similar to [`$?`](), but is more strict in that in only contains one atom tile and one cell tile.
 
-##Produces
+</div>
+
+<hr></hr>
+
+### Produces
 
 [`Tile`](): `[%reed p=tile q=tile]`
 
-##Sample
+### Sample
 
 `p` is a [`tile`]()
 `q` is a [`tile`]() 
 
-##Tall form
+### Tall form
 
     $|  p
         q
 
-##Wide form
+### Wide form
 
     $|(p q)
 
-##Irregular form
+### Irregular form
 
 None
 
-##Examples
+### Examples
 
     ~zod/try=> *$|(~ [~ u=@])
     ~
