@@ -2,13 +2,19 @@
 
 # arvo Overview
 
-arvo is our operating system. 
+arvo is our operating system.
+It is a *structured* event system, designed to avoid the usual state of complex event networks: event spaghetti. We keep track of every event's cause
+so that we have a clear causal chain for every computation.  At the bottom of every chain is a unix io event (e.g. network request, terminal input, file sync, timer event), and we push every step in the path the request takes is pushed onto the chain until we get to the immediate cause of the current computation.  This causal stack routes results back to the caller.
+
+
+
+ TRANSITION TO BONES
+
+
+--more on what kind it is (functional, event driven)
+--the consequences of this.
 
 [overview of how cards, etc get passed around]
-
-Have you ever wondered what all these kernel modules are about?  What services
-they provide?  What fundamental human desires they satisfy?  If so, this is the
-doc for you!
 
 The basic purpose of a vane is to present an interface to clients for some
 well-defined, stable, and general-purpose piece of functionality.  There are
