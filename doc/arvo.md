@@ -49,7 +49,7 @@ continuations, but simpler and with more structure.
 
 <goto-gosub paragraph>
 
-##Making ++move(s)
+##Making Moves
 
 If ducts are a call stack, then how do we make calls and produce results?  Arvo
 processes "moves" which are a combination of message data and metadata.  There
