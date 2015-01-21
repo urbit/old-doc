@@ -1,21 +1,20 @@
 <div class="short">
 
-# arvo Overview
+# `%arvo` Overview
 
-arvo is our operating system.
+`%arvo` is our operating system. At a high level `%arvo` takes a mess of unix io events and turns them into something clean and structured for the programmer. 
 
-It is a *structured* event system, designed to avoid the usual state of complex
-event networks: event spaghetti. We keep track of every event's cause so that
-we have a clear causal chain for every computation.  At the bottom of every
-chain is a unix io event (e.g. network request, terminal input, file sync,
-timer event), and we push every step in the path the request takes is pushed
-onto the chain until we get to the immediate cause of the current computation.
-This causal stack routes results back to the caller.
+`%arvo` is designed to avoid the usual state of complex event networks: event spaghetti. We keep track of every event's cause so that we have a clear causal chain for every computation.  At the bottom of every chain is a unix io event, such as a network request, terminal input, file sync, or timer event. We push every step in the path the request takes onto the chain until we get to the terminal cause of the computation. Then we use this causal stack to route results back to the caller.
 
-##++ducts
+</div>
 
-This causal stack is called a `++duct`.  This is represented simply as a list of paths, where each path represents a step in the causal chain.  The first element in the path is the first letter of whichever vane handled that step in the computation, or the empty span for unix.  Here's a duct that was recently
-observed in the wild:
+<hr></hr>
+
+## `++ducts`
+
+The `%arvo` causal stack is called a `++duct`.  This is represented simply as a list of paths, where each path represents a step in the causal chain.  The first element in the path is the first letter of whichever vane handled that step in the computation, or the empty span for unix.  
+
+Here's a duct that was recently observed in the wild:
 
 ```
 ~[
@@ -47,9 +46,7 @@ citizen.  You can respond over a duct zero, one, or many times.  You can save
 ducts for later use.  There are definitely parallels to Scheme-style
 continuations, but simpler and with more structure.
 
-<goto-gosub paragraph>
-
-##Making Moves
+## Making Moves
 
 If ducts are a call stack, then how do we make calls and produce results?  Arvo
 processes "moves" which are a combination of message data and metadata.  There
@@ -69,7 +66,7 @@ A `%give` move is analogous to a return:
 
 Arvo pops the top path off the duct and sends the given card back to the caller.
 
-##Vanes
+## Vanes
 
 As shown above, we use arvo proper to route and control the flow of moves. 
 However, arvo proper is rarely directly responsible for processing the event data that directly causes the desired outcome of a move. This event data is contained within a card, which is simply a `(pair term noun)`. Instead, arvo proper passes the card off to one of its vanes, which each present an interface to clients for a particular well-defined, stable, and general-purpose piece of functionality.
