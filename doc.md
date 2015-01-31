@@ -2,8 +2,8 @@ urbit
 ===
 is a general-purpose computing stack designed to live in the cloud.
 
-- `vere` is our virtual machine, written in C that runs urbit.
-- [`nock`](doc/nock) is our assembly language. Everything in urbit reduces to `nock`.
+- `vere` is our interpreter, written in C, that runs urbit.
+- [`nock`](doc/nock) is our virtual machine. Everything in urbit reduces to `nock`.
 - [`hoon`](doc/hoon) is our programming language. `hoon` is strict, typed and functional. 
 - [`arvo`](doc/arvo) is our operating system. 
 
