@@ -1,3 +1,15 @@
+<div class="short">
+
+# CLI Apps
+
+These are our simple command-line applications. 
+
+You can find them in `/main/app`. 
+
+</div>
+
+---
+
 #[`:begin`](#begin)
 
 `~zod/try=> :begin [~ship-name [~valid-ticket-for-ship]]`

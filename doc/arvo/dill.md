@@ -1,15 +1,14 @@
 <div class="short">
 
-Overview
-===
+# `%dill`
 
-`%dill` is our terminal driver.  Unix sends keyboard events to `%dill` from either the
-console or telnet, and `%dill` produces terminal output.  The only app that should
-directly talk to `%dill` is the terminal app.  Command-line apps are run by,
-receive input from, and produce output to, the `%shell` app, which is controlled by
-`%terminal`, which talks to `%dill`, which talks to unix.  Clay also uses `%dill`
-directly to print out the filesystem change events, but this is questionable
-behavior.
+`%dill` is our terminal driver.
+
+Unix sends keyboard events to `%dill` from either the console or telnet, and
+`%dill` produces terminal output.  The only app that should directly talk to
+`%dill` is the terminal app.  Command-line apps are run by, receive input from,
+and produce output to, the `%shell` app, which is controlled by `%terminal`,
+which talks to `%dill`, which talks to unix.  Clay also uses `%dill` directly to print out the filesystem change events, but this is questionable behavior.
 
 `%dill` has two main components.  First, it controls the terminal on a very basic,
 event-by-event level.  This includes keeping track of things like the dimensions

@@ -1,8 +1,10 @@
 <div class="short">
 
-# `%arvo` Overview
+# arvo
 
-`%arvo` is our operating system. At a high level `%arvo` takes a mess of unix io events and turns them into something clean and structured for the programmer. 
+arvo is our operating system.
+
+At a high level `%arvo` takes a mess of unix io events and turns them into something clean and structured for the programmer. 
 
 `%arvo` is designed to avoid the usual state of complex event networks: event spaghetti. We keep track of every event's cause so that we have a clear causal chain for every computation.  At the bottom of every chain is a unix io event, such as a network request, terminal input, file sync, or timer event. We push every step in the path the request takes onto the chain until we get to the terminal cause of the computation. Then we use this causal stack to route results back to the caller.
 

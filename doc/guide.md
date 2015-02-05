@@ -2,6 +2,8 @@
 
 # Guides
 
-These guides will get you oriented in urbit and should give a sense of both how to navigate the system and how to build applications.
+These guides are designed to get you oriented in urbit. 
+
+Each one covers a specific topic. Although it's not necesarry to follow them in order, they do get increasingly complex.
 
 </div>

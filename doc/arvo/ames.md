@@ -1,5 +1,8 @@
 <div class="short">
-# Overview
+
+# `%ames`
+
+`%ames` is our networking protocol.
 
 `%ames` is the name of both our network and the vane that communicates over it.
 When Unix receives a packet over the correct UDP port, it pipes it straight into
@@ -15,4 +18,5 @@ algorithms are defined in zuse, they're used extensively in `%ames` for encrypti
 and decrypting packets.  Congestion control and routing is handled entirely in
 `%ames`.  Finally, the actual `%ames` protocol itself, including how to route incoming
 packets to the correct vane or app, is defined in `%ames`.
+
 </div>

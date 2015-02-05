@@ -1,9 +1,10 @@
 <div class="short">
 
-Overview  
-===
+# `%time`
 
-`%time` is a simple timer.  It allows vanes and applications to set and timer
+`%time` is a simple timer.
+
+It allows vanes and applications to set and timer
 events, which are managed in a simple priority queue. `%time` produces effects
 to start the unix timer, and when the requested `%time` passes, unix sends wake
 events to `%time`, which time routes back to original sender.  We don't

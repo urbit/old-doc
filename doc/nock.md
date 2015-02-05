@@ -1,6 +1,8 @@
+<div class="short">
+
 # Nock
 
-<div class="short">
+Nock is our machine code.
 
 Nock is a homoiconic combinator algebra, not much fancier than SKI combinators.
 The spec fits on a T-shirt and gzips to 340 bytes. 

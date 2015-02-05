@@ -1,15 +1,16 @@
 <div class="short">
 
-Overview 
-===
+# `%gall`
 
-`%gall` manages our userspace applications.  It allows applications and vanes to
-send messages to applications and subscribe to data streams.  This requires
-`%gall` to be a sort of a hypervisor.  Messages coming into `%gall` are routed
-to the intended application, and the response comes back along the same route.
-If the intended target is on another ship, `%gall` will behind-the-scenes route
-it through ames to the other ship to run.  This provides an abstraction where
-all apps on all ships are communicated with over the same interface.
+`%gall` manages our userspace applications.
+
+It allows applications and vanes to send messages to applications and subscribe
+to data streams.  This requires `%gall` to be a sort of a hypervisor.  Messages
+coming into `%gall` are routed to the intended application, and the response
+comes back along the same route. If the intended target is on another ship,
+`%gall` will behind-the-scenes route it through ames to the other ship to run.
+This provides an abstraction where all apps on all ships are communicated with
+over the same interface.
 
 `%gall` neither accepts events from unix nor produces effects.  It exists
 entirely for the benefit of other vanes and, in particular, applications.  Eyre

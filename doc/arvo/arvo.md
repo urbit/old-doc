@@ -1,7 +1,6 @@
 <div class="short">
 
-Overview
-===
+# `%arvo`
 
 `%arvo` is our operating system. 
 
