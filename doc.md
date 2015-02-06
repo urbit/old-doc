@@ -2,11 +2,11 @@ urbit
 ===
 is a general-purpose computing stack designed to live in the cloud.
 
-<ListComponent dataPreview="true"></ListComponent>
+<list dataPreview="true"></list>
 
 `arvo` is event driven and modular. `arvo` modules are called 'vanes'.
 
-<ListComponent dataPath="doc/arvo" dataPreview="true"></ListComponent>
+<list dataPath="/doc/arvo" dataPreview="true"></list>
 
 ---
 

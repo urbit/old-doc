@@ -19,3 +19,5 @@ screen, but some characters, including control-modified keys, arrow keys, etc.
 require special handling.  Most of the readline functionality is in `%dill`.
 
 </div>
+
+---

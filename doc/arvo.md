@@ -1,16 +1,16 @@
-<div class="short">
-
 # arvo
 
 arvo is our operating system.
 
+arvo is composed of modules called vanes:
+
+<list dataPreview="true"></list>
+
+<hr></hr>
+
 At a high level `%arvo` takes a mess of unix io events and turns them into something clean and structured for the programmer. 
 
 `%arvo` is designed to avoid the usual state of complex event networks: event spaghetti. We keep track of every event's cause so that we have a clear causal chain for every computation.  At the bottom of every chain is a unix io event, such as a network request, terminal input, file sync, or timer event. We push every step in the path the request takes onto the chain until we get to the terminal cause of the computation. Then we use this causal stack to route results back to the caller.
-
-</div>
-
-<hr></hr>
 
 ## `++ducts`
 
@@ -75,13 +75,13 @@ However, arvo proper is rarely directly responsible for processing the event dat
 
 As of this writing, we have seven vanes, which each provide the following services:
 
-- [%ames](vane/ames/overview.md) name of both our network and the vane that communicates over it
-- [%clay](vane/clay/overview.md) version-controlled, referentially- transparent, and global filesystem
-- [%dill](vane/dill/overview.md) terminal driver. Unix sends keyboard events to `%dill` from either the console or telnet, and `%dill` produces terminal output.
-- [%eyre](vane/eyre/overview.md) http server. Unix sends http messages to `%eyre`, and `%eyre` produces http messages in response
-- [%ford](vane/ford/overview.md) handles resources and publishing
-- [%gall](vane/gall/overview.md) manages our userspace applications.. `%gall` keeps state and manages subscribers
-- [%time](vane/time/overview.md) a simple timer
+- `%ames` name of both our network and the vane that communicates over it
+- `%clay` version-controlled, referentially- transparent, and global filesystem
+- `%dill` terminal driver. Unix sends keyboard events to `%dill` from either the console or telnet, and `%dill` produces terminal output.
+- `%eyre` http server. Unix sends http messages to `%eyre`, and `%eyre` produces http messages in response
+- `%ford` handles resources and publishing
+- `%gall` manages our userspace applications.. `%gall` keeps state and manages subscribers
+- `%time` a simple timer
 
 ##Cards
 Cards are the vane-specific portion of a move.  Each vane defines a protocol for interacting with other vanes (via arvo) by defining four types of cards: kisses, gifts, notes, and signs.

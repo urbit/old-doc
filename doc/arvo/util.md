@@ -10,7 +10,7 @@ You can find them in `/main/app`.
 
 ---
 
-#[`:begin`](#begin)
+### [`:begin`](#begin)
 
 `~zod/try=> :begin [~ship-name [~valid-ticket-for-ship]]`
 
@@ -18,7 +18,7 @@ Start a ship. `:begin` collects all of the necesarry information to start an Urb
 
 ---
 
-#[`:cat`](#cat)
+### [`:cat`](#cat)
 
 `~zod/try=> :cat path-to-file [...]`
 
@@ -26,7 +26,7 @@ Start a ship. `:begin` collects all of the necesarry information to start an Urb
 
 ---
 
-#[`:cp`](#cp)
+### [`:cp`](#cp)
 
 `~zod/try=> :cp /path/to/source /path/to/destination`
 
@@ -34,7 +34,7 @@ Copy a file to a given location.
 
 ---
 
-#[`:grep`](#grep)
+### [`:grep`](#grep)
 
 `~zod/try=> :grep 'literal' `
 
@@ -42,7 +42,7 @@ Copy a file to a given location.
 
 ----
 
-#[`:hi`](#hi)
+### [`:hi`](#hi)
 
 `~zod/try=> :hi ~ship ["message"]`
 
@@ -50,7 +50,7 @@ Send a ship a message which is empty by default, becoming their neighbor in the 
 
 ---
 
-#[`:into`](#into)
+### [`:into`](#into)
 
 `~zod/try=> :into /path/to/file 'contents'`
 
@@ -58,7 +58,7 @@ Write text to a file. If the specified file does not exist, create a file by tha
 
 ---
 
-#[`:label`](#label)
+### [`:label`](#label)
 
 `~zod/try=> :label %path %label`
 
@@ -73,7 +73,7 @@ Note that adding a label is part of the delta stream and creates a new change nu
 
 ---
 
-#[`:ls`](#ls)
+### [`:ls`](#ls)
 
 `~zod/try=> :ls path/to/directory`
 
@@ -81,7 +81,7 @@ Note that adding a label is part of the delta stream and creates a new change nu
 
 ---
 
-#[`:mv`](#mv)
+### [`:mv`](#mv)
 
 `~zod/try=> :mv /path/to/source /path/to/destination`
 
@@ -89,7 +89,7 @@ Move a file to a given location, creating a new revision of the source that omit
 
 ---
 
-#[`:reload`](#reload)
+### [`:reload`](#reload)
 
 `~zod/try=> :reload %vane-name [...]`
 
@@ -99,7 +99,7 @@ Possible values for %vane-name see [Overview](overview.md "overview"):
 
 ---
 
-#[`:reset`](#reset)
+### [`:reset`](#reset)
 
 `~zod/try=> :reset`
 
@@ -107,7 +107,7 @@ Reloads all vanes. See [`:reset`] for reloading only or a specific vane.
 
 ---
 
-#[`:rm`](#rm)
+### [`:rm`](#rm)
 
 `~zod/try=> :rm /path/to/source`
 
@@ -115,7 +115,7 @@ Remove a file.
 
 ---
 
-#[`:solid`](#solid)
+### [`:solid`](#solid)
 
 `~zod/try=> :solid `
 
@@ -123,7 +123,7 @@ compiles a kernel into a new full urbit.pill
 
 ---
 
-#[`:sync`](#sync)
+### [`:sync`](#sync)
 
 `:sync %source-desk ~hidduc-posmeg %target-desk`
 
@@ -131,7 +131,7 @@ Sets up a subscription to the source desk on the target ship name to the target 
 
 ---
 
-#[`:ticket`](#ticket)
+### [`:ticket`](#ticket)
 
 `~zod/try=> :ticket ~ship-name`
 
@@ -140,7 +140,7 @@ On destroyes this command creates a yacht and takes the option `[~yacht-name-des
 
 ---
 
-#[`:thumb`](#thumb)
+### [`:thumb`](#thumb)
 
 `~zod/try=> :thumb ~ship-name`
 
@@ -156,7 +156,7 @@ Use this for the time beeing:
 
 ---
 
-#[`:unsync`](#unsync)
+### [`:unsync`](#unsync)
 
 `:unsync %source-desk ~hidduc-posmeg %target-desk`
 
@@ -165,7 +165,7 @@ Cancels the subscription to the source desk on the target ship name to the targe
 
 ---
 
-#[`:verb`](#verb)
+### [`:verb`](#verb)
 
 `~zod/try=> :verb`
 
@@ -207,7 +207,7 @@ You'll see events, internal cards, and effects.
 
 ---
 
-#[`:ye`](#ye)
+### [`:ye`](#ye)
 
 `~zod/try=> :ye ["message"]`
 

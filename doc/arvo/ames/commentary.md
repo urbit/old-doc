@@ -1,13 +1,12 @@
-Ames
-====
+# `%ames` commentary
 
-Ames is our networking protocol.
+`%ames` is our networking protocol.
 
 First we give commentary on the code, the algorithms involved, and the
 protocol.  We trace through the code touched when a packet is sent, received,
 acknowledged, and that acknowledgment applied.  This is fairly comprehensive,
 and contains many implementation details, but if you understand this, then you
-understand Ames.
+understand `%ames`.
 
 If you've scrolled down this page, you may be intimidated by the amount of Hoon
 code, especially if you are new to the language.  Don't be afraid of it, you
@@ -22,7 +21,7 @@ this way, it is similar to learning a natural language.  All of this code is in
 `arvo/ames.hoon`.
 
 After the commentary, we have reference documentation for all the data
-structures that are specific to Ames.  If you see a data structure or a
+structures that are specific to `%ames`.  If you see a data structure or a
 variable used that you don't recognize, search for it in the code, and it's
 very likely defined in one of these data structures.  We recommend that another
 tab is kept open for easy access to the data structure reference documentation.

@@ -1,4 +1,3 @@
-Arvo
-===
+# `%arvo` commentary
 
-Arvo is our operating system.
+`%arvo` is our operating system. 

@@ -15,6 +15,9 @@ like functional publishing with `%ford`.  Additionally, there's a fairly
 significant component that handles `%gall` messaging and subscriptions, which
 must be stateful.
 
+</div>
+
+---
 
 HTTP Methods
 ===
@@ -65,5 +68,3 @@ Unsubscribe from stream `[stream]` on a foreign Urbit.
 
 urb.js
 ===
-
-</div>

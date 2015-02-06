@@ -17,6 +17,9 @@ entirely for the benefit of other vanes and, in particular, applications.  Eyre
 exposes `%gall`'s interface over http, and ames does the same over the ames
 network.  `%gall` uses ford to compile and run the applications.
 
+</div>
+
+---
 
 Cards 
 ===
@@ -151,6 +154,6 @@ Save state on update.
 
 Load state on update.
 
-</div>
+
 
 

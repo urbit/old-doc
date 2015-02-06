@@ -1,10 +1,18 @@
-# Runes Overview
+<div class="short">
+
+# Runes
+
+In Hoon there are no reserved words. Instead, [`++twigs`]() (abstract syntax trees), are formed using a diagraph of two ASCII symbols, which is called a rune.
+
+</div>
+
+---
+
+<list></list>
 
 ## Introduction
 
-In Hoon there are no reserved words. Instead, [`++twigs`]() (abstract syntax trees), are formed using a diagraph of two ASCII symbols, which is called a rune. 
-
-For instance, the rune `?:`, pronounced "wutcol", is a rune that accepts three `++twig` expressions to form an "if-then-else statement," where `p` is the predicate, `q` is the "then" statement, and `r` is the "else" statement:
+For example, the rune `?:`, pronounced "wutcol", is a rune that accepts three `++twig` expressions to form an "if-then-else statement," where `p` is the predicate, `q` is the "then" statement, and `r` is the "else" statement:
 
         [%wtcl p=twig q=twig r=twig] 
 

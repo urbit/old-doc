@@ -1,7 +1,6 @@
-Clay
-====
+# `%clay` commentary
 
-Clay is our filesystem.
+`%clay` is our filesystem.
 
 The first part of this will be reference documentation for the data types used
 by our filesystem.  In fact, as a general guide, we recommend reading and
@@ -647,7 +646,7 @@ revision number, whichever is smaller.
 Public Interface
 ----------------
 
-As with all vanes, there are exactly two ways to interact with clay.  Clay
+As with all vanes, there are exactly two ways to interact with clay.  `%clay`
 exports a namespace accessible through `.^`, which is described above under
 `++care`.  The primary way of interacting with clay, though, is by sending
 kisses and receiving gifts.

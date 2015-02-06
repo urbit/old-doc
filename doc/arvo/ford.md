@@ -17,6 +17,12 @@ of `%ford` while `%gall` uses `%ford` to control the execution of
 applications.  `%clay` is intended to use `%ford` to managed marked
 data, but this is not yet reality.
 
+</div>
+
+---
+
+<list></list>
+
 Cards
 ===
 
@@ -104,5 +110,3 @@ Slaps a twig against a subject silk.  The mark of the result is
 
 Validates untyped data from a ship against a given mark.  This is an
 extremely useful function.
-
-</div>

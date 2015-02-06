@@ -1,3 +1,3 @@
-# Overview
+# Library
 
-<ListComponent dataPath="/doc/hoon/library"></ListComponent>
+<list></list>
