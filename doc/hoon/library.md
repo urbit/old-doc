@@ -1,4 +1,4 @@
 Library
 =======
 
-<kids></kids>
+<list dataPreview="true"></list>
