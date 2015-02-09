@@ -1,5 +1,5 @@
-section 2eP, diff **noted as "(move me)" in source**
-----------------------------------------------------
+section 2eP, diff
+=================
 
 A- more or less low priority and/or currently in the wrong section
 anyway.
