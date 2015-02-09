@@ -1,5 +1,10 @@
-Overview
---------
+<div class="short">
+
+`col : %col`
+============
+
+Tuples
+------
 
 The `:` runes construct [tuples]().
 
@@ -11,20 +16,29 @@ autocons property of `++twig`, as show below.
 Namely, a cell of two twigs is a twig producing a cell of the results of
 the two original sub-twigs.
 
-The `:` runes produce one of three categories of tuples:
+The `:` runes produce one of three categories of tuples
 
-Tuples of determinate size:
+</div>
+
+#### Tuples of determinate size:
 
 [`:-`]() Tuples of two elements, `p` and `q`. [`:_`]() Tuples of two
 reversed elements, `q` and `p`. Used to ensure vertical code flow.\
+
 [`:+`]() Tuples of three elements `p`, `q`, and `r`. [`:^`]() Tuples of
 four elements `p`, `q`, `r`, and `s`.
 
-Tuples of indeterminate size:
+<hr></hr>
+
+#### Tuples of indeterminate size:
 
 [`:*`]() Tuples of n elements. [`:~`]() Null-terminated tuples of n
 elements.
 
-Tuples used for interpolation:
+#### Tuples used for interpolation:
 
 [`:/`]() Tuple designed to be interpolated into an XML structure.
+
+<hr></hr>
+
+<kids></kids>

@@ -24,16 +24,16 @@ sort of like a typeclass in Haskell.
 [`$&`]() Fork between cells whose head is a cell and cells whose head is
 an atom.
 
-<hr>
-</hr>
+<hr></hr>
+
 #### Tuples
 
 [`$:`]() Unlabelled arrays.
 
 [`$=`]() Tuple with [`++face`]()s.
 
-<hr>
-</hr>
+<hr> </hr>
+
 #### Reductions
 
 ##### Important convenience methods for working with tiles, and are very broadly used.
@@ -44,6 +44,6 @@ an atom.
 
 [`$@`]() [whip]()
 
-<hr>
-</hr>
+<hr></hr>
+
 <kids></kids>

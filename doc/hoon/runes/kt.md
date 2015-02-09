@@ -1,22 +1,40 @@
-Overview
---------
+<div class="short">
+
+`ket ^ %ket`
+============
+
+Type operations
+---------------
 
 The `^` runes perform type operations. With the exception of `^-` and
 `^.`, they are all natural runes.
 
-There are three basic categories of `^` runes:
+There are three basic categories of `^` runes.
 
-Those that cast values to specific types:
+</div>
 
-[`^-`]() Casts `q` to the type of the [bunt]() of `p`. [`^+`]() Casts
-`q` to the type of `p`.
+#### Cast values to specific types
 
-Those that change the [variance]() of [cores]():
+[`^-`]() Casts `q` to the type of the [bunt]() of `p`. 
 
-[`^|`]() Converts core from [%gold]() to [%iron](). [`^&`]() Converts
-core from [%gold]() to [%zinc](). [`^?`]() Converts core from [%gold]()
-to [%lead]().
+[`^+`]() Casts `q` to the type of `p`.
 
-Those that add a variable name:
+<hr></hr>
+
+#### Change the [variance]() of [cores]()
+
+[`^|`]() Converts core from [%gold]() to [%iron](). 
+
+[`^&`]() Converts core from [%gold]() to [%zinc](). 
+
+[`^?`]() Converts core from [%gold]() to [%lead]().
+
+<hr></hr>
+
+#### Those that add a variable name
 
 [`^=`]() Changes the type of a value by adding a [`++face`]().
+
+<hr></hr>
+
+<kids></kids>

@@ -1,21 +1,39 @@
-Overview
---------
+<div class="short">
+
+`wut ? %wut`
+============
+
+Conditionals
+------------
 
 The `?` runes, with the exception of `?=`, produce conditional
 statements. The `?` runes are the workhorse of control-flow.
 
-There are three basic categories:
+There are three basic categories.
 
-If-then-else statements:
+</div>
+
+#### If-then-else
 
 [`?:`]() A natural `?` rune. The traditional if-than-else statement.
+
 [`?.`]() Inversion of `?:`. An "unless" statement. Used to keep the code
 flowing vertically.
 
-Switches:
+<hr></hr>
 
-[`?-`]() Tradional switch. [`?+`]() Switch with a default return value.
+#### Switches
 
-Type Tests:
+[`?-`]() Tradional switch.
+
+[`?+`]() Switch with a default return value.
+
+<hr></hr>
+
+#### Type Tests
 
 [`?=`]() Tests if the [icon]() of [`++tile`]() `p` contains `q`.
+
+<hr></hr>
+
+<kids></kids>

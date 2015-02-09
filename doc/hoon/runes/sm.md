@@ -1,25 +1,42 @@
-Overview
---------
+<div class="short">
+
+`sem ; %sem`
+============
+
+Composition
+-----------
 
 The `;` runes are used for composition. They are all synthetic.
 
-There are three categories of `;` runes:
+There are three categories of `;` runes.
 
-Gate composers:
+</div>
 
-[`;:`]() Applies a binary gate to multiple arguments. [`;~`]() Uses a
-monad to compose multiple gates, producing a gate of a similar type.
+#### Gate composers
+
+[`;:`]() Applies a binary gate to multiple arguments. 
+
+[`;~`]() Uses a monad to compose multiple gates, producing a gate of a similar type.
+
 [`;;`]() Composes a [clam]() with a value, slamming the value through
 the clam and forcefully verifying that it is unchanged. See also:
 [`++hard`]().
 
-Interpolators:
+<hr></hr>
+
+#### Interpolators
 
 [`;"`]() Composes [`++tapes`]() and twigs that produce `++tape`s.
 Generally used in its irregular form, of (text surrounded by double
 quotes).
 
-[++sail] runes:
+<hr></hr>
+
+#### [++sail] runes:
 
 `;-`, `;+`, `;*`, `;%`, and `%cnzy` all compose a tree structure. See
 also: [`++sail`]().
+
+<hr></hr>
+
+<kids></kids>
