@@ -1,19 +1,23 @@
-#[wutpat, `?@`, %wtpt](#wtpt)
+[wutpat, `?@`, %wtpt](#wtpt)
+============================
 
 If atom
 
-`?@` is a synthetic rune that produces `q` if `p` is an atom, `r` otherwise.
+`?@` is a synthetic rune that produces `q` if `p` is an atom, `r`
+otherwise.
 
-##Produces
+Produces
+--------
 
 Twig: `[%wtpt p=wing q=twig r=twig]`
 
-##Sample
+Sample
+------
 
-`p` is a [`++wing`]().
-`q` and `r` are [twig]()s.
+`p` is a [`++wing`](). `q` and `r` are [twig]()s.
 
-##Tall form
+Tall form
+---------
 
 Kingside:
 
@@ -21,15 +25,18 @@ Kingside:
       q
     r
 
-##Wide form
+Wide form
+---------
 
     ?@(p q r)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> ?@(~ 1 2)
     ! mint-vain

@@ -1,22 +1,25 @@
-#[siggar, `~>`, %sggr](#sggr)
+[siggar, `~>`, %sggr](#sggr)
+============================
 
 Hint
 
-`~>` is a natural rune that applies arbitrary hint `p` to `q`. 
+`~>` is a natural rune that applies arbitrary hint `p` to `q`.
 
-##Produces
+Produces
+--------
 
 Twig: `[%sggr p=$|(term [p=term q=twig]) q=twig]`
 
-##Sample
+Sample
+------
 
-`p` is either a [`++term`]() or a `++term` twig pair.
-`q` is a [twig]()
+`p` is either a [`++term`]() or a `++term` twig pair. `q` is a [twig]()
 
-##Tall form
+Tall form
+---------
 
 `p=%foo`:
-  
+
     ~>  %foo
         q
 
@@ -25,16 +28,19 @@ Twig: `[%sggr p=$|(term [p=term q=twig]) q=twig]`
         ~>  %foo.bar
         q
 
-##Wide form
+Wide form
+---------
 
     ~>(%foo q)
     ~>(%foo.bar q)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> (make '~>(%a 42)')
     [%10 p=97 q=[%1 p=42]]

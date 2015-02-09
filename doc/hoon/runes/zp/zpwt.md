@@ -1,18 +1,22 @@
-#[zapwut, `!?`, %zpwt](#zpwt)
+[zapwut, `!?`, %zpwt](#zpwt)
+============================
 
 Restrict version
 
 `!?` is a synthetic rune that enforces a Hoon version restriction.
 
-##Produces
+Produces
+--------
 
 Twig: `[%zpwt p=twig]`
 
-##Sample
+Sample
+------
 
 `p` is a [twig]().
 
-##Tall form
+Tall form
+---------
 
 To declare code that runs only in Hoon 164K or newer:
 
@@ -24,15 +28,18 @@ To declare code that runs only in 164K through 161K:
     !?  [164 161] 
     q
 
-##Wide form
+Wide form
+---------
 
 None
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> !?(264 (add 2 2))
     4

@@ -1,32 +1,38 @@
-#[buccab `$_` %bccb](#bccb)
+[buccab `$_` %bccb](#bccb)
+==========================
 
 Default value
 
-`$_` produces a tile-by-example, called a `%weed`. A `%weed` contains the twig
-used to make the example.
+`$_` produces a tile-by-example, called a `%weed`. A `%weed` contains
+the twig used to make the example.
 
-##Produces
+Produces
+--------
 
 Tile: `[%weed p=twig]`
 
-##Sample
+Sample
+------
 
 `p` is a [tile]().
 
-##Tall form
+Tall form
+---------
 
     $_  p
 
-##Wide form
+Wide form
+---------
 
     $_(p)
 
-##Irregular form
+Irregular form
+--------------
 
     _p
 
-##Examples
-
+Examples
+--------
 
     ~zod/try=> *_12
     12

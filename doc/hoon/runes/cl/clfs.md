@@ -1,34 +1,43 @@
-#[colfas, `:/`, %clfs](#clfs)
+[colfas, `:/`, %clfs](#clfs)
+============================
 
 Internal interpolation
 
-`:/`, `colfas`,  is a synthetic hoon that produces `[%$ [%$ p ~] ~]`, i.e., `[0 [0 p 0] 0]`.
+`:/`, `colfas`, is a synthetic hoon that produces `[%$ [%$ p ~] ~]`,
+i.e., `[0 [0 p 0] 0]`.
 
-##See also
-[`++manx`]()
-#[semdoq, %smdq](#smdq)
+See also
+--------
 
-##Produces
+[`++manx`]() \#[semdoq, %smdq](#smdq)
 
-Twig: `[%clfs p=twig]` 
+Produces
+--------
 
-##Sample
+Twig: `[%clfs p=twig]`
+
+Sample
+------
 
 `p` is a [twig]()
 
-##Tall form
+Tall form
+---------
 
     :/  p
 
-##Wide form
+Wide form
+---------
 
     :/(p)
 
-##Irregular form
+Irregular form
+--------------
 
 undefined
 
-##Examples
+Examples
+--------
 
     ~zod/try=> :/(20)
     [[%~. [%~. 20] ~] ~]

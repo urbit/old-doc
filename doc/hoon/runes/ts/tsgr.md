@@ -1,42 +1,55 @@
-#[tisgar, `=>`, %tsgr](#tsgr)
+[tisgar, `=>`, %tsgr](#tsgr)
+============================
 
 Product as subject
 
-`=>` is a natural rune that uses the product of `p` as the subject of `q`. `=>` is the inverse of `=<`. Use `=>` when your `p` isn't too long and `=>` makes for more readable code.
+`=>` is a natural rune that uses the product of `p` as the subject of
+`q`. `=>` is the inverse of `=<`. Use `=>` when your `p` isn't too long
+and `=>` makes for more readable code.
 
-##See also
+See also
+--------
 
-#[tisgal, `=<`, %tsgl](#tsgl)
+[tisgal, `=<`, %tsgl](#tsgl)
+============================
 
-##Produces
+Produces
+--------
 
 Twig: `[%tsgr p=twig q=twig]`
 
-##Sample
+Sample
+------
 
 `p` and `q` are [twig]()s.
 
-##Tall form
+Tall form
+---------
 
     =>  p
         q
 
-##Wide form
+Wide form
+---------
 
     =>(p q)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> =>([a=1 b=2 c=3] b)
     2
     ~zod/try=> =>((add 2 4) [. .])
     [6 6]
 
-In this simple example we first produce `b` from the tuple `[a=1 b=2 c=3]` using the wide form of `=>`. Then we use `.` to produce our context from the computation `(add 2 4)` as a cell, `[6 6]`.
+In this simple example we first produce `b` from the tuple
+`[a=1 b=2 c=3]` using the wide form of `=>`. Then we use `.` to produce
+our context from the computation `(add 2 4)` as a cell, `[6 6]`.
 
     ~zod/try=> 
     =cor  |=  a=@
@@ -49,4 +62,7 @@ In this simple example we first produce `b` from the tuple `[a=1 b=2 c=3]` using
     (cor 4)
     [6 2]
 
-Here we see a common pattern for using `=>` to conduct procedural changes to values in our subject. First we replace `b` with `b+2` using the irregular form of `%-`, then we replace `a` with the sum of `a` and `b` the same way. 
+Here we see a common pattern for using `=>` to conduct procedural
+changes to values in our subject. First we replace `b` with `b+2` using
+the irregular form of `%-`, then we replace `a` with the sum of `a` and
+`b` the same way.

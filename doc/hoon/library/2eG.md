@@ -1,14 +1,13 @@
-##section 2eG, parsing (whitespace)     
+section 2eG, parsing (whitespace)
+---------------------------------
 
----
+------------------------------------------------------------------------
 
-###++dog
+### ++dog
 
 `.` optional gap
 
-```
-++  dog  ;~(plug dot gay)                               ::
-```
+    ++  dog  ;~(plug dot gay)                               ::
 
 Dot followed by an optional gap, used in numbers.
 
@@ -18,15 +17,13 @@ Dot followed by an optional gap, used in numbers.
     ~zod/try=> (scan "a.        " ;~(pfix alf dog))
     [~~~. ~]
 
----
+------------------------------------------------------------------------
 
-###++doh 
+### ++doh
 
 `@p` separator
 
-```
-++  doh  ;~(plug ;~(plug hep hep) gay)                  ::
-```
+    ++  doh  ;~(plug ;~(plug hep hep) gay)                  ::
 
 Phonetic base phrase separator
 
@@ -40,15 +37,13 @@ Phonetic base phrase separator
     ~zod/try=> (scan "--      " doh)
     [[~~- ~~-] ~]
 
----
+------------------------------------------------------------------------
 
-###++dun
+### ++dun
 
 `--` to `~`
 
-```
-++  dun  (cold ~ ;~(plug hep hep))                      ::  -- (phep) to ~
-```
+    ++  dun  (cold ~ ;~(plug hep hep))                      ::  -- (phep) to ~
 
 Parse phep, `--`, to null, `~`.
 
@@ -57,15 +52,13 @@ Parse phep, `--`, to null, `~`.
     ~zod/try=> (dun [[1 1] "--"])
     [p=[p=1 q=3] q=[~ u=[p=~ q=[p=[p=1 q=3] q=""]]]]
 
----
+------------------------------------------------------------------------
 
-###++duz 
+### ++duz
 
 `==` to `~`
 
-```
-++  duz  (cold ~ ;~(plug tis tis))                      ::  == (stet) to ~
-```
+    ++  duz  (cold ~ ;~(plug tis tis))                      ::  == (stet) to ~
 
 Parse stet, `==`, to null `~`.
 
@@ -74,15 +67,13 @@ Parse stet, `==`, to null `~`.
     ~zod/try=> (duz [[1 1] "== |=..."])
     [p=[p=1 q=3] q=[~ u=[p=~ q=[p=[p=1 q=3] q=" |=..."]]]]
 
----
+------------------------------------------------------------------------
 
-###++gah 
+### ++gah
 
 Newline or ' '
 
-```
-++  gah  (mask [`@`10 ' ' ~])                           ::  newline or ace
-```
+    ++  gah  (mask [`@`10 ' ' ~])                           ::  newline or ace
 
 Whitespace component, either newline or space.
 
@@ -105,72 +96,62 @@ Whitespace component, either newline or space.
                 """
     ~[32 32 32 10 32 10 32 32]
 
----
+------------------------------------------------------------------------
 
-###++gap 
+### ++gap
 
 Plural whitespace
 
-```
-++  gap  (cold ~ ;~(plug gaq (star ;~(pose vul gah))))  ::  plural whitespace
-```
+    ++  gap  (cold ~ ;~(plug gaq (star ;~(pose vul gah))))  ::  plural whitespace
 
 Separates tall runes
 
----
+------------------------------------------------------------------------
 
-###++gaq
+### ++gaq
 
 End of line
 
-```
-++  gaq  ;~  pose                                       ::  end of line
-             (just `@`10)
-             ;~(plug gah ;~(pose gah vul))
-             vul
-         ==
-```
+    ++  gaq  ;~  pose                                       ::  end of line
+                 (just `@`10)
+                 ;~(plug gah ;~(pose gah vul))
+                 vul
+             ==
 
 Two spaces, a newline, or comment.
 
----
+------------------------------------------------------------------------
 
-###++gaw
+### ++gaw
 
 Classic whitespace
 
-```   
-++  gaw  (cold ~ (star ;~(pose vul gah)))               ::  classic white
-```
+    ++  gaw  (cold ~ (star ;~(pose vul gah)))               ::  classic white
 
 Terran whitespace
 
----
+------------------------------------------------------------------------
 
-###++gay 
-
-Optional gap.
-
-```
-++  gay  ;~(pose gap (easy ~))                          ::
-```
+### ++gay
 
 Optional gap.
 
----
+    ++  gay  ;~(pose gap (easy ~))                          ::
 
-###++vul 
+Optional gap.
 
-```
-++  vul  %-  cold  :-  ~                                ::  comments
-         ;~  plug  col  col
-           (star prn)
-           (just `@`10)
-         ==
-```
+------------------------------------------------------------------------
 
-Parse comments and produce a null.
-Note that a comment must be ended with a newline character.
+### ++vul
+
+    ++  vul  %-  cold  :-  ~                                ::  comments
+             ;~  plug  col  col
+               (star prn)
+               (just `@`10)
+             ==
+
+Parse comments and produce a null. Note that a comment must be ended
+with a newline character.
 
     ~zod/try=> (scan "::this is a comment \0a" vul)
     ~
@@ -178,4 +159,4 @@ Note that a comment must be ended with a newline character.
     ! {1 21}
     ! exit
 
----
+------------------------------------------------------------------------

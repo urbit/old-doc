@@ -1,12 +1,11 @@
-##section 2eH, parsing (idioms)
+section 2eH, parsing (idioms)
+-----------------------------
 
-###++alf 
+### ++alf
 
 Alphabetic characters
 
-```
-++  alf  ;~(pose low hig)                               ::  alphabetic
-```
+    ++  alf  ;~(pose low hig)                               ::  alphabetic
 
 Parse alphabetic characters, both upper and lowercase.
 
@@ -17,15 +16,13 @@ Parse alphabetic characters, both upper and lowercase.
         ~zod/try=> (scan "AaBbCc" (star alf))
         "AaBbCc"
 
----
+------------------------------------------------------------------------
 
-###++aln 
+### ++aln
 
 Alphanumeric characters
 
-```
-++  aln  ;~(pose low hig nud)                           ::  alphanumeric
-```
+    ++  aln  ;~(pose low hig nud)                           ::  alphanumeric
 
 Parse alphanumeric characters - both alphabetic characters and numbers.
 
@@ -36,15 +33,13 @@ Parse alphanumeric characters - both alphabetic characters and numbers.
         ~zod/try=> (scan "0123456789abcdef" (star aln))
         "0123456789abcdef"
 
----
+------------------------------------------------------------------------
 
-###++alp 
+### ++alp
 
 Alphanumeric and `-`
 
-```
-++  alp  ;~(pose low hig nud hep)                       ::  alphanumeric and -
-```
+    ++  alp  ;~(pose low hig nud hep)                       ::  alphanumeric and -
 
 Parse alphanumeric strings and hep, "-".
 
@@ -55,15 +50,13 @@ Parse alphanumeric strings and hep, "-".
         ~zod/try=> (scan "123abc-" (star alp))
         "123abc-"
 
----
+------------------------------------------------------------------------
 
-###++bet 
+### ++bet
 
 Axis syntax `-`, `+`
 
-```
-++  bet  ;~(pose (cold 2 hep) (cold 3 lus))             ::  axis syntax - +
-```
+    ++  bet  ;~(pose (cold 2 hep) (cold 3 lus))             ::  axis syntax - +
 
 Parse the hep and lus axis syntax.
 
@@ -72,17 +65,16 @@ Parse the hep and lus axis syntax.
         ~zod/try=> (scan "+" bet)
         3
 
----
+------------------------------------------------------------------------
 
-###++bin
+### ++bin
 
 Binary to atom
 
-```
-++  bin  (bass 2 (most gon but))                        ::  binary to atom
-```
+    ++  bin  (bass 2 (most gon but))                        ::  binary to atom
 
-Parse a tape of binary (0s and 1s) and produce its atomic representation.
+Parse a tape of binary (0s and 1s) and produce its atomic
+representation.
 
         ~zod/try=> (scan "0000" bin)
         0
@@ -93,15 +85,13 @@ Parse a tape of binary (0s and 1s) and produce its atomic representation.
         ~zod/try=> (scan "100000001111" bin)
         2.063
 
----
+------------------------------------------------------------------------
 
-###++but 
+### ++but
 
 Binary digit
 
-```
-++  but  (cook |=(a=@ (sub a '0')) (shim '0' '1'))      ::  binary digit
-```
+    ++  but  (cook |=(a=@ (sub a '0')) (shim '0' '1'))      ::  binary digit
 
 Parse a single binary digit.
 
@@ -116,15 +106,13 @@ Parse a single binary digit.
         ~zod/try=> (scan "01" (star but))
         ~[0 1]
 
----
+------------------------------------------------------------------------
 
-###++cit 
+### ++cit
 
 Octal digit
 
-```
-++  cit  (cook |=(a=@ (sub a '0')) (shim '0' '7'))      ::  octal digit
-```
+    ++  cit  (cook |=(a=@ (sub a '0')) (shim '0' '7'))      ::  octal digit
 
 Parse a single octal digit.
 
@@ -139,15 +127,13 @@ Parse a single octal digit.
         ~zod/try=> (scan "60" (star cit))
         ~[6 0]
 
----
+------------------------------------------------------------------------
 
-###++dem 
+### ++dem
 
 Decimal to atom
 
-```
-++  dem  (bass 10 (most gon dit))                       ::  decimal to atom
-```
+    ++  dem  (bass 10 (most gon dit))                       ::  decimal to atom
 
 Parse a decimal number to an atom.
 
@@ -160,17 +146,15 @@ Parse a decimal number to an atom.
         ~zod/try=> (scan "12456" dem)
         12.456
 
----
+------------------------------------------------------------------------
 
-###++dit 
+### ++dit
 
 Decimal digit
 
-```
-++  dit  (cook |=(a=@ (sub a '0')) (shim '0' '9'))      ::  decimal digit
-```
+    ++  dit  (cook |=(a=@ (sub a '0')) (shim '0' '9'))      ::  decimal digit
 
- Parse a single decimal digit.
+Parse a single decimal digit.
 
         ~zod/try=> (scan "7" dit)
         7
@@ -179,15 +163,13 @@ Decimal digit
         ~zod/try=> (scan "26000" (star dit))
         ~[2 6 0 0 0]
 
----
+------------------------------------------------------------------------
 
-###++gul 
+### ++gul
 
 Axis syntax `<` or `>`
 
-```
-++  gul  ;~(pose (cold 2 gal) (cold 3 gar))             ::  axis syntax < >
-```
+    ++  gul  ;~(pose (cold 2 gal) (cold 3 gar))             ::  axis syntax < >
 
 Parse the axis gal and gar axis syntax.
 
@@ -196,32 +178,29 @@ Parse the axis gal and gar axis syntax.
         ~zod/try=> (scan ">" gul)
         3
 
----
+------------------------------------------------------------------------
 
-###++gon 
+### ++gon
 
 Long numbers
 
-```
-++  gon  ;~(pose ;~(plug bas gay fas) (easy ~))         ::  long numbers \ /
-```
+    ++  gon  ;~(pose ;~(plug bas gay fas) (easy ~))         ::  long numbers \ /
 
-Parse long numbers - Numbers which wrap around the shell with the line break characters bas and fas.
+Parse long numbers - Numbers which wrap around the shell with the line
+break characters bas and fas.
 
         ~zod/try=> (scan "\\/" gon)
         [~~~5c. ~ ~~~2f.]
         ~zod/try=> (gon [[1 1] "\\/"])
         [p=[p=1 q=3] q=[~ u=[p=[~~~5c. ~ ~~~2f.] q=[p=[p=1 q=3] q=""]]]]
 
----
+------------------------------------------------------------------------
 
-###++hex 
+### ++hex
 
 Hex to atom
 
-```
-++  hex  (bass 16 (most gon hit))                       ::  hex to atom
-```
+    ++  hex  (bass 16 (most gon hit))                       ::  hex to atom
 
 Parse any hexadecimal number to an atom.
 
@@ -240,15 +219,13 @@ Parse any hexadecimal number to an atom.
         ~zod/try=> `@ux`(scan "1EE7F7" hex)
         0x1e.e7f7
 
----
+------------------------------------------------------------------------
 
-###++hig
+### ++hig
 
 Uppercase
 
-```
-++  hig  (shim 'A' 'Z')                                 ::  uppercase
-```
+    ++  hig  (shim 'A' 'Z')                                 ::  uppercase
 
 Parse a single uppercase letter.
 
@@ -261,19 +238,17 @@ Parse a single uppercase letter.
         ~zod/try=> (hig [[1 1] "G"])
         [p=[p=1 q=2] q=[~ [p=~~~47. q=[p=[p=1 q=2] q=""]]]]
 
----
+------------------------------------------------------------------------
 
-###++hit 
+### ++hit
 
 Hex digits
 
-```
-++  hit  ;~  pose                                       ::  hex digits
-           dit
-           (cook |=(a=char (sub a 87)) (shim 'a' 'f'))
-           (cook |=(a=char (sub a 55)) (shim 'A' 'F'))
-         ==
-```
+    ++  hit  ;~  pose                                       ::  hex digits
+               dit
+               (cook |=(a=char (sub a 87)) (shim 'a' 'f'))
+               (cook |=(a=char (sub a 55)) (shim 'A' 'F'))
+             ==
 
 Parse a single hexadecimal digit.
 
@@ -286,15 +261,13 @@ Parse a single hexadecimal digit.
         ~zod/try=> (scan "2A" (star hit))
         ~[2 10]
 
----
+------------------------------------------------------------------------
 
-###++low 
+### ++low
 
 Lowercase
 
-```
-++  low  (shim 'a' 'z')                                 ::  lowercase
-```
+    ++  low  (shim 'a' 'z')                                 ::  lowercase
 
 Parse a single lowercase letter.
 
@@ -307,17 +280,15 @@ Parse a single lowercase letter.
         ~zod/try=> (low [[1 1] "g"])
         [p=[p=1 q=2] q=[~ [p=~~g q=[p=[p=1 q=2] q=""]]]]
 
----
+------------------------------------------------------------------------
 
-###++mes 
+### ++mes
 
 Hexbyte
 
-```
-++  mes  %+  cook                                       ::  hexbyte
-           |=([a=@ b=@] (add (mul 16 a) b))
-         ;~(plug hit hit)
-```
+    ++  mes  %+  cook                                       ::  hexbyte
+               |=([a=@ b=@] (add (mul 16 a) b))
+             ;~(plug hit hit)
 
 Parse a hexbyte.
 
@@ -328,15 +299,13 @@ Parse a hexbyte.
         ~zod/try=> (scan "42" mes)
         66
 
----
+------------------------------------------------------------------------
 
-###++nix 
+### ++nix
 
 Letters, `-`, and `_`
 
-```
-++  nix  (boss 256 (star ;~(pose aln cab)))             ::
-```
+    ++  nix  (boss 256 (star ;~(pose aln cab)))             ::
 
 Letters, `-`, and `_`
 
@@ -345,16 +314,13 @@ Letters, `-`, and `_`
     ~zod/try=> `@t`(scan "as_me" nix)
     'as_me'
 
+------------------------------------------------------------------------
 
----
-
-###++nud 
+### ++nud
 
 Numeric
 
-```
-++  nud  (shim '0' '9')                                 ::  numeric
-```
+    ++  nud  (shim '0' '9')                                 ::  numeric
 
 Parse a numeric character - A number.
 
@@ -367,15 +333,13 @@ Parse a numeric character - A number.
     ~zod/try=> (scan "0123456789" (star nud))
     "0123456789"
 
----
+------------------------------------------------------------------------
 
-###++prn
+### ++prn
 
 Printable character
 
-```
-++  prn  ;~(less (just `@`127) (shim 32 256))
-```
+    ++  prn  ;~(less (just `@`127) (shim 32 256))
 
 Parse any printable character
 
@@ -387,18 +351,16 @@ Parse any printable character
     ! {1 1}
     ! exit
 
----
+------------------------------------------------------------------------
 
-###++qat
+### ++qat
 
 Chars in blockcord
 
-```
-++  qat  ;~  pose                                       ::  chars in blockcord
-             prn
-             ;~(less ;~(plug (just `@`10) soqs) (just `@`10))
-         ==
-```
+    ++  qat  ;~  pose                                       ::  chars in blockcord
+                 prn
+                 ;~(less ;~(plug (just `@`10) soqs) (just `@`10))
+             ==
 
 Parse character in cord block.
 
@@ -412,19 +374,16 @@ Parse character in cord block.
     ! {1 1}
     ! exit
 
+------------------------------------------------------------------------
 
----
-
-###++qit 
+### ++qit
 
 Chars in cord
 
-```
-++  qit  ;~  pose                                       ::  chars in a cord
-             ;~(less bas soq prn)
-             ;~(pfix bas ;~(pose bas soq mes))          ::  escape chars
-         ==
-```
+    ++  qit  ;~  pose                                       ::  chars in a cord
+                 ;~(less bas soq prn)
+                 ;~(pfix bas ;~(pose bas soq mes))          ::  escape chars
+             ==
 
 Parse an individual character to its cord atom representation.
 
@@ -445,29 +404,27 @@ Parse an individual character to its cord atom representation.
     ~zod/try=> (scan "cord" (star qit))
     ~[99 111 114 100]
 
----
+------------------------------------------------------------------------
 
-###++qut 
+### ++qut
 
 Cord
 
-```
-++  qut  ;~  pose                                       ::  cord
-             ;~  less  soqs
-               (ifix [soq soq] (boss 256 (more gon qit)))
+    ++  qut  ;~  pose                                       ::  cord
+                 ;~  less  soqs
+                   (ifix [soq soq] (boss 256 (more gon qit)))
+                 ==
+                 %-  inde  %+  ifix
+                   :-  ;~  plug  soqs
+                         ;~(pose ;~(plug (plus ace) vul) (just '\0a'))
+                       ==
+                   ;~(plug (just '\0a') soqs)
+                 (boss 256 (star qat))
              ==
-             %-  inde  %+  ifix
-               :-  ;~  plug  soqs
-                     ;~(pose ;~(plug (plus ace) vul) (just '\0a'))
-                   ==
-               ;~(plug (just '\0a') soqs)
-             (boss 256 (star qat))
-         ==
-::
-```
+    ::
 
-Parse single-soq cord with `\{gap}/` anywhere in the middle, or triple-soq cord
-which must be in an indented block.
+Parse single-soq cord with `\{gap}/` anywhere in the middle, or
+triple-soq cord which must be in an indented block.
 
     ~zod/try=> (scan "'cord'" qut)
     q=1.685.221.219
@@ -480,16 +437,13 @@ which must be in an indented block.
                 '''
     'Heredoc isn't prohibited from containing quotes'
 
+------------------------------------------------------------------------
 
----
-
-###++soqs
+### ++soqs
 
 Delimiting `'''`
 
-```
-++  soqs  ;~(plug soq soq soq)                          ::  delimiting '''
-```
+    ++  soqs  ;~(plug soq soq soq)                          ::  delimiting '''
 
 Triple single quote
 
@@ -499,19 +453,17 @@ Triple single quote
     ! {1 1}
     ! exit
 
----
+------------------------------------------------------------------------
 
-###++sym
+### ++sym
 
 Term
 
-```
-++  sym
-  %+  cook
-    |=(a=tape (rap 3 ^-((list ,@) a)))
-  ;~(plug low (star ;~(pose nud low hep)))
-::
-```
+    ++  sym
+      %+  cook
+        |=(a=tape (rap 3 ^-((list ,@) a)))
+      ;~(plug low (star ;~(pose nud low hep)))
+    ::
 
 A term: a letter(lowercase), followed by letters, numbers, or `-`.
 
@@ -522,26 +474,24 @@ A term: a letter(lowercase), followed by letters, numbers, or `-`.
     ~zod/try=> (scan "sym" sym)
     7.174.515
 
----
+------------------------------------------------------------------------
 
-###++ven 
+### ++ven
 
 `+>-` axis syntax
 
-```
-++  ven  ;~  (comp |=([a=@ b=@] (peg a b)))             ::  +>- axis syntax
-           bet
-           =+  hom=`?`|
-           |=  tub=nail
-           ^-  (like axis)
-           =+  vex=?:(hom (bet tub) (gul tub))
-           ?~  q.vex
-             [p.tub [~ 1 tub]]
-           =+  wag=$(p.tub p.vex, hom !hom, tub q.u.q.vex)
-           ?>  ?=(^ q.wag)
-           [p.wag [~ (peg p.u.q.vex p.u.q.wag) q.u.q.wag]]
-         ==
-```
+    ++  ven  ;~  (comp |=([a=@ b=@] (peg a b)))             ::  +>- axis syntax
+               bet
+               =+  hom=`?`|
+               |=  tub=nail
+               ^-  (like axis)
+               =+  vex=?:(hom (bet tub) (gul tub))
+               ?~  q.vex
+                 [p.tub [~ 1 tub]]
+               =+  wag=$(p.tub p.vex, hom !hom, tub q.u.q.vex)
+               ?>  ?=(^ q.wag)
+               [p.wag [~ (peg p.u.q.vex p.u.q.wag) q.u.q.wag]]
+             ==
 
 Axis syntax parser
 
@@ -554,22 +504,20 @@ Axis syntax parser
     ~zod/arvo=/hoon/hoon> ->+:[[1 2 [3 4]] 5]
     [3 4]
 
----
+------------------------------------------------------------------------
 
-###++vit 
+### ++vit
 
 Base64 digit
 
-```
-++  vit                                                 ::  base64 digit
-  ;~  pose
-    (cook |=(a=@ (sub a 65)) (shim 'A' 'Z'))
-    (cook |=(a=@ (sub a 71)) (shim 'a' 'z'))
-    (cook |=(a=@ (add a 4)) (shim '0' '9'))
-    (cold 62 (just '-'))
-    (cold 63 (just '+'))
-  ==
-```
+    ++  vit                                                 ::  base64 digit
+      ;~  pose
+        (cook |=(a=@ (sub a 65)) (shim 'A' 'Z'))
+        (cook |=(a=@ (sub a 71)) (shim 'a' 'z'))
+        (cook |=(a=@ (add a 4)) (shim '0' '9'))
+        (cold 62 (just '-'))
+        (cold 63 (just '+'))
+      ==
 
 Terran base64
 

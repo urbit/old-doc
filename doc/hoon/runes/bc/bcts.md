@@ -1,33 +1,42 @@
-#[buctis `$=` %bcts](#bcts)
+[buctis `$=` %bcts](#bcts)
+==========================
 
 Face for tile
 
-`$=` is a tile rune that produces a `%bark`. A `%bark` is a tile that wraps a [face]() around another tile. Used primarily to add faces to [nouns]().
+`$=` is a tile rune that produces a `%bark`. A `%bark` is a tile that
+wraps a [face]() around another tile. Used primarily to add faces to
+[nouns]().
 
-##Produces
+Produces
+--------
 
 [Tile](): `[%bark p=term q=tile]`
 
-##Sample
+Sample
+------
 
 `p` is a [term]().
 
 `q` is a [tile]().
 
-##Tall form
+Tall form
+---------
 
     $=  p
         q
 
-##Wide form
+Wide form
+---------
 
 None
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
 `a=*` parses as `[%bark %a %noun]`.
 

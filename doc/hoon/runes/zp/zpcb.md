@@ -1,31 +1,38 @@
-#[zapcap, %zpcb](#zpcb)
+[zapcap, %zpcb](#zpcb)
+======================
 
 Path / location trace
 
-`!_` is a virtual natural hoon that traces the stack if debugging is enabled, putting the current path and location range of each rune.
+`!_` is a virtual natural hoon that traces the stack if debugging is
+enabled, putting the current path and location range of each rune.
 
-##Produces
+Produces
+--------
 
 Twig: `[%zpcb p=spot q=twig]`
 
-##Sample
+Sample
+------
 
-`p` is a [`++spot`]().
-`q` is a [twig]().
+`p` is a [`++spot`](). `q` is a [twig]().
 
-##Tall form
+Tall form
+---------
 
     ?!  p
 
-##Wide form
+Wide form
+---------
 
     ?!(p)
 
-##Irregular form
+Irregular form
+--------------
 
     !p
 
-##Examples
+Examples
+--------
 
     ~zod/try=> (ream '20')
     [%dtzy p=%ud q=20]

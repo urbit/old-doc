@@ -1,3 +1,4 @@
-# `%arvo` commentary
+`%arvo` commentary
+==================
 
-`%arvo` is our operating system. 
+`%arvo` is our operating system.

@@ -1,39 +1,49 @@
 <div class="short">
 
-# `buc $ %buc`
+`buc $ %buc`
+============
 
-## Tile construction
+Tile construction
+-----------------
 
-The `$` runes construct [`++tile`]()s. [`++tile`]()s are one of our primary building blocks in hoon, they define how we reduce our ASTs into well typed nouns that nock can compute. You can think of a [`++tile`]() sort of like a typeclass in Haskell.
+The `$` runes construct [`++tile`]()s. [`++tile`]()s are one of our
+primary building blocks in hoon, they define how we reduce our ASTs into
+well typed nouns that nock can compute. You can think of a [`++tile`]()
+sort of like a typeclass in Haskell.
 
 </div>
 
 #### Forks
+
 ##### [`++tile`]()s that can be one of multiple cases.
 
-[`$?`]()  Non-empty list of cases.
+[`$?`]() Non-empty list of cases.
 
-[`$|`]()  Fork between atom and cell.
+[`$|`]() Fork between atom and cell.
 
-[`$&`]()  Fork between cells whose head is a cell and cells whose head is an atom.
+[`$&`]() Fork between cells whose head is a cell and cells whose head is
+an atom.
 
-<hr></hr>
-
+<hr>
+</hr>
 #### Tuples
 
-[`$:`]()  Unlabelled arrays.
+[`$:`]() Unlabelled arrays.
 
-[`$=`]()  Tuple with [++face]()s.
+[`$=`]() Tuple with [`++face`]()s.
 
-<hr></hr>
-
+<hr>
+</hr>
 #### Reductions
+
 ##### Important convenience methods for working with tiles, and are very broadly used.
 
-[`$*`]()  [bunt]()
+[`$*`]() [bunt]()
 
-[`$,`]()  [clam]()
+[`$,`]() [clam]()
 
-[`$@`]()  [whip]()
+[`$@`]() [whip]()
 
-<hr></hr>
+<hr>
+</hr>
+<kids></kids>

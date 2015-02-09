@@ -1,31 +1,39 @@
-#[buclus `$+` %bcls](#bcls)
+[buclus `$+` %bcls](#bcls)
+==========================
 
 Signature
 
-`$+` a tile for a gate which accepts `p` and produces `q`. `$+` is similar to a function signature. `$+(p q)` is a `%bark` of a `%weed`, or `$_(|+(p _q))`. 
+`$+` a tile for a gate which accepts `p` and produces `q`. `$+` is
+similar to a function signature. `$+(p q)` is a `%bark` of a `%weed`, or
+`$_(|+(p _q))`.
 
-##Produces
+Produces
+--------
 
 Tile: `$_(|+(p _q))`
 
-##Sample
+Sample
+------
 
-`p` is a [tile]()
-`q` is a [tile]()
+`p` is a [tile]() `q` is a [tile]()
 
-##Tall form
+Tall form
+---------
 
       $+  p  q
 
-##Wide form
+Wide form
+---------
 
       $+(p q)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
       ++  sort                                                ::  quicksort
             ~/  %sort
@@ -39,7 +47,8 @@ None
             ^+  t.a
             [i.a $(a (skim t.a |=(c=_i.a !(b c i.a))))]
 
-In ++sort, `$+` is a tile for a comparator gate, which takes two nouns and produces a loobean.
+In ++sort, `$+` is a tile for a comparator gate, which takes two nouns
+and produces a loobean.
 
     ~zod/try=> |=(a=@ (add 2 a))
     <1.sgg [a=@ [[@da @ta] [@p @ta] *''] @n <246.qra 41.uuw 374.glo 100.rip 1.ypj %164>]>

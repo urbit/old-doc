@@ -1,32 +1,35 @@
-#[wutlaz, %wtlz](#wtlz)
+[wutlaz, %wtlz](#wtlz)
+======================
 
 [`++tiki`]() version of [`%wtls`]()
 
-`wutlaz` is a synthetic rune that selects a case in `q` for the actual type of `p`. Only used internally.
+`wutlaz` is a synthetic rune that selects a case in `q` for the actual
+type of `p`. Only used internally.
 
-##Produces
+Produces
+--------
 
 Twig: `[%wtlz p=wing q=twig r=tine]`
 
-##Sample
+Sample
+------
 
-`p` is a [`++wing`]().
-`q` is a [twig]().
-`r` is a [`++tine`]().
+`p` is a [`++wing`](). `q` is a [twig](). `r` is a [`++tine`]().
 
-##Tall form
-
-None
-
-##Wide form
+Tall form
+---------
 
 None
 
-##Irregular form
+Wide form
+---------
 
 None
 
-##Examples
+Irregular form
+--------------
 
+None
 
-
+Examples
+--------

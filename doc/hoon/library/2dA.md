@@ -1,24 +1,23 @@
-##section 2dA, sets
+section 2dA, sets
+-----------------
 
-###++apt
+### ++apt
 
 Set verification
 
-```
-++  apt                                                 ::  set invariant
-  |=  a=(tree)
-  ?~  a
-    &
-  ?&  ?~(l.a & ?&((vor n.a n.l.a) (hor n.l.a n.a)))
-      ?~(r.a & ?&((vor n.a n.r.a) (hor n.a n.r.a)))
-  ==
-::
-```
+    ++  apt                                                 ::  set invariant
+      |=  a=(tree)
+      ?~  a
+        &
+      ?&  ?~(l.a & ?&((vor n.a n.l.a) (hor n.l.a n.a)))
+          ?~(r.a & ?&((vor n.a n.r.a) (hor n.a n.r.a)))
+      ==
+    ::
 
 Produces a loobean indicating whether `a` is a set or not.
 
 `a` is a [tree]().
- 
+
     ~zod/try=> =b (sa `(list ,@t)`['john' 'bonita' 'daniel' 'madeleine' ~])
     ~zod/try=> (apt b)
         %.y
@@ -28,17 +27,15 @@ Produces a loobean indicating whether `a` is a set or not.
     ~zod/try=> (apt m)
         %.y
 
----
+------------------------------------------------------------------------
 
-###++in
+### ++in
 
 Set operations
 
-```
-++  in                                                  ::  set engine
-  ~/  %in
-  |/  a=(set)
-```
+    ++  in                                                  ::  set engine
+      ~/  %in
+      |/  a=(set)
 
 Input arm.
 
@@ -47,22 +44,21 @@ Input arm.
 
 `a` is a [set]()
 
-###+-all:in
+### +-all:in
 
 Logical AND
 
-```
-  +-  all                                               ::  logical AND
-    ~/  %all
-    |*  b=$+(* ?)
-    |-  ^-  ?
-    ?~  a
-      &
-    ?&((b n.a) $(a l.a) $(a r.a))
-  ::
-```
+      +-  all                                               ::  logical AND
+        ~/  %all
+        |*  b=$+(* ?)
+        |-  ^-  ?
+        ?~  a
+          &
+        ?&((b n.a) $(a l.a) $(a r.a))
+      ::
 
-Computes the logical AND on every element in `a` slammed with `b`, producing a loobean.
+Computes the logical AND on every element in `a` slammed with `b`,
+producing a loobean.
 
 `a` is a [set]().
 
@@ -75,22 +71,20 @@ Computes the logical AND on every element in `a` slammed with `b`, producing a l
     ~zod/try=> (~(all in b) |=(a=@t (gte a 100)))
         %.y
 
----
+------------------------------------------------------------------------
 
-###+-any:in
+### +-any:in
 
 Logical OR
 
-```
-  +-  any                                               ::  logical OR
-    ~/  %any
-    |*  b=$+(* ?)
-    |-  ^-  ?
-    ?~  a
-      |
-    ?|((b n.a) $(a l.a) $(a r.a))
-  ::
-```
+      +-  any                                               ::  logical OR
+        ~/  %any
+        |*  b=$+(* ?)
+        |-  ^-  ?
+        ?~  a
+          |
+        ?|((b n.a) $(a l.a) $(a r.a))
+      ::
 
 Computes the logical OR on every element of `a` slammed with `b`.
 
@@ -105,31 +99,29 @@ Computes the logical OR on every element of `a` slammed with `b`.
     ~zod/try=> (~(any in b) |=(a=@t (lte a 100)))
         %.n
 
----
+------------------------------------------------------------------------
 
-###+-del:in
+### +-del:in
 
 Remove noun
 
-```
-  +-  del                                               ::  b without any a
-    ~/  %del
-    |*  b=*
-    |-  ^+  a
-    ?~  a
-      ~
-    ?.  =(b n.a)
-      ?:  (hor b n.a)
-        [n.a $(a l.a) r.a]
-      [n.a l.a $(a r.a)]
-    |-  ^-  ?(~ _a)
-    ?~  l.a  r.a
-    ?~  r.a  l.a
-    ?:  (vor n.l.a n.r.a)
-      [n.l.a l.l.a $(l.a r.l.a)]
-    [n.r.a $(r.a l.r.a) r.r.a]
-  ::
-```
+      +-  del                                               ::  b without any a
+        ~/  %del
+        |*  b=*
+        |-  ^+  a
+        ?~  a
+          ~
+        ?.  =(b n.a)
+          ?:  (hor b n.a)
+            [n.a $(a l.a) r.a]
+          [n.a l.a $(a r.a)]
+        |-  ^-  ?(~ _a)
+        ?~  l.a  r.a
+        ?~  r.a  l.a
+        ?:  (vor n.l.a n.r.a)
+          [n.l.a l.l.a $(l.a r.l.a)]
+        [n.r.a $(r.a l.r.a) r.r.a]
+      ::
 
 Removes `b` from the set `a`.
 
@@ -146,30 +138,28 @@ Removes `b` from the set `a`.
     ~zod/try=> (~(del in b) 'susan')
     {'bonita' 'madeleine' 'daniel' 'john'}
 
----
+------------------------------------------------------------------------
 
-###+-dig:in
+### +-dig:in
 
 Axis a in b
 
-```
-  +-  dig                                               ::  axis of a in b
-    |=  b=*
-    =+  c=1
-    |-  ^-  (unit ,@)
-    ?~  a  ~
-    ?:  =(b n.a)  [~ u=(peg c 2)]
-    ?:  (gor b n.a)
-      $(a l.a, c (peg c 6))
-    $(a r.a, c (peg c 7))
-  ::
-```
+      +-  dig                                               ::  axis of a in b
+        |=  b=*
+        =+  c=1
+        |-  ^-  (unit ,@)
+        ?~  a  ~
+        ?:  =(b n.a)  [~ u=(peg c 2)]
+        ?:  (gor b n.a)
+          $(a l.a, c (peg c 6))
+        $(a r.a, c (peg c 7))
+      ::
 
 Produce the axis of `b` within `a`.
 
 `a` is a [set]().
 
-`b` is a [noun](). 
+`b` is a [noun]().
 
     ~zod/try=> =a (sa `(list ,@)`[1 2 3 4 5 6 7 ~])
     ~zod/try=> a
@@ -183,22 +173,20 @@ Produce the axis of `b` within `a`.
     ~zod/try=> (~(dig in a) 6)
     [~ 2]
 
----
+------------------------------------------------------------------------
 
-###+-gas:in
+### +-gas:in
 
 Concatenate
 
-```
-  +-  gas                                               ::  concatenate
-    ~/  %gas
-    |=  b=(list ,_?>(?=(^ a) n.a))
-    |-  ^+  a
-    ?~  b
-      a
-    $(b t.b, a (put(+< a) i.b))
-  ::
-```
+      +-  gas                                               ::  concatenate
+        ~/  %gas
+        |=  b=(list ,_?>(?=(^ a) n.a))
+        |-  ^+  a
+        ?~  b
+          a
+        $(b t.b, a (put(+< a) i.b))
+      ::
 
 Insert the elements of a list `b` into a set `a`.
 
@@ -213,26 +201,24 @@ Insert the elements of a list `b` into a set `a`.
     ~zod/try=> (~(gas in s) `(list ,@t)`['1' '2' '3' ~])
     {'1' '3' '2' 'e' 'd' 'a' 'c' 'b'}
 
----
+------------------------------------------------------------------------
 
-###+-has:in
+### +-has:in
 
 b in a?
 
-```
-  +-  has                                               ::  b exists in a check
-    ~/  %has
-    |*  b=*
-    |-  ^-  ?
-    ?~  a
-      |
-    ?:  =(b n.a)
-      &
-    ?:  (hor b n.a)
-      $(a l.a)
-    $(a r.a)
-  ::
-```
+      +-  has                                               ::  b exists in a check
+        ~/  %has
+        |*  b=*
+        |-  ^-  ?
+        ?~  a
+          |
+        ?:  =(b n.a)
+          &
+        ?:  (hor b n.a)
+          $(a l.a)
+        $(a r.a)
+      ::
 
 Checks if `b` is an element of `a`, producing a loobean.
 
@@ -246,31 +232,30 @@ Checks if `b` is an element of `a`, producing a loobean.
     ~zod/try=> (~(has in a) 'z')
     %.n
 
----
+------------------------------------------------------------------------
 
-###+-int:in
+### +-int:in
 
 Intersection
 
-```
-+-  int                                               ::  intersection
-    ~/  %int
-    |*  b=_a
-    |-  ^+  a
-    ?~  b
-      ~
-    ?~  a
-      ~
-    ?.  (vor n.a n.b)
-      $(a b, b a)
-    ?:  =(n.b n.a)
-      [n.a $(a l.a, b l.b) $(a r.a, b r.b)]
-    ?:  (hor n.b n.a)
-      %-  uni(+< $(a l.a, b [n.b l.b ~]))  $(b r.b)
-    %-  uni(+< $(a r.a, b [n.b ~ r.b]))  $(b l.b)
-```
+    +-  int                                               ::  intersection
+        ~/  %int
+        |*  b=_a
+        |-  ^+  a
+        ?~  b
+          ~
+        ?~  a
+          ~
+        ?.  (vor n.a n.b)
+          $(a b, b a)
+        ?:  =(n.b n.a)
+          [n.a $(a l.a, b l.b) $(a r.a, b r.b)]
+        ?:  (hor n.b n.a)
+          %-  uni(+< $(a l.a, b [n.b l.b ~]))  $(b r.b)
+        %-  uni(+< $(a r.a, b [n.b ~ r.b]))  $(b l.b)
 
-Produces a set of the intersection between two sets of the same type, `a` and `b`.
+Produces a set of the intersection between two sets of the same type,
+`a` and `b`.
 
 `a` is a [set]().
 
@@ -284,35 +269,33 @@ Produces a set of the intersection between two sets of the same type, `a` and `b
     {~~a ~~m}
     ~zod/try=> (~(int in (sa "acmo")) (sa "lep"))
     {}
- 
----
 
-###+-put:in
+------------------------------------------------------------------------
+
+### +-put:in
 
 Put b in a
 
-```
-  +-  put                                               ::  puts b in a
-    ~/  %put
-    |*  b=*
-    |-  ^+  a
-    ?~  a
-      [b ~ ~]
-    ?:  =(b n.a)
-      a
-    ?:  (hor b n.a)
-      =+  c=$(a l.a)
-      ?>  ?=(^ c)
-      ?:  (vor n.a n.c)
-        [n.a c r.a]
-      [n.c l.c [n.a r.c r.a]]
-    =+  c=$(a r.a)
-    ?>  ?=(^ c)
-    ?:  (vor n.a n.c)
-      [n.a l.a c]
-    [n.c [n.a l.a l.c] r.c]
-  ::
-```
+      +-  put                                               ::  puts b in a
+        ~/  %put
+        |*  b=*
+        |-  ^+  a
+        ?~  a
+          [b ~ ~]
+        ?:  =(b n.a)
+          a
+        ?:  (hor b n.a)
+          =+  c=$(a l.a)
+          ?>  ?=(^ c)
+          ?:  (vor n.a n.c)
+            [n.a c r.a]
+          [n.c l.c [n.a r.c r.a]]
+        =+  c=$(a r.a)
+        ?>  ?=(^ c)
+        ?:  (vor n.a n.c)
+          [n.a l.a c]
+        [n.c [n.a l.a l.c] r.c]
+      ::
 
 Add an element `b` to the set `a`.
 
@@ -327,20 +310,18 @@ Add an element `b` to the set `a`.
     ~zod/try=> -.l.+.b
     n=`d`
 
----
+------------------------------------------------------------------------
 
-###+-rep:in
+### +-rep:in
 
 Accumulate
 
-```
-  +-  rep                                               ::  replace by tile
-    |*  [b=* c=_,*]
-    |-
-    ?~  a  b
-    $(a r.a, b $(a l.a, b (c n.a b)))
-  ::
-```
+      +-  rep                                               ::  replace by tile
+        |*  [b=* c=_,*]
+        |-
+        ?~  a  b
+        $(a r.a, b $(a l.a, b (c n.a b)))
+      ::
 
 Accumulate the elements of `a` using a gate `c` and an accumulator `b`.
 
@@ -356,22 +337,20 @@ Accumulate the elements of `a` using a gate `c` and an accumulator `b`.
     ~zod/try=> (~(rep in a) 0 |=([a=@ b=@] (add a b)))
     6
 
----
+------------------------------------------------------------------------
 
-###+-tap:in
+### +-tap:in
 
 Set to list
 
-```
-  +-  tap                                               ::  list tiles a set
-    ~/  %tap
-    |=  b=(list ,_?>(?=(^ a) n.a))
-    ^+  b
-    ?~  a
-      b
-    $(a r.a, b [n.a $(a l.a)])
-  ::
-```
+      +-  tap                                               ::  list tiles a set
+        ~/  %tap
+        |=  b=(list ,_?>(?=(^ a) n.a))
+        ^+  b
+        ?~  a
+          b
+        $(a r.a, b [n.a $(a l.a)])
+      ::
 
 Flatten the set `a` into a list.
 
@@ -391,35 +370,34 @@ Flatten the set `a` into a list.
     ~zod/try=> (~(tap in b) `(list ,@t)`['david' 'people' ~])
     ~['john' 'daniel' 'madeleine' 'bonita' 'david' 'people']
 
----
+------------------------------------------------------------------------
 
-###+-uni:in
+### +-uni:in
 
 Union
 
-```
-  +-  uni                                               ::  union
-    ~/  %uni
-    |*  b=_a
-    |-  ^+  a
-    ?~  b
-      a
-    ?~  a
-      b
-    ?:  (vor n.a n.b)
-      ?:  =(n.b n.a)
-        [n.b $(a l.a, b l.b) $(a r.a, b r.b)]
-      ?:  (hor n.b n.a)
-        $(a [n.a $(a l.a, b [n.b l.b ~]) r.a], b r.b)
-      $(a [n.a l.a $(a r.a, b [n.b ~ r.b])], b l.b)
-    ?:  =(n.a n.b)
-      [n.b $(b l.b, a l.a) $(b r.b, a r.a)]
-    ?:  (hor n.a n.b)
-      $(b [n.b $(b l.b, a [n.a l.a ~]) r.b], a r.a)
-    $(b [n.b l.b $(b r.b, a [n.a ~ r.a])], a l.a)
-```
+      +-  uni                                               ::  union
+        ~/  %uni
+        |*  b=_a
+        |-  ^+  a
+        ?~  b
+          a
+        ?~  a
+          b
+        ?:  (vor n.a n.b)
+          ?:  =(n.b n.a)
+            [n.b $(a l.a, b l.b) $(a r.a, b r.b)]
+          ?:  (hor n.b n.a)
+            $(a [n.a $(a l.a, b [n.b l.b ~]) r.a], b r.b)
+          $(a [n.a l.a $(a r.a, b [n.b ~ r.b])], b l.b)
+        ?:  =(n.a n.b)
+          [n.b $(b l.b, a l.a) $(b r.b, a r.a)]
+        ?:  (hor n.a n.b)
+          $(b [n.b $(b l.b, a [n.a l.a ~]) r.b], a r.a)
+        $(b [n.b l.b $(b r.b, a [n.a ~ r.a])], a l.a)
 
-Produces a set of the union between two sets of the same type, `a` and `b`.
+Produces a set of the union between two sets of the same type, `a` and
+`b`.
 
 `a` is a [set]().
 
@@ -434,17 +412,15 @@ Produces a set of the union between two sets of the same type, `a` and `b`.
     ~zod/try=> (~(uni in (sa "acmo")) (sa "lep"))
     {~~e ~~a ~~c ~~m ~~l ~~o ~~p}
 
----
+------------------------------------------------------------------------
 
-###+-wyt:in
+### +-wyt:in
 
 Set size
 
-```
-  +-  wyt                                               ::  size of set
-    |-  ^-  @
-    ?~(a 0 +((add $(a l.a) $(a r.a))))
-```
+      +-  wyt                                               ::  size of set
+        |-  ^-  @
+        ?~(a 0 +((add $(a l.a) $(a r.a))))
 
 Produce the number of elements in set `a` as an atom.
 
@@ -458,4 +434,4 @@ Produce the number of elements in set `a` as an atom.
     ~zod/try=> ~(wyt in b)
     4
 
----
+------------------------------------------------------------------------

@@ -1,37 +1,48 @@
-#[haxgar, `#>`, %hxgr](#hxgr)
+[haxgar, `#>`, %hxgr](#hxgr)
+============================
 
 Prettyprint `++tank`
 
-`#>`, `haxgar`, `[%hxgr p=tusk]`is a synthetic hoon that slams the assumed gate `cain` on `[%zpgr %cntr p]`.
+`#>`, `haxgar`, `[%hxgr p=tusk]`is a synthetic hoon that slams the
+assumed gate `cain` on `[%zpgr %cntr p]`.
 
-`#>` is a synthetic hoon that slams the gate [`++cain`]() with `p`. `#>` is used to produce a [`++tank`]() of the computation passed to it, and is only used in the irregular form. 
+`#>` is a synthetic hoon that slams the gate [`++cain`]() with `p`. `#>`
+is used to produce a [`++tank`]() of the computation passed to it, and
+is only used in the irregular form.
 
-##Produces
+Produces
+--------
 
 Twig: `[%hxgr p=tusk]`
 
-##Sample
+Sample
+------
 
 `p` is a [++tusk]().
 
-##Tall form
+Tall form
+---------
 
 None
 
-##Wide form
+Wide form
+---------
 
 None
 
-##Irregular form
+Irregular form
+--------------
 
     >i.p i.t.p i.t.t.p<
 
-##Examples
-    
+Examples
+--------
+
     ~zod/try=/zop> >1<
     [%leaf p="1"]
 
-This is the simplest example of `#>`, pass it a constant and it produces a `++tank` of the constant.
+This is the simplest example of `#>`, pass it a constant and it produces
+a `++tank` of the constant.
 
     ~zod/try=/zop> >`path`"abc"<
     [%rose p=[p="/" q="/" r=""] q=~[[%leaf p="a"] [%leaf p="b"] [%leaf p="c"]]]
@@ -68,4 +79,5 @@ This is the simplest example of `#>`, pass it a constant and it produces a `++ta
       ]
     ]
 
-In these cases we use `#>` to produce the result of a simple computation as a `++tank`.
+In these cases we use `#>` to produce the result of a simple computation
+as a `++tank`.

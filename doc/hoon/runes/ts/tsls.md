@@ -1,42 +1,54 @@
-#[tislus, `=+`, %tsls](#tsls)
+[tislus, `=+`, %tsls](#tsls)
+============================
 
 Push on
 
-`=+` is a synthetic rune that pushes `p` on the subject and sends it to `q`. `=+` is the inverse of `=-`. Use `=+` when your `p` isn't too long and `=+` makes for more readable code.
+`=+` is a synthetic rune that pushes `p` on the subject and sends it to
+`q`. `=+` is the inverse of `=-`. Use `=+` when your `p` isn't too long
+and `=+` makes for more readable code.
 
-##See also
+See also
+--------
 
-#[tishep, `=-`, %tshp](#tshp)
+[tishep, `=-`, %tshp](#tshp)
+============================
 
-##Produces
+Produces
+--------
 
 Twig: `[%tsls p=twig q=twig]`
 
-##Sample
+Sample
+------
 
 `p` and `q` are [twig]()s.
 
-##Tall form
+Tall form
+---------
 
     =+  p
         q
 
-##Wide form
+Wide form
+---------
 
     =+(p q)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> 
         =+  a=1
         a
     1
 
-The simplest case of a `=+`, we push `a=1` on to our subject, and produce `a`.
+The simplest case of a `=+`, we push `a=1` on to our subject, and
+produce `a`.
 
     ~zod/try=> 
     =cor  |=  a=@
@@ -48,4 +60,6 @@ The simplest case of a `=+`, we push `a=1` on to our subject, and produce `a`.
     (cor 0)
     3
 
-This is a common case of `=+`, when we need to add intermediate values to our subject to divide up our computation. `=+` makes for procedural, top to bottom code organization.
+This is a common case of `=+`, when we need to add intermediate values
+to our subject to divide up our computation. `=+` makes for procedural,
+top to bottom code organization.

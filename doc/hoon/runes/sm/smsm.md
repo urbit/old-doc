@@ -1,35 +1,45 @@
-#[semsem, `;;`, %smsm](#smsm)
+[semsem, `;;`, %smsm](#smsm)
+============================
 
 Fixpoint
 
-`;;` is a synthetic hoon that types `q` as a fixpoint of `p`. More specifically, `;;` slams `q` through gate `p`, asserting that the resulting noun [`.=`]() the original, and produces it.
+`;;` is a synthetic hoon that types `q` as a fixpoint of `p`. More
+specifically, `;;` slams `q` through gate `p`, asserting that the
+resulting noun [`.=`]() the original, and produces it.
 
-##See also
+See also
+--------
+
 [`++hard`]()
 
-##Produces
+Produces
+--------
 
 Twig: `[%smsm p=twig q=twig]`
 
-##Sample
+Sample
+------
 
-`p` is a [twig]().
-`q` is a [twig]().
+`p` is a [twig](). `q` is a [twig]().
 
-##Tall form
+Tall form
+---------
 
     ;;  p
         q
 
-##Wide form
+Wide form
+---------
 
     ;;(p q)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> ^-(tape ~[97 98 99])
     ! type-fail

@@ -1,32 +1,40 @@
-#[sigzap, `~!`, %sgzp](#sgzp)
+[sigzap, `~!`, %sgzp](#sgzp)
+============================
 
 [Short description]
 
-`~!` is a natural rune for debugging uses only, semantically equivalent to its own twig `q`. If compilation fails within `q`, `~!` will show the type of `p` on the stacktrace.
+`~!` is a natural rune for debugging uses only, semantically equivalent
+to its own twig `q`. If compilation fails within `q`, `~!` will show the
+type of `p` on the stacktrace.
 
-##Produces
+Produces
+--------
 
 Twig: `[%sgzp p=twig q=twig]`
 
-##Sample
+Sample
+------
 
-`p` is a [twig]()
-`q` is a [twig]()
+`p` is a [twig]() `q` is a [twig]()
 
-##Tall form
+Tall form
+---------
 
     ~!  p
         q
 
-##Wide form
+Wide form
+---------
 
     ~!(p q)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> a
     ! -find-limb.a
@@ -38,7 +46,8 @@ None
     ! find-none
     ! exit
 
-When trying to compute an unassigned variable, `a` we produce the type of `'foo'`, `@t`.
+When trying to compute an unassigned variable, `a` we produce the type
+of `'foo'`, `@t`.
 
     ~zod/try=> ~!(%foo a)
     ! %foo
@@ -46,4 +55,5 @@ When trying to compute an unassigned variable, `a` we produce the type of `'foo'
     ! find-none
     ! exit
 
-Again, we use our unassigned variable `a` and the [cube]() `%foo`, whose type is in fact `%foo`.
+Again, we use our unassigned variable `a` and the [cube]() `%foo`, whose
+type is in fact `%foo`.

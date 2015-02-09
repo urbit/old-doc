@@ -1,21 +1,23 @@
-#[colket, `:^`, %clkt](#clkt)
+[colket, `:^`, %clkt](#clkt)
+============================
 
 Tuple of four
 
 `:^` is a synthetic rune that produces a cell `[p q r s]`.
 
-##Produces
+Produces
+--------
 
 Twig: `[%clkt p=twig q=twig r=twig s=twig]`
 
-##Sample
+Sample
+------
 
-`p` is a [twig]().
-`q` is a [twig]().
-`r` is a [twig]().
-`s` is a [twig]().
+`p` is a [twig](). `q` is a [twig](). `r` is a [twig](). `s` is a
+[twig]().
 
-##Tall form
+Tall form
+---------
 
 Kingside:
 
@@ -33,15 +35,18 @@ Queenside:
     :^  p  q  r  
     s
 
-##Wide form
+Wide form
+---------
 
     :^(p q r s)
 
-##Irregular form
+Irregular form
+--------------
 
 undefined
 
-##Examples
+Examples
+--------
 
     /~zod/try=> :^(1 2 3 4)
     [1 2 3 4]
@@ -50,7 +55,8 @@ undefined
                 8
     [5 6 7 8]
 
-This is the most straightforward case of `:^`, producing a tuple of four values in both tall and wide form. 
+This is the most straightforward case of `:^`, producing a tuple of four
+values in both tall and wide form.
 
     /~zod/try=> 
     :^  (add 2 4)  (add 2 6)
@@ -58,4 +64,5 @@ This is the most straightforward case of `:^`, producing a tuple of four values 
       ~
     [6 8 2 ~]
 
-Most commonly `:^` helps to organize code, allowing you to produce a cell from nested computation.
+Most commonly `:^` helps to organize code, allowing you to produce a
+cell from nested computation.

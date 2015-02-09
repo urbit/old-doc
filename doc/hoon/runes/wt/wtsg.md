@@ -1,33 +1,39 @@
-#[wutsig, `?~`, %wtsg](#wtsg)
+[wutsig, `?~`, %wtsg](#wtsg)
+============================
 
 If `~`
 
 `?~` is a synthetic rune that produces `q` if `p` is `~`, `r` otherwise.
 
-##Produces
+Produces
+--------
 
 Twig: `[%wtsg p=wing q=twig r=twig]`
 
-##Sample
+Sample
+------
 
-`p` is a [`++wing`]().
-`q` and `r` are [twig]()s.
+`p` is a [`++wing`](). `q` and `r` are [twig]()s.
 
-##Tall form
+Tall form
+---------
 
     ?~  p
       q
     r
 
-##Wide form
+Wide form
+---------
 
     ?~(p q r)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> ?~('a' 1 2)
     2

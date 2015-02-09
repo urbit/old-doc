@@ -1,33 +1,40 @@
-#[wutket, `?^`, %wtkt](#wtkt)
+[wutket, `?^`, %wtkt](#wtkt)
+============================
 
 Is bunt, inverse
 
-`?^` is a synthetic rune that evaluates `r` if `p` is equal to the [bunt]() for its [tile](), otherwise `q` is evaluated.
+`?^` is a synthetic rune that evaluates `r` if `p` is equal to the
+[bunt]() for its [tile](), otherwise `q` is evaluated.
 
-##Produces
+Produces
+--------
 
 Twig: `[%wtkt p=wing q=twig r=twig]`
 
-##Sample
+Sample
+------
 
-`p` is a [`++wing`]().
-`q` and `r` are [twig]()s.
+`p` is a [`++wing`](). `q` and `r` are [twig]()s.
 
-##Tall form
+Tall form
+---------
 
     ?^  p
       q
     r
 
-##Wide form
+Wide form
+---------
 
     ?^(p q r)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> =(*@tas "")
     %.y
@@ -40,7 +47,8 @@ None
                %empty
     %full
 
-Here we show that `*@tas`, the bunt of `@tas` is equivalent to the empty [`++tape`]() `""`, then use it in two `?^` cases. 
+Here we show that `*@tas`, the bunt of `@tas` is equivalent to the empty
+[`++tape`]() `""`, then use it in two `?^` cases.
 
     ~zod/try=> *(unit)
     ~
@@ -53,4 +61,5 @@ Here we show that `*@tas`, the bunt of `@tas` is equivalent to the empty [`++tap
                %empty
     %full
 
-Similar to the above case, we show the bunt of a [`++unit`](), which is `~`, and test against it.
+Similar to the above case, we show the bunt of a [`++unit`](), which is
+`~`, and test against it.

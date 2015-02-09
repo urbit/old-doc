@@ -1,34 +1,47 @@
-#[ketsig, `^~`, %ktsg](#ktsg)
+[ketsig, `^~`, %ktsg](#ktsg)
+============================
 
 Compile statically
 
-`^~` is a natural hoon that tries to execute `p` statically at compile time; if this fails, `p` remains dynamic. `^~` is primarily useful for optimization, when you know that a value is static, or is most likely static, `^~` can simplify the compilation.
+`^~` is a natural hoon that tries to execute `p` statically at compile
+time; if this fails, `p` remains dynamic. `^~` is primarily useful for
+optimization, when you know that a value is static, or is most likely
+static, `^~` can simplify the compilation.
 
-##Produces
+Produces
+--------
 
 Twig: `[%ktsg p=twig]`
 
-##Sample
+Sample
+------
 
 `p` is a [twig]().
 
-##Tall form
+Tall form
+---------
 
     ^~  a
 
-##Wide form
+Wide form
+---------
 
     ^~(a)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     /~zod/try=> (make '|-(42)')
     [%8 p=[%1 p=[1 42]] q=[%9 p=2 q=[%0 p=1]]]
     /~zod/try=> (make '^~(|-(42))')
     [%1 p=42]
 
-Here we use [`++make`]() to examine the nock generated for a particular computation. We start with a simple kicked trap, `|-` that just generates the static value `42`. When we wrap our `|-` in a `^~` you can see that our compilation is much simpler.
+Here we use [`++make`]() to examine the nock generated for a particular
+computation. We start with a simple kicked trap, `|-` that just
+generates the static value `42`. When we wrap our `|-` in a `^~` you can
+see that our compilation is much simpler.

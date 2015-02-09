@@ -1,7 +1,8 @@
 <div class="short">
 
-# `%arvo`
+`%arvo`
+=======
 
-`%arvo` is our operating system. 
+`%arvo` is our operating system.
 
 </div>

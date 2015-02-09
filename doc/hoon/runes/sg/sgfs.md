@@ -1,32 +1,40 @@
-#[sigfas, `~/`, %sgfs](#sgfs)
+[sigfas, `~/`, %sgfs](#sgfs)
+============================
 
 Book arm jet
 
-`~/` is a synthetic rune that implements one common case - a gate arm in a book, i.e. a library function - of the [`~%`]() jet hint. `~/` assumes the parent axis is `7` and there are no children.
+`~/` is a synthetic rune that implements one common case - a gate arm in
+a book, i.e. a library function - of the [`~%`]() jet hint. `~/` assumes
+the parent axis is `7` and there are no children.
 
-##Produces
+Produces
+--------
 
 Twig: `[%sgfs p=term q=twig]`
 
-##Sample
+Sample
+------
 
-`p` is a [term]().
-`q` is a [twig]().
+`p` is a [term](). `q` is a [twig]().
 
-##Tall form
+Tall form
+---------
 
     ~/  p
         q
 
-##Wide form
+Wide form
+---------
 
     ~/(p q)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> (make '~/  %bam  |.(40)')
     [%8 p=[%1 p=[1 40]] q=[%10 p=[p=1.953.718.630 q=[%1 p=[7.168.354 [0 7] 0]]] q=[%0 p=1]]]

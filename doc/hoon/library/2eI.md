@@ -1,14 +1,14 @@
-##section 2eI, parsing (external)       
+section 2eI, parsing (external)
+-------------------------------
 
-###++rash
+### ++rash
 
 Parse or crash
 
-```
-++  rash  |*([naf=@ sab=_rule] (scan (trip naf) sab))   ::
-```
+    ++  rash  |*([naf=@ sab=_rule] (scan (trip naf) sab))   ::
 
-Parse a cord with a given rule and crash if the cord isn't entirely parsed.
+Parse a cord with a given rule and crash if the cord isn't entirely
+parsed.
 
 `naf` is an [atom]().
 
@@ -27,18 +27,16 @@ Parse a cord with a given rule and crash if the cord isn't entirely parsed.
     ! 'syntax-error'
     ! exit
 
----
+------------------------------------------------------------------------
 
-###++rush
+### ++rush
 
 Parse or null
 
-```
-++  rush  |*([naf=@ sab=_rule] (rust (trip naf) sab))
-```
+    ++  rush  |*([naf=@ sab=_rule] (rust (trip naf) sab))
 
-Parse a given with a given rule and produce null if the cord isn't entirely parsed.
-
+Parse a given with a given rule and produce null if the cord isn't
+entirely parsed.
 
 `naf` is an [atom]().
 
@@ -55,19 +53,18 @@ Parse a given with a given rule and produce null if the cord isn't entirely pars
         ~zod/try=> (rush 'abc' (jest 'ab'))
         ~
 
----
+------------------------------------------------------------------------
 
-###++rust
+### ++rust
 
 Parse tape or null
 
-```
-++  rust  |*  [los=tape sab=_rule]
-          =+  vex=((full sab) [[1 1] los])
-          ?~(q.vex ~ [~ u=p.u.q.vex])
-```
+    ++  rust  |*  [los=tape sab=_rule]
+              =+  vex=((full sab) [[1 1] los])
+              ?~(q.vex ~ [~ u=p.u.q.vex])
 
-Parse a tape with a given rule and produce null if the tape isn't entirely parsed.
+Parse a tape with a given rule and produce null if the tape isn't
+entirely parsed.
 
 `los` is a [tape]().
 
@@ -80,22 +77,21 @@ Parse a tape with a given rule and produce null if the tape isn't entirely parse
         ~zod/try=> (rust "And there I found myself more truly and more strange." (jest 'And there I'))
         ~
 
----
+------------------------------------------------------------------------
 
-###++scan
+### ++scan
 
 Parse tape or crash
 
-```
-++  scan  |*  [los=tape sab=_rule]
-          =+  vex=((full sab) [[1 1] los])
-          ?~  q.vex
-            ~_  (show [%m '{%d %d}'] p.p.vex q.p.vex ~)
-            ~|('syntax-error' !!)
-          p.u.q.vex
-```
+    ++  scan  |*  [los=tape sab=_rule]
+              =+  vex=((full sab) [[1 1] los])
+              ?~  q.vex
+                ~_  (show [%m '{%d %d}'] p.p.vex q.p.vex ~)
+                ~|('syntax-error' !!)
+              p.u.q.vex
 
-Parse a tape with a given rule and crash if the tape isn't entirely parsed.
+Parse a tape with a given rule and crash if the tape isn't entirely
+parsed.
 
 `los` is a [tape]().
 

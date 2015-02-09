@@ -1,17 +1,22 @@
-##Overview
+Overview
+--------
 
-The `%` runes [pull]() [`++arms`]() and [`++wings`]() from the [subject](), often modifying their values. The `%` runes are similar to function calls, or execution tools. We use them to either compute some code with changes in the subject, or produce the output from a core.
+The `%` runes [pull]() [`++arms`]() and [`++wings`]() from the
+[subject](), often modifying their values. The `%` runes are similar to
+function calls, or execution tools. We use them to either compute some
+code with changes in the subject, or produce the output from a core.
 
-There are two categories of `%` runes: 
+There are two categories of `%` runes:
 
 Those that pull data from the subject with changes:
 
-[`%=`]()  The natural `%` rune. Evaluates `p` with the changes specified in `q`.
-[`%_`]()  Evaluates `p` with the changes specified in `q`, then casts the product back to the type of `p`.
-[`%*`]()  Evaluates `p` from a [door]() `q` with changes `r`.Terminated by `==`. 
+[`%=`]() The natural `%` rune. Evaluates `p` with the changes specified
+in `q`. [`%_`]() Evaluates `p` with the changes specified in `q`, then
+casts the product back to the type of `p`. [`%*`]() Evaluates `p` from a
+[door]() `q` with changes `r`.Terminated by `==`.
 
-Those that specifically pull the empty arm `$`, similar to calling a function:
+Those that specifically pull the empty arm `$`, similar to calling a
+function:
 
-[`%-`]() [slams]() a core with one argument.
-[`%+`]() slams a core with two arguments.
-[`%^`]() slams a core with three arguments.
+[`%-`]() [slams]() a core with one argument. [`%+`]() slams a core with
+two arguments. [`%^`]() slams a core with three arguments.

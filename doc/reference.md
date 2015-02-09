@@ -1,11 +1,12 @@
 <div class="short">
 
-# References
+References
+==========
 
 These references cover terminology and our interpreter, `vere`.
 
 </div>
 
----
+------------------------------------------------------------------------
 
 <list></list>

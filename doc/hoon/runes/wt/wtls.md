@@ -1,24 +1,30 @@
-#[wutlus, `?+`, %wtls](#wtls)
+[wutlus, `?+`, %wtls](#wtls)
+============================
 
 Switch with default
 
-`?+` is a synthetic rune that selects a case in `q` for the actual type of `p` with a default case, `q`. The labels in `r` must have the same [icon]() as `p` The list of cases, `r` must be terminated by `==`.
+`?+` is a synthetic rune that selects a case in `q` for the actual type
+of `p` with a default case, `q`. The labels in `r` must have the same
+[icon]() as `p` The list of cases, `r` must be terminated by `==`.
 
-##See also
+See also
+--------
 
-#[wuthep, `?-`, %wthp](#wthp)
+[wuthep, `?-`, %wthp](#wthp)
+============================
 
-##Produces
+Produces
+--------
 
 Twig: `[%wtls p=wing q=twig r=tine]`
 
-##Sample
+Sample
+------
 
-`p` is a [`++wing`]().
-`q` is a [twig]().
-`r` is a [`++tine`]().
+`p` is a [`++wing`](). `q` is a [twig](). `r` is a [`++tine`]().
 
-##Tall form
+Tall form
+---------
 
 Kingside:
 
@@ -41,15 +47,18 @@ Queenside:
       q.i.t.t.r
     ==
 
-##Wide form
+Wide form
+---------
 
     ?+(p p.i.r q.i.r, p.i.t.r q.i.t.r, p.i.t.t.r q.i.t.t.r)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> 
       =cor  |=  typ=@ta
@@ -65,7 +74,11 @@ None
       (cor 'c')
     0
 
-Here is a simple example of `?+` showing that although the cases must match the icon of its input, all possible cases don't need to be covered since `?+` has a default case. We create a core, `cor` that takes an input `typ`, a `@ta`. Calling `cor` selects one of our cases when it is covered, or the default.
+Here is a simple example of `?+` showing that although the cases must
+match the icon of its input, all possible cases don't need to be covered
+since `?+` has a default case. We create a core, `cor` that takes an
+input `typ`, a `@ta`. Calling `cor` selects one of our cases when it is
+covered, or the default.
 
     ~zod/try=> 
       ?+  'a'  0
@@ -88,4 +101,5 @@ Here is a simple example of `?+` showing that although the cases must match the 
           ==
     0
 
-This example shows how `?-` can fail. Our input icon must match the icon of our cases.
+This example shows how `?-` can fail. Our input icon must match the icon
+of our cases.

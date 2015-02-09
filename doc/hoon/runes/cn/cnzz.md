@@ -1,30 +1,39 @@
-#[cenzaz, %cnzz](#cnzz)
+[cenzaz, %cnzz](#cnzz)
+======================
 
 Pull wing `p`
 
-`cenzaz` is a synthetic hoon that pulls wing `p` from the subject. `cenzaz`  is only used internally by `hoon.hoon`, but is used implicitly whenever dereferencing occurs.
+`cenzaz` is a synthetic hoon that pulls wing `p` from the subject.
+`cenzaz` is only used internally by `hoon.hoon`, but is used implicitly
+whenever dereferencing occurs.
 
-##Produces
+Produces
+--------
 
 Twig: `[%cnzz p=wing]`
 
-##Sample
+Sample
+------
 
 `p` is a [`++wing`]()
 
-##Tall form
+Tall form
+---------
 
 None
 
-##Wide form
+Wide form
+---------
 
 None
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     /~zod/try=> (ream 'a')
     [%cnzz p=~[%a]]

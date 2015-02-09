@@ -1,33 +1,40 @@
-#[buczap `$!` %bczp](#bczp)
+[buczap `$!` %bczp](#bczp)
+==========================
 
 Axil bunt
 
-`$!` is an synthetic internal twig that produces the [bunt]() (default value) for `[%axil p]`. 
+`$!` is an synthetic internal twig that produces the [bunt]() (default
+value) for `[%axil p]`.
 
-##Produces
+Produces
+--------
 
 [Twig](): `[%bczp p=base]`
 
-##Sample
+Sample
+------
 
 `p` is a [base]() [axil]() type.
 
-##Tall form
+Tall form
+---------
 
 None
 
-##Wide form
+Wide form
+---------
 
 None
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> (ream '~')
     [%bczp p=%null]
     ~zod/try=> (make '~')
     [%1 p=0]
-

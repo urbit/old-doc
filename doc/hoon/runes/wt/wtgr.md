@@ -1,35 +1,45 @@
-#[wutgar, `?>`, %wtgr](#wtgr)
+[wutgar, `?>`, %wtgr](#wtgr)
+============================
 
 Assert yes
 
-`?>` is a synthetic rune that produces `q`, asserting that `p` is yes (`&`, 0).
+`?>` is a synthetic rune that produces `q`, asserting that `p` is yes
+(`&`, 0).
 
-##See also
+See also
+--------
 
-#[wutgal, `?<`, %wtgl](#wtgl)
+[wutgal, `?<`, %wtgl](#wtgl)
+============================
 
-##Produces
+Produces
+--------
 
 Twig: `[%wtgr p=twig q=twig]`
 
-##Sample
+Sample
+------
 
 `p` and `q` are [twig]()s.
 
-##Tall form
+Tall form
+---------
 
     ?>  p
         q
 
-##Wide form
+Wide form
+---------
 
     ?>(p q)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> ?>(=(0x1 1) %foo)
     %foo

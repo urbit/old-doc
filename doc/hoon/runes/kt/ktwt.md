@@ -1,35 +1,43 @@
-#[ketwut, `^?`, %ktwt](#ktwt)
+[ketwut, `^?`, %ktwt](#ktwt)
+============================
 
 Convert `%gold` to `%lead`
 
 `^?` is a natural hoon that converts a `%gold` core into a `%lead` core.
 
-##See also
+See also
+--------
 
-#[ketbar, `^|`, %ktbr](#ktbr)
+[ketbar, `^|`, %ktbr](#ktbr)
+============================
 
-##Produces
+Produces
+--------
 
 Twig: `[%ktwt p=twig]`
 
-##Sample
+Sample
+------
 
 `p` is a [twig]().
 
-##Tall form
+Tall form
+---------
 
     ^?  p
 
-##Wide form
+Wide form
+---------
 
     ^?(p)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
-
+Examples
+--------
 
     ~zod/try=> |=(@ 1)
     <1.gcq [@  @n <250.yur 41.wda 374.hzt 100.kzl 1.ypj %164>]>

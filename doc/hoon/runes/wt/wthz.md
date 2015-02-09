@@ -1,19 +1,23 @@
-#[wuthaz, %wthz](#wthz)
+[wuthaz, %wthz](#wthz)
+======================
 
 [Short description]
 
-`wuthaz`, `[%wthz p=wing q=tine]` is a synthetic hoon that selects a case in `q` for the actual type of `p`.
+`wuthaz`, `[%wthz p=wing q=tine]` is a synthetic hoon that selects a
+case in `q` for the actual type of `p`.
 
-##Produces
+Produces
+--------
 
 [Twig or tile]
 
-##Sample
+Sample
+------
 
-[`p` is a _
-`q` is a _]
+[`p` is a * `q` is a *]
 
-##Tall form
+Tall form
+---------
 
 Kingside:
 
@@ -34,15 +38,15 @@ Queenside:
       q.i.t.t.q
     ==
 
-##Wide form
+Wide form
+---------
 
 ?-(p p.i.q q.i.q, p.i.t.q q.i.t.q, p.i.t.t.q q.i.t.t.q)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
-
-
-
+Examples
+--------

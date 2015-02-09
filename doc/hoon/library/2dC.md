@@ -1,33 +1,31 @@
-##section 2dC, queues
+section 2dC, queues
+-------------------
 
-###++to
+### ++to
 
 Queue engine
 
-```
-++  to                                                  ::  queue engine
-  |/  a=(qeu)
-```
+    ++  to                                                  ::  queue engine
+      |/  a=(qeu)
 
-Container arm for queue operation arms. The contained arms inherit its [sample]() `++qeu` `a`. 
+Container arm for queue operation arms. The contained arms inherit its
+[sample]() `++qeu` `a`.
 
 `a` is a queue, [++qeu]().
 
-###+-bal:to
+### +-bal:to
 
 Balance
 
-```
-  +-  bal
-    |-  ^+  a
-    ?~  a  ~
-    ?.  |(?=(~ l.a) (vor n.a n.l.a))
-      $(a [n.l.a l.l.a $(a [n.a r.l.a r.a])])
-    ?.  |(?=(~ r.a) (vor n.a n.r.a))
-      $(a [n.r.a $(a [n.a l.a l.r.a]) r.r.a])
-    a
-  ::
-```
+      +-  bal
+        |-  ^+  a
+        ?~  a  ~
+        ?.  |(?=(~ l.a) (vor n.a n.l.a))
+          $(a [n.l.a l.l.a $(a [n.a r.l.a r.a])])
+        ?.  |(?=(~ r.a) (vor n.a n.r.a))
+          $(a [n.r.a $(a [n.a l.a l.r.a]) r.r.a])
+        a
+      ::
 
 Vertically rebalances queue `a`.
 
@@ -41,19 +39,18 @@ Vertically rebalances queue `a`.
     {"a" "b" "c" "d" "e" "f" "g"}
     ~zod/try=> `*`~(bal to `(qeu tape)`["a" ~ "b" ~ "c" ~ "d" ~ "e" ~ "f" ~ "g" ~ ~])
     [[100 0] [[99 0] [[98 0] [[97 0] 0 0] 0] 0] [101 0] 0 [102 0] 0 [103 0] 0 0]
-    
----
 
-###+-dep:to
+------------------------------------------------------------------------
+
+### +-dep:to
+
 Maximum Depth
 
-```
-  +-  dep                                               ::  max depth of queue
-    |-  ^-  @
-    ?~  a  0
-    +((max $(a l.a) $(a r.a)))
-  ::
-```
+      +-  dep                                               ::  max depth of queue
+        |-  ^-  @
+        ?~  a  0
+        +((max $(a l.a) $(a r.a)))
+      ::
 
 Produces the maximum depth of leaves (r.a and l.a) in queue `a`.
 
@@ -73,19 +70,17 @@ Produces the maximum depth of leaves (r.a and l.a) in queue `a`.
     ~zod/try=> ~(dep to ~(bal to `(qeu tape)`["a" ~ "b" ~ "c" ~ "d" ~ "e" ~ "f" ~ "g" ~ ~]))
     4
 
----
+------------------------------------------------------------------------
 
-###+-gas
+### +-gas
 
 Push list
 
-```
-  +-  gas                                               ::  insert list to queue
-    |=  b=(list ,_?>(?=(^ a) n.a))
-    |-  ^+  a
-    ?~(b a $(b t.b, a (put(+< a) i.b)))
-  ::
-```
+      +-  gas                                               ::  insert list to queue
+        |=  b=(list ,_?>(?=(^ a) n.a))
+        |-  ^+  a
+        ?~(b a $(b t.b, a (put(+< a) i.b)))
+      ::
 
 Push all elements of list `b` into the queue.
 
@@ -100,26 +95,24 @@ Push all elements of list `b` into the queue.
     ~zod/try=> (~(gas to a) b)
     {6 5 4 3 2 1}
 
----
+------------------------------------------------------------------------
 
-###+-get:to
+### +-get:to
 
 Pop
 
-```
-  +-  get                                               ::  head-tail pair
-    |-  ^+  [p=?>(?=(^ a) n.a) q=a]
-    ?~  a
-      !!
-    ?~  r.a
-      [n.a l.a]
-    =+  b=$(a r.a)
-    :-  p.b
-    ?:  |(?=(~ q.b) (vor n.a n.q.b))
-      [n.a l.a q.b]
-    [n.q.b [n.a l.a l.q.b] r.q.b]
-  ::
-```
+      +-  get                                               ::  head-tail pair
+        |-  ^+  [p=?>(?=(^ a) n.a) q=a]
+        ?~  a
+          !!
+        ?~  r.a
+          [n.a l.a]
+        =+  b=$(a r.a)
+        :-  p.b
+        ?:  |(?=(~ q.b) (vor n.a n.q.b))
+          [n.a l.a q.b]
+        [n.q.b [n.a l.a l.q.b] r.q.b]
+      ::
 
 Produces the head and tail queue of `a`.
 
@@ -131,20 +124,18 @@ Produces the head and tail queue of `a`.
     ~zod/try=> ~(get to ~)
     ! exit
 
----
+------------------------------------------------------------------------
 
-###+-nap:to
+### +-nap:to
 
 Remove last in
 
-```
-  +-  nap                                               ::  removes head
-    ?>  ?=(^ a)
-    ?:  =(~ l.a)  r.a
-    =+  b=get(+< l.a)
-    bal(+< ^+(a [p.b q.b r.a]))
-  ::
-```
+      +-  nap                                               ::  removes head
+        ?>  ?=(^ a)
+        ?:  =(~ l.a)  r.a
+        =+  b=get(+< l.a)
+        bal(+< ^+(a [p.b q.b r.a]))
+      ::
 
 Removes the head of queue `a`, producing the resulting queue.
 
@@ -161,23 +152,22 @@ Removes the head of queue `a`, producing the resulting queue.
     ~zod/try=> a
     {6 5 4 3 2 1}
 
----
+------------------------------------------------------------------------
 
-###+-put:to
+### +-put:to
 
 Insert
 
-```
-  +-  put                                               ::  insert new tail
-    |*  b=*
-    |-  ^+  a
-    ?~  a
-      [b ~ ~]
-    bal(+< a(l $(a l.a)))
-  ::
-```
+      +-  put                                               ::  insert new tail
+        |*  b=*
+        |-  ^+  a
+        ?~  a
+          [b ~ ~]
+        bal(+< a(l $(a l.a)))
+      ::
 
-Accept any noun `b` and adds to queue `a` as the head, producing the resulting queue.
+Accept any noun `b` and adds to queue `a` as the head, producing the
+resulting queue.
 
 `a` is a [queue]().
 
@@ -187,21 +177,19 @@ Accept any noun `b` and adds to queue `a` as the head, producing the resulting q
     ~zod/try=> (~(put to a) 7)
     {7 6 5 4 2 1 3}
 
----
+------------------------------------------------------------------------
 
-###+-tap:to
+### +-tap:to
 
 Queue to list
 
-```
-  +-  tap                                               :: queue to list 
-    |=  b=(list ,_?>(?=(^ a) n.a))
-    ^+  b
-    ?~  a
-      b
-    $(a r.a, b [n.a $(a l.a)])
-  ::
-```
+      +-  tap                                               :: queue to list 
+        |=  b=(list ,_?>(?=(^ a) n.a))
+        ^+  b
+        ?~  a
+          b
+        $(a r.a, b [n.a $(a l.a)])
+      ::
 
 Produces queue `a` as a list from front to back.
 
@@ -213,16 +201,14 @@ Produces queue `a` as a list from front to back.
     ~zod/try=> (~(tap to a) `(list ,@)`[99 100 101 ~])
     ~[3 1 2 4 5 6 99 100 101]
 
----
+------------------------------------------------------------------------
 
-###+-top:to
+### +-top:to
 
-```
-  +-  top                                               ::  produces head
-    |-  ^-  (unit ,_?>(?=(^ a) n.a))
-    ?~  a  ~
-    ?~(r.a [~ n.a] $(a r.a))
-```
+      +-  top                                               ::  produces head
+        |-  ^-  (unit ,_?>(?=(^ a) n.a))
+        ?~  a  ~
+        ?~(r.a [~ n.a] $(a r.a))
 
 Produces the head of queue `a` as a unit (an empty queue has no head).
 
@@ -232,4 +218,4 @@ Produces the head of queue `a` as a unit (an empty queue has no head).
     ~zod/try=> ~(top to a)
     [~ 1]
 
----
+------------------------------------------------------------------------

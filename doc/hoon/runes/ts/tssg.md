@@ -1,24 +1,28 @@
-#[tissig, `=~`, %tssg](#tssg)
+[tissig, `=~`, %tssg](#tssg)
+============================
 
 Compose list
 
 `=~` is a synthetic rune that composes a list of twigs.
 
-##Produces
+Produces
+--------
 
 Twig: `[%tssg p=tusk]`
 
-##Sample
+Sample
+------
 
 `p` is a [`++tusk`](), a list of [twig]()s.
 
-##Tall form
+Tall form
+---------
 
     =~    i.p
             i.t.p
             i.t.t.p
         ==
- 
+
 Queenside:
 
     =~  i.p
@@ -26,15 +30,18 @@ Queenside:
         i.t.t.p
     ==
 
-##Wide form
+Wide form
+---------
 
 None
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> =~(1 +(.) +(.))
     3

@@ -1,36 +1,44 @@
-#[semhep, `;-`](#smhp)
+[semhep, `;-`](#smhp)
+=====================
 
 `++sail` tape
 
-`;-` is a virtual rune used within [`++sail`]() to interpolate a tape. 
+`;-` is a virtual rune used within [`++sail`]() to interpolate a tape.
 
-##See also
+See also
+--------
 
 The `%a` case inside of [`++tuna`]().
 
-##Produces
+Produces
+--------
 
 Twig: [`++tape`]()
 
-##Sample
+Sample
+------
 
 `p` is a [twig]().
 
-##Tall form
+Tall form
+---------
 
     ;-  a
 
-##Wide form
+Wide form
+---------
 
     -{a}
 
 (within quoted form)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> 
     =+  c="contents!"
@@ -42,4 +50,6 @@ None
     ;div: -{c}
     "<div>contents!</div>"
 
-Here we add `c` to our context as a `++tape`, and interpolate it within our `;div` using the irregular form of `;-`. By using [`++poxo`]() we can see our result in XML form.
+Here we add `c` to our context as a `++tape`, and interpolate it within
+our `;div` using the irregular form of `;-`. By using [`++poxo`]() we
+can see our result in XML form.

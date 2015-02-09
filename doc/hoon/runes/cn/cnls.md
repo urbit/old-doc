@@ -1,33 +1,42 @@
-#[cenlus, `%+`, %cnls](#cnls)
+[cenlus, `%+`, %cnls](#cnls)
+============================
 
 Slam, two arguments
 
-`%+` is a synthetic rune that that [pull]()s [`$`] from the [door]() `p` with its sample set to `[%cntr q r]`. `%+` in the most common case simply [slam]()s `p` with `q` and `r`, similar to a function call with two arguments.
+`%+` is a synthetic rune that that [pull]()s [`$`] from the [door]() `p`
+with its sample set to `[%cntr q r]`. `%+` in the most common case
+simply [slam]()s `p` with `q` and `r`, similar to a function call with
+two arguments.
 
-##Produces
+Produces
+--------
 
 Twig: `[%cnls p=twig q=twig r=twig]`
 
-##Sample
+Sample
+------
 
-`p` is a [twig](), most commonly a [gate]().
-`q` and `r` are [twig]()s.
+`p` is a [twig](), most commonly a [gate](). `q` and `r` are [twig]()s.
 
-##Tall form
+Tall form
+---------
 
     %+  p
       q
     r
 
-##Wide form
+Wide form
+---------
 
     %+(p q r)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     /~zod/try=> =a  |=  [b=@ c=@]
         (add b c)
@@ -39,4 +48,7 @@ None
     /~zod/try=> %+(a 2 3)
     5
 
-First we set a shell variable `a` to be a gate that takes two arguments and produces their sum. Then we use `%+` to pass values to our gate. `%+` is most useful for code organization, when you need to compute intermediate products for your final computation.
+First we set a shell variable `a` to be a gate that takes two arguments
+and produces their sum. Then we use `%+` to pass values to our gate.
+`%+` is most useful for code organization, when you need to compute
+intermediate products for your final computation.

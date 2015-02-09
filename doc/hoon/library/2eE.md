@@ -1,22 +1,23 @@
-##section 2eE, parsing (composers)
+section 2eE, parsing (composers)
+--------------------------------
 
----
+------------------------------------------------------------------------
 
-###++bass
+### ++bass
 
-```
-++  bass
-  |*  [wuc=@ tyd=_rule]
-  %+  cook
-    |=  waq=(list ,@)
-    %+  roll
-      waq
-    =|([p=@ q=@] |.((add p (mul wuc q))))
-  tyd
-::
-```
+    ++  bass
+      |*  [wuc=@ tyd=_rule]
+      %+  cook
+        |=  waq=(list ,@)
+        %+  roll
+          waq
+        =|([p=@ q=@] |.((add p (mul wuc q))))
+      tyd
+    ::
 
-Parser modifier: [LSB](http://en.wikipedia.org/wiki/Least_significant_bit) ordered list as atom of a base.
+Parser modifier:
+[LSB](http://en.wikipedia.org/wiki/Least_significant_bit) ordered list
+as atom of a base.
 
 `wuc` is an [atom]().
 
@@ -29,23 +30,23 @@ Parser modifier: [LSB](http://en.wikipedia.org/wiki/Least_significant_bit) order
     ~zod/try=> `@ub`(scan "123" (bass 8 (star dit)))
     0b101.0011
 
----
+------------------------------------------------------------------------
 
-###++boss
+### ++boss
 
-```
-++  boss
-  |*  [wuc=@ tyd=_rule]
-  %+  cook
-    |=  waq=(list ,@)
-    %+  reel
-      waq
-    =|([p=@ q=@] |.((add p (mul wuc q))))
-  tyd
-::
-```
+    ++  boss
+      |*  [wuc=@ tyd=_rule]
+      %+  cook
+        |=  waq=(list ,@)
+        %+  reel
+          waq
+        =|([p=@ q=@] |.((add p (mul wuc q))))
+      tyd
+    ::
 
-Parser modifier: [LSB](http://en.wikipedia.org/wiki/Least_significant_bit) ordered list as atom of a base.
+Parser modifier:
+[LSB](http://en.wikipedia.org/wiki/Least_significant_bit) ordered list
+as atom of a base.
 
 `wuc` is an [atom]().
 
@@ -58,18 +59,17 @@ Parser modifier: [LSB](http://en.wikipedia.org/wiki/Least_significant_bit) order
     ~zod/try=> `@ux`(scan "bam" (boss 256 (star alp)))
     0x6d.6162
 
----
+------------------------------------------------------------------------
 
-###++ifix
+### ++ifix
 
-```
-++  ifix
-  |*  [fel=[p=_rule q=_rule] hof=_rule]
-  ;~(pfix p.fel ;~(sfix hof q.fel))
-::
-```
+    ++  ifix
+      |*  [fel=[p=_rule q=_rule] hof=_rule]
+      ;~(pfix p.fel ;~(sfix hof q.fel))
+    ::
 
-Parser modifier: surround with pair of rules, output of which is discarded.
+Parser modifier: surround with pair of rules, output of which is
+discarded.
 
 `fel` is a pair of [rule]()s.
 
@@ -80,16 +80,14 @@ Parser modifier: surround with pair of rules, output of which is discarded.
     ~zod/try=> (scan "4my4" (ifix [dit dit] (star alf)))
     "my"
 
----
+------------------------------------------------------------------------
 
-###++more
+### ++more
 
-```
-++  more
-  |*  [bus=_rule fel=_rule]
-  ;~(pose (most bus fel) (easy ~))
-::
-```
+    ++  more
+      |*  [bus=_rule fel=_rule]
+      ;~(pose (most bus fel) (easy ~))
+    ::
 
 Parser modifier: using a delimiter rule, parse a list of matches.
 
@@ -104,18 +102,17 @@ Parser modifier: using a delimiter rule, parse a list of matches.
     ~zod/try=> (scan "40 20 60 1 5" (more ace dem))
     [q=40 ~[q=20 q=60 q=1 q=5]]
 
----
+------------------------------------------------------------------------
 
-###++most
+### ++most
 
-```
-++  most
-  |*  [bus=_rule fel=_rule]
-  ;~(plug fel (star ;~(pfix bus fel)))
-::
-```
+    ++  most
+      |*  [bus=_rule fel=_rule]
+      ;~(plug fel (star ;~(pfix bus fel)))
+    ::
 
-Parser modifier: using a delimiter rule, parse a list of at least one match.
+Parser modifier: using a delimiter rule, parse a list of at least one
+match.
 
 `bus` is a [rule]().
 
@@ -129,13 +126,11 @@ Parser modifier: using a delimiter rule, parse a list of at least one match.
     ! {1 1}
     ! exit
 
----
+------------------------------------------------------------------------
 
-###++plus  
+### ++plus
 
-```
-++  plus  |*(fel=_rule ;~(plug fel (star fel)))
-```
+    ++  plus  |*(fel=_rule ;~(plug fel (star fel)))
 
 Parser modifier: parse list of at least one match
 
@@ -150,19 +145,18 @@ Parser modifier: parse list of at least one match
     ~zod/try=> `(pole ,@t)`(scan "-  - " (plus ;~(pose ace hep)))
     ['-' [' ' [' ' ['-' [' ' ~]]]]]
 
----
+------------------------------------------------------------------------
 
-###++slug
+### ++slug
 
-```
-++  slug
-  |*  raq=_|*([a=* b=*] [a b])
-  |*  [bus=_rule fel=_rule]
-  ;~((comp raq) fel (stir rud raq ;~(pfix bus fel)))
-::
-```
+    ++  slug
+      |*  raq=_|*([a=* b=*] [a b])
+      |*  [bus=_rule fel=_rule]
+      ;~((comp raq) fel (stir rud raq ;~(pfix bus fel)))
+    ::
 
-Parser modifier: By composing with a gate, parse a delimited list of matches.
+Parser modifier: By composing with a gate, parse a delimited list of
+matches.
 
 `bus` is a [rule]().
 
@@ -173,15 +167,13 @@ Parser modifier: By composing with a gate, parse a delimited list of matches.
     ~zod/try=> `@t`(scan "a b c" ((slug |=(a=[@ @t] (cat 3 a))) ace alp))
     'abc'
 
----
+------------------------------------------------------------------------
 
-###++star
+### ++star
 
-```
-++  star                                                ::  0 or more times
-  |*  fel=_rule
-  (stir `(list ,_(wonk *fel))`~ |*([a=* b=*] [a b]) fel)
-```
+    ++  star                                                ::  0 or more times
+      |*  fel=_rule
+      (stir `(list ,_(wonk *fel))`~ |*([a=* b=*] [a b]) fel)
 
 Parser modifier: parse list of matches.
 
@@ -202,4 +194,4 @@ Parser modifier: parse list of matches.
         ~zod/try=> (scan "john smith" (star (shim 0 200)))
         "john smith"
 
----
+------------------------------------------------------------------------

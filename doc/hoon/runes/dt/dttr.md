@@ -1,36 +1,45 @@
-#[dottar, `.*`, %dttr](#dttr)
+[dottar, `.*`, %dttr](#dttr)
+============================
 
 Nock
 
-`.*` is a natural hoon that calculates the nock of subject `p` and formula `q`. `.*` makes it possible to compute nock formulas in user space. 
+`.*` is a natural hoon that calculates the nock of subject `p` and
+formula `q`. `.*` makes it possible to compute nock formulas in user
+space.
 
-##See also
+See also
+--------
 
 [Nock tutorial]()
 
-##Produces
+Produces
+--------
 
 Twig: `[%dttr p=twig q=twig]`
 
-##Sample
+Sample
+------
 
-`p` is a [twig]().
-`q` is a [twig]().
+`p` is a [twig](). `q` is a [twig]().
 
-##Tall form
+Tall form
+---------
 
     .*  p
     q
 
-##Wide form
+Wide form
+---------
 
     .*(p q)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> .*([20 30] [0 2])
     20

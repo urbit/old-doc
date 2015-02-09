@@ -1,33 +1,38 @@
-#[tistar, `=*`, %tstr](#tstr)
+[tistar, `=*`, %tstr](#tstr)
+============================
 
 Alias
 
-`=*` is a natural hoon that creates a `%bull`, or alias, type. 
+`=*` is a natural hoon that creates a `%bull`, or alias, type.
 
-##Produces
+Produces
+--------
 
 Twig: `[%tstr p=term q=wing r=twig]`
 
-##Sample
+Sample
+------
 
-`p` is a [`term`]().
-`q` is a [`++wing`]().
-`r` is a [twig]().
+`p` is a [`term`](). `q` is a [`++wing`](). `r` is a [twig]().
 
-##Tall form
+Tall form
+---------
 
     =*  p  q
         r
 
-##Wide form
+Wide form
+---------
 
     =*(p q r)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> 
         =+  a=1
@@ -41,4 +46,6 @@ None
         [a b]
     [2 2]
 
-Here we see two simple examples of `=*`, both aliasing `b` to the value of `a`. In our second case you can see that even when we change the value of `a`, `b` continues to point to that value.
+Here we see two simple examples of `=*`, both aliasing `b` to the value
+of `a`. In our second case you can see that even when we change the
+value of `a`, `b` continues to point to that value.

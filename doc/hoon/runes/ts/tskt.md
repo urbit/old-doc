@@ -1,18 +1,23 @@
-#[tisket, `=^`, %tskt](#tskt)
+[tisket, `=^`, %tskt](#tskt)
+============================
 
 [Short description]
 
-`=^` is a synthetic rune that handles a product which is a cell of a new result, and a mutation to the subject.
+`=^` is a synthetic rune that handles a product which is a cell of a new
+result, and a mutation to the subject.
 
-##Produces
+Produces
+--------
 
 Twig: `[%tskt p=twig q=twig r=twig s=twig]`
 
-##Sample
+Sample
+------
 
 `p`, `q`, `r` and `s` are [twig]()s.
 
-##Tall form
+Tall form
+---------
 
 Kingside:
 
@@ -27,15 +32,18 @@ Queenside:
       r
     s
 
-##Wide form
+Wide form
+---------
 
     =^(p q r s)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> =+  a=3
                =^  b  a  [a +(a)]

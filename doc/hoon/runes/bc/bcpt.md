@@ -1,31 +1,37 @@
-#[bucpat `$@` %bcpt](#bcpt)
+[bucpat `$@` %bcpt](#bcpt)
+==========================
 
 Wing to tile
 
 `$@` is a natural rune that whips (normalizes) wing `p` into tile `q`.
 
-##Produces
+Produces
+--------
 
 Tile: `[%bcpt p=wing q=tile]`
 
-##Sample
+Sample
+------
 
-`p` is a [`++wing`]().
-`q` is a [tile]().
+`p` is a [`++wing`](). `q` is a [tile]().
 
-##Tall form
-
-None
-
-##Wide form
+Tall form
+---------
 
 None
 
-##Irregular form
+Wide form
+---------
+
+None
+
+Irregular form
+--------------
 
     p@q
 
-##Examples
+Examples
+--------
 
     ~zod/try=> =+(a=97 a@cord)
     'a'

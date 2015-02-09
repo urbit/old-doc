@@ -1,21 +1,27 @@
-#[semcol, `;:`, %smcl](#smcl)
+[semcol, `;:`, %smcl](#smcl)
+============================
 
 Apply fold
 
-#Syntax
+Syntax
+======
 
-`;:` is a synthetic hoon that applies `p`, a binary gate, to the n-ary tuple `q`. `;:` is similar to folding over the tuple `q`, producing the final result.
+`;:` is a synthetic hoon that applies `p`, a binary gate, to the n-ary
+tuple `q`. `;:` is similar to folding over the tuple `q`, producing the
+final result.
 
-##Produces
+Produces
+--------
 
 Twig: `[%smcl p=twig q=tusk]`
 
-##Sample
+Sample
+------
 
-`p` is a [twig]().
-`q` is a [`++tusk`]().
+`p` is a [twig](). `q` is a [`++tusk`]().
 
-##Tall form
+Tall form
+---------
 
     ;:  p
       i.q
@@ -23,15 +29,18 @@ Twig: `[%smcl p=twig q=tusk]`
       i.t.t.q
     ==
 
-##Wide form
+Wide form
+---------
 
     ;:(p i.q i.t.q i.t.t.q)
 
-##Irregular form
+Irregular form
+--------------
 
     :(p i.q i.t.q i.t.t.q)
 
-##Examples
+Examples
+--------
 
     ~zod/try=> (add 3 (add 4 5))
     12
@@ -40,7 +49,8 @@ Twig: `[%smcl p=twig q=tusk]`
     ~zod/try=> :(add 3 4 5)
     12
 
-Here we see how `;:` is equivalent to nesting our calls to the binary gate `++add`.
+Here we see how `;:` is equivalent to nesting our calls to the binary
+gate `++add`.
 
     ~zod/try=> :(weld "foo" "bar" "baz")
     ~[~~f ~~o ~~o ~~b ~~a ~~r ~~b ~~a ~~z]
@@ -49,6 +59,5 @@ Here we see how `;:` is equivalent to nesting our calls to the binary gate `++ad
     ~zod/try=> `tape`(weld "foo" (weld "bar" "baz"))
     "foobarbaz"
 
-Following on from our previous example, using `;:` with [`++weld`]() is convenient for concatenating multiple strings.
-
-
+Following on from our previous example, using `;:` with [`++weld`]() is
+convenient for concatenating multiple strings.

@@ -1,36 +1,45 @@
-#[bucwut `$?` %bcwt](#bcwt)
+[bucwut `$?` %bcwt](#bcwt)
+==========================
 
 Fork
 
-`$?` produces a fork, called a `%fern`. A `%fern` is a non-empty list of cases.
+`$?` produces a fork, called a `%fern`. A `%fern` is a non-empty list of
+cases.
 
-##Produces
+Produces
+--------
 
 [Tile](): `[%fern p=[i=tile t=(list tile)]]`.
 
-##Sample
+Sample
+------
 
 `p` is a [list]() of [tiles]().
 
-##Tall form
+Tall form
+---------
 
     $?  p
         q
     ==
 
-##Wide form
+Wide form
+---------
 
 None
 
-##Irregular form
+Irregular form
+--------------
 
     ?(p q)
 
-##Examples
+Examples
+--------
 
     ++  base  ?([%atom p=odor] %noun %cell %bean %null)     ::  axils, @ * ^ ? ~
 
-`++base`, `?` (the irregular form of `$?`) specifies a list of orthoganal cases for the `%axil` tile.
+`++base`, `?` (the irregular form of `$?`) specifies a list of
+orthoganal cases for the `%axil` tile.
 
     ~zod/try=> *?(%a %b %c)
     %a

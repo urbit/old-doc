@@ -1,33 +1,41 @@
-#[wutpam, `?&`, %wtpm](#wtpm)
+[wutpam, `?&`, %wtpm](#wtpm)
+============================
 
 AND
 
-`?&` is a synthetic hoon that computes the "and" of the loobeans in `p`. `?&` is commonly  used as a control-flow mechanism.
+`?&` is a synthetic hoon that computes the "and" of the loobeans in `p`.
+`?&` is commonly used as a control-flow mechanism.
 
-##Produces
+Produces
+--------
 
 Twig: `[%wtpm p=tusk]`
 
-##Sample
+Sample
+------
 
 `p` is a [`++tusk`](), a list of [twig]()s.
 
-##Tall form
+Tall form
+---------
 
     ?&  i.p
         i.t.p
         i.t.t.p
     ==
 
-##Wide form
+Wide form
+---------
 
     ?&(i.p i.t.p i.t.t.p)
 
-##Irregular form
+Irregular form
+--------------
 
     &(i.p i.t.p i.t.t.p)
 
-##Examples
+Examples
+--------
 
     ~zod/try=> ?&(& &)
     %.y

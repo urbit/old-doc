@@ -1,31 +1,39 @@
-#[zapsem, `!;`, %zpsm](#zpsm)
+[zapsem, `!;`, %zpsm](#zpsm)
+============================
 
 `[type noun]` pair
 
-`!;` is a natural rune that produces the product of twig `q` as a `[type noun]` pair, with twig `p` serving as an example of the type.
+`!;` is a natural rune that produces the product of twig `q` as a
+`[type noun]` pair, with twig `p` serving as an example of the type.
 
-##Produces
+Produces
+--------
 
 Twig: `[%zpsm p=twig q=twig]`
 
-##Sample
+Sample
+------
 
 `p` and `q` are [twig]()s.
 
-##Tall form
+Tall form
+---------
 
     !;  p
         q
 
-##Wide form
+Wide form
+---------
 
     !;(p q)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> !;(*type 1)
     [[%atom p=%ud] 1]

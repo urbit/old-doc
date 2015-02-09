@@ -1,29 +1,35 @@
-#[wuttaz, `?=`, %wttz](#wttz)
+[wuttaz, `?=`, %wttz](#wttz)
+============================
 
 [`++tiki`]() version of [`%wtkz`]()
 
 `wuttaz` is only used internally.
 
-##Produces
+Produces
+--------
 
 Twig: `[%wttz p=tile q=tiki]`
 
-##Sample
+Sample
+------
 
-`p` is a [tile]().
-`q` is a [`++tiki`]().
+`p` is a [tile](). `q` is a [`++tiki`]().
 
-##Tall form
+Tall form
+---------
 
     ?=  p
         q
 
-##Wide form
+Wide form
+---------
 
     ?=(p q)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------

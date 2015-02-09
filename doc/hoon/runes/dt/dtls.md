@@ -1,31 +1,38 @@
-#[dotlus, `.+`, %dtls](#dtls)
+[dotlus, `.+`, %dtls](#dtls)
+============================
 
 Increment
 
-`.+` is a natural hoon that generates nock operator `4`, which increments an atomic operand.
+`.+` is a natural hoon that generates nock operator `4`, which
+increments an atomic operand.
 
-##Produces
+Produces
+--------
 
 Twig: `[%dtls p=twig]`
 
-##Sample
+Sample
+------
 
 `p` is a [twig]()
 
-##Tall form
+Tall form
+---------
 
     .+  p
 
-##Wide form
+Wide form
+---------
 
     .+(p)
 
-##Irregular form
+Irregular form
+--------------
 
     +(p)
 
-##Examples
-
+Examples
+--------
 
     ~zod/try=> +(6)
     7
@@ -49,10 +56,11 @@ In the most straightforward case `.+` increments its operand.
     ~zod/try=> +(41)
     42
 
-When passed a non-atomic odored atoms `.+` down-casts to an atom. 
+When passed a non-atomic odored atoms `.+` down-casts to an atom.
 
     ~zod/try=> +([1 2])
     ! type-fail
     ! exit
 
-Passing an operand that cannot be directly down-cast to an atom produces a type-fail.
+Passing an operand that cannot be directly down-cast to an atom produces
+a type-fail.

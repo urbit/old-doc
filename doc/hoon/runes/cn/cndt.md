@@ -1,38 +1,48 @@
-#[cendot, `%.`, %cndt](#cndt)
+[cendot, `%.`, %cndt](#cndt)
+============================
 
 Slam, reverse order
 
-`%.` is a synthetic rune that reverses the order of [`%-`](). `%.` exists primarily for code readability and organization, see the [style guide]().
+`%.` is a synthetic rune that reverses the order of [`%-`](). `%.`
+exists primarily for code readability and organization, see the [style
+guide]().
 
-##Produces
+Produces
+--------
 
 Twig: `[%cndt p=twig q=twig]`
 
-##Sample
+Sample
+------
 
 `p` and `q` are [twig]()s.
 
-##Tall form
+Tall form
+---------
 
     %.  p
         q
 
-##Wide form
+Wide form
+---------
 
     %.(p q)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     /~zod/try=> (dec 42)
     41
     ~zod/try=> %.(42 dec)
     41
 
-In the most straightforward case `%.` allows us to reverse the order of arm and arguments. 
+In the most straightforward case `%.` allows us to reverse the order of
+arm and arguments.
 
     /~zod/try=> %.
                   %+  add
@@ -41,4 +51,7 @@ In the most straightforward case `%.` allows us to reverse the order of arm and 
                 dec
     41
 
-Here we add `2` to the product of `2` and `20`, and use `%.` to decrement our result. As you can see, `%.` is most useful for code organization, when you need to compute intermediate products for your final result.
+Here we add `2` to the product of `2` and `20`, and use `%.` to
+decrement our result. As you can see, `%.` is most useful for code
+organization, when you need to compute intermediate products for your
+final result.

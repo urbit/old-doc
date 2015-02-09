@@ -1,19 +1,19 @@
-##section 2eB, parsing (tracing)
+section 2eB, parsing (tracing)
+------------------------------
 
-###++last
+### ++last
 
 Farther trace
 
-```
-++  last  |=  [zyc=hair naz=hair]                       ::  farther trace
-          ^-  hair
-          ?:  =(p.zyc p.naz)
-            ?:((gth q.zyc q.naz) zyc naz)
-          ?:((gth p.zyc p.naz) zyc naz)
-::
-```
+    ++  last  |=  [zyc=hair naz=hair]                       ::  farther trace
+              ^-  hair
+              ?:  =(p.zyc p.naz)
+                ?:((gth q.zyc q.naz) zyc naz)
+              ?:((gth p.zyc p.naz) zyc naz)
+    ::
 
-Compares two line-column pairs, `zyc` and `naz`, and produces whichever [hair]() is farther along.
+Compares two line-column pairs, `zyc` and `naz`, and produces whichever
+[hair]() is farther along.
 
 `zyc` is a [hair]().
 
@@ -28,19 +28,18 @@ Compares two line-column pairs, `zyc` and `naz`, and produces whichever [hair]()
     ~zod/try=> (last [7 7] [7 7])
     [p=7 q=7]
 
----
+------------------------------------------------------------------------
 
-###++lust
+### ++lust
 
 Detect newline
 
-```
-++  lust  |=  [weq=char naz=hair]                       ::  detect newline
-          ^-  hair
-          ?:(=(10 weq) [+(p.naz) 1] [p.naz +(q.naz)])
-```
+    ++  lust  |=  [weq=char naz=hair]                       ::  detect newline
+              ^-  hair
+              ?:(=(10 weq) [+(p.naz) 1] [p.naz +(q.naz)])
 
-Advances the hair `naz` by a row if the char `weq` is a newline, or by a column if `weq` is any other character.
+Advances the hair `naz` by a row if the char `weq` is a newline, or by a
+column if `weq` is any other character.
 
 `weq` is a [char]().
 
@@ -61,4 +60,4 @@ Advances the hair `naz` by a row if the char `weq` is a newline, or by a column 
     """
     [2 6]
 
----
+------------------------------------------------------------------------

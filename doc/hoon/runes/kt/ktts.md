@@ -1,33 +1,40 @@
-#[kettis, `^=`, %ktts](#ktts)
+[kettis, `^=`, %ktts](#ktts)
+============================
 
 Wrap
 
-`^=`, `kettis`, `[%ktts p=toga q=twig]` is a natural hoon that wraps `q` in the [`++toga`]() `p`. `^=` is most commonly used for assignment, adding one or more names to values.
+`^=`, `kettis`, `[%ktts p=toga q=twig]` is a natural hoon that wraps `q`
+in the [`++toga`]() `p`. `^=` is most commonly used for assignment,
+adding one or more names to values.
 
-##Produces
+Produces
+--------
 
 Twig: `[%ktts p=toga q=twig]`
 
-##Sample
+Sample
+------
 
-`p` is a [`++toga`]().
-`q` is a [twig]().
+`p` is a [`++toga`](). `q` is a [twig]().
 
-##Tall form
+Tall form
+---------
 
     ^=  p
     q
 
-
-##Wide form
+Wide form
+---------
 
     ^=(p q)
 
-##Irregular form
+Irregular form
+--------------
 
     p=q
 
-##Examples
+Examples
+--------
 
     ~zod/try=> a=1
     a=1
@@ -35,9 +42,11 @@ Twig: `[%ktts p=toga q=twig]`
                1
     a=1
 
-In this straightforward example we see the irregular and tall forms of `^=`, both of which assign `a` to be `1`.
+In this straightforward example we see the irregular and tall forms of
+`^=`, both of which assign `a` to be `1`.
 
     ~zod/try=> [b ~ c]=[1 2 3 4]
     [b=1 2 c=[3 4]]
 
-Here we see multiple names being applied at once, using the irregular form of `^=`.
+Here we see multiple names being applied at once, using the irregular
+form of `^=`.

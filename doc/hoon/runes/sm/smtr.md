@@ -1,36 +1,45 @@
-#[semtar, `;*`](#smtr)
+[semtar, `;*`](#smtr)
+=====================
 
 `++sail` list `++manx`
 
-`;*`  is a virtual rune used within [`++sail`]() to interpolate a list of marl.
+`;*` is a virtual rune used within [`++sail`]() to interpolate a list of
+marl.
 
-##See also
+See also
+--------
 
 The `%c` case inside of [`++tuna`]().
 
-##Produces
+Produces
+--------
 
 Twig: [`++marl`]()
 
-##Sample
+Sample
+------
 
 `p` is a twig
 
-##Tall form
+Tall form
+---------
 
     ;*  a
 
-##Wide form
+Wide form
+---------
 
     *{a}
 
 (within quoted form)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> ;div  ;*  ~[;hi; ;p;]
                ==
@@ -48,4 +57,5 @@ None
     ~zod/try=> (poxo ;div:"a*{~[;hi; ;p;]}b")
     "<div>a<hi></hi><p></p>b</div>"
 
-Here we use the tall, wide and irregular forms of `;*` to interpolate a list of `++marl` into our containing [`++manx`]() `;div`.
+Here we use the tall, wide and irregular forms of `;*` to interpolate a
+list of `++marl` into our containing [`++manx`]() `;div`.

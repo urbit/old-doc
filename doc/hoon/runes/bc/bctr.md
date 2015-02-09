@@ -1,26 +1,34 @@
-#[buctar `$*` %bctr](#bctr)
+[buctar `$*` %bctr](#bctr)
+==========================
 
-Default value 
+Default value
 
-`$*`, is a synthetic rune that produces the [bunt]() (default value) of a tile as a compile-time constant if possible. If it is not possible, then it is produced dynamically.
+`$*`, is a synthetic rune that produces the [bunt]() (default value) of
+a tile as a compile-time constant if possible. If it is not possible,
+then it is produced dynamically.
 
-##Produces
+Produces
+--------
 
 [Twig](): `[%bctr p=tile]`
 
-##Tall form
+Tall form
+---------
 
     $*  p
 
-##Wide form
+Wide form
+---------
 
     $*(p)
 
-##Irregular form
+Irregular form
+--------------
 
     *p
 
-##Examples
+Examples
+--------
 
     ~zod/try=> *@t
     ''

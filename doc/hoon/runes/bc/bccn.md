@@ -1,32 +1,41 @@
-#[buccen `$%` %bccn](#bccn)
+[buccen `$%` %bccn](#bccn)
+==========================
 
 Tagged union
 
-`$%` is a tile rune that produces a [`%kelp`](), the tile of the discriminated union. `$%` takes a list of lines which are labeled cases, called fronds, closed by `==`. Commonly used for pattern matching.
+`$%` is a tile rune that produces a [`%kelp`](), the tile of the
+discriminated union. `$%` takes a list of lines which are labeled cases,
+called fronds, closed by `==`. Commonly used for pattern matching.
 
-##Produces
+Produces
+--------
 
 [Twig](): `[%kelp p=[i=line t=(list line)]]`
 
-##Sample
+Sample
+------
 
 `p` is a [`++list`]() of [`++line`]()s.
 
-##Tall form
+Tall form
+---------
 
     $%  p
         q
     ==
 
-##Wide form
+Wide form
+---------
 
 None
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> $%([%& @p] [%| @t])
     <1.dhe [* @n <246.qra 41.uuw 374.glo 100.rip 1.ypj %164>]>
@@ -45,14 +54,11 @@ None
     ~zod/try=> *$%([%~ ~] [%a 1])
     [~ ~]
 
+    ++  foot  $%  [%ash p=twig]                             ::  dry, geometric
+                  [%elm p=twig]                             ::  wet, generic
+                  [%oak ~]                                  ::  XX not used
+                  [%yew p=(map term foot)]                  ::  XX not used
+              ==
 
-```
-++  foot  $%  [%ash p=twig]                             ::  dry, geometric
-              [%elm p=twig]                             ::  wet, generic
-              [%oak ~]                                  ::  XX not used
-              [%yew p=(map term foot)]                  ::  XX not used
-          ==
-```
-
-In `++foot`, `$%` creates a list of possible cases. That is, a `++foot` can be either `%ash`, `%elm`, `%oak` or `%yew`.
-
+In `++foot`, `$%` creates a list of possible cases. That is, a `++foot`
+can be either `%ash`, `%elm`, `%oak` or `%yew`.

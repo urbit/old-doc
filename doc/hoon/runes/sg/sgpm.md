@@ -1,20 +1,25 @@
-#[sigpam, `~&`, %sgpm](#sgpm)
+[sigpam, `~&`, %sgpm](#sgpm)
+============================
 
 printf
 
-`~&`, `sigpam`,  is a synthetic rune that prints `q` on the console before computing `r`.  `p` is the log priority, 0-3 defaulting to 0. `~&` is similar to `printf` or `log` in other languages, and is very commonly used for debugging.
+`~&`, `sigpam`, is a synthetic rune that prints `q` on the console
+before computing `r`. `p` is the log priority, 0-3 defaulting to 0. `~&`
+is similar to `printf` or `log` in other languages, and is very commonly
+used for debugging.
 
-##Produces
+Produces
+--------
 
 Twig: `[%sgpm p=@ud q=twig r=twig]`
 
-##Sample
+Sample
+------
 
-`p` is a [`@ud`]()
-`q` is a [twig]()
-`r` is a [twig]()
+`p` is a [`@ud`]() `q` is a [twig]() `r` is a [twig]()
 
-##Tall form
+Tall form
+---------
 
 Priority 0 (debug):
 
@@ -36,15 +41,18 @@ Priority 3 (alarm):
     ~&  >>>  q
     r
 
-##Wide form
+Wide form
+---------
 
     ~&(>> q r)
 
-##Irregular form
+Irregular form
+--------------
 
 undefined
 
-##Examples
+Examples
+--------
 
     ~zod/try=> ~
     ~
@@ -52,4 +60,5 @@ undefined
     'oops'
     ~
 
-The most common use of `~&`: print something to the console before proceeding.
+The most common use of `~&`: print something to the console before
+proceeding.

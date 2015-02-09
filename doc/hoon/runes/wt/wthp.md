@@ -1,23 +1,30 @@
-#[wuthep, `?-`, %wthp](#wthp)
+[wuthep, `?-`, %wthp](#wthp)
+============================
 
 Switch
 
-`?-` is a synthetic hoon that selects a case in `q` for the value of `p`. The labels in `q` must match the [icon]() of `p`. The list of cases, `q` must be terminated by `==`. 
+`?-` is a synthetic hoon that selects a case in `q` for the value of
+`p`. The labels in `q` must match the [icon]() of `p`. The list of
+cases, `q` must be terminated by `==`.
 
-##See also
+See also
+--------
 
-#[wutlus, `?+`, %wtls](#wtls)
+[wutlus, `?+`, %wtls](#wtls)
+============================
 
-##Produces
+Produces
+--------
 
 Twig: `[%wthp p=wing q=tine]`
 
-##Sample
+Sample
+------
 
-`p` is a [`++wine`]().
-`q` is a [`++tine`]().
+`p` is a [`++wine`](). `q` is a [`++tine`]().
 
-##Tall form
+Tall form
+---------
 
 Kingside:
 
@@ -38,15 +45,18 @@ Queenside:
       q.i.t.t.q
     ==
 
-##Wide form
+Wide form
+---------
 
     ?-(p p.i.q q.i.q, p.i.t.q q.i.t.q, p.i.t.t.q q.i.t.t.q)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> 
       =cor  |=  typ=$?(%a %b)
@@ -62,7 +72,10 @@ None
       (cor %b)
     2
 
-Here is a simple example of `?-` showing that its input must have a well defined type for which all of the cases are covered. We create a core, `cor` that takes an input `typ` which must be either `%a` or `%b` with [`$%`](). Calling `cor` with valid arguments selects one of our cases.
+Here is a simple example of `?-` showing that its input must have a well
+defined type for which all of the cases are covered. We create a core,
+`cor` that takes an input `typ` which must be either `%a` or `%b` with
+[`$%`](). Calling `cor` with valid arguments selects one of our cases.
 
     ~zod/try=> 
       ?-  'a'
@@ -79,4 +92,8 @@ Here is a simple example of `?-` showing that its input must have a well defined
           ==
     'b'
 
-Here we can see a common failure case with `?-`. In the first example all of our possible input cases are not covered when we pass in a `@t`, so we fail with `mint-vain` – a parsing error. When we construct a well typed input and select a case from it `?-` in fact  has all of the cases covered and produces correct output.
+Here we can see a common failure case with `?-`. In the first example
+all of our possible input cases are not covered when we pass in a `@t`,
+so we fail with `mint-vain` – a parsing error. When we construct a well
+typed input and select a case from it `?-` in fact has all of the cases
+covered and produces correct output.

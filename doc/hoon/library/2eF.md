@@ -1,12 +1,11 @@
-##section 2eF, parsing (ascii)          
+section 2eF, parsing (ascii)
+----------------------------
 
-###++ace
+### ++ace
 
 Parse space
 
-```
-++  ace  (just ' ')
-```
+    ++  ace  (just ' ')
 
 Parses ASCII character 32, space.
 
@@ -19,15 +18,13 @@ Parses ASCII character 32, space.
     ~zod/try=> (ace [[1 1] " abc "])
     [p=[p=1 q=2] q=[~ [p=~~. q=[p=[p=1 q=2] q="abc "]]]]
 
----
+------------------------------------------------------------------------
 
-###++bar 
+### ++bar
 
 Parse vertical bar
 
-```
-++  bar  (just '|')
-```
+    ++  bar  (just '|')
 
 Parses ASCII character 124, the vertical bar.
 
@@ -40,17 +37,16 @@ Parses ASCII character 124, the vertical bar.
     ~zod/try=> (bar [[1 1] "|="])
     [p=[p=1 q=2] q=[~ [p=~~~7c. q=[p=[p=1 q=2] q="="]]]]
 
----
+------------------------------------------------------------------------
 
-###++bas 
+### ++bas
 
 Parse backslash
 
-```
-++  bas  (just '\\')
-```
+    ++  bas  (just '\\')
 
-Parses ASCII character 92, the backslash. Note the extra `\` in the slam of `bas` with [`++just`]() is to escape the escape character, `\`.
+Parses ASCII character 92, the backslash. Note the extra `\` in the slam
+of `bas` with [`++just`]() is to escape the escape character, `\`.
 
     ~zod/try=> (scan "\\" bas)
     ~~~5c.
@@ -63,15 +59,13 @@ Parses ASCII character 92, the backslash. Note the extra `\` in the slam of `bas
     ~zod/try=> (bas [[1 1] "\""])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++buc 
+### ++buc
 
 Parse dollar sign
 
-```
-++  buc  (just '$')
-```
+    ++  buc  (just '$')
 
 Parses ASCII character 36, the dollar sign.
 
@@ -84,15 +78,13 @@ Parses ASCII character 36, the dollar sign.
     ~zod/try=> (buc [[1 1] "$%"])
     [p=[p=1 q=2] q=[~ [p=~~~24. q=[p=[p=1 q=2] q="%"]]]]
 
----
+------------------------------------------------------------------------
 
-###++cab 
+### ++cab
 
 Parse underscore
 
-```
-++  cab  (just '_')
-```
+    ++  cab  (just '_')
 
 Parses ASCII character 95, the underscore.
 
@@ -105,15 +97,13 @@ Parses ASCII character 95, the underscore.
     ~zod/try=> (cab [[1 1] "|_"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++cen 
+### ++cen
 
 Parses percent sign
 
-```
-++  cen  (just '%')
-```
+    ++  cen  (just '%')
 
 Parses ASCII character 37, the percent sign.
 
@@ -126,15 +116,13 @@ Parses ASCII character 37, the percent sign.
     ~zod/try=> (cen [[1 1] "%^"])
     [p=[p=1 q=2] q=[~ [p=~~~25. q=[p=[p=1 q=2] q="^"]]]] 
 
----
+------------------------------------------------------------------------
 
-###++col 
+### ++col
 
 Parse colon
 
-```
-++  col  (just ':')
-```
+    ++  col  (just ':')
 
 Parses ASCII character 58, the colon
 
@@ -147,15 +135,13 @@ Parses ASCII character 58, the colon
     ~zod/try=> (col [[1 1] ":-"])
     [p=[p=1 q=2] q=[~ [p=~~~3a. q=[p=[p=1 q=2] q="-"]]]]
 
----
+------------------------------------------------------------------------
 
-###++com 
+### ++com
 
 Parse comma
 
-```
-++  com  (just ',')
-```
+    ++  com  (just ',')
 
 Parses ASCII character 44, the comma.
 
@@ -168,15 +154,13 @@ Parses ASCII character 44, the comma.
     ~zod/try=> (com [[1 1] "not com"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++doq 
+### ++doq
 
 Parse double quote
 
-```
-++  doq  (just '"')
-```
+    ++  doq  (just '"')
 
 Parses ASCII character 34, the double quote.
 
@@ -193,15 +177,13 @@ Parses ASCII character 34, the double quote.
     ! 'syntax-error'
     ! exit 
 
----
+------------------------------------------------------------------------
 
-###++dot 
+### ++dot
 
 Parse period
 
-```
-++  dot  (just '.')
-```
+    ++  dot  (just '.')
 
 Parses ASCII character 46, the period.
 
@@ -214,15 +196,13 @@ Parses ASCII character 46, the period.
     ~zod/try=> (dot [[1 1] ".^"])
     [p=[p=1 q=2] q=[~ [p=~~~. q=[p=[p=1 q=2] q="^"]]]]
 
----
+------------------------------------------------------------------------
 
-###++fas 
+### ++fas
 
 Parse forward slash
 
-```
-++  fas  (just '/')
-```
+    ++  fas  (just '/')
 
 Parses ASCII character 47, the forward slash.
 
@@ -235,15 +215,13 @@ Parses ASCII character 47, the forward slash.
     ~zod/try=> (fas [[1 1] "|/"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++gal 
+### ++gal
 
 Parse less-than sign
 
-```
-++  gal  (just '<')
-```
+    ++  gal  (just '<')
 
 Parses ASCII character 60, the less-than sign.
 
@@ -258,15 +236,13 @@ Parses ASCII character 60, the less-than sign.
     ~zod/try=> (gal [[1 1] "+<"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++gar 
+### ++gar
 
 Parse greater-than sign
 
-```
-++  gar  (just '>')
-```
+    ++  gar  (just '>')
 
 Parses ASCII character 62, the greater-than sign.
 
@@ -279,15 +255,13 @@ Parses ASCII character 62, the greater-than sign.
     ~zod/try=> (gar [[1 1] "=>"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++hax 
+### ++hax
 
 Parse number sign
 
-```
-++  hax  (just '#')
-```
+    ++  hax  (just '#')
 
 Parses ASCII character 35, the number sign.
 
@@ -300,17 +274,17 @@ Parses ASCII character 35, the number sign.
     ~zod/try=> (hax [[1 1] "#!"])
     [p=[p=1 q=2] q=[~ [p=~~~23. q=[p=[p=1 q=2] q="!"]]]]
 
----
+------------------------------------------------------------------------
 
-###++kel 
+### ++kel
 
 Parse left curley bracket
 
-```
-++  kel  (just '{')
-```
+    ++  kel  (just '{')
 
-Parses ASCII character 123, the left curly bracket. Note that `{` (`kel`) and `}` (`ker`) open and close a Hoon expression for Hoon string interpolation. To parse either of them, they must be escaped.
+Parses ASCII character 123, the left curly bracket. Note that `{`
+(`kel`) and `}` (`ker`) open and close a Hoon expression for Hoon string
+interpolation. To parse either of them, they must be escaped.
 
     ~zod/try=> (scan "\{" kel)
     ~~~7b.
@@ -321,17 +295,17 @@ Parses ASCII character 123, the left curly bracket. Note that `{` (`kel`) and `}
     ~zod/try=> (kel [[1 1] " \{"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++ker 
+### ++ker
 
 Parse right curley bracket
 
-```
-++  ker  (just '}')
-```
+    ++  ker  (just '}')
 
-Parses ASCII character 125, the right curly bracket. Note that `{` (`kel`) and `}` (`ker`) open and close a Hoon expression for Hoon string interpolation. To parse either of them, they must be escaped.
+Parses ASCII character 125, the right curly bracket. Note that `{`
+(`kel`) and `}` (`ker`) open and close a Hoon expression for Hoon string
+interpolation. To parse either of them, they must be escaped.
 
     ~zod/try=> (scan "}" ker)
     ~~~7d.
@@ -342,15 +316,13 @@ Parses ASCII character 125, the right curly bracket. Note that `{` (`kel`) and `
     ~zod/try=> (ker [[1 1] "\{}"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++ket 
+### ++ket
 
 Parse caret
 
-```
-++  ket  (just '^')
-```
+    ++  ket  (just '^')
 
 Parses ASCII character 94, the caret.
 
@@ -363,15 +335,13 @@ Parses ASCII character 94, the caret.
     ~zod/try=> (ket [[1 1] ".^"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++lus 
+### ++lus
 
 Parse plus sign
 
-```
-++  lus  (just '+')
-```
+    ++  lus  (just '+')
 
 Parses ASCII character 43, the plus sign.
 
@@ -384,15 +354,13 @@ Parses ASCII character 43, the plus sign.
         ~zod/try=> (lus [[1 1] ".+"])
         [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++hep 
+### ++hep
 
 Parse hyphen
 
-```
-++  hep  (just '-')
-```
+    ++  hep  (just '-')
 
 Parses ASCII character 45, the hyphen.
 
@@ -405,15 +373,13 @@ Parses ASCII character 45, the hyphen.
     ~zod/try=> (hep [[1 1] ":-"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++pel 
+### ++pel
 
 Parse left parenthesis
 
-```
-++  pel  (just '(')
-```
+    ++  pel  (just '(')
 
 Parses ASCII character 40, the left parenthesis.
 
@@ -426,15 +392,13 @@ Parses ASCII character 40, the left parenthesis.
     ~zod/try=> (pel [[1 1] ";("])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++pam 
+### ++pam
 
 Parse ampersand
 
-```
-++  pam  (just '&')
-```
+    ++  pam  (just '&')
 
 Parses ASCII character 38, the ampersand.
 
@@ -447,15 +411,13 @@ Parses ASCII character 38, the ampersand.
     ~zod/try=> (pam [[1 1] "?&"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++per 
+### ++per
 
 Parse right parenthesis
 
-```
-++  per  (just ')')
-```
+    ++  per  (just ')')
 
 Parses ASCII character 41, the right parenthesis.
 
@@ -468,15 +430,13 @@ Parses ASCII character 41, the right parenthesis.
     ~zod/try=> (per [[1 1] " )"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++pat 
+### ++pat
 
 Parse "at" sign
 
-```
-++  pat  (just '@')
-```
+    ++  pat  (just '@')
 
 Parses ASCII character 64, the "at" sign.
 
@@ -489,17 +449,15 @@ Parses ASCII character 64, the "at" sign.
     ~zod/try=> (pat [[1 1] "?@"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++sel
+### ++sel
 
 Parse left square bracket
 
 Left square bracket
 
-```
-++  sel  (just '[')
-```
+    ++  sel  (just '[')
 
 Parses ASCII character 91, the left square bracket.
 
@@ -512,19 +470,17 @@ Parses ASCII character 91, the left square bracket.
         ~zod/try=> (sel [[1 1] "-["])
         [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++sem 
+### ++sem
 
 Parse semicolon
 
-```
-++  sem  (just ';')
-```
+    ++  sem  (just ';')
 
 Parses ASCII character 59, the semicolon.
 
-###Examples
+### Examples
 
     ~zod/try=> (scan ";" sem)
     ~~~3b.
@@ -535,15 +491,13 @@ Parses ASCII character 59, the semicolon.
     ~zod/try=> (sem [[1 1] " ;"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++ser 
+### ++ser
 
 Parse right square bracket
 
-```
-++  ser  (just ']')
-```
+    ++  ser  (just ']')
 
 Parses ASCII character 93, the right square bracket.
 
@@ -556,15 +510,13 @@ Parses ASCII character 93, the right square bracket.
     ~zod/try=> (ser [[1 1] "[ ]"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++sig 
+### ++sig
 
 Parse tilde
 
-```
-++  sig  (just '~')
-```
+    ++  sig  (just '~')
 
 Parses ASCII character 126, the tilde.
 
@@ -577,18 +529,16 @@ Parses ASCII character 126, the tilde.
     ~zod/try=> (sig [[1 1] "?~"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++soq 
+### ++soq
 
 Parse single quote
 
-```
-++  soq  (just '\'')
-```
+    ++  soq  (just '\'')
 
-Parses ASCII character 39, soq.
-Note the extra '\' is to escape the first `soq` because soq delimits a cord.
+Parses ASCII character 39, soq. Note the extra '' is to escape the first
+`soq` because soq delimits a cord.
 
     ~zod/try=> (scan "'" soq)
     ~~~27.
@@ -599,15 +549,13 @@ Note the extra '\' is to escape the first `soq` because soq delimits a cord.
     ~zod/try=> (soq [[1 1] ">'"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++tar 
+### ++tar
 
 Parse asterisk
 
-```
-++  tar  (just '*')
-```
+    ++  tar  (just '*')
 
 Parses ASCII character 42, the asterisk.
 
@@ -620,17 +568,16 @@ Parses ASCII character 42, the asterisk.
     ~zod/try=> (tar [[1 1] ".*"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++tec 
+### ++tec
 
 Parse backtick
 
-```
-++  tec  (just '`')                                     ::  backTiCk
-```
+    ++  tec  (just '`')                                     ::  backTiCk
 
-Parses ASCII character 96, the backtick (also known as the "grave accent".
+Parses ASCII character 96, the backtick (also known as the "grave
+accent".
 
     ~zod/try=> (scan "`" tec)
     ~~~6.
@@ -641,15 +588,13 @@ Parses ASCII character 96, the backtick (also known as the "grave accent".
     ~zod/try=> (tec [[1 1] " `"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++tis 
+### ++tis
 
 Parse equals sign
 
-```
-++  tis  (just '=')
-```
+    ++  tis  (just '=')
 
 Parses ASCII character 61, the equals sign.
 
@@ -661,15 +606,14 @@ Parses ASCII character 61, the equals sign.
     [p=[p=1 q=2] q=[~ [p=~~~3d. q=[p=[p=1 q=2] q=""]]]]
     ~zod/try=> (tis [[1 1] "|="])
     [p=[p=1 q=1] q=~]
----
 
-###++wut 
+------------------------------------------------------------------------
+
+### ++wut
 
 Parses question mark
 
-```
-++  wut  (just '?')
-```
+    ++  wut  (just '?')
 
 Parses ASCII character 63, wut.
 
@@ -682,15 +626,13 @@ Parses ASCII character 63, wut.
     ~zod/try=> (wut [[1 1] ".?"])
     [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------
 
-###++zap 
+### ++zap
 
 Exclamation point
 
-```
-++  zap  (just '!')
-```
+    ++  zap  (just '!')
 
 Parses ASCII character 33, the exclamation point zap.
 
@@ -703,4 +645,4 @@ Parses ASCII character 33, the exclamation point zap.
         ~zod/try=> (zap [[1 1] "?!"])
         [p=[p=1 q=1] q=~]
 
----
+------------------------------------------------------------------------

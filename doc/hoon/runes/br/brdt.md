@@ -1,37 +1,47 @@
-#[bardot, `|.`, %brdt](#brdt)
+[bardot, `|.`, %brdt](#brdt)
+============================
 
 Trap
 
-`|.`, is a synthetic hoon that produces a [dry]() [`%gold`]() trap. A trap is a [`door`]() with one only arm [`$`](), the empty name. 
+`|.`, is a synthetic hoon that produces a [dry]() [`%gold`]() trap. A
+trap is a [`door`]() with one only arm [`$`](), the empty name.
 
-The default action performed on a trap is kicking it by pulling the arm `$`. `|.` is similar to `|=` with no arguments. You can think of `|.` as a function that takes no inputs.
+The default action performed on a trap is kicking it by pulling the arm
+`$`. `|.` is similar to `|=` with no arguments. You can think of `|.` as
+a function that takes no inputs.
 
-##See also
+See also
+--------
 
-[barhep, `|-`, %brhp](#brhp)
-[bartis, `|=`, %brts](#brts)
+[barhep, `|-`, %brhp](#brhp) [bartis, `|=`, %brts](#brts)
 
-##Produces
+Produces
+--------
 
 Twig: `[%brdt p=twig]`
 
-##Sample
+Sample
+------
 
 `p` is a [`++twig`]().
 
-##Tall form
+Tall form
+---------
 
     |.  p
 
-##Wide form
+Wide form
+---------
 
     |.(p)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     /~zod/try=> 
     =a  |.(42)
@@ -65,7 +75,10 @@ None
     $:a
     42
 
-This is a simple example. We assign a shell variable `a` to be a trap that simply produces the atom `42`. Printing `a` prints the core and its context. Calling `a` using `(`, the irregular form of [`%-`](), produces its value. As does pulling the arm `$` from inside it using `$:a`.
+This is a simple example. We assign a shell variable `a` to be a trap
+that simply produces the atom `42`. Printing `a` prints the core and its
+context. Calling `a` using `(`, the irregular form of [`%-`](), produces
+its value. As does pulling the arm `$` from inside it using `$:a`.
 
     /~zod/try=> 
     =a  10
@@ -77,7 +90,10 @@ This is a simple example. We assign a shell variable `a` to be a trap that simpl
     (b)
     12
 
-In this case we assign a variable `a` to be `10`, and create a trap `b` to add `2` to it. This is a trivial example, but is meant to show that traps are useful when you need a gate that only operates on values that are already in its context. 
+In this case we assign a variable `a` to be `10`, and create a trap `b`
+to add `2` to it. This is a trivial example, but is meant to show that
+traps are useful when you need a gate that only operates on values that
+are already in its context.
 
     /~zod/try=> 
     =loop  =+  reps=10
@@ -91,4 +107,8 @@ In this case we assign a variable `a` to be `10`, and create a trap `b` to add `
     /~zod/try=> (loop)
     20
 
-Expanding on our previous example, we create a trap with three local variables, `reps`, `step`, and `outp`. We use a trap to create a loop, testing each time if `step` is equal to `reps`, if so producing `outp` otherwise calling our trap again with `outp` replaced with `outp+2`, and `step` incremented.
+Expanding on our previous example, we create a trap with three local
+variables, `reps`, `step`, and `outp`. We use a trap to create a loop,
+testing each time if `step` is equal to `reps`, if so producing `outp`
+otherwise calling our trap again with `outp` replaced with `outp+2`, and
+`step` incremented.

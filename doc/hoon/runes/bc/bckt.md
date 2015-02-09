@@ -1,30 +1,39 @@
-#[bucket `$^` %bckt](#bckt)
+[bucket `$^` %bckt](#bckt)
+==========================
 
 Normalizing gate, `%herb`
 
-`$^`, is a tile hoon that declares an [`%herb`](). An `%herb` is a gate, accepting a sample of * and normalizing it as you choose. If you use a twig as a tile, it's treated as an herb.
+`$^`, is a tile hoon that declares an [`%herb`](). An `%herb` is a gate,
+accepting a sample of \* and normalizing it as you choose. If you use a
+twig as a tile, it's treated as an herb.
 
-##Produces
+Produces
+--------
 
 Tile: `[%herb p=twig]`
 
-##Sample
+Sample
+------
 
 `p` is a [twig]().
 
-##Tall form
+Tall form
+---------
 
     $^  p
 
-##Wide form
+Wide form
+---------
 
     $^(p)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> *$^(cord)
     ''

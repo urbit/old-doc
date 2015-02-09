@@ -1,40 +1,54 @@
-#[wutcol, `?:`, %wtcl](#wtcl)
+[wutcol, `?:`, %wtcl](#wtcl)
+============================
 
 If, then
 
-`?:`, `wutcol`,  is a natural hoon that produces `q` if `p` is yes (`&`, `0`), or `r` if `p` is no (`|`, 1). `?:` is most similar to the traditional "if" statement, producing the first expression if the loobean is true. `?:` is the inverse of `?.`.
+`?:`, `wutcol`, is a natural hoon that produces `q` if `p` is yes (`&`,
+`0`), or `r` if `p` is no (`|`, 1). `?:` is most similar to the
+traditional "if" statement, producing the first expression if the
+loobean is true. `?:` is the inverse of `?.`.
 
-##See also
+See also
+--------
 
-#[wutdot, `?.`, %wtdt](#wtdt)
+[wutdot, `?.`, %wtdt](#wtdt)
+============================
 
-##Produces
+Produces
+--------
 
 Twig: `[%wtcl p=twig q=twig r=twig]`
 
-##Sample
+Sample
+------
 
 `p`, `q`, and `r` are [twig]()s.
 
-##Tall form
+Tall form
+---------
 
     ?:  p
       q
     r
 
-##Wide form
+Wide form
+---------
 
     ?:(p q r)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> ?:((gth 1 2) 1 2)
     2
     ~zod/try=> ?:(?=(%a 'a') %yup %not-a)
     %yup
 
-Here we see two common cases of `?:` in the wide form, one uses an expression `gte` that produces a loobean and the other [`?=`]() to produce one of its cases. 
+Here we see two common cases of `?:` in the wide form, one uses an
+expression `gte` that produces a loobean and the other [`?=`]() to
+produce one of its cases.

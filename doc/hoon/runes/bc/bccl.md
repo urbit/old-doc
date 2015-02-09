@@ -1,33 +1,40 @@
-#[buccol `$:` %bccl](#bccl)
+[buccol `$:` %bccl](#bccl)
+==========================
 
 Tile autocons
 
-`$:` is a tile rune that constructs the tile of a tuple from a tuple of tiles. 
+`$:` is a tile rune that constructs the tile of a tuple from a tuple of
+tiles.
 
-##Produces
+Produces
+--------
 
 [Tile](): `[p=tile q=tile]`
 
-##Sample
+Sample
+------
 
-`p` is a [tile]().
-`q` is a [tile]().
+`p` is a [tile](). `q` is a [tile]().
 
-##Tall form
+Tall form
+---------
 
     $:  p
         q
     ==
 
-##Wide form
+Wide form
+---------
 
     $:(p q)
 
-##Irregular form
+Irregular form
+--------------
 
     [p q]
 
-##Examples
+Examples
+--------
 
     ~zod/try=> *[1 2]
     [%1 %2]

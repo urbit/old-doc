@@ -1,36 +1,46 @@
-#[barlus, `|+`, %brls](#brls)
+[barlus, `|+`, %brls](#brls)
+============================
 
 `%iron` gate
 
-`|+` is a synthetic rune that produces a [dry]() [`%iron`]() [gate]() with sample [`$*(p)`]() and [arm]()s `q`. `|+` is similar to `|=`, but differs in that its sample cannot be read. It can be thought of as similar to a private function.
+`|+` is a synthetic rune that produces a [dry]() [`%iron`]() [gate]()
+with sample [`$*(p)`]() and [arm]()s `q`. `|+` is similar to `|=`, but
+differs in that its sample cannot be read. It can be thought of as
+similar to a private function.
 
-##See also
+See also
+--------
 
 [bartis, `|=`, %brts](#brts)
 
-##Produces
+Produces
+--------
 
 Twig: `[%brls p=tile q=twig]`
 
-##Sample
+Sample
+------
 
-`p` is a [tile]().
-`q` is a [twig]().
+`p` is a [tile](). `q` is a [twig]().
 
-##Tall form
+Tall form
+---------
 
     |+  p
         q
 
-##Wide form
+Wide form
+---------
 
     |+(p q)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> +<:|+(a=@ a)
     ! -axis.6
@@ -39,7 +49,9 @@ None
     ~zod/try=> +<:|=(a=@ a)
     a=0
 
-Here we're trying to read the sample, using `+<` of two different kinds of gates. With `|+` you can see we cause an error, whereas with `|=` our default sample is `a=0`.
+Here we're trying to read the sample, using `+<` of two different kinds
+of gates. With `|+` you can see we cause an error, whereas with `|=` our
+default sample is `a=0`.
 
     ~zod/try=> %.(20 |+(a=@ a))
     20

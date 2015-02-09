@@ -1,32 +1,40 @@
-#[ketdot, `^.`, %ktdt](#ktdt)
+[ketdot, `^.`, %ktdt](#ktdt)
+============================
 
 Cast to product type
 
-`^.` is a synthetic hoon that casts `q` to the type of `(p q)`. `^.` is the same as casting `q` to the product type of `p` and comes in handy when you don't want to run the contents of `p`.
+`^.` is a synthetic hoon that casts `q` to the type of `(p q)`. `^.` is
+the same as casting `q` to the product type of `p` and comes in handy
+when you don't want to run the contents of `p`.
 
-##Produces
+Produces
+--------
 
 Twig: `[%ktdt p=twig q=twig]`
 
-##Sample
+Sample
+------
 
-`p` is a [twig]().
-`q` is a [twig]().
+`p` is a [twig](). `q` is a [twig]().
 
-##Tall form
+Tall form
+---------
 
     ^.  p
         q
 
-##Wide form
+Wide form
+---------
 
 None
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     /~zod/try=> =cor  |=  [~ a=@]
           [~ p=a]
@@ -34,4 +42,6 @@ None
     /~zod/try=> ^.(cor [~ 97])
     [~ p=97]
 
-In this example we create a gate `cor` that takes a cell of `~` and an atom and produces `[~ p=a]`. Using `^.` we can cast without calling `cor` and produce the same result. 
+In this example we create a gate `cor` that takes a cell of `~` and an
+atom and produces `[~ p=a]`. Using `^.` we can cast without calling
+`cor` and produce the same result.

@@ -1,32 +1,39 @@
-#[sigtis, `~=`, %sgts](#sgts)
+[sigtis, `~=`, %sgts](#sgts)
+============================
 
 Equality hint
 
-`~=` is a synthetic hoon that hints to the interpreter that `q` may produce a noun equal to the already existing `p`, avoiding duplication.
+`~=` is a synthetic hoon that hints to the interpreter that `q` may
+produce a noun equal to the already existing `p`, avoiding duplication.
 
-##Produces
+Produces
+--------
 
 Twig `[%sgts p=twig q=twig]`
 
-##Sample
+Sample
+------
 
-`p` is a [twig]().
-`q` is a [twig]().
+`p` is a [twig](). `q` is a [twig]().
 
-##Tall form
+Tall form
+---------
 
     ~=  p
         q
 
-##Wide form
+Wide form
+---------
 
     ~=(p q)
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
     ~zod/try=> 20
     20

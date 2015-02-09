@@ -1,34 +1,45 @@
-#[buccom `$,` %bccm](#bccm)
+[buccom `$,` %bccm](#bccm)
+==========================
 
 Normalizing gate, `%clam`
 
-`$,` is a synthetic rune that produces a `%leaf`, a normalizing gate or [clam]() for `p`. `$,` is used to ensure an input value fits a certain type: if it does match, the value is produced. If it doesn't, the default value for the desired type is produced.
+`$,` is a synthetic rune that produces a `%leaf`, a normalizing gate or
+[clam]() for `p`. `$,` is used to ensure an input value fits a certain
+type: if it does match, the value is produced. If it doesn't, the
+default value for the desired type is produced.
 
-##Produces
+Produces
+--------
 
-[Twig](): `[%bccm p=tile] `
+[Twig](): `[%bccm p=tile]`
 
-##Sample
+Sample
+------
 
-`p`  is a [tile]()
+`p` is a [tile]()
 
-##Tall form
+Tall form
+---------
 
     $,  p
 
-##Wide form
+Wide form
+---------
 
 None
 
-##Irregular form
+Irregular form
+--------------
 
     ,p
 
-##Examples
+Examples
+--------
 
     ++  cord  ,@t                                           ::  text atom (UTF-8)
 
-In `++cord`, `,` creates a gate that validates atoms of the odor [`@t`]().
+In `++cord`, `,` creates a gate that validates atoms of the odor
+[`@t`]().
 
     ~zod/try=> (,[1 2] "ham")
     [%1 %2]

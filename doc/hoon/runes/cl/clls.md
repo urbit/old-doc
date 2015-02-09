@@ -1,20 +1,22 @@
-#[collus, `:+`, %clls](#clls)
+[collus, `:+`, %clls](#clls)
+============================
 
 Tuple of three
 
-`:+`  is a synthetic rune that produces a cell `[p q r]`.
+`:+` is a synthetic rune that produces a cell `[p q r]`.
 
-##Produces
+Produces
+--------
 
 Twig: `[%clls p=twig q=twig r=twig]`
 
-##Sample
+Sample
+------
 
-`p` is a [twig]().
-`q` is a [twig]().
-`r` is a [twig]().
+`p` is a [twig](). `q` is a [twig](). `r` is a [twig]().
 
-##Tall form
+Tall form
+---------
 
 Kingside:
 
@@ -27,15 +29,18 @@ Queenside:
     :+  p  q
     r
 
-##Wide form
+Wide form
+---------
 
     :+(p q r)
 
-##Irregular form
+Irregular form
+--------------
 
 undefined
 
-##Examples
+Examples
+--------
 
     /~zod/try=> :+  1
                   2
@@ -44,11 +49,13 @@ undefined
     /~zod/try=> :+(%a ~ 'b')
     [%a ~ 'b']
 
-This is the most straightforward case of `:+`, producing a tuple of four values in both tall and wide form. 
+This is the most straightforward case of `:+`, producing a tuple of four
+values in both tall and wide form.
 
     /~zod/try=> 
     :+  (add 2 4)  (add 2 6)
       |-  (div 4 2)
     [6 8 2]
 
-Most commonly `:+` helps to organize code, allowing you to produce a cell from nested computation.
+Most commonly `:+` helps to organize code, allowing you to produce a
+cell from nested computation.

@@ -1,31 +1,37 @@
-#[semdoq, %smdq](#smdq)
+[semdoq, %smdq](#smdq)
+======================
 
 String
 
 `semdoq` is a synthetic rune used to make strings, interpreted or not.
 
-##Produces
+Produces
+--------
 
 Twig: `[%smdq p=(list beer)]`
 
-##Sample
+Sample
+------
 
 `p` is a [list]() of [`++beer`]().
 
-##Tall form
+Tall form
+---------
 
 None
 
-##Wide form
+Wide form
+---------
 
 None
 
-##Irregular form
+Irregular form
+--------------
 
     "foo"
 
-##Examples
-
+Examples
+--------
 
     ~zod/try=> "foo"
     "foo"
@@ -37,7 +43,8 @@ Here we see our most common case of `semdoq`, producing [`++tape`]s.
     ~zod/try=> "ba{<+(2)>}r"
     "ba3r"
 
-In this case we include some simple string interpolation using `{` and `}`.
+In this case we include some simple string interpolation using `{` and
+`}`.
 
     ~zod/try=> (ream '"foo"')
     [%smdq p=~[102 111 111]]
@@ -46,4 +53,4 @@ In this case we include some simple string interpolation using `{` and `}`.
       p=~[98 97 [~ p=[%cltr p=~[[%hxgl p=~[[%dtls p=[%dtzy p=%ud q=2]]]]]]] 114]
     ]
 
-Using [`++ream`]() we can see how our previous expressions are parsed. 
+Using [`++ream`]() we can see how our previous expressions are parsed.

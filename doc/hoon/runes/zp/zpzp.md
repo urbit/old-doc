@@ -1,30 +1,37 @@
-#[zapzap, `!!`, %zpzp](#zpzp)
+[zapzap, `!!`, %zpzp](#zpzp)
+============================
 
 Crash
 
 `!?` is a natural rune that always crashes.
 
-##Produces
+Produces
+--------
 
 Twig: `[%zpzp ~]`
 
-##Sample
+Sample
+------
 
 Always ignored
 
-##Tall form
+Tall form
+---------
 
 None
 
-##Wide form
+Wide form
+---------
 
     !!
 
-##Irregular form
+Irregular form
+--------------
 
 None
 
-##Examples
+Examples
+--------
 
 Frequently used as sentinel
 

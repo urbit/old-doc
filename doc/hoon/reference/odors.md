@@ -1,12 +1,27 @@
-# Odors
+Odors
+=====
 
-## Overview
+Overview
+--------
 
-Since Everything in Hoon is a natural number, the interpreter needs to know both how to render them and subject them to type enforcement. Odors, which are just ASCII spans beginning with a `@`, carry all of the information necessary for the interpreter to do this. For instance, the interpreter knows to render an atom of odor `@t` as UTF-8 text.
+Since Everything in Hoon is a natural number, the interpreter needs to
+know both how to render them and subject them to type enforcement.
+Odors, which are just ASCII spans beginning with a `@`, carry all of the
+information necessary for the interpreter to do this. For instance, the
+interpreter knows to render an atom of odor `@t` as UTF-8 text.
 
-The span composing the Odor consists of two parts: a lowercase prefix carrying type information, and an upper-case suffix containing information about its size. The prefix is a taxonomy that grows more specific to the right. For example, atoms of the odor `@ta` are URL-safe ASCII text, and Atoms of the odor `@tas` are the more specific subset of ASCII text that is acceptable in hoon.
+The span composing the Odor consists of two parts: a lowercase prefix
+carrying type information, and an upper-case suffix containing
+information about its size. The prefix is a taxonomy that grows more
+specific to the right. For example, atoms of the odor `@ta` are URL-safe
+ASCII text, and Atoms of the odor `@tas` are the more specific subset of
+ASCII text that is acceptable in hoon.
 
-The general principle of type enforcement is that atoms change freely either up or down the taxonomy, but not across. You can treat a `@tas` as a `@t`, as in a strong type system; but you can also treat a `@t` as a `@tas`, or an `@` as anything.  However, passing a `@t` to a function that expects an `@ux` is a type error.
+The general principle of type enforcement is that atoms change freely
+either up or down the taxonomy, but not across. You can treat a `@tas`
+as a `@t`, as in a strong type system; but you can also treat a `@t` as
+a `@tas`, or an `@` as anything. However, passing a `@t` to a function
+that expects an `@ux` is a type error.
 
 XXDIAGRAMXX
 
@@ -18,7 +33,8 @@ For example, you can cast a `@t` to a `@tas`, or vice-versa:
     ~zod/try=> `@tas`a
     %permitted
 
-However, you cannot pass a `@ux` to a function that expects a `@t` without casting it to a `@` first:
+However, you cannot pass a `@ux` to a function that expects a `@t`
+without casting it to a `@` first:
 
     ~zod/try=> (|=(a=@t [%foo a]) 0x20)
     ! type-fail
@@ -27,9 +43,11 @@ However, you cannot pass a `@ux` to a function that expects a `@t` without casti
     ~zod/try=> (|=(a=@t [%foo a]) `@t`a)
     [%foo '!']
 
-Note that when explicitly casting a `@ux` to a `@t`, the interpreter automatically casts the `@ux` to a `@` first.
+Note that when explicitly casting a `@ux` to a `@t`, the interpreter
+automatically casts the `@ux` to a `@` first.
 
-## Comprehensive list of the Hoon Odors
+Comprehensive list of the Hoon Odors
+------------------------------------
 
     @c              UTF-32 codepoint
     @d              date
@@ -59,16 +77,22 @@ Note that when explicitly casting a `@ux` to a `@t`, the interpreter automatical
       @uw           unsigned base64
       @ux           unsigned hexadecimal
 
+Odor Size Suffixes
+------------------
 
-## Odor Size Suffixes
+The suffix of an odor, if present, is a single upper-case character A-Z
+`c`, which indicates the size of an atom. This is possible, because in
+Hoon, a letter maps to an ASCII code number, thus a number.
 
-The suffix of an odor, if present, is a single upper-case character A-Z `c`, which indicates the size of an atom. This is possible, because in Hoon, a letter maps to an ASCII code number, thus a number.
+Size is specified in bits in the form of `1 << (c - 'A')` resp. `2^c`,
+since most data aligns to the power of 2 or can be composed of such
+blocks.
 
-Size is specified in bits in the form of `1 << (c - 'A')` resp. `2^c`, since most data aligns to the power of 2 or can be composed of such blocks.
+The size of a block of size `N` can be calculated for example using
+`(bex (sub 'N' 'A'))` in bits or `(div (bex (sub 'N' 'A')) 8)` in bytes.
 
-The size of a block of size `N` can be calculated for example using `(bex (sub 'N' 'A'))` in bits or `(div (bex (sub 'N' 'A')) 8)` in bytes.
-
-Thus, `@tD` is one UTF-8 byte (whatever that means) and `@tN` is 1 kilobyte or less of UTF-8.
+Thus, `@tD` is one UTF-8 byte (whatever that means) and `@tN` is 1
+kilobyte or less of UTF-8.
 
 For reference:
 
@@ -99,17 +123,22 @@ For reference:
     Y   2MB
     Z   4MB
 
-It is possible to construct an atom bigger than 4Mb in size, but the type system would not be able to express an odor size for it.
+It is possible to construct an atom bigger than 4Mb in size, but the
+type system would not be able to express an odor size for it.
 
-There is also the datatype `++bloq` to hold a to-the-power-of block size (though it is just an alias for `@`).
+There is also the datatype `++bloq` to hold a to-the-power-of block size
+(though it is just an alias for `@`).
 
----
+------------------------------------------------------------------------
 
 ### @c
 
 UTF-32 codepoint
 
-Atoms of the odor `@c` represent Unicode text, constructed with a UTF-32 bytestream, with the lowest-significant bit first. Although we usually use a UTF-8 bytestream, sometimes it's useful to build atoms of one or more UTF-32 words.
+Atoms of the odor `@c` represent Unicode text, constructed with a UTF-32
+bytestream, with the lowest-significant bit first. Although we usually
+use a UTF-8 bytestream, sometimes it's useful to build atoms of one or
+more UTF-32 words.
 
 ##### Forms
 
@@ -131,7 +160,7 @@ Atoms of the odor `@c` represent Unicode text, constructed with a UTF-32 bytestr
     ~zod/try=> `@ux`(tuft ~-i~2764.u)
     0x75.a49d.e269
 
----
+------------------------------------------------------------------------
 
 ### @d
 
@@ -141,7 +170,11 @@ Date
 
 Absolute date
 
-Atoms of the odor `@da` represent absolute Urbit dates. Urbit dates represent 128-bit chronological time, with 2^64 seconds from the start of the universe. For example, 2^127 is 3:30:08 PM on December 5, AD 226. The time of day and/or second fragment is optional. As the last example shows, BC times are also possible.
+Atoms of the odor `@da` represent absolute Urbit dates. Urbit dates
+represent 128-bit chronological time, with 2\^64 seconds from the start
+of the universe. For example, 2\^127 is 3:30:08 PM on December 5, AD
+226. The time of day and/or second fragment is optional. As the last
+example shows, BC times are also possible.
 
 ##### Forms
 
@@ -176,19 +209,22 @@ Note: the time of day and/or millisecond fragment is optional.
     ~zod/try=> `@ux`~2013.12.7..15.30.07..1234
     0x8000.000d.2141.4c7f.1234.0000.0000.0000
 
----
+------------------------------------------------------------------------
 
 #### @dr
 
 Relative date (ie, timespan)
 
-Atoms of the odor `@dr` atoms represent basic time intervals in milliseconds. There are no `@dr` intervals under a second or over a day in length.
+Atoms of the odor `@dr` atoms represent basic time intervals in
+milliseconds. There are no `@dr` intervals under a second or over a day
+in length.
 
 ##### Forms
 
 `~d[day].h[hour]m[minute].s[second]..[fractionals]`
 
-Note: Every measurement is optional, so long as those that are present are in order. The largest measurement is preceded by a `~`.
+Note: Every measurement is optional, so long as those that are present
+are in order. The largest measurement is preceded by a `~`.
 
 ##### Examples
 
@@ -218,19 +254,20 @@ Note: Every measurement is optional, so long as those that are present are in or
     ~zod/try=> `@da`(add ~2013.11.30 ~d1)
     ~2013.12.1
 
----
+------------------------------------------------------------------------
 
 #### @f
 
 Loobean(inverse boolean)
 
-Atoms of the odor `@f` represent loobeans, where `0` is yes  and `1` is no. Loobeans are often represented in their cubic and runic forms shown below.
+Atoms of the odor `@f` represent loobeans, where `0` is yes and `1` is
+no. Loobeans are often represented in their cubic and runic forms shown
+below.
 
 ##### Forms
 
-`0`, `1` as numbers.
-`%.y`, `%.n` as [`%cube`]()s.
-`&`, `|` as short forms.
+`0`, `1` as numbers. `%.y`, `%.n` as [`%cube`]()s. `&`, `|` as short
+forms.
 
 ##### Examples
 
@@ -248,14 +285,14 @@ Atoms of the odor `@f` represent loobeans, where `0` is yes  and `1` is no. Loob
     ~zod/try=> |
     %.n
 
----
+------------------------------------------------------------------------
 
 ### @n
 
 Nil
 
-Atoms of the odor `@n` indicate an absence of information, as in a list terminator.
-The only value is `~`, which is just `0`.
+Atoms of the odor `@n` indicate an absence of information, as in a list
+terminator. The only value is `~`, which is just `0`.
 
     ~zod/try=> :type; ~
     ~
@@ -265,19 +302,22 @@ The only value is `~`, which is just `0`.
     ~zod/try=> `@ud`~
     0
 
----
+------------------------------------------------------------------------
 
 ### @p
 
 Phonemic base
 
-Atoms of `@p` are primarily used to represent ships names, but they can be used to optimize any short number for memorability. For example, it is great for checksums.
+Atoms of `@p` are primarily used to represent ships names, but they can
+be used to optimize any short number for memorability. For example, it
+is great for checksums.
 
 ##### Forms
 
 `~[phonemic]`
 
-Every syllable is a byte. Pairs of two bytes are separated by `-`, and phrases of four pairs are separated by `--`.
+Every syllable is a byte. Pairs of two bytes are separated by `-`, and
+phrases of four pairs are separated by `--`.
 
     ~zod/try=> ~pasnut
     ~pasnut
@@ -293,23 +333,31 @@ Every syllable is a byte. Pairs of two bytes are separated by `-`, and phrases o
     ~zod/try=> `@p`(shaf %foo %bar)
     ~ralnyl-panned-tinmul-winpex--togtux-ralsem-lanrus-pagrup
 
----
+------------------------------------------------------------------------
 
 ### @r
 
 IEEE floating-points
 
-Hoon does not yet support floating point, so these syntaxes don't work yet. But the syntax for a single-precision float is the normal English syntax, with a `.` prefix:
+Hoon does not yet support floating point, so these syntaxes don't work
+yet. But the syntax for a single-precision float is the normal English
+syntax, with a `.` prefix:
 
----
+------------------------------------------------------------------------
 
 ### @s
 
 Signed integer, sign bit low
 
-Without finite-sized integers, the sign extension trick obviously does not work. A signed integer in Hoon is a different way to use atoms than an unsigned integer; even for positive numbers, the signed integer cannot equal the unsigned.
+Without finite-sized integers, the sign extension trick obviously does
+not work. A signed integer in Hoon is a different way to use atoms than
+an unsigned integer; even for positive numbers, the signed integer
+cannot equal the unsigned.
 
-The prefix for a negative signed integer is a single `-` before the unsigned syntax. The prefix for a positive signed integer is `--`. The least significant represents the sign. The representation is similar to a folded number line.
+The prefix for a negative signed integer is a single `-` before the
+unsigned syntax. The prefix for a positive signed integer is `--`. The
+least significant represents the sign. The representation is similar to
+a folded number line.
 
 #### @sb
 
@@ -319,8 +367,7 @@ Atoms of the odor `@sb` represent signed binary numbers.
 
 #### Forms
 
-`-0b[negative_binary]`
-`--0b[postive_binary]`
+`-0b[negative_binary]` `--0b[postive_binary]`
 
 #### Examples
 
@@ -336,7 +383,7 @@ Atoms of the odor `@sb` represent signed binary numbers.
     ~zod/try=> `@sb`(sum:si -0b10 -0b10)
     -0b100
 
----
+------------------------------------------------------------------------
 
 #### @sd
 
@@ -346,8 +393,7 @@ Atoms of odor `@sd` represent signed decimal numbers.
 
 #### Forms
 
-`-[negative[decimal]()]`
-`--[postive_[decimal]()]`
+`-[negative[decimal]()]` `--[postive_[decimal]()]`
 
 #### Examples
 
@@ -362,7 +408,7 @@ Atoms of odor `@sd` represent signed decimal numbers.
     ~zod/try=> (sum:si -234 --234)
     --0
 
----
+------------------------------------------------------------------------
 
 #### @sv
 
@@ -391,7 +437,7 @@ Atoms of odor `@sv` represent signed base32 numbers.
     ~zod/try=> `@sd`(sum:si -0vv --0vb)
     -20
 
----
+------------------------------------------------------------------------
 
 #### @sw
 
@@ -401,8 +447,9 @@ Atoms of odor `@sw` represent base64 numbers.
 
 ##### Forms
 
-`-0w[negative_base64]` The digits are, in order, `0-9`, `a-z`, `A-Z`,`-`, and `~`. 
-`--0w[positive_base64]` The digits are, in order, `0-9`
+`-0w[negative_base64]` The digits are, in order, `0-9`, `a-z`,
+`A-Z`,`-`, and `~`. `--0w[positive_base64]` The digits are, in order,
+`0-9`
 
 ##### Examples
 
@@ -422,8 +469,7 @@ Atoms of odor `@sx` represent signed hexadecimal numbers.
 
 ##### Forms
 
-`-[negative_hexadecimal]`
-`--[positive_hexadecimal]`
+`-[negative_hexadecimal]` `--[positive_hexadecimal]`
 
 ##### Examples
 
@@ -440,18 +486,19 @@ Atoms of odor `@sx` represent signed hexadecimal numbers.
     ~zod/try=> `@sd`(sum:si --0x17 -0xa)
     --13
 
----
+------------------------------------------------------------------------
 
 ### @t
 
 UTF-8 text (cord)
 
-Atoms of the odor `@t` represent a [cord](http://en.wikipedia.org/wiki/Rope_data_structure), sequence of UTF-8 bytes, LSB first. It is sometimes called a cord.
+Atoms of the odor `@t` represent a
+[cord](http://en.wikipedia.org/wiki/Rope_data_structure), sequence of
+UTF-8 bytes, LSB first. It is sometimes called a cord.
 
 ##### Forms
 
-`~~[text]`
-`'[text]'`
+`~~[text]` `'[text]'`
 
 ##### Examples
 
@@ -464,13 +511,14 @@ Atoms of the odor `@t` represent a [cord](http://en.wikipedia.org/wiki/Rope_data
     'foo'
     @t
 
----
+------------------------------------------------------------------------
 
 #### @ta
 
 ASCII text (span)
 
-Atoms of the odor `@ta` represent the ASCII text subset used in hoon literals: `a-z`, `0-9`, `~`, `-`, `.`, `_`.
+Atoms of the odor `@ta` represent the ASCII text subset used in hoon
+literals: `a-z`, `0-9`, `~`, `-`, `.`, `_`.
 
 ##### Forms
 
@@ -486,13 +534,15 @@ Atoms of the odor `@ta` represent the ASCII text subset used in hoon literals: `
     ~zod/try=> `@t`~.asdf
     'asdf'
 
----
+------------------------------------------------------------------------
 
 #### @tas
 
 ASCII symbol (term)
 
-Atoms of `@tas` represent [`++term`]()s, the most exclusive text odor. The only characters permitted are lowercase ASCII, except as the first or last character, and 0-9, except as the first character.
+Atoms of `@tas` represent [`++term`]()s, the most exclusive text odor.
+The only characters permitted are lowercase ASCII, except as the first
+or last character, and 0-9, except as the first character.
 
 ##### Forms
 
@@ -505,14 +555,13 @@ Atoms of `@tas` represent [`++term`]()s, the most exclusive text odor. The only 
     ~zod/try=> -:!>(%dead-fish9)
     [%cube p=271.101.667.197.767.630.546.276 q=[%atom p=%tas]]
 
-
----
+------------------------------------------------------------------------
 
 ### @u
 
 Unsigned integer
 
----
+------------------------------------------------------------------------
 
 #### @ub
 
@@ -536,17 +585,20 @@ Atoms of the odor `@ub` represent unsigned binary numbers.
     ~zod/try=> `@`0b100
     4
 
----
+------------------------------------------------------------------------
 
 #### @ud
 
 Unsigned decimal
 
-Atoms of `@ud` represent unsigned decimal numbers. It is the default print format for both `@u` and and `@u`, namely unsigned numbers with no printing preference, as well as opaque atoms.
+Atoms of `@ud` represent unsigned decimal numbers. It is the default
+print format for both `@u` and and `@u`, namely unsigned numbers with no
+printing preference, as well as opaque atoms.
 
 ##### Forms
 
-Numbers of more than three digits must be delimited by `.`s. Whitespace and linebreaks can appear between the dot and the next group.
+Numbers of more than three digits must be delimited by `.`s. Whitespace
+and linebreaks can appear between the dot and the next group.
 
     ~zod/try=> 0
     0
@@ -562,7 +614,7 @@ Numbers of more than three digits must be delimited by `.`s. Whitespace and line
     ~zod/try=> (bex 20)
     1.048.576
 
----
+------------------------------------------------------------------------
 
 #### @uv
 
@@ -584,7 +636,7 @@ Atoms of the odor `@uv` represent unsigned base64 numbers.
     ~zod/try=> `@ud`(add 0vv 0v9)
     40
 
----
+------------------------------------------------------------------------
 
 #### @uw
 
@@ -592,7 +644,7 @@ Unsigned base64
 
 ##### Forms
 
-`ow[number]` The digits are, in order, `0-9`, `a-z`, `A-Z`,`-`, and `~`. 
+`ow[number]` The digits are, in order, `0-9`, `a-z`, `A-Z`,`-`, and `~`.
 
 ##### Examples
 
@@ -606,7 +658,7 @@ Unsigned base64
     ~zod/try=> `@ud``@uv`(add 0w~ 0wZ)
     124
 
----
+------------------------------------------------------------------------
 
 #### @ux
 
@@ -615,8 +667,9 @@ Unsigned hexadecimal
 Atoms of the odor `@ux` represent hexadecimal numbers.
 
 ##### Forms
- 
-`0x`number. Numbers with more than four digits must be delimited by `.`s. Hex digits are lowercase only.
+
+`0x`number. Numbers with more than four digits must be delimited by
+`.`s. Hex digits are lowercase only.
 
     ~zod/try=> 0x0
     0x0
@@ -630,4 +683,4 @@ Atoms of the odor `@ux` represent hexadecimal numbers.
     ~zod/try=> 0x10.  0000
     0x10.0000
 
-  ---
+------------------------------------------------------------------------
