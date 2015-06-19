@@ -1,7 +1,7 @@
 [cenhep, `%-`, %cnhp](#cnhp)
 ============================
 
-Slam, n-arguments
+Slam, 1 (or n) argument(s)
 
 `%-` is a synthetic rune that that [pull]()s [`$`]() from the [door]()
 `p` with its sample set to `[%cltr q]`. `%-` in both its tall and wide
