@@ -1,7 +1,5 @@
-# the docs are now in your ship
+# The docs are in flux.  You can find the new repo [here](https://github.com/urbit/docs)
 
 this repo is now depricated. 
 
-if you're running a pier locally you can navigate to `http://localhost:8080/gen/docs/tree/doc` to view them.
-
-doc related issues and prs can now be sent to the main `urbit/urbit` repo.
+doc related issues and prs can now be sent to the main `urbit/docs` repo.
